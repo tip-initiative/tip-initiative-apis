@@ -83,7 +83,7 @@ components:
           description: Pricing metric  (CPM, CPP, etc.)
           type: array
           items:
-            $ref: 'commonSchemas.yaml#/components/schemas/Audiences'
+            $ref: 'commonSchemas.yaml#/components/schemas/Audience'
         Commission:
           description: Buyer Commission percentage amount 
           type: number
