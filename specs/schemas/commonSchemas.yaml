@@ -26,8 +26,8 @@ components:
         - sourceName
         - timeStamp
       properties:
-        version:
-          description: XML Version 
+        tipVersion:
+          description: TIP version of the interface
           type: string  # TODO any constraints?
         transactionNum:
           description: Buyer or Seller generated unique number for transaction
@@ -57,7 +57,7 @@ components:
         - mediaOutletReference
       properties:
         mediaOutlet:
-          description: Unique identifier for the station or network
+          description: Unique persistent identifier for the station or network
           type: string  # TODO any constraints?
         mediaOutletName:
           description: Station or network name associated to mediaOutletId
@@ -77,7 +77,7 @@ components:
         - advertiserReference
       properties:
         advertiserId:
-          description: String	Unique identifier for the advertiser/client 
+          description: Unique persistent identifier for the advertiser/client
           type: string  # TODO any constraints?
         advertiserName:
           description: String	Advertiser name 
@@ -94,7 +94,7 @@ components:
         - brandRefererence
       properties:
         brandId:
-          description: Unique identifier for the brand 
+          description: Unique persistent identifier for the brand
           type: string  # TODO any constraints?
         brandName:
           description: Brand Name
@@ -111,7 +111,7 @@ components:
         - buyerLocationReference
       properties:
         buyerLocationId:
-          description: Unique identifier for the Buying organization or  trafficking agency and /or the supplier of the media
+          description: Unique persistent identifier for the Buying organization or  trafficking agency and /or the supplier of the media
           type: string  # TODO any constraints?
         buyerLocationName:
           description: Buying organization name and location
@@ -128,7 +128,7 @@ components:
         - productReference
       properties:
         productId:
-          description: Unique identifier for the product 
+          description: Unique persistent identifier for the product
           type: string  # TODO any constraints?
         productName:
           description: Brand Name
@@ -151,7 +151,7 @@ components:
         - Guarantee
       properties:  
         audienceSegmentId:
-          description: Unique identifier for audience segment
+          description: Unique persistent identifier for audience segment
           type: string  # TODO any constraints?
         audienceSegmentName:
           description: Audience Segment Name 
@@ -268,19 +268,6 @@ components:
           type: integer  #TODO any constraints on this?
           format: int32
 
-    externalComment: 
-      description: Packages Free Form Comments into a single object
-      properties:
-        externalSourceName:
-          description: Name associated with who is supplying the external reference 
-          type: string #TODO any constraints on this?
-        externalSourceId:
-          description: ID associated with external reference name
-          type: string  #TODO any constraints on this?
-        externalComment:
-          description: Free form text to accommodate transaction comments and/or activities outside the TIP flow
-          type: string  #TODO any constraints on this? 
-
     broadcastDate:
       description: Packages the Broadcast Date & Time Information
       properties:
@@ -371,7 +358,7 @@ components:
           description: Type of media being proposed  - Enum values to be defined
           type: string #TODO need the enum types
 
-    PricePeriods:
+    PricePeriod:
       required:
         - inventoryType
         - timeFrame
@@ -428,7 +415,7 @@ components:
           type: integer # TODO any constraints on this?
           format: int32
 
-    Audiences: 
+    Audience: 
       description: Price Period Audience segment details; multiple arrays of audience segments may exist
       properties:
         audienceSegment:
