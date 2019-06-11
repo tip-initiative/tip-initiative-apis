@@ -1,0 +1,81 @@
+openapi: "3.0.0"
+
+components:
+ securitySchemes:
+    bearerAuth: 
+      type: http
+      scheme: bearer
+      bearerFormat: JWT 
+security:
+  - bearerAuth: []
+
+info:
+  version: 4.0.1
+  title: logTimes
+  description: Async flow, buyer initiates with request and callback url, seller posts back # TODO placeholder description
+  termsOfService: http://placeholderdomain.io/terms/
+  contact:
+    name: TIP Forum
+    email: tip-mailing-list@tbd.com
+    url: http://placeholderdomain.io
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+servers:
+  - url: http://placeholderdomain.io
+
+paths:
+  /logTimesBuyer:
+    post:
+      summary: Request for pre and/or post air date and times
+      description: buyer's system POSTs a Log Times request to seller's system
+      operationId: logTimesBuyer
+      requestBody:
+        description: buyer's system POSTs a Log Times request to seller's system
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: 'schemas/logTimesSchemas.yaml#/components/schemas/logTimesBuyerRequestBodyParameters'
+      responses:
+        '200':
+          description: Request processed successfully
+          content:
+            application/json:
+              schema:
+                $ref: 'schemas/rfpSchemas.yaml#/components/schemas/RFPResponse'
+              examples:
+                RFPResponse:
+                  $ref: 'examples/rfpExamples.yaml#/components/examples/RFPResponse'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
+
+      callbacks:
+        sellerPostCallback:
+          '{$request.body#/callbackUrl}':
+            post:
+                requestBody:   # Contents of the callback message
+                  required: true
+                  content:
+                    application/json:
+                      schema:
+                        type: object
+                        properties:
+                          message:
+                            type: string
+                            example: Some event happened
+                        required:
+                          - message
+                responses:   # Expected responses to the callback message
+                  '200':
+                    description: Your server returns this code if it accepts the callback
+                  default:
+                    description: unexpected error
+                    content:
+                      application/json:
+                        schema:
+                          $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'           
