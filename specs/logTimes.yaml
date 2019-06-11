@@ -43,10 +43,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'schemas/rfpSchemas.yaml#/components/schemas/RFPResponse'
+                $ref: 'schemas/logTimesSchemas.yaml#/components/schemas/LogTimeResponseResponse'
               examples:
                 RFPResponse:
-                  $ref: 'examples/rfpExamples.yaml#/components/examples/RFPResponse'
+                  $ref: 'examples/logTimesSchemas.yaml#/components/examples/LogTimeResponseResponse'
         default:
           description: unexpected error
           content:
@@ -63,13 +63,7 @@ paths:
                   content:
                     application/json:
                       schema:
-                        type: object
-                        properties:
-                          message:
-                            type: string
-                            example: Some event happened
-                        required:
-                          - message
+                        $ref: 'schemas/logTimesSchemas.yaml#/components/schemas/logTimesSellerRequestBodyParameters'
                 responses:   # Expected responses to the callback message
                   '200':
                     description: Your server returns this code if it accepts the callback

@@ -224,3 +224,11 @@ components:
           items:
             type: string  # TODO any constraints?
             enum: [Commercial, Added Value, Custom] # TODO Custom keyword
+
+    LogTimeResponseResponse: # TODO stub response, needs to be defined
+      description: Response data # TODO stub response, needs to be defined
+      properties:
+        transactionId:
+          type: string
+        transactionDate:
+          type: string
