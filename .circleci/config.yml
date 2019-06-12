@@ -1,0 +1,20 @@
+ version: 2
+ jobs:
+   validate:
+     docker:
+       - image: circleci/node
+     steps:
+       - run: sudo npm install @openapitools/openapi-generator-cli -g
+       - run: sudo apt-get install openjdk-8-jre-headless
+       - run: openapi-generator version
+       - checkout
+       - run: mkdir -p /tmp/artifacts/
+       - run: for i in `find -name "*.yaml"`; do openapi-generator validate -i $i; done > /tmp/artifacts/validation.log
+       - run: for i in `find -name "*.yaml"`; do openapi-generator generate -i $i -g html -o /tmp/artifacts/${i}/; done
+       - store_artifacts:
+          path: /tmp/artifacts
+ workflows:
+   version: 2
+   validation:
+     jobs:
+       - validate
