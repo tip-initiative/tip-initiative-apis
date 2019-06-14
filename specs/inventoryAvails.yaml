@@ -1,0 +1,76 @@
+openapi: "3.0.0"
+
+components:
+ securitySchemes:
+    bearerAuth: 
+      type: http
+      scheme: bearer
+      bearerFormat: JWT 
+security:
+  - bearerAuth: []
+
+info:
+  version: 4.0.1
+  title: inventoryAvails
+  description: Allows the Buyer as part of campaign planning to initiate an Inventory Request to Seller
+  termsOfService: http://placeholderdomain.io/terms/
+  contact:
+    name: TIP Forum
+    email: tip-mailing-list@tbd.com
+    url: http://placeholderdomain.io
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+servers:
+  - url: http://placeholderdomain.io
+
+paths:
+  /inventoryAvails:
+    post:
+      summary: Send the request for the inventory avails required
+      description: Send the request for the inventory avails required
+      operationId: inventoryAvails
+      requestBody:
+        description: Send the request for the inventory avails required
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: 'schemas/inventoryAvailsSchemas.yaml#/components/schemas/inventoryAvailsRequestBody'
+      responses:
+        '200':
+          description: Request processed successfully
+          content:
+            application/json:
+              schema:
+                $ref: 'schemas/inventoryAvailsSchemas.yaml#/components/schemas/inventoryAvailsResponse'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
+
+      callbacks:
+          inventoryAvailsCallback:
+            '{$request.body#/callbackUrl}':
+              post:
+                  requestBody:   # Contents of the callback message
+                    required: true
+                    content:
+                      application/json:
+                        schema:
+                          $ref: 'schemas/inventoryAvailsSchemas.yaml#/components/schemas/inventoryAvailsCallbackBody'
+                  responses:   # Expected responses to the callback message
+                    '200':
+                      description: Request processed successfully
+                      content:
+                        application/json:
+                          schema:
+                            $ref: 'schemas/inventoryAvailsSchemas.yaml#/components/schemas/inventoryAvailsResponse'
+                    default:
+                      description: unexpected error
+                      content:
+                        application/json:
+                          schema:
+                            $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'           
