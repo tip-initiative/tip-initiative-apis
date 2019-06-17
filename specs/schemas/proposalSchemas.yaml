@@ -247,11 +247,11 @@ components:
 
     GetProposalsResponse:
       properties:
-      Proposals:
-        description: Array of proposals
-        type: array
-        items:
-          $ref: '#/components/schemas/ProposalObject'
+        Proposals:
+          description: Array of proposals
+          type: array
+          items:
+            $ref: '#/components/schemas/ProposalObject'
 
     GetProposalsQueryObject:
       required:
