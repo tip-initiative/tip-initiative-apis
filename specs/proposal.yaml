@@ -11,10 +11,12 @@ security:
 
 info:
   version: 4.0.1
-  title: RFP
+  title: Proposal
   description: |
-    Allows the buyer to submit a Request for Proposal (RFP) to the seller with overall media budget, goal 
-    and makegood terms and optionally include specific detailed inventory requests 
+    Allows the seller to respond back to the buyer with the detailed proposal for a given RFP or revised proposal; 
+    Multiple versions of a proposal can be under negotiation for the same campaign, but only one version may be executed; buyer must submit a 
+    "Proposal Change Request" for the last proposal version submission; seller must respond back with a Proposal Response that contains a new 
+    version number when submitting new versions.  New Proposals may be submitted without a RFP Response 		
   termsOfService: http://placeholderdomain.io/terms/
   contact:
     name: TIP Forum
@@ -27,71 +29,43 @@ servers:
   - url: http://placeholderdomain.io
 
 paths:
-  /rfp:
-    post:
-      summary: Create an RFP in the seller's system
-      description: |
-        Create an RFP in the seller's system
-      operationId: createRfp
+  /proposals:
+    get:
+      summary: Retrieve a list of proposal in buyers system to ensure buyer and seller systems are synchronized
+      description: Retrieve a list of proposal in buyers system
+      operationId: getProposals
       requestBody:
-        description: Create an RFP in the seller's system
+        description: Retrieve a list of proposal in buyers system
         required: true
         content:
           application/json:
             schema:
-              $ref: 'schemas/proposalSchemas.yaml#/components/schemas/RFPObject'
+              $ref: 'schemas/proposalSchemas.yaml#/components/schemas/GetProposalsQueryObject'
       responses:
         '200':
           description: Request processed successfully
           content:
             application/json:
               schema:
-                $ref: 'schemas/proposalSchemas.yaml#/components/schemas/RFPResponse'
-              examples:
-                RFPResponse:
-                  $ref: 'examples/rfpExamples.yaml#/components/examples/RFPResponse'
+                $ref: 'schemas/proposalSchemas.yaml#/components/schemas/GetProposalsResponse'
         default:
           description: unexpected error
           content:
             application/json:
               schema:
                 $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
-      
-      callbacks:
-        Proposal:
-          '{$request.body#/callbackUrl}':
-            post:
-                requestBody:   # Contents of the callback message
-                  required: true
-                  content:
-                    application/json:
-                      schema:
-                        $ref: 'schemas/proposalSchemas.yaml#/components/schemas/ProposalObject'
-                responses:   # Expected responses to the callback message
-                  '200':
-                    description: Request processed successfully
-                    content:
-                      application/json:
-                        schema:
-                          $ref: 'examples/rfpExamples.yaml#/components/examples/RFPResponse'
-                  default:
-                    description: unexpected error
-                    content:
-                      application/json:
-                        schema:
-                          $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'        
 
-    patch:
-      summary: Change the details of a RFP in the seller's system
-      description: Change the details of a RFP in the seller's system
-      operationId: updateRfp
+    post:
+      summary: Create a proposal in the buyers system
+      description: Create a proposal in the buyers system
+      operationId: createProposal
       requestBody:
-        description: Change an RFP in the seller's system
+        description: Create a proposal in the buyers system
         required: true
         content:
           application/json:
             schema:
-              $ref: 'schemas/proposalSchemas.yaml#/components/schemas/RFPObject'
+              $ref: 'schemas/proposalSchemas.yaml#/components/schemas/ProposalObject'
       responses:
         '200':
           description: Request processed successfully
@@ -108,16 +82,17 @@ paths:
             application/json:
               schema:
                 $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
+
     delete:
-      summary: Cancel a specific RFP in the seller's system
-      description: Cancel a specific RFP in the seller's system
-      operationId: cancelRfp
+      summary: Cancel a proposal in the buyer's system
+      description: Cancel a proposal in the buyer's system
+      operationId: cancelProposal
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: 'schemas/proposalSchemas.yaml#/components/schemas/RFPCancel'
+              $ref: 'schemas/proposalSchemas.yaml#/components/schemas/ProposalCancel'
       responses:
         '200':
           description: Request processed successfully
