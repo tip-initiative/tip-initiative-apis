@@ -19,6 +19,19 @@ components:
     ProposalObject:
       required:
         - transactionHeader
+        - referenceId
+        - Contact
+        - buyerLocation
+        - Commission
+        - revenueType
+        - businessType
+        - calendarType
+        - Currency
+        - Equivalized
+        - startDate
+        - endDate
+        - grossAmount
+        - inventoryCatalog
       properties:
         transactionHeader:
           $ref: 'commonSchemas.yaml#/components/schemas/transactionHeader'

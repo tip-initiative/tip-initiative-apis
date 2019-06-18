@@ -11,8 +11,8 @@ security:
 
 info:
   version: 4.0.1
-  title: inventoryAvails
-  description: Allows the Buyer as part of campaign planning to initiate an Inventory Request to Seller
+  title: Inventory
+  description: Inventory Endpoints
   termsOfService: http://placeholderdomain.io/terms/
   contact:
     name: TIP Forum
@@ -25,18 +25,18 @@ servers:
   - url: http://placeholderdomain.io
 
 paths:
-  /inventoryAvails:
+  /inventory/avails/buyers:
     post:
       summary: Send the request for the inventory avails required
-      description: Send the request for the inventory avails required
-      operationId: inventoryAvails
+      description: Allows the Buyer as part of campaign planning to initiate an Inventory Request to Seller
+      operationId: inventoryAvailsBuyers
       requestBody:
         description: Send the request for the inventory avails required
         required: true
         content:
           application/json:
             schema:
-              $ref: 'schemas/inventoryAvailsSchemas.yaml#/components/schemas/inventoryAvailsRequestBody'
+              $ref: 'schemas/inventoryAvailsSchemas.yaml#/components/schemas/inventoryAvailsBuyerObject'
       responses:
         '200':
           description: Request processed successfully
@@ -60,7 +60,7 @@ paths:
                     content:
                       application/json:
                         schema:
-                          $ref: 'schemas/inventoryAvailsSchemas.yaml#/components/schemas/inventoryAvailsCallbackBody'
+                          $ref: 'schemas/inventoryAvailsSchemas.yaml#/components/schemas/inventoryAvailsSellerObject'
                   responses:   # Expected responses to the callback message
                     '200':
                       description: Request processed successfully
@@ -73,4 +73,30 @@ paths:
                       content:
                         application/json:
                           schema:
-                            $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'           
+                            $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
+
+  /inventory/avails/sellers:
+    post:
+      summary: Seller POSTs the the Inventory Avails information to the buyer's system
+      description: Allows the Seller to send inventory criteria such as Stations, Selling Titles, Inventory Types, Pricing, Audience Estimates upon a manual request
+      operationId: inventoryAvailsSellers
+      requestBody:
+        description: Seller POSTs the the Inventory Avails information to the buyer's system
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: 'schemas/inventoryAvailsSchemas.yaml#/components/schemas/inventoryAvailsSellerObject'
+      responses:
+        '200':
+          description: Request processed successfully
+          content:
+            application/json:
+              schema:
+                $ref: 'schemas/inventoryAvailsSchemas.yaml#/components/schemas/inventoryAvailsResponse'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'

@@ -16,9 +16,10 @@ paths: {} # no paths
 
 components:
   schemas:
-    inventoryAvailsRequestBody:
+    inventoryAvailsBuyerObject:
         required:
           - transactionHeader
+          - callbackUrl
           - dateSubmitted
           - buyerLocation
           - dateStart
@@ -103,7 +104,7 @@ components:
             items:
               $ref: 'commonSchemas.yaml#/components/schemas/Audience'
 
-    inventoryAvailsCallbackBody:
+    inventoryAvailsSellerObject:
       required:
           - transactionHeader
           - inventoryCatalog

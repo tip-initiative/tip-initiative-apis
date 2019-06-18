@@ -25,18 +25,18 @@ servers:
   - url: http://placeholderdomain.io
 
 paths:
-  /logTimesBuyer:
+  /logs/times/buyer:
     post:
       summary: Request for pre and/or post air date and times
       description: buyer's system POSTs a Log Times request to seller's system
-      operationId: logTimesBuyer
+      operationId: logsTimesBuyer
       requestBody:
         description: buyer's system POSTs a Log Times request to seller's system
         required: true
         content:
           application/json:
             schema:
-              $ref: 'schemas/logTimesSchemas.yaml#/components/schemas/logTimesBuyerRequestBodyParameters'
+              $ref: 'schemas/logTimesSchemas.yaml#/components/schemas/logTimesBuyerObject'
       responses:
         '200':
           description: Request processed successfully
@@ -60,13 +60,42 @@ paths:
                   content:
                     application/json:
                       schema:
-                        $ref: 'schemas/logTimesSchemas.yaml#/components/schemas/logTimesSellerRequestBodyParameters'
+                        $ref: 'schemas/logTimesSchemas.yaml#/components/schemas/logTimesSellerObject'
                 responses:   # Expected responses to the callback message
                   '200':
-                    description: Your server returns this code if it accepts the callback
+                    description: Request processed successfully
+                    content:
+                      application/json:
+                        schema:
+                          $ref: 'schemas/logTimesSchemas.yaml#/components/schemas/LogTimeResponseResponse'
                   default:
                     description: unexpected error
                     content:
                       application/json:
                         schema:
-                          $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'           
+                          $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
+  /logs/times/seller:
+    post:
+      summary: seller POSTs the Log Times report to the buyer's system
+      description: Allows the seller to send to the buyer the log times information (No Request from buyer is Required)
+      operationId: logsTimesSeller
+      requestBody:
+        description: seller POSTs the Log Times report to the buyer's system
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: 'schemas/logTimesSchemas.yaml#/components/schemas/logTimesSellerObject'
+      responses:
+        '200':
+          description: Request processed successfully
+          content:
+            application/json:
+              schema:
+                $ref: 'schemas/logTimesSchemas.yaml#/components/schemas/LogTimeResponseResponse'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
