@@ -1,0 +1,315 @@
+openapi: "3.0.0"
+info:
+  version: 4.0.1
+  title: RFP Schemas
+  description: RFP Schemas, based on TIP 4.0.0 documentation
+  termsOfService: http://placeholderdomain.io/terms/
+  contact:
+    name: TIP Forum
+    email: tip-mailing-list@tbd.com
+    url: http://placeholderdomain.io
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+
+paths: {} # no paths
+
+components:
+  schemas:
+    ProposalObject:
+      required:
+        - transactionHeader
+        - referenceId
+        - Contact
+        - buyerLocation
+        - Commission
+        - revenueType
+        - businessType
+        - calendarType
+        - Currency
+        - Equivalized
+        - startDate
+        - endDate
+        - grossAmount
+        - inventoryCatalog
+      properties:
+        transactionHeader:
+          $ref: 'commonSchemas.yaml#/components/schemas/transactionHeader'
+        referenceId:
+          description: Information grouping all reference ids and their source that are associated to the proposal
+          type: string # TODO any constraints?
+        expirationDate:
+          description: Date in which the proposal’s pricing and audience estimates expire
+          type: string
+          format: date-time
+        Contact:
+          $ref: 'commonSchemas.yaml#/components/schemas/Contact'
+        Email:
+          description: Account Executive email address
+          type: string  # TODO any constraints?
+        buyerLocation:
+          $ref: 'commonSchemas.yaml#/components/schemas/buyerLocation'
+        Commission:
+          description: Buyer commission percentage
+          type: number  # TODO spreadsheet has this as an integer, changed to double float
+          format: double # TODO spreadsheet has this as an integer, changed to double float
+        revenueType:
+          description: How the proposal is being negotiated for payment terms
+          type: string
+          enum: [Cash, Barter, Trade, Custom] # TODO Custom is ambigious
+        businessType:
+          description: Seller-defined type of business 
+          type: string  # TODO any constraints?
+        Advertiser:
+          $ref: 'commonSchemas.yaml#/components/schemas/Advertiser'     
+        marketplaceType:
+          description: Seller-defined marketplace elements
+          type: string
+          enum: [Upfront, Scatter, Custom] # TODO Custom is ambigious
+        Year:
+          description: The broadcast year in which the proposal is being negotiated for
+          type: integer
+          format: int32
+        calendarType:
+          description: The calendar in which the proposal is being negotiated
+          type: string
+          enum: [Standard Broadcast, Nielsen, Custom] # TODO Custom is ambigious
+        Currency:
+          description: Currency in which the proposal is being negotiated
+          type: string  # TODO any constraints?
+        Equivalized:
+          description: true means impressions are equivalized, false means impressions are unequivalized
+          type: boolean
+        stewMethod:
+          description: The methodology that the seller will use to post the audience actuals
+          type: string
+          enum: [Exact telecast, Exact Quarter Hour, Daypart Average, Weekly Daypart Average, Monthly Daypart Average, Custom] # TODO Custom is ambigious
+        startDate:
+          description: First broadcast date that is valid for the units to air
+          type: string
+          format: date-time
+        endDate:
+          description: First broadcast date that is valid for the units to air
+          type: string
+          format: date-time
+        hiatusPeriods:
+          description: List of hiatus broadcast dates not valid for campaign 
+          type: array
+          items:
+            type: string
+            format: date-time
+        grossAmount:
+          description: Totals gross dollars across the proposal’s flight dates 
+          type: number # TODO use of floating point for currency value
+          format: double
+        totalUnits:
+          description: Total number of 'equivalized" units across the proposal’s flight dates
+          type: integer
+          format: int32
+        cancellationTerms:
+          $ref: 'commonSchemas.yaml#/components/schemas/cancellationTerms'
+        timeSeparation:
+          description: List of unit lengths being proposed with separation agreement by a specific length of time; separation may be across all lengths
+          type: array
+          items:
+            type: string # TODO any constraints?
+        termsOfSales:
+          description: The information specific to payment terms, preemption status, etc.
+          type: string  # TODO any constraints?
+        externalComment:
+          description: Free form text to accommodate transaction comments and/or activities outside the TIP flow
+          type: string  # TODO any constraints?
+        inventoryCatalog:
+          description: Catalog of Inventory being proposed
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/inventoryCatalog'
+
+    RFPObject:
+      required:
+        - transactionHeader
+        - RFPId
+        - RFPVersion
+        - RFPName
+        - dateSubmitted
+        - buyerLocation
+        - Advertiser
+        - Contact
+        - mediaType
+        - Budget
+        - audienceMetric
+        - dateStart
+        - dateEnd
+        - timeFrame
+      properties:
+        transactionHeader:
+          $ref: 'commonSchemas.yaml#/components/schemas/transactionHeader'
+        RFPId:
+          description: Buyer-generated unique identifier for the RFP
+          type: string # TODO any constraints?
+        RFPVersion: 
+          description: todo # TODO missing description
+          type: string # TODO any constraints?
+        RFPName:
+          description: RFP Name
+          type: string # TODO any constraints?
+        dateSubmitted:
+          description: Buyer Submit Date for the RFP
+          type: string
+          format: date-time
+        dueDate:
+          description: Due Date for the Response
+          type: string
+          format: date-time
+        buyerLocation:
+          $ref: 'commonSchemas.yaml#/components/schemas/buyerLocation'
+        Advertiser:
+          $ref: 'commonSchemas.yaml#/components/schemas/Advertiser'
+        Brand:
+          $ref: 'commonSchemas.yaml#/components/schemas/Brand'
+        Product:
+          $ref: 'commonSchemas.yaml#/components/schemas/Product'
+        Currency:
+          description: Currency
+          type: string # TODO change this to an enum
+        Contact:
+          description: Contact Information who initiated the RFP
+          $ref: 'commonSchemas.yaml#/components/schemas/Contact'
+        mediaType:
+          description: Types of media being requested in the RFP 
+          type: string
+          enum: [Linear Television, OTT]
+        mediaOutlet:
+          description: List of unique identifiers for individual station or network
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/mediaOutlet'
+        Budget:
+          description: Total Budget 
+          type: number
+          format: float
+        audienceMetric:
+          description: Pricing metric  (CPM, CPP, etc.)
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/Audience'
+        Commission:
+          description: Buyer Commission percentage amount 
+          type: number
+          format: double
+        Geographic:
+          description: Specific market or geo target areas 
+          type: string # TODO any constraints?
+        daypartPreferences:
+          description: List of dayparts preferences
+          type: array
+          items:
+            type: string # TODO any constraints?
+        unitLengthPreferences:
+          description: List of unit length preferences
+          type: array
+          items:
+            type: string # TODO any constraints?
+        programPreferences:
+          description: List of program preferences
+          type: array
+          items:
+            type: string # TODO any constraints?
+        dateStart:
+          description: Start Date
+          type: string
+          format: date-time
+        dateEnd:
+          description: End Date
+          type: string
+          format: date-time
+        hiatusPeriod:
+          description: List of hiatus broadcast dates not valid for campaign
+          type: array
+          items:
+            type: string
+            format: date-time
+        timeFrame:
+          description: List of valid start and end times 
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/timeFrame'
+        revenueType:
+          description: Revenue Type
+          type: string
+          enum: [Cash, Barter, Trade, Custom] # TODO Custom is ambigious
+        dayGuidelines:
+          description: List of day and time exclusions 
+          type: array
+          items:
+            type: string
+            format: date-time
+        MPAAGuidelines:
+          description: List of MPAA exclusions 
+          type: string
+          enum: [TV-Y, TV-Y7, TV-G, TV-PG, TV-14, TV-MA]
+        Objective:
+          description: KPI of the overall campaign 
+          type: string #TODO any constraints?
+        Comments:
+          description: Additional Information
+          type: string #TODO any constraints?
+        externalComment:
+          description: Free form text to accommodate transaction comments and/or activities outside the TIP flow
+          type: string #TODO any constraints?    
+
+    GetProposalsResponse:
+      properties:
+        Proposals:
+          description: Array of proposals
+          type: array
+          items:
+            $ref: '#/components/schemas/ProposalObject'
+
+    GetProposalsQueryObject:
+      required:
+        - limitCount     
+      properties:
+        dateStart:
+          description: Start Date 
+          type: string
+          format: date-time
+        dateEnd:
+          description: End Date
+          type: string
+          format: date-time
+        limitCount:
+          description: Limit the number of items to return
+          type: integer
+          format: int32
+
+    ProposalCancel:
+      required:
+        - transactionHeader
+        - RFPId     
+      properties:
+        transactionHeader:
+          $ref: 'commonSchemas.yaml#/components/schemas/transactionHeader'
+        referenceId:
+          description: Information grouping all reference ids and their source that are associated to the proposal
+          type: string # TODO any constraints?
+
+    RFPCancel:
+      required:
+        - transactionHeader
+        - RFPId     
+      properties:
+        transactionHeader:
+          $ref: 'commonSchemas.yaml#/components/schemas/transactionHeader'
+        RFPId:
+          description: Buyer-generated unique identifier for the RFP
+          type: string # TODO any constraints?
+
+
+    RFPResponse: # TODO stub response, needs to be defined
+      description: Response data # TODO stub response, needs to be defined
+      properties:
+        transactionId:
+          type: string
+        transactionDate:
+          type: string

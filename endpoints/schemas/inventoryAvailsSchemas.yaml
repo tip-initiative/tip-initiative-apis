@@ -1,0 +1,132 @@
+openapi: "3.0.0"
+info:
+  version: 4.0.1
+  title: logTimes Schemas
+  description: logTimes Schemas, based on TIP 4.0.0 documentation
+  termsOfService: http://placeholderdomain.io/terms/
+  contact:
+    name: TIP Forum
+    email: tip-mailing-list@tbd.com
+    url: http://placeholderdomain.io
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+
+paths: {} # no paths
+
+components:
+  schemas:
+    inventoryAvailsBuyerObject:
+        required:
+          - transactionHeader
+          - callbackUrl
+          - dateSubmitted
+          - buyerLocation
+          - dateStart
+          - dateEnd
+        properties:
+          transactionHeader:
+            $ref: 'commonSchemas.yaml#/components/schemas/transactionHeader'
+          callbackUrl:
+            description: URL the sellers system will POST the requested data to
+            type: string
+            format: uri
+          dateSubmitted:
+            description: Buyer Submit Date for Inventory
+            type: string
+            format: date-time
+          dueDate:
+            description: Due Date for Inventory Information
+            type: string
+            format: date-time
+          mediaOutlet:
+            $ref: 'commonSchemas.yaml#/components/schemas/mediaOutlet'
+          buyerLocation:
+            $ref: 'commonSchemas.yaml#/components/schemas/buyerLocation'
+          Advertiser:
+            $ref: 'commonSchemas.yaml#/components/schemas/Advertiser'
+          dateStart:
+            description: Start date for desired inventory
+            type: string
+            format: date-time
+          dateEnd:
+            description: End date for desired inventory
+            type: string
+            format: date-time
+          DOW:
+            description: List of valid days of week with Y/N value or number of fixed units per day
+            type: string
+            enum: [Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday]
+          Genre:
+            description: Desired list of genres names to use for filtering selling titles
+            type: array
+            items:
+              type: string #TODO any constraints on this? 
+          sellingTitles:
+            description: Desired list of selling title names being requested
+            type: array
+            items:
+              type: string #TODO any constraints on this? 
+          Product:
+            description: Desired list of selling title names being requested
+            type: array
+            items:
+              $ref: 'commonSchemas.yaml#/components/schemas/Product'
+          timeFrame:
+            description: Start and End Time(s) for desired inventory
+            type: array
+            items:
+              $ref: 'commonSchemas.yaml#/components/schemas/timeFrame'
+          Daypart:
+            description: Desired list of dayparts
+            type: array
+            items:
+              type: string #TODO any constraints on this?
+          inventoryTypes:
+            description: Desired list of inventory Types
+            type: array
+            items:
+              type: string
+              enum: [Commercial, Interstitial, Billboard, Custom] #TODO how would custom be handled?
+          maxRate:
+            description: Float Max spend requirements in unit rates by inventory type
+            type: number
+            format: float # TODO any constraints on this?
+          Currency:
+            description: String	Currency Code (ISO  Code)
+            type: string # TODO is this expected in ISO 4217 standard?
+          externalComment:
+            description: Free form text to accommodate transaction comments and/or activities outside the TIP flow
+            type: string 
+          Audiences:
+            description: Desired list of inventory Types
+            type: array
+            items:
+              $ref: 'commonSchemas.yaml#/components/schemas/Audience'
+
+    inventoryAvailsSellerObject:
+      required:
+          - transactionHeader
+          - inventoryCatalog
+      properties:
+        transactionHeader:
+          $ref: 'commonSchemas.yaml#/components/schemas/transactionHeader'
+        buyerLocation:
+          $ref: 'commonSchemas.yaml#/components/schemas/buyerLocation'
+        Advertiser:
+          $ref: 'commonSchemas.yaml#/components/schemas/Advertiser'
+        Brand:
+          $ref: 'commonSchemas.yaml#/components/schemas/Brand'
+        Product:
+          $ref: 'commonSchemas.yaml#/components/schemas/Product'
+        inventoryCatalog:
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/inventoryCatalog'
+
+    inventoryAvailsResponse:  # TODO stub response, needs to be defined
+      properties:
+        transactionId:
+          type: string
+        transactionDate:
+          type: string

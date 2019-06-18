@@ -1,0 +1,236 @@
+openapi: "3.0.0"
+info:
+  version: 4.0.1
+  title: logTimes Schemas
+  description: logTimes Schemas, based on TIP 4.0.0 documentation
+  termsOfService: http://placeholderdomain.io/terms/
+  contact:
+    name: TIP Forum
+    email: tip-mailing-list@tbd.com
+    url: http://placeholderdomain.io
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+
+paths: {} # no paths
+
+components:
+  schemas:
+    logTimesBuyerObject: 
+        required:
+          - transactionHeader
+          - callbackUrl
+        properties:
+          transactionHeader:
+            $ref: 'commonSchemas.yaml#/components/schemas/transactionHeader'
+          callbackUrl:
+            description: URL the sellers system will POST the requested data to
+            type: string
+            format: uri
+          Comments:
+            description: Additional Information
+            type: string #TODO any constraints?
+          logTimesMediaOutlets:
+            description: Media Outlet Details
+            type: array
+            items:
+              $ref: '#/components/schemas/logTimesMediaOutletQuery'
+    
+    logTimesSellerObject:
+        required:
+          - transactionHeader
+          - Units
+        properties:
+          transactionHeader:
+            $ref: 'commonSchemas.yaml#/components/schemas/transactionHeader'
+          externalComment: #TODO spreadsheet says data type is object but no definition exists
+            description: Test Additional Information
+            type: string #TODO any constraints?
+          Units:
+            description: Unit detail information 
+            type: array
+            items:
+              $ref: '#/components/schemas/Unit'
+          mediaOutletDetails:
+            description: Child unit details for footprint unit to support Audience Network, Diginet or other forms of "child" units
+            type: array
+            items:
+              $ref: '#/components/schemas/mediaOutletDetail'
+  
+    Unit:
+      required: # TODO what does conditional mean for all the properities? Conditional based on what?
+        - unitId
+        - referenceId
+        - mediaOutlet
+        - Advertiser
+        - Product
+        - sellingTitle
+        - DOW
+      properties:
+        unitId:
+          description: Seller generated unique number for unit
+          type: string #TODO any constraints?
+        referenceId:
+          $ref: 'commonSchemas.yaml#/components/schemas/referenceIds'
+        mediaOutlet:
+          $ref: 'commonSchemas.yaml#/components/schemas/mediaOutlet'
+        buyerLocation:
+          $ref: 'commonSchemas.yaml#/components/schemas/buyerLocation'
+        Advertiser:
+          $ref: 'commonSchemas.yaml#/components/schemas/Advertiser'
+        Brand:
+          $ref: 'commonSchemas.yaml#/components/schemas/Brand'
+        Product:
+          $ref: 'commonSchemas.yaml#/components/schemas/Product'
+        sellingTitle:
+          description: Selling Title Name
+          type: string #TODO any constraints?
+        Program:
+          description: Program Name
+          type: string #TODO any constraints?
+        Daypart:
+          description: Seller's Daypart Name
+          type: string #TODO any constraints?
+        inventoryType:
+          description: inventory Type associated to unit
+          type: string #TODO any constraints?
+          enum: [Commercial, Interstitial, Billboard, Custom] # TODO custom keyword
+        linkType:
+          description: Linked unit type 
+          type: string #TODO any constraints?
+          enum: [Billboard, Piggyback, Bookend, Custom] # TODO custom keyword
+        linkNum:
+          description: Linked unique number to communicate the association of two or more units that have been linked together; only valid when the units have a link type association
+          type: integer #TODO this is listed as a string on the spreadsheet, any further constraints?
+          format: int32 # TODO assumed 32bit int
+        Makegood:
+          description: Indicates if the unit is a makegood
+          type: boolean
+        ADU:
+          description: Indicates if the unit is a ADU
+          type: boolean
+        preemptUnitID: # TODO what does conditional mean?
+          description: Desired if unit's Makegood indicator is "Y";  "original" preempted unit(s) being resolved by makegood; there may be one too many preempt unit ids being resolved for one makegoodd
+          type: array
+          items:
+            type: string  # TODO no type is specified in the spreadsheet, if a string are there any constraints?
+        Bonus:
+          description: Indicates if the unit is a bonus
+          type: boolean
+        Length:
+          description: The duration of the unit in seconds
+          type: integer #TODO any constraints?
+          format: int32 # TODO assumed 32bit int
+        Rate:
+          description: Unit Rate
+          type: number #TODO any constraints?
+          format: float 
+        Status:
+          description: Indicates the status of the unit
+          type: string
+          enum: [Aired, Scheduled, No Run]
+        Reason:
+          description: Reason description for No-Run status
+          type: string #TODO any constraints?
+        creditInd:
+          description: Indicate if the unit was issued a credit
+          type: boolean
+        DOW:
+          description: List of valid days of week with Y/N value or number of fixed units per day 
+          type: string
+          enum: [Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday]
+        timeFrame:
+          $ref: 'commonSchemas.yaml#/components/schemas/timeFrame'
+        broadcastDate:
+          $ref: 'commonSchemas.yaml#/components/schemas/broadcastDate'
+  
+    mediaOutletDetail: # TODO what does conditional mean for all the properities? Conditional based on what?
+      properties:
+        ParentUnitId:
+          description: Seller generated unique number for national footprint unit
+          type: string #TODO any constraints?
+        unitId:
+          description: Unique identifier for child unit
+          type: string #TODO any constraints?
+        mediaOutlet:
+          $ref: 'commonSchemas.yaml#/components/schemas/mediaOutlet'
+        Rate:
+          description: Unit Rate
+          type: number #TODO any constraints?
+          format: float 
+        alternateID :
+          description: Advertising industry standard unique identifier for the commercial 
+          type: string #TODO any constraints?
+        Status:
+          description: Indicates the status of the child unit
+          type: string
+          enum: [Aired, Scheduled, No Run]
+        Reason :
+          description: Reason description for No-Run status
+          type: string #TODO any constraints?
+        broadcastDate:
+          $ref: 'commonSchemas.yaml#/components/schemas/broadcastDate'
+
+    logTimesMediaOutletQuery: # TODO I renamed this from mediaoutlets to be more distinctive from the common object mediaOutlet schema
+      required:
+        - mediaOutlet
+        - dateStart
+        - dateEnd
+      properties:
+        mediaOutlet:
+            $ref: 'commonSchemas.yaml#/components/schemas/mediaOutlet'
+        dateStart:
+          description: Broadcast start date
+          type: string
+          format: date-time 
+        dateEnd: 
+          description: Broadcast end date
+          type: string
+          format: date-time
+        buyerLocation:
+          description: List of BuyerLocation (ANDS) being requested; if not populated all valid buyer locations will be returned
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/buyerLocation'
+        referenceIds:
+          description: List of entity ids (ANDS) being requested; if not populated all valid orders for mediaoutlet will be returned
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/referenceIds'
+        advertiserIds:
+          description: List of Advertiser ids (ANDS) being requested;  if not populated all valid advertisers associated to the buyer's request will be returned 
+          type: array
+          items:
+            type: string  # TODO any constraints?
+        productIds:
+          description: List of product ids (ANDS) being requested; if not populated all valid products associated to the buyer's request will be returned
+          type: array
+          items:
+            type: string  # TODO any constraints?
+        sellingTitles:
+          description: List of Selling Title names (ANDS) being requested; if not populated all valid selling titles will be returned
+          type: array
+          items:
+            type: string  # TODO any constraints? 
+        Dayparts:
+          description: List of station daypart (ANDS) being requested; if not populated all valid dayparts associated to the buyer's request will be returned
+          type: array
+          items:
+            type: string  # TODO any constraints?
+        timeFrame:
+          description: Start and end times being requested; if not populated all times associated to the buyer's request will be returned
+          $ref: 'commonSchemas.yaml#/components/schemas/timeFrame'
+        inventoryTypes:
+          description: List of Inventory Types being requested; if not populated all valid inventory types will be returned
+          type: array
+          items:
+            type: string  # TODO any constraints?
+            enum: [Commercial, Added Value, Custom] # TODO Custom keyword
+
+    LogTimeResponseResponse: # TODO stub response, needs to be defined
+      description: Response data # TODO stub response, needs to be defined
+      properties:
+        transactionId:
+          type: string
+        transactionDate:
+          type: string
