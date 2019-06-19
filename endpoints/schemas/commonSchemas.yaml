@@ -357,6 +357,16 @@ components:
         mediaType:
           description: Type of media being proposed  - Enum values to be defined
           type: string #TODO need the enum types
+        pricePeriods:
+          description: Array of pricePeriods
+          type: array
+          items:
+            $ref: '#/components/schemas/PricePeriod'
+        Audiences:
+          description: Array of Audiences
+          type: array
+          items:
+            $ref: '#/components/schemas/Audience'
 
     PricePeriod:
       required:
