@@ -79,8 +79,8 @@ paths:
 
   /makegoods/cancel/{sgsMakegoodId}:
     delete:
-      summary: Create a makegood
-      description: Create a makegood
+      summary: Cancel a makegood
+      description: Cancel a makegood
       parameters:
         - name: sgsMakegoodId
           in: path
