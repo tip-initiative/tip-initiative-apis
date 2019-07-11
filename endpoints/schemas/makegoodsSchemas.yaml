@@ -1,0 +1,109 @@
+openapi: "3.0.0"
+info:
+  version: 4.0.2
+  title: Orders
+  description: |
+    * TODO
+  termsOfService: http://placeholderdomain.io/terms/
+  contact:
+    name: todo
+    email: mailing-list@tbd.com
+    url: http://placeholderdomain.io
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+servers:
+  - url: http://placeholderdomain.io
+
+paths: {} # no paths
+
+components:
+  schemas:
+    enumerateMakegoodsResponse:
+      required:
+        - makegoodsCollection
+      description: Collection of makegoods to return 
+      properties:
+        makegoodsCollection:
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/encodededPayloadWrapper'
+
+    enumerateMakegoodsQuery:
+      description: Query parameters for requesting a collection of makegoods
+      required:
+        - CommonPayloadHeader
+        - startDate
+        - endDate
+        - limitCount
+      properties:
+        CommonPayloadHeader:
+          $ref: 'commonSchemas.yaml#/components/schemas/commonPayloadHeader'
+        startDate:
+          description: Start date of the range
+          type: string
+          format: date-time
+        endDate:
+          description: End date of the range
+          type: string
+          format: date-time
+        limitCount: 
+          description: Max number of items to return
+          type: integer #TODO any constraints on this?
+          format: int32
+
+    makegoodsSubscribeSGSCounterParty:
+      description: Provide callback URLs to the SGS CounterParty to subscribe to events
+      required:
+        - CommonPayloadHeader
+        - acknowledgeReceiptNotificationUrl
+        - approveCreateMakegoodResponseUrl
+        - approveCancelMakegoodResponseUrl
+        - confirmConfirmMakegoodNotificationUrl
+        - notifyOpenMakegoodNotificationUrl
+        - rejectCreateMakegoodResponseUrl
+        - rejectCancelMakegoodResponseUrl
+      properties:
+        CommonPayloadHeader:
+          $ref: 'commonSchemas.yaml#/components/schemas/commonPayloadHeader'
+        acknowledgeReceiptNotificationUrl:
+          description: acknowledgeReceiptNotificationUrl
+          type: string
+          format: uri
+        approveCreateMakegoodResponseUrl:
+          description: approveCancelOrderResponseUrl
+          type: string
+          format: uri
+        approveCancelMakegoodResponseUrl:
+          description: approveCreateOrderResponseUrl
+          type: string
+          format: uri
+        confirmConfirmMakegoodNotificationUrl:
+          description: approveReviseOrderResponseUrl
+          type: string
+          format: uri
+        notifyOpenMakegoodNotificationUrl:
+          description: confirmConfirmOrderNotificationUrl
+          type: string
+          format: uri
+        rejectCreateMakegoodResponseUrl:
+          description: notifyOpenOpenOrderNotificationUrl
+          type: string
+          format: uri
+        rejectCancelMakegoodResponseUrl:
+          description: rejectCancelOrderResponseUrl
+          type: string
+          format: uri
+        
+    makegoodsSubscribeSGS:
+        description: Provide callback URLs to subscribe to events from the SGS
+        required:
+          - CommonPayloadHeader
+          - acknowledgeReceiptNotificationUrl
+        properties:
+          CommonPayloadHeader:
+            $ref: 'commonSchemas.yaml#/components/schemas/commonPayloadHeader'
+          acknowledgeReceiptNotificationUrl:
+            description: acknowledgeReceiptNotificationUrl
+            type: string
+            format: uri
