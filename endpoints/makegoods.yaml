@@ -26,7 +26,7 @@ servers:
   - url: http://placeholderdomain.io
 
 paths:
-  /makegoods/enumerate:
+  /v1/makegoods/enumerate:
     post:
       summary: Enumerate Makegoods
       description: Request a collection of makegoods matching the provided query parameters
@@ -37,14 +37,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: 'schemas/makegoodsSchemas.yaml#/components/schemas/enumerateMakegoodsQuery'
+              $ref: 'schemas/v1/makegoodsSchemas.yaml#/components/schemas/enumerateMakegoodsQuery'
       responses:
         '200':
           description: Request processed successfully
           content:
             application/json:
               schema:
-                $ref: 'schemas/makegoodsSchemas.yaml#/components/schemas/enumerateMakegoodsResponse'
+                $ref: 'schemas/v1/makegoodsSchemas.yaml#/components/schemas/enumerateMakegoodsResponse'
         default:
           description: Unexpected error occured
           content:
@@ -52,7 +52,7 @@ paths:
               schema:
                 $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
 
-  /makegoods/create:
+  /v1/makegoods/create:
     post:
       summary: Create a makegood
       description: Create a makegood
@@ -77,7 +77,7 @@ paths:
               schema:
                 $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
 
-  /makegoods/cancel/{sgsMakegoodId}:
+  /v1/makegoods/cancel/{sgsMakegoodId}:
     delete:
       summary: Cancel a makegood
       description: Cancel a makegood
@@ -107,7 +107,7 @@ paths:
               schema:
                 $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
 
-  /makegoods/acknowledge:
+  /v1/makegoods/acknowledge:
     post:
       summary: Acknowledgement of makegood processing
       description: Acknowledgement of makegood processing
@@ -132,7 +132,7 @@ paths:
               schema:
                 $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
 
-  /makegoods/approve:
+  /v1/makegoods/approve:
     post:
       summary: Receive events from SGS Counterparty for approved updates to a makegood
       description: Receive events from SGS Counterparty for approved updates to a makegood
@@ -157,7 +157,7 @@ paths:
               schema:
                 $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
 
-  /makegoods/confirm/{sgsMakegoodId}:
+  /v1/makegoods/confirm/{sgsMakegoodId}:
     post:
       summary: Receive events from SGS Counterparty for confirmation updates to a makegood
       description: Receive events from SGS Counterparty for confirmation updates to a makegood
@@ -187,7 +187,7 @@ paths:
               schema:
                 $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
 
-  /makegoods/notifyOpen/{sgsMakegoodId}:
+  /v1/makegoods/notifyOpen/{sgsMakegoodId}:
     post:
       summary: Receive events from SGS Counterparty for open updates to a makegood
       description: Receive events from SGS Counterparty for open updates to a makegood
@@ -217,7 +217,7 @@ paths:
               schema:
                 $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
 
-  /makegoods/reject/{sgsMakegoodId}:
+  /v1/makegoods/reject/{sgsMakegoodId}:
     post:
       summary: Receive events from SGS Counterparty for rejected updates to a makegood
       description: Receive events from SGS Counterparty for rejected updates to a makegood
@@ -248,7 +248,7 @@ paths:
                 $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
 
           
-  /makegoods/subscribe:
+  /v1/makegoods/subscribe:
       post:
           summary: Subscribe to makegoods events
           description: Subscribe to makegoods events
@@ -260,8 +260,8 @@ paths:
               application/json:
                 schema:
                   oneOf:
-                    - $ref: 'schemas/makegoodsSchemas.yaml#/components/schemas/makegoodsSubscribeSGS'
-                    - $ref: 'schemas/makegoodsSchemas.yaml#/components/schemas/makegoodsSubscribeSGSCounterParty'
+                    - $ref: 'schemas/v1/makegoodsSchemas.yaml#/components/schemas/v1/makegoodsSubscribeSGS'
+                    - $ref: 'schemas/v1/makegoodsSchemas.yaml#/components/schemas/v1/makegoodsSubscribeSGSCounterParty'
           responses:
             '200':
               description: Request processed successfully
@@ -429,7 +429,7 @@ paths:
                           schema:
                             $ref: 'schemas/commonSchemas.yaml#/components/schemas/acceptedResponse'
 
-  /makegoods/unsubscribe:
+  /v1/makegoods/unsubscribe:
         delete:
           summary: Unsubscribe to makegood events
           description: Unsubscribe to makegood events
@@ -441,8 +441,8 @@ paths:
               application/json:
                 schema:
                   oneOf:
-                    - $ref: 'schemas/makegoodsSchemas.yaml#/components/schemas/makegoodsSubscribeSGS'
-                    - $ref: 'schemas/makegoodsSchemas.yaml#/components/schemas/makegoodsSubscribeSGSCounterParty'
+                    - $ref: 'schemas/v1/makegoodsSchemas.yaml#/components/schemas/v1/makegoodsSubscribeSGS'
+                    - $ref: 'schemas/v1/makegoodsSchemas.yaml#/components/schemas/v1/makegoodsSubscribeSGSCounterParty'
           responses:
             '200':
               description: Request processed successfully

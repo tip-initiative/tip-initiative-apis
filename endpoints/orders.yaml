@@ -26,7 +26,7 @@ servers:
   - url: http://placeholderdomain.io
 
 paths:
-  /orders/enumerate:
+  /v1/orders/enumerate:
     post:
       summary: Enumerate Orders
       description: Request a collection of orders matching the provided query parameters
@@ -52,7 +52,7 @@ paths:
               schema:
                 $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
 
-  /orders/create:
+  /v1/orders/create:
     post:
       summary: Create an Order
       description: Create an Order
@@ -78,7 +78,7 @@ paths:
               schema:
                 $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
 
-  /orders/cancel/{sgsOrderId}:
+  /v1/orders/cancel/{sgsOrderId}:
     put:
       summary: Cancel an Order
       description: Cancel an Order
@@ -109,7 +109,7 @@ paths:
               schema:
                 $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
 
-  /orders/revise/{sgsOrderId}:
+  /v1/orders/revise/{sgsOrderId}:
     put:
       summary: Revise an Order
       description: Revise an order
@@ -140,7 +140,7 @@ paths:
               schema:
                 $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
 
-  /orders/acknowledge:
+  /v1/orders/acknowledge:
       post:
         summary: Acknowledgement of order processing
         description: Acknowledgement of order processing
@@ -166,7 +166,7 @@ paths:
                 schema:
                   $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
 
-  /orders/approve/{sgsOrderId}:
+  /v1/orders/approve/{sgsOrderId}:
       post:
         summary: Receive events from SGS for accepted updates to an order
         description: Receive events for from SGS for accepted updates to an order
@@ -197,7 +197,7 @@ paths:
                 schema:
                   $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
 
-  /orders/confirm/{sgsOrderId}:
+  /v1/orders/confirm/{sgsOrderId}:
       post:
         summary: Confirm an Order
         description: Confirm an Order
@@ -228,7 +228,7 @@ paths:
                 schema:
                   $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
 
-  /orders/notifyOpen/{sgsOrderId}:
+  /v1/orders/notifyOpen/{sgsOrderId}:
       post:
         summary: Notify on Open Order
         description: Notify on Open Order
@@ -259,7 +259,7 @@ paths:
                 schema:
                   $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
 
-  /orders/reject/{sgsOrderId}:
+  /v1/orders/reject/{sgsOrderId}:
       post:
         summary: Receive events from SGS for rejected updates to an order
         description: Receive events from SGS for rejected updates to an order
@@ -290,7 +290,7 @@ paths:
                 schema:
                   $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
           
-  /orders/subscribe:
+  /v1/orders/subscribe:
       post:
           summary: Subscribe to order events
           description: Subscribe to order events
@@ -489,7 +489,7 @@ paths:
                         application/json:
                           schema:
                             $ref: 'schemas/commonSchemas.yaml#/components/schemas/acceptedResponse'
-  /orders/unsubscribe:
+  /v1/orders/unsubscribe:
         delete:
           summary: Unsubscribe to order events
           description: Unsubscribe to order events
