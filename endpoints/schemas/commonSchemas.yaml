@@ -1,6 +1,6 @@
 openapi: "3.0.0"
 info:
-  version: 4.0.1
+  version: 4.0.2
   title: Common Schemas
   description: Common Schemas, based on TIP 4.0.0 documentation
   termsOfService: http://placeholderdomain.io/terms/ # TODO
@@ -16,6 +16,46 @@ paths: {} # no paths
 
 components:
   schemas:
+    commonPayloadHeader:
+      description: Common properties to be included with all payloads
+      required:
+        - tipVersion
+        - transactionNum
+        - timeStamp
+      properties:
+        tipVersion:
+          description: TIP version of the interface
+          type: string  # TODO any constraints?
+        transactionId:
+          description: Buyer or Seller generated unique value for transaction
+          type: string  # TODO any constraints?
+        timeStamp: 
+          description: Date and time the transaction was created
+          type: string # TODO should this be expressed as an Epoch date instead (32 bit integer)?
+          format: date-time
+
+    encodededPayloadWrapper:
+      description: Used with non-JSON payload formats such as TVB 3.2 or DARE, provides information about the payload and it's encoding
+      required:
+        - CommonPayloadHeader
+        - payloadData
+        - payloadType
+        - payloadEncoding
+      properties:
+        CommonPayloadHeader:
+          $ref: '#/components/schemas/commonPayloadHeader'
+        payloadData:
+          description: The encoded payload data
+          type: string
+        payloadType:
+          description: Format of the payload data
+          type: string
+          enum: [TVB3.2, DARE]
+        payloadEncoding: 
+          description: Encoding method used on the payload data
+          type: string
+          enum: [Base64]
+
     transactionHeader:
       description: Transaction header details
       required:
@@ -456,6 +496,17 @@ components:
             $ref: '#/components/schemas/audienceMetric'
 
     Error:
+      required:
+        - errorCode
+        - errorMessage
+      properties:
+        errorCode:
+          type: integer
+          format: int32
+        errorMessage:
+          type: string
+
+    acceptedResponse:
       required:
         - errorCode
         - errorMessage

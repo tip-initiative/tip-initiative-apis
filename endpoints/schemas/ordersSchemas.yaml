@@ -1,0 +1,119 @@
+openapi: "3.0.0"
+info:
+  version: 4.0.2
+  title: Orders
+  description: |
+    * TODO
+  termsOfService: http://placeholderdomain.io/terms/
+  contact:
+    name: todo
+    email: mailing-list@tbd.com
+    url: http://placeholderdomain.io
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+servers:
+  - url: http://placeholderdomain.io
+
+paths: {} # no paths
+
+components:
+  schemas:
+    enumerateOrdersResponse:
+      required:
+        - ordersCollection
+      description: Collection of orders to return 
+      properties:
+        ordersCollection:
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/encodededPayloadWrapper'
+
+    enumerateOrdersQuery:
+      description: Query parameters for requesting a collection of orders
+      required:
+        - CommonPayloadHeader
+        - startDate
+        - endDate
+        - limitCount
+      properties:
+        CommonPayloadHeader:
+          $ref: 'commonSchemas.yaml#/components/schemas/commonPayloadHeader'
+        startDate:
+          description: Start date of the range
+          type: string
+          format: date-time
+        endDate:
+          description: End date of the range
+          type: string
+          format: date-time
+        limitCount: 
+          description: Max number of items to return
+          type: integer #TODO any constraints on this?
+          format: int32
+
+    ordersSubscribeSGS:
+      description: Provide callback URLs to the SGS to subscribe to events
+      required:
+        - CommonPayloadHeader
+        - acknowledgeReceiptNotificationUrl
+        - approveCancelOrderResponseUrl
+        - approveCreateOrderResponseUrl
+        - approveReviseOrderResponseUrl
+        - confirmConfirmOrderNotificationUrl
+        - notifyOpenOpenOrderNotificationUrl
+        - rejectCancelOrderResponseUrl
+        - rejectCreateOrderResponseUrl
+        - rejectReviseOrderResponseUrl
+      properties:
+        CommonPayloadHeader:
+          $ref: 'commonSchemas.yaml#/components/schemas/commonPayloadHeader'
+        acknowledgeReceiptNotificationUrl:
+          description: acknowledgeReceiptNotificationUrl
+          type: string
+          format: uri
+        approveCancelOrderResponseUrl:
+          description: approveCancelOrderResponseUrl
+          type: string
+          format: uri
+        approveCreateOrderResponseUrl:
+          description: approveCreateOrderResponseUrl
+          type: string
+          format: uri
+        approveReviseOrderResponseUrl:
+          description: approveReviseOrderResponseUrl
+          type: string
+          format: uri
+        confirmConfirmOrderNotificationUrl:
+          description: confirmConfirmOrderNotificationUrl
+          type: string
+          format: uri
+        notifyOpenOpenOrderNotificationUrl:
+          description: notifyOpenOpenOrderNotificationUrl
+          type: string
+          format: uri
+        rejectCancelOrderResponseUrl:
+          description: rejectCancelOrderResponseUrl
+          type: string
+          format: uri
+        rejectCreateOrderResponseUrl:
+          description: rejectCreateOrderResponseUrl
+          type: string
+          format: uri
+        rejectReviseOrderResponseUrl:
+          description: rejectReviseOrderResponseUrl
+          type: string
+          format: uri
+
+    ordersSubscribeSGSCounterParty:
+        description: Provide callback URLs to subscribe to events from the SGS CounterParty
+        required:
+          - CommonPayloadHeader
+          - acknowledgeReceiptNotificationUrl
+        properties:
+          CommonPayloadHeader:
+            $ref: 'commonSchemas.yaml#/components/schemas/commonPayloadHeader'
+          acknowledgeReceiptNotificationUrl:
+            description: acknowledgeReceiptNotificationUrl
+            type: string
+            format: uri
