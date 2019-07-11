@@ -508,11 +508,11 @@ components:
 
     acceptedResponse:
       required:
-        - errorCode
-        - errorMessage
+        - transactionId
+        - timeStamp
       properties:
-        errorCode:
-          type: integer
-          format: int32
-        errorMessage:
+        transactionId:
           type: string
+        timeStamp:
+          type: string
+          format: date-time
