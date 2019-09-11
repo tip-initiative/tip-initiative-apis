@@ -66,7 +66,7 @@ components:
           description: String	Station or network station identification (Channel) 
           type: string  # TODO any constraints?
         mediaOutletReference:
-          description: Buyer external mediaoutlet reference information
+#          description: Buyer external mediaoutlet reference information
           $ref: '#/components/schemas/mediaOutlet'
 
     Advertiser:
@@ -83,7 +83,7 @@ components:
           description: String	Advertiser name 
           type: string  # TODO any constraints?
         advertiserReference:
-          description: Object	Buyer external advertiser reference information
+#          description: Object	Buyer external advertiser reference information
           $ref: '#/components/schemas/Advertiser'
 
     Brand:
@@ -100,7 +100,7 @@ components:
           description: Brand Name
           type: string  # TODO any constraints?
         brandRefererence:
-          description: Brand external brand reference information
+#          description: Brand external brand reference information
           $ref: '#/components/schemas/Brand'
 
     buyerLocation:
@@ -117,7 +117,7 @@ components:
           description: Buying organization name and location
           type: string  # TODO any constraints?
         buyerLocationReference:
-          description: Buyer external buyer location reference information
+#          description: Buyer external buyer location reference information
           $ref: '#/components/schemas/buyerLocation'
 
     Product:
@@ -134,7 +134,7 @@ components:
           description: Brand Name
           type: string  # TODO any constraints?
         productReference:
-          description: Buyer external product reference 
+#          description: Buyer external product reference 
           $ref: '#/components/schemas/Product'
 
     audienceSegment:
@@ -278,6 +278,9 @@ components:
         broadcastTime: # TODO listed as conditional in spreadsheet, what does conditional mean?
           description: The broadcast local time on which the unit aired/scheduled; UTC Standard; Receiver of data will be responsible to convert based on station's broadcast start of day
           type: string  #TODO should this be an enum?
+        broadcastTimeOffset:  #TODO: Consider local time offsets. Conversion of UTC will become difficult as each receiver will need to maintain a potentially volitile dataset of stations/channels/starttimes and there is no facility/api to provide this yet. 
+          description: Offset in miliseconds from local time midnight
+          type: integer
 
     timeFrame: 
       description: Packages multiple non-contiguous start and end times 
@@ -335,7 +338,7 @@ components:
           description: New, Change or Cancelled transaction
           type: string #TODO should be this an enum?
         mediaOutlet:
-          description: the unique identifier for individual station or network
+#          description: the unique identifier for individual station or network
           $ref: '#/components/schemas/mediaOutlet'
         mediaComposition: #TODO what does conditional mean?
           description: If inventory is for a footprint this is the list of stations and /or markets that are within the footprint 
@@ -386,10 +389,10 @@ components:
           type: string
           format: date-time
         timeFrame:
-          description: The valid start and end times
+#          description: The valid start and end times
           $ref: '#/components/schemas/timeFrame'
         DOW:
-          description: List of valid days of week with Y/N value or number of fixed units per day
+          description: Days of week enum 
           type: string
           enum: [Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday]
         Length:
