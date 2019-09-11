@@ -35,7 +35,6 @@ components:
             type: array
             items:
               $ref: '#/components/schemas/logTimesMediaOutletQuery'
-    
     logTimesSellerObject:
         required:
           - transactionHeader
@@ -43,9 +42,12 @@ components:
         properties:
           transactionHeader:
             $ref: 'commonSchemas.yaml#/components/schemas/transactionHeader'
-          externalComment: #TODO spreadsheet says data type is object but no definition exists
+          externalComment: 
             description: Test Additional Information
             type: string #TODO any constraints?
+          checksum: #TODO: Consider adding checksum to specs as a validation field.
+            description:  Checksum value of total dollar amount and spots.  
+            type: integer
           Units:
             description: Unit detail information 
             type: array
@@ -72,6 +74,8 @@ components:
           type: string #TODO any constraints?
         referenceId:
           $ref: 'commonSchemas.yaml#/components/schemas/referenceIds'
+        cpCode: 
+          $ref: 'commonSchemas.yaml#/components/schemas/cpeCode'
         mediaOutlet:
           $ref: 'commonSchemas.yaml#/components/schemas/mediaOutlet'
         buyerLocation:
@@ -91,6 +95,7 @@ components:
         Daypart:
           description: Seller's Daypart Name
           type: string #TODO any constraints?
+          #TODO: Consider salesRegionGroup
         inventoryType:
           description: inventory Type associated to unit
           type: string #TODO any constraints?
@@ -125,20 +130,22 @@ components:
           description: Unit Rate
           type: number #TODO any constraints?
           format: float 
-        Status:
+        Status: #TODO: Consider canceled status for prelogs? Consider scheduledDate, canceledDate, or generic statusChangeDate? 
           description: Indicates the status of the unit
           type: string
           enum: [Aired, Scheduled, No Run]
         Reason:
-          description: Reason description for No-Run status
+          description: Reason description for No-Run status #TODO: Consider
           type: string #TODO any constraints?
         creditInd:
           description: Indicate if the unit was issued a credit
           type: boolean
-        DOW:
-          description: List of valid days of week with Y/N value or number of fixed units per day 
-          type: string
-          enum: [Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday]
+        contractInterval:  #TODO Should we consider adding flight start and end dates to provide context as well?
+          description: List of valid days of week for unit airing
+          type: array
+          items:
+            type: string
+            enum: [Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday]
         timeFrame:
           $ref: 'commonSchemas.yaml#/components/schemas/timeFrame'
         broadcastDate:
@@ -218,7 +225,6 @@ components:
           items:
             type: string  # TODO any constraints?
         timeFrame:
-          description: Start and end times being requested; if not populated all times associated to the buyer's request will be returned
           $ref: 'commonSchemas.yaml#/components/schemas/timeFrame'
         inventoryTypes:
           description: List of Inventory Types being requested; if not populated all valid inventory types will be returned
