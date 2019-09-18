@@ -130,6 +130,9 @@ components:
           description: Unit Rate
           type: number #TODO any constraints?
           format: float 
+        alternateID :
+          description: Advertising industry standard unique identifier for the commercial 
+          type: string #TODO any constraints?
         Status: #TODO: Consider canceled status for prelogs? Consider scheduledDate, canceledDate, or generic statusChangeDate? 
           description: Indicates the status of the unit
           type: string
