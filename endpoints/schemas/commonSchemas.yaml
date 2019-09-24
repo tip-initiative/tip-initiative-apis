@@ -19,7 +19,7 @@ components:
     transactionHeader:
       description: Transaction header details
       required:
-        - version
+        - tipVersion
         - transactionNum
         - transactionType
         - sourceID
@@ -66,8 +66,12 @@ components:
           description: String	Station or network station identification (Channel) 
           type: string  # TODO any constraints?
         mediaOutletReference:
-#          description: Buyer external mediaoutlet reference information
+          description: Buyer external mediaoutlet reference information
           $ref: '#/components/schemas/mediaOutlet'
+        mediaOutletType:
+          description: Type of media outlet
+          type: string
+          enum: [local, broadcast, cable] 
 
     Advertiser:
       description: Packages a unique identifier and name into a single object # TODO generic description
