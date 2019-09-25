@@ -1,0 +1,76 @@
+openapi: "3.0.0"
+components:
+ securitySchemes:
+    bearerAuth: 
+      type: http
+      scheme: bearer
+      bearerFormat: JWT 
+security:
+  - bearerAuth: []
+
+info:
+  version: 4.0.1
+  title: Invoice endpoint
+  description: Allows the seller to send to the buyer both new and revised invoice information (No Request from buyer is Required)
+  termsOfService: http://placeholderdomain.io/terms/
+  contact:
+    name: TIP Forum
+    email: tip-mailing-list@tbd.com
+    url: http://placeholderdomain.io
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+servers:
+  - url: http://placeholderdomain.io
+
+paths:
+  /invoice/seller:
+    post:
+      summary: Allows the seller to send to the buyer new invoice information (No Request from buyer is Required)
+      description: Allows the seller to send to the buyer new invoice information
+      operationId: invoicePostSeller
+      requestBody:
+        description: Invoice body included in request
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: 'schemas/invoiceSchemas.yaml#/components/schemas/invoiceObject'
+      responses:
+        '200':
+          description: Request processed successfully
+          content:
+            application/json:
+              schema:
+                $ref: 'schemas/invoiceSchemas.yaml#/components/schemas/invoiceObject'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
+    put:
+      summary: Allows the seller to send to the buyer revised invoice information (No Request from buyer is Required)
+      description: Allows the seller to send to the buyer revised invoice information
+      operationId: invoicePostSeller
+      requestBody:
+        description: Invoice body included in request
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: 'schemas/invoiceSchemas.yaml#/components/schemas/invoiceObject'
+      responses:
+        '200':
+          description: Request processed successfully
+          content:
+            application/json:
+              schema:
+                $ref: 'schemas/invoiceSchemas.yaml#/components/schemas/invoiceObject'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
+

@@ -1,0 +1,185 @@
+openapi: "3.0.0"
+info:
+  title: Invoice Schema
+  version: 4.0.0.0
+  description: Commercial Instructions Schema, Based on TIP 4.0.0 Working Draft
+  termsOfService: http://placeholderdomain.io/terms/,
+  contact: 
+    name: MIT
+    email: tip-mailing-list@tbd.com
+    url: http://placeholderdomain.io
+  license: 
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+paths: {} 
+components: 
+  schemas: 
+    commercialInstructionsObject:
+      description: This object will contain the instructions from the creative or agency to the seller
+      required:
+      - transactionHeader  
+      - referenceId
+      - buyerlocation
+      - Advertiser
+      - Product
+      - MediaOutlet
+      - InstructionType
+      - instructionDetail
+      properties:
+        transactionHeader:
+          $ref: 'commonSchemas.yaml#/components/schemas/transactionHeader'
+        referenceId:
+          description: Information grouping all reference ids and their source that are associated to the proposal
+          type: array # TODO any constraints?
+        buyerlocation:
+          $ref: 'commonSchemas.yaml#/components/schemas/buyerLocation'
+        contact:
+          $ref: 'commonSchemas.yaml#/components/schemas/Contact'
+        Advertiser:
+          $ref: 'commonSchemas.yaml#/components/schemas/Advertiser'
+        Product:
+          $ref: 'commonSchemas.yaml#/components/schemas/Product'
+        cpeCode:
+          $ref: 'commonSchemas.yaml#/components/schemas/cpeCode'
+        MediaOutlet:
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/mediaOutlet'
+        Guidelines:
+          type: array
+          items:
+            anyOf:
+              - $ref: '#components/schemas/Program'
+              - $ref: '#components/schemas/Content'
+              - $ref: '#components/schemas/MPAA'
+        instructionComment:
+          type: string
+        externalComment:
+          type: array
+          items:
+            type: string
+        instructionType:
+          type: string
+          enum: [Rotation Percentage, Pattern, Unit Specific]
+        instructionDetail:
+          type: array
+          items:
+            $ref: '#components/schemas/instructionDetailsObject'
+# ----------------------------------
+    Guideline:
+      type: object
+      required:
+        - guidelineType
+        - excludeOrInclude
+      properties:
+        guidelineType:
+          type: string
+        excludeOrInclude:
+          $ref: '#components/schemas/ExcludeOrIncludeEnum'
+      discriminator:
+        propertyName: guidelineType
+    Program:
+      allOf:
+        - $ref: '#components/schemas/Guideline'
+        - type: object
+          required:
+          - programName
+          properties:
+            programName:
+              type: string
+    Content:
+      allOf:
+        - $ref: '#components/schemas/Guideline'
+        - type: object
+          required:
+            - contentGenre
+          properties:
+            contentGenre:
+              type: string
+    MPAA:
+      allOf:
+        - $ref: '#components/schemas/Guideline'
+        - type: object
+          required:
+          - mpaaRating
+          properties:
+            mpaaRating:
+              type: string
+              enum: [TV-Y,TV-Y7,TV-G,TV-PG,TV-14,TV-MA]
+# ----------------------------------------
+    ExcludeOrIncludeEnum:
+      type: string
+      enum: [Exclude, Include]
+# --------------------------------------
+    instructionDetailObject:
+      type: object
+      required:
+        - actionType
+      properties:
+        actionType:
+          type: string
+          enum: [New, Revised, Cancelled]
+        inventoryTypes:
+          type: array
+          items:
+            type: string
+            enum: [Commercial, Makegood, Bonus, ADU, Bookends, Piggybacks, Sponsorship, Donut, Sandwish, Billboard, Custom]
+        Content:
+          type: array
+          items:
+            $ref: '#components/schemas/contentObject'
+  # ----------------------
+    contentObject:
+      type: object
+      required:
+        - mediaType
+        - alternateId
+        - Length
+        - deliveryService
+        - startDate
+        - endDate
+      properties:
+        mediaType:
+          type: string
+          enum: [LINEAR, VOD, OTT, DIGITAL]
+        alternateId:
+          type: string
+          format: uuid
+        Name:
+          type: string
+        Brand:
+          $ref: 'commonSchemas.yaml#/components/schemas/Brand'
+        Product:
+          type: string
+        Length:
+          type: integer
+        contentFrames:
+          type: integer
+        frameRate:
+          type: integer
+        separatiionType:
+          type: string
+          enum: [Content, Seconds]
+        separationLength:
+          type: integer
+        separationUnits:
+          type: integer
+        linkType:
+          type: string
+          enum: [Billboard, Piggyback, Booked, Sandwish, Custom]
+        linkNum:
+          type: integer
+        linkSeq:
+          type: integer
+        deliveryDate:
+          type: string
+          format: Date
+        deliveryService:
+          type: string
+        startDate:
+          type: string
+          format: Date
+        endDate:
+          type: string
+          format: Date
+        
