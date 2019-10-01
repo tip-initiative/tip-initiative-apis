@@ -74,7 +74,7 @@ components:
       properties:
         guidelineType:
           type: string
-        excludeOrInclude:
+        guidelineAction:
           $ref: '#components/schemas/ExcludeOrIncludeEnum'
       discriminator:
         propertyName: guidelineType
@@ -157,7 +157,7 @@ components:
           type: integer
         frameRate:
           type: integer
-        separatiionType:
+        separationType:
           type: string
           enum: [Content, Seconds]
         separationLength:
