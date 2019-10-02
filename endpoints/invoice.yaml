@@ -24,7 +24,7 @@ servers:
   - url: http://placeholderdomain.io
 
 paths:
-  /invoice/seller:
+  /seller/invoice:
     post:
       summary: Allows the seller to send to the buyer new invoice information (No Request from buyer is Required)
       description: Allows the seller to send to the buyer new invoice information
@@ -49,10 +49,11 @@ paths:
             application/json:
               schema:
                 $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
+  /seller/invoice/{id}:
     put:
       summary: Allows the seller to send to the buyer revised invoice information (No Request from buyer is Required)
       description: Allows the seller to send to the buyer revised invoice information
-      operationId: invoicePostSeller
+      operationId: invoicePutSeller
       requestBody:
         description: Invoice body included in request
         required: true
@@ -67,10 +68,28 @@ paths:
             application/json:
               schema:
                 $ref: 'schemas/invoiceSchemas.yaml#/components/schemas/invoiceObject'
+        '404':
+          description: Requested invoice not found        
         default:
           description: unexpected error
           content:
             application/json:
               schema:
                 $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
-
+    delete:
+      summary: Allows the seller to request the removal of previously submitted invoice
+      description: Allows the seller to request the removal of previously submitted invoice
+      operationId: invoiceDeleteSeller
+      responses:
+        '200':
+          description: Request processed successfully
+        '404':
+          description: Invoice not found
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'       
+        
+      
