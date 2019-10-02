@@ -49,7 +49,14 @@ paths:
             application/json:
               schema:
                 $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
-  /seller/invoice/{id}:
+  /seller/invoice/{invoiceId}:
+    parameters:
+    - name: invoiceId
+      in: path
+      required: true
+      description: The invoice Id
+      schema:
+        type: string
     put:
       summary: Allows the seller to send to the buyer revised invoice information (No Request from buyer is Required)
       description: Allows the seller to send to the buyer revised invoice information
@@ -69,7 +76,8 @@ paths:
               schema:
                 $ref: 'schemas/invoiceSchemas.yaml#/components/schemas/invoiceObject'
         '404':
-          description: Requested invoice not found        
+          description: Requested invoice not found  
+          # TODO define response payload      
         default:
           description: unexpected error
           content:
@@ -85,6 +93,7 @@ paths:
           description: Request processed successfully
         '404':
           description: Invoice not found
+          # TODO define response payload  
         default:
           description: unexpected error
           content:

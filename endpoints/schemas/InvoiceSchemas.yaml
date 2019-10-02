@@ -37,7 +37,7 @@ components:
           $ref: 'commonSchemas.yaml#/components/schemas/transactionHeader'
         referenceId:
           description: Information grouping all reference ids and their source that are associated to the proposal
-          type: array # TODO any constraints?
+          $ref: 'commonSchemas.yaml#/components/schemas/referenceIds'
         invoiceDate:
           description: Date in which the original invoice was generated
           type: string
