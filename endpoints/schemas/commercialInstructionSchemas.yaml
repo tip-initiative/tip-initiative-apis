@@ -32,7 +32,7 @@ components:
           $ref: 'commonSchemas.yaml#/components/schemas/transactionHeader'
         referenceId:
           description: Information grouping all reference ids and their source that are associated to the proposal
-          type: array # TODO any constraints?
+          $ref: 'commonSchemas.yaml#/components/schemas/referenceIds'
         buyerlocation:
           $ref: 'commonSchemas.yaml#/components/schemas/buyerLocation'
         contact:
@@ -187,9 +187,9 @@ components:
         mediaType:
           type: string
           enum: [LINEAR, VOD, OTT, DIGITAL]
-        alternateId:
+        adId:
           type: string
-          format: uuid
+          #format: uuid
         Name:
           type: string
         Brand:
@@ -197,18 +197,19 @@ components:
         Product:
           type: string
         Length:
+          description: length in seconds
           type: integer
-        contentFrames:
-          type: integer
-        frameRate:
-          type: integer
-        separationType:
-          type: string
-          enum: [Content, Seconds]
-        separationLength:
-          type: integer
-        separationUnits:
-          type: integer
+        # contentFrames:
+        #   type: integer
+        # frameRate:
+        #   type: integer
+        # separationType:
+        #   type: string
+        #   enum: [Content, Seconds]
+        # separationLength:
+        #   type: integer
+        # separationUnits:
+        #   type: integer
         linkType:
           $ref: '#/components/schemas/spotTypes'
         linkNum:
@@ -251,10 +252,10 @@ components:
             properties:
               startTime:
                 type: string
-                format: ([2][0-3]|[0-1][0-9])(:[0-5][0-9]){2}
+                pattern: ([2][0-3]|[0-1][0-9])(:[0-5][0-9]){2}
               endTime:
                 type: string
-                format: ([2][0-3]|[0-1][0-9])(:[0-5][0-9]){2}
+                pattern: ([2][0-3]|[0-1][0-9])(:[0-5][0-9]){2}
         specialInstructions:
           type: string
 # ---------------------------

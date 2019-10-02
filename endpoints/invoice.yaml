@@ -100,5 +100,3 @@ paths:
             application/json:
               schema:
                 $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'       
-        
-      
