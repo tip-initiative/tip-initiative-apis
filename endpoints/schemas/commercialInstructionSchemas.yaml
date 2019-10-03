@@ -1,0 +1,284 @@
+openapi: "3.0.0"
+info:
+  title: Commercial Instructions Schema
+  version: 4.0.0.0
+  description: Commercial Instructions Schema, Based on TIP 4.0.0 Working Draft
+  termsOfService: http://placeholderdomain.io/terms/,
+  contact: 
+    name: MIT
+    email: tip-mailing-list@tbd.com
+    url: http://placeholderdomain.io
+  license: 
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+paths: {} 
+components: 
+  schemas: 
+    commercialInstructionsRequestObject:
+      description: This object will contain the instructions from the creative or agency to the seller
+      type: object
+      required:
+        - transactionHeader  
+        - referenceId
+        - buyerlocation
+        - Advertiser
+        - Product
+        - startDate
+        - endDate
+        - MediaOutlet
+        - Instruction
+      properties:
+        transactionHeader:
+          $ref: 'commonSchemas.yaml#/components/schemas/transactionHeader'
+        referenceId:
+          description: Information grouping all reference ids and their source that are associated to the proposal
+          $ref: 'commonSchemas.yaml#/components/schemas/referenceIds'
+        buyerlocation:
+          $ref: 'commonSchemas.yaml#/components/schemas/buyerLocation'
+        contact:
+          $ref: 'commonSchemas.yaml#/components/schemas/Contact'
+        Advertiser:
+          $ref: 'commonSchemas.yaml#/components/schemas/Advertiser'
+        Product:
+          $ref: 'commonSchemas.yaml#/components/schemas/Product'
+        startDate:
+          description: overall start date covered by the instructions
+          type: string
+          format: date
+        endDate:
+          description: overall end date of the instructions
+          type: string
+          format: date
+        cpeCode:
+          $ref: 'commonSchemas.yaml#/components/schemas/cpeCode'
+        MediaOutlet:
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/mediaOutlet'
+        Guidelines:
+          type: array
+          items:
+            anyOf:
+              - $ref: '#/components/schemas/Program'
+              - $ref: '#/components/schemas/Content'
+              - $ref: '#/components/schemas/MPAA'
+        instructionComment:
+          type: string
+        externalComment:
+          type: array
+          items:
+            type: string
+        Instruction:
+          $ref: '#/components/schemas/instructionObject'
+#----------------------------------------
+    instructionObject:
+      type: object
+      required:
+        - instructionType
+        - instructionDetail
+      discriminator:
+        propertyName: instructionType
+      properties:
+        instructionType:
+          type: string
+          enum: [Rotation Percentage, Pattern, unitSpecific]
+        instructionDetail:
+          type: array
+          items:
+            oneOf:
+              - $ref: '#/components/schemas/Rotation'
+              - $ref: '#/components/schemas/Pattern'
+              - $ref: '#/components/schemas/unitSpecific'
+# ----------------------------------
+    Guideline:
+      type: object
+      required:
+        - guidelineType
+        - excludeOrInclude
+      properties:
+        guidelineType:
+          type: string
+        guidelineAction:
+          $ref: '#/components/schemas/ExcludeOrIncludeEnum'
+      discriminator:
+        propertyName: guidelineType
+    Program:
+      allOf:
+        - $ref: '#/components/schemas/Guideline'
+        - type: object
+          required:
+          - programName
+          properties:
+            programName:
+              type: string
+    Content:
+      allOf:
+        - $ref: '#/components/schemas/Guideline'
+        - type: object
+          required:
+            - contentGenre
+          properties:
+            contentGenre:
+              type: string
+    MPAA:
+      allOf:
+        - $ref: '#/components/schemas/Guideline'
+        - type: object
+          required:
+          - mpaaRating
+          properties:
+            mpaaRating:
+              type: string
+              enum: [TV-Y,TV-Y7,TV-G,TV-PG,TV-14,TV-MA]
+    sellingTitle:
+      allOf:
+        - $ref: '#/components/schemas/Guideline'
+        - type: object
+          required:
+            - sellingTitle
+          properties:
+            sellingTitle:
+              type: string
+    siteCategory:
+      allOf:
+        - $ref: '#/components/schemas/Guideline'
+        - type: object
+          required:
+            - siteCategory
+          properties:
+            siteCategory:
+              type: string
+# ----------------------------------------
+    ExcludeOrIncludeEnum:
+      type: string
+      enum: [Exclude, Include]  
+# ----------------------------------------
+    spotTypes:
+      type: string
+      enum: [Billboard, Piggyback, Booked, Sandwich, Custom]
+# --------------------------------------
+    instructionDetailObject:
+      type: object
+      required:
+        - actionType
+      properties:
+        actionType:
+          type: string
+          enum: [New, Revised, Cancelled]
+        inventoryTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/spotTypes'
+        Content:
+          type: array
+          items:
+            $ref: '#/components/schemas/contentObject'
+# --------------------------
+    contentObject:
+      type: object
+      required:
+        - mediaType
+        - alternateId
+        - Length
+        - deliveryService
+        - startDate
+        - endDate
+      properties:
+        mediaType:
+          type: string
+          enum: [LINEAR, VOD, OTT, DIGITAL]
+        adId:
+          type: string
+          #format: uuid
+        Name:
+          type: string
+        Brand:
+          $ref: 'commonSchemas.yaml#/components/schemas/Brand'
+        Product:
+          type: string
+        Length:
+          description: length in seconds
+          type: integer
+        # contentFrames:
+        #   type: integer
+        # frameRate:
+        #   type: integer
+        # separationType:
+        #   type: string
+        #   enum: [Content, Seconds]
+        # separationLength:
+        #   type: integer
+        # separationUnits:
+        #   type: integer
+        linkType:
+          $ref: '#/components/schemas/spotTypes'
+        linkNum:
+          type: integer
+        linkSeq:
+          type: integer
+        deliveryDate:
+          type: string
+          format: Date
+        deliveryService:
+          type: string
+        startDate:
+          type: string
+          format: Date
+        endDate:
+          type: string
+          format: Date
+        hiatusPeriods:
+          type: array
+          items:
+            type: object
+            required:
+              - hiatusStart
+              - hiatusEnd
+            properties:
+              hiatusStart:
+                type: string
+                format: date
+              hiatusEnd:
+                type: string
+                format: date
+        contractInterval:
+          type: array
+          items:
+            type: string
+            enum: [Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday]
+        timeFrame:
+          type: array
+          items:
+            properties:
+              startTime:
+                type: string
+                pattern: ([2][0-3]|[0-1][0-9])(:[0-5][0-9]){2}
+              endTime:
+                type: string
+                pattern: ([2][0-3]|[0-1][0-9])(:[0-5][0-9]){2}
+        specialInstructions:
+          type: string
+# ---------------------------
+    Rotation:
+      allOf:
+        - $ref: '#/components/schemas/instructionObject'
+        - $ref: '#/components/schemas/instructionDetailObject'
+        - type: array
+          items:
+            type: integer
+            minimum: 0
+            maximum: 100
+    Pattern:
+      allOf:
+        - $ref: '#/components/schemas/instructionObject'
+        - $ref: '#/components/schemas/instructionDetailObject'
+        - type: array
+          items:
+            type: string
+    unitSpecific:
+      allOf:
+        - $ref: '#/components/schemas/instructionObject'
+        - $ref: '#/components/schemas/instructionDetailObject'
+        - type: array
+          items:
+            type: string
