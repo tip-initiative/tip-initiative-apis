@@ -20,7 +20,6 @@ components:
       required:
         - transactionHeader  
         - referenceId
-        - buyerlocation
         - Advertiser
         - Product
         - startDate
@@ -33,7 +32,7 @@ components:
         referenceId:
           description: Information grouping all reference ids and their source that are associated to the proposal
           $ref: 'commonSchemas.yaml#/components/schemas/referenceIds'
-        buyerlocation:
+        buyerLocation:
           $ref: 'commonSchemas.yaml#/components/schemas/buyerLocation'
         contact:
           $ref: 'commonSchemas.yaml#/components/schemas/Contact'
