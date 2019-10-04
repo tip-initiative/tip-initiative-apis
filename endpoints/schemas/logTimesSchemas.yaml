@@ -74,7 +74,7 @@ components:
           type: string #TODO any constraints?
         referenceId:
           $ref: 'commonSchemas.yaml#/components/schemas/referenceIds'
-        cpCode: 
+        cpeCode: 
           $ref: 'commonSchemas.yaml#/components/schemas/cpeCode'
         mediaOutlet:
           $ref: 'commonSchemas.yaml#/components/schemas/mediaOutlet'
@@ -130,7 +130,7 @@ components:
           description: Unit Rate
           type: number #TODO any constraints?
           format: float 
-        alternateID :
+        AdID :
           description: Advertising industry standard unique identifier for the commercial 
           type: string #TODO any constraints?
         Status: #TODO: Consider canceled status for prelogs? Consider scheduledDate, canceledDate, or generic statusChangeDate? 
@@ -168,7 +168,7 @@ components:
           description: Unit Rate
           type: number #TODO any constraints?
           format: float 
-        alternateID :
+        AdID :
           description: Advertising industry standard unique identifier for the commercial 
           type: string #TODO any constraints?
         Status:
