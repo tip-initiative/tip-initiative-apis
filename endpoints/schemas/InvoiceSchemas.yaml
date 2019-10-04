@@ -256,7 +256,7 @@ components:
         properties:   
           broadcastDate:
             $ref: 'commonSchemas.yaml#/components/schemas/broadcastDate'
-      - $ref: '#componenets/schemas/unitCommonFields'
+      - $ref: '#components/schemas/unitCommonFields'
     Impressions:
       allOf:
-      - $ref: '#componenets/schemas/unitCommonFields'                             
+      - $ref: '#components/schemas/unitCommonFields'                             
