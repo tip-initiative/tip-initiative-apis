@@ -24,7 +24,6 @@ components:
         - Product
         - startDate
         - endDate
-        - MediaOutlet
         - Instruction
       properties:
         transactionHeader:
@@ -50,10 +49,6 @@ components:
           format: date
         cpeCode:
           $ref: 'commonSchemas.yaml#/components/schemas/cpeCode'
-        MediaOutlet:
-          type: array
-          items:
-            $ref: 'commonSchemas.yaml#/components/schemas/mediaOutlet'
         Guidelines:
           type: array
           items:
@@ -61,6 +56,8 @@ components:
               - $ref: '#/components/schemas/Program'
               - $ref: '#/components/schemas/Content'
               - $ref: '#/components/schemas/MPAA'
+              - $ref: '#/components/schemas/sellingTitle'
+              - $ref: '#/components/schemas/siteCategory'
         instructionComment:
           type: string
         externalComment:
@@ -152,7 +149,7 @@ components:
       type: string
       enum: [Exclude, Include]  
 # ----------------------------------------
-    spotTypes:
+    inventoryTypeEnum:
       type: string
       enum: [Billboard, Piggyback, Booked, Sandwich, Custom]
 # --------------------------------------
@@ -160,14 +157,17 @@ components:
       type: object
       required:
         - actionType
+        - mediaOutlet
       properties:
         actionType:
           type: string
           enum: [New, Revised, Cancelled]
-        inventoryTypes:
+        inventoryType:
           type: array
           items:
-            $ref: '#/components/schemas/spotTypes'
+            $ref: '#/components/schemas/inventoryTypeEnum'
+        mediaOutlet:
+          $ref: 'commonSchemas.yaml#/components/schemas/mediaOutlet'
         Content:
           type: array
           items:
@@ -176,16 +176,12 @@ components:
     contentObject:
       type: object
       required:
-        - mediaType
-        - alternateId
+        - adId
         - Length
         - deliveryService
         - startDate
         - endDate
       properties:
-        mediaType:
-          type: string
-          enum: [LINEAR, VOD, OTT, DIGITAL]
         adId:
           type: string
           #format: uuid
@@ -198,19 +194,8 @@ components:
         Length:
           description: length in seconds
           type: integer
-        # contentFrames:
-        #   type: integer
-        # frameRate:
-        #   type: integer
-        # separationType:
-        #   type: string
-        #   enum: [Content, Seconds]
-        # separationLength:
-        #   type: integer
-        # separationUnits:
-        #   type: integer
         linkType:
-          $ref: '#/components/schemas/spotTypes'
+          $ref: '#/components/schemas/inventoryTypeEnum'
         linkNum:
           type: integer
         linkSeq:
@@ -248,13 +233,7 @@ components:
         timeFrame:
           type: array
           items:
-            properties:
-              startTime:
-                type: string
-                pattern: ([2][0-3]|[0-1][0-9])(:[0-5][0-9]){2}
-              endTime:
-                type: string
-                pattern: ([2][0-3]|[0-1][0-9])(:[0-5][0-9]){2}
+            $ref: 'commonSchemas.yaml#/components/schemas/timeFrame'
         specialInstructions:
           type: string
 # ---------------------------

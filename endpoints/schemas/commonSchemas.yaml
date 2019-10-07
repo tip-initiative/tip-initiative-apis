@@ -56,7 +56,7 @@ components:
         - mediaOutletChannel
         - mediaOutletReference
       properties:
-        mediaOutlet:
+        mediaOutletId:
           description: Unique persistent identifier for the station or network
           type: string  # TODO any constraints?
         mediaOutletName:
