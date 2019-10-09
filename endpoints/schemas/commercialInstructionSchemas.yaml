@@ -166,8 +166,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/inventoryTypeEnum'
-        mediaOutlet:
-          $ref: 'commonSchemas.yaml#/components/schemas/mediaOutlet'
         Content:
           type: array
           items:
@@ -177,6 +175,7 @@ components:
       type: object
       required:
         - adId
+        - mediaOutlet
         - Length
         - deliveryService
         - startDate
@@ -191,6 +190,8 @@ components:
           $ref: 'commonSchemas.yaml#/components/schemas/Brand'
         Product:
           type: string
+        mediaOutlet:
+          $ref: 'commonSchemas.yaml#/components/schemas/mediaOutlet'
         Length:
           description: length in seconds
           type: integer
