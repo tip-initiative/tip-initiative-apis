@@ -181,61 +181,6 @@ components:
         broadcastDate:
           $ref: 'commonSchemas.yaml#/components/schemas/broadcastDate'
 
-    logTimesMediaOutletQuery: # TODO I renamed this from mediaoutlets to be more distinctive from the common object mediaOutlet schema
-      required:
-        - mediaOutlet
-        - dateStart
-        - dateEnd
-      properties:
-        mediaOutlet:
-            $ref: 'commonSchemas.yaml#/components/schemas/mediaOutlet'
-        dateStart:
-          description: Broadcast start date
-          type: string
-          format: date-time 
-        dateEnd: 
-          description: Broadcast end date
-          type: string
-          format: date-time
-        buyerLocation:
-          description: List of BuyerLocation (ANDS) being requested; if not populated all valid buyer locations will be returned
-          type: array
-          items:
-            $ref: 'commonSchemas.yaml#/components/schemas/buyerLocation'
-        referenceIds:
-          description: List of entity ids (ANDS) being requested; if not populated all valid orders for mediaoutlet will be returned
-          type: array
-          items:
-            $ref: 'commonSchemas.yaml#/components/schemas/referenceIds'
-        advertiserIds:
-          description: List of Advertiser ids (ANDS) being requested;  if not populated all valid advertisers associated to the buyer's request will be returned 
-          type: array
-          items:
-            type: string
-        productIds:
-          description: List of product ids (ANDS) being requested; if not populated all valid products associated to the buyer's request will be returned
-          type: array
-          items:
-            type: string
-        sellingTitles:
-          description: List of Selling Title names (ANDS) being requested; if not populated all valid selling titles will be returned
-          type: array
-          items:
-            type: string 
-        Dayparts:
-          description: List of station daypart (ANDS) being requested; if not populated all valid dayparts associated to the buyer's request will be returned
-          type: array
-          items:
-            type: string
-        timeFrame:
-          $ref: 'commonSchemas.yaml#/components/schemas/timeFrame'
-        inventoryTypes:
-          description: List of Inventory Types being requested; if not populated all valid inventory types will be returned
-          type: array
-          items:
-            type: string
-            enum: [Commercial, Added Value, Custom] # TODO Custom keyword
-
     LogTimeResponseResponse: # TODO stub response, needs to be defined
       description: Response data # TODO stub response, needs to be defined
       properties:
