@@ -49,15 +49,15 @@ components:
           format: date
         cpeCode:
           $ref: 'commonSchemas.yaml#/components/schemas/cpeCode'
-        Guidelines:
-          type: array
-          items:
-            anyOf:
-              - $ref: '#/components/schemas/Program'
-              - $ref: '#/components/schemas/Content'
-              - $ref: '#/components/schemas/MPAA'
-              - $ref: '#/components/schemas/sellingTitle'
-              - $ref: '#/components/schemas/siteCategory'
+        # Guidelines:
+        #   type: array
+        #   items:
+        #     anyOf:
+        #       - $ref: '#/components/schemas/Program'
+        #       - $ref: '#/components/schemas/Content'
+        #       - $ref: '#/components/schemas/MPAA'
+        #       - $ref: '#/components/schemas/sellingTitle'
+        #       - $ref: '#/components/schemas/siteCategory'
         instructionComment:
           type: string
         externalComment:
