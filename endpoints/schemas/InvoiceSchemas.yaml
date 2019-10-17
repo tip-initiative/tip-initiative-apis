@@ -182,7 +182,7 @@ components:
               Length:
                 description: Length of commercial unit
                 type: integer
-        Unit Details:
+        UnitDetails:
           description: Array of unit details
           type: array
           items:
@@ -256,7 +256,7 @@ components:
         properties:   
           broadcastDate:
             $ref: 'commonSchemas.yaml#/components/schemas/broadcastDate'
-      - $ref: '#components/schemas/unitCommonFields'
+      - $ref: '#/components/schemas/unitCommonFields'
     Impressions:
       allOf:
-      - $ref: '#components/schemas/unitCommonFields'                             
+      - $ref: '#/components/schemas/unitCommonFields'                             
