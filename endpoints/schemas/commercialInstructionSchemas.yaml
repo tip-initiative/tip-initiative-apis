@@ -49,15 +49,6 @@ components:
           format: date
         cpeCode:
           $ref: 'commonSchemas.yaml#/components/schemas/cpeCode'
-        # Guidelines:
-        #   type: array
-        #   items:
-        #     anyOf:
-        #       - $ref: '#/components/schemas/Program'
-        #       - $ref: '#/components/schemas/Content'
-        #       - $ref: '#/components/schemas/MPAA'
-        #       - $ref: '#/components/schemas/sellingTitle'
-        #       - $ref: '#/components/schemas/siteCategory'
         instructionComment:
           type: string
         externalComment:
@@ -85,69 +76,6 @@ components:
               - $ref: '#/components/schemas/Rotation'
               - $ref: '#/components/schemas/Pattern'
               - $ref: '#/components/schemas/unitSpecific'
-# ----------------------------------
-    Guideline:
-      type: object
-      required:
-        - guidelineType
-        - excludeOrInclude
-      properties:
-        guidelineType:
-          type: string
-        guidelineAction:
-          $ref: '#/components/schemas/ExcludeOrIncludeEnum'
-      discriminator:
-        propertyName: guidelineType
-    Program:
-      allOf:
-        - $ref: '#/components/schemas/Guideline'
-        - type: object
-          required:
-          - programName
-          properties:
-            programName:
-              type: string
-    Content:
-      allOf:
-        - $ref: '#/components/schemas/Guideline'
-        - type: object
-          required:
-            - contentGenre
-          properties:
-            contentGenre:
-              type: string
-    MPAA:
-      allOf:
-        - $ref: '#/components/schemas/Guideline'
-        - type: object
-          required:
-          - mpaaRating
-          properties:
-            mpaaRating:
-              type: string
-              enum: [TV-Y,TV-Y7,TV-G,TV-PG,TV-14,TV-MA]
-    sellingTitle:
-      allOf:
-        - $ref: '#/components/schemas/Guideline'
-        - type: object
-          required:
-            - sellingTitle
-          properties:
-            sellingTitle:
-              type: string
-    siteCategory:
-      allOf:
-        - $ref: '#/components/schemas/Guideline'
-        - type: object
-          required:
-            - siteCategory
-          properties:
-            siteCategory:
-              type: string
-# ----------------------------------------
-    ExcludeOrIncludeEnum:
-      type: string
-      enum: [Exclude, Include]  
 # ----------------------------------------
     inventoryTypeEnum:
       type: string
