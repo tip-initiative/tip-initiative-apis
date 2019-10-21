@@ -12,7 +12,7 @@ security:
 info:
   version: 1.0.0
   title: logTimes
-  description: Seller posts a Logtimes on the buyer's server.
+  description: Seller posts a Logtimes on the buyer's server
   termsOfService: http://placeholderdomain.io/terms/
   contact:
     name: TIP Initiative
