@@ -12,7 +12,7 @@ security:
 info:
   version: 4.0.1
   title: logTimes
-  description: Async flow, buyer initiates with request and callback url, seller posts back # TODO placeholder description
+  description: Seller posts a Logtimes on the buyer's server.
   termsOfService: http://placeholderdomain.io/terms/
   contact:
     name: TIP Forum
