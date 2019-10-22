@@ -103,7 +103,7 @@ components:
 #          description: Brand external brand reference information
           $ref: '#/components/schemas/Brand'
 
-    buyerLocation:
+    Buyer:
       description: Packages a unique identifier and name into a single object # TODO generic description
       required:
         - buyerLocationId
@@ -118,7 +118,7 @@ components:
           type: string  # TODO any constraints?
         buyerLocationReference:
 #          description: Buyer external buyer location reference information
-          $ref: '#/components/schemas/buyerLocation'
+          $ref: '#/components/schemas/Buyer'
 
     Product:
       description: Packages a unique identifier and name into a single object # TODO generic description

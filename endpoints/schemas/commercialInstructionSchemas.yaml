@@ -1,7 +1,7 @@
 openapi: "3.0.0"
 info:
   title: Commercial Instructions Schema
-  version: 4.0.0.0
+  version: 1.0.0
   description: Commercial Instructions Schema, Based on TIP 4.0.0 Working Draft
   termsOfService: http://placeholderdomain.io/terms/,
   contact: 
@@ -31,9 +31,9 @@ components:
         referenceId:
           description: Information grouping all reference ids and their source that are associated to the proposal
           $ref: 'commonSchemas.yaml#/components/schemas/referenceIds'
-        buyerLocation:
-          $ref: 'commonSchemas.yaml#/components/schemas/buyerLocation'
-        contact:
+        Buyer:
+          $ref: 'commonSchemas.yaml#/components/schemas/Buyer'
+        Contact:
           $ref: 'commonSchemas.yaml#/components/schemas/Contact'
         Advertiser:
           $ref: 'commonSchemas.yaml#/components/schemas/Advertiser'
