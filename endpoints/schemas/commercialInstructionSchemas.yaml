@@ -3,7 +3,7 @@ info:
   title: Commercial Instructions Schema
   version: 1.0.0
   description: Commercial Instructions Schema, Based on TIP 4.0.0 Working Draft
-  termsOfService: http://placeholderdomain.io/terms/,
+  termsOfService: http://placeholderdomain.io/terms/
   contact: 
     name: MIT
     email: tip-mailing-list@tbd.com
