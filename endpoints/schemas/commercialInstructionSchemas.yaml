@@ -1,7 +1,7 @@
 openapi: "3.0.0"
 info:
   title: Commercial Instructions Schema
-  version: 4.0.0
+  version: 1.0.0
   description: Commercial Instructions Schema, Based on TIP 4.0 Working Draft
   termsOfService: http://placeholderdomain.io/terms/,
   contact: 
