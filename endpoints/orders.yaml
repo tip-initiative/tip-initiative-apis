@@ -28,44 +28,18 @@ info:
   <h2>Asynchronous Requests</h2>
   APIs follow the convention established by the TVB 3.2 flow and most of these flows are asynchronous. SGS delivers asynchronous requests to the counterparty-exposed endpoint URLs; then, the counterparty uses the orders subscription API to set the URLs. The payload is opaque to this specification because it is encapsulated within the <code>payloadData</code> property and encoded as XML per the TVB 3.2 standard.
 "
-  termsOfService: https://videa.tv/visitor/
+  termsOfService: http://placeholderdomain.io/terms/
   contact:
-    name: Videa API
-    email: apidocs@videa.tv
-    url: https://videa.tv/
+    name: TIP Forum
+    email: tip-mailing-list@tbd.com
+    url: http://placeholderdomain.io
   license:
     name: MIT
     url: https://opensource.org/licenses/MIT
 servers:
-  - url: https://api.videa.tv
+  - url: http://placeholderdomain.io
 
 paths:
-  /v1/orders/enumerate:
-    post:
-      summary: Enumerate Orders
-      description: The enumerate POST method requests a collection of orders that match the query parameters previously provided.
-      operationId: enumerateOrders
-      requestBody:
-        description: EnumerateOrders
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: 'schemas/ordersSchemas.yaml#/components/schemas/enumerateOrdersQuery'
-      responses:
-        '202':
-          description: "Your request was received. An asynchronous response payload will be delivered to the enumerate counterparty endpoint. Counterparty endpoint URLs use the following endpoint to set URLs:<code>/v1/orders/subscriptions</code>"
-          content:
-            application/json:
-              schema:
-                $ref: 'schemas/ordersSchemas.yaml#/components/schemas/enumerateOrdersResponse'
-        default:
-          description: Error.
-          content:
-            application/json:
-              schema:
-                $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
-
   /v1/orders/create:
     post:
       summary: Create an Order

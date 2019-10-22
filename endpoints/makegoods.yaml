@@ -10,46 +10,21 @@ security:
   - bearerAuth: []
 
 info:
-  version: 1.0.0
+  version: 1.0.1
   title: Makegoods
-  description: Todo
-  termsOfService: https://videa.tv/visitor/
+  description: Makegoods
+  termsOfService: http://placeholderdomain.io/terms/
   contact:
-    name: Videa API
-    email: apidocs@videa.tv
-    url: https://videa.tv/
+    name: TIP Forum
+    email: tip-mailing-list@tbd.com
+    url: http://placeholderdomain.io
   license:
     name: MIT
     url: https://opensource.org/licenses/MIT
 servers:
-  - url: https://api.videa.tv
+  - url: http://placeholderdomain.io
 
 paths:
-  /v1/makegoods/enumerate:
-    post:
-      summary: Enumerate Makegoods
-      description: Request a collection of makegoods matching the provided query parameters
-      operationId: enumerateMakegoods
-      requestBody:
-        description: enumerateMakegoods
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: 'schemas/makegoodsSchemas.yaml#/components/schemas/enumerateMakegoodsQuery'
-      responses:
-        '202':
-          description: Request processed successfully
-          content:
-            application/json:
-              schema:
-                $ref: 'schemas/makegoodsSchemas.yaml#/components/schemas/enumerateMakegoodsResponse'
-        default:
-          description: Unexpected error occured
-          content:
-            application/json:
-              schema:
-                $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
 
   /v1/makegoods/create:
     post:
