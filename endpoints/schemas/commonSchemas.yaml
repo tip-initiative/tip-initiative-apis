@@ -106,17 +106,17 @@ components:
     Buyer:
       description: Packages a unique identifier and name into a single object # TODO generic description
       required:
-        - buyerLocationId
-        - buyerLocationName
-        - buyerLocationReference
+        - buyerId
+        - buyerName
+        - buyerReference
       properties:
-        buyerLocationId:
+        buyerId:
           description: Unique persistent identifier for the Buying organization or  trafficking agency and /or the supplier of the media
           type: string  # TODO any constraints?
-        buyerLocationName:
+        buyerName:
           description: Buying organization name and location
           type: string  # TODO any constraints?
-        buyerLocationReference:
+        buyerReference:
 #          description: Buyer external buyer location reference information
           $ref: '#/components/schemas/Buyer'
 
