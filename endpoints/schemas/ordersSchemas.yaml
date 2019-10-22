@@ -1,19 +1,19 @@
 openapi: "3.0.0"
+
 info:
-  version: 4.0.2
-  title: Orders
-  description: |
-    * TODO
-  termsOfService: http://placeholderdomain.io/terms/
+  version: 1.0.0
+  title: Orders Schemas
+  description: Todo
+  termsOfService: https://videa.tv/visitor/
   contact:
-    name: todo
-    email: mailing-list@tbd.com
-    url: http://placeholderdomain.io
+    name: Videa API
+    email: apidocs@videa.tv
+    url: https://videa.tv/
   license:
     name: MIT
     url: https://opensource.org/licenses/MIT
 servers:
-  - url: http://placeholderdomain.io
+  - url: https://api.videa.tv
 
 paths: {} # no paths
 
@@ -22,7 +22,7 @@ components:
     enumerateOrdersResponse:
       required:
         - ordersCollection
-      description: Collection of orders to return 
+      description: Collection of orders to return to the UI
       properties:
         ordersCollection:
           type: array
@@ -48,72 +48,24 @@ components:
           type: string
           format: date-time
         limitCount: 
-          description: Max number of items to return
+          description: Maximum number of items to return
           type: integer #TODO any constraints on this?
           format: int32
 
-    ordersSubscribeSGS:
-      description: Provide callback URLs to the SGS to subscribe to events
+    ordersSubscriptionRequest:
+      description: A client creates a subscription by issuing a request against the subscriptions resource. The subscription namespace is client-defined via the POST operation.
       required:
-        - CommonPayloadHeader
-        - acknowledgeReceiptNotificationUrl
-        - approveCancelOrderResponseUrl
-        - approveCreateOrderResponseUrl
-        - approveReviseOrderResponseUrl
-        - confirmConfirmOrderNotificationUrl
-        - notifyOpenOpenOrderNotificationUrl
-        - rejectCancelOrderResponseUrl
-        - rejectCreateOrderResponseUrl
-        - rejectReviseOrderResponseUrl
+        - resource
+        - notificationUrl
       properties:
-        CommonPayloadHeader:
-          $ref: 'commonSchemas.yaml#/components/schemas/commonPayloadHeader'
-        acknowledgeReceiptNotificationUrl:
-          description: acknowledgeReceiptNotificationUrl
+        resource:
+          description: Resource path to watch
+          type: string
+          enum: [AcknowledgeReceiptNotification, CancelOrderResponse, CancelOrderResponse, ConfirmOrderNotification, CreateOrderResponse, OpenOrderNotification, ReviseOrderResponse]
+        notificationUrl:
+          description: The target web hook URL
           type: string
           format: uri
-        approveCancelOrderResponseUrl:
-          description: approveCancelOrderResponseUrl
+        clientState:
+          description: Opaque string passed back to the client on all notifications. Callers may choose to use this to provide tagging mechanisms.
           type: string
-          format: uri
-        approveCreateOrderResponseUrl:
-          description: approveCreateOrderResponseUrl
-          type: string
-          format: uri
-        approveReviseOrderResponseUrl:
-          description: approveReviseOrderResponseUrl
-          type: string
-          format: uri
-        confirmConfirmOrderNotificationUrl:
-          description: confirmConfirmOrderNotificationUrl
-          type: string
-          format: uri
-        notifyOpenOpenOrderNotificationUrl:
-          description: notifyOpenOpenOrderNotificationUrl
-          type: string
-          format: uri
-        rejectCancelOrderResponseUrl:
-          description: rejectCancelOrderResponseUrl
-          type: string
-          format: uri
-        rejectCreateOrderResponseUrl:
-          description: rejectCreateOrderResponseUrl
-          type: string
-          format: uri
-        rejectReviseOrderResponseUrl:
-          description: rejectReviseOrderResponseUrl
-          type: string
-          format: uri
-
-    ordersSubscribeSGSCounterParty:
-        description: Provide callback URLs to subscribe to events from the SGS CounterParty
-        required:
-          - CommonPayloadHeader
-          - acknowledgeReceiptNotificationUrl
-        properties:
-          CommonPayloadHeader:
-            $ref: 'commonSchemas.yaml#/components/schemas/commonPayloadHeader'
-          acknowledgeReceiptNotificationUrl:
-            description: acknowledgeReceiptNotificationUrl
-            type: string
-            format: uri
