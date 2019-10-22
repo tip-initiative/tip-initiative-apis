@@ -1,0 +1,191 @@
+openapi: "3.0.0"
+info:
+  title: Commercial Instructions Schema
+  version: 1.0.0
+  description: Commercial Instructions Schema, Based on TIP 4.0 Working Draft
+  termsOfService: http://placeholderdomain.io/terms/,
+  contact: 
+    name: TIP Initiative
+    email: tip-mailing-list@tbd.com
+    url: http://placeholderdomain.io
+  license: 
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+paths: {} 
+components: 
+  schemas: 
+    commercialInstructionsRequestObject:
+      description: This object will contain the instructions from the creative or agency to the seller
+      type: object
+      required:
+        - transactionHeader  
+        - referenceId
+        - Advertiser
+        - Product
+        - startDate
+        - endDate
+        - Instruction
+      properties:
+        transactionHeader:
+          $ref: 'commonSchemas.yaml#/components/schemas/transactionHeader'
+        referenceId:
+          description: Information grouping all reference ids and their source that are associated to the proposal
+          $ref: 'commonSchemas.yaml#/components/schemas/referenceIds'
+        Buyer:
+          $ref: 'commonSchemas.yaml#/components/schemas/Buyer'
+        contact:
+          $ref: 'commonSchemas.yaml#/components/schemas/Contact'
+        Advertiser:
+          $ref: 'commonSchemas.yaml#/components/schemas/Advertiser'
+        Product:
+          $ref: 'commonSchemas.yaml#/components/schemas/Product'
+        startDate:
+          description: overall start date covered by the instructions
+          type: string
+          format: date
+        endDate:
+          description: overall end date of the instructions
+          type: string
+          format: date
+        cpeCode:
+          $ref: 'commonSchemas.yaml#/components/schemas/cpeCode'
+        instructionComment:
+          type: string
+        externalComment:
+          type: array
+          items:
+            type: string
+        Instruction:
+          $ref: '#/components/schemas/instructionObject'
+#----------------------------------------
+    instructionObject:
+      type: object
+      required:
+        - instructionType
+        - instructionDetail
+      discriminator:
+        propertyName: instructionType
+      properties:
+        instructionType:
+          type: string
+          enum: [Rotation Percentage, Pattern, unitSpecific]
+        instructionDetail:
+          type: array
+          items:
+            oneOf:
+              - $ref: '#/components/schemas/Rotation'
+              - $ref: '#/components/schemas/Pattern'
+              - $ref: '#/components/schemas/unitSpecific'
+# ----------------------------------------
+    inventoryTypeEnum:
+      type: string
+      enum: [Billboard, Piggyback, Booked, Sandwich, Custom]
+# --------------------------------------
+    instructionDetailObject:
+      type: object
+      required:
+        - actionType
+        - mediaOutlet
+      properties:
+        actionType:
+          type: string
+          enum: [New, Revised, Cancelled]
+        inventoryType:
+          type: array
+          items:
+            $ref: '#/components/schemas/inventoryTypeEnum'
+        Content:
+          type: array
+          items:
+            $ref: '#/components/schemas/contentObject'
+# --------------------------
+    contentObject:
+      type: object
+      required:
+        - adId
+        - mediaOutlet
+        - Length
+        - deliveryService
+        - startDate
+        - endDate
+      properties:
+        adId:
+          type: string
+          #format: uuid
+        Name:
+          type: string
+        Brand:
+          $ref: 'commonSchemas.yaml#/components/schemas/Brand'
+        Product:
+          type: string
+        mediaOutlet:
+          $ref: 'commonSchemas.yaml#/components/schemas/mediaOutlet'
+        Length:
+          description: length in seconds
+          type: integer
+        linkType:
+          $ref: '#/components/schemas/inventoryTypeEnum'
+        linkNum:
+          type: integer
+        linkSeq:
+          type: integer
+        deliveryDate:
+          type: string
+          format: Date
+        deliveryService:
+          type: string
+        startDate:
+          type: string
+          format: Date
+        endDate:
+          type: string
+          format: Date
+        hiatusPeriods:
+          type: array
+          items:
+            type: object
+            required:
+              - hiatusStart
+              - hiatusEnd
+            properties:
+              hiatusStart:
+                type: string
+                format: date
+              hiatusEnd:
+                type: string
+                format: date
+        contractInterval:
+          type: array
+          items:
+            type: string
+            enum: [Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday]
+        timeFrame:
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/timeFrame'
+        specialInstructions:
+          type: string
+# ---------------------------
+    Rotation:
+      allOf:
+        - $ref: '#/components/schemas/instructionObject'
+        - $ref: '#/components/schemas/instructionDetailObject'
+        - type: array
+          items:
+            type: integer
+            minimum: 0
+            maximum: 100
+    Pattern:
+      allOf:
+        - $ref: '#/components/schemas/instructionObject'
+        - $ref: '#/components/schemas/instructionDetailObject'
+        - type: array
+          items:
+            type: string
+    unitSpecific:
+      allOf:
+        - $ref: '#/components/schemas/instructionObject'
+        - $ref: '#/components/schemas/instructionDetailObject'
+        - type: array
+          items:
+            type: string

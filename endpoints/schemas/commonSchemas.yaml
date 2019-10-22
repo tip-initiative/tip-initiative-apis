@@ -3,17 +3,15 @@ openapi: "3.0.0"
 info:
   version: 1.0.0
   title: Common Schemas
-  description: Todo
-  termsOfService: https://videa.tv/visitor/
+  description: Common Schemas, based on TIP 4.0 documentation
+  termsOfService: http://placeholderdomain.io/terms/ # TODO
   contact:
-    name: Videa API
-    email: apidocs@videa.tv
-    url: https://videa.tv/
+    name: TIP Initiative
+    email: tip-mailing-list@tbd.com # TODO
+    url: http://placeholderdomain.io # TODO
   license:
     name: MIT
     url: https://opensource.org/licenses/MIT
-servers:
-  - url: https://api.videa.tv
 
 paths: {} # no paths
 
@@ -104,7 +102,7 @@ components:
     transactionHeader:
       description: Transaction header details
       required:
-        - version
+        - tipVersion
         - transactionNum
         - transactionType
         - sourceID
@@ -122,7 +120,7 @@ components:
           description: Indicates the type of transaction (New, Changed, Cancelled)
           type: string
           enum: [New, Changed, Cancelled]
-        sourceID: 
+        sourceId: 
           description: String	Indicates the source "trading partner" unique identification  
           type: string # TODO any constraints?
         sourceName:
@@ -134,14 +132,14 @@ components:
           format: date-time
 
     mediaOutlet:
-      description: Packages a unique identifier and name into a single object # TODO generic description
+      description: Combines a unique identifier and name into a single object # TODO generic description
       required:
         - mediaOutletId
         - mediaOutletName
         - mediaOutletChannel
         - mediaOutletReference
       properties:
-        mediaOutlet:
+        mediaOutletId:
           description: Unique persistent identifier for the station or network
           type: string  # TODO any constraints?
         mediaOutletName:
@@ -153,9 +151,13 @@ components:
         mediaOutletReference:
           description: Buyer external mediaoutlet reference information
           $ref: '#/components/schemas/mediaOutlet'
+        mediaOutletType:
+          description: Type of media outlet
+          type: string
+          enum: [Broadcast TV, OTT, Connected TV, Addressable TV, Digital Video, Mobile Video, Terrestrial Radio, Digital Audio, Custom] 
 
     Advertiser:
-      description: Packages a unique identifier and name into a single object # TODO generic description
+      description: Combines a unique identifier and name into a single object # TODO generic description
       required:
         - advertiserId
         - advertiserName
@@ -172,7 +174,7 @@ components:
           $ref: '#/components/schemas/Advertiser'
 
     Brand:
-      description: Packages a unique identifier and name into a single object # TODO generic description
+      description: Combines a unique identifier and name into a single object # TODO generic description
       required:
         - brandId
         - brandName
@@ -188,25 +190,25 @@ components:
           description: Brand external brand reference information
           $ref: '#/components/schemas/Brand'
 
-    buyerLocation:
-      description: Packages a unique identifier and name into a single object # TODO generic description
+    Buyer:
+      description: Combines a unique identifier and name into a single object # TODO generic description
       required:
-        - buyerLocationId
-        - buyerLocationName
-        - buyerLocationReference
+        - buyerId
+        - buyerName
+        - buyerReference
       properties:
-        buyerLocationId:
+        buyerId:
           description: Unique persistent identifier for the Buying organization or  trafficking agency and /or the supplier of the media
           type: string  # TODO any constraints?
-        buyerLocationName:
+        buyerName:
           description: Buying organization name and location
           type: string  # TODO any constraints?
-        buyerLocationReference:
+        buyerReference:
           description: Buyer external buyer location reference information
-          $ref: '#/components/schemas/buyerLocation'
+          $ref: '#/components/schemas/Buyer'
 
     Product:
-      description: Packages a unique identifier and name into a single object # TODO generic description
+      description: Combines a unique identifier, name, and reference into an object # TODO generic description
       required:
         - productId
         - productName
@@ -223,13 +225,13 @@ components:
           $ref: '#/components/schemas/Product'
 
     audienceSegment:
-      description: Packages a unique identifier and name into a single object # TODO generic description
+      description: Combines a unique identifier and name into a single object # TODO generic description
       required:
         - audienceSegmentId
         - audienceSegmentName
         - audienceSegmentReference
         - ratingSource
-        - ratingType
+        - ratingStream
         - viewershipType
         - universeType
         - primaryIndicator
@@ -248,7 +250,7 @@ components:
           description: Unique identifier for audience segment
           type: string
           enum: [Nielsen, ComScore, Custom] # TODO is Custom a constant?
-        ratingType:
+        ratingStream:
           description: Audience Segment Name 
           type: string  
           enum: [Program Live, C3, C7, Custom] # TODO is Custom a constant?
@@ -268,7 +270,7 @@ components:
           type: boolean
 
     audienceMetric: # TODO schema and property have the same name
-      description: Packages audience segment metric attributes into single object
+      description: Combines audience segment metric attributes into single object
       properties:
         audienceSegmentId:
           description: List of pricing metric segments (AND) # TODO AND what? should there be additional data besides the array of enums specified here?
@@ -281,7 +283,7 @@ components:
           type: string  # TODO why is this a string value?
 
     cancellationTerms:
-      description: Packages cancellation options data attributes into a single object
+      description: Combines cancellation options data attributes into a single object
       required:
         - cancellationType
         - Cancellation
@@ -308,7 +310,7 @@ components:
           format: float
 
     referenceIds:
-      description: Packages the system ids across mulitple systems into a single object
+      description: Combines the system ids across mulitple systems into a single object
       required:
         - referenceSourceName
         - referenceSourceId
@@ -338,7 +340,7 @@ components:
           type: string #TODO any constraints?
 
     cpeCode: 
-      description: Packages audience segment metric attributes into single object
+      description: Combines audience segment metric attributes into single object
       properties:
         clientCode:
           description: Client code provided from the buyer. Packages client, product and estimate codes together.
@@ -354,7 +356,7 @@ components:
           format: int32
 
     broadcastDate:
-      description: Packages the Broadcast Date & Time Information
+      description: Combines the Broadcast Date & Time Information
       properties:
         broadcastDate: # TODO listed as conditional in spreadsheet, what does conditional mean?
           description: The broadcast date on which the unit aired/scheduled; UTC Standard; Receiver of data will be responsible to convert based on station's broadcast start of day
@@ -363,9 +365,12 @@ components:
         broadcastTime: # TODO listed as conditional in spreadsheet, what does conditional mean?
           description: The broadcast local time on which the unit aired/scheduled; UTC Standard; Receiver of data will be responsible to convert based on station's broadcast start of day
           type: string  #TODO should this be an enum?
+        broadcastTimeOffset:  #TODO: Consider local time offsets. Conversion of UTC will become difficult as each receiver will need to maintain a potentially volitile dataset of stations/channels/starttimes and there is no facility/api to provide this yet. 
+          description: Offset in miliseconds from local time midnight
+          type: integer
 
     timeFrame: 
-      description: Packages multiple non-contiguous start and end times 
+      description: Combines multiple non-contiguous start and end times 
       properties:
         startTime:
           description: Valid start time for units
@@ -377,7 +382,7 @@ components:
           format: date-time 
 
     Contact: #TODO fixed casing 
-      description: Packages contact Information
+      description: Combines contact Information
       required:
         - contactType
         - referenceSourceName
@@ -409,158 +414,13 @@ components:
           type: string
           format: date-time
 
-    inventoryCatalog:
-      description: Packages inventory and pricing data together
-      required:
-        - mediaOutlet
-        - SellingTitle
-        - mediaType
-      properties:
-        transactionType:
-          description: New, Change or Cancelled transaction
-          type: string #TODO should be this an enum?
-        mediaOutlet:
-          description: the unique identifier for individual station or network
-          $ref: '#/components/schemas/mediaOutlet'
-        mediaComposition: #TODO what does conditional mean?
-          description: If inventory is for a footprint this is the list of stations and /or markets that are within the footprint 
-          type: array
-          items:
-            type: string #TODO is this suppose to be an array of strings? should there be any constraints?
-        SellingTitle: # TODO removed space
-          description: Selling Title name
-          type: string #TODO any constraints on this? 
-        Daypart:
-          description: Daypart Name
-          type: string #TODO any constraints on this? 
-        Genre:
-          description: The genre into which the selling title is associated to 
-          type: string #TODO any constraints on this? 
-        Comments:
-          description: Comments associated to inventory details 
-          type: string #TODO any constraints on this? 
-        mediaType:
-          description: Type of media being proposed  - Enum values to be defined
-          type: string #TODO need the enum types
-        pricePeriods:
-          description: Array of pricePeriods
-          type: array
-          items:
-            $ref: '#/components/schemas/PricePeriod'
-        Audiences:
-          description: Array of Audiences
-          type: array
-          items:
-            $ref: '#/components/schemas/Audience'
-
-    PricePeriod:
-      required:
-        - inventoryType
-        - timeFrame
-        - DOW
-        - Length
-        - Rate
-      description: Price Period details; multiple arrays of price periods for inventory catalog
-      properties:
-        inventoryType:
-          description: Inventory Type associated to line
-          type: string
-          enum: [Commercial, Interstitial, Billboard, Custom] #TODO is custom a constant?
-        breakPosition:
-          description: Break Position
-          type: string # TODO enum values to be defined
-        podPosition:
-          description: Pod Position
-          type: string # TODO enum values to be defined
-        dateStart:
-          description: Price period start date; must be aligned with a weekStart
-          type: string
-          format: date-time 
-        dateEnd: 
-          description: Price period end date
-          type: string
-          format: date-time
-        timeFrame:
-          description: The valid start and end times
-          $ref: '#/components/schemas/timeFrame'
-        DOW:
-          description: List of valid days of week with Y/N value or number of fixed units per day
-          type: string
-          enum: [Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday]
-        Length:
-          description: Unit length 
-          type: string
-        Rate:
-          description: Unit price per a 30 second equivalized spot
-          type: number
-          format: float
-        Currency:
-          description: Currency Name or Code
-          type: string # TODO should this be an enum?
-        Capacity: # TODO updated casing
-          description: Total number of original capacities for the inventory catalog
-          type: integer # TODO any constraints on this?
-          format: int32
-        totalUnits:
-          description: Total number of "raw" units in inventory catalog available for sale 
-          type: integer # TODO any constraints on this?
-          format: int32
-        requestUnits:
-          description: Total number of "raw" units being requested by buyer; required when specifying inventory
-          type: integer # TODO any constraints on this?
-          format: int32
-
-    Audience: 
-      description: Price Period Audience segment details; multiple arrays of audience segments may exist
-      properties:
-        audienceSegment:
-          description: Unique identifier for audience segment
-          type: array
-          items:
-            $ref: '#/components/schemas/audienceSegment'
-        sellingEstimates:
-          description: Aggregated estimated impression in units for the audience segment for the total units; use the equivalized flag when populating impressions
-          type: integer # TODO any constraints on this?
-          format: int32
-        audienceUniverse:
-          description: Estimated impressions in universe for the audience segment and universe type
-          type: integer # TODO any constraints on this?
-          format: int32
-        Rating:
-          description: Aggregated estimated GRPs for the total units
-          type: integer # TODO any constraints on this?
-          format: int32
-        viewershipValue:
-          description: Viewership value; populated based on the viewership type e.g VPVH, Composition Index, Reach & Frequency
-          type: integer # TODO any constraints on this?
-          format: int32
-        audienceMetric:
-          description: Audience metric details 
-          type: array
-          items:
-            $ref: '#/components/schemas/audienceMetric'
-
     Error:
       required:
         - code
         - message
       properties:
-        code:
+        errorCode:
+          type: integer
+          format: int32
+        errorMessage:
           type: string
-        message:
-          type: string
-        target:
-          type: string
-        details:
-          type: object
-
-    acceptedResponse:
-      required:
-        - transactionId
-        - timeStamp
-      properties:
-        transactionId:
-          type: string
-        timeStamp:
-          type: string
-          format: date-time
