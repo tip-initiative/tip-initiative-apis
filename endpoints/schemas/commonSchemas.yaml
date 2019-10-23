@@ -106,9 +106,8 @@ components:
         brandRefererence:
 #          description: Brand external brand reference information
           $ref: '#/components/schemas/Brand'
-
-   Buyer:
-      description: Combines a unique identifier and name into a single object # TODO generic description
+    Buyer:
+      description: Packages a unique identifier and name into a single object # TODO generic description
       required:
         - buyerId
         - buyerName
