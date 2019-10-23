@@ -11,7 +11,7 @@ security:
 
 info:
   version: 0.0.1.
-  title: Inventory
+  title: Inventory Avails
   description: Inventory Endpoints
   termsOfService: http://placeholderdomain.io/terms/
   contact:
