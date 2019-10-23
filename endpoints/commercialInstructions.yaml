@@ -10,7 +10,7 @@ security:
 
 info:
   version: 4.0.1
-  title: Commercial Instructions
+  title: Commercial Instructions Endpoint
   description: Allows the creative agency or service provider of commercial instructions to send new or revised traffic instructions on how commercial copy should be applied to units (No request from Seller is required)
   termsOfService: http://placeholderdomain.io/terms/
   contact:
