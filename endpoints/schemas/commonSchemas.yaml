@@ -237,7 +237,7 @@ components:
           description: Name associated with the organization that is supplying the ids and version information
           type: string #TODO any constraints on this?
         referenceSourceLookup:
-          description: Reference Source Look up; this could be URI to lookup information about the refernece source name
+          description: Reference Source Look up; this could be URI to lookup information about the reference source name
           type: string #TODO any constraints on this?
         referenceType:
           description: The type of IDs that are being supplied  
