@@ -11,7 +11,7 @@ security:
 
 info:
   version: 1.0.0
-  title: logTimes
+  title: logtimes
   description: Seller posts a Logtimes on the buyer's server
   termsOfService: http://placeholderdomain.io/terms/
   contact:
