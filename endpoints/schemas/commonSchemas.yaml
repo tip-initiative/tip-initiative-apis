@@ -196,7 +196,7 @@ components:
             enum: [CPM, CPP] # TODO is Custom a constant?
         audienceMetricValue:
           description: Audience metric dollar value
-          type: string  # TODO why is this a string value?
+          type: float
 
     cancellationTerms:
       description: Combines cancellation options data attributes into a single object
