@@ -60,7 +60,7 @@ components:
               $ref: '#/components/schemas/mediaOutletDetail'
   
     Unit:
-      required: # TODO what does conditional mean for all the properities? Conditional based on what?
+      required: # TODO define what conditional means for all the properities.
         - unitId
         - referenceId
         - mediaOutlet
@@ -99,11 +99,11 @@ components:
         inventoryType:
           description: inventory Type associated to unit
           type: string
-          enum: [Commercial, Interstitial, Billboard, Custom] # TODO custom keyword
+          enum: [Commercial, Interstitial, Billboard]
         linkType:
           description: Linked unit type 
           type: string
-          enum: [Billboard, Piggyback, Bookend, Custom] # TODO custom keyword
+          enum: [Billboard, Piggyback, Bookend]
         linkNum:
           description: Linked unique number to communicate the association of two or more units that have been linked together; only valid when the units have a link type association
           type: integer
