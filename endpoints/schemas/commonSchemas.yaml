@@ -71,7 +71,7 @@ components:
         mediaOutletType:
           description: Type of media outlet
           type: string
-          enum: [Broadcast TV, OTT, Connected TV, Addressable TV, Digital Video, Mobile Video, Terrestrial Radio, Digital Audio, Custom] 
+          enum: [Broadcast TV, OTT, Connected TV, Addressable TV, Digital Video, Mobile Video, Terrestrial Radio, Digital Audio] 
 
     Advertiser:
       description: Combines a unique identifier and name into a single object # TODO generic description
@@ -165,19 +165,19 @@ components:
         ratingSource:
           description: Unique identifier for audience segment
           type: string
-          enum: [Nielsen, ComScore, Custom] # TODO is Custom a constant?
+          enum: [Nielsen, ComScore] # TODO is Custom a constant?
         ratingStream:
           description: Audience Segment Name 
           type: string  
-          enum: [Program Live, C3, C7, Custom] # TODO is Custom a constant?
+          enum: [Program Live, C3, C7] # TODO is Custom a constant?
         viewershipType:
           description: Type of viewership elements
           type: string  
-          enum: [VPVH, Composition, Reach, Frequency, Custom] # TODO is Custom a constant?
+          enum: [VPVH, Composition, Reach, Frequency] # TODO is Custom a constant?
         universeType:
           description: Type of universe
           type: string  
-          enum: [Market, Total US, Coverage, Custom] # TODO is Custom a constant?
+          enum: [Market, Total US, Coverage] # TODO is Custom a constant?
         primaryIndicator:
           description: todo # TODO need description
           type: boolean
@@ -193,7 +193,7 @@ components:
           type: array
           items:
             type: string 
-            enum: [CPM, CPP, Custom] # TODO is Custom a constant?
+            enum: [CPM, CPP] # TODO is Custom a constant?
         audienceMetricValue:
           description: Audience metric dollar value
           type: string  # TODO why is this a string value?
