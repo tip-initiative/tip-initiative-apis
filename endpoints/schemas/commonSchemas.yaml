@@ -53,8 +53,7 @@ components:
       required:
         - mediaOutletId
         - mediaOutletName
-        - mediaOutletChannel
-        - mediaOutletReference
+        - mediaOutletType
       properties:
         mediaOutletId:
           description: Unique persistent identifier for the station or network
@@ -62,23 +61,23 @@ components:
         mediaOutletName:
           description: Station or network name associated to mediaOutletId
           type: string  # TODO any constraints?
-        mediaOutletChannel:
-          description: String	Station or network station identification (Channel) 
-          type: string  # TODO any constraints?
-        mediaOutletReference:
-          description: Buyer external mediaoutlet reference information
-          $ref: '#/components/schemas/mediaOutlet'
         mediaOutletType:
           description: Type of media outlet
           type: string
           enum: [Broadcast TV, OTT, Connected TV, Addressable TV, Digital Video, Mobile Video, Terrestrial Radio, Digital Audio] 
-
+        mediaOutletChannel:
+          description: String	Station or network station identification (Channel) 
+          type: string  # TODO any constraints?
+        mediaOutletMarketName:
+          type: string
+        mediaOutletReference:
+          description: Buyer external mediaoutlet reference information
+          type: string
     Advertiser:
       description: Combines a unique identifier and name into a single object # TODO generic description
       required:
         - advertiserId
         - advertiserName
-        - advertiserReference
       properties:
         advertiserId:
           description: Unique persistent identifier for the advertiser/client
@@ -88,14 +87,13 @@ components:
           type: string  # TODO any constraints?
         advertiserReference:
 #          description: Object	Buyer external advertiser reference information
-          $ref: '#/components/schemas/Advertiser'
+          type: string
 
     Brand:
       description: Combines a unique identifier and name into a single object # TODO generic description
       required:
         - brandId
         - brandName
-        - brandRefererence
       properties:
         brandId:
           description: Unique persistent identifier for the brand
@@ -105,13 +103,12 @@ components:
           type: string  # TODO any constraints?
         brandRefererence:
 #          description: Brand external brand reference information
-          $ref: '#/components/schemas/Brand'
+          type: string
     Buyer:
       description: Packages a unique identifier and name into a single object # TODO generic description
       required:
         - buyerId
         - buyerName
-        - buyerReference
       properties:
         buyerId:
           description: Unique persistent identifier for the Buying organization or  trafficking agency and /or the supplier of the media
@@ -121,14 +118,12 @@ components:
           type: string  # TODO any constraints?
         buyerReference:
 #          description: Buyer external buyer location reference information
-          $ref: '#/components/schemas/Buyer'
-
+          type: string
     Product:
       description: Combines a unique identifier, name, and reference into an object # TODO generic description
       required:
         - productId
         - productName
-        - productReference
       properties:
         productId:
           description: Unique persistent identifier for the product
@@ -138,7 +133,7 @@ components:
           type: string  # TODO any constraints?
         productReference:
 #          description: Buyer external product reference 
-          $ref: '#/components/schemas/Product'
+          type: string
 
     audienceSegment:
       description: Combines a unique identifier and name into a single object # TODO generic description
@@ -196,7 +191,8 @@ components:
             enum: [CPM, CPP] # TODO is Custom a constant?
         audienceMetricValue:
           description: Audience metric dollar value
-          type: float
+          type: number
+          format: float
 
     cancellationTerms:
       description: Combines cancellation options data attributes into a single object

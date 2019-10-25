@@ -78,8 +78,11 @@ components:
               - $ref: '#/components/schemas/unitSpecific'
 # ----------------------------------------
     inventoryTypeEnum:
+      type: strin
+      enum: [Commercial, Makegood, Bonus, ADU, Bookend, Piggyback, Sponsorship, Donut, Sandwich, Billboard]
+    linkTypeEnum:
       type: string
-      enum: [Commercial, Makegood, Bonus, ADU, Bookends, Piggybacks, Sponsorship, Donut, Sandwich, Billboard]
+      enum: [Bookend, Piggyback, Sandwich, Billboard]
 # --------------------------------------
     instructionDetailObject:
       type: object
@@ -123,7 +126,7 @@ components:
           description: length in seconds
           type: integer
         linkType:
-          $ref: '#/components/schemas/inventoryTypeEnum'
+          $ref: '#/components/schemas/linkTypeEnum'
         linkNum:
           type: integer
         linkSeq:
