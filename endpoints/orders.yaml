@@ -12,22 +12,7 @@ security:
 info:
   version: 1.0.0
   title: Orders
-  description: "<h2>Methods</h2>
-  SGS uses the following <i>methods</i> on the orders resource:
-  <ul>
-  <li>Acknowledge</li>
-  <li>Approve</li>
-  <li>Cancel</li>
-  <li>Confirm</li>
-  <li>Create</li>
-  <li>Enumerate</li>
-  <li>notifyOpen</li>
-  <li>Reject</li>
-  <li>Revise</li>
-  </ul>
-  <h2>Asynchronous Requests</h2>
-  APIs follow the convention established by the TVB 3.2 flow and most of these flows are asynchronous. SGS delivers asynchronous requests to the counterparty-exposed endpoint URLs; then, the counterparty uses the orders subscription API to set the URLs. The payload is opaque to this specification because it is encapsulated within the <code>payloadData</code> property and encoded as XML per the TVB 3.2 standard.
-"
+  description: Orders and Makegoods APIs
   termsOfService: http://placeholderdomain.io/terms/
   contact:
     name: TIP Forum

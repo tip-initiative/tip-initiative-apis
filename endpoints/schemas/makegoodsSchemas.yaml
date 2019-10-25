@@ -19,39 +19,7 @@ paths: {} # no paths
 
 components:
   schemas:
-    enumerateMakegoodsResponse:
-      required:
-        - makegoodsCollection
-      description: Collection of makegoods to return 
-      properties:
-        makegoodsCollection:
-          type: array
-          items:
-            $ref: 'commonSchemas.yaml#/components/schemas/encodededPayloadWrapper'
-
-    enumerateMakegoodsQuery:
-      description: Query parameters for requesting a collection of makegoods
-      required:
-        - CommonPayloadHeader
-        - startDate
-        - endDate
-        - limitCount
-      properties:
-        CommonPayloadHeader:
-          $ref: 'commonSchemas.yaml#/components/schemas/commonPayloadHeader'
-        startDate:
-          description: Start date of the range
-          type: string
-          format: date-time
-        endDate:
-          description: End date of the range
-          type: string
-          format: date-time
-        limitCount: 
-          description: Max number of items to return
-          type: integer #TODO any constraints on this?
-          format: int32
-
+  
     makegoodsSubscriptionRequest:
       description: A client creates a subscription by issuing a request against the subscriptions resource. The subscription namespace is client-defined via the POST operation.
       required:

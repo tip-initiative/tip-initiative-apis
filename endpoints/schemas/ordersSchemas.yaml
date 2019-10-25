@@ -19,38 +19,6 @@ paths: {} # no paths
 
 components:
   schemas:
-    enumerateOrdersResponse:
-      required:
-        - ordersCollection
-      description: Collection of orders to return to the UI
-      properties:
-        ordersCollection:
-          type: array
-          items:
-            $ref: 'commonSchemas.yaml#/components/schemas/encodededPayloadWrapper'
-
-    enumerateOrdersQuery:
-      description: Query parameters for requesting a collection of orders
-      required:
-        - CommonPayloadHeader
-        - startDate
-        - endDate
-        - limitCount
-      properties:
-        CommonPayloadHeader:
-          $ref: 'commonSchemas.yaml#/components/schemas/commonPayloadHeader'
-        startDate:
-          description: Start date of the range
-          type: string
-          format: date-time
-        endDate:
-          description: End date of the range
-          type: string
-          format: date-time
-        limitCount: 
-          description: Maximum number of items to return
-          type: integer #TODO any constraints on this?
-          format: int32
 
     ordersSubscriptionRequest:
       description: A client creates a subscription by issuing a request against the subscriptions resource. The subscription namespace is client-defined via the POST operation.
