@@ -232,6 +232,8 @@ components:
         referenceSourceName:
           description: Name associated with the organization that is supplying the ids and version information
           type: string #TODO any constraints on this?
+        referenceSourceId:
+          type: string
         referenceSourceLookup:
           description: Reference Source Look up; this could be URI to lookup information about the reference source name
           type: string #TODO any constraints on this?

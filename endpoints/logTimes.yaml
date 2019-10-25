@@ -43,7 +43,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'schemas/logTimesSchemas.yaml#/components/schemas/LogTimeResponseResponse'
+                $ref: 'schemas/logTimesSchemas.yaml#/components/schemas/LogTimesResponse'
         default:
           description: unexpected error
           content:
