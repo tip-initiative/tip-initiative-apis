@@ -79,7 +79,7 @@ components:
 # ----------------------------------------
     inventoryTypeEnum:
       type: string
-      enum: [Billboard, Piggyback, Booked, Sandwich, Custom]
+      enum: [Commercial, Makegood, Bonus, ADU, Bookends, Piggybacks, Sponsorship, Donut, Sandwich, Billboard, Custom]
 # --------------------------------------
     instructionDetailObject:
       type: object
