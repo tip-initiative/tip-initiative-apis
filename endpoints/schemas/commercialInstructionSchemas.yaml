@@ -85,7 +85,6 @@ components:
       type: object
       required:
         - actionType
-        - mediaOutlet
       properties:
         actionType:
           type: string
