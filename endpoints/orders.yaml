@@ -1,0 +1,436 @@
+openapi: "3.0.0"
+
+components:
+ securitySchemes:
+    bearerAuth: 
+      type: http
+      scheme: bearer
+      bearerFormat: JWT 
+security:
+  - bearerAuth: []
+
+info:
+  version: 1.0.0
+  title: Orders
+  description: Orders and Makegoods APIs
+  termsOfService: http://placeholderdomain.io/terms/
+  contact:
+    name: TIP Forum
+    email: tip-mailing-list@tbd.com
+    url: http://placeholderdomain.io
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+servers:
+  - url: http://placeholderdomain.io
+
+paths:
+  /v1/orders/create:
+    post:
+      summary: Create an Order
+      description: The create POST method creates an order.
+      operationId: createOrder
+      requestBody:
+        description: createOrder
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: 'schemas/commonSchemas.yaml#/components/schemas/encodededPayloadWrapper'
+      responses:
+        '202':
+          description: "Your request was received. An asynchronous response payload will be delivered to the create counterparty endpoint. Counterparty endpoint URLs use the following endpoint to set URLs:<code>/v1/orders/subscriptions</code>"
+          content:
+            application/json:
+              schema:
+                $ref: 'schemas/commonSchemas.yaml#/components/schemas/acceptedResponse'
+        default:
+          description: Error.
+          content:
+            application/json:
+              schema:
+                $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
+
+  /v1/orders/cancel/{sgsOrderId}:
+    put:
+      summary: Cancel an Order
+      description: The cancel PUT method runs within SGS to cancel an order.
+      operationId: cancelOrder
+      parameters:
+        - name: sgsOrderId
+          in: path
+          description: The SGS Order ID
+          required: true
+      requestBody:
+        description: cancelOrder
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: 'schemas/commonSchemas.yaml#/components/schemas/encodededPayloadWrapper'
+      responses:
+        '202':
+          description: "Your request was received. An asynchronous response payload will be delivered to the cancel counterparty endpoint. Counterparty endpoint URLs use the following endpoint to set URLs:<code>/v1/orders/subscriptions</code>"
+          content:
+            application/json:
+              schema:
+                $ref: 'schemas/commonSchemas.yaml#/components/schemas/acceptedResponse'
+        default:
+          description: Error.
+          content:
+            application/json:
+              schema:
+                $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
+
+  /v1/orders/revise/{sgsOrderId}:
+    put:
+      summary: Revise an Order
+      description: The revise PUT method runs within SGS to revise an order.
+      operationId: reviseOrder
+      parameters:
+        - name: sgsOrderId
+          in: path
+          description: The SGS Order ID
+          required: true
+      requestBody:
+        description: reviseOrder
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: 'schemas/commonSchemas.yaml#/components/schemas/encodededPayloadWrapper'
+      responses:
+        '202':
+          description: "Your request was received. An asynchronous response payload will be delivered to the revise counterparty endpoint. Counterparty endpoint URLs use the following endpoint to set URLs:<code>/v1/orders/subscriptions</code>"
+          content:
+            application/json:
+              schema:
+                $ref: 'schemas/commonSchemas.yaml#/components/schemas/acceptedResponse'
+        default:
+          description: Error.
+          content:
+            application/json:
+              schema:
+                $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
+
+  /v1/orders/acknowledge:
+      post:
+        summary: Acknowledgement of order processing
+        description: The acknowledge POST method acknowledges order processing.
+        operationId: acknowledgeOrder
+        requestBody:
+          description: acknowledge 
+          required: true
+          content:
+            application/json:
+              schema:
+                $ref: 'schemas/commonSchemas.yaml#/components/schemas/encodededPayloadWrapper'
+        responses:
+          '200':
+            description: "Your request was received. An asynchronous response payload will be delivered to the acknowledge counterparty endpoint. Counterparty endpoint URLs use the following endpoint to set URLs:<code>/v1/orders/subscriptions</code>"
+            content:
+              application/json:
+                schema:
+                  $ref: 'schemas/commonSchemas.yaml#/components/schemas/acceptedResponse'
+          default:
+            description: Error.
+            content:
+              application/json:
+                schema:
+                  $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
+
+  /v1/orders/approve/{sgsOrderId}:
+      post:
+        summary: Receive events from SGS for accepted updates to an order
+        description: The approve POST method runs within SGS to receive events for accepted updates to an order.
+        operationId: approveOrder
+        parameters:
+          - name: sgsOrderId
+            in: path
+            description: The SGS Order ID
+            required: true
+        requestBody:
+          description: reviseOrder
+          required: true
+          content:
+            application/json:
+              schema:
+                $ref: 'schemas/commonSchemas.yaml#/components/schemas/encodededPayloadWrapper'
+        responses:
+          '202':
+            description: "Your request was received. An asynchronous response payload will be delivered to the approve counterparty endpoint. Counterparty endpoint URLs use the following endpoint to set URLs:<code>/v1/orders/subscriptions</code>"
+            content:
+              application/json:
+                schema:
+                  $ref: 'schemas/commonSchemas.yaml#/components/schemas/acceptedResponse'
+          default:
+            description: Error.
+            content:
+              application/json:
+                schema:
+                  $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
+
+  /v1/orders/confirm/{sgsOrderId}:
+      post:
+        summary: Confirm an Order
+        description: The confirm POST method runs within SGS to confirm an order.
+        operationId: confirmOrder
+        parameters:
+          - name: sgsOrderId
+            in: path
+            description: The SGS Order ID
+            required: true
+        requestBody:
+          description: reviseOrder
+          required: true
+          content:
+            application/json:
+              schema:
+                $ref: 'schemas/commonSchemas.yaml#/components/schemas/encodededPayloadWrapper'
+        responses:
+          '202':
+            description: "Your request was received. An asynchronous response payload will be delivered to the confirm counterparty endpoint. Counterparty endpoint URLs use the following endpoint to set URLs:<code>/v1/orders/subscriptions</code>"
+            content:
+              application/json:
+                schema:
+                  $ref: 'schemas/commonSchemas.yaml#/components/schemas/acceptedResponse'
+          default:
+            description: Error.
+            content:
+              application/json:
+                schema:
+                  $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
+
+  /v1/orders/notifyOpen/{sgsOrderId}:
+      post:
+        summary: Notify on Open Order
+        description: The notifyOpen POST method runs within SGS to open an order.
+        operationId: notifyOpenOrder
+        parameters:
+          - name: sgsOrderId
+            in: path
+            description: The SGS Order ID
+            required: true
+        requestBody:
+          description: reviseOrder
+          required: true
+          content:
+            application/json:
+              schema:
+                $ref: 'schemas/commonSchemas.yaml#/components/schemas/encodededPayloadWrapper'
+        responses:
+          '202':
+            description: "Your request was received. An asynchronous response payload will be delivered to the notifyOpen counterparty endpoint. Counterparty endpoint URLs use the following endpoint to set URLs:<code>/v1/orders/subscriptions</code>"
+            content:
+              application/json:
+                schema:
+                  $ref: 'schemas/commonSchemas.yaml#/components/schemas/acceptedResponse'
+          default:
+            description: Error.
+            content:
+              application/json:
+                schema:
+                  $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
+
+  /v1/orders/reject/{sgsOrderId}:
+      post:
+        summary: Receive events from SGS for rejected updates to an order
+        description: The reject POST method runs within SGS to receive events for order updates that were rejected.
+        operationId: rejectOrder
+        parameters:
+          - name: sgsOrderId
+            in: path
+            description: The SGS Order ID
+            required: true
+        requestBody:
+          description: reviseOrder
+          required: true
+          content:
+            application/json:
+              schema:
+                $ref: 'schemas/commonSchemas.yaml#/components/schemas/encodededPayloadWrapper'
+        responses:
+          '202':
+            description: "Your request was received. An asynchronous response payload will be delivered to the reject counterparty endpoint. Counterparty endpoint URLs use the following endpoint to set URLs:<code>/v1/orders/subscriptions</code>"
+            content:
+              application/json:
+                schema:
+                  $ref: 'schemas/commonSchemas.yaml#/components/schemas/acceptedResponse'
+          default:
+            description: Error.
+            content:
+              application/json:
+                schema:
+                  $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
+          
+  /v1/orders/subscriptions:
+      post:
+          summary: Create a new subscription
+          description: The subscriptions POST method creates a new subscription.
+          operationId: ordersSubscription
+          requestBody:
+            description: Create a new subscription
+            required: true
+            content:
+              application/json:
+                schema:
+                  $ref: 'schemas/ordersSchemas.yaml#/components/schemas/ordersSubscriptionRequest'
+          responses:
+            '201':
+              description: Callback URL set successfully.
+              content:
+                application/json:
+                  schema:
+                    $ref: 'schemas/commonSchemas.yaml#/components/schemas/subscriptionResponse'
+            default:
+              description: Error.
+              content:
+                application/json:
+                  schema:
+                    $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
+
+          callbacks:
+            AcknowledgeReceiptNotification:
+              '{$request.body#/resource}':
+                post:
+                    requestBody:
+                      description: Contents of the AcknowledgeReceiptNotification callback message
+                      required: true
+                      content:
+                        application/json:
+                          schema:
+                            $ref: 'schemas/commonSchemas.yaml#/components/schemas/encodededPayloadWrapper'
+                    responses:
+                      '200':
+                        description: Expected response to the AcknowledgeReceiptNotification callback message
+                        content:
+                          application/json:
+                            schema:
+                              $ref: 'schemas/commonSchemas.yaml#/components/schemas/acceptedResponse'
+
+            CancelOrderResponse:
+              '{$request.body#/resource}':
+                post:
+                    requestBody:
+                      description: Contents of the CancelOrderResponse callback message
+                      required: true
+                      content:
+                        application/json:
+                          schema:
+                            $ref: 'schemas/commonSchemas.yaml#/components/schemas/encodededPayloadWrapper'
+                    responses:
+                      '200':
+                        description: Expected response to the CancelOrderResponse callback message
+                        content:
+                          application/json:
+                            schema:
+                              $ref: 'schemas/commonSchemas.yaml#/components/schemas/acceptedResponse'
+
+            ConfirmOrderNotification:
+              '{$request.body#/resource}':
+                post:
+                    requestBody:
+                      description: Contents of the ConfirmOrderNotification callback message
+                      required: true
+                      content:
+                        application/json:
+                          schema:
+                            $ref: 'schemas/commonSchemas.yaml#/components/schemas/encodededPayloadWrapper'
+                    responses:
+                      '200':
+                        description: Expected response to the ConfirmOrderNotification callback message
+                        content:
+                          application/json:
+                            schema:
+                              $ref: 'schemas/commonSchemas.yaml#/components/schemas/acceptedResponse'
+
+            CreateOrderResponse:
+              '{$request.body#/resource}':
+                post:
+                    requestBody:
+                      description: Contents of the CreateOrderResponse callback message
+                      required: true
+                      content:
+                        application/json:
+                          schema:
+                            $ref: 'schemas/commonSchemas.yaml#/components/schemas/encodededPayloadWrapper'
+                    responses:
+                      '200':
+                        description: Expected response to the CreateOrderResponse callback message
+                        content:
+                          application/json:
+                            schema:
+                              $ref: 'schemas/commonSchemas.yaml#/components/schemas/acceptedResponse'
+
+            OpenOrderNotification:
+              '{$request.body#/resource}':
+                post:
+                    requestBody:
+                      description: Contents of the OpenOrderNotification callback message
+                      required: true
+                      content:
+                        application/json:
+                          schema:
+                            $ref: 'schemas/commonSchemas.yaml#/components/schemas/encodededPayloadWrapper'
+                    responses:
+                      '200':
+                        description: Expected response to the OpenOrderNotification callback message
+                        content:
+                          application/json:
+                            schema:
+                              $ref: 'schemas/commonSchemas.yaml#/components/schemas/acceptedResponse'
+
+            ReviseOrderResponse:
+              '{$request.body#/resource}':
+                post:
+                    requestBody:
+                      description: Contents of the ReviseOrderResponse callback message
+                      required: true
+                      content:
+                        application/json:
+                          schema:
+                            $ref: 'schemas/commonSchemas.yaml#/components/schemas/encodededPayloadWrapper'
+                    responses:
+                      '200':
+                        description: Expected response to the ReviseOrderResponse callback message
+                        content:
+                          application/json:
+                            schema:
+                              $ref: 'schemas/commonSchemas.yaml#/components/schemas/acceptedResponse'
+      get:
+        summary: Enumerating subscriptions
+        description: The subscriptions GET method gets a list of active subscriptions.
+        operationId: Enumerating subscriptions
+        responses:
+          '200':
+            description: Response contains currently configured callback URLs.
+            content:
+              application/json:
+                schema:
+                  $ref: 'schemas/commonSchemas.yaml#/components/schemas/enumerateSubscriptions'
+          default:
+            description: Error.
+            content:
+              application/json:
+                schema:
+                  $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
+
+  /v1/orders/subscriptions/{id}:
+      delete:
+        summary: Remove a subscription
+        description: The subscriptions DELETE method issues a delete request against the subscription resource.
+        operationId: Remove a subscription
+        parameters:
+        - name: id
+          in: path
+          description: The subscription ID
+          required: true
+        responses:
+          '204':
+            description: Subscription deleted
+          default:
+            description: Error.
+            content:
+              application/json:
+                schema:
+                  $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
