@@ -1,12 +1,12 @@
 openapi: "3.0.0"
 info:
-  version: 4.0.1
+  version: 0.0.1.
   title: logTimes Schemas
   description: logTimes Schemas, based on TIP 4.0.0 documentation
   termsOfService: http://placeholderdomain.io/terms/
   contact:
-    name: TIP Forum
-    email: tip-mailing-list@tbd.com
+    name: TIP Initiative
+    email: tipinitiative@frontrowadvisory.com
     url: http://placeholderdomain.io
   license:
     name: MIT
