@@ -79,7 +79,10 @@ components:
 # ----------------------------------------
     inventoryTypeEnum:
       type: string
-      enum: [Commercial, Makegood, Bonus, ADU, Bookends, Piggybacks, Sponsorship, Donut, Sandwich, Billboard, Custom]
+      enum: [Commercial, Makegood, Bonus, ADU, Bookend, Piggyback, Sponsorship, Donut, Sandwich, Billboard]
+    linkTypeEnum:
+      type: string
+      enum: [Bookend, Piggyback, Sandwich, Billboard]
 # --------------------------------------
     instructionDetailObject:
       type: object
@@ -123,7 +126,7 @@ components:
           description: length in seconds
           type: integer
         linkType:
-          $ref: '#/components/schemas/inventoryTypeEnum'
+          $ref: '#/components/schemas/linkTypeEnum'
         linkNum:
           type: integer
         linkSeq:
