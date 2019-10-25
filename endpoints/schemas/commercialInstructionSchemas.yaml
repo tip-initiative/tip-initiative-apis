@@ -78,7 +78,7 @@ components:
               - $ref: '#/components/schemas/unitSpecific'
 # ----------------------------------------
     inventoryTypeEnum:
-      type: strin
+      type: string
       enum: [Commercial, Makegood, Bonus, ADU, Bookend, Piggyback, Sponsorship, Donut, Sandwich, Billboard]
     linkTypeEnum:
       type: string
