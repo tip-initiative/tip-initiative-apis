@@ -78,8 +78,8 @@ components:
           $ref: 'commonSchemas.yaml#/components/schemas/cpeCode'
         mediaOutlet:
           $ref: 'commonSchemas.yaml#/components/schemas/mediaOutlet'
-        buyerLocation:
-          $ref: 'commonSchemas.yaml#/components/schemas/buyerLocation'
+        Buyer:
+          $ref: 'commonSchemas.yaml#/components/schemas/Buyer'
         Advertiser:
           $ref: 'commonSchemas.yaml#/components/schemas/Advertiser'
         Brand:
