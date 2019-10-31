@@ -19,16 +19,15 @@ components:
       - transactionHeader
       - referenceId
       - invoiceDate
-      - invoiceRevisionDate
       - calendarType
       - billingCycle
       - startDate
       - endDate
-      - buyerLocation
-      - advertiser
+      - Buyer
+      - Advertiser
       - buylineCashTrade
       - grossAmount
-      - commision
+      - Commision
       - totalNetDollars
       - unitType
       - remittanceInfo
@@ -46,9 +45,6 @@ components:
           description: Required for Invoice Revision – Date in which the invoice revision was generated
           type: string
           format: date
-        Month:
-          description: Broadcast month in which the unuts aired
-          type: string
         calenderType:
           description: The invoice calendar type
           type: string
@@ -60,7 +56,7 @@ components:
         billingGranularity:
           description: The invoice billing granilarity
           type: string
-          enum: [Order, Brand, Insertion Order, Custom]
+          enum: [Order, Brand, Insertion Order]
         dueDate:
           description: Date in which payment is due on invoice
           type: string
@@ -76,14 +72,14 @@ components:
         businessType:
           description: Seller-defined type of business
           type: string
-        buyerLocation:
-          $ref: 'commonSchemas.yaml#/components/schemas/buyerLocation'
+        Buyer:
+          $ref: 'commonSchemas.yaml#/components/schemas/Buyer'
         localNational:
           type: string
           enum: [Local, National]
         Advertiser:
           $ref: 'commonSchemas.yaml#/components/schemas/Advertiser'
-        contact:
+        Contact:
           $ref: 'commonSchemas.yaml#/components/schemas/Contact'
         buylineCashTrade:
           description: Revenue Type associated to the order
@@ -93,7 +89,7 @@ components:
           description: Total gross dollar for the invoice
           type: number
           format: float
-        commision:
+        Commision:
           description: Seller commission dollars
           type: number
           format: float
@@ -113,23 +109,22 @@ components:
           type: number
         remittanceInfo:
           description: refer to remittance object for data property details  #TO DO
-          type: string
+          $ref: 'commonSchemas.yaml#/components/schemas/remittanceInfo'
         externalComment:
           description: free form text to accomodate transaction
           type: string
-        Line Details:
+        lineDetails:
           description: Line details array of lines
           type: array
           items:
             type: object
             required:
               - buyLineIDReference
-              - mediaType
               - mediaOutlet
               - productCategory
               - sellingTitle
               - lineStartDate
-              - LineEndDate
+              - lineEndDate
               - Length
             properties:
               buyLineIDReference:
@@ -138,14 +133,10 @@ components:
               buyLineIDName:
                 description:  Name associated to the line
                 type: string
-              mediaType:
-                description: Type of media associated to the line
-                type: string
-                enum: [Linear Television, OTT, Digital, Linear Addressable, Custom]
               mediaOutlet:
                 $ref: 'commonSchemas.yaml#/components/schemas/mediaOutlet'
-              Brand:
-                $ref: 'commonSchemas.yaml#/components/schemas/Brand'
+              Product:
+                $ref: 'commonSchemas.yaml#/components/schemas/Product'
               productCategory:
                 description: ProductCategory Information associated with creative material/brand
                 type: string # TO DO
@@ -171,7 +162,7 @@ components:
                 description: start date of line
                 type: string
                 format: startDate
-              LineEndDate:
+              lineEndDate:
                 description: end date of line
                 type: string
                 format: date
@@ -190,7 +181,7 @@ components:
             oneOf:
               - $ref: '#/components/schemas/Units'
               - $ref: '#/components/schemas/Impressions'
-        mediaOutletDetails:
+        childUnitDetails:
           description: Child unit details for footprint unit to support Audience
           type: array
           items:
@@ -205,7 +196,7 @@ components:
               Rate:
                 type: number
                 format: float
-              alternateID:
+              adId:
                 type: string
               Preempt:
                 type: boolean
@@ -226,11 +217,11 @@ components:
       properties:
         unitType:
           type: string
-        alternateID:
+        adId:
           type: string
         podPosition:
           type: string
-          enum: [A, Z, Custom]
+          enum: [A, Z]
         Preempt:
           type: boolean
         Makegood: 
