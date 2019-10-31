@@ -1,0 +1,251 @@
+openapi: 3.0.0
+
+info:
+  version: 0.0.1.
+  title: Inventory Avails
+  description: Inventory Endpoints
+  termsOfService: http://placeholderdomain.io/terms/
+  contact:
+    name: TIP Initiative
+    email: tipinitiative@frontrowadvisory.com
+    url: http://placeholderdomain.io
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+servers:
+
+paths: {}
+
+components:
+  schemas:
+    inventoryUploadResponse:
+      required:
+        - transactionNumber
+        - timeStamp
+      properties:
+        transactionNumber:
+          type: string
+        timeStamp:
+          type: string
+          format: date-time
+        error:
+          $ref: 'commonSchemas.yaml#/components/schemas/Error'
+
+    inventoryUploadRequest:
+      type: object
+      properties:
+        transactionHeader:
+          type: object
+          properties:
+            version:
+              type: string
+              format: nullable
+            transactionNumber:
+              type: string
+            transactionType:
+              type: string
+              format: nullable
+            sourceID:
+              type: string
+              format: nullable
+            sourceName:
+              type: string
+              format: nullable
+            timeStamp:
+              type: string
+              format: nullable
+            checksum:
+              type: string
+              format: nullable
+        mediaOutletSellingTitles:
+          type: array
+          items:
+            type: object
+            properties:
+              sellingTitle:
+                type: string
+              sellingTitleId:
+                type: string
+                format: nullable
+              mediaOutlet:
+                type: object
+                properties:
+                  mediaOutletId:
+                    type: integer
+                    format: int32
+                  mediaOutletName:
+                    type: string
+              dayparts:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    daypartCode:
+                      type: string
+                    daypartName:
+                      type: string
+                    isPrimary:
+                      type: boolean
+              keywordTags:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    keywordTagName:
+                      type: string
+              genreClasss:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    genreClassName:
+                      type: string
+              programDays:
+                type: array
+                items:
+                  type: string
+              programStartTime:
+                type: string
+              programStartTimeSeconds:
+                description: Local time in seconds from midnight. Enables handling of Daylight Savings Time
+                type: integer
+                format: int32
+                nullable: true
+              programEndTime:
+                type: string
+              programEndTimeSeconds:
+                description: Local time in seconds from midnight. Enables handling of Daylight Savings Time
+                type: integer
+                format: int32
+                nullable: true
+              fTCDate:
+                type: string
+                format: date
+                nullable: true
+              lTCDate:
+                type: string
+                format: date
+                nullable: true
+              hiatusPeriods:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    startDate:
+                      type: string
+                      format: date
+                    endDate:
+                      type: string
+                      format: date
+              weekStart:
+                type: string
+              programRating:
+                type: string
+              audienceMetrics:
+                type: array
+                items:
+                  type: string
+              programRatings:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    programAudienceSource:
+                      type: string
+                    audienceCollectionMethod:
+                      type: string
+                    audienceSample:
+                      type: string
+                    audiencePlaybackType:
+                      type: string
+                    audienceSegment:
+                      type: string
+                    surveys:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          surveyName:
+                            type: string
+                          audienceType:
+                            type: string
+                          startDate:
+                            type: string
+                            format: date
+                          endDate:
+                            type: string
+                            format: date
+                          rationale:
+                            type: string
+                          audiences:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                audienceDemo:
+                                  type: string
+                                audienceRating:
+                                  type: string
+                                audienceShare:
+                                  type: string
+                                audienceHP:
+                                  type: string
+                                audienceIMP:
+                                  type: string
+                                audienceUniverse:
+                                  type: string
+                                  format: nullable
+              priceMetric:
+                type: object
+                properties:
+                  currencyCode:
+                    type: string
+                  lengthUnits:
+                    type: string
+                  rateCards:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        rateCardId:
+                          type: string
+                        rateCardName:
+                          type: string
+                        rateCardStartDate:
+                          type: string
+                          format: date
+                        rateCardEndDate:
+                          type: string
+                          format: date
+                        baseLength:
+                          type: string
+                        isDefault:
+                          type: boolean
+                        rates:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              rateStartDate:
+                                type: string
+                                format: date
+                              rateEndDate:
+                                type: string
+                                format: date
+                              lengths:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    length:
+                                      type: string
+                                    rate:
+                                      type: number
+                                      format: float
+        totalRecords:
+          type: integer
+          format: int32
+        sentDate:
+          type: string
+          format: date-time
+

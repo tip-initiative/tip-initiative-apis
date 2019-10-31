@@ -1,0 +1,53 @@
+openapi: "3.0.0"
+
+components:
+ securitySchemes:
+    bearerAuth: 
+      type: http
+      scheme: bearer
+      bearerFormat: JWT 
+security:
+  - bearerAuth: []
+
+info:
+  version: 1.0.0
+  title: Orders
+  description: Orders and Makegoods APIs
+  termsOfService: http://placeholderdomain.io/terms/
+  contact:
+    name: TIP Forum
+    email: tip-mailing-list@tbd.com
+    url: http://placeholderdomain.io
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+servers:
+  - url: http://placeholderdomain.io
+
+paths:
+  /v1/inventory:
+    post:
+      summary: Upload inventory
+      description: upload inventory
+      operationId: uploadInventory
+      requestBody:
+        description: uploadInventory
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: 'schemas/inventorySchemas.yaml#/components/schemas/inventoryUploadRequest'
+      responses:
+        '202':
+          description: Request processed successfully
+          content:
+            application/json:
+              schema:
+                $ref: 'schemas/inventorySchemas.yaml#/components/schemas/inventoryUploadResponse'
+        default:
+          description: Unexpected error occured
+          content:
+            application/json:
+              schema:
+                $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
+
