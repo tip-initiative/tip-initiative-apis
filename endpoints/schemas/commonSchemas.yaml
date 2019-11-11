@@ -1,6 +1,6 @@
 openapi: "3.0.0"
 info:
-  version: 1.0.0
+  version: 1.0.1
   title: Common Schemas
   description: Common Schemas, based on TIP 4.0 documentation
   termsOfService: http://placeholderdomain.io/terms/ # TODO
@@ -158,23 +158,6 @@ components:
           description: String	Advertiser name 
           type: string  # TODO any constraints?
         advertiserReference:
-#          description: Object	Buyer external advertiser reference information
-          type: string
-
-    Brand:
-      description: Combines a unique identifier and name into a single object # TODO generic description
-      required:
-        - brandId
-        - brandName
-      properties:
-        brandId:
-          description: Unique persistent identifier for the brand
-          type: string  # TODO any constraints?
-        brandName:
-          description: Brand Name
-          type: string  # TODO any constraints?
-        brandRefererence:
-#          description: Brand external brand reference information
           type: string
     Buyer:
       description: Packages a unique identifier and name into a single object # TODO generic description
@@ -189,7 +172,6 @@ components:
           description: Buying organization name and location
           type: string  # TODO any constraints?
         buyerReference:
-#          description: Buyer external buyer location reference information
           type: string
     Product:
       description: Combines a unique identifier, name, and reference into an object # TODO generic description
@@ -204,7 +186,6 @@ components:
           description: Brand Name
           type: string  # TODO any constraints?
         productReference:
-#          description: Buyer external product reference 
           type: string
 
     audienceSegment:
@@ -376,7 +357,7 @@ components:
         contactType: # TODO type is a reserved word, changed to contactType
           description: Type of Contact
           type: string
-          enum: [Type of Contact, Account Executive, Sales Planner, Sales Assistant, Buyer, Billing, Creative, Delivery Service]
+          enum: [Account Executive, Sales Planner, Sales Assistant, Buyer, Billing, Creative, Delivery Service]
         referenceSourceName: 
           description: Name associated with the organization that is supplying the contact information
           type: string
@@ -399,7 +380,36 @@ components:
           description: Effective date for contact
           type: string
           format: date-time
-
+    remittanceInfo:
+      description: remmittance contact information
+      properties:
+        referenceSourceId:
+          type: string
+        referenceName:
+          type: string
+        contactFirstName:
+          type: string
+        contactLastName:
+          type: string
+        addressLine1:
+          type: string
+        addressline2:
+          type: string
+        City:
+          type: string
+        State:
+          type: string
+        postalCode:
+          type: string
+        Country:
+          type: string
+        PhoneNumber:
+          type: string
+        email:
+          type: string
+          format: email
+        Instructions:
+          type: string
     Error:
       required:
         - errorCode
