@@ -47,7 +47,6 @@ components:
         - Advertiser
         - Product
         - sellingTitle
-        - contractInterval
       properties:
         unitId:
           description: Seller generated unique number for unit
@@ -111,7 +110,7 @@ components:
           type: number
           format: float 
         AdID :
-          description: Advertising industry standard unique identifier for the commercial 
+          description: Indicates if the unit is being provided at no charge to the buyer in order to make up for a shortfall in viewership - only populated on order changes
           type: string
         Status: #TODO: Consider canceled status for prelogs? Consider scheduledDate, canceledDate, or generic statusChangeDate? 
           description: Indicates the status of the unit
