@@ -311,16 +311,13 @@ components:
       properties:
         clientCode:
           description: Client code provided from the buyer. Packages client, product and estimate codes together.
-          type: integer #TODO any constraints on this?
-          format: int32
+          type: string
         productCode:
           description: Product code provided from the buyer. Packages client, product and estimate codes together.
-          type: integer  #TODO any constraints on this?
-          format: int32
+          type: string
         estimateCode:
           description: Estimate code provided from the buyer. Packages client, product and estimate codes together.
-          type: integer  #TODO any constraints on this?
-          format: int32
+          type: string
 
     broadcastDate:
       description: Combines the Broadcast Date & Time Information
