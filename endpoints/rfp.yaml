@@ -1,0 +1,46 @@
+openapi: "3.0.0"
+
+components:
+ securitySchemes:
+    bearerAuth: 
+      type: http
+      scheme: bearer
+      bearerFormat: JWT 
+security:
+  - bearerAuth: []
+
+info:
+  version: 1.0.0
+  title: RFP
+  description: Allows the buyer to submit a Request for Proposal (RFP) to the seller with overall media budget, goal and makegood terms and optionally include specific detailed inventory requests
+  termsOfService: http://placeholderdomain.io/terms/
+  contact:
+    name: TIP Initiative
+    email: tipinitiative@frontrowadvisory.com
+    url: http://placeholderdomain.io
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+servers:
+  - url: http://placeholderdomain.io
+
+paths:
+  /rfps:
+    post:
+      summary: Create an RFP in the seller's system
+      operationId: rfpPost
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: 'schemas/rfpSchemas.yaml#/components/schemas/rfpRequestObject'
+      responses:
+        '200':
+          description: request accepted successfully
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'

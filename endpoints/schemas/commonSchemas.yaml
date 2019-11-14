@@ -159,6 +159,20 @@ components:
           type: string  # TODO any constraints?
         advertiserReference:
           type: string
+    Brand:
+      required:
+        - brandId
+        - brandName
+      properties:
+        brandId:
+          description: Unique persistent identifier for the brand
+          type: string
+        brandName:
+          description: Brand Name
+          type: string
+        brandReference:
+          description: External brand reference information
+          type: string
     Buyer:
       description: Packages a unique identifier and name into a single object # TODO generic description
       required:
@@ -317,6 +331,20 @@ components:
           type: string
         estimateCode:
           description: Estimate code provided from the buyer. Packages client, product and estimate codes together.
+          type: string
+
+    guideLine:
+      properties:
+        guideLineType:
+          description: Types of Includions and /or Exclusions
+          type: string
+          enum: [Content, Program , Selling Title, MPAA Rating, Site Category, Custom]
+        excludeOrInclude:
+          type: string
+          enum: [Exclude, Include] #TODO is this right?
+        guideLineId:
+          type: string
+        guideLineName:
           type: string
 
     broadcastDate:
