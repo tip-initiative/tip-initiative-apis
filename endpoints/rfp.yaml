@@ -25,10 +25,10 @@ servers:
   - url: http://placeholderdomain.io
 
 paths:
-  /rfps:
+  /rfp:
     post:
       summary: Create an RFP in the seller's system
-      operationId: rfpPost
+      operationId: createRFP
       requestBody:
         required: true
         content:
@@ -37,7 +37,49 @@ paths:
               $ref: 'schemas/rfpSchemas.yaml#/components/schemas/rfpRequestObject'
       responses:
         '200':
-          description: request accepted successfully
+          description: request processed successfully
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
+  /rfp/{rfpId}:
+    parameters:
+    - name: rfpId
+      in: path
+      required: true
+      description: The RFP Id
+      schema:
+        type: string
+    patch:
+      summary: Change the details of a RFP in the seller's system
+      operationId: updateRFP
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: 'schemas/rfpSchemas.yaml#/components/schemas/rfpRequestObject'
+      responses:
+        '200':
+          description: request processed successfully
+        '404':
+          description: RFP not found
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
+    delete:
+      summary: Cancel a specific Proposal in the seller's system
+      operationId: cancelRFP
+      responses:
+        '200':
+          description:  Request processed successfully
+        '404':
+          description: RFP not found
         default:
           description: unexpected error
           content:
