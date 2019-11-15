@@ -103,7 +103,7 @@ components:
         unitType:
           description: Type of invoice units
           type: string
-          enum: [Units, Impressions]
+          enum: [Units, Impressions, NonAirTime]
         totalUnits:
           description: Total number of raw (equivalized) units (based on invoice's unit type) within the start and end date
           type: number
@@ -250,4 +250,37 @@ components:
       - $ref: '#/components/schemas/unitCommonFields'
     Impressions:
       allOf:
-      - $ref: '#/components/schemas/unitCommonFields'                             
+      - $ref: '#/components/schemas/unitCommonFields'
+    NonAirTime:
+      allOf:
+      - type: object
+        properties:
+          audienceMetric:
+            $ref: 'commonSchemas.yaml#/components/schemas/audienceMetric'
+      - $ref: '#/components/schemas/unitCommonFields'
+    creditMemoObject:
+      required:
+        - transactionHeader
+        - referenceId
+        - creditMemoDate
+        - Buyer
+        - Advertiser
+      properties:
+        transactionHeader:
+          $ref: 'commonSchemas.yaml#/components/schemas/transactionHeader'
+        referenceIds:
+          $ref: 'commonSchemas.yaml#/components/schemas/referenceIds'
+        creditMemoDate:
+          type: string
+          format: date
+        Buyer:
+          $ref: 'commonSchemas.yaml#/components/schemas/Buyer'
+        Advertiser:
+          $ref: 'commonSchemas.yaml#/components/schemas/Advertiser'        
+        Contact:
+          $ref: 'commonSchemas.yaml#/components/schemas/Contact'
+        totalCreditAmount:
+          type: number
+          format: float 
+        reasonForCredit:
+          type: string                             

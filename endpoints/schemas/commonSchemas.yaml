@@ -333,9 +333,13 @@ components:
           type: string
         PhoneNumber:
           type: string
-        email:
+        contactEmail:
           type: string
           format: email
+        portalInformation:
+          type: string
+        paymentLink:
+          type: string
         Instructions:
           type: string
     Error:
