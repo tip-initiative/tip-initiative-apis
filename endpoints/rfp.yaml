@@ -1,14 +1,5 @@
 openapi: "3.0.0"
 
-components:
- securitySchemes:
-    bearerAuth: 
-      type: http
-      scheme: bearer
-      bearerFormat: JWT 
-security:
-  - bearerAuth: []
-
 info:
   version: 1.0.0
   title: RFP
@@ -23,6 +14,16 @@ info:
     url: https://opensource.org/licenses/MIT
 servers:
   - url: http://placeholderdomain.io
+
+components:
+ securitySchemes:
+    bearerAuth: 
+      type: http
+      scheme: bearer
+      bearerFormat: JWT 
+
+security:
+  - bearerAuth: []
 
 paths:
   /rfp:
@@ -49,8 +50,9 @@ paths:
           description: unexpected error
           content:
             application/json:
-              schema:
-                $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
+              schema:                
+                $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'                
+
   /rfp/{rfpId}:
     parameters:
     - name: rfpId
@@ -59,11 +61,12 @@ paths:
       description: The RFP Id
       schema:
         type: string
+
     patch:
       summary: Change the details of a RFP in the seller's system
       operationId: updateRFP
       requestBody:
-        required: true
+        required: true # TODO: What should the request body look like for a PATCH?
         content:
           application/json:
             schema:
@@ -76,9 +79,10 @@ paths:
         default:
           description: unexpected error
           content:
-            application/json:
+            application/json:              
               schema:
-                $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
+                $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'        
+
     delete:
       summary: Cancel a specific Proposal in the seller's system
       operationId: cancelRFP

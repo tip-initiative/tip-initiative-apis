@@ -107,16 +107,26 @@ components:
           description: Audience segment details
           type: array
           items: 
+            $ref: '#/components/schemas/audience'
+        goals:
+          description: Goal details
+          type: array
+          items:
+            $ref: '#/components/schemas/goal'
+
+#--------------------------------
+
+    audience:
             type: object
             properties:
               audienceSegment:
                 $ref: 'commonSchemas.yaml#/components/schemas/audienceSegment'
               audienceMetric:
                 $ref: 'commonSchemas.yaml#/components/schemas/audienceMetric'
-        goals:
-          description: Goal details
-          type: array
-          items:
+
+#--------------------------------
+
+    goal:      
             type: object
             properties:
               distributionType:
