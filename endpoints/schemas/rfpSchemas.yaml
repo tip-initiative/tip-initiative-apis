@@ -22,11 +22,6 @@ components:
       required:
         - transactionHeader
         - referenceId
-        - dateSubmitted
-        - advertiser
-        - contact
-        - startDate
-        - endDate
       properties:
         transactionHeader:          
           $ref: 'commonSchemas.yaml#/components/schemas/transactionHeader'

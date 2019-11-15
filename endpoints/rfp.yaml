@@ -34,7 +34,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: 'schemas/rfpSchemas.yaml#/components/schemas/rfpRequestObject'
+              allOf:
+                - $ref: 'schemas/rfpSchemas.yaml#/components/schemas/rfpRequestObject'
+                - required:
+                  - dateSubmitted
+                  - advertiser
+                  - contact
+                  - startDate
+                  - endDate              
       responses:
         '200':
           description: request processed successfully
