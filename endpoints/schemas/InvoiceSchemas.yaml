@@ -27,7 +27,7 @@ components:
       - Advertiser
       - buylineCashTrade
       - grossAmount
-      - Commision
+      - Commission
       - totalNetDollars
       - unitType
       - remittanceInfo
@@ -89,7 +89,7 @@ components:
           description: Total gross dollar for the invoice
           type: number
           format: float
-        Commision:
+        Commission:
           description: Seller commission dollars
           type: number
           format: float
