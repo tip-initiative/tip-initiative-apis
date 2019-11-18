@@ -16,6 +16,78 @@ paths: {} # no paths
 
 components:
   schemas:
+
+    commonPayloadHeader:
+      description: Common properties to be included with all payloads
+      required:
+        - tipVersion
+        - transactionNum
+        - timeStamp
+      properties:
+        tipVersion:
+          description: TIP version of the interface
+          type: string  # TODO any constraints?
+        transactionId:
+          description: Buyer or Seller generated unique value for transaction
+          type: string  # TODO any constraints?
+        timeStamp: 
+          description: Date and time the transaction was created
+          type: string # TODO should this be expressed as an Epoch date instead (32 bit integer)?
+          format: date-time
+          
+    encodededPayloadWrapper:
+      description: Used with non-JSON payload formats such as TVB 3.2 or DARE, provides information about the payload and it's encoding
+      required:
+        - CommonPayloadHeader
+        - payloadData
+        - payloadType
+        - payloadEncoding
+      properties:
+        CommonPayloadHeader:
+          $ref: '#/components/schemas/commonPayloadHeader'
+        payloadData:
+          description: The encoded payload data
+          type: string
+        payloadType:
+          description: Format of the payload data
+          type: string
+          enum: [TVB3.2, DARE]
+        payloadEncoding: 
+          description: Encoding method used on the payload data
+          type: string
+          enum: [Base64]
+
+    subscriptionRequest:
+      description: A client creates a subscription by issuing a request against the subscriptions resource. The subscription namespace is client-defined via the POST operation.
+      required:
+        - resource
+        - notificationUrl
+      properties:
+        resource:
+          description: Resource path to watch
+          type: string
+          format: uri
+        notificationUrl:
+          description: The target web hook URL
+          type: string
+          format: uri
+        clientState:
+          description: Opaque string passed back to the client on all notifications. Callers may choose to use this to provide tagging mechanisms.
+          type: string
+
+    subscriptionResponse:
+      description: If the subscription was successfully created, the service MUST respond with the status code 201 CREATED and a body containing at least the following properties
+      required:
+        - id
+      properties:
+        id:
+          description: Unique ID of the new subscription that can be used later to update/delete the subscription.
+          type: string
+        expirationDateTime:
+          description: The expiration date of the subscription
+          type: string
+          format: date-time
+
     transactionHeader:
       description: Transaction header details
       required:
@@ -239,16 +311,13 @@ components:
       properties:
         clientCode:
           description: Client code provided from the buyer. Packages client, product and estimate codes together.
-          type: integer #TODO any constraints on this?
-          format: int32
+          type: string
         productCode:
           description: Product code provided from the buyer. Packages client, product and estimate codes together.
-          type: integer  #TODO any constraints on this?
-          format: int32
+          type: string
         estimateCode:
           description: Estimate code provided from the buyer. Packages client, product and estimate codes together.
-          type: integer  #TODO any constraints on this?
-          format: int32
+          type: string
 
     broadcastDate:
       description: Combines the Broadcast Date & Time Information
@@ -352,3 +421,14 @@ components:
           format: int32
         errorMessage:
           type: string
+
+    acceptedResponse:
+        required:
+          - transactionId
+          - timeStamp
+        properties:
+          transactionId:
+            type: string
+          timeStamp:
+            type: string
+            format: date-time
