@@ -21,6 +21,7 @@ components:
       - invoiceDate
       - calendarType
       - billingCycle
+      - billingGranularity
       - startDate
       - endDate
       - Buyer
@@ -29,14 +30,15 @@ components:
       - grossAmount
       - Commission
       - totalNetDollars
-      - unitType
       - remittanceInfo
       properties:
         transactionHeader: 
           $ref: 'commonSchemas.yaml#/components/schemas/transactionHeader'
         referenceId:
           description: Information grouping all reference ids and their source that are associated to the proposal
-          $ref: 'commonSchemas.yaml#/components/schemas/referenceIds'
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/referenceIds'
         invoiceDate:
           description: Date in which the original invoice was generated
           type: string
@@ -56,7 +58,7 @@ components:
         billingGranularity:
           description: The invoice billing granilarity
           type: string
-          enum: [Order, Brand, Insertion Order]
+          enum: [Order, Brand, InsertionOrder]
         dueDate:
           description: Date in which payment is due on invoice
           type: string
@@ -100,13 +102,6 @@ components:
         totalNetDollars:
           description: Total net dollars for all units with the invoice (grossamount - commission)
           type: number
-        unitType:
-          description: Type of invoice units
-          type: string
-          enum: [Units, Impressions, NonAirTime]
-        totalUnits:
-          description: Total number of raw (equivalized) units (based on invoice's unit type) within the start and end date
-          type: number
         remittanceInfo:
           description: refer to remittance object for data property details  #TO DO
           $ref: 'commonSchemas.yaml#/components/schemas/remittanceInfo'
@@ -120,12 +115,14 @@ components:
             type: object
             required:
               - buyLineIDReference
+              - unitType
               - mediaOutlet
-              - productCategory
-              - sellingTitle
+              - Product
+              - salesElement
               - lineStartDate
               - lineEndDate
               - Length
+              - UnitDetails
             properties:
               buyLineIDReference:
                 description: Seller's Line information (add buyer identifier make optional) 
@@ -133,15 +130,24 @@ components:
               buyLineIDName:
                 description:  Name associated to the line
                 type: string
+              unitType:
+                description: Type of invoice units
+                type: string
+                enum: [Units, Impressions, NonAirTime]
+              audienceMetric:
+                $ref: 'commonSchemas.yaml#/components/schemas/audienceMetric'
+              totalUnits:
+                description: Total number of raw (equivalized) units (based on invoice's unit type) within the start and end date
+                type: number
               mediaOutlet:
                 $ref: 'commonSchemas.yaml#/components/schemas/mediaOutlet'
+              Brand:
+                description: Product Brand Id & Name
+                $ref: 'commonSchemas.yaml#/components/schemas/Brand'
               Product:
                 $ref: 'commonSchemas.yaml#/components/schemas/Product'
-              productCategory:
-                description: ProductCategory Information associated with creative material/brand
-                type: string # TO DO
-              sellingTitle:
-                description: Selling Title Name
+              salesElement:
+                description: Sales Element Name
                 type: string
               Program:
                 description: Program Name
@@ -154,7 +160,7 @@ components:
               billableRevenue:
                 description: Rate's Billable revenue type
                 type: string
-                enum: [Booked, Actuals, Custom]
+                enum: [Booked, Actuals]
               Rate:
                 type: number
                 format: float
@@ -169,7 +175,7 @@ components:
               inventoryType:
                 description: Inventory Type associated to unit  (Further Define in order to support cross 
                 type: string
-                enum: [Commercial, Interstitial, Billboard, Piggyback, Custom]
+                enum: [Commercial, Interstitial, Billboard]
               Length:
                 description: Length of commercial unit
                 type: integer

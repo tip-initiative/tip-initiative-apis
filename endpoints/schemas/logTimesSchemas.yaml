@@ -1,6 +1,6 @@
 openapi: "3.0.0"
 info:
-  version: 1.0.0
+  version: 1.0.1
   title: logTimes Schemas
   description: logTimes Schemas, based on TIP 4.0 documentation
   termsOfService: http://placeholderdomain.io/terms/
@@ -52,7 +52,9 @@ components:
           description: Seller generated unique number for unit
           type: string
         referenceIds:
-          $ref: 'commonSchemas.yaml#/components/schemas/referenceIds'
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/referenceIds'
         cpeCode: 
           $ref: 'commonSchemas.yaml#/components/schemas/cpeCode'
         mediaOutlet:

@@ -173,6 +173,18 @@ components:
           type: string  # TODO any constraints?
         buyerReference:
           type: string
+    Brand:
+      description: product brand name
+      required:
+        - brandId
+        - brandName
+      properties:
+        brandId:
+          type: string
+        brandName:
+          type: string
+        brandReference:
+          type: string
     Product:
       description: Combines a unique identifier, name, and reference into an object # TODO generic description
       required:
