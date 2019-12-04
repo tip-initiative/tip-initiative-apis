@@ -21,6 +21,7 @@ components:
       - invoiceDate
       - calendarType
       - billingCycle
+      - billingGranularity
       - startDate
       - endDate
       - Buyer
