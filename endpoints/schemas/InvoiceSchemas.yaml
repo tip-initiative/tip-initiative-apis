@@ -122,7 +122,7 @@ components:
               - lineStartDate
               - lineEndDate
               - Length
-              - UnitDetails
+              # - UnitDetails
             properties:
               buyLineIDReference:
                 description: Seller's Line information (add buyer identifier make optional) 
@@ -142,7 +142,7 @@ components:
               mediaOutlet:
                 $ref: 'commonSchemas.yaml#/components/schemas/mediaOutlet'
               Brand:
-                description: Product Brand Id & Name
+                description: Brand Id & Name
                 $ref: 'commonSchemas.yaml#/components/schemas/Brand'
               Product:
                 $ref: 'commonSchemas.yaml#/components/schemas/Product'
@@ -196,20 +196,27 @@ components:
                       $ref: 'commonSchemas.yaml#/components/schemas/broadcastDate'
                     podPosition:
                       type: string
-                      enum: [A, Z]
+                      enum: [First, Middle, Last]
+                    linkType:
+                      type: string
+                      enum: [Billboard, Piggyback, Bookend, Sponsorship, Package]
+                    linkNum:
+                      type: integer
+                    linkSeq:
+                      type: integer
                     Preempt:
                       type: boolean
                     Makegood: 
                       type: boolean
                     ADU:
                       type: boolean
-                    Credit:
-                      type: boolean
                     Bonus:
                       type: boolean
                     Rate:
                       type: number
                       format: float
+                    Credit:
+                      type: boolean
                     adjustmentReason:
                       type: string
                     Comment:
@@ -246,79 +253,3 @@ components:
                             type: string
                           broadcastDate:
                             $ref: 'commonSchemas.yaml#/components/schemas/broadcastDate'
-    # unitCommonFields:
-    #   type: object
-    #   discriminator:
-    #     propertyName: unitType
-    #   required:
-    #   - unitType
-    #   properties:
-    #     unitType:
-    #       type: string
-    #     adId:
-    #       type: string
-    #     podPosition:
-    #       type: string
-    #       enum: [A, Z]
-    #     Preempt:
-    #       type: boolean
-    #     Makegood: 
-    #       type: boolean
-    #     ADU:
-    #       type: boolean
-    #     Credit:
-    #       type: boolean
-    #     Bonus:
-    #       type: boolean
-    #     Rate:
-    #       type: number
-    #       format: float
-    #     adjustmentReason:
-    #       type: string
-    #     Comment:
-    #       type: string   
-    # Units: 
-    #   allOf:
-    #   - type: object
-    #     required:
-    #     - broadcastDate
-    #     properties:   
-    #       broadcastDate:
-    #         $ref: 'commonSchemas.yaml#/components/schemas/broadcastDate'
-    #   - $ref: '#/components/schemas/unitCommonFields'
-    # Impressions:
-    #   allOf:
-    #   - $ref: '#/components/schemas/unitCommonFields'
-    # NonAirTime:
-    #   allOf:
-    #   - type: object
-    #     properties:
-    #       audienceMetric:
-    #         $ref: 'commonSchemas.yaml#/components/schemas/audienceMetric'
-    #   - $ref: '#/components/schemas/unitCommonFields'
-    creditMemoObject:
-      required:
-        - transactionHeader
-        - referenceId
-        - creditMemoDate
-        - Buyer
-        - Advertiser
-      properties:
-        transactionHeader:
-          $ref: 'commonSchemas.yaml#/components/schemas/transactionHeader'
-        referenceIds:
-          $ref: 'commonSchemas.yaml#/components/schemas/referenceIds'
-        creditMemoDate:
-          type: string
-          format: date
-        Buyer:
-          $ref: 'commonSchemas.yaml#/components/schemas/Buyer'
-        Advertiser:
-          $ref: 'commonSchemas.yaml#/components/schemas/Advertiser'        
-        Contact:
-          $ref: 'commonSchemas.yaml#/components/schemas/Contact'
-        totalCreditAmount:
-          type: number
-          format: float 
-        reasonForCredit:
-          type: string                             
