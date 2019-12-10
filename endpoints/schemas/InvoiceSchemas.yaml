@@ -105,7 +105,7 @@ components:
         remittanceInfo:
           $ref: 'commonSchemas.yaml#/components/schemas/remittanceInfo'
         externalComment:
-          description: free form text to accomodate transaction
+          description: free form text for comments
           type: string
         lineDetails:
           description: Line details array of lines
