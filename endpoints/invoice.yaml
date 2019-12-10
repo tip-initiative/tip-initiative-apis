@@ -35,18 +35,14 @@ paths:
         content:
           application/json:
             schema:
-              oneOf:
-              - $ref: 'schemas/invoiceSchemas.yaml#/components/schemas/invoiceObject'
-              - $ref: 'schemas/invoiceSchemas.yaml#/components/schemas/creditMemoObject'
+              $ref: 'schemas/invoiceSchemas.yaml#/components/schemas/invoiceObject'
       responses:
         '200':
           description: Request processed successfully
           content:
             application/json:
               schema:
-                oneOf:
-                - $ref: 'schemas/invoiceSchemas.yaml#/components/schemas/invoiceObject'
-                - $ref: 'schemas/invoiceSchemas.yaml#/components/schemas/creditMemoObject'
+                $ref: 'schemas/invoiceSchemas.yaml#/components/schemas/invoiceObject'
         default:
           description: unexpected error
           content:

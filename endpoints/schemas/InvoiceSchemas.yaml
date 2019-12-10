@@ -35,7 +35,7 @@ components:
         transactionHeader: 
           $ref: 'commonSchemas.yaml#/components/schemas/transactionHeader'
         referenceId:
-          description: Information grouping all reference ids and their source that are associated to the proposal
+          description: Information grouping all reference ids and their source that are associated to the invoice
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/referenceIds'
@@ -52,7 +52,7 @@ components:
           type: string
           enum: [Broadcast, Calendar]
         billingCycle:
-          description: The nvoice billing cycle
+          description: The invoice billing cycle
           type: string
           enum: [Monthy, Weekly]
         billingGranularity:
@@ -103,10 +103,9 @@ components:
           description: Total net dollars for all units with the invoice (grossamount - commission)
           type: number
         remittanceInfo:
-          description: refer to remittance object for data property details  #TO DO
           $ref: 'commonSchemas.yaml#/components/schemas/remittanceInfo'
         externalComment:
-          description: free form text to accomodate transaction
+          description: free form text for comments
           type: string
         lineDetails:
           description: Line details array of lines
@@ -122,7 +121,6 @@ components:
               - lineStartDate
               - lineEndDate
               - Length
-              - UnitDetails
             properties:
               buyLineIDReference:
                 description: Seller's Line information (add buyer identifier make optional) 
@@ -137,12 +135,11 @@ components:
               audienceMetric:
                 $ref: 'commonSchemas.yaml#/components/schemas/audienceMetric'
               totalUnits:
-                description: Total number of raw (equivalized) units (based on invoice's unit type) within the start and end date
+                description: Total number of unequivalized units or impressions (based on invoice's unit type) within the start and end date
                 type: number
               mediaOutlet:
                 $ref: 'commonSchemas.yaml#/components/schemas/mediaOutlet'
               Brand:
-                description: Product Brand Id & Name
                 $ref: 'commonSchemas.yaml#/components/schemas/Brand'
               Product:
                 $ref: 'commonSchemas.yaml#/components/schemas/Product'
@@ -179,114 +176,77 @@ components:
               Length:
                 description: Length of commercial unit
                 type: integer
-        UnitDetails:
-          description: Array of unit details
-          type: array
-          items:
-            type: object
-            oneOf:
-              - $ref: '#/components/schemas/Units'
-              - $ref: '#/components/schemas/Impressions'
-        childUnitDetails:
-          description: Child unit details for footprint unit to support Audience
-          type: array
-          items:
-            type: object
-            properties:
-              ParentUnitId:
-                type: string
-              unitId:
-                type: string
-              mediaOutlet:
-                type: object
-              Rate:
-                type: number
-                format: float
-              adId:
-                type: string
-              Preempt:
-                type: boolean
-              Makegood: 
-                type: boolean
-              ADU:
-                type: boolean
-              Credit:
-                type: boolean
-              broadcastDate:
-                $ref: 'commonSchemas.yaml#/components/schemas/broadcastDate'
-    unitCommonFields:
-      type: object
-      discriminator:
-        propertyName: unitType
-      required:
-      - unitType
-      properties:
-        unitType:
-          type: string
-        adId:
-          type: string
-        podPosition:
-          type: string
-          enum: [A, Z]
-        Preempt:
-          type: boolean
-        Makegood: 
-          type: boolean
-        ADU:
-          type: boolean
-        Credit:
-          type: boolean
-        Bonus:
-          type: boolean
-        Rate:
-          type: number
-          format: float
-        adjustmentReason:
-          type: string
-        Comment:
-          type: string   
-    Units: 
-      allOf:
-      - type: object
-        required:
-        - broadcastDate
-        properties:   
-          broadcastDate:
-            $ref: 'commonSchemas.yaml#/components/schemas/broadcastDate'
-      - $ref: '#/components/schemas/unitCommonFields'
-    Impressions:
-      allOf:
-      - $ref: '#/components/schemas/unitCommonFields'
-    NonAirTime:
-      allOf:
-      - type: object
-        properties:
-          audienceMetric:
-            $ref: 'commonSchemas.yaml#/components/schemas/audienceMetric'
-      - $ref: '#/components/schemas/unitCommonFields'
-    creditMemoObject:
-      required:
-        - transactionHeader
-        - referenceId
-        - creditMemoDate
-        - Buyer
-        - Advertiser
-      properties:
-        transactionHeader:
-          $ref: 'commonSchemas.yaml#/components/schemas/transactionHeader'
-        referenceIds:
-          $ref: 'commonSchemas.yaml#/components/schemas/referenceIds'
-        creditMemoDate:
-          type: string
-          format: date
-        Buyer:
-          $ref: 'commonSchemas.yaml#/components/schemas/Buyer'
-        Advertiser:
-          $ref: 'commonSchemas.yaml#/components/schemas/Advertiser'        
-        Contact:
-          $ref: 'commonSchemas.yaml#/components/schemas/Contact'
-        totalCreditAmount:
-          type: number
-          format: float 
-        reasonForCredit:
-          type: string                             
+              UnitDetails:
+                description: Array of unit details, applicable only when UnitType=Units
+                type: array
+                items:
+                  type: object
+                  required:
+                    - unitId
+                  properties:
+                    unitId:
+                      description: Seller generated unique number, required
+                      type: string
+                    adId:
+                      type: string
+                    broadcastDate:
+                      $ref: 'commonSchemas.yaml#/components/schemas/broadcastDate'
+                    podPosition:
+                      type: string
+                      enum: [First, Middle, Last]
+                    linkType:
+                      type: string
+                      enum: [Billboard, Piggyback, Bookend, Sponsorship, Package]
+                    linkNum:
+                      type: integer
+                    linkSeq:
+                      type: integer
+                    Preempt:
+                      type: boolean
+                    Makegood: 
+                      type: boolean
+                    ADU:
+                      type: boolean
+                    Bonus:
+                      type: boolean
+                    Rate:
+                      type: number
+                      format: float
+                    Credit:
+                      type: boolean
+                    adjustmentReason:
+                      type: string
+                    Comment:
+                      type: string   
+                    childUnitDetails:
+                      description: Child unit details for footprint unit to support Audience
+                      type: array
+                      items:
+                        type: object
+                        required:
+                          - parentUnitId
+                          - unitId
+                        properties:
+                          ParentUnitId:
+                            type: string
+                          unitId:
+                            type: string
+                          mediaOutlet:
+                            $ref: 'commonSchemas.yaml#/components/schemas/mediaOutlet'
+                          Rate:
+                            type: number
+                            format: float
+                          adId:
+                            type: string
+                          Preempt:
+                            type: boolean
+                          Makegood: 
+                            type: boolean
+                          ADU:
+                            type: boolean
+                          Credit:
+                            type: boolean
+                          adjustmentReason:
+                            type: string
+                          broadcastDate:
+                            $ref: 'commonSchemas.yaml#/components/schemas/broadcastDate'
