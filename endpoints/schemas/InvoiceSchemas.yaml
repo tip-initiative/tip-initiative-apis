@@ -35,7 +35,7 @@ components:
         transactionHeader: 
           $ref: 'commonSchemas.yaml#/components/schemas/transactionHeader'
         referenceId:
-          description: Information grouping all reference ids and their source that are associated to the proposal
+          description: Information grouping all reference ids and their source that are associated to the invoice
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/referenceIds'
@@ -52,7 +52,7 @@ components:
           type: string
           enum: [Broadcast, Calendar]
         billingCycle:
-          description: The nvoice billing cycle
+          description: The invoice billing cycle
           type: string
           enum: [Monthy, Weekly]
         billingGranularity:
@@ -103,7 +103,6 @@ components:
           description: Total net dollars for all units with the invoice (grossamount - commission)
           type: number
         remittanceInfo:
-          description: refer to remittance object for data property details  #TO DO
           $ref: 'commonSchemas.yaml#/components/schemas/remittanceInfo'
         externalComment:
           description: free form text to accomodate transaction
@@ -122,7 +121,6 @@ components:
               - lineStartDate
               - lineEndDate
               - Length
-              # - UnitDetails
             properties:
               buyLineIDReference:
                 description: Seller's Line information (add buyer identifier make optional) 
@@ -137,12 +135,11 @@ components:
               audienceMetric:
                 $ref: 'commonSchemas.yaml#/components/schemas/audienceMetric'
               totalUnits:
-                description: Total number of raw (equivalized) units (based on invoice's unit type) within the start and end date
+                description: Total number of unequivalized units or impressions (based on invoice's unit type) within the start and end date
                 type: number
               mediaOutlet:
                 $ref: 'commonSchemas.yaml#/components/schemas/mediaOutlet'
               Brand:
-                description: Brand Id & Name
                 $ref: 'commonSchemas.yaml#/components/schemas/Brand'
               Product:
                 $ref: 'commonSchemas.yaml#/components/schemas/Product'
