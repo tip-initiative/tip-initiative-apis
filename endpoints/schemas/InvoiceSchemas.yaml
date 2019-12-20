@@ -24,11 +24,11 @@ components:
       - billingGranularity
       - startDate
       - endDate
-      - Buyer
-      - Advertiser
+      - buyer
+      - advertiser
       - buylineCashTrade
       - grossAmount
-      - Commission
+      - commission
       - totalNetDollars
       - remittanceInfo
       properties:
@@ -74,15 +74,17 @@ components:
         businessType:
           description: Seller-defined type of business
           type: string
-        Buyer:
-          $ref: 'commonSchemas.yaml#/components/schemas/Buyer'
+        buyer:
+          $ref: 'commonSchemas.yaml#/components/schemas/buyer'
         localNational:
           type: string
           enum: [Local, National]
-        Advertiser:
-          $ref: 'commonSchemas.yaml#/components/schemas/Advertiser'
-        Contact:
-          $ref: 'commonSchemas.yaml#/components/schemas/Contact'
+        advertiser:
+          $ref: 'commonSchemas.yaml#/components/schemas/advertiser'
+        contact:
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/contact'
         buylineCashTrade:
           description: Revenue Type associated to the order
           type: string
@@ -91,7 +93,7 @@ components:
           description: Total gross dollar for the invoice
           type: number
           format: float
-        Commission:
+        commission:
           description: Seller commission dollars
           type: number
           format: float
@@ -116,11 +118,11 @@ components:
               - buyLineIDReference
               - unitType
               - mediaOutlet
-              - Product
+              - product
               - salesElement
               - lineStartDate
               - lineEndDate
-              - Length
+              - length
             properties:
               buyLineIDReference:
                 description: Seller's Line information (add buyer identifier make optional) 
@@ -132,17 +134,17 @@ components:
                 description: Type of invoice units
                 type: string
                 enum: [Units, Impressions, NonAirTime]
-              audienceMetric:
-                $ref: 'commonSchemas.yaml#/components/schemas/audienceMetric'
+              pricingMetric:
+                $ref: 'commonSchemas.yaml#/components/schemas/pricingMetric'
               totalUnits:
                 description: Total number of unequivalized units or impressions (based on invoice's unit type) within the start and end date
                 type: number
               mediaOutlet:
                 $ref: 'commonSchemas.yaml#/components/schemas/mediaOutlet'
-              Brand:
-                $ref: 'commonSchemas.yaml#/components/schemas/Brand'
-              Product:
-                $ref: 'commonSchemas.yaml#/components/schemas/Product'
+              brand:
+                $ref: 'commonSchemas.yaml#/components/schemas/brand'
+              product:
+                $ref: 'commonSchemas.yaml#/components/schemas/product'
               salesElement:
                 description: Sales Element Name
                 type: string
@@ -150,15 +152,16 @@ components:
                 description: Program Name
                 type: string
               cpeCode:
-                #description: Client Code, Product Code & Estimate Code associated to the unit
                 $ref: 'commonSchemas.yaml#/components/schemas/cpeCode'
               timeFrame:
-                $ref: 'commonSchemas.yaml#/components/schemas/timeFrame'
+                type: array
+                items:
+                  $ref: 'commonSchemas.yaml#/components/schemas/timeFrame'
               billableRevenue:
                 description: Rate's Billable revenue type
                 type: string
                 enum: [Booked, Actuals]
-              Rate:
+              rate:
                 type: number
                 format: float
               lineStartDate:
@@ -173,10 +176,10 @@ components:
                 description: Inventory Type associated to unit  (Further Define in order to support cross 
                 type: string
                 enum: [Commercial, Interstitial, Billboard]
-              Length:
+              length:
                 description: Length of commercial unit
                 type: integer
-              UnitDetails:
+              unitDetails:
                 description: Array of unit details, applicable only when UnitType=Units
                 type: array
                 items:
@@ -207,19 +210,19 @@ components:
                       type: boolean
                     ADU:
                       type: boolean
-                    Bonus:
+                    bonus:
                       type: boolean
-                    Rate:
+                    rate:
                       type: number
                       format: float
-                    Credit:
+                    credit:
                       type: boolean
                     adjustmentReason:
                       type: string
-                    Comment:
+                    comment:
                       type: string   
                     childUnitDetails:
-                      description: Child unit details for footprint unit to support Audience
+                      description: Child unit details for parent unit to support Mirror, Audience Network, Diginet or other forms of "child" units
                       type: array
                       items:
                         type: object
@@ -233,18 +236,18 @@ components:
                             type: string
                           mediaOutlet:
                             $ref: 'commonSchemas.yaml#/components/schemas/mediaOutlet'
-                          Rate:
+                          rate:
                             type: number
                             format: float
                           adId:
                             type: string
-                          Preempt:
+                          preempt:
                             type: boolean
-                          Makegood: 
+                          makegood: 
                             type: boolean
                           ADU:
                             type: boolean
-                          Credit:
+                          credit:
                             type: boolean
                           adjustmentReason:
                             type: string
