@@ -10,7 +10,7 @@ security:
   - bearerAuth: []
 
 info:
-  version: 1.0.0
+  version: 1.2.0
   title: logtimes
   description: Seller posts a Logtimes on the buyer's server
   termsOfService: http://placeholderdomain.io/terms/
@@ -25,10 +25,14 @@ servers:
   - url: http://placeholderdomain.io
 
 paths:
-  /logs/times/seller:
+  /seller/logtimes:
     post:
-      summary: seller POSTs the Log Times report to the buyer's system
-      description: Allows the seller to send to the buyer the log times information (No Request from buyer is Required)
+      tags:
+        - Seller
+      summary: Seller Logtimes POST
+      description: >-
+        Allows the seller to send to the buyer the log times information (No Request from buyer is
+        Required)
       operationId: logsTimesSeller
       requestBody:
         description: seller POSTs the Log Times report to the buyer's system
@@ -36,7 +40,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: 'schemas/logTimesSchemas.yaml#/components/schemas/logTimesSellerObject'
+              $ref: 'schemas/logTimesSchemas.yaml#/components/schemas/LogTimesSellerObject'
       responses:
         '200':
           description: Request processed successfully

@@ -1,168 +1,99 @@
-openapi: "3.0.0"
+openapi: 3.0.0
 info:
-  version: 1.0.1
+  version: 4.2.0
   title: Common Schemas
   description: Common Schemas, based on TIP 4.0 documentation
-  termsOfService: http://placeholderdomain.io/terms/ # TODO
+  termsOfService: http://placeholderdomain.io/terms/
   contact:
     name: TIP Initiative
     email: tipinitiative@frontrowadvisory.com
-    url: http://placeholderdomain.io # TODO
+    url: http://placeholderdomain.io
   license:
     name: MIT
-    url: https://opensource.org/licenses/MIT # TODO 
-
-paths: {} # no paths
-
+    url: https://opensource.org/licenses/MIT
+paths: {}
 components:
   schemas:
-
-    # commonPayloadHeader:
-    #   description: Common properties to be included with all payloads
-    #   required:
-    #     - tipVersion
-    #     - transactionNum
-    #     - timeStamp
-    #   properties:
-    #     tipVersion:
-    #       description: TIP version of the interface
-    #       type: string  # TODO any constraints?
-    #     transactionId:
-    #       description: Buyer or Seller generated unique value for transaction
-    #       type: string  # TODO any constraints?
-    #     timeStamp: 
-    #       description: Date and time the transaction was created
-    #       type: string # TODO should this be expressed as an Epoch date instead (32 bit integer)?
-    #       format: date-time
-          
-    # encodededPayloadWrapper:
-    #   description: Used with non-JSON payload formats such as TVB 3.2 or DARE, provides information about the payload and it's encoding
-    #   required:
-    #     - CommonPayloadHeader
-    #     - payloadData
-    #     - payloadType
-    #     - payloadEncoding
-    #   properties:
-    #     CommonPayloadHeader:
-    #       $ref: '#/components/schemas/commonPayloadHeader'
-    #     payloadData:
-    #       description: The encoded payload data
-    #       type: string
-    #     payloadType:
-    #       description: Format of the payload data
-    #       type: string
-    #       enum: [TVB3.2, DARE]
-    #     payloadEncoding: 
-    #       description: Encoding method used on the payload data
-    #       type: string
-    #       enum: [Base64]
-
-    # subscriptionRequest:
-    #   description: A client creates a subscription by issuing a request against the subscriptions resource. The subscription namespace is client-defined via the POST operation.
-    #   required:
-    #     - resource
-    #     - notificationUrl
-    #   properties:
-    #     resource:
-    #       description: Resource path to watch
-    #       type: string
-    #       format: uri
-    #     notificationUrl:
-    #       description: The target web hook URL
-    #       type: string
-    #       format: uri
-    #     clientState:
-    #       description: Opaque string passed back to the client on all notifications. Callers may choose to use this to provide tagging mechanisms.
-    #       type: string
-
-    # subscriptionResponse:
-    #   description: If the subscription was successfully created, the service MUST respond with the status code 201 CREATED and a body containing at least the following properties
-    #   required:
-    #     - id
-    #   properties:
-    #     id:
-    #       description: Unique ID of the new subscription that can be used later to update/delete the subscription.
-    #       type: string
-    #     expirationDateTime:
-    #       description: The expiration date of the subscription
-    #       type: string
-    #       format: date-time
-
-    transactionHeader:
-      description: Transaction header details
+    TransactionHeader:
+      properties:
+        tipVersion:
+          description: TIP version of the interface
+          type: string
+        transactionNum:
+          description: Buyer or Seller generated unique number for transaction
+          type: integer
+        transactionType:
+          description: Indicates the type of transaction (New, Changed, Cancelled)
+          type: string
+          enum:
+            - New
+            - Changed
+            - Cancelled
+        sourceId:
+          description: Indicates the source "trading partner" unique identification
+          type: string
+        sourceName:
+          description: Indicates the source "trading partner" name
+          type: string
+        timeStamp:
+          description: Date and time the transaction was created
+          type: string
+          format: date
       required:
         - tipVersion
         - transactionNum
         - transactionType
-        - sourceID
+        - sourceId
         - sourceName
         - timeStamp
+    MediaOutlet:
       properties:
-        tipVersion:
-          description: TIP version of the interface
-          type: string  # TODO any constraints?
-        transactionNum:
-          description: Buyer or Seller generated unique number for transaction
-          type: integer
-          format: int64
-        transactionType:
-          description: Indicates the type of transaction (New, Changed, Cancelled)
+        mediaOutletId:
+          description: Unique persistent identifier for the station or network
           type: string
-          enum: [New, Changed, Cancelled]
-        sourceId: 
-          description: String	Indicates the source "trading partner" unique identification  
-          type: string # TODO any constraints?
-        sourceName:
-          description: Indicates the source "trading partner" name
+        mediaOutletName:
+          description: Station, network name or entity associated to mediaOutletId
           type: string
-        timeStamp: 
-          description: Date and time the transaction was created
-          type: string # TODO should this be expressed as an Epoch date instead (32 bit integer)?
-          format: date-time
-
-    mediaOutlet:
-      description: Combines a unique identifier and name into a single object # TODO generic description
+        mediaOutletType:
+          description: Type of media outlet
+          type: string
+          enum:
+            - Broadcast TV
+            - OTT
+            - Connected TV
+            - Addressable TV
+            - Digital Video
+            - Mobile Video
+            - Terrestrial Radio
+            - Digital Audio
+        mediaOutletChannel:
+          description: Station or network station identification (Channel)
+          type: string
+        mediaOutletMarketName:
+          description: Station market Name
+          type: string
+        mediaOutletReference:
+          description: External mediaoutlet reference information
+          type: string
       required:
         - mediaOutletId
         - mediaOutletName
         - mediaOutletType
-      properties:
-        mediaOutletId:
-          description: Unique persistent identifier for the station or network
-          type: string  # TODO any constraints?
-        mediaOutletName:
-          description: Station or network name associated to mediaOutletId
-          type: string  # TODO any constraints?
-        mediaOutletType:
-          description: Type of media outlet
-          type: string
-          enum: [Broadcast TV, OTT, Connected TV, Addressable TV, Digital Video, Mobile Video, Terrestrial Radio, Digital Audio] 
-        mediaOutletChannel:
-          description: String	Station or network station identification (Channel) 
-          type: string  # TODO any constraints?
-        mediaOutletMarketName:
-          type: string
-        mediaOutletReference:
-          description: Buyer external mediaoutlet reference information
-          type: string
-    advertiser:
-      description: Combines a unique identifier and name into a single object # TODO generic description
-      required:
-        - advertiserId
-        - advertiserName
+    Advertiser:
       properties:
         advertiserId:
           description: Unique persistent identifier for the advertiser/client
-          type: string  # TODO any constraints?
-        advertiserName:
-          description: String	Advertiser name 
-          type: string  # TODO any constraints?
-        advertiserReference:
           type: string
-    brand:
+        advertiserName:
+          description: Advertiser name
+          type: string
+        advertiserReference:
+          description: External advertiser reference information
+          type: string
       required:
-        - brandId
-        - brandName
+        - advertiserId
+        - advertiserName
+    Brand:
       properties:
         brandId:
           description: Unique persistent identifier for the brand
@@ -173,290 +104,521 @@ components:
         brandReference:
           description: External brand reference information
           type: string
-    buyer:
-      description: Packages a unique identifier and name into a single object # TODO generic description
+      required:
+        - brandId
+        - brandName
+    Buyer:
+      properties:
+        buyerId:
+          description: >-
+            Unique persistent identifier for the Buying organization or trafficking agency and /or the
+            supplier of the media
+          type: string
+        buyerName:
+          description: Buying organization name and location
+          type: string
+        buyerReference:
+          description: External buyer location reference information
+          type: string
       required:
         - buyerId
         - buyerName
-      properties:
-        buyerId:
-          description: Unique persistent identifier for the Buying organization or  trafficking agency and /or the supplier of the media
-          type: string  # TODO any constraints?
-        buyerName:
-          description: Buying organization name and location
-          type: string  # TODO any constraints?
-        buyerReference:
-          type: string
-    product:
-      description: Combines a unique identifier, name, and reference into an object # TODO generic description
-      required:
-        - productId
-        - productName
+    Product:
       properties:
         productId:
           description: Unique persistent identifier for the product
-          type: string  # TODO any constraints?
-        productName:
-          description: Brand Name
-          type: string  # TODO any constraints?
-        productReference:
           type: string
-
-    audienceSegment:
-      description: Combines a unique identifier and name into a single object # TODO generic description
+        productName:
+          description: Product name
+          type: string
+        productReference:
+          description: External product reference
+          type: string
+      required:
+        - productId
+        - productName
+    AudienceSegment:
+      properties:
+        audienceSegmentId:
+          description: Unique persistent identifier for audience segment
+          type: string
+        audienceSegmentName:
+          description: Audience Segment Name
+          type: string
+        audienceSegmentReference:
+          description: External audience segment reference
+          type: string
+        primaryIndicator:
+          description: True/False
+          type: boolean
+        guarantee:
+          description: True/False
+          type: boolean
+        ratingSource:
+          description: Audience source for audience segment
+          type: string
+          enum:
+            - Nielsen
+            - ComScore
+            - Internal
+            - Client
+        ratingStream:
+          description: Type of rating stream associated to the rating source
+          type: string
+          enum:
+            - Program Live
+            - Commercial Ratings Live
+            - Commercial Rating Live+3
+            - Commercial Rating Live+7
       required:
         - audienceSegmentId
         - audienceSegmentName
-        - audienceSegmentReference
-        - ratingSource
-        - ratingStream
-        - viewershipType
-        - universeType
-        - primaryIndicator
-        - Guarantee
-      properties:  
-        audienceSegmentId:
-          description: Unique persistent identifier for audience segment
-          type: string  # TODO any constraints?
-        audienceSegmentName:
-          description: Audience Segment Name 
-          type: string  # TODO any constraints?
-        audienceSegmentReference:
-          description: Buyer external audience segment reference
-          type: string  # TODO any constraints?
-        ratingSource:
-          description: Unique identifier for audience segment
-          type: string
-          enum: [Nielsen, ComScore] # TODO is Custom a constant?
-        ratingStream:
-          description: Audience Segment Name 
-          type: string  
-          enum: [Program Live, C3, C7] # TODO is Custom a constant?
-        viewershipType:
-          description: Type of viewership elements
-          type: string  
-          enum: [VPVH, Composition, Reach, Frequency] # TODO is Custom a constant?
-        universeType:
-          description: Type of universe
-          type: string  
-          enum: [Market, Total US, Coverage] # TODO is Custom a constant?
-        primaryIndicator:
-          description: todo # TODO need description
-          type: boolean
-        guarantee:
-          description: todo # TODO need description
-          type: boolean
-
-    pricingMetric: # TODO schema and property have the same name
-      description: Combines audience segment metric attributes into single object
+    AudiencePricingMetric:
       properties:
-        audienceSegmentId:
-          description: List of pricing metric segments (AND) # TODO AND what? should there be additional data besides the array of enums specified here?
-          type: array
-          items:
-            type: string 
-            enum: [CPM, CPP] # TODO is Custom a constant?
+        audienceMetric:
+          description: Type of audience metrics (AND)
+          type: string
+          enum:
+            - Impressions
+            - Rating
+            - GRPs VPVH
+            - Composition
+            - Reach
+            - Frequency Threshold
+            - Scarcity
         audienceMetricValue:
+          description: audienceMetric value
+          type: string
+        pricingMetric:
+          description: List of pricing metric segments (AND)
+          type: string
+          enum:
+            - CPM
+            - CPP
+            - CPE
+            - CPA
+        pricingMetricValue:
           description: Audience metric dollar value
           type: number
           format: float
-
-    cancellationTerms:
-      description: Combines cancellation options data attributes into a single object
       required:
-        - cancellationType
-        - Cancellation
-        - cancellationPriorDays
-        - cancellationPercentage
+        - pricingMetric
+        - pricingMetricValue
+    Universe:
+      properties:
+        universeType:
+          description: Universe Type (AND)
+          type: string
+          enum:
+            - Market
+            - Total US
+            - Coverage
+            - Addressable
+        universeTypeValue:
+          description: Universe type value
+          type: integer
+    CancellationTerms:
       properties:
         cancellationType:
           description: Type of Cancellation elements
-          type: string 
-          enum: [Quarterly Option, Rolling Options] 
-        Cancellation:
+          type: string
+          enum:
+            - Quarterly
+            - Broadcast Date
+        cancellation:
           description: Quarter name or broadcast date dependent on cancellation type
           oneOf:
             - type: string
             - type: string
-              format: date-time # TODO is broadcast date a date-time string?
+              format: date-time
         cancellationPriorDays:
-          description: Number of days notice needed prior to start quarter or broadcast date to request cancellation
-          type: integer #TODO any constraints on this?
-          format: int32
+          description: Number of days notice needed prior to start quarter or broadcast date to request
+            cancellation
+          type: integer
         cancellationPercentage:
-          description: Number of days notice needed prior to start quarter or broadcast date to request cancellation
-          type: number #TODO any constraints on this?
+          description: Percentage of dollars allowed to be cancelled for cancellation defined
+          type: number
           format: float
-
-    referenceIds:
-      description: Combines the system ids across mulitple systems into a single object
+    TimeSeparation:
+      properties:
+        unitLength:
+          description: Unit length
+          type: integer
+        timeSeparation:
+          description: >-
+            Agreement whereby the seller agrees to separate advertiser’s commercials by a specific length
+            of time in addition to agreeing to not run another product that is directly competitive within
+            a specific time frame; agreement may defined by unit length or across all lengths
+          type: integer
+    ReferenceId:
+      properties:
+        referenceSourceName:
+          description: Name associated with the organization that is supplying the ids and version information
+          type: string
+        referenceSourceId:
+          description: ID associated with the organization sending the information
+          type: string
+        referenceSourceLookup:
+          description: Reference Source Look up; this could be URI to lookup information about the reference
+            source name
+          type: string
+        referenceType:
+          description: The type of reference IDs that are being supplied
+          type: string
+          enum:
+            - RFP
+            - Proposal
+            - Deal
+            - Order
+            - Invoice
+        referenceId:
+          description: Number or ID associated with reference type(s)
+          oneOf:
+            - type: number
+            - type: string
+        referenceVersionId:
+          description: Version Number to indicate what version of the reference id
+          type: string
+        referenceName:
+          description: Free form name used to identify the type of entity such as Order Name, RFP Name
+          type: string
       required:
         - referenceSourceName
         - referenceSourceId
         - referenceType
         - referenceId
-      properties:
-        referenceSourceName:
-          description: Name associated with the organization that is supplying the ids and version information
-          type: string #TODO any constraints on this?
-        referenceSourceId:
-          type: string
-        referenceSourceLookup:
-          description: Reference Source Look up; this could be URI to lookup information about the reference source name
-          type: string #TODO any constraints on this?
-        referenceType:
-          description: The type of IDs that are being supplied  
-          type: string 
-          enum: [RFP, Proposal, Order, Invoice] 
-        referenceId:
-          description: Number or ID associated with reference type(s) 
-          oneOf:
-            - type: number #TODO any constraints on this?
-            - type: string #TODO any constraints on this?
-        referenceVersionId:
-          description: Version Number to indicate what version  of the reference id
-          type: string #TODO description says version number, should this be a number? any constraints?
-        ReferenceName:
-          description: Free form name used to identify the type of entity such as Order Name, RFP Name
-          type: string #TODO any constraints?
-
-    cpeCode: 
-      description: Combines audience segment metric attributes into single object
+    CpeCode:
       properties:
         clientCode:
-          description: Client code provided from the buyer. Packages client, product and estimate codes together.
+          description: Client code provided from the buyer. Packages client, product and estimate codes
+            together.
           type: string
         productCode:
-          description: Product code provided from the buyer. Packages client, product and estimate codes together.
+          description: Product code provided from the buyer. Packages client, product and estimate codes
+            together.
           type: string
         estimateCode:
-          description: Estimate code provided from the buyer. Packages client, product and estimate codes together.
+          description: Estimate code provided from the buyer. Packages client, product and estimate codes
+            together.
           type: string
-
-    guideLine:
+    GuideLine:
       properties:
         guideLineType:
-          description: Types of Includions and /or Exclusions
+          description: Type of guideline
           type: string
-          enum: [Content, Program , Selling Title, MPAA Rating, Site Category, Custom]
+          enum:
+            - Content
+            - Program
+            - MPAA Rating
+            - Site Category
+            - Genre
+            - Video Group
+            - Video Site
         excludeOrInclude:
           type: string
-          enum: [Exclude, Include] #TODO is this right?
-        guideLineId:
+          enum:
+            - Include
+            - Exclude
+        guideLineID:
+          description: Guideline identifier
           type: string
         guideLineName:
+          description: Guideline Name
           type: string
-
-    broadcastDate:
-      description: Combines the Broadcast Date & Time Information
+      required:
+        - guideLineType
+        - excludeOrInclude
+    BroadcastDate:
       properties:
-        broadcastDate: # TODO listed as conditional in spreadsheet, what does conditional mean?
-          description: The broadcast date on which the unit aired/scheduled; UTC Standard; Receiver of data will be responsible to convert based on station's broadcast start of day
+        broadcastDate:
+          description: >-
+            The broadcast date on which the unit aired/scheduled; Receiver of data will be responsible
+            to convert based on station's broadcast start of day; format YYYY-MM-DD; In a future release
+            the broadcast date will be modified to support UTC Standard
           type: string
-          format: date-time 
-        broadcastTime: # TODO listed as conditional in spreadsheet, what does conditional mean?
-          description: The broadcast local time on which the unit aired/scheduled; UTC Standard; Receiver of data will be responsible to convert based on station's broadcast start of day
-          type: string  #TODO should this be an enum?
-        broadcastTimeOffset:  #TODO: Consider local time offsets. Conversion of UTC will become difficult as each receiver will need to maintain a potentially volitile dataset of stations/channels/starttimes and there is no facility/api to provide this yet. 
-          description: Offset in miliseconds from local time midnight
-          type: integer
-
-    timeFrame: 
-      description: Combines multiple non-contiguous start and end times 
+          format: date
+        broadcastTime:
+          description: >-
+            The broadcast local time on which the unit aired/scheduled; UTC Standard; Receiver of data
+            will be responsible to convert based on station's broadcast start of day, "Currently using
+            the following: format HH:MM:SS; In a future release the broadcast time will be modified t
+            support UTC Standard
+          type: string
+    DateWindow:
+      properties:
+        startDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
+    TimeWindow:
       properties:
         startTime:
-          description: Valid start time for units
+          description: Valid start time
           type: string
-          format: date-time 
-        endTime: 
-          description: Valid end time for units 
+          format: date-time
+        endTime:
+          description: Valid end time
           type: string
-          format: date-time 
-
-    contact: #TODO fixed casing 
-      description: Combines contact Information
+          format: date-time
+    Contact:
+      properties:
+        contactType:
+          description: Type of Contact
+          type: string
+          enum:
+            - Account Executive
+            - Planner
+            - Assistant
+            - Buyer
+            - Payee
+            - Creative
+            - Delivery Service
+        referenceSourceName:
+          description: Name associated with the organization that is supplying the contact information
+          type: string
+        referenceSourceId:
+          description: ID associated with the organization
+          type: string
+        contactFirstName:
+          description: Contact First Name
+          type: string
+        contactLastName:
+          description: Contact Last Name
+          type: string
+        addressLine1:
+          description: Contact Address Line 1
+          type: string
+        addressLine2:
+          description: Contact Address Line 2
+          type: string
+        city:
+          description: City
+          type: string
+        state:
+          description: State
+          type: string
+        postalCode:
+          description: Postal Code
+          type: string
+        country:
+          description: Country
+          type: string
+        phoneNumber:
+          description: Primary telephone number
+          type: string
+        email:
+          description: Primary email
+          type: string
+          format: email
+        effectiveDate:
+          description: Effective date for contact
+          type: string
+          format: date
       required:
         - contactType
         - referenceSourceName
-      properties:
-        contactType: # TODO type is a reserved word, changed to contactType
-          description: Type of Contact
-          type: string
-          enum: [Account Executive, Sales Planner, Sales Assistant, Buyer, Billing, Creative, Delivery Service]
-        referenceSourceName: 
-          description: Name associated with the organization that is supplying the contact information
-          type: string
-        referenceSourceId: 
-          description: ID associated with the organization
-          type: string
-        contactFirstName: 
-          description: Contact First Name
-          type: string
-        contactLastName: 
-          description: Contact Last Name
-          type: string
-        phoneNumber: 
-          description: Primary telephone number
-          type: string
-        email: 
-          description: Primary email 
-          type: string
-        effectiveDate: 
-          description: Effective date for contact
-          type: string
-          format: date-time
-    remittanceInfo:
-      description: remmittance contact information
+        - referenceSourceId
+        - contactFirstName
+        - contactLastName
+        - effectiveDate
+    RemittanceInfo:
       properties:
         referenceSourceId:
+          description: ID associated with the remittance
           type: string
         referenceName:
+          description: Name associated with the remittance
           type: string
         contactFirstName:
+          description: Contact First Name (not necessary)
           type: string
         contactLastName:
+          description: Contact Last Name (not necessary)
           type: string
         addressLine1:
+          description: Contact Address Line 1
           type: string
-        addressline2:
+        addressLine2:
+          description: Contact Address Line 2
           type: string
-        City:
+        city:
+          description: City
           type: string
-        State:
+        state:
+          description: State
           type: string
         postalCode:
+          description: Postal Code
           type: string
-        Country:
+        country:
+          description: Country
           type: string
         phoneNumber:
+          description: Primary telephone number
           type: string
         contactEmail:
+          description: Primary email for payment remittance information
           type: string
           format: email
         portalInformation:
+          description: Portal information including payment instructions
           type: string
         paymentLink:
+          description: URL that directs buyer to invoice payment options
           type: string
-        Instructions:
+        comments:
+          description: Comments
           type: string
-    error:
+    SalesElement:
+      properties:
+        mediaOutlet:
+          $ref: '#/components/schemas/MediaOutlet'
+        salesElementName:
+          description: Seller's sales element name; this could be either a program or daypart name
+          type: string
+        salesElementID:
+          description: Seller's sales element ID
+          type: string
+        salesElementDescription:
+          description: Seller's sales element description
+          type: string
+        salesElementType:
+          description: >-
+            The type of Sales Element. Time-specific would be based on start and end time other than
+            a specific program. Orbit would be rotator across non-adjacent programs in a day.
+          type: string
+          enum:
+            - Time-specific
+            - Program
+            - Orbit
+            - Package
+        programDetails:
+          description: >-
+            List of programs in the salesElement if there are one or multiple. For example programs in
+            a Package or Orbit.
+          type: string
+        airingDateWindows:
+          $ref: '#/components/schemas/DateWindow'
+        airingTimeWindows:
+          type: array
+          items:
+            $ref: '#/components/schemas/TimeWindow'
+        hiatusDateWindows:
+          type: array
+          items:
+            $ref: '#/components/schemas/DateWindow'
+        guideLines:
+          type: array
+          items:
+            $ref: '#/components/schemas/GuideLine'
+        salesElementInventory:
+          type: array
+          items:
+            $ref: '#/components/schemas/SalesElementInventory'
       required:
-        - errorCode
-        - errorMessage
+        - mediaOutlet
+        - salesElementName
+        - salesElementID
+        - salesElementType
+        - airingDateWindows
+        - salesElementInventory
+    SalesElementInventory:
+      properties:
+        calendarType:
+          description: Differentiates between OTT using Calendar and Linear using Broadcast Calendar.
+          type: string
+          enum:
+            - Broadcast
+            - Calendar
+        availDateWindow:
+          $ref: '#/components/schemas/DateWindow'
+        dow:
+          type: string
+          enum:
+            - Monday
+            - Tuesday
+            - Wednesday
+            - Thursday
+            - Friday
+            - Saturday
+            - Sunday
+            - Unrestricted
+        inventoryType:
+          type: string
+          enum:
+            - Commercial
+            - Interstitial
+            - Billboard
+        linkType:
+          description: Linked Unit Type
+          type: string
+          enum:
+            - Billboard
+            - Piggyback
+            - Bookend
+            - Sponsorship
+            - Package
+        inventoryPosition:
+          type: string
+          enum:
+            - First
+            - Middle
+            - Last
+            - Pre-Roll
+            - Mid-Roll
+            - Post-Roll
+        inventoryLength:
+          description: length of unit
+          type: integer
+        inventoryCapacity:
+          description: Inventory Capacity
+          type: integer
+        inventoryAvails:
+          description: Inventory Avails
+          type: integer
+        rate:
+          type: integer
+        audiences:
+          type: array
+          items:
+            $ref: '#/components/schemas/SalesElementAudience'
+      required:
+        - inventoryType
+        - rate
+    SalesElementAudience:
+      properties:
+        audienceSegment:
+          $ref: '#/components/schemas/AudienceSegment'
+        audiencePricingMetrics:
+          type: array
+          items:
+            $ref: '#/components/schemas/AudiencePricingMetric'
+        universe:
+          type: array
+          items:
+            $ref: '#/components/schemas/Universe'
+      required:
+        - audienceSegment
+        - audiencePricingMetrics
+        - universe
+    Error:
       properties:
         errorCode:
           type: integer
-          format: int32
         errorMessage:
           type: string
-
-    acceptedResponse:
-        required:
-          - transactionId
-          - timeStamp
-        properties:
-          transactionId:
-            type: string
-          timeStamp:
-            type: string
-            format: date-time
+      required:
+        - errorCode
+        - errorMessage
+    AcceptedResponse:
+      properties:
+        transactionId:
+          type: string
+        timeStamp:
+          type: string
+          format: date-time
+      required:
+        - transactionId
+        - timeStamp
