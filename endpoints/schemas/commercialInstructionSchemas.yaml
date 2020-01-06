@@ -1,193 +1,178 @@
-openapi: "3.0.0"
+openapi: 3.0.0
 info:
   title: Commercial Instructions Schema
-  version: 1.0.0
+  version: 1.2.0
   description: Commercial Instructions Schema, Based on TIP 4.0 Working Draft
   termsOfService: http://placeholderdomain.io/terms/
-  contact: 
+  contact:
     name: TIP Initiative
     email: tipinitiative@frontrowadvisory.com
     url: http://placeholderdomain.io
-  license: 
+  license:
     name: MIT
     url: https://opensource.org/licenses/MIT
-paths: {} 
-components: 
-  schemas: 
-    commercialInstructionsRequestObject:
-      description: This object will contain the instructions from the creative or agency to the seller
-      type: object
-      required:
-        - transactionHeader  
-        - referenceId
-        - Advertiser
-        - Product
-        - startDate
-        - endDate
-        - Instruction
+paths: {}
+components:
+  schemas:
+    CommercialInstructionsRequestObject:
       properties:
         transactionHeader:
-          $ref: 'commonSchemas.yaml#/components/schemas/transactionHeader'
-        referenceId:
-          description: Information grouping all reference ids and their source that are associated to the proposal
-          $ref: 'commonSchemas.yaml#/components/schemas/referenceIds'
-        Buyer:
+          $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
+        referenceIds:
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/ReferenceId'
+        buyer:
           $ref: 'commonSchemas.yaml#/components/schemas/Buyer'
-        Contact:
-          $ref: 'commonSchemas.yaml#/components/schemas/Contact'
-        Advertiser:
+        contact:
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/Contact'
+        advertiser:
           $ref: 'commonSchemas.yaml#/components/schemas/Advertiser'
-        Product:
+        product:
           $ref: 'commonSchemas.yaml#/components/schemas/Product'
-        startDate:
-          description: overall start date covered by the instructions
-          type: string
-          format: date
-        endDate:
-          description: overall end date of the instructions
-          type: string
-          format: date
+        dateWindow:
+          $ref: 'commonSchemas.yaml#/components/schemas/DateWindow'
         cpeCode:
-          $ref: 'commonSchemas.yaml#/components/schemas/cpeCode'
+          $ref: 'commonSchemas.yaml#/components/schemas/CpeCode'
         instructionComment:
+          description: Comments pertaining to overall instructions
           type: string
         externalComment:
-          type: array
-          items:
-            type: string
-        Instruction:
-          $ref: '#/components/schemas/instructionObject'
-#----------------------------------------
-    instructionObject:
-      type: object
-      required:
-        - instructionType
-        - instructionDetail
-      discriminator:
-        propertyName: instructionType
-      properties:
-        instructionType:
+          description: Free form text to accommodate transaction comments and/or activities outside the
+            TIP flow
           type: string
-          enum: [Rotation Percentage, Pattern, unitSpecific]
-        instructionDetail:
+        instructionType:
+          description: >-
+            Instruction Type associated to the instructions that applies to how the AD ID should be applied
+            to units
+          type: string
+          enum:
+            - Rotation Share
+            - Pattern
+            - Unit Specific
+        instructionDetails:
           type: array
           items:
-            oneOf:
-              - $ref: '#/components/schemas/Rotation'
-              - $ref: '#/components/schemas/Pattern'
-              - $ref: '#/components/schemas/unitSpecific'
-# ----------------------------------------
-    inventoryTypeEnum:
-      type: string
-      enum: [Commercial, Makegood, Bonus, ADU, Bookend, Piggyback, Sponsorship, Donut, Sandwich, Billboard]
-    linkTypeEnum:
-      type: string
-      enum: [Bookend, Piggyback, Sandwich, Billboard]
-# --------------------------------------
-    instructionDetailObject:
-      type: object
+            $ref: '#/components/schemas/InstructionDetail'
       required:
-        - actionType
+        - transactionHeader
+        - referenceIds
+        - advertiser
+        - product
+        - dateWindow
+        - instructionType
+    InstructionDetail:
       properties:
         actionType:
+          description: Action for instruction detail
           type: string
-          enum: [New, Revised, Cancelled]
-        inventoryType:
-          type: array
-          items:
-            $ref: '#/components/schemas/inventoryTypeEnum'
-        Content:
-          type: array
-          items:
-            $ref: '#/components/schemas/contentObject'
-# --------------------------
-    contentObject:
-      type: object
-      required:
-        - adId
-        - mediaOutlet
-        - Length
-        - deliveryService
-        - startDate
-        - endDate
-      properties:
-        adId:
+          enum:
+            - New
+            - Revised
+            - Cancelled
+        inventoryTypes:
+          description: Valid Inventory Types for the instructions
           type: string
-          #format: uuid
-        Name:
-          type: string
-        Brand:
-          $ref: 'commonSchemas.yaml#/components/schemas/Brand'
-        Product:
-          type: string
+          enum:
+            - Commercial
+            - Makegood
+            - Bonus
+            - ADU
         mediaOutlet:
-          $ref: 'commonSchemas.yaml#/components/schemas/mediaOutlet'
-        Length:
-          description: length in seconds
+          $ref: 'commonSchemas.yaml#/components/schemas/MediaOutlet'
+        adId:
+          description: A unique identifier for commercial copy
+          type: string
+        name:
+          description: Creative title associated to AD-ID
+          type: string
+        brand:
+          $ref: 'commonSchemas.yaml#/components/schemas/Brand'
+        product:
+          $ref: 'commonSchemas.yaml#/components/schemas/Product'
+        length:
+          description: Commercial length associated to AD-ID
           type: integer
         linkType:
-          $ref: '#/components/schemas/linkTypeEnum'
+          description: Used to communicate unit linking information & sequence of how copy should be
+            applied
+          type: string
+          enum:
+            - Billboard
+            - Piggyback
+            - Bookend
+            - Sandwich
+            - Donut
         linkNum:
+          description: >-
+            Unique number to communicate the association of two or more units that have been linked together;
+            only valid when the the instructions have a link type association
           type: integer
         linkSeq:
+          description: Used to communicate the airing sequential order of the linked copy
           type: integer
         deliveryDate:
+          description: Material Commercial delivery date
           type: string
-          format: Date
+          format: date
         deliveryService:
+          description: Delivery service that will supply the the Ad-ID
           type: string
         startDate:
+          description: Valid start date for the AlternateID (ADID)
           type: string
-          format: Date
+          format: date
         endDate:
+          description: Valid end date for AlternateID (ADID)
           type: string
-          format: Date
+          format: date
         hiatusPeriods:
           type: array
           items:
-            type: object
-            required:
-              - hiatusStart
-              - hiatusEnd
-            properties:
-              hiatusStart:
-                type: string
-                format: date
-              hiatusEnd:
-                type: string
-                format: date
+            $ref: 'commonSchemas.yaml#/components/schemas/DateWindow'
         contractInterval:
-          type: array
-          items:
-            type: string
-            enum: [Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday]
-        timeFrame:
-          type: array
-          items:
-            $ref: 'commonSchemas.yaml#/components/schemas/timeFrame'
-        specialInstructions:
+          description: Valid days for defined calendar week for commercial Instructions (AND)
           type: string
-# ---------------------------
-    Rotation:
-      allOf:
-        - $ref: '#/components/schemas/instructionObject'
-        - $ref: '#/components/schemas/instructionDetailObject'
-        - type: array
+          enum:
+            - Monday
+            - Tuesday
+            - Wednesday
+            - Thursday
+            - Friday
+            - Saturday
+            - Sunday
+        timeWindows:
+          type: array
           items:
-            type: integer
-            minimum: 0
-            maximum: 100
-    Pattern:
-      allOf:
-        - $ref: '#/components/schemas/instructionObject'
-        - $ref: '#/components/schemas/instructionDetailObject'
-        - type: array
+            $ref: 'commonSchemas.yaml#/components/schemas/TimeWindow'
+        rotationShare:
+          description: >-
+            If instruction type equals "Rotation" - this will be the percentage assignment to be applied
+            to each AD-ID; the total across all AD-ID's should equal to 100%
+          type: integer
+        patternInstruction:
+          description: >-
+            If instruction type equal "Pattern" -this will be the pattern assignments to be applied to
+            each AD-ID; for example A,B,B,C represents how AD-ID A, B and C should be sequentially assigned
+            to units
+          type: string
+        unitSpecificInstruction:
+          description: >-
+            If instruction type equal "Unit Specific" = this will the list of unit id's that are valid
+            for the AD-ID
+          type: array
           items:
             type: string
-    unitSpecific:
-      allOf:
-        - $ref: '#/components/schemas/instructionObject'
-        - $ref: '#/components/schemas/instructionDetailObject'
-        - type: array
-          items:
-            type: string
+        specialInstructions:
+          description: Comments that pertain to the instruction details
+          type: string
+      required:
+        - actionType
+        - mediaOutlet
+        - adId
+        - length
+        - deliveryService
+        - startDate
+        - endDate
