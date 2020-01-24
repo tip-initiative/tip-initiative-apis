@@ -1,17 +1,19 @@
 openapi: "3.0.0"
 components:
- securitySchemes:
-    bearerAuth: 
+  securitySchemes:
+    bearerAuth:
       type: http
       scheme: bearer
-      bearerFormat: JWT 
+      bearerFormat: JWT
 security:
   - bearerAuth: []
-
 info:
-  version: 1.0.0.
+  version: 4.0rc1
   title: Commercial Instructions
-  description: Allows the creative agency or service provider of commercial instructions to send new or revised traffic instructions on how commercial copy should be applied to units (No request from Seller is required)
+  description: >-
+    Allows the creative agency or service provider of commercial instructions to send new or
+    revised traffic instructions on how commercial copy should be applied to units (No request from
+    Seller is required)
   termsOfService: http://placeholderdomain.io/terms/
   contact:
     name: TIP Initiative
@@ -22,12 +24,16 @@ info:
     url: https://opensource.org/licenses/MIT
 servers:
   - url: http://placeholderdomain.io
-
 paths:
-  /commercialInstructions:
+  /buyer/commercialInstructions:
     post:
-      summary: Allows the creative agency or service provider of commercial instructions to send new or revised traffic instructions on how commercial copy should be applied to units (No request from Seller is required)
-      description: Allows the creative agency or service provider of commercial instructions to send new or revised traffic instructions on how commercial copy should be applied to units (No request from Seller is required)
+      tags:
+        - Buyer
+      summary: Buyer Commercial Instructions POST
+      description: >-
+        Allows the creative agency or service provider of commercial instructions to send new or
+        revised traffic instructions on how commercial copy should be applied to units (No request
+        from Seller is required)
       operationId: commercialInstructionsPost
       requestBody:
         description: commercial instructions required
@@ -35,7 +41,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: 'schemas/commercialInstructionSchemas.yaml#/components/schemas/commercialInstructionsRequestObject'
+              $ref: 'schemas/commercialInstructionSchemas.yaml#/components/schemas/CommercialInstructionsRequestObject'
       responses:
         '200':
           description: request accepted successfully

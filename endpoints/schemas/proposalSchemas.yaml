@@ -34,7 +34,7 @@ components:
         - inventoryCatalog
       properties:
         transactionHeader:
-          $ref: 'commonSchemas.yaml#/components/schemas/transactionHeader'
+          $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
         referenceId:
           description: Information grouping all reference ids and their source that are associated to the proposal
           type: string # TODO any constraints?
@@ -107,7 +107,7 @@ components:
           type: integer
           format: int32
         cancellationTerms:
-          $ref: 'commonSchemas.yaml#/components/schemas/cancellationTerms'
+          $ref: 'commonSchemas.yaml#/components/schemas/CancellationTerms'
         timeSeparation:
           description: List of unit lengths being proposed with separation agreement by a specific length of time; separation may be across all lengths
           type: array
@@ -143,7 +143,7 @@ components:
         - timeFrame
       properties:
         transactionHeader:
-          $ref: 'commonSchemas.yaml#/components/schemas/transactionHeader'
+          $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
         RFPId:
           description: Buyer-generated unique identifier for the RFP
           type: string # TODO any constraints?
@@ -173,7 +173,6 @@ components:
           description: Currency
           type: string # TODO change this to an enum
         Contact:
-          description: Contact Information who initiated the RFP
           $ref: 'commonSchemas.yaml#/components/schemas/Contact'
         mediaType:
           description: Types of media being requested in the RFP 
@@ -183,7 +182,7 @@ components:
           description: List of unique identifiers for individual station or network
           type: array
           items:
-            $ref: 'commonSchemas.yaml#/components/schemas/mediaOutlet'
+            $ref: 'commonSchemas.yaml#/components/schemas/MediaOutlet'
         Budget:
           description: Total Budget 
           type: number
@@ -192,7 +191,7 @@ components:
           description: Pricing metric  (CPM, CPP, etc.)
           type: array
           items:
-            $ref: 'commonSchemas.yaml#/components/schemas/Audience'
+            $ref: 'commonSchemas.yaml#/components/schemas/AudienceMetric'
         Commission:
           description: Buyer Commission percentage amount 
           type: number
@@ -233,7 +232,7 @@ components:
           description: List of valid start and end times 
           type: array
           items:
-            $ref: 'commonSchemas.yaml#/components/schemas/timeFrame'
+            $ref: 'commonSchemas.yaml#/components/schemas/TimeWindow'
         revenueType:
           description: Revenue Type
           type: string
@@ -286,10 +285,10 @@ components:
     ProposalCancel:
       required:
         - transactionHeader
-        - RFPId     
+        - referenceId
       properties:
         transactionHeader:
-          $ref: 'commonSchemas.yaml#/components/schemas/transactionHeader'
+          $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
         referenceId:
           description: Information grouping all reference ids and their source that are associated to the proposal
           type: string # TODO any constraints?
@@ -300,7 +299,7 @@ components:
         - RFPId     
       properties:
         transactionHeader:
-          $ref: 'commonSchemas.yaml#/components/schemas/transactionHeader'
+          $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
         RFPId:
           description: Buyer-generated unique identifier for the RFP
           type: string # TODO any constraints?

@@ -1,0 +1,303 @@
+openapi: 3.0.0
+info:
+  version: 1.2.0
+  title: Invoice Schema
+  description: Invoice Schema, Based on TIP 4.0 Working Draft
+  termsOfService: http://placeholderdomain.io/terms/
+  contact:
+    name: TIP Initiative
+    email: tipinitiative@frontrowadvisory.com
+    url: http://placeholderdomain.io
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+paths: {}
+components:
+  schemas:
+    InvoiceObject:
+      properties:
+        transactionHeader:
+          $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
+        referenceIds:
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/ReferenceId'
+        invoiceDate:
+          description: Date in which the original invoice was generated
+          type: string
+          format: date
+        invoiceRevisionDate:
+          description: Required for Invoice Revision – Date in which the invoice revision was generated
+          type: string
+          format: date
+        calendarType:
+          description: The invoice calendar type
+          type: string
+          enum:
+            - Broadcast
+            - Calendar
+        billingCycle:
+          description: The invoice billing cycle
+          type: string
+          enum:
+            - Monthly
+            - Weekly
+        billingGranularity:
+          description: The order's invoice split parameters
+          type: string
+          enum:
+            - Order
+            - Brand
+            - Insertion Order
+        dueDate:
+          description: Date in which payment is due on invoice
+          type: string
+          format: date
+        startDate:
+          description: First broadcast date valid for the invoice period
+          type: string
+          format: date
+        endDate:
+          description: Last broadcast date valid for the invoice period
+          type: string
+          format: date
+        businessType:
+          type: string
+        buyer:
+          $ref: 'commonSchemas.yaml#/components/schemas/Buyer'
+        localNational:
+          description: Marketplace
+          type: string
+          enum:
+            - Local
+            - National
+        advertiser:
+          $ref: 'commonSchemas.yaml#/components/schemas/Advertiser'
+        contacts:
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/Contact'
+        buylineCashTrade:
+          description: Invoice's Revenue Type
+          type: string
+          enum:
+            - Cash
+            - Barter
+            - Trade
+        grossAmount:
+          description: Totals gross dollars for the invoice
+          type: number
+          format: float
+        commission:
+          description: Seller commission dollars
+          type: number
+          format: float
+        salesTax:
+          description: Sales Tax in USD applied to any elements on the invoice depending on state of
+            invoice origin
+          type: number
+          format: float
+        totalNetDollars:
+          description: >-
+            Total net dollars for all units within the invoice start and end date (gross dollars – commission
+            dollars)
+          type: number
+          format: float
+        remittanceInfo:
+          $ref: 'commonSchemas.yaml#/components/schemas/RemittanceInfo'
+        externalComment:
+          description: Free form text for comments
+          type: string
+        lineDetails:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineDetail'
+      required:
+        - transactionHeader
+        - referenceIds
+        - invoiceDate
+        - calendarType
+        - billingCycle
+        - billingGranularity
+        - startDate
+        - endDate
+        - buyer
+        - advertiser
+        - buylineCashTrade
+        - grossAmount
+        - commission
+        - totalNetDollars
+        - remittanceInfo
+        - lineDetails
+    LineDetail:
+      properties:
+        buyLineIDReference:
+          description: Seller's Line information
+          type: string
+        buyLineIDName:
+          description: Buyer's line information associated to seller's line
+          type: string
+        unitType:
+          description: The type of units on the line
+          type: string
+          enum:
+            - Units
+            - Impressions
+            - Non Airtime
+        audiencePricingMetric:
+          $ref: 'commonSchemas.yaml#/components/schemas/AudiencePricingMetric'
+        totalUnits:
+          description: >-
+            Total number of raw (equivalized) units (based on line's unit type) within the line's start
+            and end date or total number of Raw Impressions
+          type: integer
+        mediaOutlet:
+          $ref: 'commonSchemas.yaml#/components/schemas/MediaOutlet'
+        brand:
+          $ref: 'commonSchemas.yaml#/components/schemas/Brand'
+        product:
+          $ref: 'commonSchemas.yaml#/components/schemas/Product'
+        salesElement:
+          type: string
+        program:
+          description: Program Name in which unit aired
+          type: string
+        cpeCode:
+          $ref: 'commonSchemas.yaml#/components/schemas/CpeCode'
+        timeWindow:
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/TimeWindow'
+        billableRevenue:
+          description: Indicates if the line's rate is based on booked rates or actuals (earned) rates
+          type: string
+          enum:
+            - Booked
+            - Actuals
+        rate:
+          type: number
+          format: float
+        lineDateWindow:
+          $ref: 'commonSchemas.yaml#/components/schemas/DateWindow'
+        inventoryType:
+          description: Type of inventory on line
+          type: string
+          enum:
+            - Commercial
+            - Interstitial
+            - Billboard
+        length:
+          description: Length of commercial unit
+          type: integer
+        unitDetails:
+          type: array
+          items:
+            $ref: '#/components/schemas/UnitDetail'
+      required:
+        - buyLineIDReference
+        - unitType
+        - mediaOutlet
+        - product
+        - salesElement
+        - lineDateWindow
+        - length
+    UnitDetail:
+      properties:
+        unitId:
+          description: Seller generated unique number - Required when unit type is equal to units
+          type: string
+        adId:
+          description: Ad-ID
+          type: string
+        broadcastDate:
+          $ref: 'commonSchemas.yaml#/components/schemas/BroadcastDate'
+        podPosition:
+          description: Unit's Pod Position
+          type: string
+          enum:
+            - First
+            - Middle
+            - Last
+        linkType:
+          description: Linked Unit Type inked units
+          type: string
+          enum:
+            - Billboard
+            - Piggyback
+            - Bookend
+            - Sponsorship
+            - Package
+        linkNum:
+          description: >-
+            Unique number to communicate the association of two or more units that have been linked together;
+            only valid when the units have a link type association
+          type: integer
+        linkSeq:
+          description: Used to communicate the airing sequential order of the linked spots
+          type: integer
+        preempt:
+          description: Y/N indicator
+          type: boolean
+        makegood:
+          description: Y/N indicator
+          type: boolean
+        adu:
+          description: Y/N indicator
+          type: boolean
+        bonus:
+          description: Y/N indicator
+          type: boolean
+        rate:
+          description: Contracted rate associated to the unit
+          type: number
+          format: float
+        credit:
+          description: Y/N indicator
+          type: boolean
+        adjustmentReason:
+          description: >-
+            Only valid on invoice revisions – reason for change of unit (e.g. rate adjustment, incorrect
+            copy, etc.)
+          type: string
+        comment:
+          description: Overall comment for the unit
+          type: string
+        childUnits:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChildUnitDetail'
+      required:
+        - unitId
+    ChildUnitDetail:
+      properties:
+        unitId:
+          description: Unique identifier for "child" unit
+          type: string
+        mediaOutlet:
+          $ref: 'commonSchemas.yaml#/components/schemas/MediaOutlet'
+        rate:
+          description: Unit rate associated to the "child" unit
+          type: number
+          format: float
+        adId:
+          description: Ad-ID assigned to "child" unit
+          type: string
+        preempt:
+          description: Y/N indicator
+          type: boolean
+        makegood:
+          description: Y/N indicator
+          type: boolean
+        adu:
+          description: Y/N indicator
+          type: boolean
+        credit:
+          description: Y/N indicator
+          type: boolean
+        adjustmentReason:
+          description: >-
+            Only valid on invoice revisions – details reasons for change to the unit (e.g. rate adjustment,
+            incorrect copy, etc.)
+          type: string
+        broadcastDate:
+          $ref: 'commonSchemas.yaml#/components/schemas/BroadcastDate'

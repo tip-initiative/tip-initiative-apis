@@ -1,0 +1,148 @@
+openapi: "3.0.0"
+info:
+  title: RFP Schema
+  version: 1.0.0
+  description: RFP Schema, Based on TIP 4.0 Working Draft
+  termsOfService: http://placeholderdomain.io/terms/
+  contact: 
+    name: TIP Initiative
+    email: tipinitiative@frontrowadvisory.com
+    url: http://placeholderdomain.io
+  license: 
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+
+paths: {}
+
+components:
+  schemas:
+    rfpRequestObject:
+      description: This object will contains the details for a proposal request to the seller
+      type: object
+      required:
+        - transactionHeader
+        - referenceId
+        - dateSubmitted
+        - advertiser
+        - contact
+        - startDate
+        - endDate
+      properties:
+        transactionHeader:          
+          $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
+        referenceId:
+          $ref: 'commonSchemas.yaml#/components/schemas/ReferenceId'
+        dateSubmitted:
+          description: Buyer submit date for the RFP
+          type: string
+          format: date
+        dueDate:
+          description: Due date for the response
+          type: string
+          format: date
+        buyer:          
+          $ref: 'commonSchemas.yaml#/components/schemas/Buyer'       
+        advertiser:          
+          $ref: 'commonSchemas.yaml#/components/schemas/Advertiser'
+        cpeCode:          
+          $ref: 'commonSchemas.yaml#/components/schemas/CpeCode'
+        brand:
+          $ref: 'commonSchemas.yaml#/components/schemas/Brand'
+        product:
+          $ref: 'commonSchemas.yaml#/components/schemas/Product'
+        contact:
+          $ref: 'commonSchemas.yaml#/components/schemas/Contact'
+        budget:
+          description: Overall total budget for the RFP
+          type: number
+        comission:
+          description: Buyer comission percentage amount
+          type: number
+        marketPreferences:
+          description: List of market preferences (AND) Market Name
+          type: array
+          items:
+            type: string
+        mediaoutletPreferences:
+          description: List of mediaoutlet preferences (AND) Outlet Name
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/MediaOutlet'
+        daypartPreferences:
+          description: List of daypart preferences (AND) Daypart Name
+          type: array
+          items:
+            type: string
+        unitlengthPreferences:
+          description: List of unit length preferences (AND) Unit Length
+          type: array
+          items:
+            type: string
+        programPreferences:
+          description: List of program preferences (AND) Program Name
+          type: array
+          items:
+            type: string
+        startDate:
+          description: Start date requested
+          type: string
+          format: date
+        endDate:
+          description: End date requested
+          type: string
+          format: date
+        hiatusPeriod:
+          description: List of hiatus broadcast dates that are not valid
+          type: array
+          items:
+            type: string
+            format: date
+        guideline:
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/GuideLine'
+        objective:
+          description: KPI of the overall campaign
+          type: string
+        comments:
+          description: Additional information
+          type: string
+        audiences:
+          description: Audience segment details
+          type: array
+          items: 
+            $ref: '#/components/schemas/audience'
+        goals:
+          description: Goal details
+          type: array
+          items:
+            $ref: '#/components/schemas/goal'
+
+    audience:
+      type: object
+      properties:
+        audienceSegment:
+          $ref: 'commonSchemas.yaml#/components/schemas/AudienceSegment'
+        audienceMetric:
+          $ref: 'commonSchemas.yaml#/components/schemas/AudienceMetric'
+
+    goal:      
+      type: object
+      properties:
+        distributionType:
+          description: Goal type elements
+          type: string
+          enum: [MediaType, Quarter, Week , Daypart, Market, MediaOutlet, AddedValue]
+        distributionMethod:
+          description: Distibution method elements
+          type: string
+          enum: [Impressions, GRPs, Units, Dollars]
+        distributionName:
+          description: Name of goal
+          type: string
+        distributionValue:
+          description: Distribution values in percentage or exact value
+          type: string
+        distributionOrder:
+          description: Only populate when multiple distributions types are defined. Defines the nesting order for the distributions
+          type: integer
