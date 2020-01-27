@@ -1,0 +1,123 @@
+openapi: "3.0.0"
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+security:
+  - bearerAuth: []
+info:
+  version: 4.2.0
+  title: Trading Interface Automation Framework For Local TV Transactions.
+  description: |
+    # Television Interface Practices Initiative (TIP)
+
+    Trading Interface Automation Framework For Local TV Transactions.
+
+    ## Confidentiality Note
+
+    The detailed Workflow and API Framework in this document has been
+    synthesized from several technology vendor contributions. The contributions
+    highlighted the broad adoption of commonly used specs and in some cases,
+    there was an original work contribution from the TIP Initiative and
+    Frontrow Advisory.  The TIP Initiative has thoroughly reviewed this
+    document to ensure details have been appropriately abstracted and
+    synthesized.  This report does not include any specific proprietary work
+    from a single technology vendor or source.
+
+    ## Version History
+
+    | Version | Date | Description | Author |
+    |---------|------|-------------|--------|
+    | Draft | September 25, 2017 | Initial Draft | Frontrow Advisory |
+    | Draft | October 9, 2017 | Revised Draft | Frontrow Advisory |
+    | Release | 1.0 | November 11, 2017 | Release | Frontrow Advisory |
+    | Draft | 1.1 | February 22, 2017 | Initial Draft Phase 2 | Frontrow Advisory |
+    | Release | 2.0 | April 6, 2017 | Release |  Frontrow Advisory |
+    | Draft | 2.1 | June 29, 2018 | Initial Draft Phase 2.1 | Frontrow Advisory |
+    | Release | 3.0 | August 22, 2018 | Release 3.0 | Frontrow Advisory |
+    | Release | 3.1 | February 1, 2019 | Release 3.1 | Frontrow Advisory |
+    | Release | 4.0 | May 16, 2019 | Release 4.0 (WORKING DRAFT) | Frontrow Advisory |
+
+
+    ## Release 4.0 Notes
+
+    | Changes from Release 3.1 to Release 4.0 | Source |
+    |-----------------------------------------|--------|
+    | Add new object to support multiple contacts across the organizations; updated framework to support object | Vendor feedback |
+    | Renamed externalReference to referenceIds and made into an object to support packaging ids/references across the sales campaign  | Vendor feedback |
+    | Add unitPerPeriod to Order as optional data element  in order to support current buy/sell data-flows  | Vendor feedback |
+    | Add periodType to Order as optional data element in order to support current buy/sell data-flows | Vendor feedback |
+    | Renamed AdID to Alternate to be aligned with BXF standards | Vendor feedback |
+    | Modifications to Order and Order Confirmation to support current local broadcast TV business flow and TVB attributes  | Vendor feedback |
+    | Add new APIs to support Order Recall <Request and Response> | Vendor feedback |
+    | Add new API to support Order Reject | Vendor feedback |
+    | Modified the equivalization flag in Order to be optional  | Vendor feedback |
+    | Add billingCalendar and billingCycle to Order | Vendor feedback |
+    | Add Required/Optional column to Common Models  | Vendor feedback |
+    | Add timeFrame object to support non-contiguous valid start and end times  | Vendor feedback |
+    | Add new inventoryCatalog object in order to create a standard set of data elements that may be shared across the Inventory, RFP and Proposal  | Vendor feedback |
+    | Add new APIs to support Makegood Guideline <Request and Response> | Vendor feedback |
+    | Removed makegoodTerms from RFP, Proposal and Order API (replaced with separate Makegood Guideline APIs)  | Vendor feedback |
+
+    ## General Glossary
+
+    | Term | Definition |
+    |------|------------|
+    | Advanced TV | Television paired with technology that allows for new features, components or uses Addressable, programmatic, over-the-top (OTT) and interactive are all subsets of advanced TV. |
+    | Application Program Interface (API) | A set of routines, protocols, and tools for building software applications. The API specifies how software components should interact and are the building blocks to integrate systems and platforms to access data and perform operations. |
+    | Alternate ID (AD ID) | A unique identifier for commercial copy assigned to most commercials by advertising agencies. |
+    | Automated Ad Buying | Or programmatic, typically refers to the use of software to purchase digital advertising, as opposed to the traditional process that involves RFPs, human negotiations and manual insertion orders. The challenge for traditional media companies is the complexity of the process and terminology in digital programmatic. It’s basically using machines to buy ads. |
+    | Air Date | Traditional linear broadcast of a commercial; also refers to the exact date that the commercial spot ran. |
+    | Avail | Remaining unsold units of time for sale within a container, |
+    | Bookend | A scheduling constraint defined for a pair of units on the same deal wherein the one unit should air in the first slot of a break and the second should air in the last slot of the same break. |
+    | Brand | Name used to distinguish one product from its competitors. It can apply to a single product, an entire product line, or even a company. |
+    | Cancellation Options | Included as part of national upfront negotiations that indicate a date and dollar amount by quarter in which the buyer may choose to exercise the cancellation of dollars. Movie accounts may have rolling cancellation dates |
+    | Composition Index | Measures the concentration of a particular target group of consumers on a given website or ad network, compared to the concentration of that target in the total Internet population. |
+    | CPM | Cost Per thousand - The cost of advertising per thousand potential customers reached by a given broadcast advertisement. |
+    | CPP | Cost Per Rating Point - The cost of reaching one percent of the target audience within a specified geographic area. Used by many media planners in developing, setting, and allocating rating point goals for marketing budgets. |
+    | Creative | Another name for commercial. |
+    | Demographic (Demo) | Division of the audience into various segments. |
+    | Data Management Platform (DMP) | Software that collects and organizes either a buyer’s or seller’s first-party audience data from its website or station feed to improve audience segmentation and enable targeting. |
+    | Demand Side Platform (DSP) | Software platform that feeds a buyer’s media specifications onto an exchange, manages multiple exchange accounts and bids across those accounts. |
+    | Electronic Data Interchange (EDI) | A communication technology used to transmit data from one system to another as a batch file exchange process. |
+    | Estimate  | Reference code used in buying systems for reconciliation |
+    | Equivalized | Units whose impressions are weighted down or up from 30-second impressions based on their ratio of their length to 30 seconds. For example, if a selling title has projected 30-second impressions of 50,000 for a particular demo, equivalized impressions for a 15-second unit would be 25,000 and for a 60-second unit would be 100,000. |
+    | Goals | Goals are usually defined by the buyer at the time of the RPF and used as part of the negotiations between the buyer and seller. Goals could be as broad as overall campaign goal or broken down further into various segments, which usually are daypart. |
+    | Interstitial | One of a series of short items broadcast between program segments. This term can refer to promos, vignettes, or any other short form of programming |
+    | Inventory Type | Type of advertising inventory "commercials" |
+    | Linear TV | A term used for real-time television services that are transmitted on a schedule. Most TV programs originate as linear TV but may become time-shifted for later viewing. |
+    | Media Outlet | Station or network (seller) |
+    | Piggyback | Back-to-back scheduling of two or more brand commercials of one advertiser in network or spot positions. |
+    | Preemption | A term used when a unit does not air as originally scheduled. |
+    | Private Marketplace | Programmatic trading environment in which a publisher makes available a segment of inventory to an advertiser at a defined price. |
+    | Programmatic TV (PTV): | An automated, technology- or data-driven method of buying linear TV |
+    | Rating Source | The rating source and data stream for the audience actuals e.g. Program Live, Commercial Rating +3, etc. |
+    | Reach & Frequency | Number of households exposed to a broadcast media schedule (reach) multiplied by the number of time they are exposed (frequency). The result indicates total potential audience exposure in a given geographical area. |
+    | Sandwich |
+    | Service or Web Service | A software system designed to support interoperable machine-to-machine interaction over a network. |
+    | Supply Side Platform (SSP) | Software platform that feeds a station’s inventory onto the Exchange and allows the station to manage their ad impressions and to maximize revenue. |
+    | Time Separation | A limitation on an ad sales deal that requires units to be separated from themselves or other units in the same primary product category or for the same advertiser by a specified length of time; this may be by unit length or across lengths |
+    | Trading Desk | The team executing the buys using a DSP. |
+    | Universe | The total number of persons/homes in a given population. There are multiple types of universe e.g. Total US, cable coverage, market, zip code, etc. |
+    | Upfront | A term indicating that an advertiser has purchased advertising for the coming broadcast year in an early buying season, typically for the benefit of lower rates and CPM guarantees |
+    | Vignette | Any short item of programming that can be inserted in a program break. See also interstitial. |
+    | VPVH | Viewers per viewing household – more common in national buys. |
+  termsOfService: http://placeholderdomain.io/terms/
+  contact:
+    name: TIP Initiative
+    email: tipinitiative@frontrowadvisory.com
+    url: http://placeholderdomain.io
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+servers:
+  - url: http://placeholderdomain.io
+paths:
+  /seller/logtimes:
+    $ref: 'logTimes.yaml#/paths/~1seller~1logtimes'
+  /seller/invoice:
+    $ref: 'invoice.yaml#/paths/~1seller~1invoice'
+  /buyer/commercialInstructions:
+    $ref: 'commercialInstructions.yaml#/paths/~1buyer~1commercialInstructions'

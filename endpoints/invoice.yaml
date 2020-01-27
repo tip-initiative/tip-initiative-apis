@@ -1,15 +1,17 @@
 openapi: "3.0.0"
+
 components:
- securitySchemes:
-    bearerAuth: 
+  securitySchemes:
+    bearerAuth:
       type: http
       scheme: bearer
-      bearerFormat: JWT 
+      bearerFormat: JWT
+
 security:
   - bearerAuth: []
 
 info:
-  version: 0.0.1.
+  version: 1.2.0
   title: Invoice
   description: Allows the seller to send to the buyer both new and revised invoice information
   termsOfService: http://placeholderdomain.io/terms/
@@ -20,14 +22,19 @@ info:
   license:
     name: MIT
     url: https://opensource.org/licenses/MIT
+
 servers:
   - url: http://placeholderdomain.io
 
 paths:
   /seller/invoice:
     post:
-      summary: Allows the seller to send to the buyer new invoice information (No Request from buyer is Required)
-      description: Allows the seller to send to the buyer new invoice information
+      tags:
+        - Seller
+      summary: Seller Invoice POST
+      description: >-
+        Allows the seller to send to the buyer new invoice information (No Request from buyer is
+        Required)
       operationId: invoicePostSeller
       requestBody:
         description: Invoice body included in request
@@ -35,14 +42,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: 'schemas/invoiceSchemas.yaml#/components/schemas/invoiceObject'
+              $ref: 'schemas/invoiceSchemas.yaml#/components/schemas/InvoiceObject'
       responses:
         '200':
           description: Request processed successfully
           content:
             application/json:
               schema:
-                $ref: 'schemas/invoiceSchemas.yaml#/components/schemas/invoiceObject'
+                $ref: 'schemas/invoiceSchemas.yaml#/components/schemas/InvoiceObject'
         default:
           description: unexpected error
           content:
