@@ -10,7 +10,7 @@ security:
   - bearerAuth: []
 
 info:
-  version: 0.0.1.
+  version: "0.0.1"
   title: Inventory Avails
   description: Inventory Endpoints
   termsOfService: http://placeholderdomain.io/terms/

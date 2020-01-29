@@ -29,10 +29,9 @@ components:
         - endDate
       properties:
         transactionHeader:          
-          $ref: 'commonSchemas.yaml#/components/schemas/transactionHeader'
+          $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
         referenceId:
-          description: Information pertaining to all the ids and their sources that are associated to the RFP;  RFP ID is required          
-          $ref: 'commonSchemas.yaml#/components/schemas/referenceIds'
+          $ref: 'commonSchemas.yaml#/components/schemas/ReferenceId'
         dateSubmitted:
           description: Buyer submit date for the RFP
           type: string
@@ -46,7 +45,7 @@ components:
         advertiser:          
           $ref: 'commonSchemas.yaml#/components/schemas/Advertiser'
         cpeCode:          
-          $ref: 'commonSchemas.yaml#/components/schemas/cpeCode'
+          $ref: 'commonSchemas.yaml#/components/schemas/CpeCode'
         brand:
           $ref: 'commonSchemas.yaml#/components/schemas/Brand'
         product:
@@ -68,7 +67,7 @@ components:
           description: List of mediaoutlet preferences (AND) Outlet Name
           type: array
           items:
-            $ref: 'commonSchemas.yaml#/components/schemas/mediaOutlet'
+            $ref: 'commonSchemas.yaml#/components/schemas/MediaOutlet'
         daypartPreferences:
           description: List of daypart preferences (AND) Daypart Name
           type: array
@@ -101,7 +100,7 @@ components:
         guideline:
           type: array
           items:
-            $ref: 'commonSchemas.yaml#/components/schemas/guideLine'
+            $ref: 'commonSchemas.yaml#/components/schemas/GuideLine'
         objective:
           description: KPI of the overall campaign
           type: string
@@ -119,17 +118,13 @@ components:
           items:
             $ref: '#/components/schemas/goal'
 
-#--------------------------------
-
     audience:
       type: object
       properties:
         audienceSegment:
-          $ref: 'commonSchemas.yaml#/components/schemas/audienceSegment'
+          $ref: 'commonSchemas.yaml#/components/schemas/AudienceSegment'
         audienceMetric:
-          $ref: 'commonSchemas.yaml#/components/schemas/audienceMetric'
-
-#--------------------------------
+          $ref: 'commonSchemas.yaml#/components/schemas/AudienceMetric'
 
     goal:      
       type: object
