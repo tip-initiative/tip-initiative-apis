@@ -471,6 +471,32 @@ components:
         comments:
           description: Comments
           type: string
+    DowObject:
+      properties:
+        Monday:
+          type: boolean
+        Tuesday:
+          type: boolean
+        Wednesday:
+          type: boolean
+        Thursday:
+          type: boolean
+        Friday:
+          type: boolean
+        Saturday:
+          type: boolean
+        Sunday:
+          type: boolean
+    DowEnum:
+      type: string
+      enum: [Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday]
+    DowArray:
+      type: array
+      items:
+        $ref: '#/components/schemas/DowEnum'
+      uniqueItems: true
+      minItems: 1
+      maxItems: 7
     SalesElement:
       properties:
         mediaOutlet:
