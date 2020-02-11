@@ -490,13 +490,6 @@ components:
     DowEnum:
       type: string
       enum: [Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday]
-    DowArray:
-      type: array
-      items:
-        $ref: '#/components/schemas/DowEnum'
-      uniqueItems: true
-      minItems: 1
-      maxItems: 7
     SalesElement:
       properties:
         mediaOutlet:
