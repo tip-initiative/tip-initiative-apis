@@ -558,10 +558,10 @@ components:
             - Orbit
             - Package
             - Sponsorship
-        salesElement:
+        salesElements:
           type: array
           items:
-            $ref: '#/components/schemas/SalesElement'
+            $ref: '#/components/schemas/SalesElementHeader'
         rate:
           description: Seller's rate for the sales element grouping when not pricing the individual sales
             element
