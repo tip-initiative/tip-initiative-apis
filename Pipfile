@@ -1,0 +1,23 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+pipenv = "*"
+black = "==19.10b0"
+grip = "*"
+nodeenv = "*"
+openapi-spec-validator = "*"
+pytest = "*"
+
+[packages]
+attrs = "*"
+cattrs = "*"
+google-api-python-client = "*"
+google-auth-httplib2 = "*"
+google-auth-oauthlib = "*"
+ruamel-yaml = "*"
+
+[requires]
+python_version = "3.8"

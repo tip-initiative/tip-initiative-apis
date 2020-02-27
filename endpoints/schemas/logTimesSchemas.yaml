@@ -50,9 +50,8 @@ components:
           $ref: 'commonSchemas.yaml#/components/schemas/Brand'
         product:
           $ref: 'commonSchemas.yaml#/components/schemas/Product'
-        salesElement:
-          description: Selling Element Name
-          type: string
+        salesElementHeader:
+          $ref: 'commonSchemas.yaml#/components/schemas/SalesElementHeader'
         program:
           description: Program Name
           type: string
@@ -60,7 +59,7 @@ components:
           description: Station Daypart Name
           type: string
         inventoryType:
-          description: inventory Type associated to unit (list of inventory types will be expanded in
+          description: Inventory Type associated to unit (list of inventory types will be expanded in
             the future)
           type: string
           enum:
@@ -121,18 +120,8 @@ components:
         creditInd:
           description: Indicate if the unit was issued a credit
           type: boolean
-        contractInterval:
-          type: string
-          enum:
-            - Monday
-            - Tuesday
-            - Wednesday
-            - Thursday
-            - Friday
-            - Saturday
-            - Sunday
-        timeFrame:
-          $ref: 'commonSchemas.yaml#/components/schemas/TimeWindow'
+        timePeriod:
+          $ref: 'commonSchemas.yaml#/components/schemas/TimePeriod'
         broadcastDate:
           $ref: 'commonSchemas.yaml#/components/schemas/BroadcastDate'
         childUnits:
@@ -145,7 +134,7 @@ components:
         - mediaOutlet
         - advertiser
         - product
-        - salesElement
+        - salesElementHeader
         - length
         - rate
         - status
