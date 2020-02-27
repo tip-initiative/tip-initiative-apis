@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
-  title: Commercial Instructions Schema
   version: 1.2.0
+  title: Commercial Instructions Schema
   description: Commercial Instructions Schema, Based on TIP 4.0 Working Draft
   termsOfService: http://placeholderdomain.io/terms/
   contact:
@@ -73,13 +73,9 @@ components:
             - Revised
             - Cancelled
         inventoryTypes:
-          description: Valid Inventory Types for the instructions
-          type: string
-          enum:
-            - Commercial
-            - Makegood
-            - Bonus
-            - ADU
+          type: array
+          items:
+            $ref: '#/components/schemas/InventoryType'
         mediaOutlet:
           $ref: 'commonSchemas.yaml#/components/schemas/MediaOutlet'
         adId:
@@ -120,33 +116,14 @@ components:
         deliveryService:
           description: Delivery service that will supply the the Ad-ID
           type: string
-        startDate:
-          description: Valid start date for the AlternateID (ADID)
-          type: string
-          format: date
-        endDate:
-          description: Valid end date for AlternateID (ADID)
-          type: string
-          format: date
         hiatusPeriods:
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/DateWindow'
-        contractInterval:
-          description: Valid days for defined calendar week for commercial Instructions (AND)
-          type: string
-          enum:
-            - Monday
-            - Tuesday
-            - Wednesday
-            - Thursday
-            - Friday
-            - Saturday
-            - Sunday
-        timeWindows:
+        timePeriods:
           type: array
           items:
-            $ref: 'commonSchemas.yaml#/components/schemas/TimeWindow'
+            $ref: 'commonSchemas.yaml#/components/schemas/TimePeriod'
         rotationShare:
           description: >-
             If instruction type equals "Rotation" - this will be the percentage assignment to be applied
@@ -174,5 +151,10 @@ components:
         - adId
         - length
         - deliveryService
-        - startDate
-        - endDate
+    InventoryType:
+      type: string
+      enum:
+        - Commercial
+        - Makegood
+        - Bonus
+        - ADU
