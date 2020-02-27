@@ -203,12 +203,9 @@ components:
           type: string
         pricingMetric:
           description: List of pricing metric segments (AND)
-          type: string
-          enum:
-            - CPM
-            - CPP
-            - CPE
-            - CPA
+          type: array
+          items:
+            $ref: '#/components/schemas/PricingMetric'
         pricingMetricValue:
           description: Audience metric dollar value
           type: number
@@ -528,6 +525,21 @@ components:
         comments:
           description: Comments
           type: string
+    InventoryType:
+      description: Valid list of Linear Inventory types
+      type: string
+      enum:
+        - Commercial
+        - Interstitial
+        - Billboard
+    PricingMetric:
+      description: List of pricing metric segments (AND)
+      type: string
+      enum:
+        - CPM
+        - CPP
+        - CPE
+        - CPA
     SalesElementGroup:
       properties:
         salesElementGroupName:
@@ -607,11 +619,7 @@ components:
     SalesElementInventory:
       properties:
         inventoryType:
-          type: string
-          enum:
-            - Commercial
-            - Interstitial
-            - Billboard
+          $ref: '#/components/schemas/InventoryType'
         linkType:
           description: Linked Unit Type
           type: string

@@ -17,7 +17,6 @@ components:
     inventoryAvailsBuyerObject:
       required:
         - transactionHeader
-        - callbackUrl
         - dateSubmitted
         - buyer
         - dateStart
@@ -25,10 +24,6 @@ components:
       properties:
         transactionHeader:
           $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
-        callbackUrl:
-          description: URL the sellers system will POST the requested data to
-          type: string
-          format: uri
         dateSubmitted:
           description: Buyer Submit Date for Inventory
           type: string
@@ -41,31 +36,23 @@ components:
           $ref: 'commonSchemas.yaml#/components/schemas/MediaOutlet'
         buyer:
           $ref: 'commonSchemas.yaml#/components/schemas/Buyer'
-        Advertiser:
+        advertiser:
           $ref: 'commonSchemas.yaml#/components/schemas/Advertiser'
-        dateStart:
-          description: Start date for desired inventory
-          type: string
-          format: date-time
-        dateEnd:
-          description: End date for desired inventory
-          type: string
-          format: date-time
-        DOW:
-          description: List of valid days of week with Y/N value or number of fixed units per day
-          type: string
-          enum: [Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday]
+        availRequest:
+          $ref: 'commonSchemas.yaml#/components/schemas/DateWindow'
+        contractInterval:
+          $ref: 'commonSchemas.yaml#/components/schemas/DayOfWeek'
         Genre:
           description: Desired list of genres names to use for filtering selling titles
           type: array
           items:
             type: string #TODO any constraints on this?
-        sellingTitles:
+        salesElements:
           description: Desired list of selling title names being requested
           type: array
           items:
-            type: string #TODO any constraints on this?
-        Product:
+            $ref: 'commonSchemas.yaml#/components/schemas/SalesElementHeader'
+        product:
           description: Desired list of selling title names being requested
           type: array
           items:
@@ -75,7 +62,7 @@ components:
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/TimeWindow'
-        Daypart:
+        daypart:
           description: Desired list of dayparts
           type: array
           items:
@@ -84,25 +71,22 @@ components:
           description: Desired list of inventory Types
           type: array
           items:
-            type: string
-            enum: [Commercial, Interstitial, Billboard, Custom] #TODO how would custom be handled?
+            $ref: 'commonSchemas.yaml#/components/schemas/InventoryType'
         maxRate:
           description: Float Max spend requirements in unit rates by inventory type
           type: number
           format: float # TODO any constraints on this?
-        Currency:
+        currency:
           description: String	Currency Code (ISO  Code)
           type: string # TODO is this expected in ISO 4217 standard?
         externalComment:
           description: Free form text to accommodate transaction comments and/or activities outside the TIP flow
           type: string
-        Audiences:
-          description: Desired list of inventory Types
+        audiences:
+          description: Audience details; multiple arrays of of audience segments may be included in the request
           type: array
           items:
-            #$ref: 'commonSchemas.yaml#/components/schemas/Audience'  # TODO: No longer exists
-            type: string
-
+            $ref: '#/components/schemas/AudienceObject'
     inventoryAvailsSellerObject:
       properties:
         transactionHeader:
@@ -114,27 +98,39 @@ components:
           $ref: 'commonSchemas.yaml#/components/schemas/Buyer'
         advertiser:
           $ref: 'commonSchemas.yaml#/components/schemas/Advertiser'
-        brand:
-          $ref: 'commonSchemas.yaml#/components/schemas/Brand'
         contacts:
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/Contact'
+        rateCardName:
+          description: Seller's Rate Card reference name
+          type: string
+        mediaOutlets:
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/MediaOutlet'
         availWindow:
           $ref: 'commonSchemas.yaml#/components/schemas/DateWindow'
         salesElements:
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/SalesElement'
+        salesElementGroups:
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/SalesElementGroup'
       required:
         - transactionHeader
         - dateSubmitted
         - buyer
         - availWindow
-
-    inventoryAvailsResponse:  # TODO stub response, needs to be defined
+        - mediaOutlets
+    AudienceObject:
+      type: object
       properties:
-        transactionId:
-          type: string
-        transactionDate:
-          type: string
+        audienceSegment:
+          $ref: 'commonSchemas.yaml#/components/schemas/AudienceSegment'
+        audienceMetric:
+          $ref: 'commonSchemas.yaml#/components/schemas/PricingMetric' 
+  
+

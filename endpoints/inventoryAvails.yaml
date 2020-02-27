@@ -25,7 +25,7 @@ servers:
   - url: http://placeholderdomain.io
 
 paths:
-  /inventory/avails/buyers:
+  /buyer/inventoryAvails:
     post:
       summary: Send the request for the inventory avails required
       description: Allows the Buyer as part of campaign planning to initiate an Inventory Request to Seller
@@ -39,11 +39,17 @@ paths:
               $ref: 'schemas/inventoryAvailsSchemas.yaml#/components/schemas/inventoryAvailsBuyerObject'
       responses:
         '200':
-          description: Request processed successfully
+          description: Request processed successfully. Response is provided synchronously 
           content:
             application/json:
               schema:
-                $ref: 'schemas/inventoryAvailsSchemas.yaml#/components/schemas/inventoryAvailsResponse'
+                $ref: 'schemas/inventoryAvailsSchemas.yaml#/components/schemas/inventoryAvailsSellerObject'
+        '202':
+          description: Request was accepted, Response will be provided asynchonously.
+          content:
+            application/json:
+              schema: 
+                $ref: 'schemas/commonSchemas.yaml#/components/schemas/AcceptedResponse'
         default:
           description: unexpected error
           content:
@@ -51,31 +57,7 @@ paths:
               schema:
                 $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
 
-      callbacks:
-          inventoryAvailsCallback:
-            '{$request.body#/callbackUrl}':
-              post:
-                  requestBody:   # Contents of the callback message
-                    required: true
-                    content:
-                      application/json:
-                        schema:
-                          $ref: 'schemas/inventoryAvailsSchemas.yaml#/components/schemas/inventoryAvailsSellerObject'
-                  responses:   # Expected responses to the callback message
-                    '200':
-                      description: Request processed successfully
-                      content:
-                        application/json:
-                          schema:
-                            $ref: 'schemas/inventoryAvailsSchemas.yaml#/components/schemas/inventoryAvailsResponse'
-                    default:
-                      description: unexpected error
-                      content:
-                        application/json:
-                          schema:
-                            $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
-
-  /inventory/avails/sellers:
+  /seller/inventoryAvails:
     post:
       summary: Seller POSTs the the Inventory Avails information to the buyer's system
       description: Allows the Seller to send inventory criteria such as Stations, Selling Titles, Inventory Types, Pricing, Audience Estimates upon a manual request
@@ -93,7 +75,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'schemas/inventoryAvailsSchemas.yaml#/components/schemas/inventoryAvailsResponse'
+                $ref: 'schemas/commonSchemas.yaml#/components/schemas/AcceptedResponse'
         default:
           description: unexpected error
           content:
