@@ -22,6 +22,9 @@ components:
         transactionNum:
           description: Buyer or Seller generated unique number for transaction
           type: integer
+        originalTransactionNum:
+          description: This is populated with the transactionNum when responding to a request
+          type: integer
         transactionType:
           description: Indicates the type of transaction (New, Changed, Cancelled)
           type: string
@@ -139,6 +142,8 @@ components:
         - productName
     AudienceSegment:
       properties:
+        mediaOutletId:
+          type: string
         audienceSegmentId:
           description: Unique persistent identifier for audience segment
           type: string
@@ -170,11 +175,18 @@ components:
             - Commercial Ratings Live
             - Commercial Rating Live+3
             - Commercial Rating Live+7
+        universes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Universe'
       required:
+        - mediaOutletId
         - audienceSegmentId
         - audienceSegmentName
     AudiencePricingMetric:
       properties:
+        audienceSegmentId:
+          type: string
         audienceMetric:
           description: Type of audience metrics (AND)
           type: string
@@ -202,6 +214,7 @@ components:
           type: number
           format: float
       required:
+        - audienceSegmentId
         - pricingMetric
         - pricingMetricValue
     Universe:
@@ -274,7 +287,7 @@ components:
         referenceId:
           description: Number or ID associated with reference type(s)
           oneOf:
-            - type: number
+            - type: integer
             - type: string
         referenceVersionId:
           description: Version Number to indicate what version of the reference id
@@ -344,24 +357,68 @@ components:
             the following: format HH:MM:SS; In a future release the broadcast time will be modified t
             support UTC Standard
           type: string
+    TimePeriod:
+      properties:
+        dateWindow:
+          $ref: '#/components/schemas/DateWindow'
+        DOW:
+          $ref: '#/components/schemas/DayOfWeek'
+        timeWindow:
+          $ref: '#/components/schemas/TimeWindow'
+      required:
+        - dateWindow
+        - DOW
+        - timeWindow
     DateWindow:
       properties:
         startDate:
+          description: Start Date
           type: string
           format: date
         endDate:
+          description: End Date
           type: string
           format: date
+      required:
+        - startDate
+        - endDate
     TimeWindow:
       properties:
         startTime:
-          description: Valid start time
+          description: Start time
           type: string
           format: date-time
         endTime:
-          description: Valid end time
+          description: End time
           type: string
           format: date-time
+      required:
+        - startTime
+        - endTime
+    DayOfWeek:
+      properties:
+        Sunday:
+          type: boolean
+        Monday:
+          type: boolean
+        Tuesday:
+          type: boolean
+        Wednesday:
+          type: boolean
+        Thursday:
+          type: boolean
+        Friday:
+          type: boolean
+        Saturday:
+          type: boolean
+      required:
+        - Sunday
+        - Monday
+        - Tuesday
+        - Wednesday
+        - Thursday
+        - Friday
+        - Saturday
     Contact:
       properties:
         contactType:
@@ -471,99 +528,84 @@ components:
         comments:
           description: Comments
           type: string
-    DowObject:
+    SalesElementGroup:
       properties:
-        Monday:
-          type: boolean
-        Tuesday:
-          type: boolean
-        Wednesday:
-          type: boolean
-        Thursday:
-          type: boolean
-        Friday:
-          type: boolean
-        Saturday:
-          type: boolean
-        Sunday:
-          type: boolean
-    DowEnum:
-      type: string
-      enum: [Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday]
-    SalesElement:
+        salesElementGroupName:
+          description: Seller's sales element name when grouping salesElements togther
+          type: string
+        salesElementGroupId:
+          description: Seller's sales element group ID associated to the group name
+          type: string
+        salesElementGroupDescription:
+          description: Seller's sales element group description
+          type: string
+        salesElementGroupType:
+          description: The type of Sales Element Grouping a_____
+          type: string
+          enum:
+            - Orbit
+            - Package
+            - Sponsorship
+        salesElement:
+          type: array
+          items:
+            $ref: '#/components/schemas/SalesElement'
+        rate:
+          description: Seller's rate for the sales element grouping when not pricing the individual sales
+            element
+          type: integer
+      required:
+        - salesElementGroupName
+        - salesElementGroupId
+        - salesElementGroupType
+        - salesElement
+    SalesElementHeader:
       properties:
-        mediaOutlet:
-          $ref: '#/components/schemas/MediaOutlet'
+        mediaOutletId:
+          description: MediaOutlet ID
+          type: string
         salesElementName:
           description: Seller's sales element name; this could be either a program or daypart name
           type: string
         salesElementID:
           description: Seller's sales element ID
           type: string
-        salesElementDescription:
-          description: Seller's sales element description
-          type: string
         salesElementType:
           description: >-
-            The type of Sales Element. Time-specific would be based on start and end time other than
-            a specific program. Orbit would be rotator across non-adjacent programs in a day.
+            The type of Sales Element either time-, audience- or program-based. Audience is used to denote
+            video/OTT which is identified by the MediaOutlet
           type: string
           enum:
             - Time-specific
             - Program
-            - Orbit
-            - Package
-        programDetails:
-          description: >-
-            List of programs in the salesElement if there are one or multiple. For example programs in
-            a Package or Orbit.
-          type: string
-        airingDateWindows:
-          $ref: '#/components/schemas/DateWindow'
-        airingTimeWindows:
+            - Audience
+      required:
+        - mediaOutletId
+        - salesElementName
+        - salesElementID
+        - salesElementType
+    SalesElement:
+      properties:
+        SalesElementHeader:
+          $ref: '#/components/schemas/SalesElement'
+        timePeriods:
           type: array
           items:
-            $ref: '#/components/schemas/TimeWindow'
-        hiatusDateWindows:
+            $ref: '#/components/schemas/TimePeriod'
+        programs:
+          description: This includes the list of program names that are included in the salesElement
           type: array
           items:
-            $ref: '#/components/schemas/DateWindow'
-        guideLines:
-          type: array
-          items:
-            $ref: '#/components/schemas/GuideLine'
+            type: string
         salesElementInventory:
           type: array
           items:
             $ref: '#/components/schemas/SalesElementInventory'
       required:
-        - mediaOutlet
-        - salesElementName
-        - salesElementID
-        - salesElementType
-        - airingDateWindows
+        - SalesElementHeader
         - salesElementInventory
     SalesElementInventory:
       properties:
-        calendarType:
-          description: Differentiates between OTT using Calendar and Linear using Broadcast Calendar.
-          type: string
-          enum:
-            - Broadcast
-            - Calendar
-        availDateWindow:
-          $ref: '#/components/schemas/DateWindow'
-        dow:
-          type: string
-          enum:
-            - Monday
-            - Tuesday
-            - Wednesday
-            - Thursday
-            - Friday
-            - Saturday
-            - Sunday
-            - Unrestricted
         inventoryType:
           type: string
           enum:
@@ -574,7 +616,6 @@ components:
           description: Linked Unit Type
           type: string
           enum:
-            - Billboard
             - Piggyback
             - Bookend
             - Sponsorship
@@ -591,37 +632,50 @@ components:
         inventoryLength:
           description: length of unit
           type: integer
-        inventoryCapacity:
-          description: Inventory Capacity
-          type: integer
-        inventoryAvails:
-          description: Inventory Avails
-          type: integer
-        rate:
-          type: integer
-        audiences:
+        timeSeparation:
+          $ref: '#/components/schemas/TimeSeparation'
+        salesElementInventoryDates:
           type: array
           items:
-            $ref: '#/components/schemas/SalesElementAudience'
+            $ref: '#/components/schemas/SalesElementInventoryDate'
       required:
         - inventoryType
-        - rate
-    SalesElementAudience:
+    SalesElementInventoryDate:
       properties:
-        audienceSegment:
-          $ref: '#/components/schemas/AudienceSegment'
-        audiencePricingMetrics:
+        dateType:
+          type: string
+          enum:
+            - Day
+            - Week
+            - Month
+            - Quarter
+        calendarType:
+          description: Differentiates between OTT using Calendar and Linear using Broadcast Calendar.
+          type: string
+          enum:
+            - Broadcast
+            - Calendar
+        dateWindow:
+          $ref: '#/components/schemas/DateWindow'
+        inventoryCapacity:
+          type: string
+        inventoryAvails:
+          type: string
+        inventoryMax:
+          type: string
+        unitCount:
+          type: integer
+        unitRate:
+          type: number
+          format: float
+        audiencesPricingMetrics:
           type: array
           items:
             $ref: '#/components/schemas/AudiencePricingMetric'
-        universe:
-          type: array
-          items:
-            $ref: '#/components/schemas/Universe'
       required:
-        - audienceSegment
-        - audiencePricingMetrics
-        - universe
+        - dateType
+        - calendarType
+        - dateWindow
     Error:
       properties:
         errorCode:
