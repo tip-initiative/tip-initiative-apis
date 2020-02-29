@@ -3,7 +3,7 @@ import re
 import sys
 from copy import copy
 from pathlib import Path
-from typing import List, Any, Union, Dict
+from typing import List, Any, Union, Dict, Iterable
 
 import attr
 from google.auth.transport.requests import Request
@@ -12,7 +12,8 @@ from googleapiclient.discovery import build
 from ruamel.yaml import YAML
 from ruamel.yaml.scalarstring import SingleQuotedScalarString, FoldedScalarString
 
-width = 99
+# Maximum width of line in YAML output
+PAGE_WIDTH = 99
 
 # If modifying these scopes, delete the file token.pickle.
 SCOPES = ["https://www.googleapis.com/auth/spreadsheets.readonly"]
@@ -20,42 +21,26 @@ SCOPES = ["https://www.googleapis.com/auth/spreadsheets.readonly"]
 # The ID and range of a sample spreadsheet.
 SHEET_ID = "1J1v6ol6hSEWSlUPF4ZPMq-TMc_See3ZprvwjS_HqZic"
 
+# Directory where the schemas live.
 SCHEMAS: Path = Path(__file__).absolute().parents[1] / "endpoints" / "schemas"
-SHEETS = [
-    (
-        "commonSchemas.yaml",
-        "Common Models",
-        6,
-        "4.2.0",
-        "Common Schemas",
-        "Common Schemas, based on TIP 4.0 documentation",
-    ),
-    (
-        "logTimesSchemas.yaml",
-        "Seller/ Logtimes",
-        11,
-        "1.2.0",
-        "logTimes Schemas",
-        "logTimes Schemas, based on TIP 4.0 documentation",
-    ),
-    # ("inventoryAvailsSchemas.yaml", "Seller/ InventoryAvails", 11),
-    (
-        "invoiceSchemas.yaml",
-        "Seller/ Invoice",
-        11,
-        "1.2.0",
-        "Invoice Schema",
-        "Invoice Schema, Based on TIP 4.0 Working Draft",
-    ),
-    (
-        "commercialInstructionSchemas.yaml",
-        "Buyer/ CommercialInstructions",
-        11,
-        "1.2.0",
-        "Commercial Instructions Schema",
-        "Commercial Instructions Schema, Based on TIP 4.0 Working Draft",
-    ),
-]
+
+
+@attr.s(frozen=True, slots=True)
+class Sheet:
+    schema: str = attr.ib()
+    name: str = attr.ib()
+    start_row: int = attr.ib()
+    version: str = attr.ib()
+    title: str = attr.ib()
+    description: str = attr.ib()
+
+    @property
+    def range(self) -> str:
+        """Pull data from this Sheet range.
+
+        We start at start_row and only go through column F.
+        """
+        return f"{self.name}!A{self.start_row}:F"
 
 
 def clean_description(description: str):
@@ -63,19 +48,13 @@ def clean_description(description: str):
     r = " ".join(description.split())
     r = re.sub(r"\(\s+", "(", r)
     r = re.sub(r"\s+\)", ")", r)
-    if len(r) > width:
+    if len(r) > PAGE_WIDTH:
         return FoldedScalarString(r)
     else:
         return str(r)
 
 
-pricingMetrics = {
-    "CPM": 5,
-    "CPE": 7,
-}
-
-
-@attr.s(frozen=False)
+@attr.s(frozen=False, slots=True)
 class ModelRow:
     name: str = attr.ib()
     required: str = attr.ib()
@@ -83,7 +62,7 @@ class ModelRow:
     data_type: str = attr.ib(factory=str)
     enum_values: str = attr.ib(factory=str)
     description: str = attr.ib(factory=str, converter=clean_description)
-    sheet_name: str = attr.ib(factory=str)
+    sheet: Sheet = attr.ib(default=None)
 
     @classmethod
     def from_list(cls, row: List[str]):
@@ -92,6 +71,10 @@ class ModelRow:
     @property
     def is_required(self) -> bool:
         return self.required == "Required"
+
+    @property
+    def is_deleted(self) -> bool:
+        return self.required.upper() == "DELETED"
 
     def parse(self, line_num: int = 0) -> Any:
         data_type = self.data_type.strip().lower()
@@ -150,7 +133,7 @@ class ModelRow:
 
     def parse_ref(self) -> dict:
         self.description = ""
-        prefix = "#" if self.sheet_name == "Common Models" else "commonSchemas.yaml#"
+        prefix = "#" if self.sheet.name == "Common Models" else "commonSchemas.yaml#"
         ref = f"{prefix}/components/schemas/{self.data_type.strip()}"
         return {"$ref": SingleQuotedScalarString(ref)}
 
@@ -235,10 +218,7 @@ def header(version: str, title: str, description: str) -> dict:
     )
 
 
-def main():
-    """Shows basic usage of the Sheets API.
-    Prints values from a sample spreadsheet.
-    """
+def google_creds():
     creds = None
     # The file token.pickle stores the user's access and refresh tokens, and is
     # created automatically when the authorization flow completes for the first
@@ -258,21 +238,23 @@ def main():
         # Save the credentials for the next run
         with token_pickle.open("wb") as token:
             pickle.dump(creds, token)
+    return creds
 
-    service = build("sheets", "v4", credentials=creds)
 
-    for schema, sheet_name, start_row, version, title, description in SHEETS:
-        # This is the Sheet range that we pull data from. We start at start_row and only go
-        # through column F.
-        sheet_range = f"{sheet_name}!A{start_row}:F"
+def main(sheets: Iterable[Sheet]):
+    service = build("sheets", "v4", credentials=google_creds())
+
+    sheet: Sheet
+    for sheet in sheets:
 
         # This is the schema output file
-        out_file = SCHEMAS / schema
+        out_file = SCHEMAS / sheet.schema
 
         # Call the Sheets API
         svc = service.spreadsheets()
-        result = svc.values().get(spreadsheetId=SHEET_ID, range=sheet_range).execute()
-        if not (values := result.get("values", [])):
+        result = svc.values().get(spreadsheetId=SHEET_ID, range=sheet.range).execute()
+        values = result.get("values", [])
+        if not values:
             return
 
         schemas: Dict[str, Dict[str, Union[List[str], Dict[str]]]] = {}
@@ -282,11 +264,12 @@ def main():
         v: List[str]
         for c, v in enumerate(values):
             # Skip the row if the "name" field is empty
+            row_num = c + sheet.start_row
             try:
                 row: ModelRow = ModelRow.from_list(v)
-                row.sheet_name = sheet_name
+                row.sheet = sheet
             except TypeError:
-                print(f"WARNING: Stopped at [{sheet_range}]:{c+start_row}: {v}")
+                print(f"WARNING: Stopped at [{sheet.name} -> Row {row_num}]: {v}")
                 break
 
             if row.type == "TypeDef":
@@ -302,7 +285,14 @@ def main():
             if not klass:
                 continue
 
-            if r := row.parse(c):
+            r = row.parse(c)
+            if r:
+                if row.is_deleted:
+                    print(
+                        f"INFO: {row.name} at [{sheet.name} -> Row {row_num}] is marked DELETED."
+                    )
+                    continue
+
                 schemas[klass]["properties"].update(r)
 
                 if row.is_required:
@@ -311,12 +301,12 @@ def main():
                     except KeyError:
                         schemas[klass]["required"] = [row.name]
 
-        content = header(version, title, description)
+        content = header(sheet.version, sheet.title, sheet.description)
         content["components"] = {"schemas": schemas}
         with out_file.open(mode="wt") as fp:
             with YAML(output=fp) as yaml:
                 yaml.indent(mapping=2, sequence=4, offset=2)
-                yaml.width = width
+                yaml.width = PAGE_WIDTH
                 yaml.dump(content)
                 print(f"INFO: Updated {out_file}")
 
@@ -328,9 +318,53 @@ def re_dump(file_path: Union[Path, str]):
 
     with YAML(output=sys.stdout) as yaml:
         yaml.indent(mapping=2, sequence=4, offset=2)
-        yaml.width = width
+        yaml.width = PAGE_WIDTH
         yaml.dump(xyz)
 
 
+SHEETS: List[Sheet] = [
+    Sheet(
+        "commonSchemas.yaml",
+        "Common Models",
+        6,
+        "4.2.0",
+        "Common Schemas",
+        "Common Schemas, based on TIP 4.0 documentation",
+    ),
+    Sheet(
+        "logTimesSchemas.yaml",
+        "Seller/ Logtimes",
+        11,
+        "1.2.0",
+        "logTimes Schemas",
+        "logTimes Schemas, based on TIP 4.0 documentation",
+    ),
+    # Sheet(
+    #     "inventoryAvailsSchemas.yaml",
+    #     "Seller/ InventoryAvails",
+    #     11,
+    #     "0.0.1",
+    #     "Inventory Avails Schemas",
+    #     "Inventory Avails Schemas, based on TIP 4.0.0 documentation",
+    # ),
+    Sheet(
+        "invoiceSchemas.yaml",
+        "Seller/ Invoice",
+        11,
+        "1.2.0",
+        "Invoice Schema",
+        "Invoice Schema, Based on TIP 4.0 Working Draft",
+    ),
+    Sheet(
+        "commercialInstructionSchemas.yaml",
+        "Buyer/ CommercialInstructions",
+        11,
+        "1.2.0",
+        "Commercial Instructions Schema",
+        "Commercial Instructions Schema, Based on TIP 4.0 Working Draft",
+    ),
+]
+
+
 if __name__ == "__main__":
-    main()
+    main(SHEETS)
