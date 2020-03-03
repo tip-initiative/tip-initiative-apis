@@ -113,7 +113,7 @@ info:
     name: MIT
     url: https://opensource.org/licenses/MIT
 servers:
-  - url: http://placeholderdomain.io
+  - url: https://raw.githubusercontent.com/touficmoubarak/tip-initiative-apis/develop/endpoints
 paths:
   /seller/logtimes:
     $ref: 'logTimes.yaml#/paths/~1seller~1logtimes'
