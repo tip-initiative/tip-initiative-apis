@@ -20,10 +20,23 @@ components:
           description: TIP version of the interface
           type: string
         transactionNum:
-          description: Buyer or Seller generated unique number for transaction
-          type: integer
+          description: The identification information of the current request
+          $ref: '#/components/schemas/TransactionId'
         originalTransactionNum:
           description: This is populated with the transactionNum when responding to a request
+          $ref: '#/components/schemas/TransactionId'
+        timeStamp:
+          description: Date and time the transaction was created
+          type: string
+          format: date
+      required:
+        - tipVersion
+        - transactionNum
+        - timeStamp
+    TransactionId:
+      properties:
+        transactionNum:
+          description: Buyer or Seller generated unique number for transaction
           type: integer
         transactionType:
           description: Indicates the type of transaction (New, Changed, Cancelled)
@@ -38,17 +51,11 @@ components:
         sourceName:
           description: Indicates the source "trading partner" name
           type: string
-        timeStamp:
-          description: Date and time the transaction was created
-          type: string
-          format: date
       required:
-        - tipVersion
         - transactionNum
         - transactionType
         - sourceId
         - sourceName
-        - timeStamp
     MediaOutlet:
       properties:
         mediaOutletId:
@@ -416,6 +423,13 @@ components:
         - Thursday
         - Friday
         - Saturday
+    InventoryType:
+      description: Valid list of Linear Inventory types
+      type: string
+      enum:
+        - Commercial
+        - Interstitial
+        - Billboard
     Contact:
       properties:
         contactType:
@@ -525,13 +539,6 @@ components:
         comments:
           description: Comments
           type: string
-    InventoryType:
-      description: Valid list of Linear Inventory types
-      type: string
-      enum:
-        - Commercial
-        - Interstitial
-        - Billboard
     PricingMetric:
       description: List of pricing metric segments (AND)
       type: string
@@ -552,7 +559,7 @@ components:
           description: Seller's sales element group description
           type: string
         salesElementGroupType:
-          description: The type of Sales Element Grouping a_____
+          description: The type of Sales Element Grouping
           type: string
           enum:
             - Orbit
@@ -579,7 +586,7 @@ components:
         salesElementName:
           description: Seller's sales element name; this could be either a program or daypart name
           type: string
-        salesElementID:
+        salesElementId:
           description: Seller's sales element ID
           type: string
         salesElementType:
@@ -594,12 +601,12 @@ components:
       required:
         - mediaOutletId
         - salesElementName
-        - salesElementID
+        - salesElementId
         - salesElementType
     SalesElement:
       properties:
         SalesElementHeader:
-          $ref: '#/components/schemas/SalesElement'
+          $ref: '#/components/schemas/SalesElementHeader'
         timePeriods:
           type: array
           items:
@@ -640,8 +647,6 @@ components:
         inventoryLength:
           description: length of unit
           type: integer
-        timeSeparation:
-          $ref: '#/components/schemas/TimeSeparation'
         salesElementInventoryDates:
           type: array
           items:

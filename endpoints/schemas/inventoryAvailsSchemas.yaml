@@ -1,8 +1,8 @@
 openapi: "3.0.0"
 info:
-  version: "0.0.1"
+  version: "4.2.0"
   title: Inventory Avails Schemas
-  description: Inventory Avails Schemas, based on TIP 4.0.0 documentation
+  description: Inventory Avails Schemas, based on TIP 4.2.0 documentation
   termsOfService: http://placeholderdomain.io/terms/
   contact:
     name: TIP Initiative
@@ -14,13 +14,8 @@ info:
 paths: {}
 components:
   schemas:
-    inventoryAvailsBuyerObject:
-      required:
-        - transactionHeader
-        - dateSubmitted
-        - buyer
-        - dateStart
-        - dateEnd
+    inventoryAvailsBuyerRequestObject:
+      description: Allows the Buyer as campaign planning to initiate an inventory Request to the Seller
       properties:
         transactionHeader:
           $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
@@ -38,35 +33,14 @@ components:
           $ref: 'commonSchemas.yaml#/components/schemas/Buyer'
         advertiser:
           $ref: 'commonSchemas.yaml#/components/schemas/Advertiser'
-        availRequest:
-          $ref: 'commonSchemas.yaml#/components/schemas/DateWindow'
-        contractInterval:
-          $ref: 'commonSchemas.yaml#/components/schemas/DayOfWeek'
-        Genre:
-          description: Desired list of genres names to use for filtering selling titles
+        contacts:
           type: array
           items:
-            type: string #TODO any constraints on this?
-        salesElements:
-          description: Desired list of selling title names being requested
-          type: array
-          items:
-            $ref: 'commonSchemas.yaml#/components/schemas/SalesElementHeader'
-        product:
-          description: Desired list of selling title names being requested
-          type: array
-          items:
-            $ref: 'commonSchemas.yaml#/components/schemas/Product'
-        timeFrame:
-          description: Start and End Time(s) for desired inventory
-          type: array
-          items:
-            $ref: 'commonSchemas.yaml#/components/schemas/TimeWindow'
-        daypart:
-          description: Desired list of dayparts
-          type: array
-          items:
-            type: string #TODO any constraints on this?
+            $ref: 'commonSchemas.yaml#/components/schemas/Contact'
+        timePeriods:
+          $ref: 'commonSchemas.yaml#/components/schemas/TimePeriod'
+        guidelines:
+          $ref: 'commonSchemas.yaml#/components/schemas/GuideLine'
         inventoryTypes:
           description: Desired list of inventory Types
           type: array
@@ -82,12 +56,19 @@ components:
         externalComment:
           description: Free form text to accommodate transaction comments and/or activities outside the TIP flow
           type: string
-        audiences:
+        audienceSegments:
           description: Audience details; multiple arrays of of audience segments may be included in the request
           type: array
           items:
-            $ref: '#/components/schemas/AudienceObject'
-    inventoryAvailsSellerObject:
+            $ref: 'commonSchemas.yaml#/components/schemas/AudienceSegment'
+      required:
+        - transactionHeader
+        - dateSubmitted
+        - mediaOutlet
+        - timePeriods
+        - audienceSegments
+    inventoryAvailsSellerResponseObject:
+      description: Allows the Seller to post to the buyer their catalog of selling products, pricing and audience information
       properties:
         transactionHeader:
           $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
@@ -109,6 +90,10 @@ components:
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/MediaOutlet'
+        audienceSegments:
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/AudienceSegment'
         availWindow:
           $ref: 'commonSchemas.yaml#/components/schemas/DateWindow'
         salesElements:
@@ -122,15 +107,6 @@ components:
       required:
         - transactionHeader
         - dateSubmitted
-        - buyer
-        - availWindow
         - mediaOutlets
-    AudienceObject:
-      type: object
-      properties:
-        audienceSegment:
-          $ref: 'commonSchemas.yaml#/components/schemas/AudienceSegment'
-        audienceMetric:
-          $ref: 'commonSchemas.yaml#/components/schemas/PricingMetric' 
-  
-
+        - availWindow
+        - salesElements
