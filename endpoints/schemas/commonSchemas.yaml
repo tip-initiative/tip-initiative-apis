@@ -193,7 +193,17 @@ components:
     AudiencePricingMetric:
       properties:
         audienceSegmentId:
+          description: ID of the Audience Segment
           type: string
+        audienceMetric:
+          $ref: '#/components/schemas/AudienceMetric'
+        pricingMetric:
+          $ref: '#/components/schemas/PricingMetric'
+      required:
+        - audienceSegmentId
+        - pricingMetric
+    AudienceMetric:
+      properties:
         audienceMetric:
           description: Type of audience metrics (AND)
           type: string
@@ -207,18 +217,24 @@ components:
             - Scarcity
         audienceMetricValue:
           description: audienceMetric value
-          type: string
+          type: integer
+      required:
+        - audienceMetric
+        - audienceMetricValue
+    PricingMetric:
+      properties:
         pricingMetric:
           description: List of pricing metric segments (AND)
-          type: array
-          items:
-            $ref: '#/components/schemas/PricingMetric'
+          type: string
+          enum:
+            - CPM
+            - CPP
+            - CPE
+            - CPA
         pricingMetricValue:
-          description: Audience metric dollar value
           type: number
           format: float
       required:
-        - audienceSegmentId
         - pricingMetric
         - pricingMetricValue
     Universe:
@@ -423,6 +439,30 @@ components:
         - Thursday
         - Friday
         - Saturday
+    DailyUnitDistribution:
+      properties:
+        Sunday:
+          type: integer
+        Monday:
+          type: integer
+        Tuesday:
+          type: integer
+        Wednesday:
+          type: integer
+        Thursday:
+          type: integer
+        Friday:
+          type: integer
+        Saturday:
+          type: integer
+      required:
+        - Sunday
+        - Monday
+        - Tuesday
+        - Wednesday
+        - Thursday
+        - Friday
+        - Saturday    
     InventoryType:
       description: Valid list of Linear Inventory types
       type: string
@@ -430,6 +470,23 @@ components:
         - Commercial
         - Interstitial
         - Billboard
+    LinkType:
+      description: Linked Unit Type
+      type: string
+      enum:
+        - Piggyback
+        - Bookend
+        - Sponsorship
+        - Package
+    InventoryPosition:
+      type: string
+      enum:
+        - First
+        - Middle
+        - Last
+        - Pre-Roll
+        - Mid-Roll
+        - Post-Roll   
     Contact:
       properties:
         contactType:
@@ -539,14 +596,6 @@ components:
         comments:
           description: Comments
           type: string
-    PricingMetric:
-      description: List of pricing metric segments (AND)
-      type: string
-      enum:
-        - CPM
-        - CPP
-        - CPE
-        - CPA
     SalesElementGroup:
       properties:
         salesElementGroupName:
@@ -628,22 +677,9 @@ components:
         inventoryType:
           $ref: '#/components/schemas/InventoryType'
         linkType:
-          description: Linked Unit Type
-          type: string
-          enum:
-            - Piggyback
-            - Bookend
-            - Sponsorship
-            - Package
+          $ref: '#/components/schemas/LinkType'
         inventoryPosition:
-          type: string
-          enum:
-            - First
-            - Middle
-            - Last
-            - Pre-Roll
-            - Mid-Roll
-            - Post-Roll
+          $ref: '#/components/schemas/InventoryPosition'
         inventoryLength:
           description: length of unit
           type: integer
@@ -656,6 +692,7 @@ components:
     SalesElementInventoryDate:
       properties:
         dateType:
+          description: indicate the span of the inventory described
           type: string
           enum:
             - Day
@@ -671,14 +708,16 @@ components:
         dateWindow:
           $ref: '#/components/schemas/DateWindow'
         inventoryCapacity:
+          description: The total maximum number of units for the SalesElementInventory
           type: string
         inventoryAvails:
+          description: The number of "units" remaining for the  SalesElementInventory
           type: string
         inventoryMax:
+          description: The maximum from the remaining "units" allowed for the SalesElementInventory 
           type: string
-        unitCount:
-          type: integer
         unitRate:
+          description: The rate for  individual unit 
           type: number
           format: float
         audiencesPricingMetrics:
@@ -689,6 +728,93 @@ components:
         - dateType
         - calendarType
         - dateWindow
+    SalesElementTransaction:
+      properties:
+        salesElement:
+          $ref: '#/components/schemas/SalesElementHeader'
+        timePeriods:
+          type: array
+          items:
+            $ref: '#/components/schemas/TimePeriod'
+        programs:
+          description: This includes the list of program names that are included in the salesElement
+          type: array
+          items:
+            type: string
+        salesElementTransactionInventory:
+          description: an array of all inventory of the given salesElement proposed for the transaction 
+          type: array
+          items:
+            $ref: '#/components/schemas/SalesElementTransactionInventory'
+      required:
+        - salesElement
+        - timePeriods
+        - salesElementTransactionInventory
+    SalesElementTransactionInventory:
+      properties:
+        lineNum:
+          type: string
+        lineReference:
+          type: string
+        inventoryType:
+          $ref: '#/components/schemas/InventoryType'
+        linkType:
+          $ref: '#/components/schemas/LinkType'
+        inventoryPosition:
+          $ref: '#/components/schemas/InventoryPosition'
+        inventoryLength:
+          type: integer
+        brand:
+          $ref: '#/components/schemas/Brand'
+        product:
+          $ref: '#/components/schemas/Product'
+        cpeCode:
+          $ref: '#/components/schemas/CpeCode'
+        adu:
+          type: boolean
+        bonus:
+          type: boolean
+        salesElementTransactionDates:
+          description: an array of proposed dates and unit distribution
+          type: array
+          items:
+            $ref: '#/components/schemas/SalesElementTransactionDate'
+    SalesElementTransactionDate:
+      properties:
+        dateType:
+          description: indicate the span of the inventory described
+          type: string
+          enum:
+            - Day
+            - Week
+            - Month
+            - Quarter
+        calendarType:
+          description: Differentiates between OTT using Calendar and Linear using Broadcast Calendar.
+          type: string
+          enum:
+            - Broadcast
+            - Calendar
+        dateWindow:
+          $ref: '#/components/schemas/DateWindow'
+        unitCount:
+          description: units proposed/purchased for the transaction
+          type: integer
+        dailyUnitDistribution:
+          $ref: '#/components/schemas/DailyUnitDistribution'
+        rate:
+          type: number
+          format: float
+        audiencesPricingMetrics:
+          description: an array of audiences associated/targeted and the pricing values
+          type: array
+          items:
+            $ref: '#/components/schemas/AudiencePricingMetric'
+      required:
+        - dateType
+        - calendarType
+        - dateWindow
+        - unitCount
     Error:
       properties:
         errorCode:

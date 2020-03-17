@@ -41,6 +41,9 @@ components:
           $ref: 'commonSchemas.yaml#/components/schemas/TimePeriod'
         guidelines:
           $ref: 'commonSchemas.yaml#/components/schemas/GuideLine'
+        political:
+          description: Indicates if request for inventory requires rates to support political 
+          type: boolean
         inventoryTypes:
           description: Desired list of inventory Types
           type: array
@@ -61,6 +64,11 @@ components:
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/AudienceSegment'
+        pricingMetrics:
+          description: an optional array of applicable/required pricing metrics
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/PricingMetric'
       required:
         - transactionHeader
         - dateSubmitted

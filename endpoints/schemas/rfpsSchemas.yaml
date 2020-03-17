@@ -30,8 +30,11 @@ components:
       properties:
         transactionHeader:          
           $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
-        referenceId:
-          $ref: 'commonSchemas.yaml#/components/schemas/ReferenceId'
+        referenceIds:
+          description: Information pertaining to all the ids and their sources that are associated to the RFP;  RFP ID is required
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/ReferenceId'
         dateSubmitted:
           description: Buyer submit date for the RFP
           type: string
@@ -68,11 +71,11 @@ components:
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/MediaOutlet'
-        daypartPreferences:
-          description: List of daypart preferences (AND) Daypart Name
-          type: array
-          items:
-            type: string
+        # daypartPreferences:
+        #   description: List of daypart preferences (AND) Daypart Name
+        #   type: array
+        #   items:
+        #     type: string
         unitlengthPreferences:
           description: List of unit length preferences (AND) Unit Length
           type: array
@@ -83,21 +86,20 @@ components:
           type: array
           items:
             type: string
-        startDate:
-          description: Start date requested
-          type: string
-          format: date
-        endDate:
-          description: End date requested
-          type: string
-          format: date
-        hiatusPeriod:
+        # startDate:
+        #   description: Start date requested
+        #   type: string
+        #   format: date
+        # endDate:
+        #   description: End date requested
+        #   type: string
+        #   format: date
+        hiatusWindows:
           description: List of hiatus broadcast dates that are not valid
           type: array
           items:
-            type: string
-            format: date
-        guideline:
+            $ref: 'commonSchemas.yaml#/components/schemas/DateWindow'
+        guidelines:
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/GuideLine'
@@ -107,32 +109,25 @@ components:
         comments:
           description: Additional information
           type: string
-        audiences:
+        audienceSegments:
           description: Audience segment details
           type: array
           items: 
-            $ref: '#/components/schemas/audience'
-        goals:
+            $ref: 'commonSchemas.yaml#/components/schemas/AudienceSegment'
+        campaignGoals:
           description: Goal details
           type: array
           items:
-            $ref: '#/components/schemas/goal'
-
-    audience:
-      type: object
-      properties:
-        audienceSegment:
-          $ref: 'commonSchemas.yaml#/components/schemas/AudienceSegment'
-        audienceMetric:
-          $ref: 'commonSchemas.yaml#/components/schemas/AudienceMetric'
-
-    goal:      
+            $ref: '#/components/schemas/CampaignGoal'
+    CampaignGoal:      
       type: object
       properties:
         distributionType:
           description: Goal type elements
           type: string
           enum: [MediaType, Quarter, Week , Daypart, Market, MediaOutlet, AddedValue]
+        audienceSegment:
+          $ref: 'commonSchemas.yaml#/components/schemas/AudienceSegment'
         distributionMethod:
           description: Distibution method elements
           type: string
