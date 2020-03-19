@@ -232,6 +232,7 @@ components:
             - CPE
             - CPA
         pricingMetricValue:
+          description: The dollar value associated to the pricing metric
           type: number
           format: float
       required:
@@ -334,6 +335,14 @@ components:
           description: Estimate code provided from the buyer. Packages client, product and estimate codes
             together.
           type: string
+    RateCard:
+      properties:
+        rateCardId: 
+          description:  Seller's Rate Card ID
+          type: string
+        rateCardName:
+          description: Seller's Rate Card Name associated to the ID
+          type: string
     GuideLine:
       properties:
         guideLineType:
@@ -388,15 +397,14 @@ components:
       required:
         - dateWindow
         - DOW
-        - timeWindow
     DateWindow:
       properties:
         startDate:
-          description: Start Date
+          description: Start Date, indicating the start of period, inclusive.
           type: string
           format: date
         endDate:
-          description: End Date
+          description: End Date, indicating the end of period, inclusive.
           type: string
           format: date
       required:
@@ -405,17 +413,18 @@ components:
     TimeWindow:
       properties:
         startTime:
-          description: Start time
+          description: Start time, indicates the starting time for the period. Time is considered local to the mediaoutlet
           type: string
           format: date-time
         endTime:
-          description: End time
+          description: End time, indicates the ending time for the period. Time is interpreted based on the local timezone of the mediaoutlet
           type: string
           format: date-time
       required:
         - startTime
         - endTime
     DayOfWeek:
+      description: a collection for the days of the week with boolean values (true, false).
       properties:
         Sunday:
           type: boolean
@@ -440,6 +449,7 @@ components:
         - Friday
         - Saturday
     DailyUnitDistribution:
+      description: Ad units per day of week. 0 indicates no ads will be expected to be aired on the correspomding day of the week
       properties:
         Sunday:
           type: integer

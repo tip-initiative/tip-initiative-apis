@@ -19,14 +19,6 @@ components:
     rfpRequestObject:
       description: This object will contains the details for a proposal request to the seller
       type: object
-      required:
-        - transactionHeader
-        - referenceId
-        - dateSubmitted
-        - advertiser
-        - contact
-        - startDate
-        - endDate
       properties:
         transactionHeader:          
           $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
@@ -62,7 +54,12 @@ components:
           description: Buyer comission percentage amount
           type: number
         marketPreferences:
-          description: List of market preferences (AND) Market Name
+          description: List of market preferences (AND) "<Market Name>"
+          type: array
+          items:
+            type: string
+        audiencePreferences:
+          description: List of audience preferences (AND) "<Demo Name>"
           type: array
           items:
             type: string
@@ -71,34 +68,21 @@ components:
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/MediaOutlet'
-        # daypartPreferences:
-        #   description: List of daypart preferences (AND) Daypart Name
-        #   type: array
-        #   items:
-        #     type: string
         unitlengthPreferences:
           description: List of unit length preferences (AND) Unit Length
           type: array
           items:
-            type: string
+            type: integer
         programPreferences:
           description: List of program preferences (AND) Program Name
           type: array
           items:
             type: string
-        # startDate:
-        #   description: Start date requested
-        #   type: string
-        #   format: date
-        # endDate:
-        #   description: End date requested
-        #   type: string
-        #   format: date
-        hiatusWindows:
-          description: List of hiatus broadcast dates that are not valid
-          type: array
-          items:
-            $ref: 'commonSchemas.yaml#/components/schemas/DateWindow'
+        # hiatusWindows:
+        #   description: List of hiatus broadcast dates that are not valid
+        #   type: array
+        #   items:
+        #     $ref: 'commonSchemas.yaml#/components/schemas/DateWindow'
         guidelines:
           type: array
           items:
@@ -109,16 +93,19 @@ components:
         comments:
           description: Additional information
           type: string
-        audienceSegments:
-          description: Audience segment details
-          type: array
-          items: 
-            $ref: 'commonSchemas.yaml#/components/schemas/AudienceSegment'
         campaignGoals:
           description: Goal details
           type: array
           items:
             $ref: '#/components/schemas/CampaignGoal'
+      required:
+        - transactionHeader
+        - referenceId
+        - dateSubmitted
+        - advertiser
+        - contact
+        - startDate
+        - endDate
     CampaignGoal:      
       type: object
       properties:
@@ -126,8 +113,6 @@ components:
           description: Goal type elements
           type: string
           enum: [MediaType, Quarter, Week , Daypart, Market, MediaOutlet, AddedValue]
-        audienceSegment:
-          $ref: 'commonSchemas.yaml#/components/schemas/AudienceSegment'
         distributionMethod:
           description: Distibution method elements
           type: string
@@ -135,9 +120,26 @@ components:
         distributionName:
           description: Name of goal
           type: string
+        distribution:
+          type: string
+          enum:
+            - percentage
+            - Exact
         distributionValue:
           description: Distribution values in percentage or exact value
           type: string
         distributionOrder:
           description: Only populate when multiple distributions types are defined. Defines the nesting order for the distributions
           type: integer
+        distributionOrderParent:
+          description: Only populate when multiple distributions types are defined; defines the parent when there are multiple nesting orders 
+          type: integer
+          nullable: true
+      required:
+        - distributionType
+        - distributionMethod
+        - distributionName
+        - distribution 
+        - distributionValue
+        - distributionOrder
+
