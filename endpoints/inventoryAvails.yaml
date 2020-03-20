@@ -49,7 +49,7 @@ paths:
               schema: 
                 $ref: 'schemas/commonSchemas.yaml#/components/schemas/AcceptedResponse'
         default:
-          description: unexpected error
+          description: unexpected error, return the appropriate and corresponding HTTP status code matching the error 
           content:
             application/json:
               schema:
@@ -57,7 +57,10 @@ paths:
   /seller/inventoryAvails:
     post:
       summary: Seller POSTs the the Inventory Avails information to the buyer's system
-      description: This endpoint will be hosted at the buyer side, Allows the Seller to send inventory criteria such as Stations, Selling Titles, Inventory Types, Pricing, Audience Estimates upon a manual request
+      description: > 
+        This endpoint will be hosted at the buyer side, 
+        Allows the Seller to send inventory criteria such as Stations, Selling Elements, Inventory Types, Pricing, Audience Estimates 
+        either solicited or unsolicited
       operationId: inventoryAvailsSellers
       requestBody:
         description: Seller POSTs the the Inventory Avails information to the buyer's system
@@ -74,7 +77,7 @@ paths:
               schema:
                 $ref: 'schemas/commonSchemas.yaml#/components/schemas/AcceptedResponse'
         default:
-          description: unexpected error
+          description: unexpected error, return the appropriate and corresponding HTTP status code matching the error 
           content:
             application/json:
               schema:

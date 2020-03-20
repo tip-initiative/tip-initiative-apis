@@ -52,7 +52,9 @@ components:
         maxRate:
           description: Float Max spend requirements in unit rates by inventory type
           type: number
-          format: float # TODO any constraints on this?
+          format: float
+          minimum: 0
+          exclusiveMinimum: true
         currency:
           description: String	Currency Code (ISO  Code)
           type: string # TODO is this expected in ISO 4217 standard?
@@ -91,9 +93,8 @@ components:
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/Contact'
-        rateCardName:
-          description: Seller's Rate Card reference name
-          type: string
+        rateCard:
+          $ref: 'commonSchemas.yaml#/components/schemas/RateCard'
         mediaOutlets:
           type: array
           items:
