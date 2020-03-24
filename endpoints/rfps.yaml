@@ -35,7 +35,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: 'schemas/rfpSchemas.yaml#/components/schemas/rfpRequestObject'
+              $ref: 'schemas/rfpsSchemas.yaml#/components/schemas/rfpRequestObject'
       responses:
         '200':
           description: request processed successfully
@@ -63,7 +63,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: 'schemas/rfpSchemas.yaml#/components/schemas/rfpRequestObject'
+              $ref: 'schemas/rfpsSchemas.yaml#/components/schemas/rfpRequestObject'
       responses:
         '200':
           description: request processed successfully

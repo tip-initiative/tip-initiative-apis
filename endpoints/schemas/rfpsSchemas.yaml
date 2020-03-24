@@ -1,7 +1,7 @@
 openapi: "3.0.0"
 info:
   title: RFP Schema
-  version: 1.0.0
+  version: 4.2.0
   description: RFP Schema, Based on TIP 4.0 Working Draft
   termsOfService: http://placeholderdomain.io/terms/
   contact: 
@@ -17,7 +17,8 @@ paths: {}
 components:
   schemas:
     rfpRequestObject:
-      description: This object will contains the details for a proposal request to the seller
+      description: >-
+        Allows the buyer to submit a Request for Proposal (RFP) to the seller with overall media budget, goals and overalll terms
       type: object
       properties:
         transactionHeader:          
@@ -39,20 +40,28 @@ components:
           $ref: 'commonSchemas.yaml#/components/schemas/Buyer'       
         advertiser:          
           $ref: 'commonSchemas.yaml#/components/schemas/Advertiser'
-        cpeCode:          
-          $ref: 'commonSchemas.yaml#/components/schemas/CpeCode'
         brand:
           $ref: 'commonSchemas.yaml#/components/schemas/Brand'
         product:
           $ref: 'commonSchemas.yaml#/components/schemas/Product'
         contact:
           $ref: 'commonSchemas.yaml#/components/schemas/Contact'
+        currency:
+          $ref: 'commonSchemas.yaml#/components/schemas/Currency'
         budget:
           description: Overall total budget for the RFP
           type: number
         comission:
           description: Buyer comission percentage amount
           type: number
+        timePeriodPreferences:
+          description: >-
+            array of date-time windows of interest to the buyer, 
+            the array must at least contain one item
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/TimeWindow'
+          minItems: 1
         marketPreferences:
           description: List of market preferences (AND) "<Market Name>"
           type: array
@@ -78,11 +87,6 @@ components:
           type: array
           items:
             type: string
-        # hiatusWindows:
-        #   description: List of hiatus broadcast dates that are not valid
-        #   type: array
-        #   items:
-        #     $ref: 'commonSchemas.yaml#/components/schemas/DateWindow'
         guidelines:
           type: array
           items:
@@ -104,8 +108,6 @@ components:
         - dateSubmitted
         - advertiser
         - contact
-        - startDate
-        - endDate
     CampaignGoal:      
       type: object
       properties:
@@ -127,7 +129,8 @@ components:
             - Exact
         distributionValue:
           description: Distribution values in percentage or exact value
-          type: string
+          type: number
+          format: float
         distributionOrder:
           description: Only populate when multiple distributions types are defined. Defines the nesting order for the distributions
           type: integer
@@ -143,3 +146,9 @@ components:
         - distributionValue
         - distributionOrder
 
+    rfpResponseObject: # TODO stub response, needs to be defined
+      description: Response data # TODO stub response, needs to be defined
+      properties:
+        transactionHeader:
+          $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
+        
