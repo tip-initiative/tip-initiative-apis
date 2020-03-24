@@ -28,7 +28,7 @@ components:
         timeStamp:
           description: Date and time the transaction was created
           type: string
-          format: date
+          format: date-time
       required:
         - tipVersion
         - transactionNum
@@ -190,18 +190,6 @@ components:
         - mediaOutletId
         - audienceSegmentId
         - audienceSegmentName
-    AudiencePricingMetric:
-      properties:
-        audienceSegmentId:
-          description: ID of the Audience Segment
-          type: string
-        audienceMetric:
-          $ref: '#/components/schemas/AudienceMetric'
-        pricingMetric:
-          $ref: '#/components/schemas/PricingMetric'
-      required:
-        - audienceSegmentId
-        - pricingMetric
     AudienceMetric:
       properties:
         audienceMetric:
@@ -221,16 +209,18 @@ components:
       required:
         - audienceMetric
         - audienceMetricValue
+    PricingMetricOption:
+      description: a list of valid pricing metric values
+      type: string
+      enum:
+        - CPM
+        - CPP
+        - CPE
+        - CPA
     PricingMetric:
       properties:
         pricingMetric:
-          description: List of pricing metric segments (AND)
-          type: string
-          enum:
-            - CPM
-            - CPP
-            - CPE
-            - CPA
+          $ref: '#/components/schemas/PricingMetricOption'
         pricingMetricValue:
           description: The dollar value associated to the pricing metric
           type: number
@@ -238,6 +228,18 @@ components:
       required:
         - pricingMetric
         - pricingMetricValue
+    AudiencePricingMetric:
+      properties:
+        audienceSegmentId:
+          description: ID of the Audience Segment
+          type: string
+        audienceMetric:
+          $ref: '#/components/schemas/AudienceMetric'
+        pricingMetric:
+          $ref: '#/components/schemas/PricingMetric'
+      required:
+        - audienceSegmentId
+        - pricingMetric
     Universe:
       properties:
         universeType:
@@ -321,6 +323,18 @@ components:
         - referenceSourceId
         - referenceType
         - referenceId
+    Currency:
+      description: > 
+        Currency Code is based on ISO 4217. 
+        Below is a short list of most widely used codes for in North America
+      type: string
+      enum:
+        - USD   # US Dollar
+        - CAD   # Canadian Dollar
+        - EUR   # Euro
+        - GBP   # Great Britain Pound
+        - MXN   # Maxican Peso
+        - AUD   # Austrialian Dollar
     CpeCode:
       properties:
         clientCode:
@@ -426,53 +440,55 @@ components:
     DayOfWeek:
       description: a collection for the days of the week with boolean values (true, false).
       properties:
-        Sunday:
+        sunday:
           type: boolean
-        Monday:
+        monday:
           type: boolean
-        Tuesday:
+        tuesday:
           type: boolean
-        Wednesday:
+        wednesday:
           type: boolean
-        Thursday:
+        thursday:
           type: boolean
-        Friday:
+        friday:
           type: boolean
-        Saturday:
+        saturday:
           type: boolean
       required:
-        - Sunday
-        - Monday
-        - Tuesday
-        - Wednesday
-        - Thursday
-        - Friday
-        - Saturday
+        - sunday
+        - monday
+        - tuesday
+        - wednesday
+        - thursday
+        - friday
+        - saturday
     DailyUnitDistribution:
-      description: Ad units per day of week. 0 indicates no ads will be expected to be aired on the correspomding day of the week
+      description: >
+        Ad units per day of week. 
+        0 indicates no ads will be expected to air on the corresponding day of the week
       properties:
-        Sunday:
+        sunday:
           type: integer
-        Monday:
+        monday:
           type: integer
-        Tuesday:
+        tuesday:
           type: integer
-        Wednesday:
+        wednesday:
           type: integer
-        Thursday:
+        thursday:
           type: integer
-        Friday:
+        friday:
           type: integer
-        Saturday:
+        saturday:
           type: integer
       required:
-        - Sunday
-        - Monday
-        - Tuesday
-        - Wednesday
-        - Thursday
-        - Friday
-        - Saturday    
+        - sunday
+        - monday
+        - tuesday
+        - wednesday
+        - thursday
+        - friday
+        - saturday    
     InventoryType:
       description: Valid list of Linear Inventory types
       type: string
@@ -606,37 +622,6 @@ components:
         comments:
           description: Comments
           type: string
-    SalesElementGroup:
-      properties:
-        salesElementGroupName:
-          description: Seller's sales element name when grouping salesElements togther
-          type: string
-        salesElementGroupId:
-          description: Seller's sales element group ID associated to the group name
-          type: string
-        salesElementGroupDescription:
-          description: Seller's sales element group description
-          type: string
-        salesElementGroupType:
-          description: The type of Sales Element Grouping
-          type: string
-          enum:
-            - Orbit
-            - Package
-            - Sponsorship
-        salesElements:
-          type: array
-          items:
-            $ref: '#/components/schemas/SalesElementHeader'
-        rate:
-          description: Seller's rate for the sales element grouping when not pricing the individual sales
-            element
-          type: integer
-      required:
-        - salesElementGroupName
-        - salesElementGroupId
-        - salesElementGroupType
-        - salesElement
     SalesElementHeader:
       properties:
         mediaOutletId:
@@ -825,6 +810,37 @@ components:
         - calendarType
         - dateWindow
         - unitCount
+    SalesElementGroup:
+      properties:
+        salesElementGroupName:
+          description: Seller's sales element name when grouping salesElements togther
+          type: string
+        salesElementGroupId:
+          description: Seller's sales element group ID associated to the group name
+          type: string
+        salesElementGroupDescription:
+          description: Seller's sales element group description
+          type: string
+        salesElementGroupType:
+          description: The type of Sales Element Grouping
+          type: string
+          enum:
+            - Orbit
+            - Package
+            - Sponsorship
+        salesElements:
+          type: array
+          items:
+            $ref: '#/components/schemas/SalesElementHeader'
+        rate:
+          description: Seller's rate for the sales element grouping when not pricing the individual sales
+            element
+          type: integer
+      required:
+        - salesElementGroupName
+        - salesElementGroupId
+        - salesElementGroupType
+        - salesElement
     Error:
       properties:
         errorCode:

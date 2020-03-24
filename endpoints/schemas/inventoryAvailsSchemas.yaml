@@ -22,11 +22,11 @@ components:
         dateSubmitted:
           description: Buyer Submit Date for Inventory
           type: string
-          format: date-time
+          format: date
         dueDate:
           description: Due Date for Inventory Information
           type: string
-          format: date-time
+          format: date
         mediaOutlet:
           $ref: 'commonSchemas.yaml#/components/schemas/MediaOutlet'
         buyer:
@@ -56,8 +56,7 @@ components:
           minimum: 0
           exclusiveMinimum: true
         currency:
-          description: String	Currency Code (ISO  Code)
-          type: string # TODO is this expected in ISO 4217 standard?
+          $ref: 'commonSchemas.yaml#/components/schemas/Currency'
         externalComment:
           description: Free form text to accommodate transaction comments and/or activities outside the TIP flow
           type: string
@@ -66,11 +65,11 @@ components:
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/AudienceSegment'
-        pricingMetrics:
+        pricingMetricOptions:
           description: an optional array of applicable/required pricing metrics
           type: array
           items:
-            $ref: 'commonSchemas.yaml#/components/schemas/PricingMetric'
+            $ref: 'commonSchemas.yaml#/components/schemas/PricingMetricOption'
       required:
         - transactionHeader
         - dateSubmitted
@@ -95,6 +94,8 @@ components:
             $ref: 'commonSchemas.yaml#/components/schemas/Contact'
         rateCard:
           $ref: 'commonSchemas.yaml#/components/schemas/RateCard'
+        currency:
+          $ref: 'commonSchemas.yaml#/components/schemas/Currency'
         mediaOutlets:
           type: array
           items:

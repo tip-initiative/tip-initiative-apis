@@ -1,0 +1,82 @@
+openapi: "3.0.0"
+info:
+  title: RFP Schema
+  version: 4.2.0
+  description: Allows the buyer to respond to an Inventory Post with shopping cart purchase details
+  termsOfService: http://placeholderdomain.io/terms/
+  contact: 
+    name: TIP Initiative
+    email: tipinitiative@frontrowadvisory.com
+    url: http://placeholderdomain.io
+  license: 
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+
+paths: {}
+
+components:
+  schemas:
+    shoppingCartRequestObject:
+      type: object
+      properties:
+        transactionHeader:          
+          $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
+        referenceIds:
+          description: Information pertaining to all the ids and their sources that are associated to the RFP;  RFP ID is required
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/ReferenceId'
+        dateSubmitted:
+          description: Buyer submit date for the RFP
+          type: string
+          format: date
+        dueDate:
+          description: Due date for the response
+          type: string
+          format: date
+        buyer:          
+          $ref: 'commonSchemas.yaml#/components/schemas/Buyer'       
+        advertiser:          
+          $ref: 'commonSchemas.yaml#/components/schemas/Advertiser'
+        brand:
+          $ref: 'commonSchemas.yaml#/components/schemas/Brand'
+        product:
+          $ref: 'commonSchemas.yaml#/components/schemas/Product'
+        contact:
+          $ref: 'commonSchemas.yaml#/components/schemas/Contact'
+        currency:
+          $ref: 'commonSchemas.yaml#/components/schemas/Currency'
+        budget:
+          description: Overall total budget for the RFP
+          type: number
+        comission:
+          description: Buyer comission percentage amount
+          type: number
+        shoppingCart:
+          type: array
+          items:
+            $ref: '#/components/schemas/ShoppingCart'
+
+    ShoppingCart:
+      description: Individual items for the shopping cart experience
+      type: object
+      properties: 
+        mediaOutlets:
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/MediaOutlet'
+        audienceSegments:
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/AudienceSegment'
+        salesElements:
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/SalesElementTransaction'
+        salesElementGroups:
+          description: >-
+              #TO DO - Heather should we consider a SalesElementGrouptTransaction
+          type: array
+          items:
+            $ref:
+              'commonSchemas.yaml#/components/schemas/SalesElementTransaction'
