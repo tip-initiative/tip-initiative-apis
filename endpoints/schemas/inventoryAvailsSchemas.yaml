@@ -75,6 +75,7 @@ components:
         - dateSubmitted
         - mediaOutlet
         - timePeriods
+        - political
         - audienceSegments
     inventoryAvailsSellerResponseObject:
       description: Allows the Seller to post to the buyer their catalog of selling products, pricing and audience information

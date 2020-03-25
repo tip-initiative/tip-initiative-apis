@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  version: 1.2.0
+  version: 4.2.0
   title: logTimes Schemas
   description: logTimes Schemas, based on TIP 4.0 documentation
   termsOfService: http://placeholderdomain.io/terms/
@@ -168,9 +168,4 @@ components:
         broadcastDate:
           $ref: 'commonSchemas.yaml#/components/schemas/BroadcastDate'
     LogTimesResponse:
-      properties:
-        transactionId:
-          type: string
-        transactionDate:
-          type: string
-          format: date
+      $ref: 'commonSchemas.yaml#/components/schemas/AcceptedResponse'

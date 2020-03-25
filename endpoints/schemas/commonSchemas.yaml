@@ -26,7 +26,7 @@ components:
           description: This is populated with the transactionNum when responding to a request
           $ref: '#/components/schemas/TransactionId'
         timeStamp:
-          description: Date and time the transaction was created
+          description: Date and time the transaction was created. Date time is UTC
           type: string
           format: date-time
       required:
@@ -266,7 +266,7 @@ components:
           oneOf:
             - type: string
             - type: string
-              format: date-time
+              format: date
         cancellationPriorDays:
           description: Number of days notice needed prior to start quarter or broadcast date to request
             cancellation
@@ -400,6 +400,7 @@ components:
             the following: format HH:MM:SS; In a future release the broadcast time will be modified t
             support UTC Standard
           type: string
+          pattern: '^(([0-1][0-9])|(2[0-3]))(:[0-5][0-9]){2}$'
     TimePeriod:
       properties:
         dateWindow:
@@ -427,13 +428,18 @@ components:
     TimeWindow:
       properties:
         startTime:
-          description: Start time, indicates the starting time for the period. Time is considered local to the mediaoutlet
+          description: >-
+            Start time, indicates the starting time for the period. 
+            Time is considered local to the mediaoutlet. Using military time HH:MM:SS
           type: string
-          format: date-time
+          pattern: '^(([0-1][0-9])|(2[0-3]))(:[0-5][0-9]){2}$'
         endTime:
-          description: End time, indicates the ending time for the period. Time is interpreted based on the local timezone of the mediaoutlet
+          description: >-
+            End time, indicates the ending time for the period. 
+            Time is interpreted based on the local timezone of the mediaoutlet. 
+             Using military time HH:MM:SS
           type: string
-          format: date-time
+          pattern: '^(([0-1][0-9])|(2[0-3]))(:[0-5][0-9]){2}$'
       required:
         - startTime
         - endTime
