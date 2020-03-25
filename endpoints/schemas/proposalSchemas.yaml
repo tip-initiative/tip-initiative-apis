@@ -1,6 +1,6 @@
 openapi: "3.0.0"
 info:
-  version: 0.0.1
+  version: 4.2.0
   title: Create a proposal to send to the buyer system
   description: Seller/Proposal Schemas, based on TIP 4.0.0 documentation
   termsOfService: http://placeholderdomain.io/terms/
@@ -79,9 +79,6 @@ components:
           enum:
           - Month
           - Week
-        Currency:
-          description: Currency in which the proposal is being negotiated
-          type: string  # TODO any constraints?
         equivalized:
           description: true means impressions are equivalized, false means impressions are unequivalized
           type: boolean
@@ -105,6 +102,9 @@ components:
           type: string  # TODO any constraints?
         rateCard:
           $ref: 'commonSchemas.yaml#/components/schemas/RateCard'
+        currency:
+          description: Currency in which the proposal is being negotiated
+          $ref: 'commonSchemas.yaml#/components/schemas/Currency'
         mediaOutlets:
           description: an array of mediaoutlets included in the proposal
           type: array
@@ -131,52 +131,52 @@ components:
         - equivalized
         - mediaOutlets
 
-    GetProposalsResponse:
-      properties:
-        Proposals:
-          description: Array of proposals
-          type: array
-          items:
-            $ref: '#/components/schemas/ProposalObject'
+    # GetProposalsResponse:
+    #   properties:
+    #     Proposals:
+    #       description: Array of proposals
+    #       type: array
+    #       items:
+    #         $ref: '#/components/schemas/ProposalObject'
 
-    GetProposalsQueryObject:
-      required:
-        - limitCount     
-      properties:
-        dateStart:
-          description: Start Date 
-          type: string
-          format: date-time
-        dateEnd:
-          description: End Date
-          type: string
-          format: date-time
-        limitCount:
-          description: Limit the number of items to return
-          type: integer
-          format: int32
+    # GetProposalsQueryObject:
+    #   required:
+    #     - limitCount     
+    #   properties:
+    #     dateStart:
+    #       description: Start Date 
+    #       type: string
+    #       format: date-time
+    #     dateEnd:
+    #       description: End Date
+    #       type: string
+    #       format: date-time
+    #     limitCount:
+    #       description: Limit the number of items to return
+    #       type: integer
+    #       format: int32
 
-    ProposalCancel:
-      required:
-        - transactionHeader
-        - referenceId
-      properties:
-        transactionHeader:
-          $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
-        referenceId:
-          description: Information grouping all reference ids and their source that are associated to the proposal
-          type: string # TODO any constraints?
+    # ProposalCancel:
+    #   required:
+    #     - transactionHeader
+    #     - referenceId
+    #   properties:
+    #     transactionHeader:
+    #       $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
+    #     referenceId:
+    #       description: Information grouping all reference ids and their source that are associated to the proposal
+    #       type: string # TODO any constraints?
 
-    RFPCancel:
-      required:
-        - transactionHeader
-        - RFPId     
-      properties:
-        transactionHeader:
-          $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
-        RFPId:
-          description: Buyer-generated unique identifier for the RFP
-          type: string # TODO any constraints?
+    # RFPCancel:
+    #   required:
+    #     - transactionHeader
+    #     - RFPId     
+    #   properties:
+    #     transactionHeader:
+    #       $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
+    #     RFPId:
+    #       description: Buyer-generated unique identifier for the RFP
+    #       type: string # TODO any constraints?
 
 
 

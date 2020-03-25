@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  version: 1.2.0
+  version: 4.2.0
   title: Invoice Schema
   description: Invoice Schema, Based on TIP 4.0 Working Draft
   termsOfService: http://placeholderdomain.io/terms/

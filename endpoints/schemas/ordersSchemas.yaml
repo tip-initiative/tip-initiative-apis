@@ -1,39 +1,208 @@
 openapi: "3.0.0"
 
 info:
-  version: 1.0.0
-  title: Orders Schemas
-  description: Todo
-  termsOfService: https://videa.tv/visitor/
+  version: 4.2.0
+  title: Buyer requesting New Order or Order Change Request to Seller
+  description: Buyer/Order, based on TIP 4.0.0 documentation
+  termsOfService: http://placeholderdomain.io/terms/
   contact:
-    name: Videa API
-    email: apidocs@videa.tv
-    url: https://videa.tv/
+    name: TIP Initiative
+    email: tipinitiative@frontrowadvisory.com
+    url: http://placeholderdomain.io
   license:
     name: MIT
     url: https://opensource.org/licenses/MIT
-servers:
-  - url: https://api.videa.tv
 
 paths: {} # no paths
 
+
 components:
   schemas:
-
-    ordersSubscriptionRequest:
-      description: A client creates a subscription by issuing a request against the subscriptions resource. The subscription namespace is client-defined via the POST operation.
-      required:
-        - resource
-        - notificationUrl
+    BuyerOrderRequestObject:
+      description: >-
+        Allows the buyer to send the detailed order information for a given order; 
+        execution is a summary of the sales elements details, 
+        thus allowing the seller to automatically create lines based on individual system's rules.  Buyer must submit entire order for Order Change Request using the last confirmed booked order version response.  
+        Seller will be responsible for deciphering change request from buyer
       properties:
-        resource:
-          description: Resource path to watch
+        transactionHeader:
+          $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
+        referenceIds:
+          description: an array of ID connecting all relevant objects leading to the order including RFP, Proposal, and order
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/ReferenceId'
+        orderBookedDate:
+          description: Date in which the buyer
           type: string
-          enum: [AcknowledgeReceiptNotification, CancelOrderResponse, CancelOrderResponse, ConfirmOrderNotification, CreateOrderResponse, OpenOrderNotification, ReviseOrderResponse]
-        notificationUrl:
-          description: The target web hook URL
+          format: date
+        buyer:
+          $ref: 'commonSchemas.yaml#/components/schemas/Buyer'
+        commission:
+          description: Buyer commission percentage
+          type: number  
+          format: double 
+        advertiser:
+          $ref: 'commonSchemas.yaml#/components/schemas/Advertiser'
+        brand:
+          $ref: 'commonSchemas.yaml#/components/schemas/Brand'
+        product:
+          $ref: 'commonSchemas.yaml#/components/schemas/Product'
+        cpeCode:
+          $ref: 'commonSchemas.yaml#/components/schemas/CpeCode'
+        contacts:
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/Contact'
+        revenueType:
+          description: How the proposal is being negotiated for payment terms
           type: string
-          format: uri
-        clientState:
-          description: Opaque string passed back to the client on all notifications. Callers may choose to use this to provide tagging mechanisms.
+          enum: 
+          - Cash
+          - Barter
+          - Trade
+        businessType:
+          description: Seller-defined type of business 
+          type: string  # TODO any constraints?
+        localNational:
+          description: Market Type for Proposal 
           type: string
+          enum:
+          - local
+          - National
+        dealYear:
+          description: The broadcast year in which the proposal is being negotiated for
+          type: integer
+          format: int32
+        billingCalendar:
+          description: The calendar in which the proposal is being negotiated
+          type: string
+          enum: 
+          - Broadcast
+          - Calendar
+        billingCycle:
+          description: The billing within the calendar the units should be billed 
+          type: string
+          enum:
+          - Month
+          - Week
+        equivalized:
+          description: true means impressions are equivalized, false means impressions are unequivalized
+          type: boolean
+        dateWindow:
+          description: An array of Date intervals
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/DateWindow'
+        cancellationTerms:
+          $ref: 'commonSchemas.yaml#/components/schemas/CancellationTerms'
+        timeSeparation:
+          description: List of unit lengths being proposed with separation agreement by a specific length of time; separation may be across all lengths
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/TimeSeparation'
+        termsOfSales:
+          description: The information specific to payment terms, preemption status, etc.
+          type: string  # TODO any constraints?
+        externalComment:
+          description: Free form text to accommodate transaction comments and/or activities outside the TIP flow
+          type: string  # TODO any constraints?
+        rateCard:
+          $ref: 'commonSchemas.yaml#/components/schemas/RateCard'
+        currency:
+          description: Currency in which the proposal is being negotiated
+          $ref: 'commonSchemas.yaml#/components/schemas/Currency'
+        mediaOutlets:
+          description: an array of mediaoutlets included in the proposal
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/MediaOutlet'
+        audienceSegments:
+          description: an array of Audience Segments per media outlet 
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/AudienceSegment'
+        salesElements:
+          description: an array of sales elements in the proposal/transaction
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/SalesElementTransaction'
+      required:
+        - transactionHeader
+        - referenceId
+        - contact
+        - buyer
+        - commission
+        - revenueType
+        - businessType
+        - equivalized
+        - mediaOutlets
+    OrderConformationResponseObject:
+      description: >-
+        Allows the seller to respond to an order or order change request with a confirmed booked confirmation
+      properties:
+        transactionHeader:
+          $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
+        referenceIds:
+          description: array of relevant Ids to allow for proper reference and lineage of the order
+          $ref: 'commonSchemas.yaml#/components/schemas/ReferenceId'
+        confirmedBookedDate:
+          description: Date that the Order was Confirmed Booked
+          type: string
+          format: date
+        comments: 
+          description: Free form comments with "Not Accepted" Reason
+          type: string
+      required:
+        - transactionHeader
+        - referenceIds
+        - confirmedBookedDate
+    OrderRecalorCancelRequestObject:
+      description: >-
+        Allows the buyer to recall a new order or order change request or
+        request an order to be cancelled (prior to start); 
+        seller must respond back with acceptance or failure for cancellation or recall rquest.  
+        Note: Seller's system defined the rules for acceptance or failure of request.
+      properties:
+        transactionHeader:
+          $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
+        referenceIds:
+          $ref: 'commonSchemas.yaml#/components/schemas/ReferenceId'
+        status:
+          description: action requested, Valid Status elements
+          type: string
+          enum:
+            - Recall
+            - Cancel
+        cancelDate:
+          description: Effective date for cancellation request 
+          type: string
+          format: date
+        comments:
+          description: Free Form Comments
+          type: string
+        externalComment:
+          description: >-
+            Free form text to accommodate transaction comments and/or activities outside the TIP flow
+          type: string
+      required:
+        - transactionHeader
+        - referenceIds
+        - status
+    OrderRejectResponseObject:
+      description: >-
+        Allows the seller to reject a new order or order change request; 
+        seller must respond back with rejection comments
+      properties:
+        transactionHeader:
+          $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
+        referenceIds:
+          $ref: 'commonSchemas.yaml#/components/schemas/ReferenceId'
+        rejectionDate:
+          description: Date the order was rejected
+          type: string
+          format: date
+        comments:
+          description: Free form comments
+          type: string
+
