@@ -1,7 +1,7 @@
 openapi: "3.0.0"
 
 info:
-  version: 1.0.0
+  version: 4.2.0
   title: RFP
   description: Allows the buyer to submit a Request for Proposal (RFP) to the seller with overall media budget, goal and makegood terms and optionally include specific detailed inventory requests
   termsOfService: http://placeholderdomain.io/terms/
@@ -26,10 +26,17 @@ security:
   - bearerAuth: []
 
 paths:
-  /rfps:
+  /buyer/rfp:
     post:
-      summary: Create an RFP in the seller's system
-      operationId: createRFP
+      summary: Create or Change a previously requested an RFP in the seller's system. 
+      description: >-
+        This endpoint resides on the seller side. the purpose of the endpoint is to allow the buyer to:
+        A: create New RFP is the seller system. transactionHeader.transactionNum.transactionType = New
+        B: request changes to be made to a previously communicated RFP. 
+          in order to correctly handele the change request the following conditions must be satisfied:
+          B.1: transactionHeader.transactionNum.transactionType=Changed
+          B.2: transactionHeader.originalTransactionNum.transactionNum must indicate the original transactionNum
+      operationId: NewChangeRFP
       requestBody:
         required: true
         content:
@@ -39,54 +46,42 @@ paths:
       responses:
         '200':
           description: request processed successfully
+          content:
+            application/json:
+              schema:
+                $ref: 'schemas/commonSchemas.yaml#/components/schemas/AcceptedResponse'        
         default:
           description: unexpected error
           content:
             application/json:
               schema:                
-                $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'                
-
-  /rfps/{rfpId}:
-    parameters:
-    - name: rfpId
-      in: path
-      required: true
-      description: The RFP Id
-      schema:
-        type: string
-
-    patch:
-      summary: Change the details of a RFP in the seller's system
-      operationId: updateRFP
+                $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'     
+             
+  /buyer/rfp/cancel:
+    post:
+      summary: Cancel a previously submitted RFP in the seller's system. 
+      description: >-
+        Buyer can send this request to cancel a previous request. 
+        originalTransactionNum values needs to indicate which request is to be cancelled.<br/>
+        NOTE#1: transactionNum.transactionType = Cancelled<br/>
+        NOTE#2: originalTransactionNum.transactionNum must refer to the transaction in question to be cancelled
+      operationId: CancelRFP
       requestBody:
-        required: true # TODO: What should the request body look like for a PATCH?
+        required: true
         content:
           application/json:
             schema:
-              $ref: 'schemas/rfpsSchemas.yaml#/components/schemas/rfpRequestObject'
+              $ref: 'schemas/commonSchemas.yaml#/components/schemas/TransactionHeader'        
       responses:
         '200':
           description: request processed successfully
-        '404':
-          description: RFP not found
-        default:
-          description: unexpected error
           content:
-            application/json:    
+            application/json:
               schema:
-                $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'        
-
-    delete:
-      summary: Cancel a specific Proposal in the seller's system
-      operationId: cancelRFP
-      responses:
-        '200':
-          description:  Request processed successfully
-        '404':
-          description: RFP not found
+                $ref: 'schemas/commonSchemas.yaml#/components/schemas/AcceptedResponse'        
         default:
           description: unexpected error
           content:
             application/json:
-              schema:
-                $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
+              schema:                
+                $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'     

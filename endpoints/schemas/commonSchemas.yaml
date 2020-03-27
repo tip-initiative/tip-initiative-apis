@@ -149,8 +149,6 @@ components:
         - productName
     AudienceSegment:
       properties:
-        mediaOutletId:
-          type: string
         audienceSegmentId:
           description: Unique persistent identifier for audience segment
           type: string
@@ -182,14 +180,19 @@ components:
             - Commercial Ratings Live
             - Commercial Rating Live+3
             - Commercial Rating Live+7
+      required:
+        - audienceSegmentId
+        - audienceSegmentName
+    AudienceSegmentDetail:
+      properties:
+        mediaOutletId:
+          type: string
         universes:
           type: array
           items:
             $ref: '#/components/schemas/Universe'
       required:
         - mediaOutletId
-        - audienceSegmentId
-        - audienceSegmentName
     AudienceMetric:
       properties:
         audienceMetric:
@@ -357,6 +360,29 @@ components:
         rateCardName:
           description: Seller's Rate Card Name associated to the ID
           type: string
+    BillingOption:
+      properties:
+        billingCalendar:
+          description: The calendar is which the units should be billed
+          type: string
+          enum:
+            - Broadcast
+            - Calendar
+            - Nielsen
+        billingCycle:
+          description: The billing within the calendar the units should be billed 
+          type: string
+          enum:
+            - Month
+            - Week
+        billingGranularity:
+          description: The order's invoice split parameters
+          type: string
+          enum:
+          - Order
+          - Brand
+          - Inventory Type
+          - Insertion Order
     GuideLine:
       properties:
         guideLineType:
@@ -504,12 +530,21 @@ components:
         - Billboard
     LinkType:
       description: Linked Unit Type
-      type: string
-      enum:
-        - Piggyback
-        - Bookend
-        - Sponsorship
-        - Package
+      properties:
+        linkType:
+          type: string
+          enum:
+            - Billboard
+            - Piggyback
+            - Bookend
+            - Sandwich
+            - Donut
+            - Sponsorship
+            - Package
+        linkNum:
+          type: integer
+        linkSeq:
+          type: integer
     InventoryPosition:
       type: string
       enum:

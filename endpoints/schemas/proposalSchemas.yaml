@@ -67,18 +67,8 @@ components:
           description: The broadcast year in which the proposal is being negotiated for
           type: integer
           format: int32
-        billingCalendar:
-          description: The calendar in which the proposal is being negotiated
-          type: string
-          enum: 
-          - Broadcast
-          - Calendar
-        billingCycle:
-          description: The billing within the calendar the units should be billed 
-          type: string
-          enum:
-          - Month
-          - Week
+        billingOption:
+          $ref: 'commonSchemas.yaml#/components/schemas/BillingOption'
         equivalized:
           description: true means impressions are equivalized, false means impressions are unequivalized
           type: boolean
@@ -114,7 +104,7 @@ components:
           description: an array of Audience Segments per media outlet 
           type: array
           items:
-            $ref: 'commonSchemas.yaml#/components/schemas/AudienceSegment'
+            $ref: 'commonSchemas.yaml#/components/schemas/AudienceSegmentDetail'
         salesElements:
           description: an array of sales elements in the proposal/transaction
           type: array
@@ -131,52 +121,6 @@ components:
         - equivalized
         - mediaOutlets
 
-    # GetProposalsResponse:
-    #   properties:
-    #     Proposals:
-    #       description: Array of proposals
-    #       type: array
-    #       items:
-    #         $ref: '#/components/schemas/ProposalObject'
-
-    # GetProposalsQueryObject:
-    #   required:
-    #     - limitCount     
-    #   properties:
-    #     dateStart:
-    #       description: Start Date 
-    #       type: string
-    #       format: date-time
-    #     dateEnd:
-    #       description: End Date
-    #       type: string
-    #       format: date-time
-    #     limitCount:
-    #       description: Limit the number of items to return
-    #       type: integer
-    #       format: int32
-
-    # ProposalCancel:
-    #   required:
-    #     - transactionHeader
-    #     - referenceId
-    #   properties:
-    #     transactionHeader:
-    #       $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
-    #     referenceId:
-    #       description: Information grouping all reference ids and their source that are associated to the proposal
-    #       type: string # TODO any constraints?
-
-    # RFPCancel:
-    #   required:
-    #     - transactionHeader
-    #     - RFPId     
-    #   properties:
-    #     transactionHeader:
-    #       $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
-    #     RFPId:
-    #       description: Buyer-generated unique identifier for the RFP
-    #       type: string # TODO any constraints?
 
 
 
