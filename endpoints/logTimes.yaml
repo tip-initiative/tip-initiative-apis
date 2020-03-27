@@ -10,7 +10,7 @@ security:
   - bearerAuth: []
 
 info:
-  version: 1.2.0
+  version: 4.0rc1
   title: logtimes
   description: Seller posts a Logtimes on the buyer's server
   termsOfService: http://placeholderdomain.io/terms/

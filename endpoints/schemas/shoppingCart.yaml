@@ -52,31 +52,37 @@ components:
         comission:
           description: Buyer comission percentage amount
           type: number
-        shoppingCart:
-          type: array
-          items:
-            $ref: '#/components/schemas/ShoppingCart'
-
-    ShoppingCart:
-      description: Individual items for the shopping cart experience
-      type: object
-      properties: 
         mediaOutlets:
+          description: A collection of media outlets to include in the shopping cart
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/MediaOutlet'
         audienceSegments:
           type: array
           items:
-            $ref: 'commonSchemas.yaml#/components/schemas/AudienceSegment'
+            $ref: 'commonSchemas.yaml#/components/schemas/AudienceSegmentDetail'        
+        shoppingCart:
+          type: array
+          items:
+            $ref: '#/components/schemas/ShoppingCart'
+      required:
+        - transactionHeader
+        - referenceIds
+        - dateSubmitted
+        - advertiser
+        - contact
+    ShoppingCart:
+      description: Individual items for the shopping cart experience
+      type: object
+      properties: 
         salesElements:
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/SalesElementTransaction'
-        salesElementGroups:
-          description: >-
-              #TO DO - Heather should we consider a SalesElementGrouptTransaction
-          type: array
-          items:
-            $ref:
-              'commonSchemas.yaml#/components/schemas/SalesElementTransaction'
+        # salesElementGroups:
+        #   description: >-
+        #       #TO DO - Heather should we consider a SalesElementGrouptTransaction
+        #   type: array
+        #   items:
+        #     $ref:
+        #       'commonSchemas.yaml#/components/schemas/SalesElementTransaction'

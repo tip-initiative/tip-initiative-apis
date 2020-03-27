@@ -10,7 +10,7 @@ security:
   - bearerAuth: []
 
 info:
-  version: 0.0.1
+  version: 4.0rc1
   title: Proposal
   description: |
     * Allows the seller to respond back to the buyer with the detailed proposal for a given RFP or revised proposal; 
@@ -29,38 +29,13 @@ servers:
   - url: http://placeholderdomain.io
 
 paths:
-  /proposals:
-    get:
-      summary: Retrieve a list of proposal in buyers system to ensure buyer and seller systems are synchronized
-      description: Retrieve a list of proposal in buyers system
-      operationId: getProposals
-      requestBody:
-        description: Retrieve a list of proposal in buyers system
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: 'schemas/proposalSchemas.yaml#/components/schemas/GetProposalsQueryObject'
-      responses:
-        '200':
-          description: Request processed successfully
-          content:
-            application/json:
-              schema:
-                $ref: 'schemas/proposalSchemas.yaml#/components/schemas/GetProposalsResponse'
-        default:
-          description: unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
-
+  /seller/proposal:
     post:
-      summary: Create a proposal in the buyers system
-      description: Create a proposal in the buyers system
-      operationId: createProposal
+      summary: Create or Change a proposal in the buyers system
+      description: Create or Change a proposal in the buyers system
+      operationId: createChangeProposal
       requestBody:
-        description: Create a proposal in the buyers system
+        description: Create or Change a proposal in the buyers system
         required: true
         content:
           application/json:
@@ -72,37 +47,37 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'schemas/proposalSchemas.yaml#/components/schemas/RFPResponse'
-              examples:
-                RFPResponse:
-                  $ref: 'examples/rfpExamples.yaml#/components/examples/RFPResponse'
+                $ref: 'schemas/commonSchemas.yaml#/components/schemas/AcceptedResponse'
         default:
           description: unexpected error
           content:
             application/json:
               schema:
                 $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
-
-    delete:
+  /seller/proposal/cancel:
+    post:
       summary: Cancel a proposal in the buyer's system
-      description: Cancel a proposal in the buyer's system
+      description: >-
+        Cancel a proposal in the buyer's system
+        This endpoint allows the seller to request from the buyer to cancel and ignore 
+        a previously communicated proposal request. As Follows:<br/>
+        NOTE#1:originalTransactionNum values needs to indicate which request is to be cancelled.<br/>
+        NOTE#2: transactionNum.transactionType = Cancelled<br/>
+        NOTE#3: originalTransactionNum.transactionNum must refer to the transaction in question to be cancelled
       operationId: cancelProposal
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: 'schemas/proposalSchemas.yaml#/components/schemas/ProposalCancel'
+              $ref: 'schemas/commonSchemas.yaml#/components/schemas/TransactionHeader'
       responses:
         '200':
           description: Request processed successfully
           content:
             application/json:
               schema:
-                $ref: 'schemas/proposalSchemas.yaml#/components/schemas/RFPResponse'
-              examples:
-                RFPResponse:
-                  $ref: 'examples/rfpExamples.yaml#/components/examples/RFPResponse'
+                $ref: 'schemas/commonSchemas.yaml#/components/schemas/AcceptedResponse'
         default:
           description: unexpected error
           content:

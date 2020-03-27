@@ -74,18 +74,8 @@ components:
           description: The broadcast year in which the proposal is being negotiated for
           type: integer
           format: int32
-        billingCalendar:
-          description: The calendar in which the proposal is being negotiated
-          type: string
-          enum: 
-          - Broadcast
-          - Calendar
-        billingCycle:
-          description: The billing within the calendar the units should be billed 
-          type: string
-          enum:
-          - Month
-          - Week
+        billingOption:
+          $ref: 'commonSchemas.yaml#/components/schemas/BillingOption'
         equivalized:
           description: true means impressions are equivalized, false means impressions are unequivalized
           type: boolean
@@ -121,12 +111,13 @@ components:
           description: an array of Audience Segments per media outlet 
           type: array
           items:
-            $ref: 'commonSchemas.yaml#/components/schemas/AudienceSegment'
+            $ref: 'commonSchemas.yaml#/components/schemas/AudienceSegmentDetail'
         salesElements:
           description: an array of sales elements in the proposal/transaction
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/SalesElementTransaction'
+        # TO DO - salesElementGroup
       required:
         - transactionHeader
         - referenceId

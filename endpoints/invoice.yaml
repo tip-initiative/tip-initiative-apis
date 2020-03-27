@@ -11,7 +11,7 @@ security:
   - bearerAuth: []
 
 info:
-  version: 1.2.0
+  version: 4.2rc1
   title: Invoice
   description: Allows the seller to send to the buyer both new and revised invoice information
   termsOfService: http://placeholderdomain.io/terms/
@@ -42,17 +42,50 @@ paths:
         content:
           application/json:
             schema:
-              $ref: 'schemas/invoiceSchemas.yaml#/components/schemas/InvoiceObject'
+              $ref: 'schemas/invoiceSchemas.yaml#/components/schemas/SellerInvoiceObject'
       responses:
         '200':
           description: Request processed successfully
           content:
             application/json:
               schema:
-                $ref: 'schemas/invoiceSchemas.yaml#/components/schemas/InvoiceObject'
+                $ref: 'schemas/commonSchemas.yaml#/components/schemas/TransactionHeader'
         default:
           description: unexpected error
           content:
             application/json:
               schema:
                 $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
+  /seller/invoice/cancel:
+    post:
+      tags:
+        - Seller
+      summary: Seller Invoice Cancel
+      description: >-
+        This endpoint will be hosted at the buyer side.
+        This endpoint allows the seller to request from the buyer to cancel and ignore 
+        a previously communicated Invoice request. As Follows:<br/>
+        NOTE#1:originalTransactionNum values needs to indicate which request is to be cancelled.<br/>
+        NOTE#2: transactionNum.transactionType = Cancelled<br/>
+        NOTE#3: originalTransactionNum.transactionNum must refer to the transaction in question to be cancelled
+      operationId: invoiceSellerCancel
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: 'schemas/commonSchemas.yaml#/components/schemas/TransactionHeader'
+      responses:
+        '200':
+          description: Request processed successfully
+          content:
+            application/json:
+              schema:
+                $ref: 'schemas/commonSchemas.yaml#/components/schemas/AcceptedResponse'
+        default:
+          description: unexpected error, return the appropriate and corresponding HTTP status code matching the error 
+          content:
+            application/json:
+              schema:
+                $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
+

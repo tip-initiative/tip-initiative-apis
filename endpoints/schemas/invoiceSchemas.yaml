@@ -14,7 +14,7 @@ info:
 paths: {}
 components:
   schemas:
-    InvoiceObject:
+    SellerInvoiceObject:
       properties:
         transactionHeader:
           $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
@@ -30,37 +30,14 @@ components:
           description: Required for Invoice Revision – Date in which the invoice revision was generated
           type: string
           format: date
-        calendarType:
-          description: The invoice calendar type
-          type: string
-          enum:
-            - Broadcast
-            - Calendar
-        billingCycle:
-          description: The invoice billing cycle
-          type: string
-          enum:
-            - Monthly
-            - Weekly
-        billingGranularity:
-          description: The order's invoice split parameters
-          type: string
-          enum:
-            - Order
-            - Brand
-            - Insertion Order
+        billingOption:
+          $ref: 'commonSchemas.yaml#/components/schemas/BillingOption'
         dueDate:
           description: Date in which payment is due on invoice
           type: string
           format: date
-        startDate:
-          description: First broadcast date valid for the invoice period
-          type: string
-          format: date
-        endDate:
-          description: Last broadcast date valid for the invoice period
-          type: string
-          format: date
+        dateWindow:
+          $ref: 'commonSchemas.yaml#/components/schemas/DateWindow'
         businessType:
           description: Seller-defined type of business
           type: string
@@ -98,12 +75,14 @@ components:
             invoice origin
           type: number
           format: float
-        totalNetDollars:
+        totalNetAmount:
           description: >-
             Total net dollars for all units within the invoice start and end date (gross dollars – commission
             dollars)
           type: number
           format: float
+        currency:
+          $ref: 'commonSchemas.yaml#/components/schemas/Currency'
         remittanceInfo:
           $ref: 'commonSchemas.yaml#/components/schemas/RemittanceInfo'
         externalComment:
@@ -132,10 +111,10 @@ components:
         - lineDetails
     LineDetail:
       properties:
-        buyLineIDReference:
+        buyLineIdReference:
           description: Seller's Line information
           type: string
-        buyLineIDName:
+        buyLineIdName:
           description: Buyer's line information associated to seller's line
           type: string
         unitType:
@@ -145,30 +124,19 @@ components:
             - Units
             - Impressions
             - Non Airtime
-        audiencePricingMetric:
-          $ref: 'commonSchemas.yaml#/components/schemas/AudiencePricingMetric'
-        totalUnits:
-          description: >-
-            Total number of raw (equivalized) units (based on line's unit type) within the line's start
-            and end date or total number of Raw Impressions
-          type: integer
-        mediaOutlet:
-          $ref: 'commonSchemas.yaml#/components/schemas/MediaOutlet'
         brand:
           $ref: 'commonSchemas.yaml#/components/schemas/Brand'
         product:
           $ref: 'commonSchemas.yaml#/components/schemas/Product'
         salesElement:
-          $ref: 'commonSchemas.yaml#/components/schemas/SalesElement'
-        program:
-          description: Program Name in which unit aired
-          type: string
+          $ref: 'commonSchemas.yaml#/components/schemas/SalesElementHeader'
+        timePeriod:
+           $ref: 'commonSchemas.yaml#/components/schemas/TimePeriod'
+        length:
+          description: Length of commercial unit
+          type: integer
         cpeCode:
           $ref: 'commonSchemas.yaml#/components/schemas/CpeCode'
-        timeWindow:
-          type: array
-          items:
-            $ref: 'commonSchemas.yaml#/components/schemas/TimeWindow'
         billableRevenue:
           description: Indicates if the line's rate is based on booked rates or actuals (earned) rates
           type: string
@@ -178,29 +146,25 @@ components:
         rate:
           type: number
           format: float
-        lineDateWindow:
-          $ref: 'commonSchemas.yaml#/components/schemas/DateWindow'
         inventoryType:
-          description: Type of inventory on line
-          type: string
-          enum:
-            - Commercial
-            - Interstitial
-            - Billboard
-        length:
-          description: Length of commercial unit
+          $ref: 'commonSchemas.yaml#/components/schemas/InventoryType'
+        audiencePricingMetric:
+          $ref: 'commonSchemas.yaml#/components/schemas/AudiencePricingMetric'
+        totalUnits:
+          description: >-
+            Total number of raw (equivalized) units (based on line's unit type) within the line's start
+            and end date or total number of Raw Impressions
           type: integer
         unitDetails:
           type: array
           items:
             $ref: '#/components/schemas/UnitDetail'
       required:
-        - buyLineIDReference
+        - buyLineIdReference
         - unitType
-        - mediaOutlet
         - product
+        - mediaOutlet
         - salesElement
-        - lineDateWindow
         - length
     UnitDetail:
       properties:
@@ -213,29 +177,9 @@ components:
         broadcastDate:
           $ref: 'commonSchemas.yaml#/components/schemas/BroadcastDate'
         podPosition:
-          description: Unit's Pod Position
-          type: string
-          enum:
-            - First
-            - Middle
-            - Last
+          $ref: 'commonSchemas.yaml#/components/schemas/InventoryPosition'
         linkType:
-          description: Linked Unit Type inked units
-          type: string
-          enum:
-            - Billboard
-            - Piggyback
-            - Bookend
-            - Sponsorship
-            - Package
-        linkNum:
-          description: >-
-            Unique number to communicate the association of two or more units that have been linked together;
-            only valid when the units have a link type association
-          type: integer
-        linkSeq:
-          description: Used to communicate the airing sequential order of the linked spots
-          type: integer
+          $ref: 'commonSchemas.yaml#/components/schemas/LinkType'
         preempt:
           description: Y/N indicator
           type: boolean

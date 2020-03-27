@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  version: 4.2.0
+  version: 4.0rc1
   title: Commercial Instructions Schema
   description: Commercial Instructions Schema, Based on TIP 4.0 Working Draft
   termsOfService: http://placeholderdomain.io/terms/
@@ -92,15 +92,7 @@ components:
           description: Commercial length associated to AD-ID
           type: integer
         linkType:
-          description: Used to communicate unit linking information & sequence of how copy should be
-            applied
-          type: string
-          enum:
-            - Billboard
-            - Piggyback
-            - Bookend
-            - Sandwich
-            - Donut
+          $ref: 'commonSchemas.yaml#/components/schemas/LinkType'
         linkNum:
           description: >-
             Unique number to communicate the association of two or more units that have been linked together;

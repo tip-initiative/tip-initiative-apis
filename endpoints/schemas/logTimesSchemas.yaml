@@ -67,14 +67,7 @@ components:
             - Interstitial
             - Billboard
         linkType:
-          description: Linked unit type
-          type: string
-          enum:
-            - Billboard
-            - Piggyback
-            - Bookend
-            - Sandwich
-            - Donut
+          $ref: 'commonSchemas.yaml#/components/schemas/LinkType'
         linkNum:
           description: >-
             Linked unique number to communicate the association of two or more units that have been linked

@@ -44,8 +44,10 @@ components:
           $ref: 'commonSchemas.yaml#/components/schemas/Brand'
         product:
           $ref: 'commonSchemas.yaml#/components/schemas/Product'
-        contact:
-          $ref: 'commonSchemas.yaml#/components/schemas/Contact'
+        contacts:
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/Contact'
         currency:
           $ref: 'commonSchemas.yaml#/components/schemas/Currency'
         budget:
@@ -71,22 +73,12 @@ components:
           description: List of audience preferences (AND) "<Demo Name>"
           type: array
           items:
-            type: string
-        mediaoutletPreferences:
-          description: List of mediaoutlet preferences (AND) Outlet Name
-          type: array
-          items:
-            $ref: 'commonSchemas.yaml#/components/schemas/MediaOutlet'
+            $ref: 'commonSchemas.yaml#/components/schemas/AudienceSegment'
         unitlengthPreferences:
-          description: List of unit length preferences (AND) Unit Length
+          description: List of unit length preferences (AND) Unit Length in seconds
           type: array
           items:
             type: integer
-        programPreferences:
-          description: List of program preferences (AND) Program Name
-          type: array
-          items:
-            type: string
         guidelines:
           type: array
           items:
@@ -104,28 +96,29 @@ components:
             $ref: '#/components/schemas/CampaignGoal'
       required:
         - transactionHeader
-        - referenceId
+        - referenceIds
         - dateSubmitted
         - advertiser
-        - contact
+        - contacts
+        - timePeriodPreferences
     CampaignGoal:      
       type: object
       properties:
         distributionType:
           description: Goal type elements
           type: string
-          enum: [MediaType, Quarter, Week , Daypart, Market, MediaOutlet, AddedValue]
+          enum: [MediaOutlet Type, Daypart, Market, Quarter, Week]
         distributionMethod:
           description: Distibution method elements
           type: string
-          enum: [Impressions, GRPs, Units, Dollars]
+          enum: [Impressions, GRPs, Units, Budget]
         distributionName:
           description: Name of goal
           type: string
         distribution:
           type: string
           enum:
-            - percentage
+            - Percentage
             - Exact
         distributionValue:
           description: Distribution values in percentage or exact value
@@ -134,6 +127,7 @@ components:
         distributionOrder:
           description: Only populate when multiple distributions types are defined. Defines the nesting order for the distributions
           type: integer
+          minimum: 0
         distributionOrderParent:
           description: Only populate when multiple distributions types are defined; defines the parent when there are multiple nesting orders 
           type: integer
@@ -145,10 +139,4 @@ components:
         - distribution 
         - distributionValue
         - distributionOrder
-
-    rfpResponseObject: # TODO stub response, needs to be defined
-      description: Response data # TODO stub response, needs to be defined
-      properties:
-        transactionHeader:
-          $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
         
