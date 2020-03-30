@@ -1,3 +1,4 @@
+import ast
 import pickle
 import re
 import sys
@@ -124,6 +125,9 @@ class ModelRow:
             except KeyError:
                 real_type = {"$ref": r["$ref"]}
             r = {"type": "array", "items": real_type}
+            if constraints := self.enum_values.strip():
+                vals = ast.literal_eval(constraints)
+                r.update(vals)
 
         rr = {}
 
@@ -148,9 +152,12 @@ class ModelRow:
         vals = [n.strip() for n in self.enum_values.split(",")]
         return {"type": "string", "enum": vals}
 
-    @staticmethod
-    def parse_int():
-        return {"type": "integer"}
+    def parse_int(self):
+        r = {"type": "integer"}
+        if constraints := self.enum_values.strip():
+            vals = ast.literal_eval(constraints)
+            r.update(vals)
+        return r
 
     @staticmethod
     def parse_date():
