@@ -97,6 +97,9 @@ class ModelRow:
         elif "time" == data_type:
             r = self.parse_time()
 
+        elif "date-time" == data_type:
+            r = self.parse_datetime()
+
         elif "float" == data_type:
             r = self.parse_float()
 
@@ -155,6 +158,10 @@ class ModelRow:
 
     @staticmethod
     def parse_time():
+        return {"type": "string", "pattern": "^(([0-1][0-9])|(2[0-3]))(:[0-5][0-9]){2}$"}
+
+    @staticmethod
+    def parse_datetime():
         return {"type": "string", "format": "date-time"}
 
     @staticmethod
@@ -280,6 +287,13 @@ def main(sheets: Iterable[Sheet]):
                     r = row.parse_enum()
                     schemas[klass] = r
 
+                # Add description to new TypeDef. Gymnastics here to preserve order of fields.
+                if row.description:
+                    _obj = {"description": row.description}
+                    _obj.update(schemas[klass])
+                    schemas[klass] = _obj
+                    del _obj
+
                 continue
 
             if not klass:
@@ -326,7 +340,7 @@ SHEETS: List[Sheet] = [
     Sheet(
         "commonSchemas.yaml",
         "Common Models",
-        6,
+        5,
         "4.2.0",
         "Common Schemas",
         "Common Schemas, based on TIP 4.0 documentation",
@@ -335,7 +349,7 @@ SHEETS: List[Sheet] = [
         "logTimesSchemas.yaml",
         "Seller/ Logtimes",
         11,
-        "1.2.0",
+        "4.2.0",
         "logTimes Schemas",
         "logTimes Schemas, based on TIP 4.0 documentation",
     ),
@@ -351,7 +365,7 @@ SHEETS: List[Sheet] = [
         "invoiceSchemas.yaml",
         "Seller/ Invoice",
         11,
-        "1.2.0",
+        "4.2.0",
         "Invoice Schema",
         "Invoice Schema, Based on TIP 4.0 Working Draft",
     ),
@@ -359,9 +373,17 @@ SHEETS: List[Sheet] = [
         "commercialInstructionSchemas.yaml",
         "Buyer/ CommercialInstructions",
         11,
-        "1.2.0",
+        "4.2.0",
         "Commercial Instructions Schema",
         "Commercial Instructions Schema, Based on TIP 4.0 Working Draft",
+    ),
+    Sheet(
+        "rfpsSchemas.yaml",
+        "Buyer/ RFP",
+        11,
+        "4.2.0",
+        "RFP Schema",
+        "RFP Schema, Based on TIP 4.0 Working Draft",
     ),
 ]
 
