@@ -15,10 +15,13 @@ paths: {}
 components:
   schemas:
     LogTimesSellerObject:
+      description: Top level element for Logtimes Seller POST operations
       properties:
         transactionHeader:
           $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
         externalComment:
+          description: A string that indicates additional information that the seller can send to the
+            buyer
           type: string
         units:
           type: array
@@ -28,6 +31,7 @@ components:
         - transactionHeader
         - units
     Unit:
+      description: Unit detail information
       properties:
         unitId:
           description: >-
@@ -40,8 +44,6 @@ components:
             $ref: 'commonSchemas.yaml#/components/schemas/ReferenceId'
         cpeCode:
           $ref: 'commonSchemas.yaml#/components/schemas/CpeCode'
-        mediaOutlet:
-          $ref: 'commonSchemas.yaml#/components/schemas/MediaOutlet'
         buyer:
           $ref: 'commonSchemas.yaml#/components/schemas/Buyer'
         advertiser:
@@ -50,7 +52,7 @@ components:
           $ref: 'commonSchemas.yaml#/components/schemas/Brand'
         product:
           $ref: 'commonSchemas.yaml#/components/schemas/Product'
-        salesElementHeader:
+        salesElement:
           $ref: 'commonSchemas.yaml#/components/schemas/SalesElementHeader'
         program:
           description: Program Name
@@ -59,27 +61,16 @@ components:
           description: Station Daypart Name
           type: string
         inventoryType:
-          description: Inventory Type associated to unit (list of inventory types will be expanded in
-            the future)
-          type: string
-          enum:
-            - Commercial
-            - Interstitial
-            - Billboard
+          $ref: 'commonSchemas.yaml#/components/schemas/InventoryType'
         linkType:
           $ref: 'commonSchemas.yaml#/components/schemas/LinkType'
-        linkNum:
-          description: >-
-            Linked unique number to communicate the association of two or more units that have been linked
-            together; only valid when the units have a link type association
-          type: string
         makegood:
           description: Indicates if the unit is a makegood
           type: boolean
         adu:
           description: Indicates if the unit is a ADU
           type: boolean
-        preemptUnitIDs:
+        preemptUnitIds:
           description: >-
             Desired if unit's Makegood indicator is "Y"; "original" preempted unit(s) being resolved
             by makegood; there may be one too many preempt unit ids being resolved for one makegood
@@ -124,14 +115,16 @@ components:
       required:
         - unitId
         - referenceIds
-        - mediaOutlet
         - advertiser
         - product
-        - salesElementHeader
+        - salesElement
         - length
         - rate
         - status
     ChildUnit:
+      description: >-
+        Child unit details for footprint unit to support Audience Network, Diginet or other forms of
+        "child" units
       properties:
         unitId:
           description: Unique identifier for "child" unit; Required if unit was sold as a cluster of
@@ -161,4 +154,9 @@ components:
         broadcastDate:
           $ref: 'commonSchemas.yaml#/components/schemas/BroadcastDate'
     LogTimesResponse:
-      $ref: 'commonSchemas.yaml#/components/schemas/AcceptedResponse'
+      properties:
+        transactionId:
+          type: string
+        transactionDate:
+          type: string
+          format: date

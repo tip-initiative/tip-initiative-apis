@@ -1,44 +1,42 @@
-openapi: "3.0.0"
+openapi: 3.0.0
 info:
-  title: RFP Schema
   version: 4.2.0
+  title: RFP Schema
   description: RFP Schema, Based on TIP 4.0 Working Draft
   termsOfService: http://placeholderdomain.io/terms/
-  contact: 
+  contact:
     name: TIP Initiative
     email: tipinitiative@frontrowadvisory.com
     url: http://placeholderdomain.io
-  license: 
+  license:
     name: MIT
     url: https://opensource.org/licenses/MIT
-
 paths: {}
-
 components:
   schemas:
-    rfpRequestObject:
-      description: >-
-        Allows the buyer to submit a Request for Proposal (RFP) to the seller with overall media budget, goals and overalll terms
-      type: object
+    RFPRequestObject:
       properties:
-        transactionHeader:          
+        transactionHeader:
           $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
         referenceIds:
-          description: Information pertaining to all the ids and their sources that are associated to the RFP;  RFP ID is required
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/ReferenceId'
         dateSubmitted:
-          description: Buyer submit date for the RFP
+          description: Buyer Submit Date for the RFP
           type: string
           format: date
         dueDate:
-          description: Due date for the response
+          description: Due Date for the response
           type: string
           format: date
-        buyer:          
-          $ref: 'commonSchemas.yaml#/components/schemas/Buyer'       
-        advertiser:          
+        buyer:
+          $ref: 'commonSchemas.yaml#/components/schemas/Buyer'
+        commission:
+          description: Buyer Commission percentage amount
+          type: number
+          format: float
+        advertiser:
           $ref: 'commonSchemas.yaml#/components/schemas/Advertiser'
         brand:
           $ref: 'commonSchemas.yaml#/components/schemas/Brand'
@@ -53,16 +51,11 @@ components:
         budget:
           description: Overall total budget for the RFP
           type: number
-        comission:
-          description: Buyer comission percentage amount
-          type: number
+          format: float
         timePeriodPreferences:
-          description: >-
-            array of date-time windows of interest to the buyer, 
-            the array must at least contain one item
           type: array
           items:
-            $ref: 'commonSchemas.yaml#/components/schemas/TimeWindow'
+            $ref: 'commonSchemas.yaml#/components/schemas/TimePeriod'
           minItems: 1
         marketPreferences:
           description: List of market preferences (AND) "<Market Name>"
@@ -70,12 +63,11 @@ components:
           items:
             type: string
         audiencePreferences:
-          description: List of audience preferences (AND) "<Demo Name>"
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/AudienceSegment'
-        unitlengthPreferences:
-          description: List of unit length preferences (AND) Unit Length in seconds
+        unitLengthPreferences:
+          description: List of unit length preferences (AND) "<Unit Length>"
           type: array
           items:
             type: integer
@@ -87,10 +79,9 @@ components:
           description: KPI of the overall campaign
           type: string
         comments:
-          description: Additional information
+          description: Additional Information
           type: string
         campaignGoals:
-          description: Goal details
           type: array
           items:
             $ref: '#/components/schemas/CampaignGoal'
@@ -101,42 +92,61 @@ components:
         - advertiser
         - contacts
         - timePeriodPreferences
-    CampaignGoal:      
-      type: object
+    CampaignGoal:
       properties:
         distributionType:
-          description: Goal type elements
+          description: Goal Type Element used for distribution
           type: string
-          enum: [MediaOutlet Type, Daypart, Market, Quarter, Week]
+          enum:
+            - MediaType
+            - Daypart
+            - Market
+            - Quarter
+            - Month
+            - Week
+            - AddedValue
         distributionMethod:
-          description: Distibution method elements
+          description: Distribution Method Elements - Audience distributions pertain to the primary demo
+            audience
           type: string
-          enum: [Impressions, GRPs, Units, Budget]
+          enum:
+            - Impressions
+            - GRPs
+            - Units
+            - Budget
         distributionName:
-          description: Name of goal
+          description: >-
+            This is the name for the distribution type; for example it could be Daypart Name, or Quarter
+            Name, etc.
           type: string
         distribution:
+          description: This defines how the distributions for the method are being defined
           type: string
           enum:
             - Percentage
-            - Exact
+            - Exact Value
         distributionValue:
-          description: Distribution values in percentage or exact value
+          description: >-
+            This is the value for the distribution goal; it could be exact numeric value or a a percentage
+            amount
           type: number
           format: float
         distributionOrder:
-          description: Only populate when multiple distributions types are defined. Defines the nesting order for the distributions
+          description: >-
+            Only populate when multiple distributions types are defined; defines the nesting order for
+            the distributions
           type: integer
           minimum: 0
         distributionOrderParent:
-          description: Only populate when multiple distributions types are defined; defines the parent when there are multiple nesting orders 
+          description: >-
+            Only populate when multiple distributions types are defined; defines the parent when there
+            are multiple nesting orders
           type: integer
           nullable: true
       required:
         - distributionType
         - distributionMethod
         - distributionName
-        - distribution 
+        - distribution
         - distributionValue
         - distributionOrder
-        
