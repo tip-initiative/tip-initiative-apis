@@ -14,7 +14,8 @@ info:
 paths: {}
 components:
   schemas:
-    SellerInvoiceObject:
+    InvoiceObject:
+      description: Top level element for Invoice Seller POST operations
       properties:
         transactionHeader:
           $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
@@ -44,7 +45,7 @@ components:
         buyer:
           $ref: 'commonSchemas.yaml#/components/schemas/Buyer'
         localNational:
-          description: Marketplace
+          description: Local or National marketplace
           type: string
           enum:
             - Local
@@ -56,7 +57,7 @@ components:
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/Contact'
         buylineCashTrade:
-          description: Invoice's Revenue Type
+          description: Revenue Type associated to the invoice
           type: string
           enum:
             - Cash
@@ -67,18 +68,18 @@ components:
           type: number
           format: float
         commission:
-          description: Seller commission dollars
+          description: Invoice total commission dollars
           type: number
           format: float
         salesTax:
-          description: Sales Tax in USD applied to any elements on the invoice depending on state of
-            invoice origin
+          description: Total sales tax applied to any elements on the invoice depending on state of invoice
+            origin
           type: number
           format: float
         totalNetAmount:
           description: >-
             Total net dollars for all units within the invoice start and end date (gross dollars – commission
-            dollars)
+            dollars+ sales tax)
           type: number
           format: float
         currency:
@@ -96,20 +97,17 @@ components:
         - transactionHeader
         - referenceIds
         - invoiceDate
-        - calendarType
-        - billingCycle
-        - billingGranularity
-        - startDate
-        - endDate
+        - dateWindow
         - buyer
         - advertiser
         - buylineCashTrade
         - grossAmount
         - commission
-        - totalNetDollars
+        - totalNetAmount
         - remittanceInfo
         - lineDetails
     LineDetail:
+      description: Line Detail Information
       properties:
         buyLineIdReference:
           description: Seller's Line information
@@ -131,7 +129,7 @@ components:
         salesElement:
           $ref: 'commonSchemas.yaml#/components/schemas/SalesElementHeader'
         timePeriod:
-           $ref: 'commonSchemas.yaml#/components/schemas/TimePeriod'
+          $ref: 'commonSchemas.yaml#/components/schemas/TimePeriod'
         length:
           description: Length of commercial unit
           type: integer
@@ -153,7 +151,7 @@ components:
         totalUnits:
           description: >-
             Total number of raw (equivalized) units (based on line's unit type) within the line's start
-            and end date or total number of Raw Impressions
+            and end date or if audience buy the total number of Raw Impressions
           type: integer
         unitDetails:
           type: array
@@ -163,10 +161,10 @@ components:
         - buyLineIdReference
         - unitType
         - product
-        - mediaOutlet
         - salesElement
         - length
     UnitDetail:
+      description: Unit details information (required for "unit" type only)
       properties:
         unitId:
           description: Seller generated unique number - Required when unit type is equal to units
@@ -214,6 +212,9 @@ components:
       required:
         - unitId
     ChildUnitDetail:
+      description: >-
+        Child unit details for parent unit to support Mirror, Audience Network, Diginet or other forms
+        of "child" units
       properties:
         unitId:
           description: Unique identifier for "child" unit
@@ -228,16 +229,12 @@ components:
           description: Ad-ID assigned to "child" unit
           type: string
         preempt:
-          description: Y/N indicator
           type: boolean
         makegood:
-          description: Y/N indicator
           type: boolean
         adu:
-          description: Y/N indicator
           type: boolean
         credit:
-          description: Y/N indicator
           type: boolean
         adjustmentReason:
           description: >-

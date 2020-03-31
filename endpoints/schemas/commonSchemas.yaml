@@ -20,13 +20,11 @@ components:
           description: TIP version of the interface
           type: string
         transactionNum:
-          description: The identification information of the current request
           $ref: '#/components/schemas/TransactionId'
         originalTransactionNum:
-          description: This is populated with the transactionNum when responding to a request
           $ref: '#/components/schemas/TransactionId'
         timeStamp:
-          description: Date and time the transaction was created. Date time is UTC
+          description: Date and time the transaction was created
           type: string
           format: date-time
       required:
@@ -36,10 +34,13 @@ components:
     TransactionId:
       properties:
         transactionNum:
-          description: Buyer or Seller generated unique number for transaction
+          description: >-
+            This is a system generated unique number for each data exchange. The transactionNum is generated
+            by the system that is creating the data exchange
           type: integer
         transactionType:
-          description: Indicates the type of transaction (New, Changed, Cancelled)
+          description: This indicates if the data exchange being sent is either a new, changed or cancelled
+            transaction.
           type: string
           enum:
             - New
@@ -59,7 +60,7 @@ components:
     MediaOutlet:
       properties:
         mediaOutletId:
-          description: Unique persistent identifier for the station or network
+          description: Unique persistent identifier for the station, network or entity
           type: string
         mediaOutletName:
           description: Station, network name or entity associated to mediaOutletId
@@ -80,7 +81,7 @@ components:
           description: Station or network station identification (Channel)
           type: string
         mediaOutletMarketName:
-          description: Station market Name
+          description: Market Name
           type: string
         mediaOutletReference:
           description: External mediaoutlet reference information
@@ -121,14 +122,14 @@ components:
       properties:
         buyerId:
           description: >-
-            Unique persistent identifier for the Buying organization or trafficking agency and /or the
-            supplier of the media
+            Unique persistent identifier for the Buying organization or trafficking agency or the supplier
+            of the media
           type: string
         buyerName:
-          description: Buying organization name and location
+          description: Buying organization name
           type: string
         buyerReference:
-          description: External buyer location reference information
+          description: External buyer reference information
           type: string
       required:
         - buyerId
@@ -158,6 +159,9 @@ components:
         audienceSegmentReference:
           description: External audience segment reference
           type: string
+        audienceMethodology:
+          description: Methodology used to aggregate the audience
+          type: string
         primaryIndicator:
           description: True/False
           type: boolean
@@ -186,17 +190,21 @@ components:
     AudienceSegmentDetail:
       properties:
         mediaOutletId:
+          description: The mediaOutletId associated to the mediaoutlet
           type: string
+        audienceSegment:
+          $ref: '#/components/schemas/AudienceSegment'
         universes:
           type: array
           items:
             $ref: '#/components/schemas/Universe'
       required:
         - mediaOutletId
+        - audienceSegment
     AudienceMetric:
+      description: Type of audience metrics
       properties:
         audienceMetric:
-          description: Type of audience metrics (AND)
           type: string
           enum:
             - Impressions
@@ -207,13 +215,12 @@ components:
             - Frequency Threshold
             - Scarcity
         audienceMetricValue:
-          description: audienceMetric value
           type: integer
       required:
         - audienceMetric
         - audienceMetricValue
     PricingMetricOption:
-      description: a list of valid pricing metric values
+      description: Thea pricing metric
       type: string
       enum:
         - CPM
@@ -234,7 +241,6 @@ components:
     AudiencePricingMetric:
       properties:
         audienceSegmentId:
-          description: ID of the Audience Segment
           type: string
         audienceMetric:
           $ref: '#/components/schemas/AudienceMetric'
@@ -246,7 +252,7 @@ components:
     Universe:
       properties:
         universeType:
-          description: Universe Type (AND)
+          description: Universe Type
           type: string
           enum:
             - Market
@@ -254,7 +260,7 @@ components:
             - Coverage
             - Addressable
         universeTypeValue:
-          description: Universe type value
+          description: The universe value (number) associated to the universe type
           type: integer
     CancellationTerms:
       properties:
@@ -287,7 +293,8 @@ components:
           description: >-
             Agreement whereby the seller agrees to separate advertiser’s commercials by a specific length
             of time in addition to agreeing to not run another product that is directly competitive within
-            a specific time frame; agreement may defined by unit length or across all lengths
+            a specific time frame; agreement may defined by unit length or across all lengths. Time Separation
+            is defined in seconds
           type: integer
     ReferenceId:
       properties:
@@ -302,7 +309,7 @@ components:
             source name
           type: string
         referenceType:
-          description: The type of reference IDs that are being supplied
+          description: The type of reference ID being supplied
           type: string
           enum:
             - RFP
@@ -327,17 +334,17 @@ components:
         - referenceType
         - referenceId
     Currency:
-      description: > 
-        Currency Code is based on ISO 4217. 
-        Below is a short list of most widely used codes for in North America
+      description: >-
+        Currency Code is based on ISO 4217. Below is a short list of most widely used codes for in North
+        America
       type: string
       enum:
         - USD   # US Dollar
         - CAD   # Canadian Dollar
         - EUR   # Euro
         - GBP   # Great Britain Pound
-        - MXN   # Maxican Peso
-        - AUD   # Austrialian Dollar
+        - MXN   # Mexican Peso
+        - AUD   # Australian Dollar
     CpeCode:
       properties:
         clientCode:
@@ -352,25 +359,17 @@ components:
           description: Estimate code provided from the buyer. Packages client, product and estimate codes
             together.
           type: string
-    RateCard:
-      properties:
-        rateCardId: 
-          description:  Seller's Rate Card ID
-          type: string
-        rateCardName:
-          description: Seller's Rate Card Name associated to the ID
-          type: string
     BillingOption:
       properties:
         billingCalendar:
-          description: The calendar is which the units should be billed
+          description: The invoicing calendar
           type: string
           enum:
             - Broadcast
             - Calendar
             - Nielsen
         billingCycle:
-          description: The billing within the calendar the units should be billed 
+          description: The billing within the calendar the units should be billed
           type: string
           enum:
             - Month
@@ -379,10 +378,21 @@ components:
           description: The order's invoice split parameters
           type: string
           enum:
-          - Order
-          - Brand
-          - Inventory Type
-          - Insertion Order
+            - Order
+            - Brand
+            - Inventory Type
+            - Insertion Order
+      required:
+        - billingCalendar
+        - billingCycle
+    RateCard:
+      properties:
+        rateCardId:
+          description: Seller's Rate Card ID
+          type: string
+        rateCardName:
+          description: Seller's Rate Card Name associated to the Rate Card ID
+          type: string
     GuideLine:
       properties:
         guideLineType:
@@ -402,10 +412,10 @@ components:
             - Include
             - Exclude
         guideLineID:
-          description: Guideline identifier
+          description: Guideline ID
           type: string
         guideLineName:
-          description: Guideline Name
+          description: Guideline Name associated to the guideline type
           type: string
       required:
         - guideLineType
@@ -423,10 +433,10 @@ components:
           description: >-
             The broadcast local time on which the unit aired/scheduled; UTC Standard; Receiver of data
             will be responsible to convert based on station's broadcast start of day, "Currently using
-            the following: format HH:MM:SS; In a future release the broadcast time will be modified t
-            support UTC Standard
+            the following: format HH:MM. In a future release the broadcast time will be modified to support
+            UTC Standard
           type: string
-          pattern: '^(([0-1][0-9])|(2[0-3]))(:[0-5][0-9]){2}$'
+          pattern: ^(([0-1][0-9])|(2[0-3]))(:[0-5][0-9]){2}$
     TimePeriod:
       properties:
         dateWindow:
@@ -441,11 +451,11 @@ components:
     DateWindow:
       properties:
         startDate:
-          description: Start Date, indicating the start of period, inclusive.
+          description: Start Date
           type: string
           format: date
         endDate:
-          description: End Date, indicating the end of period, inclusive.
+          description: End Date
           type: string
           format: date
       required:
@@ -455,25 +465,26 @@ components:
       properties:
         startTime:
           description: >-
-            Start time, indicates the starting time for the period. 
-            Time is considered local to the mediaoutlet. Using military time HH:MM:SS
+            Start time, indicates the starting time for the period. Time is considered local to the mediaoutlet.
+            Using military time HH:MM:SS
           type: string
-          pattern: '^(([0-1][0-9])|(2[0-3]))(:[0-5][0-9]){2}$'
+          pattern: ^(([0-1][0-9])|(2[0-3]))(:[0-5][0-9]){2}$
         endTime:
           description: >-
-            End time, indicates the ending time for the period. 
-            Time is interpreted based on the local timezone of the mediaoutlet. 
-             Using military time HH:MM:SS
-          type: string
-          pattern: '^(([0-1][0-9])|(2[0-3]))(:[0-5][0-9]){2}$'
+            End time, indicates the ending time for the period. Time is interpreted based on the local
+            timezone of the mediaoutlet. Using military time HH:MM:SS
+          oneOf:
+            - type: string
+              pattern: ^(([0-1][0-9])|(2[0-3]))(:[0-5][0-9]){2}$
+            - type: string
+              enum:
+                - TBD
+                - Indefinite
       required:
         - startTime
         - endTime
     DayOfWeek:
-      description: a collection for the days of the week with boolean values (true, false).
       properties:
-        sunday:
-          type: boolean
         monday:
           type: boolean
         tuesday:
@@ -486,21 +497,21 @@ components:
           type: boolean
         saturday:
           type: boolean
+        sunday:
+          type: boolean
       required:
-        - sunday
         - monday
         - tuesday
         - wednesday
         - thursday
         - friday
         - saturday
+        - sunday
     DailyUnitDistribution:
-      description: >
-        Ad units per day of week. 
-        0 indicates no ads will be expected to air on the corresponding day of the week
+      description: >-
+        Number of units per day of week. Zero (0) indicates no ads will be expected to air on the corresponding
+        day of the week.
       properties:
-        sunday:
-          type: integer
         monday:
           type: integer
         tuesday:
@@ -513,25 +524,38 @@ components:
           type: integer
         saturday:
           type: integer
+        sunday:
+          type: integer
       required:
-        - sunday
         - monday
         - tuesday
         - wednesday
         - thursday
         - friday
-        - saturday    
+        - saturday
+        - sunday
     InventoryType:
-      description: Valid list of Linear Inventory types
+      description: Type of commercial advertisement
       type: string
       enum:
         - Commercial
         - Interstitial
         - Billboard
+    InventoryPosition:
+      description: Break position of commercial advertisement
+      type: string
+      enum:
+        - First
+        - Middle
+        - Last
+        - Pre-Roll
+        - Mid-Roll
+        - Post-Roll
     LinkType:
-      description: Linked Unit Type
       properties:
         linkType:
+          description: Used to communicate unit linking information & sequence of how copy should be
+            applied
           type: string
           enum:
             - Billboard
@@ -542,18 +566,16 @@ components:
             - Sponsorship
             - Package
         linkNum:
+          description: >-
+            Unique number to communicate the association of two or more units that have been linked together;
+            only valid when the the instructions have a link type association
           type: integer
         linkSeq:
+          description: Used to communicate the airing sequential order of units that have been linked
+            together
           type: integer
-    InventoryPosition:
-      type: string
-      enum:
-        - First
-        - Middle
-        - Last
-        - Pre-Roll
-        - Mid-Roll
-        - Post-Roll   
+      required:
+        - linkType
     Contact:
       properties:
         contactType:
@@ -616,6 +638,7 @@ components:
         - contactLastName
         - effectiveDate
     RemittanceInfo:
+      description: Remit To & Billing Instructions
       properties:
         referenceSourceId:
           description: ID associated with the remittance
@@ -690,14 +713,14 @@ components:
         - salesElementType
     SalesElement:
       properties:
-        SalesElementHeader:
+        salesElement:
           $ref: '#/components/schemas/SalesElementHeader'
         timePeriods:
           type: array
           items:
             $ref: '#/components/schemas/TimePeriod'
         programs:
-          description: This includes the list of program names that are included in the salesElement
+          description: This includes a list of program names that are included in the salesElement
           type: array
           items:
             type: string
@@ -706,7 +729,7 @@ components:
           items:
             $ref: '#/components/schemas/SalesElementInventory'
       required:
-        - SalesElementHeader
+        - salesElement
         - salesElementInventory
     SalesElementInventory:
       properties:
@@ -717,7 +740,7 @@ components:
         inventoryPosition:
           $ref: '#/components/schemas/InventoryPosition'
         inventoryLength:
-          description: length of unit
+          description: length of inventory type, in seconds
           type: integer
         salesElementInventoryDates:
           type: array
@@ -728,7 +751,6 @@ components:
     SalesElementInventoryDate:
       properties:
         dateType:
-          description: indicate the span of the inventory described
           type: string
           enum:
             - Day
@@ -747,13 +769,13 @@ components:
           description: The total maximum number of units for the SalesElementInventory
           type: string
         inventoryAvails:
-          description: The number of "units" remaining for the  SalesElementInventory
+          description: The number of "units" remaining for the SalesElementInventory
           type: string
         inventoryMax:
-          description: The maximum from the remaining "units" allowed for the SalesElementInventory 
+          description: The maximum number from the remaining "units" allowed for the SalesElementInventory
           type: string
-        unitRate:
-          description: The rate for  individual unit 
+        rate:
+          description: The rate for individual unit
           type: number
           format: float
         audiencesPricingMetrics:
@@ -778,7 +800,6 @@ components:
           items:
             type: string
         salesElementTransactionInventory:
-          description: an array of all inventory of the given salesElement proposed for the transaction 
           type: array
           items:
             $ref: '#/components/schemas/SalesElementTransactionInventory'
@@ -799,32 +820,26 @@ components:
         inventoryPosition:
           $ref: '#/components/schemas/InventoryPosition'
         inventoryLength:
+          description: length of inventory type, in seconds
           type: integer
-        brand:
-          $ref: '#/components/schemas/Brand'
-        product:
-          $ref: '#/components/schemas/Product'
-        cpeCode:
-          $ref: '#/components/schemas/CpeCode'
         adu:
           type: boolean
         bonus:
           type: boolean
         salesElementTransactionDates:
-          description: an array of proposed dates and unit distribution
           type: array
           items:
             $ref: '#/components/schemas/SalesElementTransactionDate'
+      required:
+        - lineNum
+        - inventoryType
+        - salesElementTransactionDates
     SalesElementTransactionDate:
       properties:
         dateType:
-          description: indicate the span of the inventory described
           type: string
           enum:
-            - Day
             - Week
-            - Month
-            - Quarter
         calendarType:
           description: Differentiates between OTT using Calendar and Linear using Broadcast Calendar.
           type: string
@@ -834,15 +849,15 @@ components:
         dateWindow:
           $ref: '#/components/schemas/DateWindow'
         unitCount:
-          description: units proposed/purchased for the transaction
+          description: The number of "units" for the SalesElementTransaction
           type: integer
         dailyUnitDistribution:
           $ref: '#/components/schemas/DailyUnitDistribution'
         rate:
+          description: The rate for individual unit or impressions
           type: number
           format: float
         audiencesPricingMetrics:
-          description: an array of audiences associated/targeted and the pricing values
           type: array
           items:
             $ref: '#/components/schemas/AudiencePricingMetric'
@@ -851,38 +866,59 @@ components:
         - calendarType
         - dateWindow
         - unitCount
-    SalesElementGroup:
+    SalesElementGroupHeader:
+      description: Sales Element Audience Details
       properties:
-        salesElementGroupName:
-          description: Seller's sales element name when grouping salesElements togther
+        salesElementGroup:
+          description: Seller's sales element grouping name
           type: string
         salesElementGroupId:
           description: Seller's sales element group ID associated to the group name
           type: string
-        salesElementGroupDescription:
-          description: Seller's sales element group description
-          type: string
         salesElementGroupType:
-          description: The type of Sales Element Grouping
+          description: Sales Element group type
           type: string
           enum:
             - Orbit
             - Package
             - Sponsorship
-        salesElements:
-          type: array
-          items:
-            $ref: '#/components/schemas/SalesElementHeader'
-        rate:
-          description: Seller's rate for the sales element grouping when not pricing the individual sales
-            element
-          type: integer
       required:
-        - salesElementGroupName
+        - salesElementGroup
         - salesElementGroupId
         - salesElementGroupType
-        - salesElement
+    SalesElementGroup:
+      properties:
+        salesElementGroup:
+          $ref: '#/components/schemas/SalesElementGroupHeader'
+        timePeriods:
+          type: array
+          items:
+            $ref: '#/components/schemas/TimePeriod'
+        salesElementGroupDetails:
+          type: array
+          items:
+            $ref: '#/components/schemas/SalesElement'
+      required:
+        - salesElementGroup
+        - salesElementGroupDetails
+    SalesElementGroupTransaction:
+      properties:
+        SalesElementGroup:
+          $ref: '#/components/schemas/SalesElementGroupHeader'
+        timePeriods:
+          type: array
+          items:
+            $ref: '#/components/schemas/TimePeriod'
+        salesElementGroupDetails:
+          type: array
+          items:
+            $ref: '#/components/schemas/SalesElementTransaction'
+      required:
+        - SalesElementGroup
+        - timePeriods
+        - salesElementGroupDetails
     Error:
+      description: Common object to define error return from all APIs
       properties:
         errorCode:
           type: integer
@@ -892,12 +928,13 @@ components:
         - errorCode
         - errorMessage
     AcceptedResponse:
+      description: Common object to define successful return from all APIs
       properties:
         transactionId:
           type: string
         timeStamp:
           type: string
-          format: date-time
+          pattern: ^(([0-1][0-9])|(2[0-3]))(:[0-5][0-9]){2}$
       required:
         - transactionId
         - timeStamp

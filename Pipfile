@@ -6,6 +6,8 @@ verify_ssl = true
 [dev-packages]
 pipenv = "*"
 black = "==19.10b0"
+flake8 = "*"
+flake8-logging-format = "*"
 grip = "*"
 nodeenv = "*"
 openapi-spec-validator = "*"
