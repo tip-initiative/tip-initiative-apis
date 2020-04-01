@@ -74,7 +74,7 @@ components:
         guidelines:
           type: array
           items:
-            $ref: 'commonSchemas.yaml#/components/schemas/GuideLine'
+            $ref: 'commonSchemas.yaml#/components/schemas/Guideline'
         objective:
           description: KPI of the overall campaign
           type: string

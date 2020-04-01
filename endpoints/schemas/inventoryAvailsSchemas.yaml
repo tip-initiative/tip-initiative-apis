@@ -42,7 +42,7 @@ components:
         timePeriods:
           $ref: 'commonSchemas.yaml#/components/schemas/TimePeriod'
         guidelines:
-          $ref: 'commonSchemas.yaml#/components/schemas/GuideLine'
+          $ref: 'commonSchemas.yaml#/components/schemas/Guideline'
         political:
           description: Indicates if request for inventory requires rates to support political 
           type: boolean

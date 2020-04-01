@@ -44,8 +44,8 @@ components:
           type: string
           enum:
             - New
-            - Changed
-            - Cancelled
+            - Change
+            - Cancel
         sourceId:
           description: Indicates the source "trading partner" unique identification
           type: string
@@ -393,9 +393,9 @@ components:
         rateCardName:
           description: Seller's Rate Card Name associated to the Rate Card ID
           type: string
-    GuideLine:
+    Guideline:
       properties:
-        guideLineType:
+        guidelineType:
           description: Type of guideline
           type: string
           enum:
@@ -411,14 +411,14 @@ components:
           enum:
             - Include
             - Exclude
-        guideLineID:
+        guidelineId:
           description: Guideline ID
           type: string
-        guideLineName:
+        guidelineName:
           description: Guideline Name associated to the guideline type
           type: string
       required:
-        - guideLineType
+        - guidelineType
         - excludeOrInclude
     BroadcastDate:
       properties:

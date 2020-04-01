@@ -148,7 +148,7 @@ components:
         - transactionHeader
         - referenceIds
         - confirmedBookedDate
-    OrderRecalorCancelRequestObject:
+    OrderRecallorCancelRequestObject:
       description: >-
         Allows the buyer to recall a new order or order change request or
         request an order to be cancelled (prior to start); 
