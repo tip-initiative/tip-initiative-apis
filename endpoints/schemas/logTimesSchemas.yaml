@@ -153,10 +153,3 @@ components:
           type: string
         broadcastDate:
           $ref: 'commonSchemas.yaml#/components/schemas/BroadcastDate'
-    LogTimesResponse:
-      properties:
-        transactionId:
-          type: string
-        transactionDate:
-          type: string
-          format: date
