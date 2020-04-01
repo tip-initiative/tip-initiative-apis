@@ -31,7 +31,7 @@ paths:
         to initiate an Inventory Request to Seller. The payload of the request can either be:<br/>
         NOTE#1: For New Request --> transactionNum.transactionType=New<br/>
         NOTE#2: for Changing a previously submitted request --> <br/>
-        <li>transactionNum.transactionType=Changed<br/>
+        <li>transactionNum.transactionType=Change<br/>
         <li>originalTransactionNum object must be provided
       operationId: inventoryAvailsBuyers
       requestBody:
@@ -67,7 +67,7 @@ paths:
         This endpoint allows the seller to request from the buyer to cancel and ignore 
         a previously communicated inventoryAvails request. As Follows:<br/>
         NOTE#1:originalTransactionNum values needs to indicate which request is to be cancelled.<br/>
-        NOTE#2: transactionNum.transactionType = Cancelled<br/>
+        NOTE#2: transactionNum.transactionType = Cancel<br/>
         NOTE#3: originalTransactionNum.transactionNum must refer to the transaction in question to be cancelled
 
       operationId: inventoryAvailsBuyersCancel
@@ -125,7 +125,7 @@ paths:
         This endpoint allows the buyer to request from the seller to cancel and ignore 
         a previously communicated inventoryAvails request. As Follows:<br/>
         NOTE#1:originalTransactionNum values needs to indicate which request is to be cancelled.<br/>
-        NOTE#2: transactionNum.transactionType = Cancelled<br/>
+        NOTE#2: transactionNum.transactionType = Cancel<br/>
         NOTE#3: originalTransactionNum.transactionNum must refer to the transaction in question to be cancelled
 
       operationId: inventoryAvailsSellerCancel

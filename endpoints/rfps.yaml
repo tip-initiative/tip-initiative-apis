@@ -63,7 +63,7 @@ paths:
       description: >-
         Buyer can send this request to cancel a previous request. 
         originalTransactionNum values needs to indicate which request is to be cancelled.<br/>
-        NOTE#1: transactionNum.transactionType = Cancelled<br/>
+        NOTE#1: transactionNum.transactionType = Cancel<br/>
         NOTE#2: originalTransactionNum.transactionNum must refer to the transaction in question to be cancelled
       operationId: CancelRFP
       requestBody:

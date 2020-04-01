@@ -55,10 +55,10 @@ components:
         salesElement:
           $ref: 'commonSchemas.yaml#/components/schemas/SalesElementHeader'
         program:
-          description: Program Name
+          description: The "as-aired" program name
           type: string
         daypart:
-          description: Station Daypart Name
+          description: The  "as-aired" seller's daypart name 
           type: string
         inventoryType:
           $ref: 'commonSchemas.yaml#/components/schemas/InventoryType'
@@ -119,7 +119,6 @@ components:
         - product
         - salesElement
         - length
-        - rate
         - status
     ChildUnit:
       description: >-
