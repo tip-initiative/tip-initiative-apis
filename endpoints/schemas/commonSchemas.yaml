@@ -39,7 +39,7 @@ components:
             by the system that is creating the data exchange
           type: integer
         transactionType:
-          description: This indicates if the data exchange being sent is either a new, changed or cancelled
+          description: This indicates if the data exchange being sent is either a new, change or cancel
             transaction.
           type: string
           enum:
@@ -867,9 +867,9 @@ components:
         - dateWindow
         - unitCount
     SalesElementGroupHeader:
-      description: Sales Element Audience Details
+      description: Sales Element Group Header Object
       properties:
-        salesElementGroup:
+        salesElementGroupName:
           description: Seller's sales element grouping name
           type: string
         salesElementGroupId:
@@ -887,20 +887,38 @@ components:
         - salesElementGroupId
         - salesElementGroupType
     SalesElementGroup:
+      description: Sales Group Object
       properties:
         salesElementGroup:
           $ref: '#/components/schemas/SalesElementGroupHeader'
         timePeriods:
+          description: An Array  of TimePeriods where the Group is offered
           type: array
           items:
             $ref: '#/components/schemas/TimePeriod'
+        rate:
+          description: rate applicable to the units in the group
+          type: number
+          format: format
         salesElementGroupDetails:
           type: array
           items:
-            $ref: '#/components/schemas/SalesElement'
+            $ref: '#/components/schemas/SalesElementGroupDetail'
+          minItems: 2
       required:
         - salesElementGroup
         - salesElementGroupDetails
+    SalesElementGroupDetail:
+      description: An object used to describe the Sales Elements making up the Group
+      properties:
+        ratio:
+          description: number of units of the sales element needed to satisfy the package
+          type: number
+          format: float
+        packageOnly:
+          type: boolean
+        salesElement:
+          $ref: '#/components/schemas/SalesElement'
     SalesElementGroupTransaction:
       properties:
         SalesElementGroup:

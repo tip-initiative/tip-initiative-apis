@@ -62,7 +62,7 @@ paths:
         This endpoint allows the seller to request from the buyer to cancel and ignore 
         a previously communicated proposal request. As Follows:<br/>
         NOTE#1:originalTransactionNum values needs to indicate which request is to be cancelled.<br/>
-        NOTE#2: transactionNum.transactionType = Cancelled<br/>
+        NOTE#2: transactionNum.transactionType = Cancel<br/>
         NOTE#3: originalTransactionNum.transactionNum must refer to the transaction in question to be cancelled
       operationId: cancelProposal
       requestBody:
