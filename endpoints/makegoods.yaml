@@ -36,7 +36,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: 'schemas/commonSchemas.yaml#/components/schemas/encodededPayloadWrapper'
+              $ref: 'schemas/commonSchemas.yaml#/components/schemas/AcceptedResponse'
       responses:
         '202':
           description: Request processed successfully
@@ -66,7 +66,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: 'schemas/commonSchemas.yaml#/components/schemas/encodededPayloadWrapper'
+              $ref: 'schemas/commonSchemas.yaml#/components/schemas/AcceptedResponse'
       responses:
         '202':
           description: Request processed successfully
@@ -91,7 +91,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: 'schemas/commonSchemas.yaml#/components/schemas/encodededPayloadWrapper'
+              $ref: 'schemas/commonSchemas.yaml#/components/schemas/AcceptedResponse'
       responses:
         '200':
           description: Request processed successfully
@@ -116,7 +116,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: 'schemas/commonSchemas.yaml#/components/schemas/encodededPayloadWrapper'
+              $ref: 'schemas/commonSchemas.yaml#/components/schemas/AcceptedResponse'
       responses:
         '202':
           description: Request processed successfully
@@ -146,7 +146,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: 'schemas/commonSchemas.yaml#/components/schemas/encodededPayloadWrapper'
+              $ref: 'schemas/commonSchemas.yaml#/components/schemas/AcceptedResponse'
       responses:
         '202':
           description: Request processed successfully
@@ -176,7 +176,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: 'schemas/commonSchemas.yaml#/components/schemas/encodededPayloadWrapper'
+              $ref: 'schemas/commonSchemas.yaml#/components/schemas/AcceptedResponse'
       responses:
         '202':
           description: Request processed successfully
@@ -206,7 +206,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: 'schemas/commonSchemas.yaml#/components/schemas/encodededPayloadWrapper'
+              $ref: 'schemas/commonSchemas.yaml#/components/schemas/AcceptedResponse'
       responses:
         '202':
           description: Request processed successfully
@@ -257,7 +257,7 @@ paths:
                 content:
                   application/json:
                     schema:
-                      $ref: 'schemas/commonSchemas.yaml#/components/schemas/encodededPayloadWrapper'
+                      $ref: 'schemas/commonSchemas.yaml#/components/schemas/AcceptedResponse'
               responses:   # Expected responses to the CreateMakegoodRequest callback message
                 '200':
                   description: Request processed successfully
@@ -275,7 +275,7 @@ paths:
                 content:
                   application/json:
                     schema:
-                      $ref: 'schemas/commonSchemas.yaml#/components/schemas/encodededPayloadWrapper'
+                      $ref: 'schemas/commonSchemas.yaml#/components/schemas/AcceptedResponse'
               responses:   # Expected responses to the ConfirmMakegoodNotification callback message
                 '200':
                   description: Request processed successfully
@@ -293,7 +293,7 @@ paths:
                 content:
                   application/json:
                     schema:
-                      $ref: 'schemas/commonSchemas.yaml#/components/schemas/encodededPayloadWrapper'
+                      $ref: 'schemas/commonSchemas.yaml#/components/schemas/AcceptedResponse'
               responses: # Expected responses to the CancelMakegoodRequest callback message
                 '200':
                   description: Request processed successfully
