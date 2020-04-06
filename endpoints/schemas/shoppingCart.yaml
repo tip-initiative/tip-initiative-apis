@@ -79,10 +79,7 @@ components:
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/SalesElementTransaction'
-        # salesElementGroups:
-        #   description: >-
-        #       #TO DO - Heather should we consider a SalesElementGrouptTransaction
-        #   type: array
-        #   items:
-        #     $ref:
-        #       'commonSchemas.yaml#/components/schemas/SalesElementTransaction'
+        salesElementGroups:
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/SalesElementGroup'

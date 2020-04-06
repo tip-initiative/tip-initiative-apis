@@ -311,7 +311,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'schemas/commonSchemas.yaml#/components/schemas/enumerateSubscriptions'
+                $ref: 'schemas/commonSchemas.yaml#/components/schemas/AcceptedResponse'
         default:
           description: Unexpected error occured
           content:

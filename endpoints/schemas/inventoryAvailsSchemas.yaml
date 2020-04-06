@@ -20,17 +20,18 @@ components:
         transactionHeader:
           $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
         dateSubmitted:
-          description: Buyer Submit Date for Inventory
+          description: Buyer Submit Date for Inventory Request
           type: string
           format: date
         dueDate:
-          description: Due Date for Inventory Information
+          description: Due Date for seller to respond with Inventory Information
           type: string
           format: date
         mediaOutlets:
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/MediaOutlet'
+          minItems: 1
         buyer:
           $ref: 'commonSchemas.yaml#/components/schemas/Buyer'
         advertiser:
@@ -40,7 +41,10 @@ components:
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/Contact'
         timePeriods:
-          $ref: 'commonSchemas.yaml#/components/schemas/TimePeriod'
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/TimePeriod'
+          minItems: 1
         guidelines:
           $ref: 'commonSchemas.yaml#/components/schemas/Guideline'
         political:
@@ -52,7 +56,7 @@ components:
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/InventoryType'
         maxRate:
-          description: Float Max spend requirements in unit rates by inventory type
+          description: Max rate spend across all inventory types 
           type: number
           format: float
           minimum: 0
@@ -67,6 +71,7 @@ components:
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/AudienceSegment'
+          minItems: 1
         pricingMetricOptions:
           description: an optional array of applicable/required pricing metrics
           type: array
@@ -85,6 +90,7 @@ components:
         transactionHeader:
           $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
         dateSubmitted:
+          description: Submission date for the inventory 
           type: string
           format: date
         buyer:
@@ -106,16 +112,19 @@ components:
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/MediaOutlet'
+          minItems: 1
         audienceSegments:
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/AudienceSegmentDetail'
         availWindow:
           $ref: 'commonSchemas.yaml#/components/schemas/DateWindow'
+          minItems: 1
         salesElements:
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/SalesElement'
+          minItems: 1
         salesElementGroups:
           type: array
           items:
