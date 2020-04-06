@@ -64,11 +64,11 @@ components:
             - Barter
             - Trade
         grossAmount:
-          description: Totals gross dollars for the invoice
+          description: Totals gross amount for the invoice
           type: number
           format: float
         commission:
-          description: Invoice total commission dollars
+          description: Invoice total commission amount
           type: number
           format: float
         salesTax:
@@ -78,8 +78,8 @@ components:
           format: float
         totalNetAmount:
           description: >-
-            Total net dollars for all units within the invoice start and end date (gross dollars – commission
-            dollars+ sales tax)
+            Total net amount for all units within the invoice start and end date (gross amount – commission
+            amount + sales tax)
           type: number
           format: float
         currency:

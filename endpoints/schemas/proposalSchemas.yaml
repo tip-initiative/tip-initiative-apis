@@ -17,6 +17,14 @@ paths: {} # no paths
 components:
   schemas:
     ProposalObject:
+      description: >-
+        Allows the seller to respond back to the buyer with the detailed proposal
+         for a given RFP or revised proposal; Multiple versions of a proposal can be 
+         under negotiation for the same campaign, but only one version may be executed; 
+         buyer must submit a "Proposal Change Request" for the last proposal 
+         version submission; seller must respond back with a Proposal Response 
+         that contains a new version number when submitting new versions.  
+        New Proposals may be submitted without a RFP Response 				
       properties:
         transactionHeader:
           $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
@@ -25,6 +33,7 @@ components:
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/ReferenceId'
+          minItems: 1
         expirationDate:
           description: Date in which the proposal’s pricing and audience estimates expire
           type: string
@@ -56,7 +65,7 @@ components:
           - Trade
         businessType:
           description: Seller-defined type of business 
-          type: string  # TODO any constraints?
+          type: string
         localNational:
           description: Market Type for Proposal 
           type: string
@@ -70,36 +79,38 @@ components:
         billingOption:
           $ref: 'commonSchemas.yaml#/components/schemas/BillingOption'
         equivalized:
-          description: true means impressions are equivalized, false means impressions are unequivalized
+          description: >-
+            Indicates if the impressions weighted down or up from 30-second impressions 
+            based on their ratio of their length to 30 seconds.
           type: boolean
         dateWindow:
           description: An array of Date intervals
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/DateWindow'
+          minItems: 1
         cancellationTerms:
           $ref: 'commonSchemas.yaml#/components/schemas/CancellationTerms'
         timeSeparation:
-          description: List of unit lengths being proposed with separation agreement by a specific length of time; separation may be across all lengths
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/TimeSeparation'
         termsOfSales:
           description: The information specific to payment terms, preemption status, etc.
-          type: string  # TODO any constraints?
+          type: string 
         externalComment:
           description: Free form text to accommodate transaction comments and/or activities outside the TIP flow
-          type: string  # TODO any constraints?
+          type: string 
         rateCard:
           $ref: 'commonSchemas.yaml#/components/schemas/RateCard'
         currency:
-          description: Currency in which the proposal is being negotiated
           $ref: 'commonSchemas.yaml#/components/schemas/Currency'
         mediaOutlets:
           description: an array of mediaoutlets included in the proposal
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/MediaOutlet'
+          minItems: 1
         audienceSegments:
           description: an array of Audience Segments per media outlet 
           type: array
@@ -112,13 +123,14 @@ components:
             $ref: 'commonSchemas.yaml#/components/schemas/SalesElementTransaction'
       required:
         - transactionHeader
-        - referenceId
-        - contact
+        - referenceIds
         - buyer
         - commission
+        - contacts
         - revenueType
         - businessType
         - equivalized
+        - dateWindow
         - mediaOutlets
 
 
