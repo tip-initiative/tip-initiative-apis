@@ -28,6 +28,8 @@ security:
 paths:
   /buyer/rfp:
     post:
+      tags:
+        - Buyer
       summary: Create or Change a previously requested an RFP in the seller's system. 
       description: >-
         This endpoint resides on the seller side. the purpose of the endpoint is to allow the buyer to:
@@ -59,6 +61,8 @@ paths:
              
   /buyer/rfp/cancel:
     post:
+      tags: 
+        - Buyer
       summary: Cancel a previously submitted RFP in the seller's system. 
       description: >-
         Buyer can send this request to cancel a previous request. 
