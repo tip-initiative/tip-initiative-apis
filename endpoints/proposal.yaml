@@ -31,6 +31,8 @@ servers:
 paths:
   /seller/proposal:
     post:
+      tags:
+        - Seller
       summary: Create or Change a proposal in the buyers system
       description: Create or Change a proposal in the buyers system
       operationId: createChangeProposal
@@ -56,6 +58,8 @@ paths:
                 $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
   /seller/proposal/cancel:
     post:
+      tags:
+        - Seller
       summary: Cancel a proposal in the buyer's system
       description: >-
         Cancel a proposal in the buyer's system

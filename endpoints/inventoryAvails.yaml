@@ -25,6 +25,8 @@ servers:
 paths:
   /buyer/inventoryAvails:
     post:
+      tags:
+        - Buyer
       summary: Send the request for the inventory avails required
       description: >-
         This endpoint is hosted at the seller end, Allows the Buyer as part of campaign planning 
@@ -62,9 +64,12 @@ paths:
                 $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
   /buyer/inventoryAvails/cancel:
     post:
+      tags:
+        - Buyer
+      summary: Cancel inventory Avails request
       description: >-
         This endpoint will be hosted at the seller side.
-        This endpoint allows the seller to request from the buyer to cancel and ignore 
+        This endpoint allows the buyer to request from the seller to cancel and ignore 
         a previously communicated inventoryAvails request. As Follows:<br/>
         NOTE#1:originalTransactionNum values needs to indicate which request is to be cancelled.<br/>
         NOTE#2: transactionNum.transactionType = Cancel<br/>
@@ -92,6 +97,8 @@ paths:
                 $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
   /seller/inventoryAvails:
     post:
+      tags:
+        - Seller
       summary: Seller POSTs the Inventory Avails information to the buyer's system
       description: > 
         This endpoint will be hosted at the buyer side, 
@@ -120,6 +127,9 @@ paths:
                 $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
   /seller/inventoryAvails/cancel:
     post:
+      tags:
+        - Seller
+      summary: Cancel inventory Avails Request
       description: >-
         This endpoint will be hosted at the buyer side.
         This endpoint allows the buyer to request from the seller to cancel and ignore 

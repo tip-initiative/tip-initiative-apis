@@ -30,6 +30,8 @@ servers:
 paths:
   /buyer/order:
     post:
+      tags:
+        - Buyer
       summary: Create an Order
       description: >-
         The endpoint resides on the seller side. <br/>
@@ -60,6 +62,8 @@ paths:
                 $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
   /buyer/order/cancel:
     post:
+      tags:
+        - Buyer
       description: >-
         The endpoint resides on the seller side. <br/>
         the endpoint allows the buyer to creates an order in the Seller system.
@@ -87,6 +91,8 @@ paths:
                 $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
   /seller/order/confirmation:
     post:
+      tags:
+        - Seller
       summary: Confirmation of acceptance of previously submitted order
       description: >-
         The endpoint resides on the buyer side to allow the seller to send a confirmation<br/>
@@ -115,6 +121,8 @@ paths:
                 $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
   /seller/order/reject:
     post:
+      tags:
+        - Seller
       summary: Reject of previously submitted order
       description: >-
         The endpoint resides on the buyer side to allow the seller to send a reject (all or None)<br/>
