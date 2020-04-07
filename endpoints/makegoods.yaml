@@ -1,5 +1,4 @@
 openapi: "3.0.0"
-
 components:
   securitySchemes:
     bearerAuth:
@@ -56,8 +55,10 @@ paths:
       summary: Cancel a makegood
       description: Cancel a makegood
       parameters:
-        - name: sgsMakegoodId
-          in: path
+        - in: path
+          name: sgsMakegoodId
+          schema:
+            type: integer
           description: The SGS makegood Id
           required: true
       requestBody:
@@ -137,6 +138,8 @@ paths:
       description: Receive events from SGS Counterparty for confirmation updates to a makegood
       parameters:
         - name: sgsMakegoodId
+          schema:
+            type: integer
           in: path
           description: The SGS makegood Id
           required: true
@@ -167,6 +170,8 @@ paths:
       description: Receive events from SGS Counterparty for open updates to a makegood
       parameters:
         - name: sgsMakegoodId
+          schema:
+            type: integer
           in: path
           description: The SGS makegood Id
           required: true
@@ -197,6 +202,8 @@ paths:
       description: Receive events from SGS Counterparty for rejected updates to a makegood
       parameters:
         - name: sgsMakegoodId
+          schema:
+            type: integer
           in: path
           description: The SGS makegood Id
           required: true
@@ -232,14 +239,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: 'schemas/makegoodsSchemas.yaml#/components/schemas/AcceptedResponse'
+              $ref: 'schemas/commonSchemas.yaml#/components/schemas/AcceptedResponse'
       responses:
         '201':
           description: Request processed successfully
           content:
             application/json:
               schema:
-                $ref: 'schemas/commonSchemas.yaml#/components/schemas/subscriptionResponse'
+                $ref: 'schemas/commonSchemas.yaml#/components/schemas/AcceptedResponse'
         default:
           description: Unexpected error occured
           content:
@@ -326,6 +333,8 @@ paths:
       operationId: Remove a subscription
       parameters:
         - name: id
+          schema:
+            type: integer
           in: path
           description: The subscription id
           required: true
