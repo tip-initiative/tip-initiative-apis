@@ -116,6 +116,9 @@ class ModelRow:
         elif "float" == data_type:
             r = self.parse_float()
 
+        elif "double" == data_type:
+            r = self.parse_double()
+
         elif "boolean" == data_type:
             r = self.parse_bool()
 
@@ -186,6 +189,10 @@ class ModelRow:
     @staticmethod
     def parse_float():
         return {"type": "number", "format": "float"}
+
+    @staticmethod
+    def parse_double():
+        return {"type": "number", "format": "double"}
 
     @staticmethod
     def parse_bool():
@@ -411,6 +418,14 @@ SHEETS: List[Sheet] = [
         "4.2.0",
         "RFP Schema",
         "RFP Schema, Based on TIP 4.0 Working Draft",
+    ),
+    Sheet(
+        "proposalSchemas.yaml",
+        "Seller/ Proposal",
+        11,
+        "4.2.0",
+        "Create a proposal to send to the buyer system",
+        "Seller/Proposal Schemas, based on TIP 4.0.0 documentation",
     ),
 ]
 
