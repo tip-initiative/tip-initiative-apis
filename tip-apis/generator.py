@@ -348,7 +348,7 @@ SHEETS: List[Sheet] = [
         "commonSchemas.yaml",
         "Common Models",
         5,
-        "4.2.0",
+        "4.3.0",
         "Common Schemas",
         "Common Schemas, based on TIP 4.0 documentation",
     ),
