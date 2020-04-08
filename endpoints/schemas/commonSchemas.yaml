@@ -235,12 +235,12 @@ components:
         - audienceMetric
         - audienceMetricValue
     PricingMetricOption:
-      description: >-
+      description: |-
         A common object defining the Pricing metric
         CPM - Cost-per-thousand,
         CPP - Cost-per-point,
         CPE - Cost-per-engagement,
-        CPA -Cost-per-action"
+        CPA - Cost-per-action
       type: string
       enum:
         - CPM
@@ -368,9 +368,9 @@ components:
         - referenceType
         - referenceId
     Currency:
-      description: >-
-        Currency Code is based on ISO 4217. This is the short list of most widely used codes for North
-        America
+      description: |-
+        Currency Code is based on ISO 4217.
+        This is the short list of most widely used codes for North America
       type: string
       enum:
         - USD   # US Dollar
