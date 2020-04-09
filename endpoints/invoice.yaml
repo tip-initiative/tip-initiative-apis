@@ -11,7 +11,7 @@ security:
   - bearerAuth: []
 
 info:
-  version: 4.2rc1
+  version: 5.0.0
   title: Invoice
   description: Allows the seller to send to the buyer both new and revised invoice information
   termsOfService: http://placeholderdomain.io/terms/
@@ -63,7 +63,7 @@ paths:
       summary: Seller Invoice Cancel
       description: >-
         This endpoint will be hosted at the buyer side.
-        This endpoint allows the seller to request from the buyer to cancel and ignore 
+        This endpoint allows the seller to request from the buyer to cancel and ignore
         a previously communicated Invoice request. As Follows:<br/>
         NOTE#1:originalTransactionNum values needs to indicate which request is to be cancelled.<br/>
         NOTE#2: transactionNum.transactionType = Cancel<br/>
@@ -83,7 +83,7 @@ paths:
               schema:
                 $ref: 'schemas/commonSchemas.yaml#/components/schemas/AcceptedResponse'
         default:
-          description: unexpected error, return the appropriate and corresponding HTTP status code matching the error 
+          description: unexpected error, return the appropriate and corresponding HTTP status code matching the error
           content:
             application/json:
               schema:

@@ -10,12 +10,12 @@ security:
   - bearerAuth: []
 
 info:
-  version: 4.2.0
+  version: 5.0.0
   title: Orders
   description: >-
     Allows the seller to respond back to the buyer with the detailed proposal for a given RFP
-    or revised proposal; Multiple versions of a proposal can be under negotiation for 
-    the same campaign, but only one version may be executed; buyer must submit a "Proposal Change Request" for the last proposal version submission; seller must respond back with a Proposal Response that contains a new version number when submitting new versions.  New Proposals may be submitted without a RFP Response 				
+    or revised proposal; Multiple versions of a proposal can be under negotiation for
+    the same campaign, but only one version may be executed; buyer must submit a "Proposal Change Request" for the last proposal version submission; seller must respond back with a Proposal Response that contains a new version number when submitting new versions.  New Proposals may be submitted without a RFP Response
   termsOfService: http://placeholderdomain.io/terms/
   contact:
     name: TIP Forum
@@ -74,7 +74,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: 'schemas/ordersSchemas.yaml#/components/schemas/OrderRecallorCancelRequestObject'
+              $ref: 'schemas/ordersSchemas.yaml#/components/schemas/OrderRecallObject'
       responses:
         '200':
           description: >-
@@ -105,7 +105,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: 'schemas/ordersSchemas.yaml#/components/schemas/OrderConformationResponseObject'
+              $ref: 'schemas/ordersSchemas.yaml#/components/schemas/OrderConfirmationResponseObject'
       responses:
         '200':
           description: confirmation Accepted

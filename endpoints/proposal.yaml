@@ -2,21 +2,21 @@ openapi: "3.0.0"
 
 components:
  securitySchemes:
-    bearerAuth: 
+    bearerAuth:
       type: http
       scheme: bearer
-      bearerFormat: JWT 
+      bearerFormat: JWT
 security:
   - bearerAuth: []
 
 info:
-  version: 4.0rc1
+  version: 5.0.0
   title: Proposal
   description: |
-    * Allows the seller to respond back to the buyer with the detailed proposal for a given RFP or revised proposal; 
-    Multiple versions of a proposal can be under negotiation for the same campaign, but only one version may be executed; buyer must submit a 
-    "Proposal Change Request" for the last proposal version submission; seller must respond back with a Proposal Response that contains a new 
-    version number when submitting new versions.  New Proposals may be submitted without a RFP Response 		
+    * Allows the seller to respond back to the buyer with the detailed proposal for a given RFP or revised proposal;
+    Multiple versions of a proposal can be under negotiation for the same campaign, but only one version may be executed; buyer must submit a
+    "Proposal Change Request" for the last proposal version submission; seller must respond back with a Proposal Response that contains a new
+    version number when submitting new versions.  New Proposals may be submitted without a RFP Response
   termsOfService: http://placeholderdomain.io/terms/
   contact:
     name: TIP Initiative
@@ -63,7 +63,7 @@ paths:
       summary: Cancel a proposal in the buyer's system
       description: >-
         Cancel a proposal in the buyer's system
-        This endpoint allows the seller to request from the buyer to cancel and ignore 
+        This endpoint allows the seller to request from the buyer to cancel and ignore
         a previously communicated proposal request. As Follows:<br/>
         NOTE#1:originalTransactionNum values needs to indicate which request is to be cancelled.<br/>
         NOTE#2: transactionNum.transactionType = Cancel<br/>

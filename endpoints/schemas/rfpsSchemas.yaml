@@ -1,8 +1,8 @@
 openapi: 3.0.0
 info:
-  version: 4.2.0
+  version: 5.0.0
   title: RFP Schema
-  description: RFP Schema, Based on TIP 4.0 Working Draft
+  description: RFP Schema
   termsOfService: http://placeholderdomain.io/terms/
   contact:
     name: TIP Initiative
