@@ -78,8 +78,8 @@ components:
           format: float
         totalNetAmount:
           description: >-
-            Total net amount for all units within the invoice start and end date (gross amount – commission
-            amount + sales tax)
+            Total net amount for all units within the invoice start and end date (gross amount– commission
+            amount+ sales tax)
           type: number
           format: float
         currency:

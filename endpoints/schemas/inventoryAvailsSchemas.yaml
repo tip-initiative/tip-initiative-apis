@@ -80,7 +80,7 @@ components:
       required:
         - transactionHeader
         - dateSubmitted
-        - mediaOutlet
+        - mediaOutlets
         - timePeriods
         - political
         - audienceSegments
@@ -119,7 +119,6 @@ components:
             $ref: 'commonSchemas.yaml#/components/schemas/AudienceSegmentDetail'
         availWindow:
           $ref: 'commonSchemas.yaml#/components/schemas/DateWindow'
-          minItems: 1
         salesElements:
           type: array
           items:

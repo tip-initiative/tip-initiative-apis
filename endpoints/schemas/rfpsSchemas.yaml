@@ -16,8 +16,8 @@ components:
   schemas:
     RFPRequestObject:
       description: >-
-        Allows the buyer to submit a Request for Proposal (RFP) to the seller 
-        with media budget, goals and overall terms						
+        Allows the buyer to submit a Request for Proposal (RFP) to the seller with media budget, goals
+        and overall terms
       properties:
         transactionHeader:
           $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
@@ -49,37 +49,36 @@ components:
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/Contact'
-          minItems: 1
         currency:
           $ref: 'commonSchemas.yaml#/components/schemas/Currency'
         budget:
           description: Overall total budget for the RFP
           type: number
           format: float
-          minimum: 0
         timePeriodPreferences:
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/TimePeriod'
           minItems: 1
         marketPreferences:
-          description: List of market preferences (AND) "<Market Name>"
+          description: |-
+            List of market preferences (AND)
+            "<Market Name>"
           type: array
           items:
             type: string
-          minItems: 1
         audiencePreferences:
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/AudienceSegment'
-          minItems: 1
         unitLengthPreferences:
-          description: List of unit length preferences (AND) "<Unit Length>"
+          description: |-
+            List of unit length preferences (AND)
+            "<Unit Length>"
           type: array
           items:
             type: integer
         guidelines:
-          description: Guidelines for proposal
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/Guideline'
