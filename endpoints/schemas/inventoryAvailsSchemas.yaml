@@ -124,10 +124,10 @@ components:
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/SalesElement'
           minItems: 1
-        salesElementGroups:
-          type: array
-          items:
-            $ref: 'commonSchemas.yaml#/components/schemas/SalesElementGroup'
+        # salesElementGroups:
+        #   type: array
+        #   items:
+        #     $ref: 'commonSchemas.yaml#/components/schemas/SalesElementGroup'
       required:
         - transactionHeader
         - dateSubmitted
