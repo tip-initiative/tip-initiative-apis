@@ -477,7 +477,7 @@ components:
             the following: format HH:MM. In a future release the broadcast time may be modified to support
             UTC Standard
           type: string
-          pattern: ^(([0-1][0-9])|(2[0-3]))(:[0-5][0-9]){2}$
+          pattern: ^([0-1][0-9]|2[0-3]):[0-5][0-9]$|^(0[0-9]|1[0-2]):[0-5][0-9][A,a,P,p,x,X]$
     TimePeriod:
       description: A common object combining date window, DOW and time window objects
       properties:
