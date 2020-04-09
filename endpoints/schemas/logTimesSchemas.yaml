@@ -58,7 +58,7 @@ components:
           description: The "as-aired" program name
           type: string
         daypart:
-          description: The  "as-aired" seller's daypart name 
+          description: The "as-aired" seller's daypart name
           type: string
         inventoryType:
           $ref: 'commonSchemas.yaml#/components/schemas/InventoryType'
@@ -73,7 +73,7 @@ components:
         preemptUnitIds:
           description: >-
             Desired if unit's Makegood indicator is "Y"; "original" preempted unit(s) being resolved
-            by makegood; there may be one too many preempt unit ids being resolved for one makegood
+            by makegood; there may be one too many preempt unit ids being resolved to support
           type: array
           items:
             type: string
@@ -152,3 +152,10 @@ components:
           type: string
         broadcastDate:
           $ref: 'commonSchemas.yaml#/components/schemas/BroadcastDate'
+    LogTimesResponse:
+      properties:
+        transactionId:
+          type: string
+        transactionDate:
+          type: string
+          format: date

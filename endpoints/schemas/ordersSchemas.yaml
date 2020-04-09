@@ -100,7 +100,6 @@ components:
         rateCard:
           $ref: 'commonSchemas.yaml#/components/schemas/RateCard'
         currency:
-          description: Currency in which the proposal is being negotiated
           $ref: 'commonSchemas.yaml#/components/schemas/Currency'
         mediaOutlets:
           description: an array of mediaoutlets included in the proposal
@@ -120,8 +119,7 @@ components:
         # TO DO - salesElementGroup
       required:
         - transactionHeader
-        - referenceId
-        - contact
+        - referenceIds
         - buyer
         - commission
         - revenueType
@@ -135,7 +133,6 @@ components:
         transactionHeader:
           $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
         referenceIds:
-          description: array of relevant Ids to allow for proper reference and lineage of the order
           $ref: 'commonSchemas.yaml#/components/schemas/ReferenceId'
         confirmedBookedDate:
           description: Date that the Order was Confirmed Booked
