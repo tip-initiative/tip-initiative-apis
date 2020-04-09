@@ -79,7 +79,7 @@ components:
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/SalesElementTransaction'
-        salesElementGroups:
-          type: array
-          items:
-            $ref: 'commonSchemas.yaml#/components/schemas/SalesElementGroup'
+        # salesElementGroups:
+        #   type: array
+        #   items:
+        #     $ref: 'commonSchemas.yaml#/components/schemas/SalesElementGroup'
