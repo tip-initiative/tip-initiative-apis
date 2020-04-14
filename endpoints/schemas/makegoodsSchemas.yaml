@@ -19,7 +19,6 @@ paths: {} # no paths
 
 components:
   schemas:
-  
     makegoodsSubscriptionRequest:
       description: A client creates a subscription by issuing a request against the subscriptions resource. The subscription namespace is client-defined via the POST operation.
       required:

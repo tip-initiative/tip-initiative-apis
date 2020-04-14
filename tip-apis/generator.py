@@ -11,7 +11,11 @@ from google.auth.transport.requests import Request
 from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 from ruamel.yaml import YAML
-from ruamel.yaml.scalarstring import SingleQuotedScalarString, FoldedScalarString
+from ruamel.yaml.scalarstring import (
+    SingleQuotedScalarString,
+    FoldedScalarString,
+    LiteralScalarString,
+)
 
 # Maximum width of line in YAML output
 PAGE_WIDTH = 99
@@ -46,13 +50,21 @@ class Sheet:
 
 def clean_description(description: str):
     """Remove duplicate / unwanted extra spaces from description."""
-    r = " ".join(description.split())
-    r = re.sub(r"\(\s+", "(", r)
-    r = re.sub(r"\s+\)", ")", r)
-    if len(r) > PAGE_WIDTH:
-        return FoldedScalarString(r)
-    else:
-        return str(r)
+    rtype = str
+    lines = []
+    for line in description.splitlines():
+        line = line.strip()
+        if not line:
+            continue
+        r = " ".join(line.split())
+        r = re.sub(r"\(\s+", "(", r)
+        r = re.sub(r"\s+\)", ")", r)
+        if len(r) > PAGE_WIDTH:
+            rtype = FoldedScalarString
+        lines.append(r)
+    if len(lines) > 1:
+        rtype = LiteralScalarString
+    return rtype("\n".join(lines))
 
 
 @attr.s(frozen=False, slots=True)
@@ -103,6 +115,9 @@ class ModelRow:
 
         elif "float" == data_type:
             r = self.parse_float()
+
+        elif "double" == data_type:
+            r = self.parse_double()
 
         elif "boolean" == data_type:
             r = self.parse_bool()
@@ -174,6 +189,10 @@ class ModelRow:
     @staticmethod
     def parse_float():
         return {"type": "number", "format": "float"}
+
+    @staticmethod
+    def parse_double():
+        return {"type": "number", "format": "double"}
 
     @staticmethod
     def parse_bool():
@@ -348,7 +367,7 @@ SHEETS: List[Sheet] = [
         "commonSchemas.yaml",
         "Common Models",
         5,
-        "4.2.0",
+        "4.3.0",
         "Common Schemas",
         "Common Schemas, based on TIP 4.0 documentation",
     ),
@@ -360,14 +379,22 @@ SHEETS: List[Sheet] = [
         "logTimes Schemas",
         "logTimes Schemas, based on TIP 4.0 documentation",
     ),
-    # Sheet(
-    #     "inventoryAvailsSchemas.yaml",
-    #     "Seller/ InventoryAvails",
-    #     11,
-    #     "0.0.1",
-    #     "Inventory Avails Schemas",
-    #     "Inventory Avails Schemas, based on TIP 4.0.0 documentation",
-    # ),
+    Sheet(
+        "buyer/inventoryAvailsSchemas.yaml",
+        "Buyer/ InventoryAvails",
+        11,
+        "0.0.1",
+        "Inventory Avails Schemas",
+        "Inventory Avails Schemas, based on TIP 4.0.0 documentation",
+    ),
+    Sheet(
+        "seller/inventoryAvailsSchemas.yaml",
+        "Seller/ InventoryAvails",
+        11,
+        "0.0.1",
+        "Inventory Avails Schemas",
+        "Inventory Avails Schemas, based on TIP 4.0.0 documentation",
+    ),
     Sheet(
         "invoiceSchemas.yaml",
         "Seller/ Invoice",
@@ -391,6 +418,14 @@ SHEETS: List[Sheet] = [
         "4.2.0",
         "RFP Schema",
         "RFP Schema, Based on TIP 4.0 Working Draft",
+    ),
+    Sheet(
+        "proposalSchemas.yaml",
+        "Seller/ Proposal",
+        11,
+        "4.2.0",
+        "Create a proposal to send to the buyer system",
+        "Seller/Proposal Schemas, based on TIP 4.0.0 documentation",
     ),
 ]
 

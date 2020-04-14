@@ -1,0 +1,29 @@
+{
+  "name": "tip-initiative-apis",
+  "version": "1.0.0",
+  "description": "Repository of the current TIP APIs",
+  "main": "index.js",
+  "dependencies": {
+    "gitignore-to-dockerignore": "^1.0.0",
+    "redoc-cli": "^0.9.7",
+    "swagger-ui": "^3.25.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:tip-initiative/tip-initiative-apis.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tip-initiative/tip-initiative-apis/issues"
+  },
+  "homepage": "https://github.com/tip-initiative/tip-initiative-apis#readme",
+  "engines": {
+    "node": ">=13.11.0",
+    "npm": ">=6.14.4"
+  }
+}
