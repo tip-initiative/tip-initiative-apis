@@ -7,4 +7,5 @@ The goal of TIP is to accelerate automation of spot television and to streamline
 
 This Github repository houses the technical Open API Specification 3.0 (OAS3) files that reflect the TIP Framework in the Google document located [here](https://docs.google.com/spreadsheets/d/1J1v6ol6hSEWSlUPF4ZPMq-TMc_See3ZprvwjS_HqZic/edit#gid=221363020).
 
+
 If you would like to contribute, please see [this wiki page](https://github.com/tip-initiative/tip-initiative-apis/wiki) to get you started.
