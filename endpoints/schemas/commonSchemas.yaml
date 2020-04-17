@@ -20,9 +20,9 @@ components:
         tipVersion:
           description: TIP version of the interface
           type: string
-        transactionNum:
+        transactionId:
           $ref: '#/components/schemas/TransactionId'
-        originalTransactionNum:
+        originalTransactionId:
           $ref: '#/components/schemas/TransactionId'
         timeStamp:
           description: Date and time the transaction was created - date-time represent UTC of the server
@@ -35,7 +35,7 @@ components:
     TransactionId:
       description: A common object defining transaction identifer details
       properties:
-        transactionNum:
+        transactionId:
           description: >-
             This is a system generated unique number for each data exchange. The transactionNum is generated
             by the system that is creating the data exchange
