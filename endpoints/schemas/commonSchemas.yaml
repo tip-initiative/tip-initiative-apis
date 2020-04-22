@@ -20,9 +20,9 @@ components:
         tipVersion:
           description: TIP version of the interface
           type: string
-        transactionNum:
+        transactionId:
           $ref: '#/components/schemas/TransactionId'
-        originalTransactionNum:
+        originalTransactionId:
           $ref: '#/components/schemas/TransactionId'
         timeStamp:
           description: Date and time the transaction was created - date-time represent UTC of the server
@@ -35,7 +35,7 @@ components:
     TransactionId:
       description: A common object defining transaction identifer details
       properties:
-        transactionNum:
+        transactionId:
           description: >-
             This is a system generated unique number for each data exchange. The transactionNum is generated
             by the system that is creating the data exchange
@@ -474,10 +474,10 @@ components:
           description: >-
             The broadcast local time on which the unit aired/scheduled; UTC Standard; Receiver of data
             will be responsible to convert based on station's broadcast start of day, "Currently using
-            the following: format HH:MM. In a future release the broadcast time may be modified to support
+            the following: format HH:MM:SS. 
             UTC Standard
           type: string
-          pattern: ^([0-1][0-9]|2[0-3]):[0-5][0-9]$|^(0[0-9]|1[0-2]):[0-5][0-9][A,a,P,p,x,X]$
+          pattern: ^([0-1][0-9]|2[0-3]):[0-5][0-9]{2}$
     TimePeriod:
       description: A common object combining date window, DOW and time window objects
       properties:
