@@ -466,18 +466,17 @@ components:
         broadcastDate:
           description: >-
             The broadcast date on which the unit aired/scheduled; Receiver of data will be responsible
-            to convert based on station's broadcast start of day; format YYYY-MM-DD; In a future release
-            the broadcast datemay be modified to support UTC Standard
+            to convert based on station's broadcast start of day; format YYYY-MM-DD; 
           type: string
           format: date
         broadcastTime:
           description: >-
-            The broadcast local time on which the unit aired/scheduled; UTC Standard; Receiver of data
+            The broadcast local time on which the unit aired/scheduled; using ISO8601 Standard; Receiver of data
             will be responsible to convert based on station's broadcast start of day, "Currently using
             the following: format HH:MM:SS. 
             UTC Standard
           type: string
-          pattern: ^([0-1][0-9]|2[0-3]):[0-5][0-9]{2}$
+          pattern: ^([0-1][0-9]|2[0-3])(:[0-5][0-9]){2}$
     TimePeriod:
       description: A common object combining date window, DOW and time window objects
       properties:
