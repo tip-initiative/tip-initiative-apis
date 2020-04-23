@@ -30,14 +30,14 @@ components:
           format: date-time
       required:
         - tipVersion
-        - transactionNum
+        - transactionId
         - timeStamp
     TransactionId:
       description: A common object defining transaction identifer details
       properties:
         transactionId:
           description: >-
-            This is a system generated unique number for each data exchange. The transactionNum is generated
+            This is a system generated unique number for each data exchange. The transactionId is generated
             by the system that is creating the data exchange
           type: integer
         transactionType:
