@@ -37,9 +37,10 @@ components:
       properties:
         transactionId:
           description: >-
-            This is a system generated unique number for each data exchange. The transactionId is generated
+            This is a system generated unique ID for each data exchange. The transactionId is generated
             by the system that is creating the data exchange
-          type: integer
+          type: string
+          format: guid
         transactionType:
           description: This indicates if the data exchange being sent is either a new, change or cancel
             transaction.
@@ -460,7 +461,7 @@ components:
       required:
         - guidelineType
         - excludeOrInclude
-    BroadcastDate:
+    DateTime:
       description: A descriptor common object combining broadcast date and broadcast time
       properties:
         broadcastDate:
