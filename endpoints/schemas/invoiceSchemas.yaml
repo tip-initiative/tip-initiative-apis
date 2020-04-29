@@ -172,8 +172,8 @@ components:
         adId:
           description: Ad-ID
           type: string
-        broadcastDate:
-          $ref: 'commonSchemas.yaml#/components/schemas/BroadcastDate'
+        dateTime:
+          $ref: 'commonSchemas.yaml#/components/schemas/DateTime'
         podPosition:
           $ref: 'commonSchemas.yaml#/components/schemas/InventoryPosition'
         linkType:
@@ -241,5 +241,5 @@ components:
             Only valid on invoice revisions – details reasons for change to the unit (e.g. rate adjustment,
             incorrect copy, etc.)
           type: string
-        broadcastDate:
-          $ref: 'commonSchemas.yaml#/components/schemas/BroadcastDate'
+        dateTime:
+          $ref: 'commonSchemas.yaml#/components/schemas/DateTime'

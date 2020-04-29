@@ -106,8 +106,8 @@ components:
           type: boolean
         timePeriod:
           $ref: 'commonSchemas.yaml#/components/schemas/TimePeriod'
-        broadcastDate:
-          $ref: 'commonSchemas.yaml#/components/schemas/BroadcastDate'
+        dateTime:
+          $ref: 'commonSchemas.yaml#/components/schemas/DateTime'
         childUnits:
           type: array
           items:
@@ -150,8 +150,8 @@ components:
         reason:
           description: Reason description for No-Run status
           type: string
-        broadcastDate:
-          $ref: 'commonSchemas.yaml#/components/schemas/BroadcastDate'
+        dateTime:
+          $ref: 'commonSchemas.yaml#/components/schemas/DateTime'
     LogTimesResponse:
       properties:
         transactionId:
