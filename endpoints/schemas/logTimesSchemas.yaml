@@ -24,6 +24,7 @@ components:
             buyer
           type: string
         units:
+          description: The units listed in the API  units can be defined by the system that is creating the API.
           type: array
           items:
             $ref: '#/components/schemas/Unit'
@@ -105,8 +106,10 @@ components:
           description: Indicate if the unit was issued a credit
           type: boolean
         timePeriod:
+          description: Indicates the valid start and end dates, valid DOW and start and end times for the ordered unit (spot) 
           $ref: 'commonSchemas.yaml#/components/schemas/TimePeriod'
         dateTime:
+          description: Not required when unit's status is "No Run"
           $ref: 'commonSchemas.yaml#/components/schemas/DateTime'
         childUnits:
           type: array
@@ -130,6 +133,7 @@ components:
             units
           type: string
         mediaOutlet:
+          description: Required if ParentUnitId is populated
           $ref: 'commonSchemas.yaml#/components/schemas/MediaOutlet'
         rate:
           description: Unit rate associated to the "child" unit
@@ -151,6 +155,7 @@ components:
           description: Reason description for No-Run status
           type: string
         dateTime:
+          description: Required if the child's unit is equal to "Aired"
           $ref: 'commonSchemas.yaml#/components/schemas/DateTime'
     LogTimesResponse:
       properties:
