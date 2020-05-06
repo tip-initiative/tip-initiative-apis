@@ -29,7 +29,6 @@ components:
         transactionHeader:
           $ref: 'commonSchemas.yaml#/components/schemas/transactionHeader'
         referenceId:
-          description: Information grouping all reference ids and their source that are associated to the proposal
           $ref: 'commonSchemas.yaml#/components/schemas/referenceIds'
         Buyer:
           $ref: 'commonSchemas.yaml#/components/schemas/Buyer'
@@ -169,25 +168,16 @@ components:
           type: string
 # ---------------------------
     Rotation:
-      allOf:
-        - $ref: '#/components/schemas/instructionObject'
-        - $ref: '#/components/schemas/instructionDetailObject'
-        - type: array
-          items:
-            type: integer
-            minimum: 0
-            maximum: 100
+      type: array
+      items:
+        type: integer
+        minimum: 0
+        maximum: 100
     Pattern:
-      allOf:
-        - $ref: '#/components/schemas/instructionObject'
-        - $ref: '#/components/schemas/instructionDetailObject'
-        - type: array
-          items:
-            type: string
+        type: array
+        items:
+          type: string
     unitSpecific:
-      allOf:
-        - $ref: '#/components/schemas/instructionObject'
-        - $ref: '#/components/schemas/instructionDetailObject'
-        - type: array
-          items:
-            type: string
+        type: array
+        items:
+          type: string

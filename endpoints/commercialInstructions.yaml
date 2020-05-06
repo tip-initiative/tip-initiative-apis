@@ -26,6 +26,8 @@ servers:
 paths:
   /commercialInstructions:
     post:
+      tags:
+        - Buyer
       summary: Allows the creative agency or service provider of commercial instructions to send new or revised traffic instructions on how commercial copy should be applied to units (No request from Seller is required)
       description: Allows the creative agency or service provider of commercial instructions to send new or revised traffic instructions on how commercial copy should be applied to units (No request from Seller is required)
       operationId: commercialInstructionsPost

@@ -27,6 +27,8 @@ servers:
 paths:
   /logs/times/seller:
     post:
+      tags:
+        - Seller
       summary: seller POSTs the Log Times report to the buyer's system
       description: Allows the seller to send to the buyer the log times information (No Request from buyer is Required)
       operationId: logsTimesSeller
