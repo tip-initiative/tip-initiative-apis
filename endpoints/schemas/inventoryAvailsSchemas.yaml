@@ -1,8 +1,8 @@
-openapi: "3.0.0"
+openapi: 3.0.0
 info:
-  version: "4.2.0"
+  version: 5.0.0
   title: Inventory Avails Schemas
-  description: Inventory Avails Schemas, based on TIP 4.2.0 documentation
+  description: Inventory Avails Schemas
   termsOfService: http://placeholderdomain.io/terms/
   contact:
     name: TIP Initiative
@@ -14,7 +14,7 @@ info:
 paths: {}
 components:
   schemas:
-    inventoryAvailsBuyerRequestObject:
+    InventoryAvailsBuyerObject:
       description: Allows the Buyer as campaign planning to initiate an inventory Request to the Seller
       properties:
         transactionHeader:
@@ -46,17 +46,18 @@ components:
             $ref: 'commonSchemas.yaml#/components/schemas/TimePeriod'
           minItems: 1
         guidelines:
-          $ref: 'commonSchemas.yaml#/components/schemas/Guideline'
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/Guideline'
         political:
-          description: Indicates if request for inventory requires rates to support political 
+          description: Indicates if the request is for political pricing
           type: boolean
         inventoryTypes:
-          description: Desired list of inventory Types
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/InventoryType'
         maxRate:
-          description: Max rate spend across all inventory types 
+          description: Max rate spend across all inventory types
           type: number
           format: float
           minimum: 0
@@ -64,16 +65,15 @@ components:
         currency:
           $ref: 'commonSchemas.yaml#/components/schemas/Currency'
         externalComment:
-          description: Free form text to accommodate transaction comments and/or activities outside the TIP flow
+          description: Free form text to accommodate transaction comments and/or activities outside the
+            TIP flow
           type: string
         audienceSegments:
-          description: Audience details; multiple arrays of of audience segments may be included in the request
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/AudienceSegment'
           minItems: 1
         pricingMetricOptions:
-          description: an optional array of applicable/required pricing metrics
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/PricingMetricOption'
@@ -84,13 +84,15 @@ components:
         - timePeriods
         - political
         - audienceSegments
-    inventoryAvailsSellerResponseObject:
-      description: Allows the Seller to post to the buyer their catalog of selling products, pricing and audience information
+    InventoryAvailsSellerObject:
+      description: >-
+        Allows the Seller to post to the buyer their catalog of selling products, pricing and audience
+        information
       properties:
         transactionHeader:
           $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
         dateSubmitted:
-          description: Submission date for the inventory 
+          description: Submission date for the inventory
           type: string
           format: date
         buyer:
@@ -106,7 +108,7 @@ components:
         currency:
           $ref: 'commonSchemas.yaml#/components/schemas/Currency'
         political:
-          description: Indicates if request for inventory requires rates to support political 
+          description: Indicates that pricing being supplied are for political
           type: boolean
         mediaOutlets:
           type: array
@@ -124,13 +126,10 @@ components:
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/SalesElement'
           minItems: 1
-        # salesElementGroups:
-        #   type: array
-        #   items:
-        #     $ref: 'commonSchemas.yaml#/components/schemas/SalesElementGroup'
       required:
         - transactionHeader
         - dateSubmitted
+        - political
         - mediaOutlets
         - availWindow
         - salesElements

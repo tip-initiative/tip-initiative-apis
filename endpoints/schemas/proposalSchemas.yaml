@@ -1,8 +1,8 @@
 openapi: 3.0.0
 info:
-  version: 4.2.0
+  version: 5.0.0
   title: Create a proposal to send to the buyer system
-  description: Seller/Proposal Schemas, based on TIP 4.0.0 documentation
+  description: Seller/Proposal Schemas
   termsOfService: http://placeholderdomain.io/terms/
   contact:
     name: TIP Initiative
@@ -39,7 +39,7 @@ components:
         commission:
           description: Buyer commission percentage
           type: number
-          format: double
+          format: float
         advertiser:
           $ref: 'commonSchemas.yaml#/components/schemas/Advertiser'
         brand:

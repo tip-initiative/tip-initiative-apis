@@ -1,8 +1,8 @@
 openapi: 3.0.0
 info:
-  version: 4.3.0
+  version: 5.0.0
   title: Common Schemas
-  description: Common Schemas, based on TIP 4.0 documentation
+  description: Common Schemas
   termsOfService: http://placeholderdomain.io/terms/
   contact:
     name: TIP Initiative
@@ -33,14 +33,11 @@ components:
         - transactionId
         - timeStamp
     TransactionId:
-      description: A common object defining transaction identifer details
+      description: A common object defining transaction identifier details
       properties:
         transactionId:
-          description: >-
-            This is a system generated unique ID for each data exchange. The transactionId is generated
-            by the system that is creating the data exchange
+          description: Global unique identifier (GUID)
           type: string
-          format: guid
         transactionType:
           description: This indicates if the data exchange being sent is either a new, change or cancel
             transaction.
@@ -56,7 +53,7 @@ components:
           description: Indicates the source "trading partner" name
           type: string
       required:
-        - transactionNum
+        - transactionId
         - transactionType
         - sourceId
         - sourceName
@@ -230,7 +227,7 @@ components:
             - Frequency Threshold
             - Scarcity
         audienceMetricValue:
-          description: Audeince metric type value
+          description: Audience metric type value
           type: integer
       required:
         - audienceMetric
@@ -261,8 +258,8 @@ components:
         - pricingMetric
         - pricingMetricValue
     AudiencePricingMetric:
-      description: A common object comining an audience segment id with audience metric and pricing metric
-        objects
+      description: A common object combining an audience segment id with audience metric and pricing
+        metric objects
       properties:
         audienceSegmentId:
           description: Unique persistent identifier for audience segment
@@ -462,19 +459,17 @@ components:
         - guidelineType
         - excludeOrInclude
     DateTime:
-      description: A descriptor common object combining broadcast date and broadcast time
+      description: A descriptor common object combining broadcast date and broadcast time used in Logtimes
+        & Invoices
       properties:
         broadcastDate:
-          description: >-
-            The broadcast date on which the unit aired/scheduled; Receiver of data will be responsible
-            to convert based on station's broadcast start of day; format YYYY-MM-DD; 
+          description: The broadcast date on which the unit aired/scheduled; this is not calendar date
           type: string
           format: date
         calendarDateTime:
           description: >-
-            The calendar date and time on which the unit aired/scheduled. 
-            Time is interpreted based on the local timezone of the mediaoutlet 
-            using military date time YYYY-MM-DDTHH:MM:SS
+            The calendar date and time on which the unit aired/scheduled. Time is interpreted based on
+            the local timezone of the mediaoutlet using military date time YYYY-MM-DDTHH:MM:SS
           type: string
           format: date-time
     TimePeriod:

@@ -1,8 +1,8 @@
 openapi: 3.0.0
 info:
-  version: 4.2.0
+  version: 5.0.0
   title: Invoice Schema
-  description: Invoice Schema, Based on TIP 4.0 Working Draft
+  description: Invoice Schema
   termsOfService: http://placeholderdomain.io/terms/
   contact:
     name: TIP Initiative
@@ -76,10 +76,10 @@ components:
             origin
           type: number
           format: float
-        totalNetAmount:
+        netAmount:
           description: >-
             Total net amount for all units within the invoice start and end date (gross amount– commission
-            amount+ sales tax)
+            amount + sales tax)
           type: number
           format: float
         currency:
@@ -103,7 +103,7 @@ components:
         - buylineCashTrade
         - grossAmount
         - commission
-        - totalNetAmount
+        - netAmount
         - remittanceInfo
         - lineDetails
     LineDetail:

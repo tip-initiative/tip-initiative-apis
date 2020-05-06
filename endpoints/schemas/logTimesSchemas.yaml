@@ -1,8 +1,8 @@
 openapi: 3.0.0
 info:
-  version: 4.2.0
+  version: 5.0.0
   title: logTimes Schemas
-  description: logTimes Schemas, based on TIP 4.0 documentation
+  description: logTimes Schemas
   termsOfService: http://placeholderdomain.io/terms/
   contact:
     name: TIP Initiative
@@ -20,11 +20,9 @@ components:
         transactionHeader:
           $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
         externalComment:
-          description: A string that indicates additional information that the seller can send to the
-            buyer
+          description: A string that indicates additional information the seller can send to the buyer
           type: string
         units:
-          description: The units listed in the API  units can be defined by the system that is creating the API.
           type: array
           items:
             $ref: '#/components/schemas/Unit'
@@ -74,12 +72,12 @@ components:
         preemptUnitIds:
           description: >-
             Desired if unit's Makegood indicator is "Y"; "original" preempted unit(s) being resolved
-            by makegood; there may be one too many preempt unit ids being resolved to support
+            by makegood; there may be one too many preempt unit ids being resolved
           type: array
           items:
             type: string
         bonus:
-          description: Indicates if the unit is a bonus
+          description: Indicates if the unit is a no-charge bonus
           type: boolean
         length:
           description: The duration of the unit in seconds
@@ -94,7 +92,7 @@ components:
             or any other ID.
           type: string
         status:
-          description: Indicates the status of the unit. Describe status terms.
+          description: Indicates the airing status of the unit
           type: string
           enum:
             - Aired
@@ -106,10 +104,8 @@ components:
           description: Indicate if the unit was issued a credit
           type: boolean
         timePeriod:
-          description: Indicates the valid start and end dates, valid DOW and start and end times for the ordered unit (spot) 
           $ref: 'commonSchemas.yaml#/components/schemas/TimePeriod'
         dateTime:
-          description: Not required when unit's status is "No Run"
           $ref: 'commonSchemas.yaml#/components/schemas/DateTime'
         childUnits:
           type: array
@@ -133,7 +129,6 @@ components:
             units
           type: string
         mediaOutlet:
-          description: Required if ParentUnitId is populated
           $ref: 'commonSchemas.yaml#/components/schemas/MediaOutlet'
         rate:
           description: Unit rate associated to the "child" unit
@@ -155,7 +150,6 @@ components:
           description: Reason description for No-Run status
           type: string
         dateTime:
-          description: Required if the child's unit is equal to "Aired"
           $ref: 'commonSchemas.yaml#/components/schemas/DateTime'
     LogTimesResponse:
       properties:

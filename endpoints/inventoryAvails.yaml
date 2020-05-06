@@ -1,14 +1,14 @@
 openapi: "3.0.0"
 components:
  securitySchemes:
-    bearerAuth: 
+    bearerAuth:
       type: http
       scheme: bearer
-      bearerFormat: JWT 
+      bearerFormat: JWT
 security:
   - bearerAuth: []
 info:
-  version: "4.2.0"
+  version: 5.0.0
   title: Inventory Avails
   description: Inventory Endpoints
   termsOfService: http://placeholderdomain.io/terms/
@@ -29,7 +29,7 @@ paths:
         - Buyer
       summary: Send the request for the inventory avails required
       description: >-
-        This endpoint is hosted at the seller end, Allows the Buyer as part of campaign planning 
+        This endpoint is hosted at the seller end, Allows the Buyer as part of campaign planning
         to initiate an Inventory Request to Seller. The payload of the request can either be:<br/>
         NOTE#1: For New Request --> transactionNum.transactionType=New<br/>
         NOTE#2: for Changing a previously submitted request --> <br/>
@@ -42,22 +42,22 @@ paths:
         content:
           application/json:
             schema:
-              $ref: 'schemas/inventoryAvailsSchemas.yaml#/components/schemas/inventoryAvailsBuyerRequestObject'
+              $ref: 'schemas/inventoryAvailsSchemas.yaml#/components/schemas/InventoryAvailsBuyerObject'
       responses:
         '200':
-          description: Request processed successfully. Response is provided synchronously 
+          description: Request processed successfully. Response is provided synchronously
           content:
             application/json:
               schema:
-                $ref: 'schemas/inventoryAvailsSchemas.yaml#/components/schemas/inventoryAvailsSellerResponseObject'
+                $ref: 'schemas/inventoryAvailsSchemas.yaml#/components/schemas/InventoryAvailsSellerObject'
         '202':
-          description: Request was accepted, Response will be provided asynchonously.
+          description: Request was accepted, Response will be provided asynchronously.
           content:
             application/json:
-              schema: 
+              schema:
                 $ref: 'schemas/commonSchemas.yaml#/components/schemas/AcceptedResponse'
         default:
-          description: unexpected error, return the appropriate and corresponding HTTP status code matching the error 
+          description: unexpected error, return the appropriate and corresponding HTTP status code matching the error
           content:
             application/json:
               schema:
@@ -69,9 +69,9 @@ paths:
       summary: Cancel inventory Avails request
       description: >-
         This endpoint will be hosted at the seller side.
-        This endpoint allows the buyer to request from the seller to cancel and ignore 
+        This endpoint allows the buyer to request from the seller to cancel and ignore
         a previously communicated inventoryAvails request. As Follows:<br/>
-        NOTE#1:originalTransactionNum values needs to indicate which request is to be cancelled.<br/>
+        NOTE#1: originalTransactionNum values needs to indicate which request is to be cancelled.<br/>
         NOTE#2: transactionNum.transactionType = Cancel<br/>
         NOTE#3: originalTransactionNum.transactionNum must refer to the transaction in question to be cancelled
 
@@ -81,7 +81,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: 'schemas/commonSchemas.yaml#/components/schemas/TransactionHeader'        
+              $ref: 'schemas/commonSchemas.yaml#/components/schemas/TransactionHeader'
       responses:
         '200':
           description: Request processed successfully
@@ -90,7 +90,7 @@ paths:
               schema:
                 $ref: 'schemas/commonSchemas.yaml#/components/schemas/AcceptedResponse'
         default:
-          description: unexpected error, return the appropriate and corresponding HTTP status code matching the error 
+          description: unexpected error, return the appropriate and corresponding HTTP status code matching the error
           content:
             application/json:
               schema:
@@ -100,9 +100,9 @@ paths:
       tags:
         - Seller
       summary: Seller POSTs the Inventory Avails information to the buyer's system
-      description: > 
-        This endpoint will be hosted at the buyer side, 
-        Allows the Seller to send inventory criteria such as Stations, Selling Elements, Inventory Types, Pricing, Audience Estimates 
+      description: >
+        This endpoint will be hosted at the buyer side,
+        Allows the Seller to send inventory criteria such as Stations, Selling Elements, Inventory Types, Pricing, Audience Estimates
         either solicited or unsolicited
       operationId: inventoryAvailsSellers
       requestBody:
@@ -111,7 +111,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: 'schemas/inventoryAvailsSchemas.yaml#/components/schemas/inventoryAvailsSellerResponseObject'
+              $ref: 'schemas/inventoryAvailsSchemas.yaml#/components/schemas/InventoryAvailsSellerObject'
       responses:
         '200':
           description: Request processed successfully
@@ -120,7 +120,7 @@ paths:
               schema:
                 $ref: 'schemas/commonSchemas.yaml#/components/schemas/AcceptedResponse'
         default:
-          description: unexpected error, return the appropriate and corresponding HTTP status code matching the error 
+          description: unexpected error, return the appropriate and corresponding HTTP status code matching the error
           content:
             application/json:
               schema:
@@ -132,7 +132,7 @@ paths:
       summary: Cancel inventory Avails Request
       description: >-
         This endpoint will be hosted at the buyer side.
-        This endpoint allows the buyer to request from the seller to cancel and ignore 
+        This endpoint allows the buyer to request from the seller to cancel and ignore
         a previously communicated inventoryAvails request. As Follows:<br/>
         NOTE#1:originalTransactionNum values needs to indicate which request is to be cancelled.<br/>
         NOTE#2: transactionNum.transactionType = Cancel<br/>
@@ -153,7 +153,7 @@ paths:
               schema:
                 $ref: 'schemas/commonSchemas.yaml#/components/schemas/AcceptedResponse'
         default:
-          description: unexpected error, return the appropriate and corresponding HTTP status code matching the error 
+          description: unexpected error, return the appropriate and corresponding HTTP status code matching the error
           content:
             application/json:
               schema:

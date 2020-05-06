@@ -8,7 +8,7 @@ components:
 security:
   - bearerAuth: []
 info:
-  version: 4.3.0
+  version: 5.0.0
   title: Trading Interface Automation Framework For Local TV Transactions.
   description: |
     # Television Interface Practices Initiative (TIP)
@@ -30,36 +30,50 @@ info:
 
     | Version | Date | Description | Author |
     |---------|------|-------------|--------|
-    | Draft | September 25, 2017 | Initial Draft | Frontrow Advisory |
-    | Draft | October 9, 2017 | Revised Draft | Frontrow Advisory |
-    | Release | 1.0 | November 11, 2017 | Release | Frontrow Advisory |
-    | Draft | 1.1 | February 22, 2017 | Initial Draft Phase 2 | Frontrow Advisory |
-    | Release | 2.0 | April 6, 2017 | Release |  Frontrow Advisory |
-    | Draft | 2.1 | June 29, 2018 | Initial Draft Phase 2.1 | Frontrow Advisory |
-    | Release | 3.0 | August 22, 2018 | Release 3.0 | Frontrow Advisory |
-    | Release | 3.1 | February 1, 2019 | Release 3.1 | Frontrow Advisory |
+    | Release | 5.0.0 | May 5, 2020 | Release 5.0.0 | Frontrow Advisory |
     | Release | 4.0 | May 16, 2019 | Release 4.0 (WORKING DRAFT) | Frontrow Advisory |
+    | Release | 3.1 | February 1, 2019 | Release 3.1 | Frontrow Advisory |
+    | Release | 3.0 | August 22, 2018 | Release 3.0 | Frontrow Advisory |
+    | Draft | 2.1 | June 29, 2018 | Initial Draft Phase 2.1 | Frontrow Advisory |
+    | Release | 2.0 | April 6, 2017 | Release |  Frontrow Advisory |
+    | Draft | 1.1 | February 22, 2017 | Initial Draft Phase 2 | Frontrow Advisory |
+    | Release | 1.0 | November 11, 2017 | Release | Frontrow Advisory |
+    | Draft | October 9, 2017 | Revised Draft | Frontrow Advisory |
+    | Draft | September 25, 2017 | Initial Draft | Frontrow Advisory |
 
+    ## Release 5.0.0 Notes
 
-    ## Release 4.0 Notes
+    | Changes from Release 4.2.0 to Release 5.0.0 | Source |
+    |-------------------------------------------|--------|
+    | Applied consistent style to Framework including lowerCamelCase | Vendor feedback |
+    | SalesElement structures to define product catalog to support inventory avails and transactions | Vendor feedback |
+    | Vendor sign-off of updates to Logtimes, Commercial Instructions, Invoices | Frontrow Advisory |
+    | Implemented TimePeriod object | Vendor feedback |
+    | Interface titles (tabs names) refer to "sender/" and "interface" (e.g. "seller/ Logtimes") | Vendor feedback |
+    | Transitioned to DateTime in order to support Broadcast Date and Calendar Date/Time military (HH:MM:SS 24hrs) | Vendor feedback |
+    | Changed TransactionId to a GUID | Vendor feedback |
+    | Created common objects: <ul><li>audienceSegmentDetail</li><li>pricingMetricOption</li><li>audiencePricingMetricUniverse</li><li>currency</li><li>ratecard</li><li>dateTime</li><li>timePeriod</li><li>dayDistribution</li><li>inventoryPosition</li><li>inventoryType</li></ul> | Vendor feedback |
 
-    | Changes from Release 3.1 to Release 4.0 | Source |
-    |-----------------------------------------|--------|
-    | Add new object to support multiple contacts across the organizations; updated framework to support object | Vendor feedback |
-    | Renamed externalReference to referenceIds and made into an object to support packaging ids/references across the sales campaign  | Vendor feedback |
-    | Add unitPerPeriod to Order as optional data element  in order to support current buy/sell data-flows  | Vendor feedback |
-    | Add periodType to Order as optional data element in order to support current buy/sell data-flows | Vendor feedback |
-    | Renamed AdID to Alternate to be aligned with BXF standards | Vendor feedback |
-    | Modifications to Order and Order Confirmation to support current local broadcast TV business flow and TVB attributes  | Vendor feedback |
-    | Add new APIs to support Order Recall <Request and Response> | Vendor feedback |
-    | Add new API to support Order Reject | Vendor feedback |
-    | Modified the equivalization flag in Order to be optional  | Vendor feedback |
-    | Add billingCalendar and billingCycle to Order | Vendor feedback |
-    | Add Required/Optional column to Common Models  | Vendor feedback |
-    | Add timeFrame object to support non-contiguous valid start and end times  | Vendor feedback |
-    | Add new inventoryCatalog object in order to create a standard set of data elements that may be shared across the Inventory, RFP and Proposal  | Vendor feedback |
-    | Add new APIs to support Makegood Guideline <Request and Response> | Vendor feedback |
-    | Removed makegoodTerms from RFP, Proposal and Order API (replaced with separate Makegood Guideline APIs)  | Vendor feedback |
+    ### Updated Buyer endpoints:
+
+    * /buyer/commercialInstructions
+
+    ### New Buyer endpoints:
+
+    * /buyer/inventoryAvails (request)
+    * /buyer/RFP
+    * /buyer/order
+
+    ### Updated Seller endpoints:
+
+    * /seller/logtimes
+    * /seller/invoice
+
+    ### New Seller endpoints:
+
+    * /seller/inventoryAvails (response)
+    * /seller/proposal
+    * /seller/orderConfirmReject
 
     ## General Glossary
 
@@ -115,26 +129,30 @@ info:
 servers:
   - url: http://placeholderdomain.io
 paths:
-  /seller/logtimes:
-    $ref: 'logTimes.yaml#/paths/~1seller~1logtimes'
-  /seller/invoice:
-    $ref: 'invoice.yaml#/paths/~1seller~1invoice'
-  /seller/invoice/cancel:
-    $ref: 'invoice.yaml#/paths/~1seller~1invoice~1cancel'
   /buyer/commercialInstructions:
     $ref: 'commercialInstructions.yaml#/paths/~1buyer~1commercialInstructions'
   /buyer/inventoryAvails:
     $ref: 'inventoryAvails.yaml#/paths/~1buyer~1inventoryAvails'
   /buyer/inventoryAvails/cancel:
     $ref: 'inventoryAvails.yaml#/paths/~1buyer~1inventoryAvails~1cancel'
-  /seller/inventoryAvails:
-    $ref: 'inventoryAvails.yaml#/paths/~1seller~1inventoryAvails'
-  /seller/inventoryAvails/cancel:
-   $ref: 'inventoryAvails.yaml#/paths/~1seller~1inventoryAvails~1cancel'
   /buyer/order:
     $ref: 'orders.yaml#/paths/~1buyer~1order'
   /buyer/order/cancel:
     $ref: 'orders.yaml#/paths/~1buyer~1order~1cancel'
+  /buyer/rfp:
+    $ref: 'rfps.yaml#/paths/~1buyer~1rfp'
+  /buyer/rfp/cancel:
+    $ref: 'rfps.yaml#/paths/~1buyer~1rfp~1cancel'
+  /seller/logtimes:
+    $ref: 'logTimes.yaml#/paths/~1seller~1logtimes'
+  /seller/invoice:
+    $ref: 'invoice.yaml#/paths/~1seller~1invoice'
+  /seller/invoice/cancel:
+    $ref: 'invoice.yaml#/paths/~1seller~1invoice~1cancel'
+  /seller/inventoryAvails:
+    $ref: 'inventoryAvails.yaml#/paths/~1seller~1inventoryAvails'
+  /seller/inventoryAvails/cancel:
+    $ref: 'inventoryAvails.yaml#/paths/~1seller~1inventoryAvails~1cancel'
   /seller/order/confirmation:
     $ref: 'orders.yaml#/paths/~1seller~1order~1confirmation'
   /seller/order/reject:
@@ -143,8 +161,3 @@ paths:
     $ref: 'proposal.yaml#/paths/~1seller~1proposal'
   /seller/proposal/cancel:
     $ref: 'proposal.yaml#/paths/~1seller~1proposal~1cancel'
-  /buyer/rfp:
-    $ref: 'rfps.yaml#/paths/~1buyer~1rfp'
-  /buyer/rfp/cancel:
-    $ref: 'rfps.yaml#/paths/~1buyer~1rfp~1cancel'
-
