@@ -65,9 +65,9 @@ paths:
         This endpoint will be hosted at the buyer side.
         This endpoint allows the seller to request from the buyer to cancel and ignore
         a previously communicated Invoice request. As Follows:<br/>
-        NOTE#1:originalTransactionNum values needs to indicate which request is to be cancelled.<br/>
-        NOTE#2: transactionNum.transactionType = Cancel<br/>
-        NOTE#3: originalTransactionNum.transactionNum must refer to the transaction in question to be cancelled
+        NOTE#1:originalTransactionId values needs to indicate which request is to be cancelled.<br/>
+        NOTE#2: transactionId.transactionType = Cancel<br/>
+        NOTE#3: originalTransactionId.transactionId must refer to the transaction in question to be cancelled
       operationId: invoiceSellerCancel
       requestBody:
         required: true
