@@ -97,7 +97,7 @@ paths:
       description: >-
         The endpoint resides on the buyer side to allow the seller to send a confirmation<br/>
         regarding the successful processing of previously submitted order.<br/>
-        originalTransactionNum is required for Audit Trail.
+        originalTransactionId is required for Audit Trail.
       operationId: orderConfirmation
       requestBody:
         description: Order Confirmation
@@ -127,7 +127,7 @@ paths:
       description: >-
         The endpoint resides on the buyer side to allow the seller to send a reject (all or None)<br/>
         regarding the rejection  of previously submitted order.<br/>
-        originalTransactionNum is required for Audit Trail.
+        originalTransactionId is required for Audit Trail.
       operationId: orderReject
       requestBody:
         description: Order Rejection
