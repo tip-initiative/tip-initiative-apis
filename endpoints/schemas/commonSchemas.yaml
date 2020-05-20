@@ -444,7 +444,7 @@ components:
           $ref: '#/components/schemas/BudgetAllocation'
       required:
         - budgetAmount
-    budgetAllocation:
+    BudgetAllocation:
       description: >-
         A descriptor common object defining the budget number and/or percentage in terms of budget type
       properties:
