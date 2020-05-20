@@ -428,6 +428,51 @@ components:
         rateCardName:
           description: Seller's Rate Card Name associated to the Rate Card ID
           type: string
+    Budget:
+      description: >-
+         descriptor common object defining the budget or total allocation
+         for a RFP or proposal with optional allocations per market, media outlet or media type
+      properties:
+        budgetAmount:
+          description: >-
+            Total budget amount being requested
+          type: number
+          format: float
+          minimum: 0
+          exclusiveMinimum: true
+        budgetAllocation:
+          $ref: '#/components/schemas/BudgetAllocation'
+      required:
+        - budgetAmount
+    BudgetAllocation:
+      description: >-
+        A descriptor common object defining the budget number and/or percentage in terms of budget type
+      properties:
+        budgetType:
+          type: string
+          enum: [DMA, MediaOutlet, MediaType]
+        budgetName:
+          description: >-
+            The value of budget name is a conditional on budgetType.
+            - If budgetType = DMA, use the canonical list of DMA names
+            - If budgetType = Mediaoutlet, use media outlet name (call sign)
+            - If budgetType= MediaType, use values from MediaOutletType Enum
+          type: string
+        budgetAmount:
+          description: The overall budget amount allocated to the budget name
+          type: number
+          format: float
+          minimum: 0
+          exclusiveMinimum: true
+        budgetSharePercent:
+          description: The percentage share of the market name being allocated to the seller
+          type: number
+          format: float
+          minimum: 0
+          exclusiveMinimum: true
+      required:
+        - budgetType
+        - budgetName
     Guideline:
       description: A descriptor common object defining the general guidelines (rules) when requesting
         programming
@@ -459,7 +504,8 @@ components:
         - guidelineType
         - excludeOrInclude
     DateTime:
-      description: A descriptor common object combining broadcast date and broadcast time used in Logtimes
+      description: >-
+        A descriptor common object combining broadcast date and broadcast time used in Logtimes
         & Invoices
       properties:
         broadcastDate:

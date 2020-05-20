@@ -46,6 +46,10 @@ components:
           $ref: 'commonSchemas.yaml#/components/schemas/Brand'
         product:
           $ref: 'commonSchemas.yaml#/components/schemas/Product'
+        budget:
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/Budget'
         cpeCode:
           $ref: 'commonSchemas.yaml#/components/schemas/CpeCode'
         contacts:

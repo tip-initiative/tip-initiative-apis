@@ -53,8 +53,9 @@ components:
           $ref: 'commonSchemas.yaml#/components/schemas/Currency'
         budget:
           description: Overall total budget for the RFP
-          type: number
-          format: float
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/Budget'
         timePeriodPreferences:
           type: array
           items:
