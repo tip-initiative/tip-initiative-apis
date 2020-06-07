@@ -43,7 +43,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: 'schemas/ordersSchemas.yaml#/components/schemas/BuyerOrderRequestObject'
+              $ref: 'schemas/ordersSchemas.yaml#/components/schemas/BuyerOrder'
       responses:
         '202':
           description: >-
@@ -74,7 +74,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: 'schemas/ordersSchemas.yaml#/components/schemas/OrderRecallObject'
+              $ref: 'schemas/ordersSchemas.yaml#/components/schemas/OrderRecall'
       responses:
         '200':
           description: >-
@@ -105,7 +105,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: 'schemas/ordersSchemas.yaml#/components/schemas/OrderConfirmationResponseObject'
+              $ref: 'schemas/ordersSchemas.yaml#/components/schemas/OrderConfirm'
       responses:
         '200':
           description: confirmation Accepted
@@ -135,7 +135,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: 'schemas/ordersSchemas.yaml#/components/schemas/OrderRejectResponseObject'
+              $ref: 'schemas/ordersSchemas.yaml#/components/schemas/OrderReject'
       responses:
         '200':
           description: Rejection Accepted
