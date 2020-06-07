@@ -21,7 +21,7 @@ components:
       description: Seller submits a request for buyer's makegood guidelines
       properties:
         transactionHeader:
-          $ref: './commonSchemas.yaml#/components/schemas/TransactionHeader'
+          $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
         dateSubmitted:
           description: Seller submit date for makegood guidelines
           type: string
@@ -31,17 +31,17 @@ components:
           type: string
           format: date
         mediaOutlet:
-          $ref: './commonSchemas.yaml#/components/schemas/MediaOutlet'
+          $ref: 'commonSchemas.yaml#/components/schemas/MediaOutlet'
         referenceIds:
           type: array
           items:
-            $ref: './commonSchemas.yaml#/components/schemas/ReferenceId'
+            $ref: 'commonSchemas.yaml#/components/schemas/ReferenceId'
         cpeCode:
-          $ref: './commonSchemas.yaml#/components/schemas/CpeCode'
+          $ref: 'commonSchemas.yaml#/components/schemas/CpeCode'
         buyer:
-          $ref: './commonSchemas.yaml#/components/schemas/Buyer'
+          $ref: 'commonSchemas.yaml#/components/schemas/Buyer'
         advertiser:
-          $ref: './commonSchemas.yaml#/components/schemas/Advertiser'
+          $ref: 'commonSchemas.yaml#/components/schemas/Advertiser'
         makegoodType:
           $ref: '#/components/schemas/MakegoodType'
       required:
@@ -53,19 +53,19 @@ components:
       description: Buyer submits a list of the makegood guidelines to seller prior to order confirmation
       properties:
         transactionHeader:
-          $ref: './commonSchemas.yaml#/components/schemas/TransactionHeader'
+          $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
         mediaOutlet:
-          $ref: './commonSchemas.yaml#/components/schemas/MediaOutlet'
+          $ref: 'commonSchemas.yaml#/components/schemas/MediaOutlet'
         referenceIds:
           type: array
           items:
-            $ref: './commonSchemas.yaml#/components/schemas/ReferenceId'
+            $ref: 'commonSchemas.yaml#/components/schemas/ReferenceId'
         cpeCode:
-          $ref: './commonSchemas.yaml#/components/schemas/CpeCode'
+          $ref: 'commonSchemas.yaml#/components/schemas/CpeCode'
         buyer:
-          $ref: './commonSchemas.yaml#/components/schemas/Buyer'
+          $ref: 'commonSchemas.yaml#/components/schemas/Buyer'
         advertiser:
-          $ref: './commonSchemas.yaml#/components/schemas/Advertiser'
+          $ref: 'commonSchemas.yaml#/components/schemas/Advertiser'
         makegoodGuidelines:
           type: array
           items:
@@ -83,11 +83,11 @@ components:
         - Recap to support projected audience shortfall
       properties:
         transactionHeader:
-          $ref: './commonSchemas.yaml#/components/schemas/TransactionHeader'
+          $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
         referenceIds:
           type: array
           items:
-            $ref: './commonSchemas.yaml#/components/schemas/ReferenceId'
+            $ref: 'commonSchemas.yaml#/components/schemas/ReferenceId'
         makegoodType:
             $ref: '#/components/schemas/MakegoodType'
         externalComment:
@@ -108,11 +108,11 @@ components:
         - makegoodType
         - makegoodDetails
     BuyerMakeGoodConfirm:
-      $ref: './ordersSchemas.yaml#/components/schemas/OrderConfirm'
+      $ref: 'ordersSchemas.yaml#/components/schemas/OrderConfirm'
     BuyerMakegoodReject:
-      $ref: './ordersSchemas.yaml#/components/schemas/OrderReject'
+      $ref: 'ordersSchemas.yaml#/components/schemas/OrderReject'
     SellermakegoodRecall:
-      $ref: './ordersSchemas.yaml#/components/schemas/OrderRecall'
+      $ref: 'ordersSchemas.yaml#/components/schemas/OrderRecall'
 # Local Objects    
     MakegoodType:
       description: Type of Offer
@@ -125,7 +125,7 @@ components:
         makegoodType:
           $ref: '#/components/schemas/MakegoodType'
         salesElementOriginal:
-          $ref: './commonSchemas.yaml#/components/schemas/SalesElementHeader'
+          $ref: 'commonSchemas.yaml#/components/schemas/SalesElementHeader'
         salesElementEquivalent:
           description: Sales Element (Programming) Acceptance Rule Elements
           type: string
@@ -166,7 +166,7 @@ components:
           format: integer
           minimum: 1
         salesElement:
-          $ref: './commonSchemas.yaml#/components/schemas/SalesElementTransaction'
+          $ref: 'commonSchemas.yaml#/components/schemas/SalesElementTransaction'
         preemptReason:
           type: string
         makedgoodNumLink:
@@ -185,7 +185,7 @@ components:
           format: integer
           minimum: 1
         salesElement:
-          $ref: './commonSchemas.yaml#/components/schemas/SalesElementTransaction'
+          $ref: 'commonSchemas.yaml#/components/schemas/SalesElementTransaction'
         makegoodReason:
           type: string
         makegoodAssumedConfirm:

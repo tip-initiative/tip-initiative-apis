@@ -36,7 +36,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: './schemas/makegoodsSchemas.yaml#/components/schemas/SellerMakegoodGuidelines'
+              $ref: 'schemas/makegoodsSchemas.yaml#/components/schemas/SellerMakegoodGuidelines'
       responses:
         '202': #Accepted
           description: Request processed successfully
@@ -138,7 +138,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: './schemas/makegoodsSchemas.yaml#/components/schemas/SellerMakegoodOffer'
+              $ref: 'schemas/makegoodsSchemas.yaml#/components/schemas/SellerMakegoodOffer'
       responses:
         '202': # Accepted
           description: Request processed successfully
@@ -189,7 +189,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: './schemas/makegoodsSchemas.yaml#/components/schemas/BuyerMakeGoodConfirm'
+              $ref: 'schemas/makegoodsSchemas.yaml#/components/schemas/BuyerMakeGoodConfirm'
       responses:
         '200': # OK
           description: Request processed successfully
@@ -240,7 +240,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: './schemas/makegoodsSchemas.yaml#/components/schemas/BuyerMakegoodReject'
+              $ref: 'schemas/makegoodsSchemas.yaml#/components/schemas/BuyerMakegoodReject'
       responses:
         '200': # OK
           description: Request processed successfully
@@ -292,7 +292,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: './schemas/makegoodsSchemas.yaml#/components/schemas/SellermakegoodRecall'
+              $ref: 'schemas/makegoodsSchemas.yaml#/components/schemas/SellermakegoodRecall'
       responses:
         '200': # OK
           description: Request processed successfully
