@@ -132,7 +132,7 @@ components:
         - equivalized
         - dateWindow
         - mediaOutlets
-    OrderConfirmationResponseObject:
+    OrderConfirmResponseObject:
       description: >-
         Allows the seller to respond to an order or order change request with a confirmed booked confirmation
       properties:
@@ -153,7 +153,7 @@ components:
         - transactionHeader
         - referenceIds
         - confirmedBookedDate
-    OrderRecallObject:
+    OrderRecall:
       description: >-
         Allows the buyer to recall a new order or order change request ; seller must respond back with
         acceptance or failure of the recall request. Note: Seller's system defined the rules for acceptance
@@ -178,7 +178,7 @@ components:
         - transactionHeader
         - referenceIds
         - recallDate
-    OrderRejectResponseObject:
+    OrderReject:
       description: >-
         Allows the seller to reject a new order or order change request; seller must respond back with
         rejection comments

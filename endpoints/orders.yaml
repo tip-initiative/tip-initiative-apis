@@ -10,7 +10,7 @@ security:
   - bearerAuth: []
 
 info:
-  version: 5.0.0
+  version: 5.x.x
   title: Orders
   description: >-
     Allows the seller to respond back to the buyer with the detailed proposal for a given RFP
@@ -66,7 +66,7 @@ paths:
         - Buyer
       description: >-
         The endpoint resides on the seller side. <br/>
-        the endpoint allows the buyer to creates an order in the Seller system.
+        the endpoint allows the buyer to cancel an order in the Seller system.
       operationId: cancelOrder
       requestBody:
         description: cancelOrder
@@ -89,7 +89,7 @@ paths:
             application/json:
               schema:
                 $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
-  /seller/order/confirmation:
+  /seller/order/confirm:
     post:
       tags:
         - Seller

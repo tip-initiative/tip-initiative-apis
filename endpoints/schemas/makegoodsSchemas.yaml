@@ -70,6 +70,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/MakegoodGuideline'
+          minItems: 1
       required:
         - transactionHeader
         - buyer
@@ -106,9 +107,12 @@ components:
         - referenceIds
         - makegoodType
         - makegoodDetails
-    
-
-
+    BuyerMakeGoodConfirm:
+      $ref: './ordersSchemas.yaml#/components/schemas/OrderConfirm'
+    BuyerMakegoodReject:
+      $ref: './ordersSchemas.yaml#/components/schemas/OrderReject'
+    SellermakegoodRecall:
+      $ref: './ordersSchemas.yaml#/components/schemas/OrderRecall'
 # Local Objects    
     MakegoodType:
       description: Type of Offer
