@@ -108,11 +108,75 @@ components:
         - makegoodType
         - makegoodDetails
     BuyerMakeGoodConfirm:
-      $ref: 'ordersSchemas.yaml#/components/schemas/OrderConfirm'
+      description: >-
+        Allows the seller to respond to an makegood or makegood change request with a confirmed booked confirmation
+      properties:
+        transactionHeader:
+          $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
+        referenceIds:
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/ReferenceId'
+        confirmedBookedDate:
+          description: Date that the makegood was Confirmed Booked
+          type: string
+          format: date
+        comments:
+          description: Free form comments with "Not Accepted" Reason
+          type: string
+      required:
+        - transactionHeader
+        - referenceIds
+        - confirmedBookedDate
+
     BuyerMakegoodReject:
-      $ref: 'ordersSchemas.yaml#/components/schemas/OrderReject'
+      description: >-
+        Allows the seller to reject a new makegood or makegood change request; seller must respond back with
+        rejection comments
+      properties:
+        transactionHeader:
+          $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
+        referenceIds:
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/ReferenceId'
+        rejectionDate:
+          description: Date the order was rejected
+          type: string
+          format: date
+        comments:
+          description: Free form comments
+          type: string
+      required:
+        - transactionHeader
+        - referenceIds
+        - rejectionDate
+
     SellermakegoodRecall:
-      $ref: 'ordersSchemas.yaml#/components/schemas/OrderRecall'
+      description: >-
+        Allows the buyer to recall a makegood  or makegood  change request ; seller must respond back with
+        acceptance or failure of the recall request. Note: Seller's system defined the rules for acceptance
+        or failure of request
+      properties:
+        transactionHeader:
+          $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
+        referenceIds:
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/ReferenceId'
+        recallDate:
+          description: >-
+            Buyer requesting to recall a previously submitted new or changed order. Seller responding
+            back to Buyer acceptance or failure of request.
+          type: string
+          format: date
+        comments:
+          description: Free form comments
+          type: string
+      required:
+        - transactionHeader
+        - referenceIds
+        - recallDate
 # Local Objects    
     MakegoodType:
       description: Type of Offer
