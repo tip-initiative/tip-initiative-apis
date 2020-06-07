@@ -154,7 +154,7 @@ paths:
   /seller/inventoryAvails/cancel:
     $ref: 'inventoryAvails.yaml#/paths/~1seller~1inventoryAvails~1cancel'
   /seller/order/confirm:
-    $ref: 'orders.yaml#/paths/~1seller~1order~1confirmation'
+    $ref: 'orders.yaml#/paths/~1seller~1order~1confirm'
   /seller/order/reject:
     $ref: 'orders.yaml#/paths/~1seller~1order~1reject'
   /seller/proposal:
