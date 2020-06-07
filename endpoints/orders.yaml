@@ -10,7 +10,7 @@ security:
   - bearerAuth: []
 
 info:
-  version: 5.0.0
+  version: 5.x.x
   title: Orders
   description: >-
     Allows the seller to respond back to the buyer with the detailed proposal for a given RFP
@@ -43,7 +43,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: 'schemas/ordersSchemas.yaml#/components/schemas/BuyerOrderRequestObject'
+              $ref: 'schemas/ordersSchemas.yaml#/components/schemas/BuyerOrder'
       responses:
         '202':
           description: >-
@@ -66,7 +66,7 @@ paths:
         - Buyer
       description: >-
         The endpoint resides on the seller side. <br/>
-        the endpoint allows the buyer to creates an order in the Seller system.
+        the endpoint allows the buyer to cancel an order in the Seller system.
       operationId: cancelOrder
       requestBody:
         description: cancelOrder
@@ -74,7 +74,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: 'schemas/ordersSchemas.yaml#/components/schemas/OrderRecallObject'
+              $ref: 'schemas/ordersSchemas.yaml#/components/schemas/OrderRecall'
       responses:
         '200':
           description: >-
@@ -89,7 +89,7 @@ paths:
             application/json:
               schema:
                 $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
-  /seller/order/confirmation:
+  /seller/order/confirm:
     post:
       tags:
         - Seller
@@ -105,7 +105,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: 'schemas/ordersSchemas.yaml#/components/schemas/OrderConfirmationResponseObject'
+              $ref: 'schemas/ordersSchemas.yaml#/components/schemas/OrderConfirm'
       responses:
         '200':
           description: confirmation Accepted
@@ -135,7 +135,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: 'schemas/ordersSchemas.yaml#/components/schemas/OrderRejectResponseObject'
+              $ref: 'schemas/ordersSchemas.yaml#/components/schemas/OrderReject'
       responses:
         '200':
           description: Rejection Accepted
