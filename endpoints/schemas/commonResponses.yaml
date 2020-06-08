@@ -19,19 +19,19 @@ components:
       content:
         application/json:
           schema:
-            $ref: 'schemas/commonSchemas.yaml#/components/schemas/AcceptedResponse'
+            $ref: 'commonSchemas.yaml#/components/schemas/AcceptedResponse'
     Accepted:
       description: 202 Accepted - request accepted, Actual response will follow at later time
       content:
         application/json:
           schema:
-            $ref: 'schemas/commonSchemas.yaml#/components/schemas/AcceptedResponse'
+            $ref: 'commonSchemas.yaml#/components/schemas/AcceptedResponse'
     BadRequest:
       description: 400 Bad Request - payload is ill formed or cantains data that is invalid 
       content:
         application/json:
           schema:
-            $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
+            $ref: 'commonSchemas.yaml#/components/schemas/Error'
     Unauthorized:
       description: 401 Unauthorized - Unauthorized, invalid credentials or expired access token
       headers:
@@ -41,22 +41,22 @@ components:
       content:
         application/json:
           schema:
-            $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
+            $ref: 'commonSchemas.yaml#/components/schemas/Error'
     Forbidden:
       description: 403 Forbidden, additional previliges are needed
       content:
         application/json:
           schema:
-            $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
+            $ref: 'commonSchemas.yaml#/components/schemas/Error'
     NotFound:
       description: 404 Not Found, Requested entity does not exist
       content:
         application/json:
           schema:
-            $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
+            $ref: 'commonSchemas.yaml#/components/schemas/Error'
     Unexpected:
       description: Unexpected error occured
       content:
         application/json:
           schema:
-            $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
+            $ref: 'commonSchemas.yaml#/components/schemas/Error'
