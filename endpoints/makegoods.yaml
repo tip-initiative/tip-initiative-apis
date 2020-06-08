@@ -30,6 +30,7 @@ paths:
         - Seller
       summary: Seller asks for Makegood Guidelines
       description: Seller submits a request for buyer's makegood guidelines
+      operationId: SellerMakegoodGuidelines
       requestBody:
         description: GetMakegoodGuidelines
         required: true
@@ -39,46 +40,25 @@ paths:
               $ref: 'schemas/makegoodsSchemas.yaml#/components/schemas/SellerMakegoodGuidelines'
       responses:
         '202': #Accepted
-          description: Request processed successfully
-          content:
-            application/json:
-              schema:
-                $ref: 'schemas/commonSchemas.yaml#/components/schemas/AcceptedResponse'
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Accepted'
         '400': #Bad Request
-          description: payload is ill formed or cantains data that is invalid 
-          content:
-            application/json:
-              schema:
-                $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
-        '401':
-          description: Unauthorized, invalid credentials or expired access token
-          headers:
-            WWW-Authenticate:
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
-        '403':
-          description: Forbidden, additional previliges are needed
-          content:
-            application/json:
-              schema:
-                $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
-        default:
-          description: Unexpected error occured
-          content:
-            application/json:
-              schema:
-                $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
+          $ref: 'schemas/commonResponses.yaml#/components/responses/BadRequest'
+        '401': #Unauthorized
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Unauthorized'
+        '403': #Forbidden
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Forbidden'
+        '404': #Not Found
+          $ref: 'schemas/commonResponses.yaml#/components/responses/NotFound'
+        default: #unexpected
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Unexpected'
 
   /buyer/makegoodGuidelines:
     post:
       tags: 
         - Buyer
       summary: Buyer provides makegood guidlines to seller
-      description: Buyer submits a list of the makegood guidelines to seller prior to order confirmation 
+      description: Buyer submits a list of the makegood guidelines to seller prior to order confirmation
+      operationId: BuyermakegoodGuidelines
       requestBody:
         description: Makegoods
         required: true
@@ -87,40 +67,18 @@ paths:
             schema:
               $ref: 'schemas/makegoodsSchemas.yaml#/components/schemas/BuyerMakegoodGuidelines'
       responses:
-        '200': # OK
-          description: Request processed successfully
-          content:
-            application/json:
-              schema:
-                $ref: 'schemas/commonSchemas.yaml#/components/schemas/AcceptedResponse'
+        '200': #OK
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Success'
         '400': #Bad Request
-          description: payload is ill formed or cantains data that is invalid 
-          content:
-            application/json:
-              schema:
-                $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
-        '401':
-          description: Unauthorized, invalid credentials or expired access token
-          headers:
-            WWW-Authenticate:
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
-        '403':
-          description: Forbidden, additional previliges are needed
-          content:
-            application/json:
-              schema:
-                $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
-        default:
-          description: Unexpected error occured
-          content:
-            application/json:
-              schema:
-                $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
+          $ref: 'schemas/commonResponses.yaml#/components/responses/BadRequest'
+        '401': #Unauthorized
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Unauthorized'
+        '403': #Forbidden
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Forbidden'
+        '404': #Not Found
+          $ref: 'schemas/commonResponses.yaml#/components/responses/NotFound'
+        default: #unexpected
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Unexpected'
 
   /seller/makegood/Offer:
     post:
@@ -131,7 +89,7 @@ paths:
         Seller sends to Buyer one too many offer requests to support the following:
         Makegood to resolve unresolved Preemptions
         "ADU" to resolve make-up for audience shortfall 
-        "Recap" to support projected audience shortfall 
+      operationId: SellerMakegoodOffer
       requestBody:
         description: MakegoodOffer
         required: true
@@ -140,40 +98,18 @@ paths:
             schema:
               $ref: 'schemas/makegoodsSchemas.yaml#/components/schemas/SellerMakegoodOffer'
       responses:
-        '202': # Accepted
-          description: Request processed successfully
-          content:
-            application/json:
-              schema:
-                $ref: 'schemas/commonSchemas.yaml#/components/schemas/AcceptedResponse'
+        '200': #OK
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Success'
         '400': #Bad Request
-          description: payload is ill formed or cantains data that is invalid 
-          content:
-            application/json:
-              schema:
-                $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
-        '401': # Unauthorized
-          description: Unauthorized, invalid credentials or expired access token
-          headers:
-            WWW-Authenticate:
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
+          $ref: 'schemas/commonResponses.yaml#/components/responses/BadRequest'
+        '401': #Unauthorized
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Unauthorized'
         '403': #Forbidden
-          description: Forbidden, additional previliges are needed
-          content:
-            application/json:
-              schema:
-                $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
-        default: # Any unexpected error
-          description: Unexpected error occured
-          content:
-            application/json:
-              schema:
-                $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Forbidden'
+        '404': #Not Found
+          $ref: 'schemas/commonResponses.yaml#/components/responses/NotFound'
+        default: #unexpected
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Unexpected'
 
   /buyer/makegood/confirm:
     post:
@@ -183,6 +119,7 @@ paths:
       description: >
         Allows the  buyer to respond to an makegood offer(s) with an acceptance confirmation; 
         this will accept all makegood offers in the request
+      operationId: BuyerMakegoodConfirm
       requestBody:
         description: MakegoodOfferConfirm
         required: true
@@ -191,40 +128,16 @@ paths:
             schema:
               $ref: 'schemas/makegoodsSchemas.yaml#/components/schemas/BuyerMakeGoodConfirm'
       responses:
-        '200': # OK
-          description: Request processed successfully
-          content:
-            application/json:
-              schema:
-                $ref: 'schemas/commonSchemas.yaml#/components/schemas/AcceptedResponse'
+        '200': #OK
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Success'
         '400': #Bad Request
-          description: payload is ill formed or cantains data that is invalid 
-          content:
-            application/json:
-              schema:
-                $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
-        '401': # Unauthorized
-          description: Unauthorized, invalid credentials or expired access token
-          headers:
-            WWW-Authenticate:
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
+          $ref: 'schemas/commonResponses.yaml#/components/responses/BadRequest'
+        '401': #Unauthorized
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Unauthorized'
         '403': #Forbidden
-          description: Forbidden, additional previliges are needed
-          content:
-            application/json:
-              schema:
-                $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
-        default: # Any unexpected error
-          description: Unexpected error occured
-          content:
-            application/json:
-              schema:
-                $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Forbidden'
+        default: #unexpected
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Unexpected'
 
   /buyer/makegood/reject:
     post:
@@ -234,48 +147,25 @@ paths:
       description: >
         Allows the buyer to reject makegood offer(s)request; 
         buyer will request everything in the request and include rejection comments
+      operationId: BuyerMakegoodReject
       requestBody:
-        description: cancelMakegood
+        description: Buyer Reject makegood offer
         required: true
         content:
           application/json:
             schema:
               $ref: 'schemas/makegoodsSchemas.yaml#/components/schemas/BuyerMakegoodReject'
       responses:
-        '200': # OK
-          description: Request processed successfully
-          content:
-            application/json:
-              schema:
-                $ref: 'schemas/commonSchemas.yaml#/components/schemas/AcceptedResponse'
+        '200': #OK
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Success'
         '400': #Bad Request
-          description: payload is ill formed or cantains data that is invalid 
-          content:
-            application/json:
-              schema:
-                $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
-        '401': # Unauthorized
-          description: Unauthorized, invalid credentials or expired access token
-          headers:
-            WWW-Authenticate:
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
+          $ref: 'schemas/commonResponses.yaml#/components/responses/BadRequest'
+        '401': #Unauthorized
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Unauthorized'
         '403': #Forbidden
-          description: Forbidden, additional previliges are needed
-          content:
-            application/json:
-              schema:
-                $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
-        default: # Any unexpected error
-          description: Unexpected error occured
-          content:
-            application/json:
-              schema:
-                $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Forbidden'
+        default: #unexpected
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Unexpected'
 
   /seller/makegood/recall:
     post:
@@ -283,48 +173,25 @@ paths:
         - Seller
       summary: Seller Makegood Recall
       description: >
-        Allows the seller to recall a makegood offer request ; 
-        buyer must respond back with acceptance or failure of the recall request.
-          Note: buyer's system defines the rules for acceptance or failure of request  				
+        Allows the seller to recall a makegood offer request;
+        buyer must respond with acceptance or failure.
+        Note: buyer's system defines rules of acceptance or failure
+      operationId: SellerMakegoodRecall
       requestBody:
-        description: cancelMakegood
+        description: Seller recalls makegood Offer
         required: true
         content:
           application/json:
             schema:
               $ref: 'schemas/makegoodsSchemas.yaml#/components/schemas/SellermakegoodRecall'
       responses:
-        '200': # OK
-          description: Request processed successfully
-          content:
-            application/json:
-              schema:
-                $ref: 'schemas/commonSchemas.yaml#/components/schemas/AcceptedResponse'
+        '200': #OK
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Success'
         '400': #Bad Request
-          description: payload is ill formed or cantains data that is invalid 
-          content:
-            application/json:
-              schema:
-                $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
-        '401': # Unauthorized
-          description: Unauthorized, invalid credentials or expired access token
-          headers:
-            WWW-Authenticate:
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
+          $ref: 'schemas/commonResponses.yaml#/components/responses/BadRequest'
+        '401': #Unauthorized
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Unauthorized'
         '403': #Forbidden
-          description: Forbidden, additional previliges are needed
-          content:
-            application/json:
-              schema:
-                $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
-        default: # Any unexpected error
-          description: Unexpected error occured
-          content:
-            application/json:
-              schema:
-                $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Forbidden'
+        default: #unexpected
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Unexpected'

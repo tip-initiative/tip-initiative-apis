@@ -11,7 +11,7 @@ security:
   - bearerAuth: []
 
 info:
-  version: 5.0.0
+  version: 5.x.x
   title: Invoice
   description: Allows the seller to send to the buyer both new and revised invoice information
   termsOfService: http://placeholderdomain.io/terms/
@@ -24,38 +24,38 @@ info:
     url: https://opensource.org/licenses/MIT
 
 servers:
-  - url: http://placeholderdomain.io
+  - url: http://placeholderdomain./v5.x.x
 
 paths:
   /seller/invoice:
     post:
       tags:
         - Seller
-      summary: Seller Invoice POST
+      summary: Seller Invoice
       description: >-
         Allows the seller to send to the buyer new invoice information (No Request from buyer is
         Required)
-      operationId: invoicePostSeller
+      operationId: SellerInvoice
       requestBody:
         description: Invoice body included in request
         required: true
         content:
           application/json:
             schema:
-              $ref: 'schemas/invoiceSchemas.yaml#/components/schemas/InvoiceObject'
+              $ref: 'schemas/invoiceSchemas.yaml#/components/schemas/SellerInvoice'
       responses:
-        '200':
-          description: Request processed successfully
-          content:
-            application/json:
-              schema:
-                $ref: 'schemas/commonSchemas.yaml#/components/schemas/TransactionHeader'
-        default:
-          description: unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
+        '200': #OK
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Success'
+        '400': #Bad Request
+          $ref: 'schemas/commonResponses.yaml#/components/responses/BadRequest'
+        '401': #Unauthorized
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Unauthorized'
+        '403': #Forbidden
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Forbidden'
+        '404': #Not Found
+          $ref: 'schemas/commonResponses.yaml#/components/responses/NotFound'
+        default: #unexpected
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Unexpected'
   /seller/invoice/cancel:
     post:
       tags:
@@ -76,16 +76,16 @@ paths:
             schema:
               $ref: 'schemas/commonSchemas.yaml#/components/schemas/TransactionHeader'
       responses:
-        '200':
-          description: Request processed successfully
-          content:
-            application/json:
-              schema:
-                $ref: 'schemas/commonSchemas.yaml#/components/schemas/AcceptedResponse'
-        default:
-          description: unexpected error, return the appropriate and corresponding HTTP status code matching the error
-          content:
-            application/json:
-              schema:
-                $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
+        '200': #OK
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Success'
+        '400': #Bad Request
+          $ref: 'schemas/commonResponses.yaml#/components/responses/BadRequest'
+        '401': #Unauthorized
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Unauthorized'
+        '403': #Forbidden
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Forbidden'
+        '404': #Not Found
+          $ref: 'schemas/commonResponses.yaml#/components/responses/NotFound'
+        default: #unexpected
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Unexpected'
 

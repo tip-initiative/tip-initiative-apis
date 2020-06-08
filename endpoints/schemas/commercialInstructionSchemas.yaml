@@ -14,7 +14,7 @@ info:
 paths: {}
 components:
   schemas:
-    CommercialInstructionsRequestObject:
+    BuyerCommercialInstructions:
       description: Top level element for Commercial Instructions Buyer POST operations
       properties:
         transactionHeader:
