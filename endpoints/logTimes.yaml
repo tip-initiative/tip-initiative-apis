@@ -10,7 +10,7 @@ security:
   - bearerAuth: []
 
 info:
-  version: 5.0.0
+  version: 5.x.x
   title: logtimes
   description: Seller posts a Logtimes on the buyer's server
   termsOfService: http://placeholderdomain.io/terms/
@@ -22,7 +22,7 @@ info:
     name: MIT
     url: https://opensource.org/licenses/MIT
 servers:
-  - url: http://placeholderdomain.io
+  - url: http://placeholderdomain.io/v5.x.x
 
 paths:
   /seller/logtimes:
@@ -40,17 +40,17 @@ paths:
         content:
           application/json:
             schema:
-              $ref: 'schemas/logTimesSchemas.yaml#/components/schemas/LogTimesSellerObject'
+              $ref: 'schemas/logTimesSchemas.yaml#/components/schemas/SellerLogTimes'
       responses:
-        '200':
-          description: Request processed successfully
-          content:
-            application/json:
-              schema:
-                $ref: 'schemas/commonSchemas.yaml#/components/schemas/AcceptedResponse'
-        default:
-          description: unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
+        '200': #OK
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Success'
+        '400': #Bad Request
+          $ref: 'schemas/commonResponses.yaml#/components/responses/BadRequest'
+        '401': #Unauthorized
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Unauthorized'
+        '403': #Forbidden
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Forbidden'
+        '404': #Not Found
+          $ref: 'schemas/commonResponses.yaml#/components/responses/NotFound'
+        default: #unexpected
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Unexpected'

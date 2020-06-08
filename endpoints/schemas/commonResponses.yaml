@@ -1,0 +1,62 @@
+openapi: 3.0.0
+info:
+  version: 5.x.x
+  title: Common Error Responses
+  description: Commercial Instructions Schema
+  termsOfService: http://placeholderdomain.io/terms/
+  contact:
+    name: TIP Initiative
+    email: tipinitiative@frontrowadvisory.com
+    url: http://placeholderdomain.io
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+paths: {}
+components:
+  responses:
+    Success:
+      description: 200 OK - request accepted successfully 
+      content:
+        application/json:
+          schema:
+            $ref: 'commonSchemas.yaml#/components/schemas/AcceptedResponse'
+    Accepted:
+      description: 202 Accepted - request accepted, Actual response will follow at later time
+      content:
+        application/json:
+          schema:
+            $ref: 'commonSchemas.yaml#/components/schemas/AcceptedResponse'
+    BadRequest:
+      description: 400 Bad Request - payload is ill formed or cantains data that is invalid 
+      content:
+        application/json:
+          schema:
+            $ref: 'commonSchemas.yaml#/components/schemas/Error'
+    Unauthorized:
+      description: 401 Unauthorized - Unauthorized, invalid credentials or expired access token
+      headers:
+        WWW-Authenticate:
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            $ref: 'commonSchemas.yaml#/components/schemas/Error'
+    Forbidden:
+      description: 403 Forbidden, additional previliges are needed
+      content:
+        application/json:
+          schema:
+            $ref: 'commonSchemas.yaml#/components/schemas/Error'
+    NotFound:
+      description: 404 Not Found, Requested entity does not exist
+      content:
+        application/json:
+          schema:
+            $ref: 'commonSchemas.yaml#/components/schemas/Error'
+    Unexpected:
+      description: Unexpected error occured
+      content:
+        application/json:
+          schema:
+            $ref: 'commonSchemas.yaml#/components/schemas/Error'

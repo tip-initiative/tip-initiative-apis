@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  version: 5.0.0
+  version: 5.x.x
   title: Invoice Schema
   description: Invoice Schema
   termsOfService: http://placeholderdomain.io/terms/
@@ -14,7 +14,7 @@ info:
 paths: {}
 components:
   schemas:
-    InvoiceObject:
+    SellerInvoice:
       description: Top level element for Invoice Seller POST operations
       properties:
         transactionHeader:
