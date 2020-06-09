@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  version: 5.0.0
+  version: 5.x.x
   title: Buyer requesting New Order or Order Change Request to Seller
   description: Buyer/Order
   termsOfService: http://placeholderdomain.io/terms/
@@ -132,7 +132,7 @@ components:
         - equivalized
         - dateWindow
         - mediaOutlets
-    OrderConfirm:
+    SellerOrderConfirm:
       description: >-
         Allows the seller to respond to an order or order change request with a confirmed booked confirmation
       properties:
@@ -153,7 +153,7 @@ components:
         - transactionHeader
         - referenceIds
         - confirmedBookedDate
-    OrderRecall:
+    BuyerOrderRecall:
       description: >-
         Allows the buyer to recall a new order or order change request ; seller must respond back with
         acceptance or failure of the recall request. Note: Seller's system defined the rules for acceptance
@@ -178,7 +178,7 @@ components:
         - transactionHeader
         - referenceIds
         - recallDate
-    OrderReject:
+    SellerOrderReject:
       description: >-
         Allows the seller to reject a new order or order change request; seller must respond back with
         rejection comments
