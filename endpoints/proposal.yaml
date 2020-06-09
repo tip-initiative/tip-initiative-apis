@@ -42,20 +42,20 @@ paths:
         content:
           application/json:
             schema:
-              $ref: 'schemas/proposalSchemas.yaml#/components/schemas/ProposalObject'
+              $ref: 'schemas/proposalSchemas.yaml#/components/schemas/SellerProposal'
       responses:
-        '200':
-          description: Request processed successfully
-          content:
-            application/json:
-              schema:
-                $ref: 'schemas/commonSchemas.yaml#/components/schemas/AcceptedResponse'
-        default:
-          description: unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
+        '200': #OK
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Success'
+        '400': #Bad Request
+          $ref: 'schemas/commonResponses.yaml#/components/responses/BadRequest'
+        '401': #Unauthorized
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Unauthorized'
+        '403': #Forbidden
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Forbidden'
+        '404': #Not Found
+          $ref: 'schemas/commonResponses.yaml#/components/responses/NotFound'
+        default: #unexpected
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Unexpected'
   /seller/proposal/cancel:
     post:
       tags:
@@ -76,15 +76,15 @@ paths:
             schema:
               $ref: 'schemas/commonSchemas.yaml#/components/schemas/TransactionHeader'
       responses:
-        '200':
-          description: Request processed successfully
-          content:
-            application/json:
-              schema:
-                $ref: 'schemas/commonSchemas.yaml#/components/schemas/AcceptedResponse'
-        default:
-          description: unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
+        '200': #OK
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Success'
+        '400': #Bad Request
+          $ref: 'schemas/commonResponses.yaml#/components/responses/BadRequest'
+        '401': #Unauthorized
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Unauthorized'
+        '403': #Forbidden
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Forbidden'
+        '404': #Not Found
+          $ref: 'schemas/commonResponses.yaml#/components/responses/NotFound'
+        default: #unexpected
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Unexpected'

@@ -14,7 +14,7 @@ info:
 paths: {}
 components:
   schemas:
-    ProposalObject:
+    SellerProposal:
       description: >-
         Allows the seller to respond back to the buyer with the detailed proposal for a given RFP or
         revised proposal; Multiple versions of a proposal can be under negotiation for the same campaign,

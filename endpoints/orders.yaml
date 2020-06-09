@@ -45,22 +45,19 @@ paths:
             schema:
               $ref: 'schemas/ordersSchemas.yaml#/components/schemas/BuyerOrder'
       responses:
-        '202':
-          description: >-
-            Your request was received.<br/>
-            The request has been accepted for processing, but the processing has not been completed.<br/>
-            The request might or might not eventually be acted upon, as it might be disallowed when processing actually takes place.
-          content:
-            application/json:
-              schema:
-                $ref: 'schemas/commonSchemas.yaml#/components/schemas/AcceptedResponse'
-        default:
-          description: Error.
-          content:
-            application/json:
-              schema:
-                $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
-  /buyer/order/cancel:
+        '202': #Accepted
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Accepted'
+        '400': #Bad Request
+          $ref: 'schemas/commonResponses.yaml#/components/responses/BadRequest'
+        '401': #Unauthorized
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Unauthorized'
+        '403': #Forbidden
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Forbidden'
+        '404': #Not Found
+          $ref: 'schemas/commonResponses.yaml#/components/responses/NotFound'
+        default: #unexpected
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Unexpected'
+  /buyer/order/recall:
     post:
       tags:
         - Buyer
@@ -74,21 +71,20 @@ paths:
         content:
           application/json:
             schema:
-              $ref: 'schemas/ordersSchemas.yaml#/components/schemas/OrderRecall'
+              $ref: 'schemas/ordersSchemas.yaml#/components/schemas/BuyerOrderRecall'
       responses:
-        '200':
-          description: >-
-            Cancel request received.
-          content:
-            application/json:
-              schema:
-                $ref: 'schemas/commonSchemas.yaml#/components/schemas/AcceptedResponse'
-        default:
-          description: Error.
-          content:
-            application/json:
-              schema:
-                $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
+        '200': #OK
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Success'
+        '400': #Bad Request
+          $ref: 'schemas/commonResponses.yaml#/components/responses/BadRequest'
+        '401': #Unauthorized
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Unauthorized'
+        '403': #Forbidden
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Forbidden'
+        '404': #Not Found
+          $ref: 'schemas/commonResponses.yaml#/components/responses/NotFound'
+        default: #unexpected
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Unexpected'
   /seller/order/confirm:
     post:
       tags:
@@ -105,20 +101,20 @@ paths:
         content:
           application/json:
             schema:
-              $ref: 'schemas/ordersSchemas.yaml#/components/schemas/OrderConfirm'
+              $ref: 'schemas/ordersSchemas.yaml#/components/schemas/SellerOrderConfirm'
       responses:
-        '200':
-          description: confirmation Accepted
-          content:
-            application/json:
-              schema:
-                $ref: 'schemas/commonSchemas.yaml#/components/schemas/AcceptedResponse'
-        default:
-          description: Error.
-          content:
-            application/json:
-              schema:
-                $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
+        '200': #OK
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Success'
+        '400': #Bad Request
+          $ref: 'schemas/commonResponses.yaml#/components/responses/BadRequest'
+        '401': #Unauthorized
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Unauthorized'
+        '403': #Forbidden
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Forbidden'
+        '404': #Not Found
+          $ref: 'schemas/commonResponses.yaml#/components/responses/NotFound'
+        default: #unexpected
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Unexpected'
   /seller/order/reject:
     post:
       tags:
@@ -135,17 +131,17 @@ paths:
         content:
           application/json:
             schema:
-              $ref: 'schemas/ordersSchemas.yaml#/components/schemas/OrderReject'
+              $ref: 'schemas/ordersSchemas.yaml#/components/schemas/SellerOrderReject'
       responses:
-        '200':
-          description: Rejection Accepted
-          content:
-            application/json:
-              schema:
-                $ref: 'schemas/commonSchemas.yaml#/components/schemas/AcceptedResponse'
-        default:
-          description: Error.
-          content:
-            application/json:
-              schema:
-                $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
+        '200': #OK
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Success'
+        '400': #Bad Request
+          $ref: 'schemas/commonResponses.yaml#/components/responses/BadRequest'
+        '401': #Unauthorized
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Unauthorized'
+        '403': #Forbidden
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Forbidden'
+        '404': #Not Found
+          $ref: 'schemas/commonResponses.yaml#/components/responses/NotFound'
+        default: #unexpected
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Unexpected'

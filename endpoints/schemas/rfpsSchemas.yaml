@@ -14,7 +14,7 @@ info:
 paths: {}
 components:
   schemas:
-    RFPRequestObject:
+    BuyerRfp:
       description: >-
         Allows the buyer to submit a Request for Proposal (RFP) to the seller with media budget, goals
         and overall terms
