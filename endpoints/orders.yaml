@@ -32,10 +32,15 @@ paths:
     post:
       tags:
         - Buyer
-      summary: Create an Order
+      summary: Create or Change an Order in the Seller System
       description: >-
-        The endpoint resides on the seller side. <br/>
-        the endpoint allows the buyer to creates an order in the Seller system.
+        Allows the buyer to send the detailed information for a given order; 
+        execution is a summary of the sales elements details, thus allowing the seller 
+        to automatically create lines based on individual system's rules.  
+        Buyer must submit entire order for Order Change Request using the last confirmed booked 
+        order version response.  Seller will be responsible for deciphering change request 
+        from buyer.  Cancellation of order either prior to start or mid flight will be submitted 
+        in an order change request
       operationId: createOrder
       requestBody:
         description: createOrder
@@ -55,15 +60,19 @@ paths:
           $ref: 'schemas/commonResponses.yaml#/components/responses/Forbidden'
         '404': #Not Found
           $ref: 'schemas/commonResponses.yaml#/components/responses/NotFound'
+        '405': #Not Allowed
+          $ref: 'schemas/commonResponses.yaml#/components/responses/NotAllowed'
         default: #unexpected
           $ref: 'schemas/commonResponses.yaml#/components/responses/Unexpected'
   /buyer/order/recall:
     post:
       tags:
         - Buyer
+      summary: Allows the buyer to recall a new order or a change to an order
       description: >-
-        The endpoint resides on the seller side. <br/>
-        the endpoint allows the buyer to cancel an order in the Seller system.
+        Allows the buyer to recall a new order or order change request ; 
+        seller must respond back with acceptance or failure of the recall request.    
+        Note: Seller's system defined the rules for acceptance or failure of request 
       operationId: cancelOrder
       requestBody:
         description: cancelOrder
@@ -83,13 +92,15 @@ paths:
           $ref: 'schemas/commonResponses.yaml#/components/responses/Forbidden'
         '404': #Not Found
           $ref: 'schemas/commonResponses.yaml#/components/responses/NotFound'
+        '405': #Not Allowed
+          $ref: 'schemas/commonResponses.yaml#/components/responses/NotAllowed'
         default: #unexpected
           $ref: 'schemas/commonResponses.yaml#/components/responses/Unexpected'
   /seller/order/confirm:
     post:
       tags:
         - Seller
-      summary: Confirmation of acceptance of previously submitted order
+      summary: Allows the seller to respond to an order or order change request with a confirmed booked confirmation
       description: >-
         The endpoint resides on the buyer side to allow the seller to send a confirmation<br/>
         regarding the successful processing of previously submitted order.<br/>
@@ -119,8 +130,9 @@ paths:
     post:
       tags:
         - Seller
-      summary: Reject of previously submitted order
+      summary: Reject a previously submitted order or order change
       description: >-
+        Allows the seller to reject a new order or order change request; seller must respond back with rejection comments
         The endpoint resides on the buyer side to allow the seller to send a reject (all or None)<br/>
         regarding the rejection  of previously submitted order.<br/>
         originalTransactionId is required for Audit Trail.
@@ -143,5 +155,7 @@ paths:
           $ref: 'schemas/commonResponses.yaml#/components/responses/Forbidden'
         '404': #Not Found
           $ref: 'schemas/commonResponses.yaml#/components/responses/NotFound'
+        '405': #Not Allowed
+          $ref: 'schemas/commonResponses.yaml#/components/responses/NotAllowed'
         default: #unexpected
           $ref: 'schemas/commonResponses.yaml#/components/responses/Unexpected'

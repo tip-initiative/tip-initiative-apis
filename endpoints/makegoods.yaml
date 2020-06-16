@@ -28,7 +28,7 @@ paths:
     post:
       tags:
         - Seller
-      summary: Seller asks for Makegood Guidelines
+      summary: Seller submits a request for buyer's makegood guidelines
       description: Seller submits a request for buyer's makegood guidelines
       operationId: SellerMakegoodGuidelines
       requestBody:
@@ -49,6 +49,8 @@ paths:
           $ref: 'schemas/commonResponses.yaml#/components/responses/Forbidden'
         '404': #Not Found
           $ref: 'schemas/commonResponses.yaml#/components/responses/NotFound'
+        '405': #Not Allowed
+          $ref: 'schemas/commonResponses.yaml#/components/responses/NotAllowed'
         default: #unexpected
           $ref: 'schemas/commonResponses.yaml#/components/responses/Unexpected'
 
@@ -56,8 +58,8 @@ paths:
     post:
       tags: 
         - Buyer
-      summary: Buyer provides makegood guidlines to seller
-      description: Buyer submits a list of the makegood guidelines to seller prior to order confirmation
+      summary: Buyer responds back to seller with list of makegood guidelines
+      description: Buyer responds back to seller with list of makegood guidelines 
       operationId: BuyermakegoodGuidelines
       requestBody:
         description: Makegoods
@@ -77,6 +79,8 @@ paths:
           $ref: 'schemas/commonResponses.yaml#/components/responses/Forbidden'
         '404': #Not Found
           $ref: 'schemas/commonResponses.yaml#/components/responses/NotFound'
+        '405': #Not Allowed
+          $ref: 'schemas/commonResponses.yaml#/components/responses/NotAllowed'
         default: #unexpected
           $ref: 'schemas/commonResponses.yaml#/components/responses/Unexpected'
 
@@ -136,6 +140,10 @@ paths:
           $ref: 'schemas/commonResponses.yaml#/components/responses/Unauthorized'
         '403': #Forbidden
           $ref: 'schemas/commonResponses.yaml#/components/responses/Forbidden'
+        '404': #Not Found
+          $ref: 'schemas/commonResponses.yaml#/components/responses/NotFound'
+        '405': #Not Allowed
+          $ref: 'schemas/commonResponses.yaml#/components/responses/NotAllowed'
         default: #unexpected
           $ref: 'schemas/commonResponses.yaml#/components/responses/Unexpected'
 
@@ -143,7 +151,7 @@ paths:
     post:
       tags:
         - Buyer
-      summary: Makegood Reject
+      summary: Reject a Makegood offer
       description: >
         Allows the buyer to reject makegood offer(s)request; 
         buyer will request everything in the request and include rejection comments
@@ -164,6 +172,10 @@ paths:
           $ref: 'schemas/commonResponses.yaml#/components/responses/Unauthorized'
         '403': #Forbidden
           $ref: 'schemas/commonResponses.yaml#/components/responses/Forbidden'
+        '404': #Not Found
+          $ref: 'schemas/commonResponses.yaml#/components/responses/NotFound'
+        '405': #Not Allowed
+          $ref: 'schemas/commonResponses.yaml#/components/responses/NotAllowed'
         default: #unexpected
           $ref: 'schemas/commonResponses.yaml#/components/responses/Unexpected'
 
@@ -193,5 +205,9 @@ paths:
           $ref: 'schemas/commonResponses.yaml#/components/responses/Unauthorized'
         '403': #Forbidden
           $ref: 'schemas/commonResponses.yaml#/components/responses/Forbidden'
+        '404': #Not Found
+          $ref: 'schemas/commonResponses.yaml#/components/responses/NotFound'
+        '405': #Not Allowed
+          $ref: 'schemas/commonResponses.yaml#/components/responses/NotAllowed'
         default: #unexpected
           $ref: 'schemas/commonResponses.yaml#/components/responses/Unexpected'

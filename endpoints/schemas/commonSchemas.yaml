@@ -46,6 +46,7 @@ components:
             - New
             - Change
             - Cancel
+          default: New
         sourceId:
           description: Indicates the source "trading partner" unique identification
           type: string

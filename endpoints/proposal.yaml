@@ -10,7 +10,7 @@ security:
   - bearerAuth: []
 
 info:
-  version: 5.0.0
+  version: 5.x.x
   title: Proposal
   description: |
     * Allows the seller to respond back to the buyer with the detailed proposal for a given RFP or revised proposal;
@@ -34,7 +34,13 @@ paths:
       tags:
         - Seller
       summary: Create or Change a proposal in the buyers system
-      description: Create or Change a proposal in the buyers system
+      description: >-
+        Allows the seller to respond back to the buyer with the detailed proposal 
+        for a given RFP or revised proposal; Multiple versions of a proposal can be under
+         negotiation for the same campaign, but only one version may be executed; 
+         buyer must submit a "Proposal Change Request" for the last proposal version submission; 
+         seller must respond back with a Proposal Response that contains a new version number 
+         when submitting new versions.  New Proposals may be submitted without a RFP Response
       operationId: createChangeProposal
       requestBody:
         description: Create or Change a proposal in the buyers system
@@ -54,6 +60,8 @@ paths:
           $ref: 'schemas/commonResponses.yaml#/components/responses/Forbidden'
         '404': #Not Found
           $ref: 'schemas/commonResponses.yaml#/components/responses/NotFound'
+        '405': #Not Allowed
+          $ref: 'schemas/commonResponses.yaml#/components/responses/NotAllowed'
         default: #unexpected
           $ref: 'schemas/commonResponses.yaml#/components/responses/Unexpected'
   /seller/proposal/cancel:
@@ -86,5 +94,7 @@ paths:
           $ref: 'schemas/commonResponses.yaml#/components/responses/Forbidden'
         '404': #Not Found
           $ref: 'schemas/commonResponses.yaml#/components/responses/NotFound'
+        '405': #Not Allowed
+          $ref: 'schemas/commonResponses.yaml#/components/responses/NotAllowed'
         default: #unexpected
           $ref: 'schemas/commonResponses.yaml#/components/responses/Unexpected'
