@@ -30,12 +30,12 @@ paths:
     post:
       tags:
         - Buyer
-      summary: Create or Change a previously requested an RFP in the seller's system.
+      summary: Allows the buyer to submit a Request for Proposal (RFP) to the seller with media budget, goals and overall terms
       description: >-
         This endpoint resides on the seller side. the purpose of the endpoint is to allow the buyer to:
         A: create New RFP is the seller system. transactionHeader.transactionId.transactionType = New
         B: request changes to be made to a previously communicated RFP.
-          in order to correctly handele the change request the following conditions must be satisfied:
+          in order to correctly handel the change request the following conditions must be satisfied:
           B.1: transactionHeader.transactionId.transactionType=Changed
           B.2: transactionHeader.originalTransactionId.transactionId must indicate the original transactionId
       operationId: NewChangeRFP
@@ -56,6 +56,8 @@ paths:
           $ref: 'schemas/commonResponses.yaml#/components/responses/Forbidden'
         '404': #Not Found
           $ref: 'schemas/commonResponses.yaml#/components/responses/NotFound'
+        '405': #Not Allowed
+          $ref: 'schemas/commonResponses.yaml#/components/responses/NotAllowed'
         default: #unexpected
           $ref: 'schemas/commonResponses.yaml#/components/responses/Unexpected'
 
@@ -87,5 +89,7 @@ paths:
           $ref: 'schemas/commonResponses.yaml#/components/responses/Forbidden'
         '404': #Not Found
           $ref: 'schemas/commonResponses.yaml#/components/responses/NotFound'
+        '405': #Not Allowed
+          $ref: 'schemas/commonResponses.yaml#/components/responses/NotAllowed'
         default: #unexpected
           $ref: 'schemas/commonResponses.yaml#/components/responses/Unexpected'

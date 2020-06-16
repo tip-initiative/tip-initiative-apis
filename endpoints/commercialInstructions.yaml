@@ -29,7 +29,7 @@ paths:
     post:
       tags:
         - Buyer
-      summary: Buyer Commercial Instructions POST
+      summary: Buyer Provides New Commercial Instructions
       description: >-
         Allows the creative agency or service provider of commercial instructions to send new or
         revised traffic instructions on how commercial copy should be applied to units (No request
@@ -51,5 +51,9 @@ paths:
           $ref: 'schemas/commonResponses.yaml#/components/responses/Unauthorized'
         '403': #Forbidden
           $ref: 'schemas/commonResponses.yaml#/components/responses/Forbidden'
+        '404': #Not Found
+          $ref: 'schemas/commonResponses.yaml#/components/responses/NotFound'
+        '405': #Not Allowed
+          $ref: 'schemas/commonResponses.yaml#/components/responses/NotAllowed'
         default: #unexpected
           $ref: 'schemas/commonResponses.yaml#/components/responses/Unexpected'

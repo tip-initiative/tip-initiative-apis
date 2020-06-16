@@ -31,7 +31,7 @@ paths:
     post:
       tags:
         - Seller
-      summary: Seller Invoice
+      summary: Seller submits an invoice to buyer
       description: >-
         Allows the seller to send to the buyer new invoice information (No Request from buyer is
         Required)
@@ -54,6 +54,8 @@ paths:
           $ref: 'schemas/commonResponses.yaml#/components/responses/Forbidden'
         '404': #Not Found
           $ref: 'schemas/commonResponses.yaml#/components/responses/NotFound'
+        '405': #Not Allowed
+          $ref: 'schemas/commonResponses.yaml#/components/responses/NotAllowed'
         default: #unexpected
           $ref: 'schemas/commonResponses.yaml#/components/responses/Unexpected'
   /seller/invoice/cancel:
