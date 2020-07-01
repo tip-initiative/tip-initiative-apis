@@ -55,7 +55,7 @@ components:
           schema:
             $ref: 'commonSchemas.yaml#/components/schemas/Error'
     NotAllowed:
-      description: 405 Not Allowed, Requested operation is not allowed on entity does not exist
+      description: 405 Not Allowed, Requested operation is not allowed on entity
       content:
         application/json:
           schema:
