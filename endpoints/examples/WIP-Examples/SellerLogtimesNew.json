@@ -1,0 +1,129 @@
+{
+  "transactionHeader": {
+    "tipVersion": "string",
+    "transactionId": {
+      "transactionId": "string",
+      "transactionType": "New",
+      "sourceId": "string",
+      "sourceName": "string"
+    },
+    "originalTransactionId": {
+      "transactionId": "string",
+      "transactionType": "New",
+      "sourceId": "string",
+      "sourceName": "string"
+    },
+    "timeStamp": "2020-07-01T19:17:28Z"
+  },
+  "externalComment": "string",
+  "units": [
+    {
+      "unitId": "string",
+      "referenceIds": [
+        {
+          "referenceSourceName": "string",
+          "referenceSourceId": "string",
+          "referenceSourceLookup": "string",
+          "referenceType": "RFP",
+          "referenceId": 0,
+          "referenceVersionId": "string",
+          "referenceName": "string"
+        }
+      ],
+      "cpeCode": {
+        "clientCode": "string",
+        "productCode": "string",
+        "estimateCode": "string"
+      },
+      "buyer": {
+        "buyerId": "string",
+        "buyerName": "string",
+        "buyerReference": "string"
+      },
+      "advertiser": {
+        "advertiserId": "string",
+        "advertiserName": "string",
+        "advertiserReference": "string"
+      },
+      "brand": {
+        "brandId": "string",
+        "brandName": "string",
+        "brandReference": "string"
+      },
+      "product": {
+        "productId": "string",
+        "productName": "string",
+        "productReference": "string"
+      },
+      "salesElement": {
+        "mediaOutletId": "string",
+        "salesElementName": "string",
+        "salesElementId": "string",
+        "salesElementType": "Time-specific"
+      },
+      "program": "string",
+      "daypart": "string",
+      "inventoryType": "Commercial",
+      "linkType": {
+        "linkType": "Billboard",
+        "linkNum": 0,
+        "linkSeq": 0
+      },
+      "makegood": true,
+      "adu": true,
+      "preemptUnitIds": [
+        "string"
+      ],
+      "bonus": true,
+      "length": 0,
+      "rate": 0,
+      "adId": "string",
+      "status": "Aired",
+      "creditInd": true,
+      "timePeriod": {
+        "dateWindow": {
+          "startDate": "2020-07-01",
+          "endDate": "2020-07-01"
+        },
+        "DOW": {
+          "monday": true,
+          "tuesday": true,
+          "wednesday": true,
+          "thursday": true,
+          "friday": true,
+          "saturday": true,
+          "sunday": true
+        },
+        "timeWindow": {
+          "startTime": "string",
+          "endTime": "string"
+        }
+      },
+      "dateTime": {
+        "broadcastDate": "2020-07-01",
+        "calendarDateTime": "2020-07-01T19:17:28Z"
+      },
+      "childUnits": [
+        {
+          "unitId": "string",
+          "mediaOutlet": {
+            "mediaOutletId": "string",
+            "mediaOutletName": "string",
+            "mediaOutletType": "Broadcast TV",
+            "mediaOutletChannel": "string",
+            "mediaOutletMarketName": "string",
+            "mediaOutletReference": "string"
+          },
+          "rate": 0,
+          "adId": "string",
+          "status": "Aired",
+          "reason": "string",
+          "dateTime": {
+            "broadcastDate": "2020-07-01",
+            "calendarDateTime": "2020-07-01T19:17:28Z"
+          }
+        }
+      ]
+    }
+  ]
+}

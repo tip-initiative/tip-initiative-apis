@@ -1,0 +1,206 @@
+{
+    "transactionHeader": {
+      "tipVersion": "string",
+      "transactionId": {
+        "transactionId": "string",
+        "transactionType": "New",
+        "sourceId": "string",
+        "sourceName": "string"
+      },
+      "originalTransactionId": {
+        "transactionId": "string",
+        "transactionType": "New",
+        "sourceId": "string",
+        "sourceName": "string"
+      },
+      "timeStamp": "2020-07-01T19:17:28Z"
+    },
+    "referenceIds": [
+      {
+        "referenceSourceName": "string",
+        "referenceSourceId": "string",
+        "referenceSourceLookup": "string",
+        "referenceType": "RFP",
+        "referenceId": 0,
+        "referenceVersionId": "string",
+        "referenceName": "string"
+      }
+    ],
+    "invoiceDate": "2020-07-01",
+    "invoiceRevisionDate": "2020-07-01",
+    "billingOption": {
+      "billingCalendar": "Broadcast",
+      "billingCycle": "Month",
+      "billingGranularity": "Order"
+    },
+    "dueDate": "2020-07-01",
+    "dateWindow": {
+      "startDate": "2020-07-01",
+      "endDate": "2020-07-01"
+    },
+    "businessType": "string",
+    "buyer": {
+      "buyerId": "string",
+      "buyerName": "string",
+      "buyerReference": "string"
+    },
+    "localNational": "Local",
+    "advertiser": {
+      "advertiserId": "string",
+      "advertiserName": "string",
+      "advertiserReference": "string"
+    },
+    "contacts": [
+      {
+        "contactType": "Account Executive",
+        "referenceSourceName": "string",
+        "referenceSourceId": "string",
+        "contactFirstName": "string",
+        "contactLastName": "string",
+        "addressLine1": "string",
+        "addressLine2": "string",
+        "city": "string",
+        "state": "string",
+        "postalCode": "string",
+        "country": "string",
+        "phoneNumber": "string",
+        "email": "user@example.com",
+        "effectiveDate": "2020-07-01"
+      }
+    ],
+    "buylineCashTrade": "Cash",
+    "grossAmount": 0,
+    "commission": 0,
+    "salesTax": 0,
+    "netAmount": 0,
+    "currency": "USD",
+    "remittanceInfo": {
+      "referenceSourceId": "string",
+      "referenceName": "string",
+      "contactFirstName": "string",
+      "contactLastName": "string",
+      "addressLine1": "string",
+      "addressLine2": "string",
+      "city": "string",
+      "state": "string",
+      "postalCode": "string",
+      "country": "string",
+      "phoneNumber": "string",
+      "contactEmail": "user@example.com",
+      "portalInformation": "string",
+      "paymentLink": "string",
+      "comments": "string"
+    },
+    "externalComment": "string",
+    "lineDetails": [
+      {
+        "buyLineIdReference": "string",
+        "buyLineIdName": "string",
+        "unitType": "Units",
+        "brand": {
+          "brandId": "string",
+          "brandName": "string",
+          "brandReference": "string"
+        },
+        "product": {
+          "productId": "string",
+          "productName": "string",
+          "productReference": "string"
+        },
+        "salesElement": {
+          "mediaOutletId": "string",
+          "salesElementName": "string",
+          "salesElementId": "string",
+          "salesElementType": "Time-specific"
+        },
+        "timePeriod": {
+          "dateWindow": {
+            "startDate": "2020-07-01",
+            "endDate": "2020-07-01"
+          },
+          "DOW": {
+            "monday": true,
+            "tuesday": true,
+            "wednesday": true,
+            "thursday": true,
+            "friday": true,
+            "saturday": true,
+            "sunday": true
+          },
+          "timeWindow": {
+            "startTime": "string",
+            "endTime": "string"
+          }
+        },
+        "length": 0,
+        "cpeCode": {
+          "clientCode": "string",
+          "productCode": "string",
+          "estimateCode": "string"
+        },
+        "billableRevenue": "Booked",
+        "rate": 0,
+        "inventoryType": "Commercial",
+        "audiencePricingMetric": {
+          "audienceSegmentId": "string",
+          "audienceMetric": {
+            "audienceMetric": "Impressions",
+            "audienceMetricValue": 0
+          },
+          "pricingMetric": {
+            "pricingMetric": "CPM",
+            "pricingMetricValue": 0
+          }
+        },
+        "totalUnits": 0,
+        "unitDetails": [
+          {
+            "unitId": "string",
+            "adId": "string",
+            "dateTime": {
+              "broadcastDate": "2020-07-01",
+              "calendarDateTime": "2020-07-01T19:17:28Z"
+            },
+            "podPosition": "First",
+            "linkType": {
+              "linkType": "Billboard",
+              "linkNum": 0,
+              "linkSeq": 0
+            },
+            "preempt": true,
+            "makegood": true,
+            "adu": true,
+            "bonus": true,
+            "rate": 0,
+            "credit": true,
+            "adjustmentReason": "string",
+            "comment": "string",
+            "childUnits": [
+              {
+                "unitId": "string",
+                "mediaOutlet": {
+                  "mediaOutletId": "string",
+                  "mediaOutletName": "string",
+                  "mediaOutletType": "Broadcast TV",
+                  "mediaOutletChannel": "string",
+                  "mediaOutletMarketName": "string",
+                  "mediaOutletReference": "string"
+                },
+                "rate": 0,
+                "adId": "string",
+                "preempt": true,
+                "makegood": true,
+                "adu": true,
+                "credit": true,
+                "adjustmentReason": "string",
+                "dateTime": {
+                  "broadcastDate": "2020-07-01",
+                  "calendarDateTime": "2020-07-01T19:17:28Z"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
