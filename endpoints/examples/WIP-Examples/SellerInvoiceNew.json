@@ -1,14 +1,8 @@
 {
     "transactionHeader": {
-      "tipVersion": "string",
+      "tipVersion": "5.0.0",
       "transactionId": {
-        "transactionId": "string",
-        "transactionType": "New",
-        "sourceId": "string",
-        "sourceName": "string"
-      },
-      "originalTransactionId": {
-        "transactionId": "string",
+        "transactionId": "B906A0A9-19FA-4F06-B94D-22E4F1D9120C",
         "transactionType": "New",
         "sourceId": "string",
         "sourceName": "string"
