@@ -75,7 +75,7 @@
           {
             "contactType": "Buyer",
             "referenceSourceName": "Canvas Worldwide. LLC",
-            "referenceSourceId": "490",
+            "referenceSourceId": "456",
             "contactFirstName": "Scott",
             "contactLastName": "Evans",
             "addressLine1": "75 Varvick Street",
@@ -178,8 +178,8 @@
               "wednesday": true,
               "thursday": true,
               "friday": true,
-              "saturday": true,
-              "sunday": true
+              "saturday": false,
+              "sunday": false
             },
             "timeWindow": {
               "startTime": "7:00:00",
@@ -193,7 +193,6 @@
         "salesElementTransactionInventory": [
           {
             "lineNum": "1",
-            "lineReference": "",
             "inventoryType": "Commercial",
             "inventoryLength": 30,
             "salesElementTransactionDates": [
@@ -205,21 +204,45 @@
                   "endDate": "2020-02-23"
                 },
                 "unitCount": 2,
-                "rate": 525,
+                "rate": 525.00,
                 "audiencesPricingMetrics": [
                   {
-                    "audienceSegmentId": "string",
+                    "audienceSegmentId": "P25-54",
                     "audienceMetric": {
                       "audienceMetric": "Impressions",
-                      "audienceMetricValue": 0
+                      "audienceMetricValue": 310000
                     },
                     "pricingMetric": {
                       "pricingMetric": "CPM",
-                      "pricingMetricValue": 0
+                      "pricingMetricValue": 1.69
+                    }
+                  }
+                ]
+              },
+              {
+                "dateType": "Week",
+                "calendarType": "Broadcast",
+                "dateWindow": {
+                  "startDate": "2020-02-24",
+                  "endDate": "2020-03-01"
+                },
+                "unitCount": 3,
+                "rate": 525,
+                "audiencesPricingMetrics": [
+                  {
+                    "audienceSegmentId": "P25-54",
+                    "audienceMetric": {
+                      "audienceMetric": "Impressions",
+                      "audienceMetricValue": 310000
+                    },
+                    "pricingMetric": {
+                      "pricingMetric": "CPM",
+                      "pricingMetricValue": 1.69
                     }
                   }
                 ]
               }
+
             ]
           }
         ]
