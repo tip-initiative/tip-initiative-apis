@@ -4,30 +4,52 @@
       "transactionId": {
         "transactionId": "B906A0A9-19FA-4F06-B94D-22E4F1D9120C",
         "transactionType": "New",
-        "sourceId": "string",
-        "sourceName": "string"
+        "sourceId": "490",
+        "sourceName": "KHOU-TV"
       },
-      "timeStamp": "2020-07-01T19:17:28Z"
+      "timeStamp": "2020-02-05T11:52:38"
     },
     "referenceIds": [
       {
-        "referenceSourceName": "string",
-        "referenceSourceId": "string",
-        "referenceSourceLookup": "string",
-        "referenceType": "RFP",
-        "referenceId": 0,
-        "referenceVersionId": "string",
-        "referenceName": "string"
+        "referenceSourceName": "KHOU-TV",
+        "referenceSourceId": "490",
+        "referenceType": "Proposal",
+        "referenceId": 4567,
+        "referenceVersionId": "2",
+        "referenceName": "Hyundia P25-54 1Q"
+      },
+      {
+        "referenceSourceName": "Canvas Worldwide. LLC",
+        "referenceSourceId": "456",
+        "referenceType": "Order",
+        "referenceId": 7623,
+        "referenceVersionId": "2",
+        "referenceName": "Hyundia P25-54 1Q"
+      },
+      {
+        "referenceSourceName": "KHOU-TV",
+        "referenceSourceId": "490",
+        "referenceType": "Order",
+        "referenceId": 32323,
+        "referenceVersionId": "2",
+        "referenceName": "Hyundia P25-54 1Q"
+      },
+      {
+        "referenceSourceName": "KHOU-TV",
+        "referenceSourceId": "490",
+        "referenceType": "Invoice",
+        "referenceId": 45,
+        "referenceVersionId": "0",
+        "referenceName": "Hyundia P25-54 1Q"
       }
     ],
-    "invoiceDate": "2020-07-01",
-    "invoiceRevisionDate": "2020-07-01",
+    "invoiceDate": "2020-03-02",
     "billingOption": {
       "billingCalendar": "Broadcast",
       "billingCycle": "Month",
       "billingGranularity": "Order"
     },
-    "dueDate": "2020-07-01",
+    "dueDate": "2020-03-02",
     "dateWindow": {
       "startDate": "2020-07-01",
       "endDate": "2020-07-01"
