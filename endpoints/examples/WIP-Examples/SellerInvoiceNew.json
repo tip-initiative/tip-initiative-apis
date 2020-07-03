@@ -49,39 +49,38 @@
       "billingCycle": "Month",
       "billingGranularity": "Order"
     },
-    "dueDate": "2020-03-02",
+    "dueDate": "2020-04-13",
     "dateWindow": {
-      "startDate": "2020-07-01",
-      "endDate": "2020-07-01"
+      "startDate": "2020-01-26",
+      "endDate": "2020-02-23"
     },
-    "businessType": "string",
+    "businessType": "Standard",
     "buyer": {
-      "buyerId": "string",
-      "buyerName": "string",
-      "buyerReference": "string"
+      "buyerId": "456",
+      "buyerName": "Canvas Worldwide. LLC",
+      "buyerReference": "Optional: Reference text here"
     },
-    "localNational": "Local",
+    "localNational": "National",
     "advertiser": {
-      "advertiserId": "string",
-      "advertiserName": "string",
-      "advertiserReference": "string"
+      "advertiserId": "34",
+      "advertiserName": "Hyundai",
+      "advertiserReference": "53"
     },
     "contacts": [
       {
         "contactType": "Account Executive",
-        "referenceSourceName": "string",
-        "referenceSourceId": "string",
-        "contactFirstName": "string",
-        "contactLastName": "string",
-        "addressLine1": "string",
-        "addressLine2": "string",
-        "city": "string",
-        "state": "string",
-        "postalCode": "string",
-        "country": "string",
-        "phoneNumber": "string",
-        "email": "user@example.com",
-        "effectiveDate": "2020-07-01"
+        "referenceSourceName": "KHOU-TV",
+        "referenceSourceId": "490",
+        "contactFirstName": "Mary",
+        "contactLastName": "McCoy",
+        "addressLine1": "5718 Westheimer Road",
+        "city": "Houston",
+        "state": "TX",
+        "postalCode": "77057",
+        "country": "USA",
+        "phoneNumber": "713-555-5555",
+        "email": "mmcoy@email.com",
+        "effectiveDate": "2007-02-17"
       }
     ],
     "buylineCashTrade": "Cash",
@@ -91,48 +90,38 @@
     "netAmount": 0,
     "currency": "USD",
     "remittanceInfo": {
-      "referenceSourceId": "string",
-      "referenceName": "string",
-      "contactFirstName": "string",
-      "contactLastName": "string",
-      "addressLine1": "string",
-      "addressLine2": "string",
-      "city": "string",
-      "state": "string",
-      "postalCode": "string",
-      "country": "string",
-      "phoneNumber": "string",
-      "contactEmail": "user@example.com",
-      "portalInformation": "string",
-      "paymentLink": "string",
-      "comments": "string"
+      "referenceSourceId": "490",
+      "referenceName": "KHOU-TV",
+      "addressLine1": "PO Box 14200",
+      "city": "Houston",
+      "state": "TX",
+      "postalCode": "77001",
+      "phoneNumber": "281-555-5555",
+      "contactEmail": "BillingDept@KHOU.tv"
     },
-    "externalComment": "string",
+    "externalComment": "Optional: Comments here",
     "lineDetails": [
       {
-        "buyLineIdReference": "string",
-        "buyLineIdName": "string",
+        "buyLineIdReference": "1",
         "unitType": "Units",
         "brand": {
-          "brandId": "string",
-          "brandName": "string",
-          "brandReference": "string"
+          "brandId": "19",
+          "brandName": "Kona"
         },
         "product": {
-          "productId": "string",
-          "productName": "string",
-          "productReference": "string"
+          "productId": "89",
+          "productName": "Automobile"
         },
         "salesElement": {
-          "mediaOutletId": "string",
-          "salesElementName": "string",
-          "salesElementId": "string",
-          "salesElementType": "Time-specific"
+          "mediaOutletId": "490",
+          "salesElementName": "CBS This Morning",
+          "salesElementId": "999",
+          "salesElementType": "Program Based"
         },
         "timePeriod": {
           "dateWindow": {
-            "startDate": "2020-07-01",
-            "endDate": "2020-07-01"
+            "startDate": "2020-02-17",
+            "endDate": "2020-02-23"
           },
           "DOW": {
             "monday": true,
@@ -140,22 +129,21 @@
             "wednesday": true,
             "thursday": true,
             "friday": true,
-            "saturday": true,
-            "sunday": true
+            "saturday": false,
+            "sunday": false
           },
           "timeWindow": {
-            "startTime": "string",
-            "endTime": "string"
+            "startTime": "07:00:00",
+            "endTime": "09:00:00"
           }
         },
-        "length": 0,
+        "length": 30,
         "cpeCode": {
-          "clientCode": "string",
-          "productCode": "string",
-          "estimateCode": "string"
+          "clientCode": "HYUN",
+          "productCode": "AUTO",
+          "estimateCode": "987"
         },
         "billableRevenue": "Booked",
-        "rate": 0,
         "inventoryType": "Commercial",
         "audiencePricingMetric": {
           "audienceSegmentId": "string",
@@ -165,56 +153,323 @@
           },
           "pricingMetric": {
             "pricingMetric": "CPM",
-            "pricingMetricValue": 0
+            "pricingMetricValue": 1.69
           }
         },
-        "totalUnits": 0,
+        "totalUnits": 2,
         "unitDetails": [
           {
-            "unitId": "string",
-            "adId": "string",
+            "unitId": "5699",
+            "adId": "HYUN1234",
             "dateTime": {
-              "broadcastDate": "2020-07-01",
-              "calendarDateTime": "2020-07-01T19:17:28Z"
+              "broadcastDate": "2020-02-17",
+              "calendarDateTime": "2020-02-17T07:23:00"
             },
-            "podPosition": "First",
-            "linkType": {
-              "linkType": "Billboard",
-              "linkNum": 0,
-              "linkSeq": 0
+            "preempt": false,
+            "makegood": false,
+            "adu": false,
+            "bonus": false,
+            "rate": 525.00,
+            "credit": false,
+            "comment": "Optional: Comment here"
+          },
+          {
+            "unitId": "567100",
+            "adId": "HYUN1235",
+            "dateTime": {
+              "broadcastDate": "2020-02-17",
+              "calendarDateTime": "2020-02-17T08:23:00"
             },
-            "preempt": true,
-            "makegood": true,
-            "adu": true,
-            "bonus": true,
-            "rate": 0,
-            "credit": true,
-            "adjustmentReason": "string",
-            "comment": "string",
-            "childUnits": [
-              {
-                "unitId": "string",
-                "mediaOutlet": {
-                  "mediaOutletId": "string",
-                  "mediaOutletName": "string",
-                  "mediaOutletType": "Broadcast TV",
-                  "mediaOutletChannel": "string",
-                  "mediaOutletMarketName": "string",
-                  "mediaOutletReference": "string"
-                },
-                "rate": 0,
-                "adId": "string",
-                "preempt": true,
-                "makegood": true,
-                "adu": true,
-                "credit": true,
-                "adjustmentReason": "string",
-                "dateTime": {
-                  "broadcastDate": "2020-07-01",
-                  "calendarDateTime": "2020-07-01T19:17:28Z"
-                }
-              }
-            ]
+            "preempt": false,
+            "makegood": false,
+            "adu": false,
+            "bonus": false,
+            "rate": 525.00,
+            "credit": false,
+            "comment": "Optional : comments here"
+          }
+        ]
+      },
+      {
+        "buyLineIdReference": "2",
+        "unitType": "Units",
+        "brand": {
+          "brandId": "19",
+          "brandName": "Kona"
+        },
+        "product": {
+          "productId": "89",
+          "productName": "Automobile"
+        },
+        "salesElement": {
+          "mediaOutletId": "490",
+          "salesElementName": "CBS This Morning",
+          "salesElementId": "999",
+          "salesElementType": "Program Based"
+        },
+        "timePeriod": {
+          "dateWindow": {
+            "startDate": "2020-02-17",
+            "endDate": "2020-02-23"
+          },
+          "DOW": {
+            "monday": true,
+            "tuesday": true,
+            "wednesday": true,
+            "thursday": true,
+            "friday": true,
+            "saturday": false,
+            "sunday": false
+          },
+          "timeWindow": {
+            "startTime": "07:00:00",
+            "endTime": "09:00:00"
+          }
+        },
+        "length": 15,
+        "cpeCode": {
+          "clientCode": "HYUN",
+          "productCode": "AUTO",
+          "estimateCode": "987"
+        },
+        "billableRevenue": "Booked",
+        "inventoryType": "interstial",
+        "audiencePricingMetric": {
+          "audienceSegmentId": "string",
+          "audienceMetric": {
+            "audienceMetric": "Impressions",
+            "audienceMetricValue": 0
+          },
+          "pricingMetric": {
+            "pricingMetric": "CPM",
+            "pricingMetricValue": 1.94
+          }
+        },
+        "totalUnits": 1,
+        "unitDetails": [
+          {
+            "unitId": "56799",
+            "adId": "HYUN1234",
+            "dateTime": {
+              "broadcastDate": "2020-02-17",
+              "calendarDateTime": "2020-02-17T07:05:00"
+            },
+            "preempt": false,
+            "makegood": false,
+            "adu": false,
+            "bonus": false,
+            "rate": 600.00,
+            "credit": false,
+            "comment": "Optional: Comment here"
+          }
+        ]
+      },
+      {
+        "buyLineIdReference": "3",
+        "unitType": "Units",
+        "brand": {
+          "brandId": "19",
+          "brandName": "Kona"
+        },
+        "product": {
+          "productId": "89",
+          "productName": "Automobile"
+        },
+        "salesElement": {
+          "mediaOutletId": "490",
+          "salesElementName": "Prime Weekend",
+          "salesElementId": "55",
+          "salesElementType": "Time Based"
+        },
+        "timePeriod": {
+          "dateWindow": {
+            "startDate": "2020-02-17",
+            "endDate": "2020-02-23"
+          },
+          "DOW": {
+            "monday": false,
+            "tuesday": false,
+            "wednesday": false,
+            "thursday": false,
+            "friday": false,
+            "saturday": true,
+            "sunday": true
+          },
+          "timeWindow": {
+            "startTime": "19:00:00",
+            "endTime": "22:00:00"
+          }
+        },
+        "length": 30,
+        "cpeCode": {
+          "clientCode": "HYUN",
+          "productCode": "AUTO",
+          "estimateCode": "987"
+        },
+        "billableRevenue": "Booked",
+        "inventoryType": "Commercial",
+        "audiencePricingMetric": {
+          "audienceSegmentId": "string",
+          "audienceMetric": {
+            "audienceMetric": "Impressions",
+            "audienceMetricValue": 0
+          },
+          "pricingMetric": {
+            "pricingMetric": "CPM",
+            "pricingMetricValue": 1.21
+          }
+        },
+        "totalUnits": 10,
+        "unitDetails": [
+          {
+            "unitId": "56799",
+            "adId": "HYUN1234",
+            "dateTime": {
+              "broadcastDate": "2020-02-17",
+              "calendarDateTime": "2020-02-17T19:14:00"
+            },
+            "preempt": false,
+            "makegood": false,
+            "adu": false,
+            "bonus": false,
+            "rate": 525.00,
+            "credit": false,
+            "comment": "Optional: Comment here"
+          },
+          {
+            "unitId": "567100",
+            "adId": "HYUN1235",
+            "dateTime": {
+              "broadcastDate": "2020-02-17",
+              "calendarDateTime": "2020-02-17T19:33:00"
+            },
+            "preempt": false,
+            "makegood": false,
+            "adu": false,
+            "bonus": false,
+            "rate": 525.00,
+            "credit": false,
+            "comment": "Optional: Comment here"
+          },
+          {
+            "unitId": "56799",
+            "adId": "HYUN1238",
+            "dateTime": {
+              "broadcastDate": "2020-02-18",
+              "calendarDateTime": "2020-02-18T19:23:00"
+            },
+            "preempt": false,
+            "makegood": false,
+            "adu": false,
+            "bonus": false,
+            "rate": 525.00,
+            "credit": false,
+            "comment": "Optional: Comment here"
+          },
+          {
+            "unitId": "56799",
+            "adId": "HYUN1234",
+            "dateTime": {
+              "broadcastDate": "2020-02-18",
+              "calendarDateTime": "2020-02-18T19:44:00"
+            },
+            "preempt": false,
+            "makegood": false,
+            "adu": false,
+            "bonus": false,
+            "rate": 525.00,
+            "credit": false,
+            "comment": "Optional: Comment here"
+          },
+          {
+            "unitId": "56799",
+            "adId": "HYUN1235",
+            "dateTime": {
+              "broadcastDate": "2020-02-19",
+              "calendarDateTime": "2020-02-19T19:23:00"
+            },
+            "preempt": false,
+            "makegood": false,
+            "adu": false,
+            "bonus": false,
+            "rate": 525.00,
+            "credit": false,
+            "comment": "Optional: Comment here"
+          },
+          {
+            "unitId": "56799",
+            "adId": "HYUN1238",
+            "dateTime": {
+              "broadcastDate": "2020-02-19",
+              "calendarDateTime": "2020-02-19T20:23:00"
+            },
+            "preempt": false,
+            "makegood": false,
+            "adu": false,
+            "bonus": false,
+            "rate": 525.00,
+            "credit": false,
+            "comment": "Optional: Comment here"
+          },
+          {
+            "unitId": "56799",
+            "adId": "HYUN1234",
+            "dateTime": {
+              "broadcastDate": "2020-02-20",
+              "calendarDateTime": "2020-02-20T19:23:00"
+            },
+            "preempt": false,
+            "makegood": false,
+            "adu": false,
+            "bonus": false,
+            "rate": 525.00,
+            "credit": false,
+            "comment": "Optional: Comment here"
+          },
+          {
+            "unitId": "56799",
+            "adId": "HYUN1235",
+            "dateTime": {
+              "broadcastDate": "2020-02-20",
+              "calendarDateTime": "2020-02-20T19:45:00"
+            },
+            "preempt": false,
+            "makegood": false,
+            "adu": false,
+            "bonus": false,
+            "rate": 525.00,
+            "credit": false,
+            "comment": "Optional: Comment here"
+          },
+          {
+            "unitId": "56799",
+            "adId": "HYUN1238",
+            "dateTime": {
+              "broadcastDate": "2020-02-21",
+              "calendarDateTime": "2020-02-21T20:23:00"
+            },
+            "preempt": false,
+            "makegood": false,
+            "adu": false,
+            "bonus": false,
+            "rate": 525.00,
+            "credit": false,
+            "comment": "Optional: Comment here"
+          },
+          {
+            "unitId": "56799",
+            "adId": "HYUN1234",
+            "dateTime": {
+              "broadcastDate": "2020-02-21",
+              "calendarDateTime": "2020-02-21T19:45:00"
+            },
+            "preempt": false,
+            "makegood": false,
+            "adu": false,
+            "bonus": false,
+            "rate": 525.00,
+            "credit": false,
+            "comment": "Optional: Comment here"
           }
         ]
       }
