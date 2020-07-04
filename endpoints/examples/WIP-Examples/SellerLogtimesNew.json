@@ -127,12 +127,6 @@
         "linkType": "Bookend",
         "linkNum": 1
       },
-      "makegood": true,
-      "adu": true,
-      "preemptUnitIds": [
-        "string"
-      ],
-      "bonus": true,
       "length": 15,
       "rate": 525.00,
       "adId": "WEND1234",
@@ -205,15 +199,9 @@
         "linkType": "Bookend",
         "linkNum": 1
       },
-      "makegood": true,
-      "adu": true,
-      "preemptUnitIds": [
-        "string"
-      ],
-      "bonus": true,
       "length": 15,
       "rate": 525.00,
-      "adId": "WEND1234",
+      "adId": "WEND1235",
       "status": "Aired",
       "creditInd": false,
       "timePeriod": {
@@ -284,6 +272,7 @@
       "program": "Prime Movie",
       "daypart": "Prime",
       "inventoryType": "Commercial",
+      "makegood": true,
       "preemptUnitIds": [
         "12345"
       ],
@@ -423,7 +412,6 @@
       "program": "CBS This Morning",
       "daypart": "Morning",
       "inventoryType": "Commercial",
-      "adu": true,
       "bonus": true,
       "length": 30,
       "rate": 0.00,
@@ -462,7 +450,7 @@
           "referenceSourceId": "490",
           "referenceType": "Order",
           "referenceId": 23333,
-          "referenceName": "Wendy's 1Q"
+          "referenceName": "White Castle P18-49"
         }
       ],
       "cpeCode": {
@@ -592,6 +580,78 @@
       "dateTime": {
         "broadcastDate": "2020-02-17",
         "calendarDateTime": "2020-02-17T17:11:00"
+      }
+    },
+    {
+      "unitId": "16556",
+      "referenceIds": [
+        {
+          "referenceSourceName": "KHOU-TV",
+          "referenceSourceId": "490",
+          "referenceType": "Order",
+          "referenceId": 32323,
+          "referenceName": "Hyundia P25-54 1Q"
+        }
+      ],
+      "cpeCode": {
+        "clientCode": "HYUN",
+        "productCode": "AUTO",
+        "estimateCode": "997"
+      },
+      "buyer": {
+        "buyerId": "456",
+        "buyerName": "Cross Media",
+        "buyerReference": "Optional: Reference text here"
+      },
+      "advertiser": {
+        "advertiserId": "34",
+        "advertiserName": "Hyundai",
+        "advertiserReference": "Optional: Reference text here"
+      },
+      "brand": {
+        "brandId": "19",
+        "brandName": "Kona",
+        "brandReference": "Optional: Reference text here"
+      },
+      "product": {
+        "productId": "89",
+        "productName": "Automobile"
+      },
+      "salesElement": {
+        "mediaOutletId": "490",
+        "salesElementName": "Late Fringe",
+        "salesElementId": "102",
+        "salesElementType": "Time-Specific"
+      },
+      "program": "Overnight Movie",
+      "daypart": "Late Fringe",
+      "inventoryType": "Commercial",
+      "length": 15,
+      "rate": 525.00,
+      "status": "Aired",
+      "creditInd": false,
+      "timePeriod": {
+        "dateWindow": {
+          "startDate": "2020-02-17",
+          "endDate": "2020-03-01"
+        },
+        "DOW": {
+          "monday": true,
+          "tuesday": true,
+          "wednesday": true,
+          "thursday": true,
+          "friday": true,
+          "saturday": false,
+          "sunday": false
+        },
+        "timeWindow": {
+          "startTime": "18:00:00",
+          "endTime": "19:00:00"
+        }
+      },
+      "dateTime": {
+        "broadcastDate": "2020-02-17",
+        "calendarDateTime": "2020-02-17T17:14:00"
       }
     }
   ]
