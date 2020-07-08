@@ -14,3 +14,11 @@ This folder will hold examples for the various use cases
 |:---|:---|:---:|:---:|:---|
 |buyer/InventoryAvails|BuyerInventoryAvailsNew.json|New|5.0.0|In Progress|
 |buyer/Order|BuyerOrderNew.json|New|5.0.0|In Progress|
+=======
+This folder holds examples of the various use cases.
+| **Endpoint** | **JSON File Name** | **Use Case** |
+|:---|:---:|:---:|
+|seller/logtimes|---|---|
+|seller/invoices | --- | --- |
+|seller/proposals |---| --- |
+

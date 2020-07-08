@@ -1,7 +1,6 @@
 # Television Interface Practices Initiative (TIP)
-## Examples
-This folder will hold examples for the various use cases
 
+This folder will hold examples for the various use cases
 ### Seller
 | <br>**Endpoint** | <br>**JSON File Name** | **Transaction<br>Type** | <br>**Version**|<br>**Status** |
 |:---|:---|:---:|:---:|:---|
