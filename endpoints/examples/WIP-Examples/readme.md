@@ -1,11 +1,15 @@
 # Television Interface Practices Initiative (TIP)
-## Work in Progress Examples
 
-This folder will contain JSON examples that are not released yet
-| **Endpoint** | **JSON File Name** | **Transaction Type** | **Status** |
-|:---|:---:|:---:|:---:|
-|seller/logtimes|SellerLogtimesNew.json|New|Review|
-|seller/invoices|SellerInvoiceNew.json|New|Review|
-|seller/proposals|SellerProposalNew.json|New|Review|
+This folder will hold examples for the various use cases
+### Seller
+| <br>**Endpoint** | <br>**JSON File Name** | **Transaction<br>Type** | <br>**Version**|<br>**Status** |
+|:---|:---|:---:|:---:|:---|
+|seller/logtimes|SellerLogtimesNew.json|New|5.0.0|Complete|
+|seller/invoices|SellerInvoiceNew.json|New|5.00|Complete|
+|seller/proposals|SellerProposalNew.json|New|5.0.0|Complete|
 
-
+### Buyer
+| <br>**Endpoint** | <br>**JSON File Name** | **Transaction<br>Type** | <br>**Version**|<br>**Status** |
+|:---|:---|:---:|:---:|:---|
+|buyer/InventoryAvails|BuyerInventoryAvailsNew.json|New|5.0.0|In Progress|
+|buyer/Order|BuyerOrderNew.json|New|5.0.0|In Progress|
