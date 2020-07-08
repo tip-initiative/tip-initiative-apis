@@ -6,7 +6,7 @@ This folder will hold examples for the various use cases
 | <br>**Endpoint** | <br>**JSON File Name** | **Transaction<br>Type** | <br>**Version**|<br>**Status** |
 |:---|:---|:---:|:---:|:---|
 |seller/logtimes|SellerLogtimesNew.json|New|5.0.0|Complete|
-|seller/invoices|SellerInvoiceNew.json|New|5.00|Complete|
+|seller/invoices|SellerInvoiceNew.json|New|5.0.0|Complete|
 |seller/proposals|SellerProposalNew.json|New|5.0.0|Complete|
 
 ### Buyer
