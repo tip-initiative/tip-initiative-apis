@@ -1,0 +1,59 @@
+openapi: "3.0.0"
+components:
+ securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+security:
+  - bearerAuth: []
+
+info:
+  version: 5.x.x
+  title: Seller Impressions
+  description: >-
+    Supports a push model where the seller sends files to buyer system on an agreed schedule.  
+    Supports a report limited to a single advertiser, brand, product and order.
+  termsOfService: http://placeholderdomain.io/terms/
+  contact:
+    name: TIP Initiative
+    email: tipinitiative@frontrowadvisory.com
+    url: http://placeholderdomain.io
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+servers:
+  - url: http://placeholderdomain.io/v5.x.x
+
+paths:
+  /seller/impressions:
+    post:
+      tags:
+        - Seller
+      summary: Seller Creates Impression record in the buyer system
+      description: >-
+        Supports a push model where the seller sends files to buyer system on an agreed schedule.  
+        Supports a report limited to a single advertiser, brand, product and order.
+      operationId: SellerImpressions
+      requestBody:
+        description: seller POSTs Impressions to buyer or its representative
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: 'schemas/impressionsSchemas.yaml#/components/schemas/SellerImpressions'
+      responses:
+        '200': #OK
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Success'
+        '400': #Bad Request
+          $ref: 'schemas/commonResponses.yaml#/components/responses/BadRequest'
+        '401': #Unauthorized
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Unauthorized'
+        '403': #Forbidden
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Forbidden'
+        '404': #Not Found
+          $ref: 'schemas/commonResponses.yaml#/components/responses/NotFound'
+        '405': #Not Allowed
+          $ref: 'schemas/commonResponses.yaml#/components/responses/NotAllowed'
+        default: #unexpected
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Unexpected'

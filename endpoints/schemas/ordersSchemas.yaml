@@ -73,7 +73,7 @@ components:
             - National
         dealYear:
           description: The broadcast year in which the proposal is being negotiated for
-          type: integer
+          type: string
         calendarType:
           description: The calendar in which the order was negotiated
           type: string

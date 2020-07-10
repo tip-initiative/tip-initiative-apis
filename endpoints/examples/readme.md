@@ -8,6 +8,7 @@ This folder will hold examples for the various use cases
 |seller/logtimes|SellerLogtimesNew.json|New|5.0.0|Complete|
 |seller/invoices|SellerInvoiceNew.json|New|5.0.0|Complete|
 |seller/proposals|SellerProposalNew.json|New|5.0.0|Complete|
+|seller/impressions|SellerImpressionsNew.json|New|5.x.x|In Progress|
 
 ## Buyer
 | <br>**Endpoint** | <br>**JSON File Name** | **Transaction<br>Type** | <br>**Version**|<br>**Status** |
