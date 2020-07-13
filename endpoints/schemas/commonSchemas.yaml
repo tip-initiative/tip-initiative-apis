@@ -1019,6 +1019,7 @@ components:
       properties:
         transactionId:
           type: string
+          format: uuid
         timeStamp:
           type: string
           format: date-time

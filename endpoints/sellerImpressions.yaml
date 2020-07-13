@@ -42,6 +42,8 @@ paths:
           application/json:
             schema:
               $ref: 'schemas/impressionsSchemas.yaml#/components/schemas/SellerImpressions'
+            example:
+              $ref: 'examples/WIP-Examples/SellerImpressionsNew.json'
       responses:
         '200': #OK
           $ref: 'schemas/commonResponses.yaml#/components/responses/Success'
