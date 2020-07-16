@@ -381,6 +381,7 @@ components:
         - GBP   # Great Britain Pound
         - MXN   # Mexican Peso
         - AUD   # Australian Dollar
+      default: USD
     CpeCode:
       description: A common object combining buyer's client code, product and estimate
       properties:
@@ -1026,6 +1027,20 @@ components:
       required:
         - transactionId
         - timeStamp
+    CancelConfirmRecallReject:
+      properties:
+        transactionHeader:
+          $ref: '#/components/schemas/TransactionHeader'
+        referenceIds:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReferenceId'
+          minItems: 1
+        comments:
+          type: string
+      required:
+        - transactionHeader
+        - referenceIds      
     Ad-ID:
       description: >
         The Advertising Industry Standard Unique identifier for the commercial

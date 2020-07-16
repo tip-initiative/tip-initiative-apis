@@ -35,7 +35,7 @@ paths:
         NOTE#2: for Changing a previously submitted request --> <br/>
         <li>transactionId.transactionType=Change<br/>
         <li>originalTransactionId object must be provided
-      operationId: inventoryAvailsBuyers
+      operationId: BuyerInventoryAvails
       requestBody:
         description: Send the request for the inventory avails required
         required: true
@@ -60,40 +60,40 @@ paths:
           $ref: 'schemas/commonResponses.yaml#/components/responses/NotAllowed'
         default: #unexpected
           $ref: 'schemas/commonResponses.yaml#/components/responses/Unexpected'
-  /buyer/inventoryAvails/cancel:
-    post:
-      tags:
-        - Buyer
-      summary: Cancel inventory Avails request
-      description: >-
-        This endpoint will be hosted at the seller side.
-        This endpoint allows the buyer to request from the seller to cancel and ignore
-        a previously communicated inventoryAvails request. As Follows:<br/>
-        NOTE#1: originalTransactionId values needs to indicate which request is to be cancelled.<br/>
-        NOTE#2: transactionId.transactionType = Cancel<br/>
-        NOTE#3: originalTransactionId.transactionId must refer to the transaction in question to be cancelled
-      operationId: BuyerInventoryAvailsCancel
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: 'schemas/commonSchemas.yaml#/components/schemas/TransactionHeader'
-      responses:
-        '200': #OK
-          $ref: 'schemas/commonResponses.yaml#/components/responses/Success'
-        '400': #Bad Request
-          $ref: 'schemas/commonResponses.yaml#/components/responses/BadRequest'
-        '401': #Unauthorized
-          $ref: 'schemas/commonResponses.yaml#/components/responses/Unauthorized'
-        '403': #Forbidden
-          $ref: 'schemas/commonResponses.yaml#/components/responses/Forbidden'
-        '404': #Not Found
-          $ref: 'schemas/commonResponses.yaml#/components/responses/NotFound'
-        '405': #Not Allowed
-          $ref: 'schemas/commonResponses.yaml#/components/responses/NotAllowed'
-        default: #unexpected
-          $ref: 'schemas/commonResponses.yaml#/components/responses/Unexpected'
+  # /buyer/inventoryAvails/cancel:
+  #   post:
+  #     tags:
+  #       - Buyer
+  #     summary: Cancel inventory Avails request
+  #     description: >-
+  #       This endpoint will be hosted at the seller side.
+  #       This endpoint allows the buyer to request from the seller to cancel and ignore
+  #       a previously communicated inventoryAvails request. As Follows:<br/>
+  #       NOTE#1: originalTransactionId values needs to indicate which request is to be cancelled.<br/>
+  #       NOTE#2: transactionId.transactionType = Cancel<br/>
+  #       NOTE#3: originalTransactionId.transactionId must refer to the transaction in question to be cancelled
+  #     operationId: BuyerInventoryAvailsCancel
+  #     requestBody:
+  #       required: true
+  #       content:
+  #         application/json:
+  #           schema:
+  #             $ref: 'schemas/commonSchemas.yaml#/components/schemas/TransactionHeader'
+  #     responses:
+  #       '200': #OK
+  #         $ref: 'schemas/commonResponses.yaml#/components/responses/Success'
+  #       '400': #Bad Request
+  #         $ref: 'schemas/commonResponses.yaml#/components/responses/BadRequest'
+  #       '401': #Unauthorized
+  #         $ref: 'schemas/commonResponses.yaml#/components/responses/Unauthorized'
+  #       '403': #Forbidden
+  #         $ref: 'schemas/commonResponses.yaml#/components/responses/Forbidden'
+  #       '404': #Not Found
+  #         $ref: 'schemas/commonResponses.yaml#/components/responses/NotFound'
+  #       '405': #Not Allowed
+  #         $ref: 'schemas/commonResponses.yaml#/components/responses/NotAllowed'
+  #       default: #unexpected
+  #         $ref: 'schemas/commonResponses.yaml#/components/responses/Unexpected'
   /seller/inventoryAvails:
     post:
       tags:
@@ -103,7 +103,7 @@ paths:
         This endpoint will be hosted at the buyer side,
         Allows the Seller to send inventory criteria such as Stations, Selling Elements, Inventory Types, Pricing, Audience Estimates
         either solicited or unsolicited
-      operationId: inventoryAvailsSellers
+      operationId: SellerInventoryAvails
       requestBody:
         description: Seller POSTs the the Inventory Avails information to the buyer's system
         required: true
@@ -126,39 +126,39 @@ paths:
           $ref: 'schemas/commonResponses.yaml#/components/responses/NotAllowed'
         default: #unexpected
           $ref: 'schemas/commonResponses.yaml#/components/responses/Unexpected'
-  /seller/inventoryAvails/cancel:
-    post:
-      tags:
-        - Seller
-      summary: Cancel inventory Avails Request
-      description: >-
-        This endpoint will be hosted at the buyer side.
-        This endpoint allows the buyer to request from the seller to cancel and ignore
-        a previously communicated inventoryAvails request. As Follows:<br/>
-        NOTE#1:originalTransactionId values needs to indicate which request is to be cancelled.<br/>
-        NOTE#2: transactionId.transactionType = Cancel<br/>
-        NOTE#3: originalTransactionId.transactionId must refer to the transaction in question to be cancelled
+  # /seller/inventoryAvails/cancel:
+  #   post:
+  #     tags:
+  #       - Seller
+  #     summary: Cancel inventory Avails Request
+  #     description: >-
+  #       This endpoint will be hosted at the buyer side.
+  #       This endpoint allows the buyer to request from the seller to cancel and ignore
+  #       a previously communicated inventoryAvails request. As Follows:<br/>
+  #       NOTE#1:originalTransactionId values needs to indicate which request is to be cancelled.<br/>
+  #       NOTE#2: transactionId.transactionType = Cancel<br/>
+  #       NOTE#3: originalTransactionId.transactionId must refer to the transaction in question to be cancelled
 
-      operationId: SellerInventoryAvailsCancel
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: 'schemas/commonSchemas.yaml#/components/schemas/TransactionHeader'
-      responses:
-        '200': #OK
-          $ref: 'schemas/commonResponses.yaml#/components/responses/Success'
-        '400': #Bad Request
-          $ref: 'schemas/commonResponses.yaml#/components/responses/BadRequest'
-        '401': #Unauthorized
-          $ref: 'schemas/commonResponses.yaml#/components/responses/Unauthorized'
-        '403': #Forbidden
-          $ref: 'schemas/commonResponses.yaml#/components/responses/Forbidden'
-        '404': #Not Found
-          $ref: 'schemas/commonResponses.yaml#/components/responses/NotFound'
-        '405': #Not Allowed
-          $ref: 'schemas/commonResponses.yaml#/components/responses/NotAllowed'
-        default: #unexpected
-          $ref: 'schemas/commonResponses.yaml#/components/responses/Unexpected'
+  #     operationId: SellerInventoryAvailsCancel
+  #     requestBody:
+  #       required: true
+  #       content:
+  #         application/json:
+  #           schema:
+  #             $ref: 'schemas/commonSchemas.yaml#/components/schemas/TransactionHeader'
+  #     responses:
+  #       '200': #OK
+  #         $ref: 'schemas/commonResponses.yaml#/components/responses/Success'
+  #       '400': #Bad Request
+  #         $ref: 'schemas/commonResponses.yaml#/components/responses/BadRequest'
+  #       '401': #Unauthorized
+  #         $ref: 'schemas/commonResponses.yaml#/components/responses/Unauthorized'
+  #       '403': #Forbidden
+  #         $ref: 'schemas/commonResponses.yaml#/components/responses/Forbidden'
+  #       '404': #Not Found
+  #         $ref: 'schemas/commonResponses.yaml#/components/responses/NotFound'
+  #       '405': #Not Allowed
+  #         $ref: 'schemas/commonResponses.yaml#/components/responses/NotAllowed'
+  #       default: #unexpected
+  #         $ref: 'schemas/commonResponses.yaml#/components/responses/Unexpected'
 
