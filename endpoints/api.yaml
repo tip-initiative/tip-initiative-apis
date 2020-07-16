@@ -139,10 +139,10 @@ paths:
     $ref: 'orders.yaml#/paths/~1buyer~1order'
   /buyer/order/recall:
     $ref: 'orders.yaml#/paths/~1buyer~1order~1recall'
-  /buyer/rfp:
+  /buyer/rfps:
     $ref: 'rfps.yaml#/paths/~1buyer~1rfp'
-  /buyer/rfp/cancel:
-    $ref: 'rfps.yaml#/paths/~1buyer~1rfp~1cancel'
+  # /buyer/rfp/cancel:
+  #   $ref: 'rfps.yaml#/paths/~1buyer~1rfp~1cancel'
   /seller/logtimes:
     $ref: 'logTimes.yaml#/paths/~1seller~1logtimes'
   /seller/invoice:
