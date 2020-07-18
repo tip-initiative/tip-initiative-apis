@@ -38,6 +38,7 @@ components:
         transactionId:
           description: Global unique identifier (GUID)
           type: string
+          format: uuid
         transactionType:
           description: This indicates if the data exchange being sent is either a new, change or cancel
             transaction.

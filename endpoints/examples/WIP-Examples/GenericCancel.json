@@ -1,0 +1,29 @@
+{
+    "transactionHeader": {
+      "tipVersion": "5.0.0",
+      "transactionId": {
+        "transactionId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "transactionType": "Cancel",
+        "sourceId": "string",
+        "sourceName": "string"
+      },
+      "originalTransactionId": {
+        "transactionId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "transactionType": "New",
+        "sourceId": "string",
+        "sourceName": "string"
+      },
+      "timeStamp": "2020-07-17T20:04:55.220Z"
+    },
+    "referenceIds": [
+      {
+        "referenceSourceName": "string",
+        "referenceSourceId": "string",
+        "referenceSourceLookup": "string",
+        "referenceType": "RFP",
+        "referenceVersionId": "string",
+        "referenceName": "string"
+      }
+    ],
+    "comments": "string"
+  }
