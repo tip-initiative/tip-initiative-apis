@@ -145,10 +145,10 @@ paths:
   #   $ref: 'rfps.yaml#/paths/~1buyer~1rfp~1cancel'
   /seller/logtimes:
     $ref: 'logTimes.yaml#/paths/~1seller~1logtimes'
-  /seller/invoice:
-    $ref: 'invoice.yaml#/paths/~1seller~1invoice'
-  /seller/invoice/cancel:
-    $ref: 'invoice.yaml#/paths/~1seller~1invoice~1cancel'
+  /seller/invoices:
+    $ref: 'invoice.yaml#/paths/~1seller~1invoices'
+  # /seller/invoice/cancel:
+  #   $ref: 'invoice.yaml#/paths/~1seller~1invoice~1cancel'
   /seller/inventoryAvails:
     $ref: 'inventoryAvails.yaml#/paths/~1seller~1inventoryAvails'
   # /seller/inventoryAvails/cancel:
