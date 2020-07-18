@@ -48,7 +48,7 @@ paths:
               discriminator:
                 propertyName: transactionId.transactionType
                 mapping:
-                  New: '#/components/schemas/BuyerRfpNew'
+                  New: 'schemas/invoiceSchemas.yaml#/components/schemas/SellerInvoice'
                   Cancel: 'commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
             examples:
               New:
