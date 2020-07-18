@@ -52,7 +52,7 @@ paths:
               discriminator:
                 propertyName: transactionId.transactionType
                 mapping:
-                  New: '#/components/schemas/BuyerRfpNew'
+                  New: 'schemas/rfpsSchemas.yaml#/components/schemas/BuyerRfp'
                   Cancel: 'commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
             examples:
               New:
