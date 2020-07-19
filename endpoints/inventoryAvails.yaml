@@ -45,7 +45,11 @@ paths:
               $ref: 'schemas/inventoryAvailsSchemas.yaml#/components/schemas/BuyerInventoryAvails'
       responses:
         '200': #OK - in case request can be fullfiled in realtime
-          $ref: 'schemas/inventoryAvailsSchemas.yaml#/components/schemas/SellerInventoryAvails'
+          description: OK - in case request can be fullfiled in realtime
+          content:
+            application/json:
+              schema:
+                $ref: 'schemas/inventoryAvailsSchemas.yaml#/components/schemas/SellerInventoryAvails'
         '202': #Accepted
           $ref: 'schemas/commonResponses.yaml#/components/responses/Accepted'
         '400': #Bad Request
