@@ -46,10 +46,10 @@ paths:
                 - $ref: 'schemas/invoiceSchemas.yaml#/components/schemas/SellerInvoice'
                 - $ref: 'schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
               discriminator:
-                propertyName: transactionId.transactionType
+                propertyName: transactionHeader.transactionId.transactionType
                 mapping:
-                  New: 'schemas/invoiceSchemas.yaml#/components/schemas/SellerInvoice'
-                  Cancel: 'commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
+                  New: './schemas/invoiceSchemas.yaml#/components/schemas/SellerInvoice'
+                  Cancel: './schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
             examples:
               New:
                 value:
