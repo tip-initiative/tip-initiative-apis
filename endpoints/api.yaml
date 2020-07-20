@@ -133,31 +133,23 @@ paths:
     $ref: 'commercialInstructions.yaml#/paths/~1buyer~1commercialInstructions'
   /buyer/inventoryAvails:
     $ref: 'inventoryAvails.yaml#/paths/~1buyer~1inventoryAvails'
-  # /buyer/inventoryAvails/recall:
-  #   $ref: 'inventoryAvails.yaml#/paths/~1buyer~1inventoryAvails~1recall'
   /buyer/order:
     $ref: 'orders.yaml#/paths/~1buyer~1order'
   /buyer/order/recall:
     $ref: 'orders.yaml#/paths/~1buyer~1order~1recall'
   /buyer/rfps:
     $ref: 'rfps.yaml#/paths/~1buyer~1rfps'
-  # /buyer/rfp/cancel:
-  #   $ref: 'rfps.yaml#/paths/~1buyer~1rfp~1cancel'
   /seller/logtimes:
     $ref: 'logTimes.yaml#/paths/~1seller~1logtimes'
   /seller/invoices:
     $ref: 'invoice.yaml#/paths/~1seller~1invoices'
-  # /seller/invoice/cancel:
-  #   $ref: 'invoice.yaml#/paths/~1seller~1invoice~1cancel'
   /seller/inventoryAvails:
     $ref: 'inventoryAvails.yaml#/paths/~1seller~1inventoryAvails'
-  # /seller/inventoryAvails/cancel:
-  #   $ref: 'inventoryAvails.yaml#/paths/~1seller~1inventoryAvails~1cancel'
   /seller/order/confirm:
     $ref: 'orders.yaml#/paths/~1seller~1order~1confirm'
   /seller/order/reject:
     $ref: 'orders.yaml#/paths/~1seller~1order~1reject'
-  /seller/proposal:
-    $ref: 'proposal.yaml#/paths/~1seller~1proposal'
-  /seller/proposal/cancel:
-    $ref: 'proposal.yaml#/paths/~1seller~1proposal~1cancel'
+  /seller/proposals:
+    $ref: 'proposal.yaml#/paths/~1seller~1proposals'
+  /buyer/proposals:
+    $ref: 'proposal.yaml#/paths/~1buyer~1proposals'
