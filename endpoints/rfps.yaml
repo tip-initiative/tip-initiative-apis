@@ -76,36 +76,3 @@ paths:
           $ref: 'schemas/commonResponses.yaml#/components/responses/NotAllowed'
         default: #unexpected
           $ref: 'schemas/commonResponses.yaml#/components/responses/Unexpected'
-
-  # /buyer/rfp/cancel:
-  #   post:
-  #     tags:
-  #       - Buyer
-  #     summary: Cancel a previously submitted RFP in the seller's system.
-  #     description: >-
-  #       Buyer can send this request to cancel a previous request.
-  #       originalTransactionId values needs to indicate which request is to be cancelled.<br/>
-  #       NOTE#1: transactionId.transactionType = Cancel<br/>
-  #       NOTE#2: originalTransactionId.transactionId must refer to the transaction in question to be cancelled
-  #     operationId: CancelRFP
-  #     requestBody:
-  #       required: true
-  #       content:
-  #         application/json:
-  #           schema:
-  #             $ref: 'schemas/commonSchemas.yaml#/components/schemas/TransactionHeader'
-  #     responses:
-  #       '200': #OK
-  #         $ref: 'schemas/commonResponses.yaml#/components/responses/Success'
-  #       '400': #Bad Request
-  #         $ref: 'schemas/commonResponses.yaml#/components/responses/BadRequest'
-  #       '401': #Unauthorized
-  #         $ref: 'schemas/commonResponses.yaml#/components/responses/Unauthorized'
-  #       '403': #Forbidden
-  #         $ref: 'schemas/commonResponses.yaml#/components/responses/Forbidden'
-  #       '404': #Not Found
-  #         $ref: 'schemas/commonResponses.yaml#/components/responses/NotFound'
-  #       '405': #Not Allowed
-  #         $ref: 'schemas/commonResponses.yaml#/components/responses/NotAllowed'
-  #       default: #unexpected
-  #         $ref: 'schemas/commonResponses.yaml#/components/responses/Unexpected'
