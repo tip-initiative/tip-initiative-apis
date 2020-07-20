@@ -3,7 +3,7 @@
       "tipVersion": "5.0.0",
       "transactionId": {
         "transactionId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-        "transactionType": "Cancel",
+        "transactionType": "Recall",
         "sourceId": "490",
         "sourceName": "KHOU-TV"
       },
@@ -20,7 +20,7 @@
         "referenceSourceName": "string",
         "referenceSourceId": "string",
         "referenceSourceLookup": "string",
-        "referenceType": "RFP",
+        "referenceType": "Proposal",
         "referenceId": "123456",
         "referenceVersionId": "",
         "referenceName": "string"

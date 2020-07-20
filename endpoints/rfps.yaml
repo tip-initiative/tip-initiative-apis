@@ -49,11 +49,11 @@ paths:
               oneOf:
                 - $ref: 'schemas/rfpsSchemas.yaml#/components/schemas/BuyerRfp'
                 - $ref: 'schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
-              discriminator:
-                propertyName: transactionHeader.transactionId.transactionType
-                mapping:
-                  New: 'schemas/rfpsSchemas.yaml#/components/schemas/BuyerRfp'
-                  Cancel: 'commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
+              # discriminator:
+              #   propertyName: transactionHeader.transactionId.transactionType
+              #   mapping:
+              #     New: 'schemas/rfpsSchemas.yaml#/components/schemas/BuyerRfp'
+              #     Cancel: 'commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
             examples:
               New:
                 value:
