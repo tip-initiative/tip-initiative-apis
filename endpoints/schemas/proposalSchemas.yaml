@@ -14,7 +14,7 @@ info:
 paths: {}
 components:
   schemas:
-    ProposalObject:
+    SellerProposal:
       description: >-
         Allows the seller to respond back to the buyer with the detailed proposal for a given RFP or
         revised proposal; Multiple versions of a proposal can be under negotiation for the same campaign,
@@ -46,6 +46,10 @@ components:
           $ref: 'commonSchemas.yaml#/components/schemas/Brand'
         product:
           $ref: 'commonSchemas.yaml#/components/schemas/Product'
+        budget:
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/Budget'
         cpeCode:
           $ref: 'commonSchemas.yaml#/components/schemas/CpeCode'
         contacts:
@@ -70,7 +74,7 @@ components:
             - National
         dealYear:
           description: The broadcast year in which the proposal is being negotiated for
-          type: integer
+          type: string
         billingOption:
           $ref: 'commonSchemas.yaml#/components/schemas/BillingOption'
         equivalized:

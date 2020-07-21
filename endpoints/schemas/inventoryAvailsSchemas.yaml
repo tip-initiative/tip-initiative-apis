@@ -14,7 +14,7 @@ info:
 paths: {}
 components:
   schemas:
-    InventoryAvailsBuyerObject:
+    BuyerInventoryAvails:
       description: Allows the Buyer as campaign planning to initiate an inventory Request to the Seller
       properties:
         transactionHeader:
@@ -84,7 +84,7 @@ components:
         - timePeriods
         - political
         - audienceSegments
-    InventoryAvailsSellerObject:
+    SellerInventoryAvails:
       description: >-
         Allows the Seller to post to the buyer their catalog of selling products, pricing and audience
         information

@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  version: 5.0.0
+  version: 5.x.x
   title: Buyer requesting New Order or Order Change Request to Seller
   description: Buyer/Order
   termsOfService: http://placeholderdomain.io/terms/
@@ -14,7 +14,7 @@ info:
 paths: {}
 components:
   schemas:
-    BuyerOrderRequestObject:
+    BuyerOrder:
       description: >-
         Allows the buyer to send the detailed order information for a given order; execution is a summary
         of the sales elements details, thus allowing the seller to automatically create lines based on
@@ -47,6 +47,10 @@ components:
           $ref: 'commonSchemas.yaml#/components/schemas/Product'
         cpeCode:
           $ref: 'commonSchemas.yaml#/components/schemas/CpeCode'
+        budget:
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/Budget'
         contacts:
           type: array
           items:
@@ -69,7 +73,7 @@ components:
             - National
         dealYear:
           description: The broadcast year in which the proposal is being negotiated for
-          type: integer
+          type: string
         calendarType:
           description: The calendar in which the order was negotiated
           type: string
@@ -128,7 +132,7 @@ components:
         - equivalized
         - dateWindow
         - mediaOutlets
-    OrderConfirmationResponseObject:
+    SellerOrderConfirm:
       description: >-
         Allows the seller to respond to an order or order change request with a confirmed booked confirmation
       properties:
@@ -149,7 +153,7 @@ components:
         - transactionHeader
         - referenceIds
         - confirmedBookedDate
-    OrderRecallObject:
+    BuyerOrderRecall:
       description: >-
         Allows the buyer to recall a new order or order change request ; seller must respond back with
         acceptance or failure of the recall request. Note: Seller's system defined the rules for acceptance
@@ -174,7 +178,7 @@ components:
         - transactionHeader
         - referenceIds
         - recallDate
-    OrderRejectResponseObject:
+    SellerOrderReject:
       description: >-
         Allows the seller to reject a new order or order change request; seller must respond back with
         rejection comments

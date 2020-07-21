@@ -11,7 +11,7 @@ security:
   - bearerAuth: []
 
 info:
-  version: 5.0.0
+  version: 5.x.x
   title: Invoice
   description: Allows the seller to send to the buyer both new and revised invoice information
   termsOfService: http://placeholderdomain.io/terms/
@@ -24,68 +24,52 @@ info:
     url: https://opensource.org/licenses/MIT
 
 servers:
-  - url: http://placeholderdomain.io
+  - url: http://placeholderdomain./v5.x.x
 
 paths:
-  /seller/invoice:
+  /seller/invoices:
     post:
       tags:
         - Seller
-      summary: Seller Invoice POST
+      summary: Seller submits an invoice to buyer
       description: >-
         Allows the seller to send to the buyer new invoice information (No Request from buyer is
         Required)
-      operationId: invoicePostSeller
+      operationId: SellerInvoice
       requestBody:
         description: Invoice body included in request
         required: true
         content:
           application/json:
             schema:
-              $ref: 'schemas/invoiceSchemas.yaml#/components/schemas/InvoiceObject'
+              oneOf:
+                - $ref: 'schemas/invoiceSchemas.yaml#/components/schemas/SellerInvoice'
+                - $ref: 'schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
+              # discriminator:
+              #   propertyName: transactionHeader.transactionId.transactionType
+              #   mapping:
+              #     New: './schemas/invoiceSchemas.yaml#/components/schemas/SellerInvoice'
+              #     Cancel: './schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
+            examples:
+              New:
+                value:
+                  $ref: 'examples/WIP-Examples/SellerInvoiceNew.json'
+              Cancel:
+                value:
+                  $ref: 'examples/WIP-Examples/GenericCancel.json'
       responses:
-        '200':
-          description: Request processed successfully
-          content:
-            application/json:
-              schema:
-                $ref: 'schemas/commonSchemas.yaml#/components/schemas/TransactionHeader'
-        default:
-          description: unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
-  /seller/invoice/cancel:
-    post:
-      tags:
-        - Seller
-      summary: Seller Invoice Cancel
-      description: >-
-        This endpoint will be hosted at the buyer side.
-        This endpoint allows the seller to request from the buyer to cancel and ignore
-        a previously communicated Invoice request. As Follows:<br/>
-        NOTE#1:originalTransactionNum values needs to indicate which request is to be cancelled.<br/>
-        NOTE#2: transactionNum.transactionType = Cancel<br/>
-        NOTE#3: originalTransactionNum.transactionNum must refer to the transaction in question to be cancelled
-      operationId: invoiceSellerCancel
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: 'schemas/commonSchemas.yaml#/components/schemas/TransactionHeader'
-      responses:
-        '200':
-          description: Request processed successfully
-          content:
-            application/json:
-              schema:
-                $ref: 'schemas/commonSchemas.yaml#/components/schemas/AcceptedResponse'
-        default:
-          description: unexpected error, return the appropriate and corresponding HTTP status code matching the error
-          content:
-            application/json:
-              schema:
-                $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
+        '200': #OK
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Success'
+        '400': #Bad Request
+          $ref: 'schemas/commonResponses.yaml#/components/responses/BadRequest'
+        '401': #Unauthorized
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Unauthorized'
+        '403': #Forbidden
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Forbidden'
+        '404': #Not Found
+          $ref: 'schemas/commonResponses.yaml#/components/responses/NotFound'
+        '405': #Not Allowed
+          $ref: 'schemas/commonResponses.yaml#/components/responses/NotAllowed'
+        default: #unexpected
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Unexpected'
 

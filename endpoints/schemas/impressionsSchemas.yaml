@@ -1,0 +1,115 @@
+openapi: 3.0.0
+info:
+  version: 5.x.x
+  title: Impression Schemas
+  description: Data model for Seller delivers impression-level log data to buyer system
+  termsOfService: http://placeholderdomain.io/terms/
+  contact:
+    name: TIP Initiative
+    email: tipinitiative@frontrowadvisory.com
+    url: http://placeholderdomain.io
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+paths: {}
+components:
+  schemas:
+    SellerImpressions:
+      description: >
+        Supports a push model where the seller sends files to buyer system on an agreed schedule.  
+        Supports a report limited to a single advertiser, brand, product and order.
+      type: object
+      properties:
+        transactionHeader:
+          $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
+        mediaOutlets:
+          description: >
+            A unique list of Media Outlets including the Seller entity 
+            and all Content where impressions occurred
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/MediaOutlet'
+          minItems: 1
+        salesElements:
+          description: A unique list of SalesElements  related to the impression included in the message
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/SalesElementHeader'
+          minItems: 1
+        referenceIds:
+          description: >
+            ReferenceIds array must contain at one item indicating the order to which the impressions belong
+            A list of identifying information regarding order, proposal, 
+            and RFP related to the impressions included in the message
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/ReferenceId'
+          minItems: 1
+        creatives:
+          description: A list of all creatives delivered against. This object may expand with further meta-data about the creative
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/Creative'
+          minItems: 1
+        Impressions:
+          description: A list of all impression for a given period. The array must at least contain one impression
+          type: array
+          items:
+            $ref:  '#/components/schemas/Impression' 
+      required:
+        - transactionHeader
+        - mediaOutlets
+        - salesElements
+        - referenceIds
+        - creatives
+        - impressions
+    Impression:
+      description: An object representing one impression with all associated Ids
+      properties:
+        id:
+          description: Seller generated unique number for Impression Event
+          type: string
+          format: uuid
+        timestamp:
+          description: UTC source from DSP ad server
+          type: string
+          format: date-time
+        referenceId:
+          $ref: 'commonSchemas.yaml#/components/schemas/Identifier'
+        creative:
+          $ref: 'commonSchemas.yaml#/components/schemas/Identifier'
+        salesElementId:
+          $ref: 'commonSchemas.yaml#/components/schemas/Identifier'
+        contentOwnerId:
+          $ref: 'commonSchemas.yaml#/components/schemas/Identifier'
+        supplyPath:
+          $ref: 'commonSchemas.yaml#/components/schemas/SupplyPath'
+        device:
+          $ref: 'commonSchemas.yaml#/components/schemas/Device'
+        geo:
+          $ref: 'commonSchemas.yaml#/components/schemas/Geo'
+        events:
+          description: Events (Start, Q1, Q2, ....)
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/Event'
+          minItems: 1
+        publisherBundle:
+          description: RTB compliant site name that indicates the individual app and publisher for the content
+          type: string
+        publisherSSPId:
+          description: Identifer for the supply-side platform that enabled the inventory
+          type: string
+        adLedger:
+          description: Fields needed to cryptographically validate this impression
+          $ref: 'commonSchemas.yaml#/components/schemas/Crypto'
+      required:
+        - id
+        - timestamp
+        - referenceId
+        - creative
+        - salesElementId
+        - contentOwnerId
+        - device
+        - events
+

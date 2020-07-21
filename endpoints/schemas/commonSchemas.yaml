@@ -38,6 +38,7 @@ components:
         transactionId:
           description: Global unique identifier (GUID)
           type: string
+          format: uuid
         transactionType:
           description: This indicates if the data exchange being sent is either a new, change or cancel
             transaction.
@@ -46,6 +47,10 @@ components:
             - New
             - Change
             - Cancel
+            - Reject
+            - Recall
+            - Confirm
+          default: New
         sourceId:
           description: Indicates the source "trading partner" unique identification
           type: string
@@ -86,7 +91,7 @@ components:
           description: Market Name
           type: string
         mediaOutletReference:
-          description: External mediaoutlet reference information
+          description: External mediaoutlet reference to support data mapping differences between systems 
           type: string
       required:
         - mediaOutletId
@@ -117,7 +122,7 @@ components:
           description: Brand Name
           type: string
         brandReference:
-          description: External brand reference information
+          description: External brand reference to support data mapping differences between systems 
           type: string
       required:
         - brandId
@@ -151,7 +156,7 @@ components:
           description: Product name
           type: string
         productReference:
-          description: External product reference
+          description: External product reference to support data mapping differences between systems
           type: string
       required:
         - productId
@@ -377,6 +382,7 @@ components:
         - GBP   # Great Britain Pound
         - MXN   # Mexican Peso
         - AUD   # Australian Dollar
+      default: USD
     CpeCode:
       description: A common object combining buyer's client code, product and estimate
       properties:
@@ -428,6 +434,51 @@ components:
         rateCardName:
           description: Seller's Rate Card Name associated to the Rate Card ID
           type: string
+    Budget:
+      description: >-
+         descriptor common object defining the budget or total allocation
+         for a RFP or proposal with optional allocations per market, media outlet or media type
+      properties:
+        budgetAmount:
+          description: >-
+            Total budget amount being requested
+          type: number
+          format: float
+          minimum: 0
+          exclusiveMinimum: true
+        budgetAllocation:
+          $ref: '#/components/schemas/BudgetAllocation'
+      required:
+        - budgetAmount
+    BudgetAllocation:
+      description: >-
+        A descriptor common object defining the budget number and/or percentage in terms of budget type
+      properties:
+        budgetType:
+          type: string
+          enum: [DMA, MediaOutlet, MediaType]
+        budgetName:
+          description: >-
+            The value of budget name is a conditional on budgetType.
+            - If budgetType = DMA, use the canonical list of DMA names
+            - If budgetType = Mediaoutlet, use media outlet name (call sign)
+            - If budgetType= MediaType, use values from MediaOutletType Enum
+          type: string
+        budgetAmount:
+          description: The overall budget amount allocated to the budget name
+          type: number
+          format: float
+          minimum: 0
+          exclusiveMinimum: true
+        budgetSharePercent:
+          description: The percentage share of the market name being allocated to the seller
+          type: number
+          format: float
+          minimum: 0
+          exclusiveMinimum: true
+      required:
+        - budgetType
+        - budgetName
     Guideline:
       description: A descriptor common object defining the general guidelines (rules) when requesting
         programming
@@ -459,7 +510,8 @@ components:
         - guidelineType
         - excludeOrInclude
     DateTime:
-      description: A descriptor common object combining broadcast date and broadcast time used in Logtimes
+      description: >-
+        A descriptor common object combining broadcast date and broadcast time used in Logtimes
         & Invoices
       properties:
         broadcastDate:
@@ -969,9 +1021,188 @@ components:
       properties:
         transactionId:
           type: string
+          format: uuid
         timeStamp:
           type: string
           format: date-time
       required:
         - transactionId
         - timeStamp
+    CancelConfirmRecallReject:
+      properties:
+        transactionHeader:
+          $ref: '#/components/schemas/TransactionHeader'
+        referenceIds:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReferenceId'
+          minItems: 1
+        comments:
+          type: string
+      required:
+        - transactionHeader
+        - referenceIds      
+    Ad-ID:
+      description: >
+        The Advertising Industry Standard Unique identifier for the commercial
+        as adId.org defines Ad-ID as 11-alphanumeric code with an optional 12th character as flag
+        for H=High Def, D=3D ads. API will test the Syntax of the code but not validity. 
+        Testing for validity and if code is active requires a specific call to the Ad-ID.org server.
+      type: string
+      pattern: ^([A-Z,a-z,0-9]){11}[H,h,D,d]?$
+    Identifier:
+      description: Generic descriptor for uniquely identifying an object and its related versions
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        version:
+          type: string
+      required:
+        - id
+    Creative:
+      description: Generic descriptor object representing the creative associated to advertiser and ad spot
+      allOf:
+        - $ref: '#/components/schemas/Identifier'
+        - type: object
+          properties:
+            name:
+              description: Name associated with the creative
+              type: string
+            adId:
+              description: >
+                Advertising industry standard unique identifier for the commercial. 
+                Can be an official AD-ID or any other ID.
+              type: string
+            length:
+             description: Length (in seconds) of the Creative
+             type: integer
+    SupplyPath:
+      description: Object representing the Ad spot supply Path
+      type: object
+      properties:
+        id:
+          description: Identifier from Seller to indicate the means that the ad was dilivered (SSP, PMP, direct publisher integration)
+          type: string
+        extId:
+          description: External identifer from platform to indicate the supply source
+          type: string
+        batchEntry:
+          description: String from source (json, xml, etc. to indicate a batch supply entry)
+          type: string
+      required:
+        - id
+    Device:
+      description: Object representing the user's device
+      properties:
+        ip:
+          $ref:  "#/components/schemas/IpAddress"
+        ifa:
+          description: Identifier of the device that is displaying the ad
+          type: string
+        sspId:
+          description: Identifier of the sell-side platform that enabled the inventory
+          type: string
+        ua:
+          description: User Agent of the deivce that is displaying the ad
+          type: string
+        catSRC:
+          description: The type of source of the inventory (SSP, PMP)
+          type: string
+        catType:
+          description: The type of device, as defined by RTB 2.3.1 section 5.17
+          type: string
+          enum:
+            - Mobile/Tablet
+            - Personal Computer
+            - Connected TV
+            - Phone
+            - Tablet
+            - Connected Device
+            - Set Top Box
+    Geo:
+      description: Object representing the user's location
+      properties:
+        src:
+          description: >
+            The type of source providing the geographic data 
+            (ex. IP2Location, Neustar (Quova), MaxMind)
+          type: string
+        country:
+          description: Country where ad is served, Country code using ISO-3166-1-alpha-3.
+          type: string
+        region:
+          description: Region code using ISO-3166-2; 2-letter state code if USA
+          type: string
+        dma:
+          description: if US, DMA where ad is served
+          type: string
+        postal:
+          description: Postal code where ad is served
+          type: string
+        lat:
+          description: Latitude where ad is served
+          type: number
+          format: float
+          minimum: -90
+          maximum: 90
+        long:
+          description: Longitude where ad is served
+          type: number
+          format: float
+          minimum: -180
+          maximum: 180
+        timeZone:
+          description: Timezone of location where ad is served
+          type: string
+        accuracy:
+          description: Accuracy estimate of location (applies to lat/long data)
+          type: integer
+      required:
+        - country
+    Event:
+      description: Object representing the various events occuring for a given Impression
+      type: object
+      properties:
+        type: 
+          description: ImpressionID + eventType will be unique. (Please see VAST spec for all event Types)
+          type: string
+        timestamp:
+          description: Timestamp for the event
+          type: string
+          format: date-time
+        sigVerified:
+          description: Indicates if the event has a verified signiture from inventory source
+          type: boolean
+        ip:
+          $ref: '#/components/schemas/IpAddress'
+        ua:
+          description: User Agent of device where event occurred
+          type: string
+        refUrl:
+          description: URL of site where event occurred
+          type: string
+        errCode:
+          description: Error code of event in case of failure
+          type: string
+        rawUrl:
+          description: Pixel URL for event
+          type: string
+      required:
+        - type
+        - timestamp
+    IpAddress:
+      description: Type Definition to accept IPv4 or IPV6
+      type: string
+      pattern: ^([0-9]{1,3}[\.]){3}([0-9]{1,3})|([0-9a-fA-F]{4}[\:]){7}[0-9a-fA-F]{4}$
+    Crypto:
+      description: >
+        Object representing the fields needed to cryptographically sign an impression
+      properties:
+        signatureId:
+          description: Base64 encoded ID of the signature
+          type: string
+          format: byte
+      required:
+        - signatureId

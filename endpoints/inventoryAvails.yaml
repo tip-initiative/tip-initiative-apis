@@ -20,142 +20,80 @@ info:
     name: MIT
     url: https://opensource.org/licenses/MIT
 servers:
-  - url: http://placeholderdomain.io
+  - url: http://placeholderdomain.io/v5.x.x
 
 paths:
   /buyer/inventoryAvails:
     post:
       tags:
         - Buyer
-      summary: Send the request for the inventory avails required
+      summary: Allows the Buyer as part of campaign planning to initiate an Inventory Request to Seller
       description: >-
         This endpoint is hosted at the seller end, Allows the Buyer as part of campaign planning
         to initiate an Inventory Request to Seller. The payload of the request can either be:<br/>
-        NOTE#1: For New Request --> transactionNum.transactionType=New<br/>
+        NOTE#1: For New Request --> transactionId.transactionType=New<br/>
         NOTE#2: for Changing a previously submitted request --> <br/>
-        <li>transactionNum.transactionType=Change<br/>
-        <li>originalTransactionNum object must be provided
-      operationId: inventoryAvailsBuyers
+        <li>transactionId.transactionType=Change<br/>
+        <li>originalTransactionId object must be provided
+      operationId: BuyerInventoryAvails
       requestBody:
         description: Send the request for the inventory avails required
         required: true
         content:
           application/json:
             schema:
-              $ref: 'schemas/inventoryAvailsSchemas.yaml#/components/schemas/InventoryAvailsBuyerObject'
+              $ref: 'schemas/inventoryAvailsSchemas.yaml#/components/schemas/BuyerInventoryAvails'
       responses:
-        '200':
-          description: Request processed successfully. Response is provided synchronously
+        '200': #OK - in case request can be fullfiled in realtime
+          description: OK - in case request can be fullfiled in realtime
           content:
             application/json:
               schema:
-                $ref: 'schemas/inventoryAvailsSchemas.yaml#/components/schemas/InventoryAvailsSellerObject'
-        '202':
-          description: Request was accepted, Response will be provided asynchronously.
-          content:
-            application/json:
-              schema:
-                $ref: 'schemas/commonSchemas.yaml#/components/schemas/AcceptedResponse'
-        default:
-          description: unexpected error, return the appropriate and corresponding HTTP status code matching the error
-          content:
-            application/json:
-              schema:
-                $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
-  /buyer/inventoryAvails/cancel:
-    post:
-      tags:
-        - Buyer
-      summary: Cancel inventory Avails request
-      description: >-
-        This endpoint will be hosted at the seller side.
-        This endpoint allows the buyer to request from the seller to cancel and ignore
-        a previously communicated inventoryAvails request. As Follows:<br/>
-        NOTE#1: originalTransactionNum values needs to indicate which request is to be cancelled.<br/>
-        NOTE#2: transactionNum.transactionType = Cancel<br/>
-        NOTE#3: originalTransactionNum.transactionNum must refer to the transaction in question to be cancelled
-
-      operationId: inventoryAvailsBuyersCancel
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: 'schemas/commonSchemas.yaml#/components/schemas/TransactionHeader'
-      responses:
-        '200':
-          description: Request processed successfully
-          content:
-            application/json:
-              schema:
-                $ref: 'schemas/commonSchemas.yaml#/components/schemas/AcceptedResponse'
-        default:
-          description: unexpected error, return the appropriate and corresponding HTTP status code matching the error
-          content:
-            application/json:
-              schema:
-                $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
+                $ref: 'schemas/inventoryAvailsSchemas.yaml#/components/schemas/SellerInventoryAvails'
+        '202': #Accepted
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Accepted'
+        '400': #Bad Request
+          $ref: 'schemas/commonResponses.yaml#/components/responses/BadRequest'
+        '401': #Unauthorized
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Unauthorized'
+        '403': #Forbidden
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Forbidden'
+        '404': #Not Found
+          $ref: 'schemas/commonResponses.yaml#/components/responses/NotFound'
+        '405': #Not Allowed
+          $ref: 'schemas/commonResponses.yaml#/components/responses/NotAllowed'
+        default: #unexpected
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Unexpected'
   /seller/inventoryAvails:
     post:
       tags:
         - Seller
-      summary: Seller POSTs the Inventory Avails information to the buyer's system
+      summary: Allows the Seller to post to the buyer their catalog of selling products, pricing and audience information
       description: >
         This endpoint will be hosted at the buyer side,
         Allows the Seller to send inventory criteria such as Stations, Selling Elements, Inventory Types, Pricing, Audience Estimates
         either solicited or unsolicited
-      operationId: inventoryAvailsSellers
+      operationId: SellerInventoryAvails
       requestBody:
         description: Seller POSTs the the Inventory Avails information to the buyer's system
         required: true
         content:
           application/json:
             schema:
-              $ref: 'schemas/inventoryAvailsSchemas.yaml#/components/schemas/InventoryAvailsSellerObject'
+              $ref: 'schemas/inventoryAvailsSchemas.yaml#/components/schemas/SellerInventoryAvails'
       responses:
-        '200':
-          description: Request processed successfully
-          content:
-            application/json:
-              schema:
-                $ref: 'schemas/commonSchemas.yaml#/components/schemas/AcceptedResponse'
-        default:
-          description: unexpected error, return the appropriate and corresponding HTTP status code matching the error
-          content:
-            application/json:
-              schema:
-                $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
-  /seller/inventoryAvails/cancel:
-    post:
-      tags:
-        - Seller
-      summary: Cancel inventory Avails Request
-      description: >-
-        This endpoint will be hosted at the buyer side.
-        This endpoint allows the buyer to request from the seller to cancel and ignore
-        a previously communicated inventoryAvails request. As Follows:<br/>
-        NOTE#1:originalTransactionNum values needs to indicate which request is to be cancelled.<br/>
-        NOTE#2: transactionNum.transactionType = Cancel<br/>
-        NOTE#3: originalTransactionNum.transactionNum must refer to the transaction in question to be cancelled
-
-      operationId: inventoryAvailsSellerCancel
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: 'schemas/commonSchemas.yaml#/components/schemas/TransactionHeader'
-      responses:
-        '200':
-          description: Request processed successfully
-          content:
-            application/json:
-              schema:
-                $ref: 'schemas/commonSchemas.yaml#/components/schemas/AcceptedResponse'
-        default:
-          description: unexpected error, return the appropriate and corresponding HTTP status code matching the error
-          content:
-            application/json:
-              schema:
-                $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
+        '200': #OK
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Success'
+        '400': #Bad Request
+          $ref: 'schemas/commonResponses.yaml#/components/responses/BadRequest'
+        '401': #Unauthorized
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Unauthorized'
+        '403': #Forbidden
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Forbidden'
+        '404': #Not Found
+          $ref: 'schemas/commonResponses.yaml#/components/responses/NotFound'
+        '405': #Not Allowed
+          $ref: 'schemas/commonResponses.yaml#/components/responses/NotAllowed'
+        default: #unexpected
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Unexpected'
 

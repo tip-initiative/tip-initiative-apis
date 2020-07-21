@@ -10,7 +10,7 @@ security:
   - bearerAuth: []
 
 info:
-  version: 5.0.0
+  version: 5.x.x
   title: Proposal
   description: |
     * Allows the seller to respond back to the buyer with the detailed proposal for a given RFP or revised proposal;
@@ -29,62 +29,98 @@ servers:
   - url: http://placeholderdomain.io
 
 paths:
-  /seller/proposal:
+  /seller/proposals:
     post:
       tags:
         - Seller
       summary: Create or Change a proposal in the buyers system
-      description: Create or Change a proposal in the buyers system
-      operationId: createChangeProposal
+      description: >-
+        Allows the seller to respond back to the buyer with the detailed proposal 
+        for a given RFP or revised proposal; Multiple versions of a proposal can be under
+         negotiation for the same campaign, but only one version may be executed; 
+         buyer must submit a "Proposal Change Request" for the last proposal version submission; 
+         seller must respond back with a Proposal Response that contains a new version number 
+         when submitting new versions.  New Proposals may be submitted without a RFP Response
+      operationId: SellerProposals
       requestBody:
-        description: Create or Change a proposal in the buyers system
+        description: Create, Change, Cancel, or Recall a proposal in the buyers system
         required: true
         content:
           application/json:
             schema:
-              $ref: 'schemas/proposalSchemas.yaml#/components/schemas/ProposalObject'
+              oneOf:
+                - $ref: 'schemas/proposalSchemas.yaml#/components/schemas/SellerProposal'
+                - $ref: 'schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
+            examples:
+              New:
+                value:
+                  $ref: 'examples/V5.0.0/SellerProposalNew.json'
+              Change:
+                value: 
+                  $ref: 'examples/WIP-Examples/SellerProposalChange.json'
+              Cancel:
+                  value:
+                    $ref: 'examples/WIP-Examples/GenericCancel.json'
+              Recall:
+                  value:
+                    $ref: 'examples/WIP-Examples/GenericRecall.json'
       responses:
-        '200':
-          description: Request processed successfully
-          content:
-            application/json:
-              schema:
-                $ref: 'schemas/commonSchemas.yaml#/components/schemas/AcceptedResponse'
-        default:
-          description: unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
-  /seller/proposal/cancel:
+        '202': #OK
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Accepted'
+        '400': #Bad Request
+          $ref: 'schemas/commonResponses.yaml#/components/responses/BadRequest'
+        '401': #Unauthorized
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Unauthorized'
+        '403': #Forbidden
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Forbidden'
+        '404': #Not Found
+          $ref: 'schemas/commonResponses.yaml#/components/responses/NotFound'
+        '405': #Not Allowed
+          $ref: 'schemas/commonResponses.yaml#/components/responses/NotAllowed'
+        default: #unexpected
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Unexpected'
+  /buyer/proposals:
     post:
       tags:
-        - Seller
-      summary: Cancel a proposal in the buyer's system
+        - Buyer
+      summary: Buyer change a proposal in the seller's system
       description: >-
-        Cancel a proposal in the buyer's system
-        This endpoint allows the seller to request from the buyer to cancel and ignore
-        a previously communicated proposal request. As Follows:<br/>
-        NOTE#1:originalTransactionNum values needs to indicate which request is to be cancelled.<br/>
-        NOTE#2: transactionNum.transactionType = Cancel<br/>
-        NOTE#3: originalTransactionNum.transactionNum must refer to the transaction in question to be cancelled
-      operationId: cancelProposal
+        Allows the buyer to respond back to the seller with the proposed changeds for a given proposal; 
+        Multiple versions of a proposal can be under negotiation for the same campaign, 
+        but only one version may be executed; buyer must submit a 'Proposal Change' for the last proposal version submitted; 
+        seller must respond back with a Proposal that contains a new version number when submitting the change          
+        NOTE#1:originalTransactionId values needs to indicate which request is to be cancelled.<br/>
+        NOTE#2: transactionId.transactionType = Change<br/>
+        NOTE#3: originalTransactionId.transactionId must refer to the proposal in question
+      operationId: BuyerProposals
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: 'schemas/commonSchemas.yaml#/components/schemas/TransactionHeader'
+              description: Buyer can only respond with proposed changes or recall a previously submitted change
+              oneOf:
+                - $ref: 'schemas/proposalSchemas.yaml#/components/schemas/SellerProposal'
+                - $ref: 'schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
+            examples:
+              Change:
+                value: 
+                  $ref: 'examples/WIP-Examples/SellerProposalChange.json'
+              Recall:
+                  value:
+                    $ref: 'examples/WIP-Examples/GenericRecall.json'
       responses:
-        '200':
-          description: Request processed successfully
-          content:
-            application/json:
-              schema:
-                $ref: 'schemas/commonSchemas.yaml#/components/schemas/AcceptedResponse'
-        default:
-          description: unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
+        '202': #OK
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Accepted'
+        '400': #Bad Request
+          $ref: 'schemas/commonResponses.yaml#/components/responses/BadRequest'
+        '401': #Unauthorized
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Unauthorized'
+        '403': #Forbidden
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Forbidden'
+        '404': #Not Found
+          $ref: 'schemas/commonResponses.yaml#/components/responses/NotFound'
+        '405': #Not Allowed
+          $ref: 'schemas/commonResponses.yaml#/components/responses/NotAllowed'
+        default: #unexpected
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Unexpected'

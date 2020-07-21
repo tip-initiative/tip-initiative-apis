@@ -1,5 +1,4 @@
 openapi: "3.0.0"
-
 components:
  securitySchemes:
     bearerAuth:
@@ -11,8 +10,10 @@ security:
 
 info:
   version: 5.x.x
-  title: logtimes
-  description: Seller posts a Logtimes on the buyer's server
+  title: Seller Impressions
+  description: >-
+    Supports a push model where the seller sends files to buyer system on an agreed schedule.  
+    Supports a report limited to a single advertiser, brand, product and order.
   termsOfService: http://placeholderdomain.io/terms/
   contact:
     name: TIP Initiative
@@ -25,22 +26,24 @@ servers:
   - url: http://placeholderdomain.io/v5.x.x
 
 paths:
-  /seller/logtimes:
+  /seller/impressions:
     post:
       tags:
         - Seller
-      summary: Seller Creates Logtimes record in the buyer system
+      summary: Seller Creates Impression record in the buyer system
       description: >-
-        Allows the seller to send to the buyer the log times information (No Request from buyer is
-        Required)
-      operationId: SellerLogTimes
+        Supports a push model where the seller sends files to buyer system on an agreed schedule.  
+        Supports a report limited to a single advertiser, brand, product and order.
+      operationId: SellerImpressions
       requestBody:
-        description: seller POSTs the Log Times report to the buyer's system
+        description: seller POSTs Impressions to buyer or its representative
         required: true
         content:
           application/json:
             schema:
-              $ref: 'schemas/logTimesSchemas.yaml#/components/schemas/SellerLogTimes'
+              $ref: 'schemas/impressionsSchemas.yaml#/components/schemas/SellerImpressions'
+            example:
+              $ref: 'examples/WIP-Examples/SellerImpressionsNew.json'
       responses:
         '200': #OK
           $ref: 'schemas/commonResponses.yaml#/components/responses/Success'

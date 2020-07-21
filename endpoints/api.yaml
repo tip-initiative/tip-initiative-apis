@@ -8,7 +8,7 @@ components:
 security:
   - bearerAuth: []
 info:
-  version: 5.0.0
+  version: 5.x.x
   title: Trading Interface Automation Framework For Local TV Transactions.
   description: |
     # Television Interface Practices Initiative (TIP)
@@ -133,31 +133,23 @@ paths:
     $ref: 'commercialInstructions.yaml#/paths/~1buyer~1commercialInstructions'
   /buyer/inventoryAvails:
     $ref: 'inventoryAvails.yaml#/paths/~1buyer~1inventoryAvails'
-  /buyer/inventoryAvails/cancel:
-    $ref: 'inventoryAvails.yaml#/paths/~1buyer~1inventoryAvails~1cancel'
   /buyer/order:
     $ref: 'orders.yaml#/paths/~1buyer~1order'
-  /buyer/order/cancel:
-    $ref: 'orders.yaml#/paths/~1buyer~1order~1cancel'
-  /buyer/rfp:
-    $ref: 'rfps.yaml#/paths/~1buyer~1rfp'
-  /buyer/rfp/cancel:
-    $ref: 'rfps.yaml#/paths/~1buyer~1rfp~1cancel'
+  /buyer/order/recall:
+    $ref: 'orders.yaml#/paths/~1buyer~1order~1recall'
+  /buyer/rfps:
+    $ref: 'rfps.yaml#/paths/~1buyer~1rfps'
   /seller/logtimes:
     $ref: 'logTimes.yaml#/paths/~1seller~1logtimes'
-  /seller/invoice:
-    $ref: 'invoice.yaml#/paths/~1seller~1invoice'
-  /seller/invoice/cancel:
-    $ref: 'invoice.yaml#/paths/~1seller~1invoice~1cancel'
+  /seller/invoices:
+    $ref: 'invoice.yaml#/paths/~1seller~1invoices'
   /seller/inventoryAvails:
     $ref: 'inventoryAvails.yaml#/paths/~1seller~1inventoryAvails'
-  /seller/inventoryAvails/cancel:
-    $ref: 'inventoryAvails.yaml#/paths/~1seller~1inventoryAvails~1cancel'
-  /seller/order/confirmation:
-    $ref: 'orders.yaml#/paths/~1seller~1order~1confirmation'
+  /seller/order/confirm:
+    $ref: 'orders.yaml#/paths/~1seller~1order~1confirm'
   /seller/order/reject:
     $ref: 'orders.yaml#/paths/~1seller~1order~1reject'
-  /seller/proposal:
-    $ref: 'proposal.yaml#/paths/~1seller~1proposal'
-  /seller/proposal/cancel:
-    $ref: 'proposal.yaml#/paths/~1seller~1proposal~1cancel'
+  /seller/proposals:
+    $ref: 'proposal.yaml#/paths/~1seller~1proposals'
+  /buyer/proposals:
+    $ref: 'proposal.yaml#/paths/~1buyer~1proposals'

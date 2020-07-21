@@ -1,0 +1,86 @@
+openapi: 3.0.0
+info:
+  version: 5.x.x
+  title: Common Error Responses
+  description: Commercial Instructions Schema
+  termsOfService: http://placeholderdomain.io/terms/
+  contact:
+    name: TIP Initiative
+    email: tipinitiative@frontrowadvisory.com
+    url: http://placeholderdomain.io
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+paths: {}
+components:
+  responses:
+    Success:
+      description: 200 OK - request accepted successfully 
+      content:
+        application/json:
+          schema:
+            $ref: 'commonSchemas.yaml#/components/schemas/AcceptedResponse'
+    Accepted:
+      description: 202 Accepted - request accepted, Actual response will follow at later time
+      content:
+        application/json:
+          schema:
+            $ref: 'commonSchemas.yaml#/components/schemas/AcceptedResponse'
+    BadRequest:
+      description: 400 Bad Request - payload is ill formed or contains invalid data
+      content:
+        application/json:
+          schema:
+            $ref: 'commonSchemas.yaml#/components/schemas/Error'
+          example:
+            errorCode: 400
+            errorMessage: Bad Request - payload is ill formed or contains invalid data
+    Unauthorized:
+      description: 401 Unauthorized - Unauthorized, invalid credentials or expired access token
+      headers:
+        WWW-Authenticate:
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            $ref: 'commonSchemas.yaml#/components/schemas/Error'
+          example:
+            errorCode: 401
+            errorMessage: Unauthorized, invalid credentials or expired access token
+    Forbidden:
+      description: 403 Forbidden, additional previliges are needed
+      content:
+        application/json:
+          schema:
+            $ref: 'commonSchemas.yaml#/components/schemas/Error'
+          example:
+            errorCode: 403
+            errorMessage: Forbidden, additional previliges are needed
+    NotFound:
+      description: 404 Not Found, Requested entity does not exist
+      content:
+        application/json:
+          schema:
+            $ref: 'commonSchemas.yaml#/components/schemas/Error'
+          example:
+            errorCode: 404
+            errorMessage: Requested entity does not exist
+    NotAllowed:
+      description: 405 Not Allowed, Requested operation is not allowed on entity
+      content:
+        application/json:
+          schema:
+            $ref: 'commonSchemas.yaml#/components/schemas/Error'
+          example:
+            errorCode: 405
+            errorMessage: Requested operation is not allowed on entity
+    Unexpected:
+      description: Unexpected error occured
+      content:
+        application/json:
+          schema:
+            $ref: 'commonSchemas.yaml#/components/schemas/Error'
+          example:
+            errorCode: 0
+            errorMessage: Unexpected error Occured
