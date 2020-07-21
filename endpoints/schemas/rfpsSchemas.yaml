@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  version: 5.0.0
+  version: 5.1.0
   title: RFP Schema
   description: RFP Schema
   termsOfService: http://placeholderdomain.io/terms/
@@ -14,10 +14,10 @@ info:
 paths: {}
 components:
   schemas:
-    RFPRequestObject:
+    BuyerRFPS:
       description: >-
-        Allows the buyer to submit a Request for Proposal (RFP) to the seller with media budget, goals
-        and overall terms
+        Using the BuyerRFPS schema, the buyers is able to express the criteria that need to be met when
+        responding with a proposal
       properties:
         transactionHeader:
           $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
@@ -26,17 +26,17 @@ components:
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/ReferenceId'
         dateSubmitted:
-          description: Buyer Submit Date for the RFP
+          description: Buyer submit date for the RFP
           type: string
           format: date
         dueDate:
-          description: Due Date for the response
+          description: Due date for the proposal response
           type: string
           format: date
         buyer:
           $ref: 'commonSchemas.yaml#/components/schemas/Buyer'
         commission:
-          description: Buyer Commission percentage amount
+          description: Buyer commission percentage amount
           type: number
           format: float
         advertiser:
@@ -51,10 +51,10 @@ components:
             $ref: 'commonSchemas.yaml#/components/schemas/Contact'
         currency:
           $ref: 'commonSchemas.yaml#/components/schemas/Currency'
-        budget:
-          description: Overall total budget for the RFP
-          type: number
-          format: float
+        budgets:
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/Budget'
         timePeriodPreferences:
           type: array
           items:
@@ -102,7 +102,7 @@ components:
     CampaignGoal:
       properties:
         distributionType:
-          description: Goal Type Element used for distribution
+          description: Goal type element used for distribution
           type: string
           enum:
             - MediaType
@@ -113,8 +113,9 @@ components:
             - Week
             - AddedValue
         distributionMethod:
-          description: Distribution Method Elements - Audience distributions pertain to the primary demo
-            audience
+          description: >-
+            Distribution method elements; impressions or GRP distributions pertain to the primary audience
+            segment
           type: string
           enum:
             - Impressions
@@ -157,3 +158,4 @@ components:
         - distribution
         - distributionValue
         - distributionOrder
+        - distributionOrderParent

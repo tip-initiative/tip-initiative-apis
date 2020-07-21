@@ -1,16 +1,6 @@
 openapi: "3.0.0"
-
-components:
-  securitySchemes:
-    bearerAuth:
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
-security:
-  - bearerAuth: []
-
 info:
-  version: 5.0.0
+  version: 5.1.0
   title: Orders
   description: >-
     Allows the seller to respond back to the buyer with the detailed proposal for a given RFP
@@ -26,126 +16,108 @@ info:
     url: https://opensource.org/licenses/MIT
 servers:
   - url: http://placeholderdomain.io
-
+security:
+  - bearerAuth: []
 paths:
-  /buyer/order:
+  /buyer/orders:
     post:
       tags:
         - Buyer
-      summary: Create an Order
+      summary: Create or Change an Order in the Seller System
       description: >-
-        The endpoint resides on the seller side. <br/>
-        the endpoint allows the buyer to creates an order in the Seller system.
-      operationId: createOrder
+        Allows the buyer to send the detailed information for a given order;
+        execution is a summary of the sales elements details, thus allowing the seller
+        to automatically create lines based on individual system's rules.
+        Buyer must submit entire order for Order Change Request using the last confirmed booked
+        order version response.  Seller will be responsible for deciphering change request
+        from buyer.  Cancellation of order either prior to start or mid flight will be submitted
+        in an order change request<br/>
+        Supported Transaction Types: New, Change, Cancel, Recall
+      operationId: BuyerOrders
       requestBody:
-        description: createOrder
+        description: Buyer Order
         required: true
         content:
           application/json:
             schema:
-              $ref: 'schemas/ordersSchemas.yaml#/components/schemas/BuyerOrderRequestObject'
+              $ref: '#/components/schemas/BuyerOrders'
+            examples:
+              New:
+                value:
+                  $ref: 'examples/BuyerOrderNew.json'
+              Change:
+                value:
+                  $ref: 'examples/BuyerOrderChange.json'
+              Cancel:
+                value:
+                  $ref: 'examples/GenericCancel.json'
+              Recall:
+                value:
+                  $ref: 'examples/GenericRecall.json'
       responses:
-        '202':
-          description: >-
-            Your request was received.<br/>
-            The request has been accepted for processing, but the processing has not been completed.<br/>
-            The request might or might not eventually be acted upon, as it might be disallowed when processing actually takes place.
-          content:
-            application/json:
-              schema:
-                $ref: 'schemas/commonSchemas.yaml#/components/schemas/AcceptedResponse'
-        default:
-          description: Error.
-          content:
-            application/json:
-              schema:
-                $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
-  /buyer/order/cancel:
-    post:
-      tags:
-        - Buyer
-      description: >-
-        The endpoint resides on the seller side. <br/>
-        the endpoint allows the buyer to creates an order in the Seller system.
-      operationId: cancelOrder
-      requestBody:
-        description: cancelOrder
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: 'schemas/ordersSchemas.yaml#/components/schemas/OrderRecallObject'
-      responses:
-        '200':
-          description: >-
-            Cancel request received.
-          content:
-            application/json:
-              schema:
-                $ref: 'schemas/commonSchemas.yaml#/components/schemas/AcceptedResponse'
-        default:
-          description: Error.
-          content:
-            application/json:
-              schema:
-                $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
-  /seller/order/confirmation:
+        '202': #Accepted
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Accepted'
+        '400': #Bad Request
+          $ref: 'schemas/commonResponses.yaml#/components/responses/BadRequest'
+        '401': #Unauthorized
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Unauthorized'
+        '403': #Forbidden
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Forbidden'
+        '404': #Not Found
+          $ref: 'schemas/commonResponses.yaml#/components/responses/NotFound'
+        '405': #Not Allowed
+          $ref: 'schemas/commonResponses.yaml#/components/responses/NotAllowed'
+        default: #unexpected
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Unexpected'
+  /seller/orders:
     post:
       tags:
         - Seller
-      summary: Confirmation of acceptance of previously submitted order
+      summary: Seller Reject or Confirm an order
       description: >-
-        The endpoint resides on the buyer side to allow the seller to send a confirmation<br/>
-        regarding the successful processing of previously submitted order.<br/>
-        originalTransactionNum is required for Audit Trail.
-      operationId: orderConfirmation
+        Allows the seller to respond with a reject or confirm of an order
+      operationId: SellerOrders
       requestBody:
-        description: Order Confirmation
+        description: Seller order confirm or reject
         required: true
         content:
           application/json:
             schema:
-              $ref: 'schemas/ordersSchemas.yaml#/components/schemas/OrderConfirmationResponseObject'
+              $ref: './schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
+            examples:
+              Reject:
+                value:
+                  $ref: 'examples/GenericReject.json'
+              Confirm:
+                value:
+                  $ref: 'examples/GenericConfirm.json'
       responses:
-        '200':
-          description: confirmation Accepted
-          content:
-            application/json:
-              schema:
-                $ref: 'schemas/commonSchemas.yaml#/components/schemas/AcceptedResponse'
-        default:
-          description: Error.
-          content:
-            application/json:
-              schema:
-                $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
-  /seller/order/reject:
-    post:
-      tags:
-        - Seller
-      summary: Reject of previously submitted order
-      description: >-
-        The endpoint resides on the buyer side to allow the seller to send a reject (all or None)<br/>
-        regarding the rejection  of previously submitted order.<br/>
-        originalTransactionNum is required for Audit Trail.
-      operationId: orderReject
-      requestBody:
-        description: Order Rejection
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: 'schemas/ordersSchemas.yaml#/components/schemas/OrderRejectResponseObject'
-      responses:
-        '200':
-          description: Rejection Accepted
-          content:
-            application/json:
-              schema:
-                $ref: 'schemas/commonSchemas.yaml#/components/schemas/AcceptedResponse'
-        default:
-          description: Error.
-          content:
-            application/json:
-              schema:
-                $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
+        '202': #Accepted
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Accepted'
+        '400': #Bad Request
+          $ref: 'schemas/commonResponses.yaml#/components/responses/BadRequest'
+        '401': #Unauthorized
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Unauthorized'
+        '403': #Forbidden
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Forbidden'
+        '404': #Not Found
+          $ref: 'schemas/commonResponses.yaml#/components/responses/NotFound'
+        '405': #Not Allowed
+          $ref: 'schemas/commonResponses.yaml#/components/responses/NotAllowed'
+        default: #unexpected
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Unexpected'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    BuyerOrders:
+      description: |
+          The Buyer can perform the following operations:
+          <li>New or Change - Use the Buyer orders object
+          <li>Cancel or Recall - Use the Generic object to Cancel or Recall
+      oneOf:
+        - $ref: './schemas/ordersSchemas.yaml#/components/schemas/BuyerOrders'
+        - $ref: './schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'

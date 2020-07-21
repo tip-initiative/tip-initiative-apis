@@ -1,18 +1,10 @@
 openapi: "3.0.0"
 
-components:
- securitySchemes:
-    bearerAuth:
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
-security:
-  - bearerAuth: []
 
 info:
-  version: 5.0.0
-  title: logtimes
-  description: Seller posts a Logtimes on the buyer's server
+  version: 5.1.0
+  title: Logtimes
+  description: Seller Provides a Logtimes report on the buyer's server
   termsOfService: http://placeholderdomain.io/terms/
   contact:
     name: TIP Initiative
@@ -22,35 +14,53 @@ info:
     name: MIT
     url: https://opensource.org/licenses/MIT
 servers:
-  - url: http://placeholderdomain.io
+  - url: http://placeholderdomain.io/v5.x.x
+security:
+  - bearerAuth: []
 
 paths:
   /seller/logtimes:
     post:
       tags:
         - Seller
-      summary: Seller Logtimes POST
+      summary: Seller Creates Logtimes record in the buyer system
       description: >-
-        Allows the seller to send to the buyer the log times information (No Request from buyer is
-        Required)
-      operationId: logsTimesSeller
+        Allows the seller to send to the buyer the log times information. No Request from buyer is
+        Required.<br/>
+        Supported Transaction Types: New, Change
+      operationId: SellerLogtimes
       requestBody:
-        description: seller POSTs the Log Times report to the buyer's system
+        description: seller provides the Log Times report to the buyer's system
         required: true
         content:
           application/json:
             schema:
-              $ref: 'schemas/logTimesSchemas.yaml#/components/schemas/LogTimesSellerObject'
+              $ref: 'schemas/logTimesSchemas.yaml#/components/schemas/SellerLogtimes'
+            examples:
+              New:
+                value:
+                  $ref: 'examples/SellerLogtimesNew.json'
+              Change:
+                value:
+                  $ref: 'examples/SellerLogtimesNew.json'
       responses:
-        '200':
-          description: Request processed successfully
-          content:
-            application/json:
-              schema:
-                $ref: 'schemas/commonSchemas.yaml#/components/schemas/AcceptedResponse'
-        default:
-          description: unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: 'schemas/commonSchemas.yaml#/components/schemas/Error'
+        '200': #OK
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Success'
+        '400': #Bad Request
+          $ref: 'schemas/commonResponses.yaml#/components/responses/BadRequest'
+        '401': #Unauthorized
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Unauthorized'
+        '403': #Forbidden
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Forbidden'
+        '404': #Not Found
+          $ref: 'schemas/commonResponses.yaml#/components/responses/NotFound'
+        '405': #Not Allowed
+          $ref: 'schemas/commonResponses.yaml#/components/responses/NotAllowed'
+        default: #unexpected
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Unexpected'
+components:
+ securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

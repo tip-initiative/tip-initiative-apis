@@ -8,7 +8,7 @@
        - run: sudo apt-get install openjdk-8-jre-headless
        - run: openapi-generator version
        - checkout
-       - run: for i in `find -name "*.yaml"`; do openapi-generator validate -i $i; done
+       - run: find endpoints -name \*.yaml -a ! -name _\*.yaml | xargs -0 -n1 -P1 openapi-generator validate -i
  workflows:
    version: 2
    validation:

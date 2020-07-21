@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  version: 5.0.0
+  version: 5.1.0
   title: Buyer requesting New Order or Order Change Request to Seller
   description: Buyer/Order
   termsOfService: http://placeholderdomain.io/terms/
@@ -14,14 +14,8 @@ info:
 paths: {}
 components:
   schemas:
-    BuyerOrderRequestObject:
-      description: >-
-        Allows the buyer to send the detailed order information for a given order; execution is a summary
-        of the sales elements details, thus allowing the seller to automatically create lines based on
-        individual system's rules. Buyer must submit entire order for Order Change Request using the
-        last confirmed booked order version response. Seller will be responsible for deciphering change
-        request from buyer. Cancellation of order either prior to start or mid flight will be submitted
-        in an order change request
+    BuyerOrders:
+      description: Buyers Ordering entity
       properties:
         transactionHeader:
           $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
@@ -30,7 +24,7 @@ components:
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/ReferenceId'
         orderBookedDate:
-          description: Date in which the buyer
+          description: Date in which the buyer submitted the order, this is the original book date
           type: string
           format: date
         buyer:
@@ -45,6 +39,10 @@ components:
           $ref: 'commonSchemas.yaml#/components/schemas/Brand'
         product:
           $ref: 'commonSchemas.yaml#/components/schemas/Product'
+        budgets:
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/Budget'
         cpeCode:
           $ref: 'commonSchemas.yaml#/components/schemas/CpeCode'
         contacts:
@@ -52,26 +50,26 @@ components:
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/Contact'
         revenueType:
-          description: How the proposal is being negotiated for payment terms
+          description: The agreed upon type of payment
           type: string
           enum:
             - Cash
             - Barter
             - Trade
         businessType:
-          description: Seller defined type of business
+          description: Buyer defined type of business
           type: string
         localNational:
-          description: Market Type for Proposal
+          description: Local or national marketplace
           type: string
           enum:
             - Local
             - National
         dealYear:
-          description: The broadcast year in which the proposal is being negotiated for
-          type: integer
+          description: The broadcast year for the order
+          type: string
         calendarType:
-          description: The calendar in which the order was negotiated
+          description: The order's calendar that defines start day and end day of a week
           type: string
           enum:
             - Broadcast
@@ -80,9 +78,11 @@ components:
         billingOption:
           $ref: 'commonSchemas.yaml#/components/schemas/BillingOption'
         equivalized:
-          description: Indicates if the audience values are equivalized to the unit's length
+          description: >-
+            Indicates if the impressions are equivalized (weighted) down or up from a base 30-second
+            unit using a ratio of the unit's length
           type: boolean
-        dateWindow:
+        dateWindows:
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/DateWindow'
@@ -126,73 +126,5 @@ components:
         - businessType
         - calendarType
         - equivalized
-        - dateWindow
+        - dateWindows
         - mediaOutlets
-    OrderConfirmationResponseObject:
-      description: >-
-        Allows the seller to respond to an order or order change request with a confirmed booked confirmation
-      properties:
-        transactionHeader:
-          $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
-        referenceIds:
-          type: array
-          items:
-            $ref: 'commonSchemas.yaml#/components/schemas/ReferenceId'
-        confirmedBookedDate:
-          description: Date that the Order was Confirmed Booked
-          type: string
-          format: date
-        comments:
-          description: Free form comments with "Not Accepted" Reason
-          type: string
-      required:
-        - transactionHeader
-        - referenceIds
-        - confirmedBookedDate
-    OrderRecallObject:
-      description: >-
-        Allows the buyer to recall a new order or order change request ; seller must respond back with
-        acceptance or failure of the recall request. Note: Seller's system defined the rules for acceptance
-        or failure of request
-      properties:
-        transactionHeader:
-          $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
-        referenceIds:
-          type: array
-          items:
-            $ref: 'commonSchemas.yaml#/components/schemas/ReferenceId'
-        recallDate:
-          description: >-
-            Buyer requesting to recall a previously submitted new or changed order. Seller responding
-            back to Buyer acceptance or failure of request.
-          type: string
-          format: date
-        comments:
-          description: Free form comments
-          type: string
-      required:
-        - transactionHeader
-        - referenceIds
-        - recallDate
-    OrderRejectResponseObject:
-      description: >-
-        Allows the seller to reject a new order or order change request; seller must respond back with
-        rejection comments
-      properties:
-        transactionHeader:
-          $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
-        referenceIds:
-          type: array
-          items:
-            $ref: 'commonSchemas.yaml#/components/schemas/ReferenceId'
-        rejectionDate:
-          description: Date the order was rejected
-          type: string
-          format: date
-        comments:
-          description: Free form comments
-          type: string
-      required:
-        - transactionHeader
-        - referenceIds
-        - rejectionDate

@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  version: 5.0.0
+  version: 5.1.0
   title: Inventory Avails Schemas
   description: Inventory Avails Schemas
   termsOfService: http://placeholderdomain.io/terms/
@@ -14,13 +14,15 @@ info:
 paths: {}
 components:
   schemas:
-    InventoryAvailsBuyerObject:
-      description: Allows the Buyer as campaign planning to initiate an inventory Request to the Seller
+    BuyerInventoryAvails:
+      description: >-
+        The BuyerInventoryAvails Schema allows the buyer to formulate a query for Inventory meeting the
+        listed conditions
       properties:
         transactionHeader:
           $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
         dateSubmitted:
-          description: Buyer Submit Date for Inventory Request
+          description: Buyer submit date for the Inventory Request
           type: string
           format: date
         dueDate:
@@ -50,7 +52,7 @@ components:
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/Guideline'
         political:
-          description: Indicates if the request is for political pricing
+          description: Indicates that pricing being requested is political
           type: boolean
         inventoryTypes:
           type: array
@@ -61,7 +63,6 @@ components:
           type: number
           format: float
           minimum: 0
-          exclusiveMinimum: true
         currency:
           $ref: 'commonSchemas.yaml#/components/schemas/Currency'
         externalComment:
@@ -84,15 +85,16 @@ components:
         - timePeriods
         - political
         - audienceSegments
-    InventoryAvailsSellerObject:
-      description: >-
-        Allows the Seller to post to the buyer their catalog of selling products, pricing and audience
-        information
+    SellerInventoryAvails:
+      description: |-
+        The SellerInventoryAvails Schemas defines:
+        - the Seller response to previously solicited InventoryAvails request from the buyer,
+        - or Unslocited provide the buyer with the catalog of selling products, and optionally provide pricing and audience information
       properties:
         transactionHeader:
           $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
         dateSubmitted:
-          description: Submission date for the inventory
+          description: Seller's submit date for the inventory avails response
           type: string
           format: date
         buyer:
@@ -103,12 +105,13 @@ components:
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/Contact'
+          minItems: 1
         rateCard:
           $ref: 'commonSchemas.yaml#/components/schemas/RateCard'
         currency:
           $ref: 'commonSchemas.yaml#/components/schemas/Currency'
         political:
-          description: Indicates that pricing being supplied are for political
+          description: Indicates that pricing being supplied is political
           type: boolean
         mediaOutlets:
           type: array
@@ -119,6 +122,7 @@ components:
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/AudienceSegmentDetail'
+          nullable: true
         availWindow:
           $ref: 'commonSchemas.yaml#/components/schemas/DateWindow'
         salesElements:

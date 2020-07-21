@@ -1,0 +1,16 @@
+    Success:
+      $ref: './commonResponses.yaml#/components/responses/Success'
+    Accepted:
+      $ref: './commonResponses.yaml#/components/responses/Accepted'
+    BadRequest:
+      $ref: './commonResponses.yaml#/components/responses/BadRequest'
+    Unauthorized:
+      $ref: './commonResponses.yaml#/components/responses/Unauthorized'
+    Forbidden:
+      $ref: './commonResponses.yaml#/components/responses/Forbidden'
+    NotFound:
+      $ref: './commonResponses.yaml#/components/responses/NotFound'
+    NotAllowed:
+      $ref: './commonResponses.yaml#/components/responses/NotAllowed'
+    Unexpected:
+      $ref: './commonResponses.yaml#/components/responses/Unexpected'

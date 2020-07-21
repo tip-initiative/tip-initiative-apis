@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  version: 5.0.0
+  version: 5.1.0
   title: Create a proposal to send to the buyer system
   description: Seller/Proposal Schemas
   termsOfService: http://placeholderdomain.io/terms/
@@ -14,14 +14,10 @@ info:
 paths: {}
 components:
   schemas:
-    ProposalObject:
+    SellerProposals:
       description: >-
-        Allows the seller to respond back to the buyer with the detailed proposal for a given RFP or
-        revised proposal; Multiple versions of a proposal can be under negotiation for the same campaign,
-        but only one version may be executed; buyer must submit a "Proposal Change Request" for the last
-        proposal version submission; seller must respond back with a Proposal Response that contains
-        a new version number when submitting new versions. New Proposals may be submitted without a RFP
-        Response
+        The data model is shared between the buyers and seller to exchange information and maintain a
+        trail of negotiations concerning proposals
       properties:
         transactionHeader:
           $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
@@ -31,7 +27,7 @@ components:
             $ref: 'commonSchemas.yaml#/components/schemas/ReferenceId'
           minItems: 1
         expirationDate:
-          description: Date in which the proposal’s pricing and audience estimates expire
+          description: Date in which the pricing and audience estimates expire in the proposal submission
           type: string
           format: date
         buyer:
@@ -46,6 +42,10 @@ components:
           $ref: 'commonSchemas.yaml#/components/schemas/Brand'
         product:
           $ref: 'commonSchemas.yaml#/components/schemas/Product'
+        budgets:
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/Budget'
         cpeCode:
           $ref: 'commonSchemas.yaml#/components/schemas/CpeCode'
         contacts:
@@ -53,7 +53,7 @@ components:
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/Contact'
         revenueType:
-          description: How the proposal is being negotiated for payment terms
+          description: The agreed upon type of payment
           type: string
           enum:
             - Cash
@@ -63,22 +63,22 @@ components:
           description: Seller defined type of business
           type: string
         localNational:
-          description: Market Type for Proposal
+          description: Local or national marketplace
           type: string
           enum:
             - Local
             - National
         dealYear:
-          description: The broadcast year in which the proposal is being negotiated for
-          type: integer
+          description: The broadcast year in which the proposal is being negotiated
+          type: string
         billingOption:
           $ref: 'commonSchemas.yaml#/components/schemas/BillingOption'
         equivalized:
           description: >-
-            Indicates if the impressions weighted down or up from 30-second impressions based on their
-            ratio of their length to 30 seconds.
+            Indicates if the impressions are equivalized (weighted) down or up from a base 30-second
+            unit using a ratio of the unit's length.
           type: boolean
-        dateWindow:
+        dateWindows:
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/DateWindow'
@@ -122,5 +122,5 @@ components:
         - revenueType
         - businessType
         - equivalized
-        - dateWindow
+        - dateWindows
         - mediaOutlets

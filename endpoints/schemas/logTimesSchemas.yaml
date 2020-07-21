@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  version: 5.0.0
+  version: 5.1.0
   title: logTimes Schemas
   description: logTimes Schemas
   termsOfService: http://placeholderdomain.io/terms/
@@ -14,8 +14,8 @@ info:
 paths: {}
 components:
   schemas:
-    LogTimesSellerObject:
-      description: Top level element for Logtimes Seller POST operations
+    SellerLogtimes:
+      description: Top level element for Logtimes Seller
       properties:
         transactionHeader:
           $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
@@ -23,6 +23,8 @@ components:
           description: A string that indicates additional information the seller can send to the buyer
           type: string
         units:
+          description: The units listed in the API units can be defined by the system that is creating
+            the API.
           type: array
           items:
             $ref: '#/components/schemas/Unit'
@@ -92,14 +94,21 @@ components:
             or any other ID.
           type: string
         status:
-          description: Indicates the airing status of the unit
+          description: |-
+            Aired - 'as aired' reconciliation for the spot is complete
+            No Run - spot either did not run or didn't run as contracted when the broadcast log was played out
+            Scheduled - spot is placed on a pre log that has not yet been played out
+            Finalized - spot is placed on a log that is in a 'final status' and ready to be played out. The spot is locked from edits
+            Not Scheduled - spot has not yet been placed on a future broadcast log
+            Preempted - spot has been removed from a future broadcast log; the buyer will be offered a makegood or issued a credit
           type: string
           enum:
             - Aired
             - Scheduled
             - No Run
             - Finalized
-            - Invoiced
+            - Not Scheduled
+            - Preempted
         creditInd:
           description: Indicate if the unit was issued a credit
           type: boolean
@@ -140,21 +149,23 @@ components:
             status is "Aired"
           type: string
         status:
-          description: Indicates the airing status of the "child" unit
+          description: |-
+            Aired - 'as aired' reconciliation for the spot is complete
+            No Run - spot either did not run or didn't run as contracted when the broadcast log was played out
+            Scheduled - spot is placed on a pre log that has not yet been played out
+            Finalized - spot is placed on a log that is in a 'final status' and ready to be played out. The spot is locked from edits
+            Not Scheduled - spot has not yet been placed on a future broadcast log
+            Preempted - spot has been removed from a future broadcast log; the buyer will be offered a makegood or issued a credit
           type: string
           enum:
             - Aired
             - Scheduled
             - No Run
+            - Finalized
+            - Not Scheduled
+            - Preempted
         reason:
           description: Reason description for No-Run status
           type: string
         dateTime:
           $ref: 'commonSchemas.yaml#/components/schemas/DateTime'
-    LogTimesResponse:
-      properties:
-        transactionId:
-          type: string
-        transactionDate:
-          type: string
-          format: date

@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  version: 5.0.0
+  version: 5.1.0
   title: Invoice Schema
   description: Invoice Schema
   termsOfService: http://placeholderdomain.io/terms/
@@ -14,8 +14,8 @@ info:
 paths: {}
 components:
   schemas:
-    InvoiceObject:
-      description: Top level element for Invoice Seller POST operations
+    SellerInvoices:
+      description: Invoice schema
       properties:
         transactionHeader:
           $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
@@ -28,13 +28,13 @@ components:
           type: string
           format: date
         invoiceRevisionDate:
-          description: Required for Invoice Revision – Date in which the invoice revision was generated
+          description: Required for Invoice Revision – date in which the invoice revision was generated
           type: string
           format: date
         billingOption:
           $ref: 'commonSchemas.yaml#/components/schemas/BillingOption'
         dueDate:
-          description: Date in which payment is due on invoice
+          description: Date in which payment is due
           type: string
           format: date
         dateWindow:
@@ -56,8 +56,8 @@ components:
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/Contact'
-        buylineCashTrade:
-          description: Revenue Type associated to the invoice
+        revenueType:
+          description: The agreed upon type of payment
           type: string
           enum:
             - Cash
@@ -68,7 +68,7 @@ components:
           type: number
           format: float
         commission:
-          description: Invoice total commission amount
+          description: Buyer commission amount for the invoice
           type: number
           format: float
         salesTax:
@@ -87,7 +87,8 @@ components:
         remittanceInfo:
           $ref: 'commonSchemas.yaml#/components/schemas/RemittanceInfo'
         externalComment:
-          description: Free form text for comments
+          description: Free form text to accommodate transaction comments and/or activities outside the
+            TIP flow
           type: string
         lineDetails:
           type: array
@@ -100,7 +101,7 @@ components:
         - dateWindow
         - buyer
         - advertiser
-        - buylineCashTrade
+        - revenueType
         - grossAmount
         - commission
         - netAmount
@@ -115,13 +116,15 @@ components:
         buyLineIdName:
           description: Buyer's line information associated to seller's line
           type: string
-        unitType:
-          description: The type of units on the line
+        type:
+          description: >-
+            Indicates the type of information in the line detail information. For example for unit type
+            lines this would refer to linear spots vs impressions would refer to an audience buy
           type: string
           enum:
             - Units
             - Impressions
-            - Non Airtime
+            - Flat Rate
         brand:
           $ref: 'commonSchemas.yaml#/components/schemas/Brand'
         product:
@@ -136,7 +139,7 @@ components:
         cpeCode:
           $ref: 'commonSchemas.yaml#/components/schemas/CpeCode'
         billableRevenue:
-          description: Indicates if the line's rate is based on booked rates or actuals (earned) rates
+          description: Indicates if the invoice rate being provide are booked or actual (earned) rates
           type: string
           enum:
             - Booked
@@ -144,22 +147,26 @@ components:
         rate:
           type: number
           format: float
+          minimum: 0
         inventoryType:
           $ref: 'commonSchemas.yaml#/components/schemas/InventoryType'
-        audiencePricingMetric:
-          $ref: 'commonSchemas.yaml#/components/schemas/AudiencePricingMetric'
+        audiencePricingMetrics:
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/AudiencePricingMetric'
         totalUnits:
-          description: >-
-            Total number of raw (equivalized) units (based on line's unit type) within the line's start
-            and end date or if audience buy the total number of Raw Impressions
+          description: Total number of raw (unequivalized) linear units within the line's start and end
+            date
           type: integer
+          format: int64
+          minimum: 0
         unitDetails:
           type: array
           items:
             $ref: '#/components/schemas/UnitDetail'
       required:
         - buyLineIdReference
-        - unitType
+        - type
         - product
         - salesElement
         - length
@@ -170,7 +177,6 @@ components:
           description: Seller generated unique number - Required when unit type is equal to units
           type: string
         adId:
-          description: Ad-ID
           type: string
         dateTime:
           $ref: 'commonSchemas.yaml#/components/schemas/DateTime'
@@ -179,28 +185,28 @@ components:
         linkType:
           $ref: 'commonSchemas.yaml#/components/schemas/LinkType'
         preempt:
-          description: Y/N indicator
+          description: True/False
           type: boolean
         makegood:
-          description: Y/N indicator
+          description: True/False
           type: boolean
         adu:
-          description: Y/N indicator
+          description: True/False
           type: boolean
         bonus:
-          description: Y/N indicator
+          description: True/False
           type: boolean
         rate:
-          description: Contracted rate associated to the unit
+          description: the billed rate associated to the unit
           type: number
           format: float
         credit:
-          description: Y/N indicator
+          description: True/False
           type: boolean
         adjustmentReason:
           description: >-
-            Only valid on invoice revisions – reason for change of unit (e.g. rate adjustment, incorrect
-            copy, etc.)
+            Only valid on invoice revisions – reason for change of unit, example data: rate adjustment,
+            incorrect copy
           type: string
         comment:
           description: Overall comment for the unit
@@ -238,8 +244,8 @@ components:
           type: boolean
         adjustmentReason:
           description: >-
-            Only valid on invoice revisions – details reasons for change to the unit (e.g. rate adjustment,
-            incorrect copy, etc.)
+            Only valid on invoice revisions – reason for change of unit, example data: rate adjustment,
+            incorrect copy
           type: string
         dateTime:
           $ref: 'commonSchemas.yaml#/components/schemas/DateTime'

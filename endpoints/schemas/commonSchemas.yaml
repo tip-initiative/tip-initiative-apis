@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  version: 5.0.0
+  version: 5.1.0
   title: Common Schemas
   description: Common Schemas
   termsOfService: http://placeholderdomain.io/terms/
@@ -38,14 +38,17 @@ components:
         transactionId:
           description: Global unique identifier (GUID)
           type: string
+          format: uuid
         transactionType:
-          description: This indicates if the data exchange being sent is either a new, change or cancel
-            transaction.
+          description: This indicates the type of data exchange being sent
           type: string
           enum:
             - New
             - Change
             - Cancel
+            - Reject
+            - Recall
+            - Confirm
         sourceId:
           description: Indicates the source "trading partner" unique identification
           type: string
@@ -83,10 +86,10 @@ components:
           description: Station or network station identification (Channel)
           type: string
         mediaOutletMarketName:
-          description: Market Name
+          description: Outlet associated to the market name when applicable
           type: string
         mediaOutletReference:
-          description: External mediaoutlet reference information
+          description: External mediaoutlet reference to support data mapping differences between systems
           type: string
       required:
         - mediaOutletId
@@ -102,7 +105,7 @@ components:
           description: Advertiser name
           type: string
         advertiserReference:
-          description: External advertiser reference information
+          description: External advertiser reference to support data mapping differences between systems
           type: string
       required:
         - advertiserId
@@ -117,7 +120,7 @@ components:
           description: Brand Name
           type: string
         brandReference:
-          description: External brand reference information
+          description: External brand reference to support data mapping differences between systems
           type: string
       required:
         - brandId
@@ -136,7 +139,7 @@ components:
           description: Buying organization name
           type: string
         buyerReference:
-          description: External buyer reference information
+          description: External buyer reference to support data mapping differences between systems
           type: string
       required:
         - buyerId
@@ -151,7 +154,7 @@ components:
           description: Product name
           type: string
         productReference:
-          description: External product reference
+          description: External product reference to support data mapping differences between systems
           type: string
       required:
         - productId
@@ -169,7 +172,7 @@ components:
           description: External audience segment reference
           type: string
         audienceMethodology:
-          description: Methodology used to aggregate the audience
+          description: Methodology used to aggregate the audiences that are being provided in the audienceMetricValue
           type: string
         primaryIndicator:
           description: True/False
@@ -178,21 +181,13 @@ components:
           description: True/False
           type: boolean
         ratingSource:
-          description: Data source for audience segment
+          description: For example, Nielsen, ComScore, Internal, Client
           type: string
-          enum:
-            - Nielsen
-            - ComScore
-            - Internal
-            - Client
         ratingStream:
-          description: Rating stream type associated to the rating source
+          description: >-
+            For example, Program Live, Commercial Ratings Live, Commercial Rating Live+3, Commercial
+            Rating Live+7
           type: string
-          enum:
-            - Program Live
-            - Commercial Ratings Live
-            - Commercial Rating Live+3
-            - Commercial Rating Live+7
       required:
         - audienceSegmentId
         - audienceSegmentName
@@ -205,6 +200,7 @@ components:
         audienceSegment:
           $ref: '#/components/schemas/AudienceSegment'
         universes:
+          description: A collection of all Universes covered by the media outlet
           type: array
           items:
             $ref: '#/components/schemas/Universe'
@@ -221,7 +217,8 @@ components:
           enum:
             - Impressions
             - Rating
-            - GRPs VPVH
+            - GRPs
+            - VPVH
             - Composition
             - Reach
             - Frequency Threshold
@@ -233,12 +230,9 @@ components:
         - audienceMetric
         - audienceMetricValue
     PricingMetricOption:
-      description: |-
-        A common object defining the Pricing metric
-        CPM - Cost-per-thousand,
-        CPP - Cost-per-point,
-        CPE - Cost-per-engagement,
-        CPA - Cost-per-action
+      description: >-
+        A common object defining the Pricing metric: CPM - Cost-per-thousand, CPP - Cost-per-point, CPE
+        - Cost-per-engagement, CPA - Cost-per-action
       type: string
       enum:
         - CPM
@@ -264,6 +258,16 @@ components:
         audienceSegmentId:
           description: Unique persistent identifier for audience segment
           type: string
+        type:
+          description: |-
+            Selling -booked audience/pricing values from Order
+            Actual - delivered/actual audience/pricing associated with the rating source/rating stream
+            Projection - seller's internal audience projectionsassociated with the rating stream/rating type
+          type: string
+          enum:
+            - Selling
+            - Actual
+            - Projection
         audienceMetric:
           $ref: '#/components/schemas/AudienceMetric'
         pricingMetric:
@@ -308,7 +312,7 @@ components:
             cancellation
           type: integer
         cancellationPercentage:
-          description: Percentage of total amount/budget that is cancellable
+          description: Percentage of total amount that is cancellable
           type: number
           format: float
     TimeSeparation:
@@ -353,9 +357,7 @@ components:
             - type: integer
             - type: string
         referenceVersionId:
-          description: >-
-            Version Number to indicate the version number for the reference id; this will be used to
-            support revisions
+          description: Version number associated with the reference id; used to track revisions
           type: string
         referenceName:
           description: Free form name used to identify the type of entity such as Order Name, RFP Name
@@ -377,6 +379,7 @@ components:
         - GBP   # Great Britain Pound
         - MXN   # Mexican Peso
         - AUD   # Australian Dollar
+      default: USD
     CpeCode:
       description: A common object combining buyer's client code, product and estimate
       properties:
@@ -403,7 +406,7 @@ components:
             - Calendar
             - Nielsen
         billingCycle:
-          description: The billing within the calendar the units should be billed
+          description: The interval within the billingCalendar in which the invoices should be issued
           type: string
           enum:
             - Month
@@ -428,13 +431,61 @@ components:
         rateCardName:
           description: Seller's Rate Card Name associated to the Rate Card ID
           type: string
+    Budget:
+      description: >-
+        A descriptor common object defining the budget or total allocation for a RFP or proposal with
+        optional allocations per market, media outlet or media type
+      properties:
+        budgetAmount:
+          description: Total budget amount being requested
+          type: number
+          format: float
+          minimum: 0
+          exclusiveMinimum: true
+        budgetAllocation:
+          $ref: '#/components/schemas/BudgetAllocation'
+      required:
+        - budgetAmount
+    BudgetAllocation:
+      description: A descriptor common object defining the budget number and/or percentage in terms of
+        budget type
+      properties:
+        budgetType:
+          type: string
+          enum:
+            - DMA
+            - MediaOutlet
+            - MediaType
+        budgetName:
+          description: |-
+            This will be a specified DMA from the selected list when budget type is equal to DMA or a string containing a channel or specific type of media, The value of budget name is a conditional on budgetType.
+            - If budgetType = DMA, use the canonical list of DMA names
+            - If budgetType = Mediaoutlet, use media outlet name (call sign)
+            - If budgetType= MediaType, use values from MediaOutletType Enum
+          type: string
+        budgetAmount:
+          description: The overall budget amount allocated to the budget name
+          type: number
+          format: float
+          minimum: 0
+          exclusiveMinimum: true
+        budgetSharePercent:
+          description: The percentage share of the market name being allocated to the seller
+          type: number
+          format: float
+          minimum: 0
+          exclusiveMinimum: true
+      required:
+        - budgetType
+        - budgetName
     Guideline:
       description: A descriptor common object defining the general guidelines (rules) when requesting
         programming
       properties:
         guidelineType:
-          description: Type of guideline to support to support requests for genre or age-appropriateness
-            rules
+          description: >-
+            Used to provide guidance about the appropriate age group for the content or other types of
+            content descriptors that maybe relevent to content
           type: string
           enum:
             - Content
@@ -463,7 +514,7 @@ components:
         & Invoices
       properties:
         broadcastDate:
-          description: The broadcast date on which the unit aired/scheduled; this is not calendar date
+          description: The broadcast date on which the unit aired/scheduled; this is not a calendar date
           type: string
           format: date
         calendarDateTime:
@@ -619,8 +670,7 @@ components:
       description: A descriptor common object defining the linking of matching or related commercials
       properties:
         linkType:
-          description: Used to communicate unit linking information & sequence of how copy should be
-            applied
+          description: Used to communicate the type of link constraints between two or more units
           type: string
           enum:
             - Billboard
@@ -661,6 +711,13 @@ components:
         referenceSourceId:
           description: ID associated with the organization
           type: string
+        salesOffices:
+          description: Contact office. Could be multiple locations. (e.g. New York, Chicago, Detroit)
+          type: array
+          items:
+            type: string
+          uniqueItems: true
+          nullable: true
         contactFirstName:
           description: Contact First Name
           type: string
@@ -673,25 +730,32 @@ components:
         addressLine2:
           description: Contact Address Line 2
           type: string
+          nullable: true
         city:
           description: City
           type: string
+          nullable: true
         state:
           description: State
           type: string
+          nullable: true
         postalCode:
           description: Postal Code
           type: string
+          nullable: true
         country:
           description: Country
           type: string
+          nullable: true
         phoneNumber:
           description: Primary telephone number
           type: string
+          nullable: true
         email:
           description: Primary email
           type: string
           format: email
+          nullable: true
         effectiveDate:
           description: Effective date for contact
           type: string
@@ -725,34 +789,44 @@ components:
         addressLine2:
           description: Contact Address Line 2
           type: string
+          nullable: true
         city:
           description: City
           type: string
+          nullable: true
         state:
           description: State
           type: string
+          nullable: true
         postalCode:
           description: Postal Code
           type: string
+          nullable: true
         country:
           description: Country
           type: string
+          nullable: true
         phoneNumber:
           description: Primary telephone number
           type: string
+          nullable: true
         contactEmail:
           description: Primary email for payment remittance information
           type: string
           format: email
+          nullable: true
         portalInformation:
           description: Portal information including payment instructions
           type: string
+          nullable: true
         paymentLink:
           description: URL that directs buyer to invoice payment options
           type: string
+          nullable: true
         comments:
           description: Comments
           type: string
+          nullable: true
     SalesElementHeader:
       description: A descriptor common object defining the sales element header information
       properties:
@@ -767,7 +841,7 @@ components:
           type: string
         salesElementType:
           description: >-
-            The type of Sales Element either time-, audience- or program-based. Audience is used to denote
+            The type of Sales Element either time, audience or program-based. Audience is used to denote
             video/OTT which is identified by the MediaOutlet
           type: string
           enum:
@@ -855,6 +929,7 @@ components:
           type: number
           format: float
         audiencesPricingMetrics:
+          description: Pricing metrics for individual unit
           type: array
           items:
             $ref: '#/components/schemas/AudiencePricingMetric'
@@ -895,6 +970,7 @@ components:
         lineReference:
           description: User defined line reference to the source line transaction number
           type: string
+          nullable: true
         inventoryType:
           $ref: '#/components/schemas/InventoryType'
         linkType:
@@ -904,12 +980,22 @@ components:
         inventoryLength:
           description: length of inventory type, in seconds
           type: integer
+          nullable: true
         adu:
           description: True/False
           type: boolean
+          nullable: true
         bonus:
           description: True/False
           type: boolean
+          nullable: true
+        externalComment:
+          description: >-
+            A free form comments string that can be used in any of the many interfaces the Sales Element
+            objects appears. For example to support buyer or seller generic comments to guide or explain
+            changes that may have been applied to the line.
+          type: string
+          nullable: true
         salesElementTransactionDates:
           type: array
           items:
@@ -939,21 +1025,50 @@ components:
         unitCount:
           description: The number of "units" for the SalesElementTransaction
           type: integer
+          minimum: 0
         dailyUnitDistribution:
           $ref: '#/components/schemas/DailyUnitDistribution'
         rate:
           description: The rate for individual unit or impressions
           type: number
           format: float
+          minimum: 0
+          nullable: true
+        externalComment:
+          description: >-
+            A free form comments string that can be used in any of the many interfaces the Sales Element
+            objects appears. For example it can be used to support buyer or seller generic comments to
+            guide the line-level negotiations in the proposal. It could include comments about the audience,
+            rate, date, and units.
+          type: string
+          nullable: true
         audiencesPricingMetrics:
+          description: Pricing metrics for individual unit
           type: array
           items:
             $ref: '#/components/schemas/AudiencePricingMetric'
+          nullable: true
       required:
         - dateType
         - calendarType
         - dateWindow
         - unitCount
+    CancelConfirmRecallReject:
+      description: A common object used for Recall, Cancel, Confirm or Reject for any transaction
+      properties:
+        transactionHeader:
+          $ref: '#/components/schemas/TransactionHeader'
+        referenceIds:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReferenceId'
+          minItems: 1
+        comments:
+          description: Free form comments
+          type: string
+      required:
+        - transactionHeader
+        - referenceIds
     Error:
       description: Common object to define error return from all APIs
       properties:
@@ -969,9 +1084,190 @@ components:
       properties:
         transactionId:
           type: string
+          format: uuid
         timeStamp:
           type: string
           format: date-time
       required:
         - transactionId
         - timeStamp
+    AdId:
+      description: >-
+        adId.org defines Ad-ID as 11-alphanumeric code with an optional 12th character as flag for H=High
+        Def, D=3D ads. API will test the Syntax of the code but not validity. Testing for validity and
+        if code is active requires a specific call to the Ad-ID.org server. The API can return the Complete
+        External Access (CEA) metadata about the creative.
+      type: string
+      pattern: ^([A-Z,a-z,0-9]){11}[H,h,D,d]?$
+    Creative:
+      description: Object representing the creative
+      properties:
+        id:
+          description: UniqueID from the seller of the Creative [who assigns this in the process]
+          type: string
+        version:
+          description: Version of the creative
+          type: string
+        name:
+          description: Name of the creative
+          type: string
+        adId:
+          $ref: '#/components/schemas/AdId'
+        altAdId:
+          description: >-
+            Alternate Advertising industry standard unique identifier for the commercial. It could be
+            a legacy ISCI or house identifier created by the creative house or agency.
+          type: string
+        length:
+          description: Length (in seconds) of the Creative
+          type: integer
+      required:
+        - id
+        - name
+        - length
+    SupplyPath:
+      description: Object representing the Supply Path
+      properties:
+        id:
+          description: >-
+            Identifier from Seller to indicate the means that the ad was delivered (SSP, PMP, direct
+            publisher integration)
+          type: string
+        extId:
+          description: External identifier from platform to indicate the supply source
+          type: string
+        batchEntry:
+          description: String from source (json, xml, etc. to indicate a batch supply entry)
+          type: string
+      required:
+        - id
+    Device:
+      description: Object representing the user's device
+      properties:
+        ip:
+          $ref: '#/components/schemas/IpAddress'
+        ifa:
+          description: Identifier of the device that is displaying the ad
+          type: string
+        sspId:
+          description: Identifier of the sell-side platform that enabled the inventory
+          type: string
+        ua:
+          description: User Agent of the device that is displaying the ad
+          type: string
+        catSRC:
+          description: The type of source of the inventory (SSP, PMP)
+          type: string
+        catType:
+          description: The type of device, as defined by RTB 2.3.1 section 5.17
+          type: string
+          enum:
+            - Mobile/Tablet
+            - Personal Computer
+            - Connected TV
+            - Phone
+            - Tablet
+            - Connected Device
+            - Set Top Box
+      required:
+        - ip
+    Geo:
+      description: Object representing the user's location
+      properties:
+        src:
+          description: The type of source providing the geographic data (ex. IP2Location, Neustar (Quova),
+            MaxMind)
+          type: string
+        country:
+          description: 'Location: Country where ad is served, Country code using ISO-3166-1-alpha-3.'
+          type: string
+        region:
+          description: Region code using ISO-3166-2; 2-letter state code if USA
+          type: string
+        dma:
+          description: If US, DMA where ad is served
+          type: string
+        postal:
+          description: Postal code where ad is served
+          type: string
+        lat:
+          description: Latitude where ad is served
+          type: number
+          format: float
+          minimum: -90
+          maximum: 90
+        long:
+          description: Longitude where ad is served
+          type: number
+          format: float
+          minimum: -180
+          maximum: 180
+        timeZone:
+          description: Timezone of location where ad is served
+          type: string
+        accuracy:
+          description: Accuracy estimate of location (applies to lat/long data)
+          type: integer
+      required:
+        - country
+    Event:
+      description: Object representing the various events occurring for a given Impression
+      properties:
+        type:
+          description: ImpressionID + eventType will be unique. (Please see VAST spec for all event Types)
+          type: string
+        timestamp:
+          description: Timestamp for the event
+          type: string
+          format: date-time
+        sigVerified:
+          description: Indicates if the event has a verified signature from inventory source
+          type: boolean
+        ip:
+          $ref: '#/components/schemas/IpAddress'
+        ua:
+          description: User Agent of device where event occurred
+          type: string
+        refUrl:
+          description: URL of site where event occurred
+          type: string
+        errCode:
+          description: Error code of event in case of failure
+          type: string
+        rawUrl:
+          description: Pixel URL for event
+          type: string
+      required:
+        - type
+        - timestamp
+        - sigVerified
+    Crypto:
+      description: Object representing the fields needed to cryptographically sign an impression
+      properties:
+        signatureId:
+          description: Base64 encoded ID of the signature
+          type: string
+          format: byte
+          example: SVBWNE9SSVBWNkFkZHJlc3M=
+      required:
+        - signatureId
+    Identifier:
+      description: Generic identifier that can be used in any object independent of context (e.g. Creative
+        ID)
+      properties:
+        id:
+          description: Generic identifier that can be used in any object independent of context (e.g.
+            Creative ID)
+          type: string
+          format: uuid
+        version:
+          description: Generic identifier version that can be used in any object independent of context
+            (e.g. Creative ID)
+          type: string
+      required:
+        - id
+    IpAddress:
+      description: Type Definition to accept IPv4 or IPV6
+      type: string
+      example: 192.168.001.001
+      pattern: ^([0-9]{1,3}[\.]){3}([0-9]{1,3})|([0-9a-fA-F]{4}[\:]){7}[0-9a-fA-F]{4}$
