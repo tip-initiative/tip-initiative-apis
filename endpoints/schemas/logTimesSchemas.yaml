@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  version: 5.x.x
+  version: 5.1.0
   title: logTimes Schemas
   description: logTimes Schemas
   termsOfService: http://placeholderdomain.io/terms/
@@ -14,7 +14,7 @@ info:
 paths: {}
 components:
   schemas:
-    SellerLogTimes:
+    SellerLogtimes:
       description: Top level element for Logtimes Seller POST operations
       properties:
         transactionHeader:
@@ -23,6 +23,8 @@ components:
           description: A string that indicates additional information the seller can send to the buyer
           type: string
         units:
+          description: The units listed in the API units can be defined by the system that is creating
+            the API.
           type: array
           items:
             $ref: '#/components/schemas/Unit'

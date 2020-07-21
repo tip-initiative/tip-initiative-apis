@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  version: 5.0.0
+  version: 5.1.0
   title: Create a proposal to send to the buyer system
   description: Seller/Proposal Schemas
   termsOfService: http://placeholderdomain.io/terms/
@@ -14,7 +14,7 @@ info:
 paths: {}
 components:
   schemas:
-    SellerProposal:
+    SellerProposals:
       description: >-
         Allows the seller to respond back to the buyer with the detailed proposal for a given RFP or
         revised proposal; Multiple versions of a proposal can be under negotiation for the same campaign,

@@ -34,12 +34,12 @@ paths:
         - Buyer
       summary: Create or Change an Order in the Seller System
       description: >-
-        Allows the buyer to send the detailed information for a given order; 
-        execution is a summary of the sales elements details, thus allowing the seller 
-        to automatically create lines based on individual system's rules.  
-        Buyer must submit entire order for Order Change Request using the last confirmed booked 
-        order version response.  Seller will be responsible for deciphering change request 
-        from buyer.  Cancellation of order either prior to start or mid flight will be submitted 
+        Allows the buyer to send the detailed information for a given order;
+        execution is a summary of the sales elements details, thus allowing the seller
+        to automatically create lines based on individual system's rules.
+        Buyer must submit entire order for Order Change Request using the last confirmed booked
+        order version response.  Seller will be responsible for deciphering change request
+        from buyer.  Cancellation of order either prior to start or mid flight will be submitted
         in an order change request
       operationId: createOrder
       requestBody:
@@ -48,105 +48,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: 'schemas/ordersSchemas.yaml#/components/schemas/BuyerOrder'
+              $ref: 'schemas/ordersSchemas.yaml#/components/schemas/BuyerOrders'
       responses:
         '202': #Accepted
           $ref: 'schemas/commonResponses.yaml#/components/responses/Accepted'
-        '400': #Bad Request
-          $ref: 'schemas/commonResponses.yaml#/components/responses/BadRequest'
-        '401': #Unauthorized
-          $ref: 'schemas/commonResponses.yaml#/components/responses/Unauthorized'
-        '403': #Forbidden
-          $ref: 'schemas/commonResponses.yaml#/components/responses/Forbidden'
-        '404': #Not Found
-          $ref: 'schemas/commonResponses.yaml#/components/responses/NotFound'
-        '405': #Not Allowed
-          $ref: 'schemas/commonResponses.yaml#/components/responses/NotAllowed'
-        default: #unexpected
-          $ref: 'schemas/commonResponses.yaml#/components/responses/Unexpected'
-  /buyer/order/recall:
-    post:
-      tags:
-        - Buyer
-      summary: Allows the buyer to recall a new order or a change to an order
-      description: >-
-        Allows the buyer to recall a new order or order change request ; 
-        seller must respond back with acceptance or failure of the recall request.    
-        Note: Seller's system defined the rules for acceptance or failure of request 
-      operationId: cancelOrder
-      requestBody:
-        description: cancelOrder
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: 'schemas/ordersSchemas.yaml#/components/schemas/BuyerOrderRecall'
-      responses:
-        '200': #OK
-          $ref: 'schemas/commonResponses.yaml#/components/responses/Success'
-        '400': #Bad Request
-          $ref: 'schemas/commonResponses.yaml#/components/responses/BadRequest'
-        '401': #Unauthorized
-          $ref: 'schemas/commonResponses.yaml#/components/responses/Unauthorized'
-        '403': #Forbidden
-          $ref: 'schemas/commonResponses.yaml#/components/responses/Forbidden'
-        '404': #Not Found
-          $ref: 'schemas/commonResponses.yaml#/components/responses/NotFound'
-        '405': #Not Allowed
-          $ref: 'schemas/commonResponses.yaml#/components/responses/NotAllowed'
-        default: #unexpected
-          $ref: 'schemas/commonResponses.yaml#/components/responses/Unexpected'
-  /seller/order/confirm:
-    post:
-      tags:
-        - Seller
-      summary: Allows the seller to respond to an order or order change request with a confirmed booked confirmation
-      description: >-
-        The endpoint resides on the buyer side to allow the seller to send a confirmation<br/>
-        regarding the successful processing of previously submitted order.<br/>
-        originalTransactionId is required for Audit Trail.
-      operationId: orderConfirmation
-      requestBody:
-        description: Order Confirmation
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: 'schemas/ordersSchemas.yaml#/components/schemas/SellerOrderConfirm'
-      responses:
-        '200': #OK
-          $ref: 'schemas/commonResponses.yaml#/components/responses/Success'
-        '400': #Bad Request
-          $ref: 'schemas/commonResponses.yaml#/components/responses/BadRequest'
-        '401': #Unauthorized
-          $ref: 'schemas/commonResponses.yaml#/components/responses/Unauthorized'
-        '403': #Forbidden
-          $ref: 'schemas/commonResponses.yaml#/components/responses/Forbidden'
-        '404': #Not Found
-          $ref: 'schemas/commonResponses.yaml#/components/responses/NotFound'
-        default: #unexpected
-          $ref: 'schemas/commonResponses.yaml#/components/responses/Unexpected'
-  /seller/order/reject:
-    post:
-      tags:
-        - Seller
-      summary: Reject a previously submitted order or order change
-      description: >-
-        Allows the seller to reject a new order or order change request; seller must respond back with rejection comments
-        The endpoint resides on the buyer side to allow the seller to send a reject (all or None)<br/>
-        regarding the rejection  of previously submitted order.<br/>
-        originalTransactionId is required for Audit Trail.
-      operationId: orderReject
-      requestBody:
-        description: Order Rejection
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: 'schemas/ordersSchemas.yaml#/components/schemas/SellerOrderReject'
-      responses:
-        '200': #OK
-          $ref: 'schemas/commonResponses.yaml#/components/responses/Success'
         '400': #Bad Request
           $ref: 'schemas/commonResponses.yaml#/components/responses/BadRequest'
         '401': #Unauthorized

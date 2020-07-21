@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  version: 5.0.0
+  version: 5.1.0
   title: Common Schemas
   description: Common Schemas
   termsOfService: http://placeholderdomain.io/terms/
@@ -50,7 +50,6 @@ components:
             - Reject
             - Recall
             - Confirm
-          default: New
         sourceId:
           description: Indicates the source "trading partner" unique identification
           type: string
@@ -91,7 +90,7 @@ components:
           description: Market Name
           type: string
         mediaOutletReference:
-          description: External mediaoutlet reference to support data mapping differences between systems 
+          description: External mediaoutlet reference to support data mapping differences between systems
           type: string
       required:
         - mediaOutletId
@@ -107,7 +106,7 @@ components:
           description: Advertiser name
           type: string
         advertiserReference:
-          description: External advertiser reference information
+          description: External advertiser reference to support data mapping differences between systems
           type: string
       required:
         - advertiserId
@@ -122,7 +121,7 @@ components:
           description: Brand Name
           type: string
         brandReference:
-          description: External brand reference to support data mapping differences between systems 
+          description: External brand reference to support data mapping differences between systems
           type: string
       required:
         - brandId
@@ -141,7 +140,7 @@ components:
           description: Buying organization name
           type: string
         buyerReference:
-          description: External buyer reference information
+          description: External buyer reference to support data mapping differences between systems
           type: string
       required:
         - buyerId
@@ -210,6 +209,7 @@ components:
         audienceSegment:
           $ref: '#/components/schemas/AudienceSegment'
         universes:
+          description: A collection of all Universes covered by the media outlet
           type: array
           items:
             $ref: '#/components/schemas/Universe'
@@ -436,12 +436,11 @@ components:
           type: string
     Budget:
       description: >-
-         descriptor common object defining the budget or total allocation
-         for a RFP or proposal with optional allocations per market, media outlet or media type
+        descriptor common object defining the budget or total allocation for a RFP or proposal with optional
+        allocations per market, media outlet or media type
       properties:
         budgetAmount:
-          description: >-
-            Total budget amount being requested
+          description: Total budget amount being requested
           type: number
           format: float
           minimum: 0
@@ -451,15 +450,18 @@ components:
       required:
         - budgetAmount
     BudgetAllocation:
-      description: >-
-        A descriptor common object defining the budget number and/or percentage in terms of budget type
+      description: A descriptor common object defining the budget number and/or percentage in terms of
+        budget type
       properties:
         budgetType:
           type: string
-          enum: [DMA, MediaOutlet, MediaType]
+          enum:
+            - DMA
+            - MediaOutlet
+            - MediaType
         budgetName:
-          description: >-
-            The value of budget name is a conditional on budgetType.
+          description: |-
+            This will be a specified DMA from the selected list when budget type is equal to DMA or a string containing a channel or specific type of media, The value of budget name is a conditional on budgetType.
             - If budgetType = DMA, use the canonical list of DMA names
             - If budgetType = Mediaoutlet, use media outlet name (call sign)
             - If budgetType= MediaType, use values from MediaOutletType Enum
@@ -510,8 +512,7 @@ components:
         - guidelineType
         - excludeOrInclude
     DateTime:
-      description: >-
-        A descriptor common object combining broadcast date and broadcast time used in Logtimes
+      description: A descriptor common object combining broadcast date and broadcast time used in Logtimes
         & Invoices
       properties:
         broadcastDate:
@@ -713,6 +714,9 @@ components:
         referenceSourceId:
           description: ID associated with the organization
           type: string
+        contactLocation:
+          description: Contact Location
+          type: string
         contactFirstName:
           description: Contact First Name
           type: string
@@ -907,6 +911,7 @@ components:
           type: number
           format: float
         audiencesPricingMetrics:
+          description: Pricing metrics for individual unit
           type: array
           items:
             $ref: '#/components/schemas/AudiencePricingMetric'
@@ -962,6 +967,12 @@ components:
         bonus:
           description: True/False
           type: boolean
+        externalComment:
+          description: >-
+            A free form comments string that can be used in any of the many interfaces the Sales Element
+            objects appears. For example to support buyer or seller generic comments to guide or explain
+            changes that can be applied to the line.
+          type: string
         salesElementTransactionDates:
           type: array
           items:
@@ -997,7 +1008,15 @@ components:
           description: The rate for individual unit or impressions
           type: number
           format: float
+        externalComment:
+          description: >-
+            A free form comments string that can be used in any of the many interfaces the Sales Element
+            objects appears. For example it can be used to support buyer or seller generic comments to
+            guide the line-level negotiations in the proposal. It could include comments about the audience,
+            rate, date, and units.
+          type: string
         audiencesPricingMetrics:
+          description: Pricing metrics for individual unit
           type: array
           items:
             $ref: '#/components/schemas/AudiencePricingMetric'
@@ -1006,6 +1025,22 @@ components:
         - calendarType
         - dateWindow
         - unitCount
+    CancelConfirmRecallReject:
+      description: A common object used for Recall, Cancel, Confirm or Reject for any transaction
+      properties:
+        transactionHeader:
+          $ref: '#/components/schemas/TransactionHeader'
+        referenceIds:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReferenceId'
+          minItems: 1
+        comments:
+          description: Free form comments
+          type: string
+      required:
+        - transactionHeader
+        - referenceIds
     Error:
       description: Common object to define error return from all APIs
       properties:
@@ -1028,62 +1063,47 @@ components:
       required:
         - transactionId
         - timeStamp
-    CancelConfirmRecallReject:
-      properties:
-        transactionHeader:
-          $ref: '#/components/schemas/TransactionHeader'
-        referenceIds:
-          type: array
-          items:
-            $ref: '#/components/schemas/ReferenceId'
-          minItems: 1
-        comments:
-          type: string
-      required:
-        - transactionHeader
-        - referenceIds      
-    Ad-ID:
-      description: >
-        The Advertising Industry Standard Unique identifier for the commercial
-        as adId.org defines Ad-ID as 11-alphanumeric code with an optional 12th character as flag
-        for H=High Def, D=3D ads. API will test the Syntax of the code but not validity. 
-        Testing for validity and if code is active requires a specific call to the Ad-ID.org server.
+    AdId:
+      description: >-
+        adId.org defines Ad-ID as 11-alphanumeric code with an optional 12th character as flag for H=High
+        Def, D=3D ads. API will test the Syntax of the code but not validity. Testing for validity and
+        if code is active requires a specific call to the Ad-ID.org server. The API can return the Complete
+        External Access (CEA) metadata about the creative.
       type: string
       pattern: ^([A-Z,a-z,0-9]){11}[H,h,D,d]?$
-    Identifier:
-      description: Generic descriptor for uniquely identifying an object and its related versions
-      type: object
+    Creative:
+      description: Object representing the creative
       properties:
         id:
+          description: UniqueID from the seller of the Creative
           type: string
-          format: uuid
         version:
+          description: Version of the creative
           type: string
+        name:
+          description: Name of the creative
+          type: string
+        adId:
+          $ref: '#/components/schemas/AdId'
+        altAdId:
+          description: >-
+            Alternate Advertising industry standard unique identifier for the commercial. It could be
+            a legacy ISCI or house identifier created by the creative house or agency.
+          type: string
+        length:
+          description: Length (in seconds) of the Creative
+          type: integer
       required:
         - id
-    Creative:
-      description: Generic descriptor object representing the creative associated to advertiser and ad spot
-      allOf:
-        - $ref: '#/components/schemas/Identifier'
-        - type: object
-          properties:
-            name:
-              description: Name associated with the creative
-              type: string
-            adId:
-              description: >
-                Advertising industry standard unique identifier for the commercial. 
-                Can be an official AD-ID or any other ID.
-              type: string
-            length:
-             description: Length (in seconds) of the Creative
-             type: integer
+        - name
+        - length
     SupplyPath:
-      description: Object representing the Ad spot supply Path
-      type: object
+      description: Object representing the Supply Path
       properties:
         id:
-          description: Identifier from Seller to indicate the means that the ad was dilivered (SSP, PMP, direct publisher integration)
+          description: >-
+            Identifier from Seller to indicate the means that the ad was dilivered (SSP, PMP, direct
+            publisher integration)
           type: string
         extId:
           description: External identifer from platform to indicate the supply source
@@ -1097,7 +1117,7 @@ components:
       description: Object representing the user's device
       properties:
         ip:
-          $ref:  "#/components/schemas/IpAddress"
+          $ref: '#/components/schemas/IpAddress'
         ifa:
           description: Identifier of the device that is displaying the ad
           type: string
@@ -1121,22 +1141,23 @@ components:
             - Tablet
             - Connected Device
             - Set Top Box
+      required:
+        - ip
     Geo:
       description: Object representing the user's location
       properties:
         src:
-          description: >
-            The type of source providing the geographic data 
-            (ex. IP2Location, Neustar (Quova), MaxMind)
+          description: The type of source providing the geographic data (ex. IP2Location, Neustar (Quova),
+            MaxMind)
           type: string
         country:
-          description: Country where ad is served, Country code using ISO-3166-1-alpha-3.
+          description: 'Location: Country where ad is served, Country code using ISO-3166-1-alpha-3.'
           type: string
         region:
           description: Region code using ISO-3166-2; 2-letter state code if USA
           type: string
         dma:
-          description: if US, DMA where ad is served
+          description: If US, DMA where ad is served
           type: string
         postal:
           description: Postal code where ad is served
@@ -1163,9 +1184,8 @@ components:
         - country
     Event:
       description: Object representing the various events occuring for a given Impression
-      type: object
       properties:
-        type: 
+        type:
           description: ImpressionID + eventType will be unique. (Please see VAST spec for all event Types)
           type: string
         timestamp:
@@ -1192,13 +1212,9 @@ components:
       required:
         - type
         - timestamp
-    IpAddress:
-      description: Type Definition to accept IPv4 or IPV6
-      type: string
-      pattern: ^([0-9]{1,3}[\.]){3}([0-9]{1,3})|([0-9a-fA-F]{4}[\:]){7}[0-9a-fA-F]{4}$
+        - sigVerified
     Crypto:
-      description: >
-        Object representing the fields needed to cryptographically sign an impression
+      description: Object representing the fields needed to cryptographically sign an impression
       properties:
         signatureId:
           description: Base64 encoded ID of the signature
@@ -1206,3 +1222,22 @@ components:
           format: byte
       required:
         - signatureId
+    Identifier:
+      description: Generic identifier that can be used in any object independent of context (e.g. Creative
+        ID)
+      properties:
+        id:
+          description: Generic identifier that can be used in any object independent of context (e.g.
+            Creative ID)
+          type: string
+          format: uuid
+        version:
+          description: Generic identifier version that can be used in any object independent of context
+            (e.g. Creative ID)
+          type: string
+      required:
+        - id
+    IpAddress:
+      description: Type Definition to accept IPv4 or IPV6
+      type: string
+      pattern: ^([0-9]{1,3}[\.]){3}([0-9]{1,3})|([0-9a-fA-F]{4}[\:]){7}[0-9a-fA-F]{4}$

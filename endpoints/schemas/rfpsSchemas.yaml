@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  version: 5.0.0
+  version: 5.1.0
   title: RFP Schema
   description: RFP Schema
   termsOfService: http://placeholderdomain.io/terms/
@@ -14,7 +14,7 @@ info:
 paths: {}
 components:
   schemas:
-    BuyerRfp:
+    BuyerRFPS:
       description: >-
         Allows the buyer to submit a Request for Proposal (RFP) to the seller with media budget, goals
         and overall terms
@@ -80,6 +80,7 @@ components:
           items:
             type: integer
         guidelines:
+          description: Guidelines for proposal
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/Guideline'
@@ -158,3 +159,4 @@ components:
         - distribution
         - distributionValue
         - distributionOrder
+        - distributionOrderParent
