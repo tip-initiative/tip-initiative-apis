@@ -17,9 +17,9 @@
     },
     "referenceIds": [
       {
-        "referenceSourceName": "string",
-        "referenceSourceId": "string",
-        "referenceSourceLookup": "string",
+        "referenceSourceName": "Canvas Worldwide. LLC",
+        "referenceSourceId": "456",
+        "referenceSourceLookup": "",
         "referenceType": "Proposal",
         "referenceId": "123456",
         "referenceVersionId": "",

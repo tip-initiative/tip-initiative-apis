@@ -15,3 +15,11 @@ This folder will hold examples for the various use cases
 |:---|:---|:---:|:---:|:---|
 |buyer/InventoryAvails|BuyerInventoryAvailsNew.json|New|5.0.0|In Progress|
 |buyer/Order|BuyerOrderNew.json|New|5.0.0|In Progress|
+
+## Generic Examples
+| <br>**Endpoint** | <br>**JSON File Name** | **Transaction<br>Type** | <br>**Version**|<br>**Status** |
+|:---|:---|:---:|:---:|:---|
+|All applicable|GenericCancel.json|Cancel|5.1.0|In Progress|
+|All applicable|GenericConfirm.json|Cancel|5.1.0|In Progress|
+|All applicable|GenericRecall.json|Cancel|5.1.0|In Progress|
+|All applicable|GenericReject.json|Cancel|5.1.0|In Progress|
