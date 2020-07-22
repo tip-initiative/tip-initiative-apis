@@ -512,7 +512,8 @@ components:
         - guidelineType
         - excludeOrInclude
     DateTime:
-      description: A descriptor common object combining broadcast date and broadcast time used in Logtimes
+      description: >-
+        A descriptor common object combining broadcast date and broadcast time used in Logtimes
         & Invoices
       properties:
         broadcastDate:

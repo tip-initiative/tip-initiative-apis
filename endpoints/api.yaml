@@ -135,6 +135,7 @@ paths:
     $ref: 'inventoryAvails.yaml#/paths/~1buyer~1inventoryAvails'
   /buyer/order:
     $ref: 'orders.yaml#/paths/~1buyer~1order'
+
   /buyer/rfps:
     $ref: 'rfps.yaml#/paths/~1buyer~1rfps'
   /seller/logtimes:
