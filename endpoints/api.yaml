@@ -135,8 +135,7 @@ paths:
     $ref: 'inventoryAvails.yaml#/paths/~1buyer~1inventoryAvails'
   /buyer/order:
     $ref: 'orders.yaml#/paths/~1buyer~1order'
-  /buyer/order/recall:
-    $ref: 'orders.yaml#/paths/~1buyer~1order~1recall'
+
   /buyer/rfps:
     $ref: 'rfps.yaml#/paths/~1buyer~1rfps'
   /seller/logtimes:
@@ -145,10 +144,6 @@ paths:
     $ref: 'invoice.yaml#/paths/~1seller~1invoices'
   /seller/inventoryAvails:
     $ref: 'inventoryAvails.yaml#/paths/~1seller~1inventoryAvails'
-  /seller/order/confirm:
-    $ref: 'orders.yaml#/paths/~1seller~1order~1confirm'
-  /seller/order/reject:
-    $ref: 'orders.yaml#/paths/~1seller~1order~1reject'
   /seller/proposals:
     $ref: 'proposal.yaml#/paths/~1seller~1proposals'
   /buyer/proposals:

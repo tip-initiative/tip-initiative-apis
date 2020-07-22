@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  version: 5.x.x
+  version: 5.1.0
   title: Invoice Schema
   description: Invoice Schema
   termsOfService: http://placeholderdomain.io/terms/
@@ -14,7 +14,7 @@ info:
 paths: {}
 components:
   schemas:
-    SellerInvoice:
+    SellerInvoices:
       description: Top level element for Invoice Seller POST operations
       properties:
         transactionHeader:
@@ -179,23 +179,23 @@ components:
         linkType:
           $ref: 'commonSchemas.yaml#/components/schemas/LinkType'
         preempt:
-          description: Y/N indicator
+          description: True/False
           type: boolean
         makegood:
-          description: Y/N indicator
+          description: True/False
           type: boolean
         adu:
-          description: Y/N indicator
+          description: True/False
           type: boolean
         bonus:
-          description: Y/N indicator
+          description: True/False
           type: boolean
         rate:
           description: Contracted rate associated to the unit
           type: number
           format: float
         credit:
-          description: Y/N indicator
+          description: True/False
           type: boolean
         adjustmentReason:
           description: >-

@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  version: 5.x.x
+  version: 5.1.0
   title: Buyer requesting New Order or Order Change Request to Seller
   description: Buyer/Order
   termsOfService: http://placeholderdomain.io/terms/
@@ -14,14 +14,8 @@ info:
 paths: {}
 components:
   schemas:
-    BuyerOrder:
-      description: >-
-        Allows the buyer to send the detailed order information for a given order; execution is a summary
-        of the sales elements details, thus allowing the seller to automatically create lines based on
-        individual system's rules. Buyer must submit entire order for Order Change Request using the
-        last confirmed booked order version response. Seller will be responsible for deciphering change
-        request from buyer. Cancellation of order either prior to start or mid flight will be submitted
-        in an order change request
+    BuyerOrders:
+      description: Create or Change an Order in the Seller System
       properties:
         transactionHeader:
           $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
@@ -45,6 +39,10 @@ components:
           $ref: 'commonSchemas.yaml#/components/schemas/Brand'
         product:
           $ref: 'commonSchemas.yaml#/components/schemas/Product'
+        budget:
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/Budget'
         cpeCode:
           $ref: 'commonSchemas.yaml#/components/schemas/CpeCode'
         budget:
@@ -132,71 +130,3 @@ components:
         - equivalized
         - dateWindow
         - mediaOutlets
-    SellerOrderConfirm:
-      description: >-
-        Allows the seller to respond to an order or order change request with a confirmed booked confirmation
-      properties:
-        transactionHeader:
-          $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
-        referenceIds:
-          type: array
-          items:
-            $ref: 'commonSchemas.yaml#/components/schemas/ReferenceId'
-        confirmedBookedDate:
-          description: Date that the Order was Confirmed Booked
-          type: string
-          format: date
-        comments:
-          description: Free form comments with "Not Accepted" Reason
-          type: string
-      required:
-        - transactionHeader
-        - referenceIds
-        - confirmedBookedDate
-    BuyerOrderRecall:
-      description: >-
-        Allows the buyer to recall a new order or order change request ; seller must respond back with
-        acceptance or failure of the recall request. Note: Seller's system defined the rules for acceptance
-        or failure of request
-      properties:
-        transactionHeader:
-          $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
-        referenceIds:
-          type: array
-          items:
-            $ref: 'commonSchemas.yaml#/components/schemas/ReferenceId'
-        recallDate:
-          description: >-
-            Buyer requesting to recall a previously submitted new or changed order. Seller responding
-            back to Buyer acceptance or failure of request.
-          type: string
-          format: date
-        comments:
-          description: Free form comments
-          type: string
-      required:
-        - transactionHeader
-        - referenceIds
-        - recallDate
-    SellerOrderReject:
-      description: >-
-        Allows the seller to reject a new order or order change request; seller must respond back with
-        rejection comments
-      properties:
-        transactionHeader:
-          $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
-        referenceIds:
-          type: array
-          items:
-            $ref: 'commonSchemas.yaml#/components/schemas/ReferenceId'
-        rejectionDate:
-          description: Date the order was rejected
-          type: string
-          format: date
-        comments:
-          description: Free form comments
-          type: string
-      required:
-        - transactionHeader
-        - referenceIds
-        - rejectionDate

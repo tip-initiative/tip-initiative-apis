@@ -43,7 +43,7 @@ paths:
           application/json:
             schema:
               oneOf:
-                - $ref: 'schemas/invoiceSchemas.yaml#/components/schemas/SellerInvoice'
+                - $ref: 'schemas/invoiceSchemas.yaml#/components/schemas/SellerInvoices'
                 - $ref: 'schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
               # discriminator:
               #   propertyName: transactionHeader.transactionId.transactionType

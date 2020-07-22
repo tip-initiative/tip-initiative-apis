@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  version: 5.0.0
+  version: 5.1.0
   title: Commercial Instructions Schema
   description: Commercial Instructions Schema
   termsOfService: http://placeholderdomain.io/terms/
@@ -20,12 +20,16 @@ components:
         transactionHeader:
           $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
         referenceIds:
+          description: >-
+            Information pertaining to all the ids and their sources that are associated to the order;
+            this may include order ids, proposal ids, etc. Order ID is required
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/ReferenceId'
         buyer:
           $ref: 'commonSchemas.yaml#/components/schemas/Buyer'
         contact:
+          description: Array of Contacts Information
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/Contact'
@@ -75,6 +79,7 @@ components:
             - Revised
             - Cancelled
         inventoryTypes:
+          description: Valid Inventory Types for the instructions
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/InventoryType'
