@@ -6,7 +6,7 @@ components:
       scheme: bearer
       bearerFormat: JWT
   schemas:
-    $ref: 'schemas/_index.yaml'
+    $ref: 'schemas/_index.yamlx'
 security:
   - bearerAuth: []
 info:
