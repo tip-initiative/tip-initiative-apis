@@ -144,6 +144,7 @@ components:
         rate:
           type: number
           format: float
+          minimum: 0
         inventoryType:
           $ref: 'commonSchemas.yaml#/components/schemas/InventoryType'
         audiencePricingMetric:
@@ -153,6 +154,7 @@ components:
             Total number of raw (equivalized) units (based on line's unit type) within the line's start
             and end date or if audience buy the total number of Raw Impressions
           type: integer
+          format: int64
         unitDetails:
           type: array
           items:

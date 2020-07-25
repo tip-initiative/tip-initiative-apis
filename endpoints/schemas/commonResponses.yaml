@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  version: 5.x.x
+  version: 5.1.0
   title: Common Error Responses
   description: Commercial Instructions Schema
   termsOfService: http://placeholderdomain.io/terms/

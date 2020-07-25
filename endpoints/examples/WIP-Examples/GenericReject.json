@@ -3,7 +3,7 @@
       "tipVersion": "5.0.0",
       "transactionId": {
         "transactionId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-        "transactionType": "Cancel",
+        "transactionType": "Reject",
         "sourceId": "456",
         "sourceName": "Canvas Worldwide. LLC"
       },

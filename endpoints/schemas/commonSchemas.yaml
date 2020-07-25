@@ -715,9 +715,13 @@ components:
         referenceSourceId:
           description: ID associated with the organization
           type: string
-        contactLocation:
-          description: Contact Location
-          type: string
+        salesOffice:
+          description: Contact office. Could be multiple locations. (e.g. New York, Chicago, Detroit)
+          type: array
+          items:
+            type: string
+          uniqueItems: true
+          nullable: true
         contactFirstName:
           description: Contact First Name
           type: string
@@ -730,25 +734,32 @@ components:
         addressLine2:
           description: Contact Address Line 2
           type: string
+          nullable: true
         city:
           description: City
           type: string
+          nullable: true
         state:
           description: State
           type: string
+          nullable: true
         postalCode:
           description: Postal Code
           type: string
+          nullable: true
         country:
           description: Country
           type: string
+          nullable: true
         phoneNumber:
           description: Primary telephone number
           type: string
+          nullable: true
         email:
           description: Primary email
           type: string
           format: email
+          nullable: true
         effectiveDate:
           description: Effective date for contact
           type: string
@@ -1221,6 +1232,7 @@ components:
           description: Base64 encoded ID of the signature
           type: string
           format: byte
+          example: SVBWNE9SSVBWNkFkZHJlc3M=
       required:
         - signatureId
     Identifier:
@@ -1242,3 +1254,4 @@ components:
       description: Type Definition to accept IPv4 or IPV6
       type: string
       pattern: ^([0-9]{1,3}[\.]){3}([0-9]{1,3})|([0-9a-fA-F]{4}[\:]){7}[0-9a-fA-F]{4}$
+      example: 192.168.001.001

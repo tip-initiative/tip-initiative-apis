@@ -10,7 +10,7 @@ security:
   - bearerAuth: []
 
 info:
-  version: 5.x.x
+  version: 5.1.0
   title: Orders
   description: >-
     Allows the seller to respond back to the buyer with the detailed proposal for a given RFP
@@ -26,9 +26,8 @@ info:
     url: https://opensource.org/licenses/MIT
 servers:
   - url: http://placeholderdomain.io
-
 paths:
-  /buyer/order:
+  /buyer/orders:
     post:
       tags:
         - Buyer
@@ -41,14 +40,29 @@ paths:
         order version response.  Seller will be responsible for deciphering change request
         from buyer.  Cancellation of order either prior to start or mid flight will be submitted
         in an order change request
-      operationId: createOrder
+      operationId: BuyerOrder
       requestBody:
-        description: createOrder
+        description: Buyer Order
         required: true
         content:
           application/json:
             schema:
-              $ref: 'schemas/ordersSchemas.yaml#/components/schemas/BuyerOrders'
+              oneOf:
+                - $ref: 'schemas/ordersSchemas.yaml#/components/schemas/BuyerOrders'
+                - $ref: 'schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
+            examples:
+              New:
+                value:
+                  $ref: 'examples/WIP-Examples/BuyerOrderNew.json'
+              Change:
+                value:
+                  $ref: 'examples/WIP-Examples/BuyerOrderChange.json'
+              Cancel:
+                value:
+                  $ref: 'examples/WIP-Examples/GenericCancel.json'
+              Recall:
+                value:
+                  $ref: 'examples/WIP-Examples/GenericRecall.json'
       responses:
         '202': #Accepted
           $ref: 'schemas/commonResponses.yaml#/components/responses/Accepted'
@@ -64,3 +78,40 @@ paths:
           $ref: 'schemas/commonResponses.yaml#/components/responses/NotAllowed'
         default: #unexpected
           $ref: 'schemas/commonResponses.yaml#/components/responses/Unexpected'
+  /seller/orders:
+    post:
+      tags:
+        - Seller
+      summary: Seller Reject or Confirm an order
+      description: >-
+        Allows the seller to respond with a reject or confirm of an order
+      operationId: SellerOrder
+      requestBody:
+        description: Seller order confirm or reject
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: 'schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
+            examples:
+              Reject:
+                value:
+                  $ref: 'examples/WIP-Examples/GenericReject.json'
+              Confirm:
+                value:
+                  $ref: 'examples/WIP-Examples/GenericConfirm.json'
+      responses:
+        '202': #Accepted
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Accepted'
+        '400': #Bad Request
+          $ref: 'schemas/commonResponses.yaml#/components/responses/BadRequest'
+        '401': #Unauthorized
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Unauthorized'
+        '403': #Forbidden
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Forbidden'
+        '404': #Not Found
+          $ref: 'schemas/commonResponses.yaml#/components/responses/NotFound'
+        '405': #Not Allowed
+          $ref: 'schemas/commonResponses.yaml#/components/responses/NotAllowed'
+        default: #unexpected
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Unexpected'          

@@ -11,7 +11,7 @@ security:
   - bearerAuth: []
 
 info:
-  version: 5.x.x
+  version: 5.1.0
   title: Invoice
   description: Allows the seller to send to the buyer both new and revised invoice information
   termsOfService: http://placeholderdomain.io/terms/
@@ -45,13 +45,11 @@ paths:
               oneOf:
                 - $ref: 'schemas/invoiceSchemas.yaml#/components/schemas/SellerInvoices'
                 - $ref: 'schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
-              # discriminator:
-              #   propertyName: transactionHeader.transactionId.transactionType
-              #   mapping:
-              #     New: './schemas/invoiceSchemas.yaml#/components/schemas/SellerInvoice'
-              #     Cancel: './schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
             examples:
               New:
+                value:
+                  $ref: 'examples/WIP-Examples/SellerInvoiceNew.json'
+              Change:
                 value:
                   $ref: 'examples/WIP-Examples/SellerInvoiceNew.json'
               Cancel:

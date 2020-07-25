@@ -1,7 +1,7 @@
 openapi: "3.0.0"
 
 info:
-  version: 5.0.0
+  version: 5.1.0
   title: RFP
   description: Allows the buyer to submit a Request for Proposal (RFP) to the seller with overall media budget, goal and makegood terms and optionally include specific detailed inventory requests
   termsOfService: http://placeholderdomain.io/terms/
@@ -49,11 +49,6 @@ paths:
               oneOf:
                 - $ref: 'schemas/rfpsSchemas.yaml#/components/schemas/BuyerRFPS'
                 - $ref: 'schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
-              # discriminator:
-              #   propertyName: transactionHeader.transactionId.transactionType
-              #   mapping:
-              #     New: 'schemas/rfpsSchemas.yaml#/components/schemas/BuyerRfp'
-              #     Cancel: 'commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
             examples:
               New:
                 value:
