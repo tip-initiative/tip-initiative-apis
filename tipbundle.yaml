@@ -136,74 +136,7 @@ paths:
         content:
           application/json:
             schema:
-              description: Allows the Buyer as campaign planning to initiate an inventory Request to the Seller
-              properties:
-                transactionHeader:
-                  $ref: '#/components/schemas/TransactionHeader'
-                dateSubmitted:
-                  description: Buyer Submit Date for Inventory Request
-                  type: string
-                  format: date
-                dueDate:
-                  description: Due Date for seller to respond with Inventory Information
-                  type: string
-                  format: date
-                mediaOutlets:
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/MediaOutlet'
-                  minItems: 1
-                buyer:
-                  $ref: '#/components/schemas/Buyer'
-                advertiser:
-                  $ref: '#/components/schemas/Advertiser'
-                contacts:
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/Contact'
-                timePeriods:
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/TimePeriod'
-                  minItems: 1
-                guidelines:
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/Guideline'
-                political:
-                  description: Indicates if the request is for political pricing
-                  type: boolean
-                inventoryTypes:
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/InventoryType'
-                maxRate:
-                  description: Max rate spend across all inventory types
-                  type: number
-                  format: float
-                  minimum: 0
-                  exclusiveMinimum: true
-                currency:
-                  $ref: '#/components/schemas/Currency'
-                externalComment:
-                  description: Free form text to accommodate transaction comments and/or activities outside the TIP flow
-                  type: string
-                audienceSegments:
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/AudienceSegment'
-                  minItems: 1
-                pricingMetricOptions:
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/PricingMetricOption'
-              required:
-                - transactionHeader
-                - dateSubmitted
-                - mediaOutlets
-                - timePeriods
-                - political
-                - audienceSegments
+              $ref: '#/components/schemas/BuyerInventoryAvails'
             example:
               value:
                 transactionHeader:
@@ -288,7 +221,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1seller~1inventoryAvails/post/requestBody/content/application~1json/schema'
+                $ref: '#/components/schemas/SellerInventoryAvails'
         '202':
           $ref: '#/components/responses/Accepted'
         '400':
@@ -317,52 +250,7 @@ paths:
         content:
           application/json:
             schema:
-              description: 'Allows the Seller to post to the buyer their catalog of selling products, pricing and audience information'
-              properties:
-                transactionHeader:
-                  $ref: '#/components/schemas/TransactionHeader'
-                dateSubmitted:
-                  description: Submission date for the inventory
-                  type: string
-                  format: date
-                buyer:
-                  $ref: '#/components/schemas/Buyer'
-                advertiser:
-                  $ref: '#/components/schemas/Advertiser'
-                contacts:
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/Contact'
-                rateCard:
-                  $ref: '#/components/schemas/RateCard'
-                currency:
-                  $ref: '#/components/schemas/Currency'
-                political:
-                  description: Indicates that pricing being supplied are for political
-                  type: boolean
-                mediaOutlets:
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/MediaOutlet'
-                  minItems: 1
-                audienceSegments:
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/AudienceSegmentDetail'
-                availWindow:
-                  $ref: '#/components/schemas/DateWindow'
-                salesElements:
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/SalesElement'
-                  minItems: 1
-              required:
-                - transactionHeader
-                - dateSubmitted
-                - political
-                - mediaOutlets
-                - availWindow
-                - salesElements
+              $ref: '#/components/schemas/SellerInventoryAvails'
       responses:
         '200':
           $ref: '#/components/responses/Success'
@@ -392,138 +280,7 @@ paths:
             schema:
               description: Allows the buyer to submit a new or cancel a RFP in the seller system
               oneOf:
-                - description: 'Allows the buyer to submit a Request for Proposal (RFP) to the seller with media budget, goals and overall terms'
-                  properties:
-                    transactionHeader:
-                      $ref: '#/components/schemas/TransactionHeader'
-                    referenceIds:
-                      type: array
-                      items:
-                        $ref: '#/components/schemas/ReferenceId'
-                    dateSubmitted:
-                      description: Buyer Submit Date for the RFP
-                      type: string
-                      format: date
-                    dueDate:
-                      description: Due Date for the response
-                      type: string
-                      format: date
-                    buyer:
-                      $ref: '#/components/schemas/Buyer'
-                    commission:
-                      description: Buyer Commission percentage amount
-                      type: number
-                      format: float
-                    advertiser:
-                      $ref: '#/components/schemas/Advertiser'
-                    brand:
-                      $ref: '#/components/schemas/Brand'
-                    product:
-                      $ref: '#/components/schemas/Product'
-                    contacts:
-                      type: array
-                      items:
-                        $ref: '#/components/schemas/Contact'
-                    currency:
-                      $ref: '#/components/schemas/Currency'
-                    budget:
-                      description: Overall total budget for the RFP
-                      type: array
-                      items:
-                        $ref: '#/components/schemas/Budget'
-                    timePeriodPreferences:
-                      type: array
-                      items:
-                        $ref: '#/components/schemas/TimePeriod'
-                      minItems: 1
-                    marketPreferences:
-                      description: |-
-                        List of market preferences (AND)
-                        "<Market Name>"
-                      type: array
-                      items:
-                        type: string
-                    audiencePreferences:
-                      type: array
-                      items:
-                        $ref: '#/components/schemas/AudienceSegment'
-                    unitLengthPreferences:
-                      description: |-
-                        List of unit length preferences (AND)
-                        "<Unit Length>"
-                      type: array
-                      items:
-                        type: integer
-                    guidelines:
-                      description: Guidelines for proposal
-                      type: array
-                      items:
-                        $ref: '#/components/schemas/Guideline'
-                    objective:
-                      description: KPI of the overall campaign
-                      type: string
-                    comments:
-                      description: Additional Information
-                      type: string
-                    campaignGoals:
-                      type: array
-                      items:
-                        properties:
-                          distributionType:
-                            description: Goal Type Element used for distribution
-                            type: string
-                            enum:
-                              - MediaType
-                              - Daypart
-                              - Market
-                              - Quarter
-                              - Month
-                              - Week
-                              - AddedValue
-                          distributionMethod:
-                            description: Distribution Method Elements - Audience distributions pertain to the primary demo audience
-                            type: string
-                            enum:
-                              - Impressions
-                              - GRPs
-                              - Units
-                              - Budget
-                          distributionName:
-                            description: 'This is the name for the distribution type; for example it could be Daypart Name, or Quarter Name, etc.'
-                            type: string
-                          distribution:
-                            description: This defines how the distributions for the method are being defined
-                            type: string
-                            enum:
-                              - Percentage
-                              - Exact Value
-                          distributionValue:
-                            description: This is the value for the distribution goal; it could be exact numeric value or a a percentage amount
-                            type: number
-                            format: float
-                          distributionOrder:
-                            description: Only populate when multiple distributions types are defined; defines the nesting order for the distributions
-                            type: integer
-                            minimum: 0
-                          distributionOrderParent:
-                            description: Only populate when multiple distributions types are defined; defines the parent when there are multiple nesting orders
-                            type: integer
-                            nullable: true
-                        required:
-                          - distributionType
-                          - distributionMethod
-                          - distributionName
-                          - distribution
-                          - distributionValue
-                          - distributionOrder
-                          - distributionOrderParent
-                  required:
-                    - transactionHeader
-                    - referenceIds
-                    - dateSubmitted
-                    - advertiser
-                    - contacts
-                    - timePeriodPreferences
+                - $ref: '#/components/schemas/BuyerRFPS'
                 - $ref: '#/components/schemas/CancelConfirmRecallReject'
             examples:
               New:
@@ -685,7 +442,7 @@ paths:
           application/json:
             schema:
               oneOf:
-                - $ref: '#/paths/~1buyer~1proposals/post/requestBody/content/application~1json/schema/oneOf/0'
+                - $ref: '#/components/schemas/SellerProposals'
                 - $ref: '#/components/schemas/CancelConfirmRecallReject'
             examples:
               New:
@@ -907,110 +664,7 @@ paths:
             schema:
               description: Buyer can only respond with proposed changes or recall a previously submitted change
               oneOf:
-                - description: 'Allows the seller to respond back to the buyer with the detailed proposal for a given RFP or revised proposal; Multiple versions of a proposal can be under negotiation for the same campaign, but only one version may be executed; buyer must submit a "Proposal Change Request" for the last proposal version submission; seller must respond back with a Proposal Response that contains a new version number when submitting new versions. New Proposals may be submitted without a RFP Response'
-                  properties:
-                    transactionHeader:
-                      $ref: '#/components/schemas/TransactionHeader'
-                    referenceIds:
-                      type: array
-                      items:
-                        $ref: '#/components/schemas/ReferenceId'
-                      minItems: 1
-                    expirationDate:
-                      description: Date in which the proposal’s pricing and audience estimates expire
-                      type: string
-                      format: date
-                    buyer:
-                      $ref: '#/components/schemas/Buyer'
-                    commission:
-                      description: Buyer commission percentage
-                      type: number
-                      format: float
-                    advertiser:
-                      $ref: '#/components/schemas/Advertiser'
-                    brand:
-                      $ref: '#/components/schemas/Brand'
-                    product:
-                      $ref: '#/components/schemas/Product'
-                    budget:
-                      type: array
-                      items:
-                        $ref: '#/components/schemas/Budget'
-                    cpeCode:
-                      $ref: '#/components/schemas/CpeCode'
-                    contacts:
-                      type: array
-                      items:
-                        $ref: '#/components/schemas/Contact'
-                    revenueType:
-                      description: How the proposal is being negotiated for payment terms
-                      type: string
-                      enum:
-                        - Cash
-                        - Barter
-                        - Trade
-                    businessType:
-                      description: Seller defined type of business
-                      type: string
-                    localNational:
-                      description: Market Type for Proposal
-                      type: string
-                      enum:
-                        - Local
-                        - National
-                    dealYear:
-                      description: The broadcast year in which the proposal is being negotiated for
-                      type: string
-                    billingOption:
-                      $ref: '#/components/schemas/BillingOption'
-                    equivalized:
-                      description: Indicates if the impressions weighted down or up from 30-second impressions based on their ratio of their length to 30 seconds.
-                      type: boolean
-                    dateWindow:
-                      type: array
-                      items:
-                        $ref: '#/components/schemas/DateWindow'
-                      minItems: 1
-                    cancellationTerms:
-                      $ref: '#/components/schemas/CancellationTerms'
-                    timeSeparations:
-                      type: array
-                      items:
-                        $ref: '#/components/schemas/TimeSeparation'
-                    termsOfSales:
-                      description: 'The information specific to payment terms, preemption status, etc.'
-                      type: string
-                    externalComment:
-                      description: Free form text to accommodate transaction comments and/or activities outside the TIP flow
-                      type: string
-                    rateCard:
-                      $ref: '#/components/schemas/RateCard'
-                    currency:
-                      $ref: '#/components/schemas/Currency'
-                    mediaOutlets:
-                      type: array
-                      items:
-                        $ref: '#/components/schemas/MediaOutlet'
-                      minItems: 1
-                    audienceSegments:
-                      type: array
-                      items:
-                        $ref: '#/components/schemas/AudienceSegmentDetail'
-                    salesElements:
-                      type: array
-                      items:
-                        $ref: '#/components/schemas/SalesElementTransaction'
-                  required:
-                    - transactionHeader
-                    - referenceIds
-                    - buyer
-                    - commission
-                    - contacts
-                    - revenueType
-                    - businessType
-                    - equivalized
-                    - dateWindow
-                    - mediaOutlets
+                - $ref: '#/components/schemas/SellerProposals'
                 - $ref: '#/components/schemas/CancelConfirmRecallReject'
             examples:
               Change:
@@ -1806,115 +1460,7 @@ paths:
           application/json:
             schema:
               oneOf:
-                - description: Top level element for Commercial Instructions Buyer POST operations
-                  properties:
-                    transactionHeader:
-                      $ref: '#/components/schemas/TransactionHeader'
-                    referenceIds:
-                      description: 'Information pertaining to all the ids and their sources that are associated to the order; this may include order ids, proposal ids, etc. Order ID is required'
-                      type: array
-                      items:
-                        $ref: '#/components/schemas/ReferenceId'
-                    buyer:
-                      $ref: '#/components/schemas/Buyer'
-                    contact:
-                      description: Array of Contacts Information
-                      type: array
-                      items:
-                        $ref: '#/components/schemas/Contact'
-                    advertiser:
-                      $ref: '#/components/schemas/Advertiser'
-                    product:
-                      $ref: '#/components/schemas/Product'
-                    dateWindow:
-                      $ref: '#/components/schemas/DateWindow'
-                    cpeCode:
-                      $ref: '#/components/schemas/CpeCode'
-                    instructionComment:
-                      description: Comments pertaining to overall instructions
-                      type: string
-                    externalComment:
-                      description: Free form text to accommodate transaction comments and/or activities outside the TIP flow
-                      type: string
-                    instructionType:
-                      description: Instruction Type associated to the instructions that applies to how the AD ID should be applied to units
-                      type: string
-                      enum:
-                        - Rotation Share
-                        - Pattern
-                        - Unit Specific
-                    instructionDetails:
-                      type: array
-                      items:
-                        description: Commercial Instruction details for instruction type
-                        properties:
-                          actionType:
-                            description: Action for instruction detail
-                            type: string
-                            enum:
-                              - New
-                              - Revised
-                              - Cancelled
-                          inventoryTypes:
-                            description: Valid Inventory Types for the instructions
-                            type: array
-                            items:
-                              $ref: '#/components/schemas/InventoryType'
-                          mediaOutlet:
-                            $ref: '#/components/schemas/MediaOutlet'
-                          adId:
-                            description: A unique identifier for commercial copy
-                            type: string
-                          name:
-                            description: Creative title associated to AD-ID
-                            type: string
-                          brand:
-                            $ref: '#/components/schemas/Brand'
-                          product:
-                            $ref: '#/components/schemas/Product'
-                          length:
-                            description: Commercial length associated to AD-ID
-                            type: integer
-                          linkType:
-                            $ref: '#/components/schemas/LinkType'
-                          deliveryDate:
-                            description: Material Commercial delivery date
-                            type: string
-                            format: date
-                          deliveryService:
-                            description: Delivery service that will supply the the Ad-ID
-                            type: string
-                          timePeriods:
-                            type: array
-                            items:
-                              $ref: '#/components/schemas/TimePeriod'
-                          rotationShare:
-                            description: If instruction type equals "Rotation" - this will be the percentage assignment to be applied to each AD-ID; the total across all AD-ID's should equal to 100%
-                            type: integer
-                          patternInstruction:
-                            description: 'If instruction type equal "Pattern" -this will be the pattern assignments to be applied to each AD-ID; for example A,B,B,C represents how AD-ID A, B and C should be sequentially assigned to units'
-                            type: string
-                          unitSpecificInstruction:
-                            description: If instruction type equal "Unit Specific" = this will the list of unit id's that are valid for the AD-ID
-                            type: array
-                            items:
-                              type: string
-                          specialInstructions:
-                            description: Comments that pertain to the instruction details
-                            type: string
-                        required:
-                          - actionType
-                          - mediaOutlet
-                          - adId
-                          - length
-                          - deliveryService
-                  required:
-                    - transactionHeader
-                    - referenceIds
-                    - advertiser
-                    - product
-                    - dateWindow
-                    - instructionType
+                - $ref: '#/components/schemas/BuyerCommercialInstructions'
                 - $ref: '#/components/schemas/CancelConfirmRecallReject'
             examples:
               New:
@@ -2201,41 +1747,7 @@ paths:
         content:
           application/json:
             schema:
-              description: Seller submits a request for buyer's makegood guidelines
-              properties:
-                transactionHeader:
-                  $ref: '#/components/schemas/TransactionHeader'
-                dateSubmitted:
-                  description: Seller submit date for makegood guidelines
-                  type: string
-                  format: date
-                dueDate:
-                  description: Due Date for buyer to respond with guidelines
-                  type: string
-                  format: date
-                mediaOutlet:
-                  $ref: '#/components/schemas/MediaOutlet'
-                referenceIds:
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/ReferenceId'
-                cpeCode:
-                  $ref: '#/components/schemas/CpeCode'
-                buyer:
-                  $ref: '#/components/schemas/Buyer'
-                advertiser:
-                  $ref: '#/components/schemas/Advertiser'
-                makegoodType:
-                  description: Type of Offer
-                  type: string
-                  enum:
-                    - Resolve Preemption
-                    - Audience Underdelivery
-              required:
-                - transactionHeader
-                - dateSubmitted
-                - buyer
-                - makegoodType
+              $ref: '#/components/schemas/SellerMakegoodGuidelines'
             example:
               New:
                 value:
@@ -2305,64 +1817,7 @@ paths:
           application/json:
             schema:
               oneOf:
-                - description: Buyer submits a list of the makegood guidelines to seller prior to order confirmation
-                  properties:
-                    transactionHeader:
-                      $ref: '#/components/schemas/TransactionHeader'
-                    mediaOutlet:
-                      $ref: '#/components/schemas/MediaOutlet'
-                    referenceIds:
-                      type: array
-                      items:
-                        $ref: '#/components/schemas/ReferenceId'
-                    cpeCode:
-                      $ref: '#/components/schemas/CpeCode'
-                    buyer:
-                      $ref: '#/components/schemas/Buyer'
-                    advertiser:
-                      $ref: '#/components/schemas/Advertiser'
-                    makegoodGuidelines:
-                      type: array
-                      items:
-                        properties:
-                          makegoodType:
-                            $ref: '#/paths/~1seller~1makegood~1guidelines/post/requestBody/content/application~1json/schema/properties/makegoodType'
-                          salesElementOriginal:
-                            $ref: '#/components/schemas/SalesElementHeader'
-                          salesElementEquivalent:
-                            description: Sales Element (Programming) Acceptance Rule Elements
-                            type: string
-                            enum:
-                              - Same Sales Element
-                              - Alternate Sales Element
-                          makegoodTargetAudienceLimit:
-                            description: |
-                              The percent of the total original primary audience that can be delivered as makegoods. This is a target goal rather than a contractual limit.  For audience underdelivery no Audience Limit is needed.
-                            type: number
-                            format: float
-                          makegoodRatio:
-                            description: The maximum number of makegood spots allowed to resolve preempt/missed unit
-                            type: number
-                            format: integer
-                          makegoodWindow:
-                            description: Rule defined for makegood window to resolve preempt/missed unit
-                            type: string
-                            enum:
-                              - Original Broadcast Week
-                              - Original Broadcast Month
-                              - Within Flight Dates
-                          externalComment:
-                            description: |
-                              Free form text to accommodate transaction comments and/or activities outside  the TIP flow. (TIP recommends not using a comment field as it will be used as a catch-all.)
-                            type: string
-                        required:
-                          - makegoodType
-                          - salesElementEquivalent
-                      minItems: 1
-                  required:
-                    - transactionHeader
-                    - buyer
-                    - makegoodGuidelines
+                - $ref: '#/components/schemas/BuyerMakegoodGuidelines'
                 - $ref: '#/components/schemas/CancelConfirmRecallReject'
             examples:
               New:
@@ -2449,71 +1904,7 @@ paths:
           application/json:
             schema:
               oneOf:
-                - description: |
-                    Seller sends to Buyer one too many offer requests to support the following: - Makegood to resolve unresolved Preemptions - ADU to resolve make-up for audience shortfall  - Recap to support projected audience shortfall
-                  properties:
-                    transactionHeader:
-                      $ref: '#/components/schemas/TransactionHeader'
-                    referenceIds:
-                      type: array
-                      items:
-                        $ref: '#/components/schemas/ReferenceId'
-                    makegoodType:
-                      $ref: '#/paths/~1seller~1makegood~1guidelines/post/requestBody/content/application~1json/schema/properties/makegoodType'
-                    externalComment:
-                      type: string
-                    preemptDetails:
-                      type: array
-                      items:
-                        properties:
-                          preemptNum:
-                            description: Sequential number to be used when linking makegood offer
-                            type: number
-                            format: integer
-                            minimum: 1
-                          salesElement:
-                            $ref: '#/components/schemas/SalesElementTransaction'
-                          preemptReason:
-                            type: string
-                          makedgoodNumLink:
-                            type: array
-                            uniqueItems: true
-                            items:
-                              type: integer
-                              minimum: 1
-                        required:
-                          - preemptNum
-                      minItems: 0
-                    makegoodDetails:
-                      type: array
-                      items:
-                        properties:
-                          makegoodNum:
-                            description: Sequential number to be used when linking makegood offer
-                            type: number
-                            format: integer
-                            minimum: 1
-                          salesElement:
-                            $ref: '#/components/schemas/SalesElementTransaction'
-                          makegoodReason:
-                            type: string
-                          makegoodAssumedConfirm:
-                            type: string
-                            enum:
-                              - Booked
-                              - Not Booked
-                          preemptNumLink:
-                            type: array
-                            uniqueItems: true
-                            items:
-                              type: integer
-                              minimum: 1
-                      minItems: 1
-                  required:
-                    - transactionHeader
-                    - referenceIds
-                    - makegoodType
-                    - makegoodDetails
+                - $ref: '#/components/schemas/SellerMakegoodOffers'
                 - $ref: '#/components/schemas/CancelConfirmRecallReject'
             examples:
               New:
@@ -2742,94 +2133,7 @@ paths:
         content:
           application/json:
             schema:
-              description: 'Supports a push model where the seller sends files to buyer system on an agreed schedule. Supports a report limited to a single advertiser, brand, product and order.'
-              properties:
-                transactionHeader:
-                  $ref: '#/components/schemas/TransactionHeader'
-                mediaOutlets:
-                  description: A unique list of Media Outlets including the Seller entity and all Content where impressions occurred
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/MediaOutlet'
-                  minItems: 1
-                salesElements:
-                  description: A unique list of SalesElements related to the impression included in the message
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/SalesElementHeader'
-                  minItems: 1
-                referenceIds:
-                  description: 'referenceId must contain a minimum of one item. A list of identifying information regarding order, proposal, and RFP related to the impressions included in the message'
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/ReferenceId'
-                  minItems: 1
-                impressions:
-                  description: A list of all impression for a given period. The array must at least contain one impression
-                  type: array
-                  items:
-                    description: An object representing one impression with all associated Ids
-                    properties:
-                      id:
-                        description: Seller generated unique number for Impression Event
-                        type: string
-                        format: uuid
-                      timestamp:
-                        description: UTC source from DSP ad server
-                        type: string
-                        format: date-time
-                      referenceId:
-                        $ref: '#/components/schemas/Identifier'
-                      creative:
-                        $ref: '#/components/schemas/Identifier'
-                      salesElementId:
-                        $ref: '#/components/schemas/Identifier'
-                      contentOwnerId:
-                        $ref: '#/components/schemas/Identifier'
-                      supplyPath:
-                        $ref: '#/components/schemas/SupplyPath'
-                      device:
-                        $ref: '#/components/schemas/Device'
-                      geo:
-                        $ref: '#/components/schemas/Geo'
-                      events:
-                        description: 'Events (Start, Q1, Q2, ....)'
-                        type: array
-                        items:
-                          $ref: '#/components/schemas/Event'
-                        minItems: 1
-                      publisherBundle:
-                        description: RTB compliant site name that indicates the individual app and publisher for the content
-                        type: string
-                      publisherSspId:
-                        description: Identifer for the supply-side platform that enabled the inventory
-                        type: string
-                      adLedger:
-                        $ref: '#/components/schemas/Crypto'
-                    required:
-                      - id
-                      - timestamp
-                      - referenceId
-                      - creative
-                      - salesElementId
-                      - contentOwnerId
-                      - device
-                      - geo
-                      - events
-                  minItems: 1
-                creatives:
-                  description: A list of all creatives delivered against. This object may expand with further meta-data about the creative
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/Creative'
-                  minItems: 1
-              required:
-                - transactionHeader
-                - mediaOutlets
-                - salesElements
-                - referenceIds
-                - impressions
-                - creatives
+              $ref: '#/components/schemas/SellerImpressions'
             example:
               transactionHeader:
                 tipVersion: 5.x.x
@@ -3053,128 +2357,7 @@ paths:
         content:
           application/json:
             schema:
-              description: Top level element for Logtimes Seller POST operations
-              properties:
-                transactionHeader:
-                  $ref: '#/components/schemas/TransactionHeader'
-                externalComment:
-                  description: A string that indicates additional information the seller can send to the buyer
-                  type: string
-                units:
-                  description: The units listed in the API units can be defined by the system that is creating the API.
-                  type: array
-                  items:
-                    description: Unit detail information
-                    properties:
-                      unitId:
-                        description: Seller generated unique number for unit (ID will likely change if unit is moved to another week during recon process).
-                        type: string
-                      referenceIds:
-                        type: array
-                        items:
-                          $ref: '#/components/schemas/ReferenceId'
-                      cpeCode:
-                        $ref: '#/components/schemas/CpeCode'
-                      buyer:
-                        $ref: '#/components/schemas/Buyer'
-                      advertiser:
-                        $ref: '#/components/schemas/Advertiser'
-                      brand:
-                        $ref: '#/components/schemas/Brand'
-                      product:
-                        $ref: '#/components/schemas/Product'
-                      salesElement:
-                        $ref: '#/components/schemas/SalesElementHeader'
-                      program:
-                        description: The "as-aired" program name
-                        type: string
-                      daypart:
-                        description: The "as-aired" seller's daypart name
-                        type: string
-                      inventoryType:
-                        $ref: '#/components/schemas/InventoryType'
-                      linkType:
-                        $ref: '#/components/schemas/LinkType'
-                      makegood:
-                        description: Indicates if the unit is a makegood
-                        type: boolean
-                      adu:
-                        description: Indicates if the unit is a ADU
-                        type: boolean
-                      preemptUnitIds:
-                        description: Desired if unit's Makegood indicator is "Y"; "original" preempted unit(s) being resolved by makegood; there may be one too many preempt unit ids being resolved
-                        type: array
-                        items:
-                          type: string
-                      bonus:
-                        description: Indicates if the unit is a no-charge bonus
-                        type: boolean
-                      length:
-                        description: The duration of the unit in seconds
-                        type: integer
-                      rate:
-                        description: Unit Rate
-                        type: number
-                        format: float
-                      adId:
-                        description: Advertising industry standard unique identifier for the commercial. Can be an official AD-ID or any other ID.
-                        type: string
-                      status:
-                        description: Indicates the airing status of the unit
-                        type: string
-                        enum:
-                          - Aired
-                          - Scheduled
-                          - No Run
-                          - Finalized
-                          - Invoiced
-                      creditInd:
-                        description: Indicate if the unit was issued a credit
-                        type: boolean
-                      timePeriod:
-                        $ref: '#/components/schemas/TimePeriod'
-                      dateTime:
-                        $ref: '#/components/schemas/DateTime'
-                      childUnits:
-                        type: array
-                        items:
-                          description: 'Child unit details for footprint unit to support Audience Network, Diginet or other forms of "child" units'
-                          properties:
-                            unitId:
-                              description: Unique identifier for "child" unit; Required if unit was sold as a cluster of units
-                              type: string
-                            mediaOutlet:
-                              $ref: '#/components/schemas/MediaOutlet'
-                            rate:
-                              description: Unit rate associated to the "child" unit
-                              type: number
-                              format: float
-                            adId:
-                              description: Advertising industry standard unique identifier for the commercial ; Required if child unit status is "Aired"
-                              type: string
-                            status:
-                              description: Indicates the airing status of the "child" unit
-                              type: string
-                              enum:
-                                - Aired
-                                - Scheduled
-                                - No Run
-                            reason:
-                              description: Reason description for No-Run status
-                              type: string
-                            dateTime:
-                              $ref: '#/components/schemas/DateTime'
-                    required:
-                      - unitId
-                      - referenceIds
-                      - advertiser
-                      - product
-                      - salesElement
-                      - length
-                      - status
-              required:
-                - transactionHeader
-                - units
+              $ref: '#/components/schemas/SellerLogtimes'
             examples:
               New:
                 value:
@@ -3721,219 +2904,7 @@ paths:
           application/json:
             schema:
               oneOf:
-                - description: Top level element for Invoice Seller POST operations
-                  properties:
-                    transactionHeader:
-                      $ref: '#/components/schemas/TransactionHeader'
-                    referenceIds:
-                      type: array
-                      items:
-                        $ref: '#/components/schemas/ReferenceId'
-                    invoiceDate:
-                      description: Date in which the original invoice was generated
-                      type: string
-                      format: date
-                    invoiceRevisionDate:
-                      description: Required for Invoice Revision – Date in which the invoice revision was generated
-                      type: string
-                      format: date
-                    billingOption:
-                      $ref: '#/components/schemas/BillingOption'
-                    dueDate:
-                      description: Date in which payment is due on invoice
-                      type: string
-                      format: date
-                    dateWindow:
-                      $ref: '#/components/schemas/DateWindow'
-                    businessType:
-                      description: Seller-defined type of business
-                      type: string
-                    buyer:
-                      $ref: '#/components/schemas/Buyer'
-                    localNational:
-                      description: Local or National marketplace
-                      type: string
-                      enum:
-                        - Local
-                        - National
-                    advertiser:
-                      $ref: '#/components/schemas/Advertiser'
-                    contacts:
-                      type: array
-                      items:
-                        $ref: '#/components/schemas/Contact'
-                    buylineCashTrade:
-                      description: Revenue Type associated to the invoice
-                      type: string
-                      enum:
-                        - Cash
-                        - Barter
-                        - Trade
-                    grossAmount:
-                      description: Totals gross amount for the invoice
-                      type: number
-                      format: float
-                    commission:
-                      description: Invoice total commission amount
-                      type: number
-                      format: float
-                    salesTax:
-                      description: Total sales tax applied to any elements on the invoice depending on state of invoice origin
-                      type: number
-                      format: float
-                    netAmount:
-                      description: Total net amount for all units within the invoice start and end date (gross amount– commission amount + sales tax)
-                      type: number
-                      format: float
-                    currency:
-                      $ref: '#/components/schemas/Currency'
-                    remittanceInfo:
-                      $ref: '#/components/schemas/RemittanceInfo'
-                    externalComment:
-                      description: Free form text for comments
-                      type: string
-                    lineDetails:
-                      type: array
-                      items:
-                        description: Line Detail Information
-                        properties:
-                          buyLineIdReference:
-                            description: Seller's Line information
-                            type: string
-                          buyLineIdName:
-                            description: Buyer's line information associated to seller's line
-                            type: string
-                          unitType:
-                            description: The type of units on the line
-                            type: string
-                            enum:
-                              - Units
-                              - Impressions
-                              - Non Airtime
-                          brand:
-                            $ref: '#/components/schemas/Brand'
-                          product:
-                            $ref: '#/components/schemas/Product'
-                          salesElement:
-                            $ref: '#/components/schemas/SalesElementHeader'
-                          timePeriod:
-                            $ref: '#/components/schemas/TimePeriod'
-                          length:
-                            description: Length of commercial unit
-                            type: integer
-                          cpeCode:
-                            $ref: '#/components/schemas/CpeCode'
-                          billableRevenue:
-                            description: Indicates if the line's rate is based on booked rates or actuals (earned) rates
-                            type: string
-                            enum:
-                              - Booked
-                              - Actuals
-                          rate:
-                            type: number
-                            format: float
-                            minimum: 0
-                          inventoryType:
-                            $ref: '#/components/schemas/InventoryType'
-                          audiencePricingMetric:
-                            $ref: '#/components/schemas/AudiencePricingMetric'
-                          totalUnits:
-                            description: Total number of raw (equivalized) units (based on line's unit type) within the line's start and end date or if audience buy the total number of Raw Impressions
-                            type: integer
-                            format: int64
-                          unitDetails:
-                            type: array
-                            items:
-                              description: Unit details information (required for "unit" type only)
-                              properties:
-                                unitId:
-                                  description: Seller generated unique number - Required when unit type is equal to units
-                                  type: string
-                                adId:
-                                  description: Ad-ID
-                                  type: string
-                                dateTime:
-                                  $ref: '#/components/schemas/DateTime'
-                                podPosition:
-                                  $ref: '#/components/schemas/InventoryPosition'
-                                linkType:
-                                  $ref: '#/components/schemas/LinkType'
-                                preempt:
-                                  description: True/False
-                                  type: boolean
-                                makegood:
-                                  description: True/False
-                                  type: boolean
-                                adu:
-                                  description: True/False
-                                  type: boolean
-                                bonus:
-                                  description: True/False
-                                  type: boolean
-                                rate:
-                                  description: Contracted rate associated to the unit
-                                  type: number
-                                  format: float
-                                credit:
-                                  description: True/False
-                                  type: boolean
-                                adjustmentReason:
-                                  description: 'Only valid on invoice revisions – reason for change of unit (e.g. rate adjustment, incorrect copy, etc.)'
-                                  type: string
-                                comment:
-                                  description: Overall comment for the unit
-                                  type: string
-                                childUnits:
-                                  type: array
-                                  items:
-                                    description: 'Child unit details for parent unit to support Mirror, Audience Network, Diginet or other forms of "child" units'
-                                    properties:
-                                      unitId:
-                                        description: Unique identifier for "child" unit
-                                        type: string
-                                      mediaOutlet:
-                                        $ref: '#/components/schemas/MediaOutlet'
-                                      rate:
-                                        description: Unit rate associated to the "child" unit
-                                        type: number
-                                        format: float
-                                      adId:
-                                        description: Ad-ID assigned to "child" unit
-                                        type: string
-                                      preempt:
-                                        type: boolean
-                                      makegood:
-                                        type: boolean
-                                      adu:
-                                        type: boolean
-                                      credit:
-                                        type: boolean
-                                      adjustmentReason:
-                                        description: 'Only valid on invoice revisions – details reasons for change to the unit (e.g. rate adjustment, incorrect copy, etc.)'
-                                        type: string
-                                      dateTime:
-                                        $ref: '#/components/schemas/DateTime'
-                              required:
-                                - unitId
-                        required:
-                          - buyLineIdReference
-                          - unitType
-                          - product
-                          - salesElement
-                          - length
-                  required:
-                    - transactionHeader
-                    - referenceIds
-                    - invoiceDate
-                    - dateWindow
-                    - buyer
-                    - advertiser
-                    - buylineCashTrade
-                    - grossAmount
-                    - commission
-                    - netAmount
-                    - remittanceInfo
-                    - lineDetails
+                - $ref: '#/components/schemas/SellerInvoices'
                 - $ref: '#/components/schemas/CancelConfirmRecallReject'
             examples:
               New:
@@ -5506,6 +4477,1081 @@ components:
       type: string
       pattern: '^([0-9]{1,3}[\.]){3}([0-9]{1,3})|([0-9a-fA-F]{4}[\:]){7}[0-9a-fA-F]{4}$'
       example: 192.168.001.001
+    BuyerCommercialInstructions:
+      description: Top level element for Commercial Instructions Buyer POST operations
+      properties:
+        transactionHeader:
+          $ref: '#/components/schemas/TransactionHeader'
+        referenceIds:
+          description: 'Information pertaining to all the ids and their sources that are associated to the order; this may include order ids, proposal ids, etc. Order ID is required'
+          type: array
+          items:
+            $ref: '#/components/schemas/ReferenceId'
+        buyer:
+          $ref: '#/components/schemas/Buyer'
+        contact:
+          description: Array of Contacts Information
+          type: array
+          items:
+            $ref: '#/components/schemas/Contact'
+        advertiser:
+          $ref: '#/components/schemas/Advertiser'
+        product:
+          $ref: '#/components/schemas/Product'
+        dateWindow:
+          $ref: '#/components/schemas/DateWindow'
+        cpeCode:
+          $ref: '#/components/schemas/CpeCode'
+        instructionComment:
+          description: Comments pertaining to overall instructions
+          type: string
+        externalComment:
+          description: Free form text to accommodate transaction comments and/or activities outside the TIP flow
+          type: string
+        instructionType:
+          description: Instruction Type associated to the instructions that applies to how the AD ID should be applied to units
+          type: string
+          enum:
+            - Rotation Share
+            - Pattern
+            - Unit Specific
+        instructionDetails:
+          type: array
+          items:
+            $ref: '#/components/schemas/InstructionDetail'
+      required:
+        - transactionHeader
+        - referenceIds
+        - advertiser
+        - product
+        - dateWindow
+        - instructionType
+    InstructionDetail:
+      description: Commercial Instruction details for instruction type
+      properties:
+        actionType:
+          description: Action for instruction detail
+          type: string
+          enum:
+            - New
+            - Revised
+            - Cancelled
+        inventoryTypes:
+          description: Valid Inventory Types for the instructions
+          type: array
+          items:
+            $ref: '#/components/schemas/InventoryType'
+        mediaOutlet:
+          $ref: '#/components/schemas/MediaOutlet'
+        adId:
+          description: A unique identifier for commercial copy
+          type: string
+        name:
+          description: Creative title associated to AD-ID
+          type: string
+        brand:
+          $ref: '#/components/schemas/Brand'
+        product:
+          $ref: '#/components/schemas/Product'
+        length:
+          description: Commercial length associated to AD-ID
+          type: integer
+        linkType:
+          $ref: '#/components/schemas/LinkType'
+        deliveryDate:
+          description: Material Commercial delivery date
+          type: string
+          format: date
+        deliveryService:
+          description: Delivery service that will supply the the Ad-ID
+          type: string
+        timePeriods:
+          type: array
+          items:
+            $ref: '#/components/schemas/TimePeriod'
+        rotationShare:
+          description: If instruction type equals "Rotation" - this will be the percentage assignment to be applied to each AD-ID; the total across all AD-ID's should equal to 100%
+          type: integer
+        patternInstruction:
+          description: 'If instruction type equal "Pattern" -this will be the pattern assignments to be applied to each AD-ID; for example A,B,B,C represents how AD-ID A, B and C should be sequentially assigned to units'
+          type: string
+        unitSpecificInstruction:
+          description: If instruction type equal "Unit Specific" = this will the list of unit id's that are valid for the AD-ID
+          type: array
+          items:
+            type: string
+        specialInstructions:
+          description: Comments that pertain to the instruction details
+          type: string
+      required:
+        - actionType
+        - mediaOutlet
+        - adId
+        - length
+        - deliveryService
+    SellerImpressions:
+      description: 'Supports a push model where the seller sends files to buyer system on an agreed schedule. Supports a report limited to a single advertiser, brand, product and order.'
+      properties:
+        transactionHeader:
+          $ref: '#/components/schemas/TransactionHeader'
+        mediaOutlets:
+          description: A unique list of Media Outlets including the Seller entity and all Content where impressions occurred
+          type: array
+          items:
+            $ref: '#/components/schemas/MediaOutlet'
+          minItems: 1
+        salesElements:
+          description: A unique list of SalesElements related to the impression included in the message
+          type: array
+          items:
+            $ref: '#/components/schemas/SalesElementHeader'
+          minItems: 1
+        referenceIds:
+          description: 'referenceId must contain a minimum of one item. A list of identifying information regarding order, proposal, and RFP related to the impressions included in the message'
+          type: array
+          items:
+            $ref: '#/components/schemas/ReferenceId'
+          minItems: 1
+        impressions:
+          description: A list of all impression for a given period. The array must at least contain one impression
+          type: array
+          items:
+            $ref: '#/components/schemas/Impression'
+          minItems: 1
+        creatives:
+          description: A list of all creatives delivered against. This object may expand with further meta-data about the creative
+          type: array
+          items:
+            $ref: '#/components/schemas/Creative'
+          minItems: 1
+      required:
+        - transactionHeader
+        - mediaOutlets
+        - salesElements
+        - referenceIds
+        - impressions
+        - creatives
+    Impression:
+      description: An object representing one impression with all associated Ids
+      properties:
+        id:
+          description: Seller generated unique number for Impression Event
+          type: string
+          format: uuid
+        timestamp:
+          description: UTC source from DSP ad server
+          type: string
+          format: date-time
+        referenceId:
+          $ref: '#/components/schemas/Identifier'
+        creative:
+          $ref: '#/components/schemas/Identifier'
+        salesElementId:
+          $ref: '#/components/schemas/Identifier'
+        contentOwnerId:
+          $ref: '#/components/schemas/Identifier'
+        supplyPath:
+          $ref: '#/components/schemas/SupplyPath'
+        device:
+          $ref: '#/components/schemas/Device'
+        geo:
+          $ref: '#/components/schemas/Geo'
+        events:
+          description: 'Events (Start, Q1, Q2, ....)'
+          type: array
+          items:
+            $ref: '#/components/schemas/Event'
+          minItems: 1
+        publisherBundle:
+          description: RTB compliant site name that indicates the individual app and publisher for the content
+          type: string
+        publisherSspId:
+          description: Identifer for the supply-side platform that enabled the inventory
+          type: string
+        adLedger:
+          $ref: '#/components/schemas/Crypto'
+      required:
+        - id
+        - timestamp
+        - referenceId
+        - creative
+        - salesElementId
+        - contentOwnerId
+        - device
+        - geo
+        - events
+    BuyerInventoryAvails:
+      description: Allows the Buyer as campaign planning to initiate an inventory Request to the Seller
+      properties:
+        transactionHeader:
+          $ref: '#/components/schemas/TransactionHeader'
+        dateSubmitted:
+          description: Buyer Submit Date for Inventory Request
+          type: string
+          format: date
+        dueDate:
+          description: Due Date for seller to respond with Inventory Information
+          type: string
+          format: date
+        mediaOutlets:
+          type: array
+          items:
+            $ref: '#/components/schemas/MediaOutlet'
+          minItems: 1
+        buyer:
+          $ref: '#/components/schemas/Buyer'
+        advertiser:
+          $ref: '#/components/schemas/Advertiser'
+        contacts:
+          type: array
+          items:
+            $ref: '#/components/schemas/Contact'
+        timePeriods:
+          type: array
+          items:
+            $ref: '#/components/schemas/TimePeriod'
+          minItems: 1
+        guidelines:
+          type: array
+          items:
+            $ref: '#/components/schemas/Guideline'
+        political:
+          description: Indicates if the request is for political pricing
+          type: boolean
+        inventoryTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/InventoryType'
+        maxRate:
+          description: Max rate spend across all inventory types
+          type: number
+          format: float
+          minimum: 0
+          exclusiveMinimum: true
+        currency:
+          $ref: '#/components/schemas/Currency'
+        externalComment:
+          description: Free form text to accommodate transaction comments and/or activities outside the TIP flow
+          type: string
+        audienceSegments:
+          type: array
+          items:
+            $ref: '#/components/schemas/AudienceSegment'
+          minItems: 1
+        pricingMetricOptions:
+          type: array
+          items:
+            $ref: '#/components/schemas/PricingMetricOption'
+      required:
+        - transactionHeader
+        - dateSubmitted
+        - mediaOutlets
+        - timePeriods
+        - political
+        - audienceSegments
+    SellerInventoryAvails:
+      description: 'Allows the Seller to post to the buyer their catalog of selling products, pricing and audience information'
+      properties:
+        transactionHeader:
+          $ref: '#/components/schemas/TransactionHeader'
+        dateSubmitted:
+          description: Submission date for the inventory
+          type: string
+          format: date
+        buyer:
+          $ref: '#/components/schemas/Buyer'
+        advertiser:
+          $ref: '#/components/schemas/Advertiser'
+        contacts:
+          type: array
+          items:
+            $ref: '#/components/schemas/Contact'
+        rateCard:
+          $ref: '#/components/schemas/RateCard'
+        currency:
+          $ref: '#/components/schemas/Currency'
+        political:
+          description: Indicates that pricing being supplied are for political
+          type: boolean
+        mediaOutlets:
+          type: array
+          items:
+            $ref: '#/components/schemas/MediaOutlet'
+          minItems: 1
+        audienceSegments:
+          type: array
+          items:
+            $ref: '#/components/schemas/AudienceSegmentDetail'
+        availWindow:
+          $ref: '#/components/schemas/DateWindow'
+        salesElements:
+          type: array
+          items:
+            $ref: '#/components/schemas/SalesElement'
+          minItems: 1
+      required:
+        - transactionHeader
+        - dateSubmitted
+        - political
+        - mediaOutlets
+        - availWindow
+        - salesElements
+    SellerInvoices:
+      description: Top level element for Invoice Seller POST operations
+      properties:
+        transactionHeader:
+          $ref: '#/components/schemas/TransactionHeader'
+        referenceIds:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReferenceId'
+        invoiceDate:
+          description: Date in which the original invoice was generated
+          type: string
+          format: date
+        invoiceRevisionDate:
+          description: Required for Invoice Revision – Date in which the invoice revision was generated
+          type: string
+          format: date
+        billingOption:
+          $ref: '#/components/schemas/BillingOption'
+        dueDate:
+          description: Date in which payment is due on invoice
+          type: string
+          format: date
+        dateWindow:
+          $ref: '#/components/schemas/DateWindow'
+        businessType:
+          description: Seller-defined type of business
+          type: string
+        buyer:
+          $ref: '#/components/schemas/Buyer'
+        localNational:
+          description: Local or National marketplace
+          type: string
+          enum:
+            - Local
+            - National
+        advertiser:
+          $ref: '#/components/schemas/Advertiser'
+        contacts:
+          type: array
+          items:
+            $ref: '#/components/schemas/Contact'
+        buylineCashTrade:
+          description: Revenue Type associated to the invoice
+          type: string
+          enum:
+            - Cash
+            - Barter
+            - Trade
+        grossAmount:
+          description: Totals gross amount for the invoice
+          type: number
+          format: float
+        commission:
+          description: Invoice total commission amount
+          type: number
+          format: float
+        salesTax:
+          description: Total sales tax applied to any elements on the invoice depending on state of invoice origin
+          type: number
+          format: float
+        netAmount:
+          description: Total net amount for all units within the invoice start and end date (gross amount– commission amount + sales tax)
+          type: number
+          format: float
+        currency:
+          $ref: '#/components/schemas/Currency'
+        remittanceInfo:
+          $ref: '#/components/schemas/RemittanceInfo'
+        externalComment:
+          description: Free form text for comments
+          type: string
+        lineDetails:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineDetail'
+      required:
+        - transactionHeader
+        - referenceIds
+        - invoiceDate
+        - dateWindow
+        - buyer
+        - advertiser
+        - buylineCashTrade
+        - grossAmount
+        - commission
+        - netAmount
+        - remittanceInfo
+        - lineDetails
+    LineDetail:
+      description: Line Detail Information
+      properties:
+        buyLineIdReference:
+          description: Seller's Line information
+          type: string
+        buyLineIdName:
+          description: Buyer's line information associated to seller's line
+          type: string
+        unitType:
+          description: The type of units on the line
+          type: string
+          enum:
+            - Units
+            - Impressions
+            - Non Airtime
+        brand:
+          $ref: '#/components/schemas/Brand'
+        product:
+          $ref: '#/components/schemas/Product'
+        salesElement:
+          $ref: '#/components/schemas/SalesElementHeader'
+        timePeriod:
+          $ref: '#/components/schemas/TimePeriod'
+        length:
+          description: Length of commercial unit
+          type: integer
+        cpeCode:
+          $ref: '#/components/schemas/CpeCode'
+        billableRevenue:
+          description: Indicates if the line's rate is based on booked rates or actuals (earned) rates
+          type: string
+          enum:
+            - Booked
+            - Actuals
+        rate:
+          type: number
+          format: float
+          minimum: 0
+        inventoryType:
+          $ref: '#/components/schemas/InventoryType'
+        audiencePricingMetric:
+          $ref: '#/components/schemas/AudiencePricingMetric'
+        totalUnits:
+          description: Total number of raw (equivalized) units (based on line's unit type) within the line's start and end date or if audience buy the total number of Raw Impressions
+          type: integer
+          format: int64
+        unitDetails:
+          type: array
+          items:
+            $ref: '#/components/schemas/UnitDetail'
+      required:
+        - buyLineIdReference
+        - unitType
+        - product
+        - salesElement
+        - length
+    UnitDetail:
+      description: Unit details information (required for "unit" type only)
+      properties:
+        unitId:
+          description: Seller generated unique number - Required when unit type is equal to units
+          type: string
+        adId:
+          description: Ad-ID
+          type: string
+        dateTime:
+          $ref: '#/components/schemas/DateTime'
+        podPosition:
+          $ref: '#/components/schemas/InventoryPosition'
+        linkType:
+          $ref: '#/components/schemas/LinkType'
+        preempt:
+          description: True/False
+          type: boolean
+        makegood:
+          description: True/False
+          type: boolean
+        adu:
+          description: True/False
+          type: boolean
+        bonus:
+          description: True/False
+          type: boolean
+        rate:
+          description: Contracted rate associated to the unit
+          type: number
+          format: float
+        credit:
+          description: True/False
+          type: boolean
+        adjustmentReason:
+          description: 'Only valid on invoice revisions – reason for change of unit (e.g. rate adjustment, incorrect copy, etc.)'
+          type: string
+        comment:
+          description: Overall comment for the unit
+          type: string
+        childUnits:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChildUnitDetail'
+      required:
+        - unitId
+    ChildUnitDetail:
+      description: 'Child unit details for parent unit to support Mirror, Audience Network, Diginet or other forms of "child" units'
+      properties:
+        unitId:
+          description: Unique identifier for "child" unit
+          type: string
+        mediaOutlet:
+          $ref: '#/components/schemas/MediaOutlet'
+        rate:
+          description: Unit rate associated to the "child" unit
+          type: number
+          format: float
+        adId:
+          description: Ad-ID assigned to "child" unit
+          type: string
+        preempt:
+          type: boolean
+        makegood:
+          type: boolean
+        adu:
+          type: boolean
+        credit:
+          type: boolean
+        adjustmentReason:
+          description: 'Only valid on invoice revisions – details reasons for change to the unit (e.g. rate adjustment, incorrect copy, etc.)'
+          type: string
+        dateTime:
+          $ref: '#/components/schemas/DateTime'
+    SellerLogtimes:
+      description: Top level element for Logtimes Seller POST operations
+      properties:
+        transactionHeader:
+          $ref: '#/components/schemas/TransactionHeader'
+        externalComment:
+          description: A string that indicates additional information the seller can send to the buyer
+          type: string
+        units:
+          description: The units listed in the API units can be defined by the system that is creating the API.
+          type: array
+          items:
+            $ref: '#/components/schemas/Unit'
+      required:
+        - transactionHeader
+        - units
+    Unit:
+      description: Unit detail information
+      properties:
+        unitId:
+          description: Seller generated unique number for unit (ID will likely change if unit is moved to another week during recon process).
+          type: string
+        referenceIds:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReferenceId'
+        cpeCode:
+          $ref: '#/components/schemas/CpeCode'
+        buyer:
+          $ref: '#/components/schemas/Buyer'
+        advertiser:
+          $ref: '#/components/schemas/Advertiser'
+        brand:
+          $ref: '#/components/schemas/Brand'
+        product:
+          $ref: '#/components/schemas/Product'
+        salesElement:
+          $ref: '#/components/schemas/SalesElementHeader'
+        program:
+          description: The "as-aired" program name
+          type: string
+        daypart:
+          description: The "as-aired" seller's daypart name
+          type: string
+        inventoryType:
+          $ref: '#/components/schemas/InventoryType'
+        linkType:
+          $ref: '#/components/schemas/LinkType'
+        makegood:
+          description: Indicates if the unit is a makegood
+          type: boolean
+        adu:
+          description: Indicates if the unit is a ADU
+          type: boolean
+        preemptUnitIds:
+          description: Desired if unit's Makegood indicator is "Y"; "original" preempted unit(s) being resolved by makegood; there may be one too many preempt unit ids being resolved
+          type: array
+          items:
+            type: string
+        bonus:
+          description: Indicates if the unit is a no-charge bonus
+          type: boolean
+        length:
+          description: The duration of the unit in seconds
+          type: integer
+        rate:
+          description: Unit Rate
+          type: number
+          format: float
+        adId:
+          description: Advertising industry standard unique identifier for the commercial. Can be an official AD-ID or any other ID.
+          type: string
+        status:
+          description: Indicates the airing status of the unit
+          type: string
+          enum:
+            - Aired
+            - Scheduled
+            - No Run
+            - Finalized
+            - Invoiced
+        creditInd:
+          description: Indicate if the unit was issued a credit
+          type: boolean
+        timePeriod:
+          $ref: '#/components/schemas/TimePeriod'
+        dateTime:
+          $ref: '#/components/schemas/DateTime'
+        childUnits:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChildUnit'
+      required:
+        - unitId
+        - referenceIds
+        - advertiser
+        - product
+        - salesElement
+        - length
+        - status
+    ChildUnit:
+      description: 'Child unit details for footprint unit to support Audience Network, Diginet or other forms of "child" units'
+      properties:
+        unitId:
+          description: Unique identifier for "child" unit; Required if unit was sold as a cluster of units
+          type: string
+        mediaOutlet:
+          $ref: '#/components/schemas/MediaOutlet'
+        rate:
+          description: Unit rate associated to the "child" unit
+          type: number
+          format: float
+        adId:
+          description: Advertising industry standard unique identifier for the commercial ; Required if child unit status is "Aired"
+          type: string
+        status:
+          description: Indicates the airing status of the "child" unit
+          type: string
+          enum:
+            - Aired
+            - Scheduled
+            - No Run
+        reason:
+          description: Reason description for No-Run status
+          type: string
+        dateTime:
+          $ref: '#/components/schemas/DateTime'
+    SellerMakegoodGuidelines:
+      description: Seller submits a request for buyer's makegood guidelines
+      properties:
+        transactionHeader:
+          $ref: '#/components/schemas/TransactionHeader'
+        dateSubmitted:
+          description: Seller submit date for makegood guidelines
+          type: string
+          format: date
+        dueDate:
+          description: Due Date for buyer to respond with guidelines
+          type: string
+          format: date
+        mediaOutlet:
+          $ref: '#/components/schemas/MediaOutlet'
+        referenceIds:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReferenceId'
+        cpeCode:
+          $ref: '#/components/schemas/CpeCode'
+        buyer:
+          $ref: '#/components/schemas/Buyer'
+        advertiser:
+          $ref: '#/components/schemas/Advertiser'
+        makegoodType:
+          $ref: '#/components/schemas/MakegoodType'
+      required:
+        - transactionHeader
+        - dateSubmitted
+        - buyer
+        - makegoodType
+    BuyerMakegoodGuidelines:
+      description: Buyer submits a list of the makegood guidelines to seller prior to order confirmation
+      properties:
+        transactionHeader:
+          $ref: '#/components/schemas/TransactionHeader'
+        mediaOutlet:
+          $ref: '#/components/schemas/MediaOutlet'
+        referenceIds:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReferenceId'
+        cpeCode:
+          $ref: '#/components/schemas/CpeCode'
+        buyer:
+          $ref: '#/components/schemas/Buyer'
+        advertiser:
+          $ref: '#/components/schemas/Advertiser'
+        makegoodGuidelines:
+          type: array
+          items:
+            $ref: '#/components/schemas/MakegoodGuideline'
+          minItems: 1
+      required:
+        - transactionHeader
+        - buyer
+        - makegoodGuidelines
+    SellerMakegoodOffers:
+      description: |
+        Seller sends to Buyer one too many offer requests to support the following: - Makegood to resolve unresolved Preemptions - ADU to resolve make-up for audience shortfall  - Recap to support projected audience shortfall
+      properties:
+        transactionHeader:
+          $ref: '#/components/schemas/TransactionHeader'
+        referenceIds:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReferenceId'
+        makegoodType:
+          $ref: '#/components/schemas/MakegoodType'
+        externalComment:
+          type: string
+        preemptDetails:
+          type: array
+          items:
+            $ref: '#/components/schemas/PreemptDetail'
+          minItems: 0
+        makegoodDetails:
+          type: array
+          items:
+            $ref: '#/components/schemas/MakegoodOfferDetail'
+          minItems: 1
+      required:
+        - transactionHeader
+        - referenceIds
+        - makegoodType
+        - makegoodDetails
+    MakegoodType:
+      description: Type of Offer
+      type: string
+      enum:
+        - Resolve Preemption
+        - Audience Underdelivery
+    MakegoodGuideline:
+      properties:
+        makegoodType:
+          $ref: '#/components/schemas/MakegoodType'
+        salesElementOriginal:
+          $ref: '#/components/schemas/SalesElementHeader'
+        salesElementEquivalent:
+          description: Sales Element (Programming) Acceptance Rule Elements
+          type: string
+          enum:
+            - Same Sales Element
+            - Alternate Sales Element
+        makegoodTargetAudienceLimit:
+          description: |
+            The percent of the total original primary audience that can be delivered as makegoods. This is a target goal rather than a contractual limit.  For audience underdelivery no Audience Limit is needed.
+          type: number
+          format: float
+        makegoodRatio:
+          description: The maximum number of makegood spots allowed to resolve preempt/missed unit
+          type: number
+          format: integer
+        makegoodWindow:
+          description: Rule defined for makegood window to resolve preempt/missed unit
+          type: string
+          enum:
+            - Original Broadcast Week
+            - Original Broadcast Month
+            - Within Flight Dates
+        externalComment:
+          description: |
+            Free form text to accommodate transaction comments and/or activities outside  the TIP flow. (TIP recommends not using a comment field as it will be used as a catch-all.)
+          type: string
+      required:
+        - makegoodType
+        - salesElementEquivalent
+    PreemptDetail:
+      properties:
+        preemptNum:
+          description: Sequential number to be used when linking makegood offer
+          type: number
+          format: integer
+          minimum: 1
+        salesElement:
+          $ref: '#/components/schemas/SalesElementTransaction'
+        preemptReason:
+          type: string
+        makedgoodNumLink:
+          type: array
+          uniqueItems: true
+          items:
+            type: integer
+            minimum: 1
+      required:
+        - preemptNum
+    MakegoodOfferDetail:
+      properties:
+        makegoodNum:
+          description: Sequential number to be used when linking makegood offer
+          type: number
+          format: integer
+          minimum: 1
+        salesElement:
+          $ref: '#/components/schemas/SalesElementTransaction'
+        makegoodReason:
+          type: string
+        makegoodAssumedConfirm:
+          type: string
+          enum:
+            - Booked
+            - Not Booked
+        preemptNumLink:
+          type: array
+          uniqueItems: true
+          items:
+            type: integer
+            minimum: 1
+    SellerProposals:
+      description: 'Allows the seller to respond back to the buyer with the detailed proposal for a given RFP or revised proposal; Multiple versions of a proposal can be under negotiation for the same campaign, but only one version may be executed; buyer must submit a "Proposal Change Request" for the last proposal version submission; seller must respond back with a Proposal Response that contains a new version number when submitting new versions. New Proposals may be submitted without a RFP Response'
+      properties:
+        transactionHeader:
+          $ref: '#/components/schemas/TransactionHeader'
+        referenceIds:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReferenceId'
+          minItems: 1
+        expirationDate:
+          description: Date in which the proposal’s pricing and audience estimates expire
+          type: string
+          format: date
+        buyer:
+          $ref: '#/components/schemas/Buyer'
+        commission:
+          description: Buyer commission percentage
+          type: number
+          format: float
+        advertiser:
+          $ref: '#/components/schemas/Advertiser'
+        brand:
+          $ref: '#/components/schemas/Brand'
+        product:
+          $ref: '#/components/schemas/Product'
+        budget:
+          type: array
+          items:
+            $ref: '#/components/schemas/Budget'
+        cpeCode:
+          $ref: '#/components/schemas/CpeCode'
+        contacts:
+          type: array
+          items:
+            $ref: '#/components/schemas/Contact'
+        revenueType:
+          description: How the proposal is being negotiated for payment terms
+          type: string
+          enum:
+            - Cash
+            - Barter
+            - Trade
+        businessType:
+          description: Seller defined type of business
+          type: string
+        localNational:
+          description: Market Type for Proposal
+          type: string
+          enum:
+            - Local
+            - National
+        dealYear:
+          description: The broadcast year in which the proposal is being negotiated for
+          type: string
+        billingOption:
+          $ref: '#/components/schemas/BillingOption'
+        equivalized:
+          description: Indicates if the impressions weighted down or up from 30-second impressions based on their ratio of their length to 30 seconds.
+          type: boolean
+        dateWindow:
+          type: array
+          items:
+            $ref: '#/components/schemas/DateWindow'
+          minItems: 1
+        cancellationTerms:
+          $ref: '#/components/schemas/CancellationTerms'
+        timeSeparations:
+          type: array
+          items:
+            $ref: '#/components/schemas/TimeSeparation'
+        termsOfSales:
+          description: 'The information specific to payment terms, preemption status, etc.'
+          type: string
+        externalComment:
+          description: Free form text to accommodate transaction comments and/or activities outside the TIP flow
+          type: string
+        rateCard:
+          $ref: '#/components/schemas/RateCard'
+        currency:
+          $ref: '#/components/schemas/Currency'
+        mediaOutlets:
+          type: array
+          items:
+            $ref: '#/components/schemas/MediaOutlet'
+          minItems: 1
+        audienceSegments:
+          type: array
+          items:
+            $ref: '#/components/schemas/AudienceSegmentDetail'
+        salesElements:
+          type: array
+          items:
+            $ref: '#/components/schemas/SalesElementTransaction'
+      required:
+        - transactionHeader
+        - referenceIds
+        - buyer
+        - commission
+        - contacts
+        - revenueType
+        - businessType
+        - equivalized
+        - dateWindow
+        - mediaOutlets
+    BuyerRFPS:
+      description: 'Allows the buyer to submit a Request for Proposal (RFP) to the seller with media budget, goals and overall terms'
+      properties:
+        transactionHeader:
+          $ref: '#/components/schemas/TransactionHeader'
+        referenceIds:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReferenceId'
+        dateSubmitted:
+          description: Buyer Submit Date for the RFP
+          type: string
+          format: date
+        dueDate:
+          description: Due Date for the response
+          type: string
+          format: date
+        buyer:
+          $ref: '#/components/schemas/Buyer'
+        commission:
+          description: Buyer Commission percentage amount
+          type: number
+          format: float
+        advertiser:
+          $ref: '#/components/schemas/Advertiser'
+        brand:
+          $ref: '#/components/schemas/Brand'
+        product:
+          $ref: '#/components/schemas/Product'
+        contacts:
+          type: array
+          items:
+            $ref: '#/components/schemas/Contact'
+        currency:
+          $ref: '#/components/schemas/Currency'
+        budget:
+          description: Overall total budget for the RFP
+          type: array
+          items:
+            $ref: '#/components/schemas/Budget'
+        timePeriodPreferences:
+          type: array
+          items:
+            $ref: '#/components/schemas/TimePeriod'
+          minItems: 1
+        marketPreferences:
+          description: |-
+            List of market preferences (AND)
+            "<Market Name>"
+          type: array
+          items:
+            type: string
+        audiencePreferences:
+          type: array
+          items:
+            $ref: '#/components/schemas/AudienceSegment'
+        unitLengthPreferences:
+          description: |-
+            List of unit length preferences (AND)
+            "<Unit Length>"
+          type: array
+          items:
+            type: integer
+        guidelines:
+          description: Guidelines for proposal
+          type: array
+          items:
+            $ref: '#/components/schemas/Guideline'
+        objective:
+          description: KPI of the overall campaign
+          type: string
+        comments:
+          description: Additional Information
+          type: string
+        campaignGoals:
+          type: array
+          items:
+            $ref: '#/components/schemas/CampaignGoal'
+      required:
+        - transactionHeader
+        - referenceIds
+        - dateSubmitted
+        - advertiser
+        - contacts
+        - timePeriodPreferences
+    CampaignGoal:
+      properties:
+        distributionType:
+          description: Goal Type Element used for distribution
+          type: string
+          enum:
+            - MediaType
+            - Daypart
+            - Market
+            - Quarter
+            - Month
+            - Week
+            - AddedValue
+        distributionMethod:
+          description: Distribution Method Elements - Audience distributions pertain to the primary demo audience
+          type: string
+          enum:
+            - Impressions
+            - GRPs
+            - Units
+            - Budget
+        distributionName:
+          description: 'This is the name for the distribution type; for example it could be Daypart Name, or Quarter Name, etc.'
+          type: string
+        distribution:
+          description: This defines how the distributions for the method are being defined
+          type: string
+          enum:
+            - Percentage
+            - Exact Value
+        distributionValue:
+          description: This is the value for the distribution goal; it could be exact numeric value or a a percentage amount
+          type: number
+          format: float
+        distributionOrder:
+          description: Only populate when multiple distributions types are defined; defines the nesting order for the distributions
+          type: integer
+          minimum: 0
+        distributionOrderParent:
+          description: Only populate when multiple distributions types are defined; defines the parent when there are multiple nesting orders
+          type: integer
+          nullable: true
+      required:
+        - distributionType
+        - distributionMethod
+        - distributionName
+        - distribution
+        - distributionValue
+        - distributionOrder
+        - distributionOrderParent
   responses:
     Success:
       description: 200 OK - request accepted successfully
