@@ -41,9 +41,7 @@ paths:
         content:
           application/json:
             schema:
-              oneOf:
-                - $ref: 'schemas/commercialInstructionSchemas.yaml#/components/schemas/BuyerCommercialInstructions'
-                - $ref: 'schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
+              $ref: 'schemas/commercialInstructionSchemas.yaml#/components/schemas/BuyerCommercialInstructions'
             examples:
               New:
                 value: 

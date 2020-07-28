@@ -15,6 +15,10 @@ paths: {}
 components:
   schemas:
     BuyerOrders:
+      oneOf:
+        - $ref: '#/components/schemas/BuyerOrdersObj'
+        - $ref: 'commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
+    BuyerOrdersObj:
       description: Create or Change an Order in the Seller System
       properties:
         transactionHeader:

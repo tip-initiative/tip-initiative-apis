@@ -50,6 +50,10 @@ components:
         - buyer
         - makegoodType 
     BuyerMakegoodGuidelines:
+      oneOf:
+        - $ref: '#/components/schemas/BuyerMakegoodGuidelinesObj'
+        - $ref: 'commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
+    BuyerMakegoodGuidelinesObj:
       description: Buyer submits a list of the makegood guidelines to seller prior to order confirmation
       properties:
         transactionHeader:
@@ -76,6 +80,10 @@ components:
         - buyer
         - makegoodGuidelines
     SellerMakegoodOffers:
+      oneOf:
+        - $ref: '#/components/schemas/SellerMakegoodOffersObj'
+        - $ref: 'commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
+    SellerMakegoodOffersObj:
       description: >
         Seller sends to Buyer one too many offer requests to support the following:
         - Makegood to resolve unresolved Preemptions

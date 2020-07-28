@@ -42,9 +42,7 @@ paths:
         content:
           application/json:
             schema:
-              oneOf:
-                - $ref: 'schemas/invoiceSchemas.yaml#/components/schemas/SellerInvoices'
-                - $ref: 'schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
+              $ref: 'schemas/invoiceSchemas.yaml#/components/schemas/SellerInvoices'
             examples:
               New:
                 value:

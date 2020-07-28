@@ -15,6 +15,10 @@ paths: {}
 components:
   schemas:
     SellerInvoices:
+      oneOf:
+        - $ref: '#/components/schemas/SellerInvoicesObj'
+        - $ref: 'commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
+    SellerInvoicesObj:
       description: Top level element for Invoice Seller POST operations
       properties:
         transactionHeader:

@@ -71,9 +71,7 @@ paths:
         content:
           application/json:
             schema:
-              oneOf:
-                - $ref: 'schemas/makegoodsSchemas.yaml#/components/schemas/BuyerMakegoodGuidelines'
-                - $ref: 'schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
+              $ref: 'schemas/makegoodsSchemas.yaml#/components/schemas/BuyerMakegoodGuidelines'
             examples:
               New:
                 value:
@@ -116,9 +114,7 @@ paths:
         content:
           application/json:
             schema:
-              oneOf:
-                - $ref: 'schemas/makegoodsSchemas.yaml#/components/schemas/SellerMakegoodOffers'
-                - $ref: 'schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
+              $ref: 'schemas/makegoodsSchemas.yaml#/components/schemas/SellerMakegoodOffers'
             examples:
               New:
                 value:

@@ -278,10 +278,7 @@ paths:
         content:
           application/json:
             schema:
-              description: Allows the buyer to submit a new or cancel a RFP in the seller system
-              oneOf:
-                - $ref: '#/components/schemas/BuyerRFPS'
-                - $ref: '#/components/schemas/CancelConfirmRecallReject'
+              $ref: '#/components/schemas/BuyerRFPS'
             examples:
               New:
                 value:
@@ -441,9 +438,7 @@ paths:
         content:
           application/json:
             schema:
-              oneOf:
-                - $ref: '#/components/schemas/SellerProposals'
-                - $ref: '#/components/schemas/CancelConfirmRecallReject'
+              $ref: '#/components/schemas/SellerProposals'
             examples:
               New:
                 value:
@@ -573,7 +568,7 @@ paths:
                         mediaOutletId: '456'
                         salesElementName: CBS This Morning
                         salesElementId: '999'
-                        salesElementType: Program Based
+                        salesElementType: Program
                       timePeriods:
                         - dateWindow:
                             startDate: '2020-01-01'
@@ -662,10 +657,7 @@ paths:
         content:
           application/json:
             schema:
-              description: Buyer can only respond with proposed changes or recall a previously submitted change
-              oneOf:
-                - $ref: '#/components/schemas/SellerProposals'
-                - $ref: '#/components/schemas/CancelConfirmRecallReject'
+              $ref: '#/components/schemas/SellerProposals'
             examples:
               Change:
                 value:
@@ -795,7 +787,7 @@ paths:
                         mediaOutletId: '456'
                         salesElementName: CBS This Morning
                         salesElementId: '999'
-                        salesElementType: Program Based
+                        salesElementType: Program
                       timePeriods:
                         - dateWindow:
                             startDate: '2020-01-01'
@@ -879,118 +871,7 @@ paths:
         content:
           application/json:
             schema:
-              oneOf:
-                - description: Create or Change an Order in the Seller System
-                  properties:
-                    transactionHeader:
-                      $ref: '#/components/schemas/TransactionHeader'
-                    referenceIds:
-                      type: array
-                      items:
-                        $ref: '#/components/schemas/ReferenceId'
-                    orderBookedDate:
-                      description: Date in which the buyer
-                      type: string
-                      format: date
-                    buyer:
-                      $ref: '#/components/schemas/Buyer'
-                    commission:
-                      description: Buyer commission percentage
-                      type: number
-                      format: float
-                    advertiser:
-                      $ref: '#/components/schemas/Advertiser'
-                    brand:
-                      $ref: '#/components/schemas/Brand'
-                    product:
-                      $ref: '#/components/schemas/Product'
-                    budget:
-                      type: array
-                      items:
-                        $ref: '#/components/schemas/Budget'
-                    cpeCode:
-                      $ref: '#/components/schemas/CpeCode'
-                    contacts:
-                      type: array
-                      items:
-                        $ref: '#/components/schemas/Contact'
-                    revenueType:
-                      description: How the proposal is being negotiated for payment terms
-                      type: string
-                      enum:
-                        - Cash
-                        - Barter
-                        - Trade
-                    businessType:
-                      description: Seller defined type of business
-                      type: string
-                    localNational:
-                      description: Market Type for Proposal
-                      type: string
-                      enum:
-                        - Local
-                        - National
-                    dealYear:
-                      description: The broadcast year in which the proposal is being negotiated for
-                      type: string
-                    calendarType:
-                      description: The calendar in which the order was negotiated
-                      type: string
-                      enum:
-                        - Broadcast
-                        - Calendar
-                        - Nielsen
-                    billingOption:
-                      $ref: '#/components/schemas/BillingOption'
-                    equivalized:
-                      description: Indicates if the audience values are equivalized to the unit's length
-                      type: boolean
-                    dateWindow:
-                      type: array
-                      items:
-                        $ref: '#/components/schemas/DateWindow'
-                    cancellationTerms:
-                      $ref: '#/components/schemas/CancellationTerms'
-                    timeSeparations:
-                      type: array
-                      items:
-                        $ref: '#/components/schemas/TimeSeparation'
-                    termsOfSales:
-                      description: Contract terms
-                      type: string
-                    externalComment:
-                      description: Free form text to accommodate transaction comments and/or activities outside the TIP flow
-                      type: string
-                    rateCard:
-                      $ref: '#/components/schemas/RateCard'
-                    currency:
-                      $ref: '#/components/schemas/Currency'
-                    mediaOutlets:
-                      type: array
-                      items:
-                        $ref: '#/components/schemas/MediaOutlet'
-                    audienceSegments:
-                      type: array
-                      items:
-                        $ref: '#/components/schemas/AudienceSegmentDetail'
-                    salesElements:
-                      type: array
-                      items:
-                        $ref: '#/components/schemas/SalesElementTransaction'
-                  required:
-                    - transactionHeader
-                    - referenceIds
-                    - orderBookedDate
-                    - buyer
-                    - commission
-                    - contacts
-                    - revenueType
-                    - businessType
-                    - calendarType
-                    - equivalized
-                    - dateWindow
-                    - mediaOutlets
-                - $ref: '#/components/schemas/CancelConfirmRecallReject'
+              $ref: '#/components/schemas/BuyerOrders'
             examples:
               New:
                 value:
@@ -1459,9 +1340,7 @@ paths:
         content:
           application/json:
             schema:
-              oneOf:
-                - $ref: '#/components/schemas/BuyerCommercialInstructions'
-                - $ref: '#/components/schemas/CancelConfirmRecallReject'
+              $ref: '#/components/schemas/BuyerCommercialInstructions'
             examples:
               New:
                 value:
@@ -1816,9 +1695,7 @@ paths:
         content:
           application/json:
             schema:
-              oneOf:
-                - $ref: '#/components/schemas/BuyerMakegoodGuidelines'
-                - $ref: '#/components/schemas/CancelConfirmRecallReject'
+              $ref: '#/components/schemas/BuyerMakegoodGuidelines'
             examples:
               New:
                 value:
@@ -1903,9 +1780,7 @@ paths:
         content:
           application/json:
             schema:
-              oneOf:
-                - $ref: '#/components/schemas/SellerMakegoodOffers'
-                - $ref: '#/components/schemas/CancelConfirmRecallReject'
+              $ref: '#/components/schemas/SellerMakegoodOffers'
             examples:
               New:
                 value:
@@ -2401,7 +2276,7 @@ paths:
                         mediaOutletId: '490'
                         salesElementName: CBS This Morning
                         salesElementId: '56'
-                        salesElementType: Program Based
+                        salesElementType: Program
                       program: CBS This Morning
                       daypart: Morning
                       inventoryType: Commercial
@@ -2454,7 +2329,7 @@ paths:
                         mediaOutletId: '490'
                         salesElementName: The Talk
                         salesElementId: '57'
-                        salesElementType: Program Based
+                        salesElementType: Program
                       program: The Talk
                       daypart: Morning
                       inventoryType: Commercial
@@ -2510,7 +2385,7 @@ paths:
                         mediaOutletId: '490'
                         salesElementName: The Talk
                         salesElementId: '57'
-                        salesElementType: Program Based
+                        salesElementType: Program
                       program: The Talk
                       daypart: Morning
                       inventoryType: Commercial
@@ -2626,7 +2501,7 @@ paths:
                         mediaOutletId: '490'
                         salesElementName: CBS This Morning
                         salesElementId: '56'
-                        salesElementType: Program Based
+                        salesElementType: Program
                       program: CBS This Morning
                       daypart: Morning
                       inventoryType: Commercial
@@ -2679,7 +2554,7 @@ paths:
                         mediaOutletId: '490'
                         salesElementName: CBS This Morning
                         salesElementId: '56'
-                        salesElementType: Program Based
+                        salesElementType: Program
                       program: CBS This Morning
                       daypart: Morning
                       inventoryType: Commercial
@@ -2733,7 +2608,7 @@ paths:
                         mediaOutletId: '490'
                         salesElementName: CBS This Morning
                         salesElementId: '56'
-                        salesElementType: Program Based
+                        salesElementType: Program
                       program: CBS This Morning
                       daypart: Morning
                       adu: true
@@ -2903,9 +2778,7 @@ paths:
         content:
           application/json:
             schema:
-              oneOf:
-                - $ref: '#/components/schemas/SellerInvoices'
-                - $ref: '#/components/schemas/CancelConfirmRecallReject'
+              $ref: '#/components/schemas/SellerInvoices'
             examples:
               New:
                 value:
@@ -3004,7 +2877,7 @@ paths:
                         mediaOutletId: '490'
                         salesElementName: CBS This Morning
                         salesElementId: '999'
-                        salesElementType: Program Based
+                        salesElementType: Program
                       timePeriod:
                         dateWindow:
                           startDate: '2020-02-17'
@@ -3073,7 +2946,7 @@ paths:
                         mediaOutletId: '490'
                         salesElementName: CBS This Morning
                         salesElementId: '999'
-                        salesElementType: Program Based
+                        salesElementType: Program
                       timePeriod:
                         dateWindow:
                           startDate: '2020-02-17'
@@ -4478,6 +4351,10 @@ components:
       pattern: '^([0-9]{1,3}[\.]){3}([0-9]{1,3})|([0-9a-fA-F]{4}[\:]){7}[0-9a-fA-F]{4}$'
       example: 192.168.001.001
     BuyerCommercialInstructions:
+      oneOf:
+        - $ref: '#/components/schemas/BuyerCommercialInstructionsObj'
+        - $ref: '#/components/schemas/CancelConfirmRecallReject'
+    BuyerCommercialInstructionsObj:
       description: Top level element for Commercial Instructions Buyer POST operations
       properties:
         transactionHeader:
@@ -4797,6 +4674,10 @@ components:
         - availWindow
         - salesElements
     SellerInvoices:
+      oneOf:
+        - $ref: '#/components/schemas/SellerInvoicesObj'
+        - $ref: '#/components/schemas/CancelConfirmRecallReject'
+    SellerInvoicesObj:
       description: Top level element for Invoice Seller POST operations
       properties:
         transactionHeader:
@@ -5176,6 +5057,10 @@ components:
         - buyer
         - makegoodType
     BuyerMakegoodGuidelines:
+      oneOf:
+        - $ref: '#/components/schemas/BuyerMakegoodGuidelinesObj'
+        - $ref: '#/components/schemas/CancelConfirmRecallReject'
+    BuyerMakegoodGuidelinesObj:
       description: Buyer submits a list of the makegood guidelines to seller prior to order confirmation
       properties:
         transactionHeader:
@@ -5202,6 +5087,10 @@ components:
         - buyer
         - makegoodGuidelines
     SellerMakegoodOffers:
+      oneOf:
+        - $ref: '#/components/schemas/SellerMakegoodOffersObj'
+        - $ref: '#/components/schemas/CancelConfirmRecallReject'
+    SellerMakegoodOffersObj:
       description: |
         Seller sends to Buyer one too many offer requests to support the following: - Makegood to resolve unresolved Preemptions - ADU to resolve make-up for audience shortfall  - Recap to support projected audience shortfall
       properties:
@@ -5312,7 +5201,126 @@ components:
           items:
             type: integer
             minimum: 1
+    BuyerOrders:
+      oneOf:
+        - $ref: '#/components/schemas/BuyerOrdersObj'
+        - $ref: '#/components/schemas/CancelConfirmRecallReject'
+    BuyerOrdersObj:
+      description: Create or Change an Order in the Seller System
+      properties:
+        transactionHeader:
+          $ref: '#/components/schemas/TransactionHeader'
+        referenceIds:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReferenceId'
+        orderBookedDate:
+          description: Date in which the buyer
+          type: string
+          format: date
+        buyer:
+          $ref: '#/components/schemas/Buyer'
+        commission:
+          description: Buyer commission percentage
+          type: number
+          format: float
+        advertiser:
+          $ref: '#/components/schemas/Advertiser'
+        brand:
+          $ref: '#/components/schemas/Brand'
+        product:
+          $ref: '#/components/schemas/Product'
+        budget:
+          type: array
+          items:
+            $ref: '#/components/schemas/Budget'
+        cpeCode:
+          $ref: '#/components/schemas/CpeCode'
+        contacts:
+          type: array
+          items:
+            $ref: '#/components/schemas/Contact'
+        revenueType:
+          description: How the proposal is being negotiated for payment terms
+          type: string
+          enum:
+            - Cash
+            - Barter
+            - Trade
+        businessType:
+          description: Seller defined type of business
+          type: string
+        localNational:
+          description: Market Type for Proposal
+          type: string
+          enum:
+            - Local
+            - National
+        dealYear:
+          description: The broadcast year in which the proposal is being negotiated for
+          type: string
+        calendarType:
+          description: The calendar in which the order was negotiated
+          type: string
+          enum:
+            - Broadcast
+            - Calendar
+            - Nielsen
+        billingOption:
+          $ref: '#/components/schemas/BillingOption'
+        equivalized:
+          description: Indicates if the audience values are equivalized to the unit's length
+          type: boolean
+        dateWindow:
+          type: array
+          items:
+            $ref: '#/components/schemas/DateWindow'
+        cancellationTerms:
+          $ref: '#/components/schemas/CancellationTerms'
+        timeSeparations:
+          type: array
+          items:
+            $ref: '#/components/schemas/TimeSeparation'
+        termsOfSales:
+          description: Contract terms
+          type: string
+        externalComment:
+          description: Free form text to accommodate transaction comments and/or activities outside the TIP flow
+          type: string
+        rateCard:
+          $ref: '#/components/schemas/RateCard'
+        currency:
+          $ref: '#/components/schemas/Currency'
+        mediaOutlets:
+          type: array
+          items:
+            $ref: '#/components/schemas/MediaOutlet'
+        audienceSegments:
+          type: array
+          items:
+            $ref: '#/components/schemas/AudienceSegmentDetail'
+        salesElements:
+          type: array
+          items:
+            $ref: '#/components/schemas/SalesElementTransaction'
+      required:
+        - transactionHeader
+        - referenceIds
+        - orderBookedDate
+        - buyer
+        - commission
+        - contacts
+        - revenueType
+        - businessType
+        - calendarType
+        - equivalized
+        - dateWindow
+        - mediaOutlets
     SellerProposals:
+      oneOf:
+        - $ref: '#/components/schemas/SellerProposalsObj'
+        - $ref: '#/components/schemas/CancelConfirmRecallReject'
+    SellerProposalsObj:
       description: 'Allows the seller to respond back to the buyer with the detailed proposal for a given RFP or revised proposal; Multiple versions of a proposal can be under negotiation for the same campaign, but only one version may be executed; buyer must submit a "Proposal Change Request" for the last proposal version submission; seller must respond back with a Proposal Response that contains a new version number when submitting new versions. New Proposals may be submitted without a RFP Response'
       properties:
         transactionHeader:
@@ -5418,6 +5426,10 @@ components:
         - dateWindow
         - mediaOutlets
     BuyerRFPS:
+      oneOf:
+        - $ref: '#/components/schemas/BuyerRFPSObj'
+        - $ref: '#/components/schemas/CancelConfirmRecallReject'
+    BuyerRFPSObj:
       description: 'Allows the buyer to submit a Request for Proposal (RFP) to the seller with media budget, goals and overall terms'
       properties:
         transactionHeader:

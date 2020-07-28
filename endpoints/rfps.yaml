@@ -45,10 +45,7 @@ paths:
         content:
           application/json:
             schema:
-              description: Allows the buyer to submit a new or cancel a RFP in the seller system
-              oneOf:
-                - $ref: 'schemas/rfpsSchemas.yaml#/components/schemas/BuyerRFPS'
-                - $ref: 'schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
+              $ref: 'schemas/rfpsSchemas.yaml#/components/schemas/BuyerRFPS'
             examples:
               New:
                 value:

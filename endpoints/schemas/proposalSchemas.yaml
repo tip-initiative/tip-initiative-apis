@@ -15,6 +15,10 @@ paths: {}
 components:
   schemas:
     SellerProposals:
+      oneOf:
+        - $ref: '#/components/schemas/SellerProposalsObj'
+        - $ref: 'commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
+    SellerProposalsObj:
       description: >-
         Allows the seller to respond back to the buyer with the detailed proposal for a given RFP or
         revised proposal; Multiple versions of a proposal can be under negotiation for the same campaign,

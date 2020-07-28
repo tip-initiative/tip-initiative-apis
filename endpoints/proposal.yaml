@@ -48,9 +48,7 @@ paths:
         content:
           application/json:
             schema:
-              oneOf:
-                - $ref: 'schemas/proposalSchemas.yaml#/components/schemas/SellerProposals'
-                - $ref: 'schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
+              $ref: 'schemas/proposalSchemas.yaml#/components/schemas/SellerProposals'
             examples:
               New:
                 value:
@@ -98,10 +96,7 @@ paths:
         content:
           application/json:
             schema:
-              description: Buyer can only respond with proposed changes or recall a previously submitted change
-              oneOf:
-                - $ref: 'schemas/proposalSchemas.yaml#/components/schemas/SellerProposals'
-                - $ref: 'schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
+              $ref: 'schemas/proposalSchemas.yaml#/components/schemas/SellerProposals'
             examples:
               Change:
                 value: 
