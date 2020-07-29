@@ -15,6 +15,10 @@ paths: {}
 components:
   schemas:
     BuyerOrders:
+      description: |
+        The Buyer can perform the following operations:
+        <li>New or Change - Use the Buyer orders object
+        <li>Cancel or Recall - Use the Generic object to Cancel or Recall
       oneOf:
         - $ref: '#/components/schemas/BuyerOrdersObj'
         - $ref: 'commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'

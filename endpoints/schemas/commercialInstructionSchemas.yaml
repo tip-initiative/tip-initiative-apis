@@ -15,6 +15,10 @@ paths: {}
 components:
   schemas:
     BuyerCommercialInstructions:
+      description: |
+        Users of this contruct have the option to either
+        <li>Use the full Commercial Instructions object to deliver New, or change instructions
+        <li>Use the alternate object to recall, or cancel a previously sent instructions.
       oneOf:
         - $ref: '#/components/schemas/BuyerCommercialInstructionsObj'
         - $ref: 'commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
