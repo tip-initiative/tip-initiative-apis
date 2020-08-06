@@ -15,7 +15,9 @@ paths: {}
 components:
   schemas:
     BuyerInventoryAvails:
-      description: Allows the Buyer as campaign planning to initiate an inventory Request to the Seller
+      description: >-
+        The BuyerInventoryAvails Schema allows the buyer to formulate a query for Inventory meeting the
+        listed conditions
       properties:
         transactionHeader:
           $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
@@ -61,7 +63,6 @@ components:
           type: number
           format: float
           minimum: 0
-          exclusiveMinimum: true
         currency:
           $ref: 'commonSchemas.yaml#/components/schemas/Currency'
         externalComment:
@@ -85,9 +86,10 @@ components:
         - political
         - audienceSegments
     SellerInventoryAvails:
-      description: >-
-        Allows the Seller to post to the buyer their catalog of selling products, pricing and audience
-        information
+      description: |-
+        The SellerInventoryAvails Schemas defines:
+        - the Seller response to previously solicited InventoryAvails request from the buyer,
+        - or Unslocited provide the buyer with the catalog of selling products, and optionally provide pricing and audience information
       properties:
         transactionHeader:
           $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
@@ -103,6 +105,7 @@ components:
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/Contact'
+          minItems: 1
         rateCard:
           $ref: 'commonSchemas.yaml#/components/schemas/RateCard'
         currency:
@@ -119,6 +122,7 @@ components:
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/AudienceSegmentDetail'
+          nullable: true
         availWindow:
           $ref: 'commonSchemas.yaml#/components/schemas/DateWindow'
         salesElements:

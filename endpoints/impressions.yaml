@@ -9,7 +9,7 @@ security:
   - bearerAuth: []
 
 info:
-  version: 5.x.x
+  version: 5.1.0
   title: Seller Impressions
   description: >-
     Supports a push model where the seller sends files to buyer system on an agreed schedule.  
@@ -33,7 +33,8 @@ paths:
       summary: Seller Creates Impression record in the buyer system
       description: >-
         Supports a push model where the seller sends files to buyer system on an agreed schedule.  
-        Supports a report limited to a single advertiser, brand, product and order.
+        Supports a report limited to a single advertiser, brand, product and order.<br/>
+        Supported Transaction Types: New
       operationId: SellerImpressions
       requestBody:
         description: seller POSTs Impressions to buyer or its representative

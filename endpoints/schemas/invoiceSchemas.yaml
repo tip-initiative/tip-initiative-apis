@@ -15,7 +15,7 @@ paths: {}
 components:
   schemas:
     SellerInvoices:
-      description: Top level element for Invoice Seller POST operations
+      description: Invoice Schema
       properties:
         transactionHeader:
           $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
@@ -116,7 +116,9 @@ components:
           description: Buyer's line information associated to seller's line
           type: string
         unitType:
-          description: The type of units on the line
+          description: |-
+            The type of units on the line.
+            Should we modify Non-Airtime to be Flat Rate? Do we need to another property to support type of service ?
           type: string
           enum:
             - Units
@@ -144,15 +146,20 @@ components:
         rate:
           type: number
           format: float
+          minimum: 0
         inventoryType:
           $ref: 'commonSchemas.yaml#/components/schemas/InventoryType'
-        audiencePricingMetric:
-          $ref: 'commonSchemas.yaml#/components/schemas/AudiencePricingMetric'
+        audiencePricingMetrics:
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/AudiencePricingMetric'
         totalUnits:
           description: >-
             Total number of raw (equivalized) units (based on line's unit type) within the line's start
             and end date or if audience buy the total number of Raw Impressions
           type: integer
+          format: int64
+          minimum: 0
         unitDetails:
           type: array
           items:

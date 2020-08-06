@@ -16,8 +16,8 @@ components:
   schemas:
     BuyerRFPS:
       description: >-
-        Allows the buyer to submit a Request for Proposal (RFP) to the seller with media budget, goals
-        and overall terms
+        Using the BuyerRFPS schema, the buyers is able to express the criteria that need to be met when
+        responding with a proposal
       properties:
         transactionHeader:
           $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'

@@ -1,8 +1,8 @@
 openapi: "3.0.0"
 
 info:
-  version: 5.0.0
-  title: RFP
+  version: 5.1.0
+  title: Request For Proposals (RFPS)
   description: Allows the buyer to submit a Request for Proposal (RFP) to the seller with overall media budget, goal and makegood terms and optionally include specific detailed inventory requests
   termsOfService: http://placeholderdomain.io/terms/
   contact:
@@ -14,17 +14,8 @@ info:
     url: https://opensource.org/licenses/MIT
 servers:
   - url: http://placeholderdomain.io
-
-components:
- securitySchemes:
-    bearerAuth:
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
-
 security:
   - bearerAuth: []
-
 paths:
   /buyer/rfps:
     post:
@@ -32,28 +23,20 @@ paths:
         - Buyer
       summary: Allows the buyer to submit a Request for Proposal (RFP) to the seller with media budget, goals and overall terms
       description: >-
-        This endpoint resides on the seller side. the purpose of the endpoint is to allow the buyer to:
-        <ol>
-        <li>To create New RFP is the seller system. transactionHeader.transactionId.transactionType = New
-        <li>To Cancel a previously sent RFP.
-        <ol>
-        <li>transactionHeader.transactionId.transactionType=Change
-        <li>transactionHeader.originalTransactionId.transactionId must indicate the original transactionId</ol></ol>
+        This endpoint resides on the seller side. The purpose of the endpoint is to allow the buyer to send new RFP or cancel
+        a previously sent request.<br/>
+        Supported Transaction Types:<br/>
+        <ul>
+        <li>New - Send a new Request for Proposal using the BuyerRPFS schema</li>
+        <li>Cancel - Send a cacellation of previously sent request</li>
+        </ul>
       operationId: BuyerRFPS
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              description: Allows the buyer to submit a new or cancel a RFP in the seller system
-              oneOf:
-                - $ref: 'schemas/rfpsSchemas.yaml#/components/schemas/BuyerRFPS'
-                - $ref: 'schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
-              # discriminator:
-              #   propertyName: transactionHeader.transactionId.transactionType
-              #   mapping:
-              #     New: 'schemas/rfpsSchemas.yaml#/components/schemas/BuyerRfp'
-              #     Cancel: 'commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
+              $ref: '#/components/schemas/BuyerRFPS'
             examples:
               New:
                 value:
@@ -76,3 +59,15 @@ paths:
           $ref: 'schemas/commonResponses.yaml#/components/responses/NotAllowed'
         default: #unexpected
           $ref: 'schemas/commonResponses.yaml#/components/responses/Unexpected'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    BuyerRFPS:
+      description: Request Body for the endpoint varies based on Transaction type
+      oneOf:
+        - $ref: 'schemas/rfpsSchemas.yaml#/components/schemas/BuyerRFPS'
+        - $ref: 'schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'

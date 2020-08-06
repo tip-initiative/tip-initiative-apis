@@ -17,14 +17,14 @@
     },
     "referenceIds": [
       {
-        "referenceSourceName": "string",
-        "referenceSourceId": "string",
-        "referenceSourceLookup": "string",
+        "referenceSourceName": "KHOU-TV",
+        "referenceSourceId": "490",
+        "referenceSourceLookup": "",
         "referenceType": "Proposal",
         "referenceId": "123456",
         "referenceVersionId": "",
-        "referenceName": "string"
+        "referenceName": "Q2 Proposal for Premium Sport Equipments"
       }
     ],
-    "comments": "string"
+    "comments": "Sorry for sending incomplete proposal; Per our discussion 10% discount will be applied"
   }

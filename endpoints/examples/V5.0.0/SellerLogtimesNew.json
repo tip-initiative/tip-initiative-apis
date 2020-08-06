@@ -50,7 +50,7 @@
         "mediaOutletId": "490",
         "salesElementName": "CBS This Morning",
         "salesElementId": "56",
-        "salesElementType": "Program Based"
+        "salesElementType": "Program"
       },
       "program": "CBS This Morning",
       "daypart": "Morning",
@@ -118,7 +118,7 @@
         "mediaOutletId": "490",
         "salesElementName": "The Talk",
         "salesElementId": "57",
-        "salesElementType": "Program Based"
+        "salesElementType": "Program"
       },
       "program": "The Talk",
       "daypart": "Morning",
@@ -190,7 +190,7 @@
         "mediaOutletId": "490",
         "salesElementName": "The Talk",
         "salesElementId": "57",
-        "salesElementType": "Program Based"
+        "salesElementType": "Program"
       },
       "program": "The Talk",
       "daypart": "Morning",
@@ -339,7 +339,7 @@
         "mediaOutletId": "490",
         "salesElementName": "CBS This Morning",
         "salesElementId": "56",
-        "salesElementType": "Program Based"
+        "salesElementType": "Program"
       },
       "program": "CBS This Morning",
       "daypart": "Morning",
@@ -407,7 +407,7 @@
         "mediaOutletId": "490",
         "salesElementName": "CBS This Morning",
         "salesElementId": "56",
-        "salesElementType": "Program Based"
+        "salesElementType": "Program"
       },
       "program": "CBS This Morning",
       "daypart": "Morning",
@@ -476,7 +476,7 @@
         "mediaOutletId": "490",
         "salesElementName": "CBS This Morning",
         "salesElementId": "56",
-        "salesElementType": "Program Based"
+        "salesElementType": "Program"
       },
       "program": "CBS This Morning",
       "daypart": "Morning",

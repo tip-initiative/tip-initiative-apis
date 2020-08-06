@@ -16,9 +16,7 @@ paths: {}
 components:
   schemas:
     SellerImpressions:
-      description: >-
-        Supports a push model where the seller sends files to buyer system on an agreed schedule. Supports
-        a report limited to a single advertiser, brand, product and order.
+      description: The schema supports a report limited to a single advertiser, brand, product and order.
       properties:
         transactionHeader:
           $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
@@ -44,13 +42,6 @@ components:
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/ReferenceId'
           minItems: 1
-        impressions:
-          description: A list of all impression for a given period. The array must at least contain one
-            impression
-          type: array
-          items:
-            $ref: '#/components/schemas/Impression'
-          minItems: 1
         creatives:
           description: >-
             A list of all creatives delivered against. This object may expand with further meta-data
@@ -59,13 +50,24 @@ components:
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/Creative'
           minItems: 1
+        statSource:
+          description: Tracking Source, Use this field in case the all impressions belong to the same
+            Stat Source
+          type: string
+        impressions:
+          description: A list of all impression for a given period. The array must at least contain one
+            impression
+          type: array
+          items:
+            $ref: '#/components/schemas/Impression'
+          minItems: 1
       required:
         - transactionHeader
         - mediaOutlets
         - salesElements
         - referenceIds
-        - impressions
         - creatives
+        - impressions
     Impression:
       description: An object representing one impression with all associated Ids
       properties:
@@ -73,6 +75,9 @@ components:
           description: Seller generated unique number for Impression Event
           type: string
           format: uuid
+        statSource:
+          description: Tracking source, use this field to deliver impressions from multiple Stat Sources
+          type: string
         timestamp:
           description: UTC source from DSP ad server
           type: string

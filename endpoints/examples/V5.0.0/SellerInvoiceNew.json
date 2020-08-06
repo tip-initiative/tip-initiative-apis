@@ -116,7 +116,7 @@
           "mediaOutletId": "490",
           "salesElementName": "CBS This Morning",
           "salesElementId": "999",
-          "salesElementType": "Program Based"
+          "salesElementType": "Program"
         },
         "timePeriod": {
           "dateWindow": {
@@ -205,7 +205,7 @@
           "mediaOutletId": "490",
           "salesElementName": "CBS This Morning",
           "salesElementId": "999",
-          "salesElementType": "Program Based"
+          "salesElementType": "Program"
         },
         "timePeriod": {
           "dateWindow": {

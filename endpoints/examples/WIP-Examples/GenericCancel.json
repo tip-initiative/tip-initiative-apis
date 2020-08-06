@@ -17,14 +17,14 @@
     },
     "referenceIds": [
       {
-        "referenceSourceName": "string",
-        "referenceSourceId": "string",
-        "referenceSourceLookup": "string",
-        "referenceType": "RFP",
+        "referenceSourceName": "KUOU-TV",
+        "referenceSourceId": "490",
+        "referenceSourceLookup": "",
+        "referenceType": "Order",
         "referenceId": "123456",
         "referenceVersionId": "",
         "referenceName": "string"
       }
     ],
-    "comments": "string"
+    "comments": "Sample comment from message originator"
   }

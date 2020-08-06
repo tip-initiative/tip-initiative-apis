@@ -8,7 +8,7 @@ components:
 security:
   - bearerAuth: []
 info:
-  version: 5.0.0
+  version: 5.1.0
   title: Inventory Avails
   description: Inventory Endpoints
   termsOfService: http://placeholderdomain.io/terms/
@@ -29,12 +29,10 @@ paths:
         - Buyer
       summary: Allows the Buyer as part of campaign planning to initiate an Inventory Request to Seller
       description: >-
-        This endpoint is hosted at the seller end, Allows the Buyer as part of campaign planning
-        to initiate an Inventory Request to Seller. The payload of the request can either be:<br/>
-        NOTE#1: For New Request --> transactionId.transactionType=New<br/>
-        NOTE#2: for Changing a previously submitted request --> <br/>
-        <li>transactionId.transactionType=Change<br/>
-        <li>originalTransactionId object must be provided
+        This endpoint is hosted at the seller end. Allows the Buyer as part of campaign planning
+        to initiate an Inventory Request to Seller.<br/>
+        Supported Transaction Types:<br/>
+        <lo>- New</lo>
       operationId: BuyerInventoryAvails
       requestBody:
         description: Send the request for the inventory avails required
@@ -43,6 +41,9 @@ paths:
           application/json:
             schema:
               $ref: 'schemas/inventoryAvailsSchemas.yaml#/components/schemas/BuyerInventoryAvails'
+            example:
+              value: 
+                $ref: 'examples/WIP-Examples/BuyerInventoryAvailsNew.json'
       responses:
         '200': #OK - in case request can be fullfiled in realtime
           description: OK - in case request can be fullfiled in realtime
@@ -70,9 +71,11 @@ paths:
         - Seller
       summary: Allows the Seller to post to the buyer their catalog of selling products, pricing and audience information
       description: >
-        This endpoint will be hosted at the buyer side,
-        Allows the Seller to send inventory criteria such as Stations, Selling Elements, Inventory Types, Pricing, Audience Estimates
-        either solicited or unsolicited
+        This endpoint will be hosted at the buyer side.
+        Allows the Seller to send Available Selling inventory by station, Selling Element, Inventory Types, 
+        Pricing, Audience Estimates either solicited or unsolicited<br/>
+        Supported Transaction Types:<br/>
+        <lo>- New</lo>
       operationId: SellerInventoryAvails
       requestBody:
         description: Seller POSTs the the Inventory Avails information to the buyer's system

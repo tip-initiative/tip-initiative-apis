@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   version: 5.1.0
-  title: Buyer requesting New Order or Order Change Request to Seller
+  title: Orders
   description: Buyer/Order
   termsOfService: http://placeholderdomain.io/terms/
   contact:
@@ -15,7 +15,7 @@ paths: {}
 components:
   schemas:
     BuyerOrders:
-      description: Create or Change an Order in the Seller System
+      description: Buyers Ordering entity
       properties:
         transactionHeader:
           $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'

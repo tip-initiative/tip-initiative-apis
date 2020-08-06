@@ -1,14 +1,8 @@
 openapi: "3.0.0"
-components:
-  securitySchemes:
-    bearerAuth:
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
 security:
   - bearerAuth: []
 info:
-  version: 5.x.x
+  version: 5.1.0
   title: Commercial Instructions
   description: >-
     Allows the creative agency or service provider of commercial instructions to send new or
@@ -29,19 +23,33 @@ paths:
     post:
       tags:
         - Buyer
-      summary: Buyer Provides New Commercial Instructions
+      summary: Buyer or Creative Agencies to provide New, Change, Cancel or Recall Commercial Instructions
       description: >-
         Allows the creative agency or service provider of commercial instructions to send new or
         revised traffic instructions on how commercial copy should be applied to units (No request
-        from Seller is required)
-      operationId: commercialInstructionsPost
+        from Seller is required)<br/>
+        Supported Transaction Types: New, Change, Cancel, Recall
+      operationId: BuyerCommercialInstructions
       requestBody:
-        description: commercial instructions required
+        description: commercial instructions request body is required.
         required: true
         content:
           application/json:
             schema:
-              $ref: 'schemas/commercialInstructionSchemas.yaml#/components/schemas/BuyerCommercialInstructions'
+              $ref: '#/components/schemas/BuyerCommercialInstructions'
+            examples:
+              New:
+                value: 
+                  $ref: 'examples/WIP-Examples/CommercialInstructionsNew.json'
+              Change:
+                value: 
+                  $ref: 'examples/WIP-Examples/CommercialInstructionsChange.json'
+              Cancel:
+                value: 
+                  $ref: 'examples/WIP-Examples/GenericCancel.json'
+              Recall:
+                value: 
+                  $ref: 'examples/WIP-Examples/GenericRecall.json'
       responses:
         '200': #OK
           $ref: 'schemas/commonResponses.yaml#/components/responses/Success'
@@ -57,3 +65,56 @@ paths:
           $ref: 'schemas/commonResponses.yaml#/components/responses/NotAllowed'
         default: #unexpected
           $ref: 'schemas/commonResponses.yaml#/components/responses/Unexpected'
+  /seller/commercialInstructions:
+    post:
+      tags:
+        - Seller
+      summary: Seller optionally confirms or reject Commercial Instructions
+      description: >-
+        Allows the seller to respond to a new commercial instructions or comercial instructions changes with a confirm or reject. 
+        Supported Transaction Types: Reject, Confirm"				      
+      operationId: SellerCommercialInstructions
+      requestBody:
+        description: Request body is required to Confirm or reject Commercial Instructions
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: './schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
+            examples:
+              Reject:
+                value: 
+                  $ref: 'examples/WIP-Examples/GenericReject.json'
+              Confirm:
+                value: 
+                  $ref: 'examples/WIP-Examples/GenericConfirm.json'
+      responses:
+        '200': #OK
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Success'
+        '400': #Bad Request
+          $ref: 'schemas/commonResponses.yaml#/components/responses/BadRequest'
+        '401': #Unauthorized
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Unauthorized'
+        '403': #Forbidden
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Forbidden'
+        '404': #Not Found
+          $ref: 'schemas/commonResponses.yaml#/components/responses/NotFound'
+        '405': #Not Allowed
+          $ref: 'schemas/commonResponses.yaml#/components/responses/NotAllowed'
+        default: #unexpected
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Unexpected'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    BuyerCommercialInstructions:
+      description: |
+        Users of this contruct have the option to either
+        <li>Use the full Commercial Instructions object to deliver New, or change instructions
+        <li>Use the alternate object to recall, or cancel a previously sent instructions.
+      oneOf:
+        - $ref: './schemas/commercialInstructionSchemas.yaml#/components/schemas/BuyerCommercialInstructions'
+        - $ref: './schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'

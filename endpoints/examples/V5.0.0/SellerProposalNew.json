@@ -164,7 +164,7 @@
           "mediaOutletId": "456",
           "salesElementName": "CBS This Morning",
           "salesElementId": "999",
-          "salesElementType": "Program Based"
+          "salesElementType": "Program"
         },
         "timePeriods": [
           {

@@ -1,17 +1,9 @@
 openapi: "3.0.0"
-components:
-  securitySchemes:
-    bearerAuth:
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
-security:
-  - bearerAuth: []
 
 info:
-  version: 5.x.x
+  version: 5.1.0
   title: Makegoods
-  description: Makegoods
+  description: Makegoods Endpoints
   termsOfService: http://placeholderdomain.io/terms/
   contact:
     name: TIP Forum
@@ -22,22 +14,30 @@ info:
     url: https://opensource.org/licenses/MIT
 servers:
   - url: http://placeholderdomain.io/tip/v5.x.x
+security:
+  - bearerAuth: []
 
 paths:
-  /seller/makegoodGuidlines:
+  /seller/makegood/guidelines:
     post:
       tags:
         - Seller
       summary: Seller submits a request for buyer's makegood guidelines
-      description: Seller submits a request for buyer's makegood guidelines
+      description: |
+        Allows the seller submits a request for buyer's makegood guidelines<br/>
+        Supported Transaction Types: New
       operationId: SellerMakegoodGuidelines
       requestBody:
-        description: GetMakegoodGuidelines
+        description: SellerMakegoodGuidelines
         required: true
         content:
           application/json:
             schema:
               $ref: 'schemas/makegoodsSchemas.yaml#/components/schemas/SellerMakegoodGuidelines'
+            example:
+              New:
+                value:
+                  $ref: 'examples/WIP-Examples/SellerMakegoodGuidelinesNew.json'
       responses:
         '202': #Accepted
           $ref: 'schemas/commonResponses.yaml#/components/responses/Accepted'
@@ -54,12 +54,14 @@ paths:
         default: #unexpected
           $ref: 'schemas/commonResponses.yaml#/components/responses/Unexpected'
 
-  /buyer/makegoodGuidelines:
+  /buyer/makegood/guidelines:
     post:
       tags: 
         - Buyer
       summary: Buyer responds back to seller with list of makegood guidelines
-      description: Buyer responds back to seller with list of makegood guidelines 
+      description: |
+        Buyer responds back to seller with list of makegood guidelines 
+        Supported Transaction Types: New, Change, Cancel
       operationId: BuyermakegoodGuidelines
       requestBody:
         description: Makegoods
@@ -67,7 +69,17 @@ paths:
         content:
           application/json:
             schema:
-              $ref: 'schemas/makegoodsSchemas.yaml#/components/schemas/BuyerMakegoodGuidelines'
+              $ref: '#/components/schemas/BuyerMakegoodGuidelines'
+            examples:
+              New:
+                value:
+                  $ref: 'examples/WIP-Examples/BuyerMakegoodGuidelinesNew.json'
+              Change:
+                value:
+                  $ref: 'examples/WIP-Examples/BuyerMakegoodGuidelinesNew.json'
+              Cancel:
+                value:
+                  $ref: 'examples/WIP-Examples/GenericCancel.json'
       responses:
         '200': #OK
           $ref: 'schemas/commonResponses.yaml#/components/responses/Success'
@@ -83,24 +95,38 @@ paths:
           $ref: 'schemas/commonResponses.yaml#/components/responses/NotAllowed'
         default: #unexpected
           $ref: 'schemas/commonResponses.yaml#/components/responses/Unexpected'
-
-  /seller/makegood/Offer:
+  
+  /seller/makegood/offers:
     post:
       tags:
         - Seller
       summary: Receive Makegood Offer
       description: >
-        Seller sends to Buyer one too many offer requests to support the following:
+        Seller sends to Buyer one or many offer requests to support the following:
         Makegood to resolve unresolved Preemptions
-        "ADU" to resolve make-up for audience shortfall 
-      operationId: SellerMakegoodOffer
+        "ADU" to resolve make-up for audience shortfall
+        Supported Transaction Types: New, Change, Cancel, Recall 
+      operationId: SellerMakegoodOffers
       requestBody:
-        description: MakegoodOffer
+        description: MakegoodOffers
         required: true
         content:
           application/json:
             schema:
-              $ref: 'schemas/makegoodsSchemas.yaml#/components/schemas/SellerMakegoodOffer'
+              $ref: '#/components/schemas/SellerMakegoodOffers'
+            examples:
+              New:
+                value:
+                  $ref: 'examples/WIP-Examples/SellerMakegoodOfferNew.json'
+              Change:
+                value:
+                  $ref: 'examples/WIP-Examples/SellerMakegoodOfferNew.json'
+              Cancel:
+                value:
+                  $ref: 'examples/WIP-Examples/GenericCancel.json'
+              Recall:
+                value:
+                  $ref: 'examples/WIP-Examples/GenericRecall.json'
       responses:
         '200': #OK
           $ref: 'schemas/commonResponses.yaml#/components/responses/Success'
@@ -115,22 +141,29 @@ paths:
         default: #unexpected
           $ref: 'schemas/commonResponses.yaml#/components/responses/Unexpected'
 
-  /buyer/makegood/confirm:
+  /buyer/makegood/offers:
     post:
       tags:
         - Buyer
-      summary: Makegood Confirm
-      description: >
-        Allows the  buyer to respond to an makegood offer(s) with an acceptance confirmation; 
-        this will accept all makegood offers in the request
-      operationId: BuyerMakegoodConfirm
+      summary: Buyer confirms or rejects Makegood Offers received from the seller
+      description: |
+        Allows the buyer to respond to an makegood offer(s) with an acceptance confirmation; this will accept all makegood offers in the request. 
+        Supported Transaction Types: Reject, Confirm      
+      operationId: BuyerMakegoodOffers
       requestBody:
-        description: MakegoodOfferConfirm
+        description: Makegood offer accept or reject request
         required: true
         content:
           application/json:
             schema:
-              $ref: 'schemas/makegoodsSchemas.yaml#/components/schemas/BuyerMakeGoodConfirm'
+              $ref: 'schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
+            examples:
+              Confirm:
+                value:
+                  $ref: 'examples/WIP-Examples/GenericConfirm.json'
+              Reject:
+                value:
+                  $ref: 'examples/WIP-Examples/GenericReject.json'
       responses:
         '200': #OK
           $ref: 'schemas/commonResponses.yaml#/components/responses/Success'
@@ -146,68 +179,18 @@ paths:
           $ref: 'schemas/commonResponses.yaml#/components/responses/NotAllowed'
         default: #unexpected
           $ref: 'schemas/commonResponses.yaml#/components/responses/Unexpected'
-
-  /buyer/makegood/reject:
-    post:
-      tags:
-        - Buyer
-      summary: Reject a Makegood offer
-      description: >
-        Allows the buyer to reject makegood offer(s)request; 
-        buyer will request everything in the request and include rejection comments
-      operationId: BuyerMakegoodReject
-      requestBody:
-        description: Buyer Reject makegood offer
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: 'schemas/makegoodsSchemas.yaml#/components/schemas/BuyerMakegoodReject'
-      responses:
-        '200': #OK
-          $ref: 'schemas/commonResponses.yaml#/components/responses/Success'
-        '400': #Bad Request
-          $ref: 'schemas/commonResponses.yaml#/components/responses/BadRequest'
-        '401': #Unauthorized
-          $ref: 'schemas/commonResponses.yaml#/components/responses/Unauthorized'
-        '403': #Forbidden
-          $ref: 'schemas/commonResponses.yaml#/components/responses/Forbidden'
-        '404': #Not Found
-          $ref: 'schemas/commonResponses.yaml#/components/responses/NotFound'
-        '405': #Not Allowed
-          $ref: 'schemas/commonResponses.yaml#/components/responses/NotAllowed'
-        default: #unexpected
-          $ref: 'schemas/commonResponses.yaml#/components/responses/Unexpected'
-
-  /seller/makegood/recall:
-    post:
-      tags: 
-        - Seller
-      summary: Seller Makegood Recall
-      description: >
-        Allows the seller to recall a makegood offer request;
-        buyer must respond with acceptance or failure.
-        Note: buyer's system defines rules of acceptance or failure
-      operationId: SellerMakegoodRecall
-      requestBody:
-        description: Seller recalls makegood Offer
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: 'schemas/makegoodsSchemas.yaml#/components/schemas/SellermakegoodRecall'
-      responses:
-        '200': #OK
-          $ref: 'schemas/commonResponses.yaml#/components/responses/Success'
-        '400': #Bad Request
-          $ref: 'schemas/commonResponses.yaml#/components/responses/BadRequest'
-        '401': #Unauthorized
-          $ref: 'schemas/commonResponses.yaml#/components/responses/Unauthorized'
-        '403': #Forbidden
-          $ref: 'schemas/commonResponses.yaml#/components/responses/Forbidden'
-        '404': #Not Found
-          $ref: 'schemas/commonResponses.yaml#/components/responses/NotFound'
-        '405': #Not Allowed
-          $ref: 'schemas/commonResponses.yaml#/components/responses/NotAllowed'
-        default: #unexpected
-          $ref: 'schemas/commonResponses.yaml#/components/responses/Unexpected'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    BuyerMakegoodGuidelines:
+      oneOf:
+        - $ref: './schemas/makegoodsSchemas.yaml#/components/schemas/BuyerMakegoodGuidelines'
+        - $ref: './schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
+    SellerMakegoodOffers:
+      oneOf:
+        - $ref: './schemas/makegoodsSchemas.yaml#/components/schemas/SellerMakegoodOffers'
+        - $ref: './schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'

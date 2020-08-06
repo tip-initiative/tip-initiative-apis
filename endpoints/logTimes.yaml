@@ -1,18 +1,10 @@
 openapi: "3.0.0"
 
-components:
- securitySchemes:
-    bearerAuth:
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
-security:
-  - bearerAuth: []
 
 info:
-  version: 5.x.x
-  title: logtimes
-  description: Seller posts a Logtimes on the buyer's server
+  version: 5.1.0
+  title: Logtimes
+  description: Seller Provides a Logtimes report on the buyer's server
   termsOfService: http://placeholderdomain.io/terms/
   contact:
     name: TIP Initiative
@@ -23,6 +15,8 @@ info:
     url: https://opensource.org/licenses/MIT
 servers:
   - url: http://placeholderdomain.io/v5.x.x
+security:
+  - bearerAuth: []
 
 paths:
   /seller/logtimes:
@@ -31,16 +25,24 @@ paths:
         - Seller
       summary: Seller Creates Logtimes record in the buyer system
       description: >-
-        Allows the seller to send to the buyer the log times information (No Request from buyer is
-        Required)
-      operationId: SellerLogTimes
+        Allows the seller to send to the buyer the log times information. No Request from buyer is
+        Required.<br/>
+        Supported Transaction Types: New, Change
+      operationId: SellerLogtimes
       requestBody:
-        description: seller POSTs the Log Times report to the buyer's system
+        description: seller provides the Log Times report to the buyer's system
         required: true
         content:
           application/json:
             schema:
               $ref: 'schemas/logTimesSchemas.yaml#/components/schemas/SellerLogtimes'
+            examples:
+              New:
+                value:
+                  $ref: 'examples/WIP-Examples/SellerLogtimesNew.json'
+              Change:
+                value: 
+                  $ref: 'examples/WIP-Examples/SellerLogtimesNew.json'
       responses:
         '200': #OK
           $ref: 'schemas/commonResponses.yaml#/components/responses/Success'
@@ -56,3 +58,9 @@ paths:
           $ref: 'schemas/commonResponses.yaml#/components/responses/NotAllowed'
         default: #unexpected
           $ref: 'schemas/commonResponses.yaml#/components/responses/Unexpected'
+components:
+ securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

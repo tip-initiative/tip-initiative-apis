@@ -1,9 +1,9 @@
 openapi: "3.0.0"
 
 info:
-  version: 5.x.x
+  version: 5.1.0
   title: Makegood Schemas
-  description: All schemas to define makegood are defined
+  description: All schemas belonging to makegood defintion
   termsOfService: http://placeholderdomain.io/terms/
   contact:
     name: TIP Initiative
@@ -18,7 +18,7 @@ paths: {} # no paths
 components:
   schemas:
     SellerMakegoodGuidelines:
-      description: Seller submits a request for buyer's makegood guidelines
+      description: Allows Seller to formulate Makegood Guidelines
       properties:
         transactionHeader:
           $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
@@ -50,7 +50,7 @@ components:
         - buyer
         - makegoodType 
     BuyerMakegoodGuidelines:
-      description: Buyer submits a list of the makegood guidelines to seller prior to order confirmation
+      description: Buyer's list of the makegood guidelines to seller prior to order confirmation
       properties:
         transactionHeader:
           $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
@@ -75,12 +75,8 @@ components:
         - transactionHeader
         - buyer
         - makegoodGuidelines
-    SellerMakegoodOffer:
-      description: >
-        Seller sends to Buyer one too many offer requests to support the following:
-        - Makegood to resolve unresolved Preemptions
-        - ADU to resolve make-up for audience shortfall 
-        - Recap to support projected audience shortfall
+    SellerMakegoodOffers:
+      description: Makegood Offer data schema
       properties:
         transactionHeader:
           $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
@@ -107,77 +103,7 @@ components:
         - referenceIds
         - makegoodType
         - makegoodDetails
-    BuyerMakeGoodConfirm:
-      description: >-
-        Allows the seller to respond to an makegood or makegood change request with a confirmed booked confirmation
-      properties:
-        transactionHeader:
-          $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
-        referenceIds:
-          type: array
-          items:
-            $ref: 'commonSchemas.yaml#/components/schemas/ReferenceId'
-        confirmedBookedDate:
-          description: Date that the makegood was Confirmed Booked
-          type: string
-          format: date
-        comments:
-          description: Free form comments with "Not Accepted" Reason
-          type: string
-      required:
-        - transactionHeader
-        - referenceIds
-        - confirmedBookedDate
-
-    BuyerMakegoodReject:
-      description: >-
-        Allows the seller to reject a new makegood or makegood change request; seller must respond back with
-        rejection comments
-      properties:
-        transactionHeader:
-          $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
-        referenceIds:
-          type: array
-          items:
-            $ref: 'commonSchemas.yaml#/components/schemas/ReferenceId'
-        rejectionDate:
-          description: Date the order was rejected
-          type: string
-          format: date
-        comments:
-          description: Free form comments
-          type: string
-      required:
-        - transactionHeader
-        - referenceIds
-        - rejectionDate
-
-    SellermakegoodRecall:
-      description: >-
-        Allows the buyer to recall a makegood  or makegood  change request ; seller must respond back with
-        acceptance or failure of the recall request. Note: Seller's system defined the rules for acceptance
-        or failure of request
-      properties:
-        transactionHeader:
-          $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
-        referenceIds:
-          type: array
-          items:
-            $ref: 'commonSchemas.yaml#/components/schemas/ReferenceId'
-        recallDate:
-          description: >-
-            Buyer requesting to recall a previously submitted new or changed order. Seller responding
-            back to Buyer acceptance or failure of request.
-          type: string
-          format: date
-        comments:
-          description: Free form comments
-          type: string
-      required:
-        - transactionHeader
-        - referenceIds
-        - recallDate
-# Local Objects    
+# Local Objects  
     MakegoodType:
       description: Type of Offer
       type: string
