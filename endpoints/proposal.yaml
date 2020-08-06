@@ -1,17 +1,7 @@
 openapi: "3.0.0"
-
-components:
- securitySchemes:
-    bearerAuth:
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
-security:
-  - bearerAuth: []
-
 info:
   version: 5.1.0
-  title: Proposal
+  title: Proposals
   description: |
     * Allows the seller to respond back to the buyer with the detailed proposal for a given RFP or revised proposal;
     Multiple versions of a proposal can be under negotiation for the same campaign, but only one version may be executed; buyer must submit a
@@ -27,7 +17,8 @@ info:
     url: https://opensource.org/licenses/MIT
 servers:
   - url: http://placeholderdomain.io
-
+security:
+  - bearerAuth: []
 paths:
   /seller/proposals:
     post:
@@ -37,10 +28,16 @@ paths:
       description: >-
         Allows the seller to respond back to the buyer with the detailed proposal 
         for a given RFP or revised proposal; Multiple versions of a proposal can be under
-         negotiation for the same campaign, but only one version may be executed; 
-         buyer must submit a "Proposal Change Request" for the last proposal version submission; 
-         seller must respond back with a Proposal Response that contains a new version number 
-         when submitting new versions.  New Proposals may be submitted without a RFP Response
+        negotiation for the same campaign, but only one version may be executed; 
+        buyer must submit a "Proposal Change Request" for the last proposal version submission; 
+        seller must respond back with a Proposal Response that contains a new version number 
+        when submitting new versions.  New Proposals may be submitted without a RFP Response<br/>
+        <ul>
+        <li>New - Create New proposal based on RFP or unsolicited</li>
+        <li>Change - Make changes to previously sent proposal or responding to proposed chages suggested by the buyer</li>
+        <li>Cancel - sending a cancel assumes that seller no longer wants the buyer to consider the proposal</li>
+        <li>Recall - sending a Recall is asking the buyer to ignore changes communicated in the prior exchange.</li>
+        <ul>
       operationId: SellerProposals
       requestBody:
         description: Create, Change, Cancel, or Recall a proposal in the buyers system
@@ -48,7 +45,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: 'schemas/proposalSchemas.yaml#/components/schemas/SellerProposals'
+              $ref: '#/components/schemas/SellerProposals'
             examples:
               New:
                 value:
@@ -86,17 +83,15 @@ paths:
         Allows the buyer to respond back to the seller with the proposed changeds for a given proposal; 
         Multiple versions of a proposal can be under negotiation for the same campaign, 
         but only one version may be executed; buyer must submit a 'Proposal Change' for the last proposal version submitted; 
-        seller must respond back with a Proposal that contains a new version number when submitting the change          
-        NOTE#1:originalTransactionId values needs to indicate which request is to be cancelled.<br/>
-        NOTE#2: transactionId.transactionType = Change<br/>
-        NOTE#3: originalTransactionId.transactionId must refer to the proposal in question
+        seller must respond back with a Proposal that contains a new version number when submitting the change<br/>
+        Supported Transaction Type: Change, Recall         
       operationId: BuyerProposals
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: 'schemas/proposalSchemas.yaml#/components/schemas/SellerProposals'
+              $ref: '#/components/schemas/SellerProposals'
             examples:
               Change:
                 value: 
@@ -119,3 +114,15 @@ paths:
           $ref: 'schemas/commonResponses.yaml#/components/responses/NotAllowed'
         default: #unexpected
           $ref: 'schemas/commonResponses.yaml#/components/responses/Unexpected'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    SellerProposals:
+      description: Request Body for the endpoint varies based on Transaction type
+      oneOf:
+        - $ref: './schemas/proposalSchemas.yaml#/components/schemas/SellerProposals'
+        - $ref: './schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'

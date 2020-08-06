@@ -1,17 +1,9 @@
 openapi: "3.0.0"
-components:
-  securitySchemes:
-    bearerAuth:
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
-security:
-  - bearerAuth: []
 
 info:
   version: 5.1.0
   title: Makegoods
-  description: Makegoods
+  description: Makegoods Endpoints
   termsOfService: http://placeholderdomain.io/terms/
   contact:
     name: TIP Forum
@@ -22,6 +14,8 @@ info:
     url: https://opensource.org/licenses/MIT
 servers:
   - url: http://placeholderdomain.io/tip/v5.x.x
+security:
+  - bearerAuth: []
 
 paths:
   /seller/makegood/guidelines:
@@ -29,7 +23,9 @@ paths:
       tags:
         - Seller
       summary: Seller submits a request for buyer's makegood guidelines
-      description: Seller submits a request for buyer's makegood guidelines
+      description: |
+        Allows the seller submits a request for buyer's makegood guidelines<br/>
+        Supported Transaction Types: New
       operationId: SellerMakegoodGuidelines
       requestBody:
         description: SellerMakegoodGuidelines
@@ -63,7 +59,9 @@ paths:
       tags: 
         - Buyer
       summary: Buyer responds back to seller with list of makegood guidelines
-      description: Buyer responds back to seller with list of makegood guidelines 
+      description: |
+        Buyer responds back to seller with list of makegood guidelines 
+        Supported Transaction Types: New, Change, Cancel
       operationId: BuyermakegoodGuidelines
       requestBody:
         description: Makegoods
@@ -71,7 +69,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: 'schemas/makegoodsSchemas.yaml#/components/schemas/BuyerMakegoodGuidelines'
+              $ref: '#/components/schemas/BuyerMakegoodGuidelines'
             examples:
               New:
                 value:
@@ -104,17 +102,18 @@ paths:
         - Seller
       summary: Receive Makegood Offer
       description: >
-        Seller sends to Buyer one too many offer requests to support the following:
+        Seller sends to Buyer one or many offer requests to support the following:
         Makegood to resolve unresolved Preemptions
-        "ADU" to resolve make-up for audience shortfall 
-      operationId: SellerMakegoodOffer
+        "ADU" to resolve make-up for audience shortfall
+        Supported Transaction Types: New, Change, Cancel, Recall 
+      operationId: SellerMakegoodOffers
       requestBody:
         description: MakegoodOffers
         required: true
         content:
           application/json:
             schema:
-              $ref: 'schemas/makegoodsSchemas.yaml#/components/schemas/SellerMakegoodOffers'
+              $ref: '#/components/schemas/SellerMakegoodOffers'
             examples:
               New:
                 value:
@@ -146,8 +145,10 @@ paths:
     post:
       tags:
         - Buyer
-      summary: Seller Confirms, or rejects Makegood offer
-      description: Allows the  buyer to respond to an makegood offer(s) either with confirm or reject; 
+      summary: Buyer confirms or rejects Makegood Offers received from the seller
+      description: |
+        Allows the buyer to respond to an makegood offer(s) with an acceptance confirmation; this will accept all makegood offers in the request. 
+        Supported Transaction Types: Reject, Confirm      
       operationId: BuyerMakegoodOffers
       requestBody:
         description: Makegood offer accept or reject request
@@ -178,3 +179,18 @@ paths:
           $ref: 'schemas/commonResponses.yaml#/components/responses/NotAllowed'
         default: #unexpected
           $ref: 'schemas/commonResponses.yaml#/components/responses/Unexpected'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    BuyerMakegoodGuidelines:
+      oneOf:
+        - $ref: './schemas/makegoodsSchemas.yaml#/components/schemas/BuyerMakegoodGuidelines'
+        - $ref: './schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
+    SellerMakegoodOffers:
+      oneOf:
+        - $ref: './schemas/makegoodsSchemas.yaml#/components/schemas/SellerMakegoodOffers'
+        - $ref: './schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'

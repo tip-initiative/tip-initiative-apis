@@ -15,17 +15,9 @@ paths: {}
 components:
   schemas:
     SellerProposals:
-      oneOf:
-        - $ref: '#/components/schemas/SellerProposalsObj'
-        - $ref: 'commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
-    SellerProposalsObj:
       description: >-
-        Allows the seller to respond back to the buyer with the detailed proposal for a given RFP or
-        revised proposal; Multiple versions of a proposal can be under negotiation for the same campaign,
-        but only one version may be executed; buyer must submit a "Proposal Change Request" for the last
-        proposal version submission; seller must respond back with a Proposal Response that contains
-        a new version number when submitting new versions. New Proposals may be submitted without a RFP
-        Response
+        The data model is shared between the buyers and seller to exchange information
+        and maintain a trail of negotiations concerning proposals				
       properties:
         transactionHeader:
           $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'

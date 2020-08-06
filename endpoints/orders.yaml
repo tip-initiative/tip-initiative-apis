@@ -1,14 +1,4 @@
 openapi: "3.0.0"
-
-components:
-  securitySchemes:
-    bearerAuth:
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
-security:
-  - bearerAuth: []
-
 info:
   version: 5.1.0
   title: Orders
@@ -26,6 +16,8 @@ info:
     url: https://opensource.org/licenses/MIT
 servers:
   - url: http://placeholderdomain.io
+security:
+  - bearerAuth: []
 paths:
   /buyer/orders:
     post:
@@ -39,15 +31,16 @@ paths:
         Buyer must submit entire order for Order Change Request using the last confirmed booked
         order version response.  Seller will be responsible for deciphering change request
         from buyer.  Cancellation of order either prior to start or mid flight will be submitted
-        in an order change request
-      operationId: BuyerOrder
+        in an order change request<br/>
+        Supported Transaction Types: New, Change, Cancel, Recall
+      operationId: BuyerOrders
       requestBody:
         description: Buyer Order
         required: true
         content:
           application/json:
             schema:
-              $ref: 'schemas/ordersSchemas.yaml#/components/schemas/BuyerOrders'
+              $ref: '#/components/schemas/BuyerOrders'
             examples:
               New:
                 value:
@@ -90,7 +83,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: 'schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
+              $ref: './schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
             examples:
               Reject:
                 value:
@@ -112,4 +105,19 @@ paths:
         '405': #Not Allowed
           $ref: 'schemas/commonResponses.yaml#/components/responses/NotAllowed'
         default: #unexpected
-          $ref: 'schemas/commonResponses.yaml#/components/responses/Unexpected'          
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Unexpected'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    BuyerOrders:
+      description: |
+          The Buyer can perform the following operations:
+          <li>New or Change - Use the Buyer orders object
+          <li>Cancel or Recall - Use the Generic object to Cancel or Recall
+      oneOf:
+        - $ref: './schemas/ordersSchemas.yaml#/components/schemas/BuyerOrders'
+        - $ref: './schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'    

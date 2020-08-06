@@ -648,6 +648,7 @@ components:
         - friday
         - saturday
         - sunday
+      nullable: true
     InventoryType:
       description: >-
         A descriptor common object defining the type of advertisement, announcement, spot or message
@@ -793,34 +794,44 @@ components:
         addressLine2:
           description: Contact Address Line 2
           type: string
+          nullable: true
         city:
           description: City
           type: string
+          nullable: true
         state:
           description: State
           type: string
+          nullable: true
         postalCode:
           description: Postal Code
           type: string
+          nullable: true
         country:
           description: Country
           type: string
+          nullable: true
         phoneNumber:
           description: Primary telephone number
           type: string
+          nullable: true
         contactEmail:
           description: Primary email for payment remittance information
           type: string
           format: email
+          nullable: true
         portalInformation:
           description: Portal information including payment instructions
           type: string
+          nullable: true
         paymentLink:
           description: URL that directs buyer to invoice payment options
           type: string
+          nullable: true
         comments:
           description: Comments
           type: string
+          nullable: true
     SalesElementHeader:
       description: A descriptor common object defining the sales element header information
       properties:
@@ -964,6 +975,7 @@ components:
         lineReference:
           description: User defined line reference to the source line transaction number
           type: string
+          nullable: true
         inventoryType:
           $ref: '#/components/schemas/InventoryType'
         linkType:
@@ -973,18 +985,22 @@ components:
         inventoryLength:
           description: length of inventory type, in seconds
           type: integer
+          nullable: true
         adu:
           description: True/False
           type: boolean
+          nullable: true
         bonus:
           description: True/False
           type: boolean
+          nullable: true
         externalComment:
           description: >-
             A free form comments string that can be used in any of the many interfaces the Sales Element
             objects appears. For example to support buyer or seller generic comments to guide or explain
             changes that can be applied to the line.
           type: string
+          nullable: true
         salesElementTransactionDates:
           type: array
           items:
@@ -1014,12 +1030,15 @@ components:
         unitCount:
           description: The number of "units" for the SalesElementTransaction
           type: integer
+          minimum: 0
         dailyUnitDistribution:
           $ref: '#/components/schemas/DailyUnitDistribution'
         rate:
           description: The rate for individual unit or impressions
           type: number
           format: float
+          minimum: 0
+          nullable: true
         externalComment:
           description: >-
             A free form comments string that can be used in any of the many interfaces the Sales Element
@@ -1027,9 +1046,11 @@ components:
             guide the line-level negotiations in the proposal. It could include comments about the audience,
             rate, date, and units.
           type: string
+          nullable: true
         audiencesPricingMetrics:
           description: Pricing metrics for individual unit
           type: array
+          nullable: true
           items:
             $ref: '#/components/schemas/AudiencePricingMetric'
       required:

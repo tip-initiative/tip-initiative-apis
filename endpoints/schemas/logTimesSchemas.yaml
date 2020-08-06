@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   version: 5.1.0
-  title: logTimes Schemas
+  title: Logtimes
   description: logTimes Schemas
   termsOfService: http://placeholderdomain.io/terms/
   contact:
@@ -15,7 +15,7 @@ paths: {}
 components:
   schemas:
     SellerLogtimes:
-      description: Top level element for Logtimes Seller POST operations
+      description: Top level element for Logtimes Seller 
       properties:
         transactionHeader:
           $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'

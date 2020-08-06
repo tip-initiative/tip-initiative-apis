@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   version: 5.1.0
-  title: Buyer requesting New Order or Order Change Request to Seller
+  title: Orders
   description: Buyer/Order
   termsOfService: http://placeholderdomain.io/terms/
   contact:
@@ -15,15 +15,7 @@ paths: {}
 components:
   schemas:
     BuyerOrders:
-      description: |
-        The Buyer can perform the following operations:
-        <li>New or Change - Use the Buyer orders object
-        <li>Cancel or Recall - Use the Generic object to Cancel or Recall
-      oneOf:
-        - $ref: '#/components/schemas/BuyerOrdersObj'
-        - $ref: 'commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
-    BuyerOrdersObj:
-      description: Create or Change an Order in the Seller System
+      description: Buyers Ordering entity
       properties:
         transactionHeader:
           $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
