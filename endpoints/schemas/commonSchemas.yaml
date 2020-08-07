@@ -185,7 +185,7 @@ components:
           description: 'Example data: Nielsen, ComScore, Internal, Client'
           type: string
         ratingStream:
-          description: >-
+          description: |-
             Example data: Program Live, Commercial Ratings Live, Commercial Rating Live+3, Commercial
             Rating Live+7
           type: string

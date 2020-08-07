@@ -71,8 +71,8 @@ paths:
         - Seller
       summary: Seller optionally confirms or reject Commercial Instructions
       description: >-
-        Allows the seller to respond to a new commercial instructions or comercial instructions changes with a confirm or reject. 
-        Supported Transaction Types: Reject, Confirm"				      
+        Allows the seller to respond to a new commercial instructions or comercial instructions changes with a confirm or reject.
+        Supported Transaction Types: Reject, Confirm
       operationId: SellerCommercialInstructions
       requestBody:
         description: Request body is required to Confirm or reject Commercial Instructions

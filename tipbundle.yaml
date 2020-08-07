@@ -1600,7 +1600,7 @@ paths:
       tags:
         - Seller
       summary: Seller optionally confirms or reject Commercial Instructions
-      description: "Allows the seller to respond to a new commercial instructions or comercial instructions changes with a confirm or reject.  Supported Transaction Types: Reject, Confirm\"\t\t\t\t      "
+      description: 'Allows the seller to respond to a new commercial instructions or comercial instructions changes with a confirm or reject. Supported Transaction Types: Reject, Confirm'
       operationId: SellerCommercialInstructions
       requestBody:
         description: Request body is required to Confirm or reject Commercial Instructions
@@ -3376,21 +3376,13 @@ components:
           description: True/False
           type: boolean
         ratingSource:
-          description: Data source for audience segment
+          description: 'Example data: Nielsen, ComScore, Internal, Client'
           type: string
-          enum:
-            - Nielsen
-            - ComScore
-            - Internal
-            - Client
         ratingStream:
-          description: Rating stream type associated to the rating source
+          description: |-
+            Example data: Program Live, Commercial Ratings Live, Commercial Rating Live+3, Commercial
+            Rating Live+7
           type: string
-          enum:
-            - Program Live
-            - Commercial Ratings Live
-            - Commercial Rating Live+3
-            - Commercial Rating Live+7
       required:
         - audienceSegmentId
         - audienceSegmentName
@@ -3420,7 +3412,8 @@ components:
           enum:
             - Impressions
             - Rating
-            - GRPs VPVH
+            - GRPs
+            - VPVH
             - Composition
             - Reach
             - Frequency Threshold
@@ -3432,12 +3425,7 @@ components:
         - audienceMetric
         - audienceMetricValue
     PricingMetricOption:
-      description: |-
-        A common object defining the Pricing metric
-        CPM - Cost-per-thousand,
-        CPP - Cost-per-point,
-        CPE - Cost-per-engagement,
-        CPA - Cost-per-action
+      description: 'A common object defining the Pricing metric: CPM - Cost-per-thousand, CPP - Cost-per-point, CPE - Cost-per-engagement, CPA - Cost-per-action'
       type: string
       enum:
         - CPM
@@ -4241,7 +4229,7 @@ components:
       description: Object representing the creative
       properties:
         id:
-          description: UniqueID from the seller of the Creative
+          description: 'UniqueID from the seller of the Creative [who assigns this in the process]'
           type: string
         version:
           description: Version of the creative
@@ -4399,23 +4387,20 @@ components:
     IpAddress:
       description: Type Definition to accept IPv4 or IPV6
       type: string
-      pattern: '^([0-9]{1,3}[\.]){3}([0-9]{1,3})|([0-9a-fA-F]{4}[\:]){7}[0-9a-fA-F]{4}$'
       example: 192.168.001.001
+      pattern: '^([0-9]{1,3}[\.]){3}([0-9]{1,3})|([0-9a-fA-F]{4}[\:]){7}[0-9a-fA-F]{4}$'
     BuyerCommercialInstructions:
-      description: |
-        The Schema provides for the definition of detailed  Commercial Instructions including patterns, rotations, weight
+      description: 'The Schema provides for the definition of detailed Commercial Instructions including patterns, rotations, weight'
       properties:
         transactionHeader:
           $ref: '#/components/schemas/TransactionHeader'
         referenceIds:
-          description: 'Information pertaining to all the ids and their sources that are associated to the order; this may include order ids, proposal ids, etc. Order ID is required'
           type: array
           items:
             $ref: '#/components/schemas/ReferenceId'
         buyer:
           $ref: '#/components/schemas/Buyer'
         contact:
-          description: Array of Contacts Information
           type: array
           items:
             $ref: '#/components/schemas/Contact'
@@ -4462,7 +4447,6 @@ components:
             - Revised
             - Cancelled
         inventoryTypes:
-          description: Valid Inventory Types for the instructions
           type: array
           items:
             $ref: '#/components/schemas/InventoryType'
@@ -4557,8 +4541,8 @@ components:
         - mediaOutlets
         - salesElements
         - referenceIds
-        - impressions
         - creatives
+        - impressions
     Impression:
       description: An object representing one impression with all associated Ids
       properties:
@@ -4612,9 +4596,7 @@ components:
         - geo
         - events
     BuyerInventoryAvails:
-      description: |
-        The BuyerInventoryAvails Schema allows the buyer to formulate a query
-        for Inventory meeting the listed conditions
+      description: The BuyerInventoryAvails Schema allows the buyer to formulate a query for Inventory meeting the listed conditions
       properties:
         transactionHeader:
           $ref: '#/components/schemas/TransactionHeader'
@@ -4683,8 +4665,9 @@ components:
         - audienceSegments
     SellerInventoryAvails:
       description: |-
-        The SellerInventoryAvails Schemas defines: - the Seller response to previously solicited InventoryAvails request from the buyer,  - or Unslocited provide the buyer with the catalog of selling products, 
-          and optionally provide pricing and audience information
+        The SellerInventoryAvails Schemas defines:
+        - the Seller response to previously solicited InventoryAvails request from the buyer,
+        - or Unslocited provide the buyer with the catalog of selling products, and optionally provide pricing and audience information
       properties:
         transactionHeader:
           $ref: '#/components/schemas/TransactionHeader'
@@ -4733,7 +4716,7 @@ components:
         - availWindow
         - salesElements
     SellerInvoices:
-      description: Top level element for Invoice Seller POST operations
+      description: Invoice Schema
       properties:
         transactionHeader:
           $ref: '#/components/schemas/TransactionHeader'
@@ -4831,7 +4814,9 @@ components:
           description: Buyer's line information associated to seller's line
           type: string
         unitType:
-          description: The type of units on the line
+          description: |-
+            The type of units on the line.
+            Should we modify Non-Airtime to be Flat Rate? Do we need to another property to support type of service ?
           type: string
           enum:
             - Units
@@ -4862,12 +4847,15 @@ components:
           minimum: 0
         inventoryType:
           $ref: '#/components/schemas/InventoryType'
-        audiencePricingMetric:
-          $ref: '#/components/schemas/AudiencePricingMetric'
+        audiencePricingMetrics:
+          type: array
+          items:
+            $ref: '#/components/schemas/AudiencePricingMetric'
         totalUnits:
           description: Total number of raw (equivalized) units (based on line's unit type) within the line's start and end date or if audience buy the total number of Raw Impressions
           type: integer
           format: int64
+          minimum: 0
         unitDetails:
           type: array
           items:
@@ -5025,14 +5013,21 @@ components:
           description: Advertising industry standard unique identifier for the commercial. Can be an official AD-ID or any other ID.
           type: string
         status:
-          description: Indicates the airing status of the unit
+          description: |-
+            Aired - 'as aired' reconcilation for the spot is complete
+            No Run - spot either did not run or didn't run as contracted when the broadcast log was played out
+            Scheduled - spot is placed on a pre log (working status)
+            Finalized - spot is placed on a log that is in a 'final status' and may be locked from edits
+            Not scheduled - spot has not yet been placed on a future broadcast log
+            Preempted - spot has been removed from a future broadcast log ; buyer is either offered a makegood or issued a credit.
           type: string
           enum:
             - Aired
             - Scheduled
             - No Run
             - Finalized
-            - Invoiced
+            - Not Scheduled
+            - Preempted
         creditInd:
           description: Indicate if the unit was issued a credit
           type: boolean
@@ -5068,12 +5063,21 @@ components:
           description: Advertising industry standard unique identifier for the commercial ; Required if child unit status is "Aired"
           type: string
         status:
-          description: Indicates the airing status of the "child" unit
+          description: |-
+            Aired - 'as aired' reconcilation for the spot is complete
+            No Run - spot either did not run or didn't run as contracted when the broadcast log was played out
+            Scheduled - spot is placed on a pre log (working status)
+            Finalized - spot is placed on a log that is in a 'final status' and may be locked from edits
+            Not scheduled - spot has not yet been placed on a future broadcast log
+            Preempted - spot has been removed from a future broadcast log ; buyer is either offered a makegood or issued a credit.
           type: string
           enum:
             - Aired
             - Scheduled
             - No Run
+            - Finalized
+            - Not Scheduled
+            - Preempted
         reason:
           description: Reason description for No-Run status
           type: string
@@ -5359,7 +5363,7 @@ components:
         - dateWindow
         - mediaOutlets
     SellerProposals:
-      description: "The data model is shared between the buyers and seller to exchange information and maintain a trail of negotiations concerning proposals\t\t\t\t"
+      description: The data model is shared between the buyers and seller to exchange information and maintain a trail of negotiations concerning proposals
       properties:
         transactionHeader:
           $ref: '#/components/schemas/TransactionHeader'
