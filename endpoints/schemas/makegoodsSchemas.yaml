@@ -105,7 +105,9 @@ components:
         - makegoodDetails
 # Local Objects  
     MakegoodType:
-      description: Type of Offer
+      description: |
+        The type(s) of makegood guidelines being requested. 
+        The request may contain one or both makegood types
       type: string
       enum:
         - Resolve Preemption

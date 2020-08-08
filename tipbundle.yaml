@@ -3240,7 +3240,7 @@ components:
           type: string
           format: uuid
         transactionType:
-          description: 'This indicates if the data exchange being sent is either a new, change or cancel transaction.'
+          description: This indicates the type of data exchange being sent
           type: string
           enum:
             - New
@@ -3285,7 +3285,7 @@ components:
           description: Station or network station identification (Channel)
           type: string
         mediaOutletMarketName:
-          description: Market Name
+          description: Outlet associated to the market name when applicable
           type: string
         mediaOutletReference:
           description: External mediaoutlet reference to support data mapping differences between systems
@@ -3367,7 +3367,9 @@ components:
           description: External audience segment reference
           type: string
         audienceMethodology:
-          description: Methodology used to aggregate the audience
+          description: |
+            Methodology used to aggregate the audiences 
+            that are being provided in the audienceMetricValue
           type: string
         primaryIndicator:
           description: True/False
@@ -3376,11 +3378,11 @@ components:
           description: True/False
           type: boolean
         ratingSource:
-          description: 'Example data: Nielsen, ComScore, Internal, Client'
+          description: 'For example, Nielsen, ComScore, Internal, Client'
           type: string
         ratingStream:
           description: |-
-            Example data: Program Live, Commercial Ratings Live, Commercial Rating Live+3, Commercial
+            For example, Program Live, Commercial Ratings Live, Commercial Rating Live+3, Commercial
             Rating Live+7
           type: string
       required:
@@ -3529,7 +3531,7 @@ components:
             - type: integer
             - type: string
         referenceVersionId:
-          description: Version Number to indicate the version number for the reference id; this will be used to support revisions
+          description: Version number associated with the reference id; used to track revisions
           type: string
         referenceName:
           description: 'Free form name used to identify the type of entity such as Order Name, RFP Name'
@@ -3575,7 +3577,7 @@ components:
             - Calendar
             - Nielsen
         billingCycle:
-          description: The billing within the calendar the units should be billed
+          description: The interval within the billingCalendar in which the invoices should be issued
           type: string
           enum:
             - Month
@@ -3648,7 +3650,7 @@ components:
       description: A descriptor common object defining the general guidelines (rules) when requesting programming
       properties:
         guidelineType:
-          description: Type of guideline to support to support requests for genre or age-appropriateness rules
+          description: Used to provide guidance about the appropriate age group for the content or other types of content descriptors that maybe relevent to content
           type: string
           enum:
             - Content
@@ -3821,7 +3823,7 @@ components:
       description: A descriptor common object defining the linking of matching or related commercials
       properties:
         linkType:
-          description: Used to communicate unit linking information & sequence of how copy should be applied
+          description: Used to communicate the type of link constraints between two or more units
           type: string
           enum:
             - Billboard
@@ -4601,7 +4603,7 @@ components:
         transactionHeader:
           $ref: '#/components/schemas/TransactionHeader'
         dateSubmitted:
-          description: Buyer Submit Date for Inventory Request
+          description: Buyer submit date for the Inventory Request
           type: string
           format: date
         dueDate:
@@ -4631,7 +4633,7 @@ components:
           items:
             $ref: '#/components/schemas/Guideline'
         political:
-          description: Indicates if the request is for political pricing
+          description: Indicates that pricing being requested is political
           type: boolean
         inventoryTypes:
           type: array
@@ -4735,7 +4737,7 @@ components:
         billingOption:
           $ref: '#/components/schemas/BillingOption'
         dueDate:
-          description: Date in which payment is due on invoice
+          description: Date in which payment is due
           type: string
           format: date
         dateWindow:
@@ -4757,8 +4759,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Contact'
-        buylineCashTrade:
-          description: Revenue Type associated to the invoice
+        revenueType:
+          description: The agreed upon type of payment
           type: string
           enum:
             - Cash
@@ -4769,7 +4771,7 @@ components:
           type: number
           format: float
         commission:
-          description: Invoice total commission amount
+          description: Buyer commission amount for the invoice
           type: number
           format: float
         salesTax:
@@ -4785,7 +4787,7 @@ components:
         remittanceInfo:
           $ref: '#/components/schemas/RemittanceInfo'
         externalComment:
-          description: Free form text for comments
+          description: Free form text to accommodate transaction comments and/or activities outside the TIP flow
           type: string
         lineDetails:
           type: array
@@ -4852,7 +4854,7 @@ components:
           items:
             $ref: '#/components/schemas/AudiencePricingMetric'
         totalUnits:
-          description: Total number of raw (equivalized) units (based on line's unit type) within the line's start and end date or if audience buy the total number of Raw Impressions
+          description: Total number of raw (unequivalized) linear units  within the line's start and end date
           type: integer
           format: int64
           minimum: 0
@@ -5014,12 +5016,12 @@ components:
           type: string
         status:
           description: |-
-            Aired - 'as aired' reconcilation for the spot is complete
-            No Run - spot either did not run or didn't run as contracted when the broadcast log was played out
-            Scheduled - spot is placed on a pre log (working status)
-            Finalized - spot is placed on a log that is in a 'final status' and may be locked from edits
-            Not scheduled - spot has not yet been placed on a future broadcast log
-            Preempted - spot has been removed from a future broadcast log ; buyer is either offered a makegood or issued a credit.
+            Aired - 'as aired' reconciliation for the spot is complete
+            No Run - spot either did not run or didn't run as contracted when the broadcast log was played out  
+            Scheduled - spot is placed on a pre log that has not yet been played out
+            Finalized -  spot is placed on a log that is in a 'final status' and ready to be played out. The spot is locked from edits
+            Not Scheduled - spot has not yet been placed on a future broadcast log
+            Preempted - spot has been removed from a future broadcast log; the buyer will be offered a makegood or issued a credit
           type: string
           enum:
             - Aired
@@ -5064,12 +5066,12 @@ components:
           type: string
         status:
           description: |-
-            Aired - 'as aired' reconcilation for the spot is complete
-            No Run - spot either did not run or didn't run as contracted when the broadcast log was played out
-            Scheduled - spot is placed on a pre log (working status)
-            Finalized - spot is placed on a log that is in a 'final status' and may be locked from edits
-            Not scheduled - spot has not yet been placed on a future broadcast log
-            Preempted - spot has been removed from a future broadcast log ; buyer is either offered a makegood or issued a credit.
+            Aired - 'as aired' reconciliation for the spot is complete
+            No Run - spot either did not run or didn't run as contracted when the broadcast log was played out  
+            Scheduled - spot is placed on a pre log that has not yet been played out
+            Finalized -  spot is placed on a log that is in a 'final status' and ready to be played out. The spot is locked from edits
+            Not Scheduled - spot has not yet been placed on a future broadcast log
+            Preempted - spot has been removed from a future broadcast log; the buyer will be offered a makegood or issued a credit
           type: string
           enum:
             - Aired
@@ -5170,7 +5172,9 @@ components:
         - makegoodType
         - makegoodDetails
     MakegoodType:
-      description: Type of Offer
+      description: |
+        The type(s) of makegood guidelines being requested. 
+        The request may contain one or both makegood types
       type: string
       enum:
         - Resolve Preemption
@@ -5303,7 +5307,7 @@ components:
             - Local
             - National
         dealYear:
-          description: The broadcast year in which the proposal is being negotiated for
+          description: The broadcast year for the order
           type: string
         calendarType:
           description: The calendar in which the order was negotiated
@@ -5399,7 +5403,7 @@ components:
           items:
             $ref: '#/components/schemas/Contact'
         revenueType:
-          description: How the proposal is being negotiated for payment terms
+          description: The agreed upon type of payment
           type: string
           enum:
             - Cash
@@ -5409,7 +5413,7 @@ components:
           description: Seller defined type of business
           type: string
         localNational:
-          description: Market Type for Proposal
+          description: Local or national marketplace
           type: string
           enum:
             - Local
@@ -5566,7 +5570,7 @@ components:
             - Week
             - AddedValue
         distributionMethod:
-          description: Distribution Method Elements - Audience distributions pertain to the primary demo audience
+          description: Distribution method elements; impressions or GRP distributions pertain to the primary audience segment
           type: string
           enum:
             - Impressions

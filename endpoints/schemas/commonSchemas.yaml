@@ -40,8 +40,7 @@ components:
           type: string
           format: uuid
         transactionType:
-          description: This indicates if the data exchange being sent is either a new, change or cancel
-            transaction.
+          description: This indicates the type of data exchange being sent
           type: string
           enum:
             - New
@@ -87,7 +86,7 @@ components:
           description: Station or network station identification (Channel)
           type: string
         mediaOutletMarketName:
-          description: Market Name
+          description: Outlet associated to the market name when applicable
           type: string
         mediaOutletReference:
           description: External mediaoutlet reference to support data mapping differences between systems
@@ -173,7 +172,9 @@ components:
           description: External audience segment reference
           type: string
         audienceMethodology:
-          description: Methodology used to aggregate the audience
+          description: |
+            Methodology used to aggregate the audiences 
+            that are being provided in the audienceMetricValue
           type: string
         primaryIndicator:
           description: True/False
@@ -182,11 +183,11 @@ components:
           description: True/False
           type: boolean
         ratingSource:
-          description: 'Example data: Nielsen, ComScore, Internal, Client'
+          description: For example, Nielsen, ComScore, Internal, Client
           type: string
         ratingStream:
           description: |-
-            Example data: Program Live, Commercial Ratings Live, Commercial Rating Live+3, Commercial
+            For example, Program Live, Commercial Ratings Live, Commercial Rating Live+3, Commercial
             Rating Live+7
           type: string
       required:
@@ -348,9 +349,7 @@ components:
             - type: integer
             - type: string
         referenceVersionId:
-          description: >-
-            Version Number to indicate the version number for the reference id; this will be used to
-            support revisions
+          description: Version number associated with the reference id; used to track revisions
           type: string
         referenceName:
           description: Free form name used to identify the type of entity such as Order Name, RFP Name
@@ -399,7 +398,7 @@ components:
             - Calendar
             - Nielsen
         billingCycle:
-          description: The billing within the calendar the units should be billed
+          description: The interval within the billingCalendar in which the invoices should be issued
           type: string
           enum:
             - Month
@@ -476,8 +475,7 @@ components:
         programming
       properties:
         guidelineType:
-          description: Type of guideline to support to support requests for genre or age-appropriateness
-            rules
+          description: Used to provide guidance about the appropriate age group for the content or other types of content descriptors that maybe relevent to content 
           type: string
           enum:
             - Content
@@ -663,8 +661,7 @@ components:
       description: A descriptor common object defining the linking of matching or related commercials
       properties:
         linkType:
-          description: Used to communicate unit linking information & sequence of how copy should be
-            applied
+          description: Used to communicate the type of link constraints between two or more units
           type: string
           enum:
             - Billboard

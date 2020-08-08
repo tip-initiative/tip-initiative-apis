@@ -115,8 +115,7 @@ components:
             - Week
             - AddedValue
         distributionMethod:
-          description: Distribution Method Elements - Audience distributions pertain to the primary demo
-            audience
+          description: Distribution method elements; impressions or GRP distributions pertain to the primary audience segment
           type: string
           enum:
             - Impressions

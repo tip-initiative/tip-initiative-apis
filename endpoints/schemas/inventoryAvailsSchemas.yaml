@@ -22,7 +22,7 @@ components:
         transactionHeader:
           $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
         dateSubmitted:
-          description: Buyer Submit Date for Inventory Request
+          description: Buyer submit date for the Inventory Request
           type: string
           format: date
         dueDate:
@@ -52,7 +52,7 @@ components:
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/Guideline'
         political:
-          description: Indicates if the request is for political pricing
+          description: Indicates that pricing being requested is political
           type: boolean
         inventoryTypes:
           type: array

@@ -53,7 +53,7 @@ components:
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/Contact'
         revenueType:
-          description: How the proposal is being negotiated for payment terms
+          description: The agreed upon type of payment
           type: string
           enum:
             - Cash
@@ -63,7 +63,7 @@ components:
           description: Seller defined type of business
           type: string
         localNational:
-          description: Market Type for Proposal
+          description: Local or national marketplace
           type: string
           enum:
             - Local

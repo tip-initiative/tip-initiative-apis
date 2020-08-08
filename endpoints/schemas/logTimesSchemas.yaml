@@ -95,12 +95,12 @@ components:
           type: string
         status:
           description: |-
-            Aired - 'as aired' reconcilation for the spot is complete
-            No Run - spot either did not run or didn't run as contracted when the broadcast log was played out
-            Scheduled - spot is placed on a pre log (working status)
-            Finalized - spot is placed on a log that is in a 'final status' and may be locked from edits
-            Not scheduled - spot has not yet been placed on a future broadcast log
-            Preempted - spot has been removed from a future broadcast log ; buyer is either offered a makegood or issued a credit.
+            Aired - 'as aired' reconciliation for the spot is complete
+            No Run - spot either did not run or didn't run as contracted when the broadcast log was played out  
+            Scheduled - spot is placed on a pre log that has not yet been played out
+            Finalized -  spot is placed on a log that is in a 'final status' and ready to be played out. The spot is locked from edits
+            Not Scheduled - spot has not yet been placed on a future broadcast log
+            Preempted - spot has been removed from a future broadcast log; the buyer will be offered a makegood or issued a credit
           type: string
           enum:
             - Aired
@@ -150,12 +150,12 @@ components:
           type: string
         status:
           description: |-
-            Aired - 'as aired' reconcilation for the spot is complete
-            No Run - spot either did not run or didn't run as contracted when the broadcast log was played out
-            Scheduled - spot is placed on a pre log (working status)
-            Finalized - spot is placed on a log that is in a 'final status' and may be locked from edits
-            Not scheduled - spot has not yet been placed on a future broadcast log
-            Preempted - spot has been removed from a future broadcast log ; buyer is either offered a makegood or issued a credit.
+            Aired - 'as aired' reconciliation for the spot is complete
+            No Run - spot either did not run or didn't run as contracted when the broadcast log was played out  
+            Scheduled - spot is placed on a pre log that has not yet been played out
+            Finalized -  spot is placed on a log that is in a 'final status' and ready to be played out. The spot is locked from edits
+            Not Scheduled - spot has not yet been placed on a future broadcast log
+            Preempted - spot has been removed from a future broadcast log; the buyer will be offered a makegood or issued a credit
           type: string
           enum:
             - Aired

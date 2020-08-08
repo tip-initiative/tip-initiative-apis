@@ -34,7 +34,7 @@ components:
         billingOption:
           $ref: 'commonSchemas.yaml#/components/schemas/BillingOption'
         dueDate:
-          description: Date in which payment is due on invoice
+          description: Date in which payment is due
           type: string
           format: date
         dateWindow:
@@ -56,8 +56,8 @@ components:
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/Contact'
-        buylineCashTrade:
-          description: Revenue Type associated to the invoice
+        revenueType:
+          description: The agreed upon type of payment
           type: string
           enum:
             - Cash
@@ -68,7 +68,7 @@ components:
           type: number
           format: float
         commission:
-          description: Invoice total commission amount
+          description: Buyer commission amount for the invoice
           type: number
           format: float
         salesTax:
@@ -87,7 +87,7 @@ components:
         remittanceInfo:
           $ref: 'commonSchemas.yaml#/components/schemas/RemittanceInfo'
         externalComment:
-          description: Free form text for comments
+          description: Free form text to accommodate transaction comments and/or activities outside the TIP flow
           type: string
         lineDetails:
           type: array
@@ -155,8 +155,8 @@ components:
             $ref: 'commonSchemas.yaml#/components/schemas/AudiencePricingMetric'
         totalUnits:
           description: >-
-            Total number of raw (equivalized) units (based on line's unit type) within the line's start
-            and end date or if audience buy the total number of Raw Impressions
+            Total number of raw (unequivalized) linear units 
+            within the line's start and end date
           type: integer
           format: int64
           minimum: 0
