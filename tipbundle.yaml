@@ -1267,7 +1267,7 @@ paths:
         - Seller
       summary: Seller Reject or Confirm an order
       description: Allows the seller to respond with a reject or confirm of an order
-      operationId: SellerOrder
+      operationId: SellerOrders
       requestBody:
         description: Seller order confirm or reject
         required: true
@@ -2799,7 +2799,7 @@ paths:
         - Seller
       summary: Seller submits an invoice to buyer
       description: 'Allows the seller to send to the buyer new invoice information (No Request from buyer is Required) Supported Transaction Types: New, Change, Cancel'
-      operationId: SellerInvoice
+      operationId: SellerInvoices
       requestBody:
         description: Invoice body included in request
         required: true

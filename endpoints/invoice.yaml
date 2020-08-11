@@ -25,7 +25,7 @@ paths:
         Allows the seller to send to the buyer new invoice information (No Request from buyer is
         Required)
         Supported Transaction Types: New, Change, Cancel
-      operationId: SellerInvoice
+      operationId: SellerInvoices
       requestBody:
         description: Invoice body included in request
         required: true
