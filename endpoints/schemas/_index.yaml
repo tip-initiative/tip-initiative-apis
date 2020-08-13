@@ -1,0 +1,160 @@
+# Common Models
+    TransactionHeader:
+      $ref: './commonSchemas.yaml#/components/schemas/TransactionHeader'
+    TransactionId:
+      $ref: './commonSchemas.yaml#/components/schemas/TransactionId'
+    MediaOutlet:
+      $ref: './commonSchemas.yaml#/components/schemas/MediaOutlet'
+    Advertiser:
+      $ref: './commonSchemas.yaml#/components/schemas/Advertiser'
+    Brand:
+      $ref: './commonSchemas.yaml#/components/schemas/Brand'
+    Buyer:
+      $ref: './commonSchemas.yaml#/components/schemas/Buyer'
+    Product:
+      $ref: './commonSchemas.yaml#/components/schemas/Product'
+    AudienceSegment:
+      $ref: './commonSchemas.yaml#/components/schemas/AudienceSegment'
+    AudienceSegmentDetail:
+      $ref: './commonSchemas.yaml#/components/schemas/AudienceSegmentDetail'
+    AudienceMetric:
+      $ref: './commonSchemas.yaml#/components/schemas/AudienceMetric'
+    PricingMetricOption:
+      $ref: './commonSchemas.yaml#/components/schemas/PricingMetricOption'
+    PricingMetric:
+      $ref: './commonSchemas.yaml#/components/schemas/PricingMetric'
+    AudiencePricingMetric:
+      $ref: './commonSchemas.yaml#/components/schemas/AudiencePricingMetric'
+    Universe:
+      $ref: './commonSchemas.yaml#/components/schemas/Universe'
+    CancellationTerms:
+      $ref: './commonSchemas.yaml#/components/schemas/CancellationTerms'
+    TimeSeparation:
+      $ref: './commonSchemas.yaml#/components/schemas/TimeSeparation'
+    ReferenceId:
+      $ref: './commonSchemas.yaml#/components/schemas/ReferenceId'
+    Currency:
+      $ref: './commonSchemas.yaml#/components/schemas/Currency'
+    CpeCode:
+      $ref: './commonSchemas.yaml#/components/schemas/CpeCode'
+    BillingOption:
+      $ref: './commonSchemas.yaml#/components/schemas/BillingOption'
+    RateCard:
+      $ref: './commonSchemas.yaml#/components/schemas/RateCard'
+    Budget:
+      $ref: './commonSchemas.yaml#/components/schemas/Budget'
+    BudgetAllocation:
+      $ref: './commonSchemas.yaml#/components/schemas/BudgetAllocation'
+    Guideline:
+      $ref: './commonSchemas.yaml#/components/schemas/Guideline'
+    DateTime:
+      $ref: './commonSchemas.yaml#/components/schemas/DateTime'
+    TimePeriod:
+      $ref: './commonSchemas.yaml#/components/schemas/TimePeriod'
+    DateWindow:
+      $ref: './commonSchemas.yaml#/components/schemas/DateWindow'
+    TimeWindow:
+      $ref: './commonSchemas.yaml#/components/schemas/TimeWindow'
+    DayOfWeek:
+      $ref: './commonSchemas.yaml#/components/schemas/DayOfWeek'
+    DailyUnitDistribution:
+      $ref: './commonSchemas.yaml#/components/schemas/DailyUnitDistribution'
+    InventoryType:
+      $ref: './commonSchemas.yaml#/components/schemas/InventoryType'
+    InventoryPosition:
+      $ref: './commonSchemas.yaml#/components/schemas/InventoryPosition'
+    LinkType:
+      $ref: './commonSchemas.yaml#/components/schemas/LinkType'
+    Contact:
+      $ref: './commonSchemas.yaml#/components/schemas/Contact'
+    RemittanceInfo:
+      $ref: './commonSchemas.yaml#/components/schemas/RemittanceInfo'
+    SalesElementHeader:
+      $ref: './commonSchemas.yaml#/components/schemas/SalesElementHeader'
+    SalesElement:
+      $ref: './commonSchemas.yaml#/components/schemas/SalesElement'
+    SalesElementInventory:
+      $ref: './commonSchemas.yaml#/components/schemas/SalesElementInventory'
+    SalesElementInventoryDate:
+      $ref: './commonSchemas.yaml#/components/schemas/SalesElementInventoryDate'
+    SalesElementTransaction:
+      $ref: './commonSchemas.yaml#/components/schemas/SalesElementTransaction'
+    SalesElementTransactionInventory:
+      $ref: './commonSchemas.yaml#/components/schemas/SalesElementTransactionInventory'
+    SalesElementTransactionDate:
+      $ref: './commonSchemas.yaml#/components/schemas/SalesElementTransactionDate'
+    CancelConfirmRecallReject:
+      $ref: './commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
+    Error:
+      $ref: './commonSchemas.yaml#/components/schemas/Error'
+    AcceptedResponse:
+      $ref: './commonSchemas.yaml#/components/schemas/AcceptedResponse'
+    AdId:
+      $ref: './commonSchemas.yaml#/components/schemas/AdId'
+    Creative:
+      $ref: './commonSchemas.yaml#/components/schemas/Creative'
+    SupplyPath:
+      $ref: './commonSchemas.yaml#/components/schemas/SupplyPath'
+    Device:
+      $ref: './commonSchemas.yaml#/components/schemas/Device'
+    Geo:
+      $ref: './commonSchemas.yaml#/components/schemas/Geo'
+    Event:
+      $ref: './commonSchemas.yaml#/components/schemas/Event'
+    Crypto:
+      $ref: './commonSchemas.yaml#/components/schemas/Crypto'
+    Identifier:
+      $ref: './commonSchemas.yaml#/components/schemas/Identifier'
+    IpAddress:
+      $ref: './commonSchemas.yaml#/components/schemas/IpAddress'
+# Other Models
+
+    BuyerCommercialInstructions:
+      $ref: './commercialInstructionSchemas.yaml#/components/schemas/BuyerCommercialInstructions'
+    InstructionDetail:
+      $ref: './commercialInstructionSchemas.yaml#/components/schemas/InstructionDetail'
+    SellerImpressions:
+      $ref: './impressionsSchemas.yaml#/components/schemas/SellerImpressions'
+    Impression:  
+      $ref: './impressionsSchemas.yaml#/components/schemas/Impression'
+    BuyerInventoryAvails:
+      $ref: './inventoryAvailsSchemas.yaml#/components/schemas/BuyerInventoryAvails'
+    SellerInventoryAvails:
+      $ref: './inventoryAvailsSchemas.yaml#/components/schemas/SellerInventoryAvails'
+    SellerInvoices:
+      $ref: './invoiceSchemas.yaml#/components/schemas/SellerInvoices'
+    LineDetail:
+      $ref: './invoiceSchemas.yaml#/components/schemas/LineDetail'
+    UnitDetail:
+      $ref: './invoiceSchemas.yaml#/components/schemas/UnitDetail'
+    ChildUnitDetail:
+      $ref: './invoiceSchemas.yaml#/components/schemas/ChildUnitDetail'
+    SellerLogtimes:
+      $ref: './logTimesSchemas.yaml#/components/schemas/SellerLogtimes'
+    Unit:
+      $ref: './logTimesSchemas.yaml#/components/schemas/Unit'
+    ChildUnit:
+      $ref: './logTimesSchemas.yaml#/components/schemas/ChildUnit'
+    SellerMakegoodGuidelines:
+      $ref: './makegoodsSchemas.yaml#/components/schemas/SellerMakegoodGuidelines'
+    BuyerMakegoodGuidelines:
+      $ref: './makegoodsSchemas.yaml#/components/schemas/BuyerMakegoodGuidelines'
+    SellerMakegoodOffers:
+      $ref: './makegoodsSchemas.yaml#/components/schemas/SellerMakegoodOffers'
+    MakegoodType:
+      $ref: './makegoodsSchemas.yaml#/components/schemas/MakegoodType'
+    MakegoodGuideline:
+      $ref: './makegoodsSchemas.yaml#/components/schemas/MakegoodGuideline'
+    PreemptDetail:
+      $ref: './makegoodsSchemas.yaml#/components/schemas/PreemptDetail'
+    MakegoodOfferDetail:  
+      $ref: './makegoodsSchemas.yaml#/components/schemas/MakegoodOfferDetail'
+    BuyerOrders:
+      $ref: './ordersSchemas.yaml#/components/schemas/BuyerOrders'
+    SellerProposals:
+      $ref: './proposalSchemas.yaml#/components/schemas/SellerProposals'
+    BuyerRFPS: 
+      $ref: './rfpsSchemas.yaml#/components/schemas/BuyerRFPS'
+    CampaignGoal:
+      $ref: './rfpsSchemas.yaml#/components/schemas/CampaignGoal'
+
