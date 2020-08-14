@@ -32,6 +32,7 @@ paths:
         - Seller
       summary: Seller Creates Impression record in the buyer system
       description: >-
+
         Supports a push model where the seller sends files to buyer system on an agreed schedule.
         Supports a report limited to a single advertiser, brand, product and order.<br/>
         Supported Transaction Types: New

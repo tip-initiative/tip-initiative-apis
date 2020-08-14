@@ -79,6 +79,7 @@ components:
           items:
             type: integer
         guidelines:
+          description: Guidelines for proposal
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/Guideline'

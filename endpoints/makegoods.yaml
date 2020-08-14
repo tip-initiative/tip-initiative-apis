@@ -53,7 +53,6 @@ paths:
           $ref: 'schemas/commonResponses.yaml#/components/responses/NotAllowed'
         default: #unexpected
           $ref: 'schemas/commonResponses.yaml#/components/responses/Unexpected'
-
   /buyer/makegood/guidelines:
     post:
       tags:

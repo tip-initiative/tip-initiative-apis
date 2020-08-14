@@ -1,0 +1,30 @@
+{
+    "transactionHeader": {
+      "tipVersion": "5.0.0",
+      "transactionId": {
+        "transactionId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "transactionType": "Confirm",
+        "sourceId": "456",
+        "sourceName": "Canvas Worldwide. LLC"
+      },
+      "originalTransactionId": {
+        "transactionId": "B906A0A9-19FA-4F06-B94D-22E4F1D9120C",
+        "transactionType": "New",
+        "sourceId": "490",
+        "sourceName": "KHOU-TV"
+      },
+      "timeStamp": "2020-07-17T20:04:55.220Z"
+    },
+    "referenceIds": [
+      {
+        "referenceSourceName": "Canvas Worldwide. LLC",
+        "referenceSourceId": "456",
+        "referenceSourceLookup": "",
+        "referenceType": "Proposal",
+        "referenceId": "123456",
+        "referenceVersionId": "",
+        "referenceName": "Canvas Worldwide. LLC Q1"
+      }
+    ],
+    "comments": "Thank you Very much; good to do business with you :)"
+  }

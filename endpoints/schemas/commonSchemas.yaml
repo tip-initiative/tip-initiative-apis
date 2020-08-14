@@ -645,6 +645,7 @@ components:
         - friday
         - saturday
         - sunday
+      nullable: true
     InventoryType:
       description: >-
         A descriptor common object defining the type of advertisement, announcement, spot or message
@@ -1045,6 +1046,7 @@ components:
         audiencesPricingMetrics:
           description: Pricing metrics for individual unit
           type: array
+          nullable: true
           items:
             $ref: '#/components/schemas/AudiencePricingMetric'
           nullable: true
