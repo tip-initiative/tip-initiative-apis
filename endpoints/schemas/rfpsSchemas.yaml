@@ -26,17 +26,17 @@ components:
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/ReferenceId'
         dateSubmitted:
-          description: Buyer Submit Date for the RFP
+          description: Buyer submit date for the RFP
           type: string
           format: date
         dueDate:
-          description: Due Date for the response
+          description: Due date for the proposal response
           type: string
           format: date
         buyer:
           $ref: 'commonSchemas.yaml#/components/schemas/Buyer'
         commission:
-          description: Buyer Commission percentage amount
+          description: Buyer commission percentage amount
           type: number
           format: float
         advertiser:
@@ -51,8 +51,7 @@ components:
             $ref: 'commonSchemas.yaml#/components/schemas/Contact'
         currency:
           $ref: 'commonSchemas.yaml#/components/schemas/Currency'
-        budget:
-          description: Overall total budget for the RFP
+        budgets:
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/Budget'
@@ -104,7 +103,7 @@ components:
     CampaignGoal:
       properties:
         distributionType:
-          description: Goal Type Element used for distribution
+          description: Goal type element used for distribution
           type: string
           enum:
             - MediaType
@@ -115,7 +114,9 @@ components:
             - Week
             - AddedValue
         distributionMethod:
-          description: Distribution method elements; impressions or GRP distributions pertain to the primary audience segment
+          description: >-
+            Distribution method elements; impressions or GRP distributions pertain to the primary audience
+            segment
           type: string
           enum:
             - Impressions

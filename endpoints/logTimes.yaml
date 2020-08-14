@@ -39,10 +39,10 @@ paths:
             examples:
               New:
                 value:
-                  $ref: 'examples/WIP-Examples/SellerLogtimesNew.json'
+                  $ref: 'examples/SellerLogtimesNew.json'
               Change:
-                value: 
-                  $ref: 'examples/WIP-Examples/SellerLogtimesNew.json'
+                value:
+                  $ref: 'examples/SellerLogtimesNew.json'
       responses:
         '200': #OK
           $ref: 'schemas/commonResponses.yaml#/components/responses/Success'

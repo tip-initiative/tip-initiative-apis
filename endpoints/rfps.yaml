@@ -40,10 +40,10 @@ paths:
             examples:
               New:
                 value:
-                  $ref: 'examples/WIP-Examples/BuyerRfpsNew.json'
+                  $ref: 'examples/BuyerRfpsNew.json'
               Cancel:
                 value:
-                  $ref: 'examples/WIP-Examples/GenericCancel.json'
+                  $ref: 'examples/GenericCancel.json'
       responses:
         '202': #OK
           $ref: 'schemas/commonResponses.yaml#/components/responses/Accepted'

@@ -39,17 +39,17 @@ paths:
               $ref: '#/components/schemas/BuyerCommercialInstructions'
             examples:
               New:
-                value: 
-                  $ref: 'examples/WIP-Examples/CommercialInstructionsNew.json'
+                value:
+                  $ref: 'examples/CommercialInstructionsNew.json'
               Change:
-                value: 
-                  $ref: 'examples/WIP-Examples/CommercialInstructionsChange.json'
+                value:
+                  $ref: 'examples/CommercialInstructionsChange.json'
               Cancel:
-                value: 
-                  $ref: 'examples/WIP-Examples/GenericCancel.json'
+                value:
+                  $ref: 'examples/GenericCancel.json'
               Recall:
-                value: 
-                  $ref: 'examples/WIP-Examples/GenericRecall.json'
+                value:
+                  $ref: 'examples/GenericRecall.json'
       responses:
         '200': #OK
           $ref: 'schemas/commonResponses.yaml#/components/responses/Success'
@@ -83,11 +83,11 @@ paths:
               $ref: './schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
             examples:
               Reject:
-                value: 
-                  $ref: 'examples/WIP-Examples/GenericReject.json'
+                value:
+                  $ref: 'examples/GenericReject.json'
               Confirm:
-                value: 
-                  $ref: 'examples/WIP-Examples/GenericConfirm.json'
+                value:
+                  $ref: 'examples/GenericConfirm.json'
       responses:
         '200': #OK
           $ref: 'schemas/commonResponses.yaml#/components/responses/Success'

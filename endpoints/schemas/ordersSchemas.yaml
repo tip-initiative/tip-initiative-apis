@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   version: 5.1.0
-  title: Orders
+  title: Buyer requesting New Order or Order Change Request to Seller
   description: Buyer/Order
   termsOfService: http://placeholderdomain.io/terms/
   contact:
@@ -24,7 +24,7 @@ components:
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/ReferenceId'
         orderBookedDate:
-          description: Date in which the buyer
+          description: Date in which the buyer submitted the order, this is the original book date
           type: string
           format: date
         buyer:
@@ -39,7 +39,7 @@ components:
           $ref: 'commonSchemas.yaml#/components/schemas/Brand'
         product:
           $ref: 'commonSchemas.yaml#/components/schemas/Product'
-        budget:
+        budgets:
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/Budget'
@@ -50,17 +50,17 @@ components:
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/Contact'
         revenueType:
-          description: How the proposal is being negotiated for payment terms
+          description: The agreed upon type of payment
           type: string
           enum:
             - Cash
             - Barter
             - Trade
         businessType:
-          description: Seller defined type of business
+          description: Buyer defined type of business
           type: string
         localNational:
-          description: Market Type for Proposal
+          description: Local or national marketplace
           type: string
           enum:
             - Local
@@ -69,7 +69,7 @@ components:
           description: The broadcast year for the order
           type: string
         calendarType:
-          description: The calendar in which the order was negotiated
+          description: The order's calendar that defines start day and end day of a week
           type: string
           enum:
             - Broadcast
@@ -78,9 +78,11 @@ components:
         billingOption:
           $ref: 'commonSchemas.yaml#/components/schemas/BillingOption'
         equivalized:
-          description: Indicates if the audience values are equivalized to the unit's length
+          description: >-
+            Indicates if the impressions are equivalized (weighted) down or up from a base 30-second
+            unit using a ratio of the unit's length
           type: boolean
-        dateWindow:
+        dateWindows:
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/DateWindow'
@@ -124,5 +126,5 @@ components:
         - businessType
         - calendarType
         - equivalized
-        - dateWindow
+        - dateWindows
         - mediaOutlets

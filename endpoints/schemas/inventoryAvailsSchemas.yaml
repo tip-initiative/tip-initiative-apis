@@ -94,7 +94,7 @@ components:
         transactionHeader:
           $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
         dateSubmitted:
-          description: Submission date for the inventory
+          description: Seller's submit date for the inventory avails response
           type: string
           format: date
         buyer:
@@ -111,7 +111,7 @@ components:
         currency:
           $ref: 'commonSchemas.yaml#/components/schemas/Currency'
         political:
-          description: Indicates that pricing being supplied are for political
+          description: Indicates that pricing being supplied is political
           type: boolean
         mediaOutlets:
           type: array

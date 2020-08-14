@@ -44,16 +44,16 @@ paths:
             examples:
               New:
                 value:
-                  $ref: 'examples/WIP-Examples/BuyerOrderNew.json'
+                  $ref: 'examples/BuyerOrderNew.json'
               Change:
                 value:
-                  $ref: 'examples/WIP-Examples/BuyerOrderChange.json'
+                  $ref: 'examples/BuyerOrderChange.json'
               Cancel:
                 value:
-                  $ref: 'examples/WIP-Examples/GenericCancel.json'
+                  $ref: 'examples/GenericCancel.json'
               Recall:
                 value:
-                  $ref: 'examples/WIP-Examples/GenericRecall.json'
+                  $ref: 'examples/GenericRecall.json'
       responses:
         '202': #Accepted
           $ref: 'schemas/commonResponses.yaml#/components/responses/Accepted'
@@ -87,10 +87,10 @@ paths:
             examples:
               Reject:
                 value:
-                  $ref: 'examples/WIP-Examples/GenericReject.json'
+                  $ref: 'examples/GenericReject.json'
               Confirm:
                 value:
-                  $ref: 'examples/WIP-Examples/GenericConfirm.json'
+                  $ref: 'examples/GenericConfirm.json'
       responses:
         '202': #Accepted
           $ref: 'schemas/commonResponses.yaml#/components/responses/Accepted'
@@ -120,4 +120,4 @@ components:
           <li>Cancel or Recall - Use the Generic object to Cancel or Recall
       oneOf:
         - $ref: './schemas/ordersSchemas.yaml#/components/schemas/BuyerOrders'
-        - $ref: './schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'    
+        - $ref: './schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'

@@ -12,7 +12,7 @@ info:
   version: 5.1.0
   title: Seller Impressions
   description: >-
-    Supports a push model where the seller sends files to buyer system on an agreed schedule.  
+    Supports a push model where the seller sends files to buyer system on an agreed schedule.
     Supports a report limited to a single advertiser, brand, product and order.
   termsOfService: http://placeholderdomain.io/terms/
   contact:
@@ -32,7 +32,8 @@ paths:
         - Seller
       summary: Seller Creates Impression record in the buyer system
       description: >-
-        Supports a push model where the seller sends files to buyer system on an agreed schedule.  
+
+        Supports a push model where the seller sends files to buyer system on an agreed schedule.
         Supports a report limited to a single advertiser, brand, product and order.<br/>
         Supported Transaction Types: New
       operationId: SellerImpressions
@@ -44,7 +45,7 @@ paths:
             schema:
               $ref: 'schemas/impressionsSchemas.yaml#/components/schemas/SellerImpressions'
             example:
-              $ref: 'examples/WIP-Examples/SellerImpressionsNew.json'
+              $ref: 'examples/SellerImpressionsNew.json'
       responses:
         '200': #OK
           $ref: 'schemas/commonResponses.yaml#/components/responses/Success'

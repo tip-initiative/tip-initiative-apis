@@ -27,7 +27,7 @@ components:
             $ref: 'commonSchemas.yaml#/components/schemas/ReferenceId'
         buyer:
           $ref: 'commonSchemas.yaml#/components/schemas/Buyer'
-        contact:
+        contacts:
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/Contact'
@@ -35,8 +35,10 @@ components:
           $ref: 'commonSchemas.yaml#/components/schemas/Advertiser'
         product:
           $ref: 'commonSchemas.yaml#/components/schemas/Product'
-        dateWindow:
-          $ref: 'commonSchemas.yaml#/components/schemas/DateWindow'
+        dateWindows:
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/DateWindow'
         cpeCode:
           $ref: 'commonSchemas.yaml#/components/schemas/CpeCode'
         instructionComment:
@@ -64,7 +66,7 @@ components:
         - referenceIds
         - advertiser
         - product
-        - dateWindow
+        - dateWindows
         - instructionType
     InstructionDetail:
       description: Commercial Instruction details for instruction type
@@ -119,7 +121,7 @@ components:
             each AD-ID; for example A,B,B,C represents how AD-ID A, B and C should be sequentially assigned
             to units
           type: string
-        unitSpecificInstruction:
+        unitSpecificInstructions:
           description: >-
             If instruction type equal "Unit Specific" = this will the list of unit id's that are valid
             for the AD-ID

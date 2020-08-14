@@ -22,6 +22,7 @@ info:
 
     | Version | Date | Description | Author |
     |---------|------|-------------|--------|
+    | Release 5.1.0 | August 13, 2020 | Release 5.1.0 | Frontrow Advisory |
     | Release 5.0.0 | May 5, 2020 | Release 5.0.0 | Frontrow Advisory |
     | Release 4.0 | May 16, 2019 | Release 4.0 (WORKING DRAFT) | Frontrow Advisory |
     | Release 3.1 | February 1, 2019 | Release 3.1 | Frontrow Advisory |
@@ -32,6 +33,39 @@ info:
     | Release 1.0 | November 11, 2017 | Release | Frontrow Advisory |
     | Draft | October 9, 2017 | Revised Draft | Frontrow Advisory |
     | Draft | September 25, 2017 | Initial Draft | Frontrow Advisory |
+
+    ## Release 5.1.0 Notes
+
+    | Changes from Release 5.0.0 to Release 5.1.0 |
+    |---------------------------------------------|
+    | Added Transaction Type guidelines to framework |
+    | Added new section to each tab to indicate the valid methods |
+    | Added new common object to support budgetAllocations by budget type |
+    | Added new common object to support budget amount and optional budgetAllocation common object |
+    | Changed the budget property in RFP from Property to Object |
+    | Added new budget common object to Proposal and Order |
+    | Added new BuyerProposals to framework to support buyer change requests to a seller's proposal |
+    | Changed SellerMakegoodOffers to support an array of preemptDetails and makegoodOfferDetails with the option to link preempt details to makegood offer or makegood offer(s) to preempt detail e.g. 1:1, 2:1, etc. |
+    | Added external comments to the SalesElementTransactionInventory and SalesElementTransactionDate that may be used for overall comments and/or the change request rationale to a proposal or order |
+    | Changed dealYear property in Proposal and Order from Integer to String |
+    | Added new section to each tab to indicate the valid response codes |
+    | Added mediaoutlet object to BuyerMakegoodGuidelines |
+    | Added SellerImpressions (Video/OTT) |
+    | Added new common objects to framework to support SellerImpressions |
+    | Added JSON examples to Github |
+    | Renamed several endpoint names to plural (Avails, RFPs, Proposals, Orders, Invoices) to follow OpenAPI naming conventions |
+    | Added salesOffice to Contact common object |
+    | Added SellerCommercialInstructions to the framework to support confirm or reject of commercial instructions |
+    | BuyerOrderRecall - Now included in BuyerOrder |
+    | SellerOrderConfirm - Now included in SellerOrder (NEW) |
+    | SellerOrderReject - Now included in SellerOrder (NEW) |
+    | SellerMakegoodRecall - Now included in SellerMakegoodOffer |
+    | BuyerMakegoodConfirm - Now included in BuyerMakegoodOffer (NEW) |
+    | BuyerMakegoodReject - Now included in BuyerMakegoodOffer (NEW) |
+    | Changed ratingSource and ratingStream in the AudienceSegment common object from enums to strings |
+    | Added type to the audiencePricingMetric common object that identifies the type of audience and /or pricing being provided (Selling, Actual or Projection) |
+    | Added Report Window to Impressions |
+    | Added new examples section |
 
     ## Release 5.0.0 Notes
 
@@ -161,7 +195,8 @@ components:
       type: http
       scheme: bearer
       bearerFormat: JWT
-  # schemas:
-  #   $ref: './schemas/_index.yaml'
-  # responses:
-  #   $ref: './schemas/_responses.yaml'
+    schemas:
+      $ref: './schemas/_index.yaml'
+    responses:
+      $ref: './schemas/_responses.yaml'
+

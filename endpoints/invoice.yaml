@@ -36,13 +36,13 @@ paths:
             examples:
               New:
                 value:
-                  $ref: 'examples/WIP-Examples/SellerInvoiceNew.json'
+                  $ref: 'examples/SellerInvoiceNew.json'
               Change:
                 value:
-                  $ref: 'examples/WIP-Examples/SellerInvoiceNew.json'
+                  $ref: 'examples/SellerInvoiceNew.json'
               Cancel:
                 value:
-                  $ref: 'examples/WIP-Examples/GenericCancel.json'
+                  $ref: 'examples/GenericCancel.json'
       responses:
         '200': #OK
           $ref: 'schemas/commonResponses.yaml#/components/responses/Success'

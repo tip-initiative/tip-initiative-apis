@@ -172,9 +172,7 @@ components:
           description: External audience segment reference
           type: string
         audienceMethodology:
-          description: |
-            Methodology used to aggregate the audiences 
-            that are being provided in the audienceMetricValue
+          description: Methodology used to aggregate the audiences that are being provided in the audienceMetricValue
           type: string
         primaryIndicator:
           description: True/False
@@ -186,7 +184,7 @@ components:
           description: For example, Nielsen, ComScore, Internal, Client
           type: string
         ratingStream:
-          description: |-
+          description: >-
             For example, Program Live, Commercial Ratings Live, Commercial Rating Live+3, Commercial
             Rating Live+7
           type: string
@@ -260,6 +258,16 @@ components:
         audienceSegmentId:
           description: Unique persistent identifier for audience segment
           type: string
+        type:
+          description: |-
+            Selling -booked audience/pricing values from Order
+            Actual - delivered/actual audience/pricing associated with the rating source/rating stream
+            Projection - seller's internal audience projectionsassociated with the rating stream/rating type
+          type: string
+          enum:
+            - Selling
+            - Actual
+            - Projection
         audienceMetric:
           $ref: '#/components/schemas/AudienceMetric'
         pricingMetric:
@@ -304,7 +312,7 @@ components:
             cancellation
           type: integer
         cancellationPercentage:
-          description: Percentage of total amount/budget that is cancellable
+          description: Percentage of total amount that is cancellable
           type: number
           format: float
     TimeSeparation:
@@ -425,8 +433,8 @@ components:
           type: string
     Budget:
       description: >-
-        descriptor common object defining the budget or total allocation for a RFP or proposal with optional
-        allocations per market, media outlet or media type
+        A descriptor common object defining the budget or total allocation for a RFP or proposal with
+        optional allocations per market, media outlet or media type
       properties:
         budgetAmount:
           description: Total budget amount being requested
@@ -475,7 +483,9 @@ components:
         programming
       properties:
         guidelineType:
-          description: Used to provide guidance about the appropriate age group for the content or other types of content descriptors that maybe relevent to content 
+          description: >-
+            Used to provide guidance about the appropriate age group for the content or other types of
+            content descriptors that maybe relevent to content
           type: string
           enum:
             - Content
@@ -504,7 +514,7 @@ components:
         & Invoices
       properties:
         broadcastDate:
-          description: The broadcast date on which the unit aired/scheduled; this is not calendar date
+          description: The broadcast date on which the unit aired/scheduled; this is not a calendar date
           type: string
           format: date
         calendarDateTime:
@@ -702,7 +712,7 @@ components:
         referenceSourceId:
           description: ID associated with the organization
           type: string
-        salesOffice:
+        salesOffices:
           description: Contact office. Could be multiple locations. (e.g. New York, Chicago, Detroit)
           type: array
           items:
@@ -832,7 +842,7 @@ components:
           type: string
         salesElementType:
           description: >-
-            The type of Sales Element either time-, audience- or program-based. Audience is used to denote
+            The type of Sales Element either time, audience or program-based. Audience is used to denote
             video/OTT which is identified by the MediaOutlet
           type: string
           enum:
@@ -984,7 +994,7 @@ components:
           description: >-
             A free form comments string that can be used in any of the many interfaces the Sales Element
             objects appears. For example to support buyer or seller generic comments to guide or explain
-            changes that can be applied to the line.
+            changes that may have been applied to the line.
           type: string
           nullable: true
         salesElementTransactionDates:
@@ -1039,6 +1049,7 @@ components:
           nullable: true
           items:
             $ref: '#/components/schemas/AudiencePricingMetric'
+          nullable: true
       required:
         - dateType
         - calendarType
@@ -1121,11 +1132,11 @@ components:
       properties:
         id:
           description: >-
-            Identifier from Seller to indicate the means that the ad was dilivered (SSP, PMP, direct
+            Identifier from Seller to indicate the means that the ad was delivered (SSP, PMP, direct
             publisher integration)
           type: string
         extId:
-          description: External identifer from platform to indicate the supply source
+          description: External identifier from platform to indicate the supply source
           type: string
         batchEntry:
           description: String from source (json, xml, etc. to indicate a batch supply entry)
@@ -1144,7 +1155,7 @@ components:
           description: Identifier of the sell-side platform that enabled the inventory
           type: string
         ua:
-          description: User Agent of the deivce that is displaying the ad
+          description: User Agent of the device that is displaying the ad
           type: string
         catSRC:
           description: The type of source of the inventory (SSP, PMP)
@@ -1202,7 +1213,7 @@ components:
       required:
         - country
     Event:
-      description: Object representing the various events occuring for a given Impression
+      description: Object representing the various events occurring for a given Impression
       properties:
         type:
           description: ImpressionID + eventType will be unique. (Please see VAST spec for all event Types)
@@ -1212,7 +1223,7 @@ components:
           type: string
           format: date-time
         sigVerified:
-          description: Indicates if the event has a verified signiture from inventory source
+          description: Indicates if the event has a verified signature from inventory source
           type: boolean
         ip:
           $ref: '#/components/schemas/IpAddress'

@@ -37,7 +37,7 @@ paths:
             example:
               New:
                 value:
-                  $ref: 'examples/WIP-Examples/SellerMakegoodGuidelinesNew.json'
+                  $ref: 'examples/SellerMakegoodGuidelinesNew.json'
       responses:
         '202': #Accepted
           $ref: 'schemas/commonResponses.yaml#/components/responses/Accepted'
@@ -53,14 +53,13 @@ paths:
           $ref: 'schemas/commonResponses.yaml#/components/responses/NotAllowed'
         default: #unexpected
           $ref: 'schemas/commonResponses.yaml#/components/responses/Unexpected'
-
   /buyer/makegood/guidelines:
     post:
-      tags: 
+      tags:
         - Buyer
       summary: Buyer responds back to seller with list of makegood guidelines
       description: |
-        Buyer responds back to seller with list of makegood guidelines 
+        Buyer responds back to seller with list of makegood guidelines
         Supported Transaction Types: New, Change, Cancel
       operationId: BuyermakegoodGuidelines
       requestBody:
@@ -73,13 +72,13 @@ paths:
             examples:
               New:
                 value:
-                  $ref: 'examples/WIP-Examples/BuyerMakegoodGuidelinesNew.json'
+                  $ref: 'examples/BuyerMakegoodGuidelinesNew.json'
               Change:
                 value:
-                  $ref: 'examples/WIP-Examples/BuyerMakegoodGuidelinesNew.json'
+                  $ref: 'examples/BuyerMakegoodGuidelinesNew.json'
               Cancel:
                 value:
-                  $ref: 'examples/WIP-Examples/GenericCancel.json'
+                  $ref: 'examples/GenericCancel.json'
       responses:
         '200': #OK
           $ref: 'schemas/commonResponses.yaml#/components/responses/Success'
@@ -95,7 +94,7 @@ paths:
           $ref: 'schemas/commonResponses.yaml#/components/responses/NotAllowed'
         default: #unexpected
           $ref: 'schemas/commonResponses.yaml#/components/responses/Unexpected'
-  
+
   /seller/makegood/offers:
     post:
       tags:
@@ -105,7 +104,7 @@ paths:
         Seller sends to Buyer one or many offer requests to support the following:
         Makegood to resolve unresolved Preemptions
         "ADU" to resolve make-up for audience shortfall
-        Supported Transaction Types: New, Change, Cancel, Recall 
+        Supported Transaction Types: New, Change, Cancel, Recall
       operationId: SellerMakegoodOffers
       requestBody:
         description: MakegoodOffers
@@ -117,16 +116,16 @@ paths:
             examples:
               New:
                 value:
-                  $ref: 'examples/WIP-Examples/SellerMakegoodOfferNew.json'
+                  $ref: 'examples/SellerMakegoodOfferNew.json'
               Change:
                 value:
-                  $ref: 'examples/WIP-Examples/SellerMakegoodOfferNew.json'
+                  $ref: 'examples/SellerMakegoodOfferNew.json'
               Cancel:
                 value:
-                  $ref: 'examples/WIP-Examples/GenericCancel.json'
+                  $ref: 'examples/GenericCancel.json'
               Recall:
                 value:
-                  $ref: 'examples/WIP-Examples/GenericRecall.json'
+                  $ref: 'examples/GenericRecall.json'
       responses:
         '200': #OK
           $ref: 'schemas/commonResponses.yaml#/components/responses/Success'
@@ -147,8 +146,8 @@ paths:
         - Buyer
       summary: Buyer confirms or rejects Makegood Offers received from the seller
       description: |
-        Allows the buyer to respond to an makegood offer(s) with an acceptance confirmation; this will accept all makegood offers in the request. 
-        Supported Transaction Types: Reject, Confirm      
+        Allows the buyer to respond to an makegood offer(s) with an acceptance confirmation; this will accept all makegood offers in the request.
+        Supported Transaction Types: Reject, Confirm
       operationId: BuyerMakegoodOffers
       requestBody:
         description: Makegood offer accept or reject request
@@ -160,10 +159,10 @@ paths:
             examples:
               Confirm:
                 value:
-                  $ref: 'examples/WIP-Examples/GenericConfirm.json'
+                  $ref: 'examples/GenericConfirm.json'
               Reject:
                 value:
-                  $ref: 'examples/WIP-Examples/GenericReject.json'
+                  $ref: 'examples/GenericReject.json'
       responses:
         '200': #OK
           $ref: 'schemas/commonResponses.yaml#/components/responses/Success'

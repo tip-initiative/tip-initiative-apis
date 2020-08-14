@@ -42,8 +42,8 @@ paths:
             schema:
               $ref: 'schemas/inventoryAvailsSchemas.yaml#/components/schemas/BuyerInventoryAvails'
             example:
-              value: 
-                $ref: 'examples/WIP-Examples/BuyerInventoryAvailsNew.json'
+              value:
+                $ref: 'examples/BuyerInventoryAvailsNew.json'
       responses:
         '200': #OK - in case request can be fullfiled in realtime
           description: OK - in case request can be fullfiled in realtime
@@ -72,7 +72,7 @@ paths:
       summary: Allows the Seller to post to the buyer their catalog of selling products, pricing and audience information
       description: >
         This endpoint will be hosted at the buyer side.
-        Allows the Seller to send Available Selling inventory by station, Selling Element, Inventory Types, 
+        Allows the Seller to send Available Selling inventory by station, Selling Element, Inventory Types,
         Pricing, Audience Estimates either solicited or unsolicited<br/>
         Supported Transaction Types:<br/>
         <lo>- New</lo>

@@ -27,7 +27,7 @@ components:
             $ref: 'commonSchemas.yaml#/components/schemas/ReferenceId'
           minItems: 1
         expirationDate:
-          description: Date in which the proposal’s pricing and audience estimates expire
+          description: Date in which the pricing and audience estimates expire in the proposal submission
           type: string
           format: date
         buyer:
@@ -42,7 +42,7 @@ components:
           $ref: 'commonSchemas.yaml#/components/schemas/Brand'
         product:
           $ref: 'commonSchemas.yaml#/components/schemas/Product'
-        budget:
+        budgets:
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/Budget'
@@ -69,16 +69,16 @@ components:
             - Local
             - National
         dealYear:
-          description: The broadcast year in which the proposal is being negotiated for
+          description: The broadcast year in which the proposal is being negotiated
           type: string
         billingOption:
           $ref: 'commonSchemas.yaml#/components/schemas/BillingOption'
         equivalized:
           description: >-
-            Indicates if the impressions weighted down or up from 30-second impressions based on their
-            ratio of their length to 30 seconds.
+            Indicates if the impressions are equivalized (weighted) down or up from a base 30-second
+            unit using a ratio of the unit's length.
           type: boolean
-        dateWindow:
+        dateWindows:
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/DateWindow'
@@ -122,5 +122,5 @@ components:
         - revenueType
         - businessType
         - equivalized
-        - dateWindow
+        - dateWindows
         - mediaOutlets

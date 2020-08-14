@@ -26,11 +26,11 @@ paths:
         - Seller
       summary: Create or Change a proposal in the buyers system
       description: >-
-        Allows the seller to respond back to the buyer with the detailed proposal 
+        Allows the seller to respond back to the buyer with the detailed proposal
         for a given RFP or revised proposal; Multiple versions of a proposal can be under
-        negotiation for the same campaign, but only one version may be executed; 
-        buyer must submit a "Proposal Change Request" for the last proposal version submission; 
-        seller must respond back with a Proposal Response that contains a new version number 
+        negotiation for the same campaign, but only one version may be executed;
+        buyer must submit a "Proposal Change Request" for the last proposal version submission;
+        seller must respond back with a Proposal Response that contains a new version number
         when submitting new versions.  New Proposals may be submitted without a RFP Response<br/>
         <ul>
         <li>New - Create New proposal based on RFP or unsolicited</li>
@@ -49,16 +49,16 @@ paths:
             examples:
               New:
                 value:
-                  $ref: 'examples/V5.0.0/SellerProposalNew.json'
+                  $ref: 'examples/SellerProposalNew.json'
               Change:
-                value: 
-                  $ref: 'examples/WIP-Examples/SellerProposalChange.json'
+                value:
+                  $ref: 'examples/SellerProposalChange.json'
               Cancel:
                   value:
-                    $ref: 'examples/WIP-Examples/GenericCancel.json'
+                    $ref: 'examples/GenericCancel.json'
               Recall:
                   value:
-                    $ref: 'examples/WIP-Examples/GenericRecall.json'
+                    $ref: 'examples/GenericRecall.json'
       responses:
         '202': #OK
           $ref: 'schemas/commonResponses.yaml#/components/responses/Accepted'
@@ -80,11 +80,11 @@ paths:
         - Buyer
       summary: Buyer change a proposal in the seller's system
       description: >-
-        Allows the buyer to respond back to the seller with the proposed changeds for a given proposal; 
-        Multiple versions of a proposal can be under negotiation for the same campaign, 
-        but only one version may be executed; buyer must submit a 'Proposal Change' for the last proposal version submitted; 
+        Allows the buyer to respond back to the seller with the proposed changeds for a given proposal;
+        Multiple versions of a proposal can be under negotiation for the same campaign,
+        but only one version may be executed; buyer must submit a 'Proposal Change' for the last proposal version submitted;
         seller must respond back with a Proposal that contains a new version number when submitting the change<br/>
-        Supported Transaction Type: Change, Recall         
+        Supported Transaction Type: Change, Recall
       operationId: BuyerProposals
       requestBody:
         required: true
@@ -94,11 +94,11 @@ paths:
               $ref: '#/components/schemas/SellerProposals'
             examples:
               Change:
-                value: 
-                  $ref: 'examples/WIP-Examples/SellerProposalChange.json'
+                value:
+                  $ref: 'examples/SellerProposalChange.json'
               Recall:
                   value:
-                    $ref: 'examples/WIP-Examples/GenericRecall.json'
+                    $ref: 'examples/GenericRecall.json'
       responses:
         '202': #OK
           $ref: 'schemas/commonResponses.yaml#/components/responses/Accepted'
