@@ -1049,7 +1049,6 @@ components:
           nullable: true
           items:
             $ref: '#/components/schemas/AudiencePricingMetric'
-          nullable: true
       required:
         - dateType
         - calendarType
