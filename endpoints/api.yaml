@@ -195,8 +195,8 @@ components:
       type: http
       scheme: bearer
       bearerFormat: JWT
-    schemas:
+  schemas:
       $ref: './schemas/_index.yaml'
-    responses:
+  responses:
       $ref: './schemas/_responses.yaml'
 
