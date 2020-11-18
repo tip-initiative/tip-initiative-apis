@@ -28,6 +28,7 @@ components:
           description: Date and time the transaction was created - date-time represent UTC of the server
           type: string
           format: date-time
+          nullable: false
       required:
         - tipVersion
         - transactionId

@@ -70,7 +70,7 @@ components:
         - salesElements
         - referenceIds
         - creatives
-        - impressions
+#        - impressions
     Impression:
       description: An object representing one impression with all associated Ids
       properties:
