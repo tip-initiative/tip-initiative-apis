@@ -1,0 +1,49 @@
+openapi: '3.0.2'
+info:
+  title: API Title
+  version: '1.0'
+servers:
+  - url: https://api.server.test/v1
+paths:
+  /seller/impressions/subscribe:
+    post:
+      tags:
+        - seller
+      summary: >-
+        Seller host a subcription enpoint for the buyer to provide a callback URL
+      description: >-
+        buyers subscribe to ceimpression completed event and receive a notification when this event occurs.
+        A notification will be sent once uploading the impression report asynchonously to an out-of-band location. 
+        These notifications will be “out-of-band”, that is, they will go through a connection other than the subscription connection.
+        notification and upload are asynchronous, as they will be out of the regular request-response flow. 
+      operationId: SellerImpressionsSubscription
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "./schemas/impressionSubscription.yaml#/components/schemas/ImpressionSubscription"
+      responses:
+        '201': #Created
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Success'
+        '400': #Bad Request
+          $ref: 'schemas/commonResponses.yaml#/components/responses/BadRequest'
+        '401': #Unauthorized
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Unauthorized'
+        '403': #Forbidden
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Forbidden'
+        '404': #Not Found
+          $ref: 'schemas/commonResponses.yaml#/components/responses/NotFound'
+        '405': #Not Allowed
+          $ref: 'schemas/commonResponses.yaml#/components/responses/NotAllowed'
+        default: #unexpected
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Unexpected'
+      callbacks:
+        subDelivered:
+          '{$request.body#/callbackUrl}':
+            post:
+              requestBody:
+                $ref: "./schemas/impressionsSchemas.yaml#/components/schemas/SellerImpressions"
+              responses:
+                '200': # OK
+                  $ref: 'schemas/commonResponses.yaml#/components/responses/Success'
