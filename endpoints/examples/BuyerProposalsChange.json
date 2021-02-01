@@ -16,23 +16,23 @@
       "timeStamp": "2020-02-05T11:52:38"
     },
     "referenceIds": [
-        {
-            "referenceSourceName": "Canvas Worldwide. LLC",
-            "referenceSourceId": "456",
-            "referenceType": "RFP",
-            "referenceId": "0FE75A8C-2812-456A-9C0C-B2F734D23354",
-            "referenceVersionId": "0",
-            "referenceName": "Hyundia P25-54 1Q"
-          },
-          {
-            "referenceSourceName": "KHOU-TV",
-            "referenceSourceId": "490",
-            "referenceType": "Proposal",
-            "referenceId": "6FC13FB7-1910-4722-B924-0AF7BA62E2D9",
-            "referenceVersionId": "1",
-            "referenceName": "Hyundia P25-54 1Q"
-          }
-            ],
+      {
+        "referenceSourceName": "Canvas Worldwide. LLC",
+        "referenceSourceId": "456",
+        "referenceType": "RFP",
+        "referenceId": "399799FE-14BD-43E4-927D-48939BFB7E00",
+        "referenceVersionId": "0",
+        "referenceName": "Hyundia P25-54 1Q"
+      },
+      {
+        "referenceSourceName": "KHOU-TV",
+        "referenceSourceId": "490",
+        "referenceType": "Proposal",
+        "referenceId": "F3F7328C-A84B-4107-99DA-21372779EFDA",
+        "referenceVersionId": "1",
+        "referenceName": "Hyundia P25-54 1Q"
+      }
+    ],
     "expirationDate": "2020-02-10",
     "buyer": {
       "buyerId": "456",
@@ -56,39 +56,39 @@
       "productReference": "99"
     },
     "contacts": [
-        {
-            "contactType": "Account Executive",
-            "referenceSourceName": "KHOU-TV",
-            "referenceSourceId": "490",
-            "contactFirstName": "Mary",
-            "contactLastName": "McCoy",
-            "addressLine1": "5718 Westheimer Road",
-            "addressLine2": "Suite 501",
-            "city": "Houston",
-            "state": "TX",
-            "postalCode": "77057",
-            "country": "USA",
-            "phoneNumber": "713-555-5555",
-            "email": "mmcoy@email.com",
-            "effectiveDate": "2007-02-17"
-          },
-          {
-            "contactType": "Buyer",
-            "referenceSourceName": "Canvas Worldwide. LLC",
-            "referenceSourceId": "456",
-            "contactFirstName": "Scott",
-            "contactLastName": "Evans",
-            "addressLine1": "75 Varvick Street",
-            "addressLine2": "2nd Floor",
-            "city": "New York",
-            "state": "NY",
-            "postalCode": "10013",
-            "country": "USA",
-            "phoneNumber": "212-555-5555",
-            "email": "sevans@email.com",
-            "effectiveDate": "2007-02-17"
-          }
-            ],
+      {
+        "contactType": "Account Executive",
+        "referenceSourceName": "KHOU-TV",
+        "referenceSourceId": "490",
+        "contactFirstName": "Mary",
+        "contactLastName": "McCoy",
+        "addressLine1": "5718 Westheimer Road",
+        "addressLine2": "Suite 501",
+        "city": "Houston",
+        "state": "TX",
+        "postalCode": "77057",
+        "country": "USA",
+        "phoneNumber": "713-555-5555",
+        "email": "mmcoy@email.com",
+        "effectiveDate": "2007-02-17"
+      },
+      {
+        "contactType": "Buyer",
+        "referenceSourceName": "Canvas Worldwide. LLC",
+        "referenceSourceId": "456",
+        "contactFirstName": "Scott",
+        "contactLastName": "Evans",
+        "addressLine1": "75 Varvick Street",
+        "addressLine2": "2nd Floor",
+        "city": "New York",
+        "state": "NY",
+        "postalCode": "10013",
+        "country": "USA",
+        "phoneNumber": "212-555-5555",
+        "email": "sevans@email.com",
+        "effectiveDate": "2007-02-17"
+      }
+    ],
     "revenueType": "Cash",
     "businessType": "Standard",
     "localNational": "National",
@@ -112,15 +112,15 @@
       "cancellationPercentage": 15
     },
     "timeSeparations": [
-        {
-            "unitLength": 30,
-            "timeSeparation": 600
-          },
-          {
-            "unitLength": 15,
-            "timeSeparation": 900
-          }
-            ],
+      {
+        "unitLength": 30,
+        "timeSeparation": 600
+      },
+      {
+        "unitLength": 15,
+        "timeSeparation": 900
+      }
+    ],
     "termsOfSales": "Contract Terms",
     "externalComment": "",
     "rateCard": {
@@ -182,8 +182,8 @@
               "sunday": false
             },
             "timeWindow": {
-              "startTime": "07:00:00",
-              "endTime": "09:00:00"
+              "startTime": "07:00",
+              "endTime": "09:00"
             }
           }
         ],
@@ -204,7 +204,7 @@
                   "endDate": "2020-02-23"
                 },
                 "unitCount": 2,
-                "rate": 525.00,
+                "rate": 525,
                 "audiencesPricingMetrics": [
                   {
                     "audienceSegmentId": "P25-54",
@@ -242,7 +242,6 @@
                   }
                 ]
               }
-
             ]
           }
         ]

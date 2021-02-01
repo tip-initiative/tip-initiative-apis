@@ -1,0 +1,119 @@
+openapi: '3.0.2'
+info:
+  title: Impression Subscription & Notification schemas
+  version: '6.0.0'
+servers:
+  - url: https://api.server.test/v1
+paths: {}
+components:
+  schemas:
+    BuyerImpressionSubscribe:
+      properties:
+        transactionHeader:
+          $ref: "./CommonSchemas.yaml#/components/schemas/TransactionHeader"
+        name:
+          description: any meaningful name for this subscription
+          type: string
+        mediaoutlets:
+          description: A unique list of Media Outlets including the Seller entity and all Content where impressions occurred
+          type: array
+          items:
+            $ref: "./CommonSchemas.yaml#/components/schemas/MediaOutlet"
+        salesElementHeaders:
+          description: A unique list of SalesElements  related to the impression included in the message
+          type: array
+          items:
+            $ref: "./CommonSchemas.yaml#/components/schemas/SalesElementHeader"
+        referenceIds:
+          description: this array can be used to limit the impression to given set of orders
+          type: array
+          items:
+            $ref: "./commonSchemas.yaml#/components/schemas/ReferenceId"
+        frequency:
+          description: Frequency of reporting requested by the buyer
+          type: string
+          enum:
+          - Hourly
+          - Daily
+          - Weekly
+          - Monthly
+        reportSpan:
+          $ref: "#/components/schemas/Span"
+        statSource:
+          description: |-
+            Identifies the originating impressions tracking source if all impressions have the same tracking source. 
+            The combination of StatSource and MediaOutlet identifies a unique impression.
+          type: string
+        maxChunkSize:
+          description: suggestion to limit size of chunks to maxChunkSize in MB
+          type: integer
+      required:
+        - name
+        - transactionHeader
+    SellerImpressionNotification:
+      properties:
+        transactionHeader:
+          $ref: "./CommonSchemas.yaml#/components/schemas/TransactionHeader"
+        name:
+          description: any meaningful name for this subscription
+          type: string
+        mediaoutlets:
+          description: A unique list of Media Outlets including the Seller entity and all Content where impressions occurred
+          type: array
+          items:
+            $ref: "./CommonSchemas.yaml#/components/schemas/MediaOutlet"
+          minItems: 1
+        salesElementHeaders:
+          description: A unique list of SalesElements  related to the impression included in the message
+          type: array
+          items:
+            $ref: "./CommonSchemas.yaml#/components/schemas/SalesElementHeader"
+          minItems: 1
+        referenceIds:
+          description: this array can be used to limit the impression to given set of orders
+          type: array
+          items:
+            $ref: "./commonSchemas.yaml#/components/schemas/ReferenceId"
+          minItems: 1
+        creatives:
+          description: A list of all creatives delivered against. This object may expand with further metadata about the creative
+          type: array
+          items:
+            $ref: "./CommonSchemas.yaml#/components/schemas/Creative"
+          minItems: 1
+        reportDate:
+          $ref: "./CommonSchemas.yaml#/components/schemas/DateWindow"
+        statSource:
+          description: |-
+            Identifies the originating impressions tracking source if all impressions have the same tracking source. 
+            The combination of StatSource and MediaOutlet identifies a unique impression.
+          type: string
+        filePrefix:
+          description: the prefix for file name collection in the notification 
+          type: string
+        chunks:
+          description: number of chunks associated with the notification 
+          type: integer
+      required:
+        - transactionHeader
+        - mediaoutlets
+        - salesElementHeaders
+        - referenceIds
+        - creatives
+        - reportDate
+        - statSource
+        - filePrefix
+        - chunks
+    Span:
+      description: Window of time for the report requested by the buyers
+      properties:
+        num:
+          description: combined with span Unit this integer is used to express the coverage of the impression content, i.e. 5 days
+          type: integer
+        spanUnit:
+          type: string
+          enum:
+          - Hours
+          - Days
+          - Weeks
+          - Months

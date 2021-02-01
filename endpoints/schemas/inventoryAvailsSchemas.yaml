@@ -86,10 +86,10 @@ components:
         - political
         - audienceSegments
     SellerInventoryAvails:
-      description: |-
-        The SellerInventoryAvails Schemas defines:
-        - the Seller response to previously solicited InventoryAvails request from the buyer,
-        - or Unslocited provide the buyer with the catalog of selling products, and optionally provide pricing and audience information
+      description: >-
+        The SellerInventoryAvails Schemas defines: 
+        the Seller response to previously solicited InventoryAvails request from the buyer, 
+        or Unslocited provide the buyer with the catalog of selling products, and optionally provide pricing and audience information
       properties:
         transactionHeader:
           $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
