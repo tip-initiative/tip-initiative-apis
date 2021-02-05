@@ -5,7 +5,8 @@
        - image: cimg/node:14.14.0
      steps:
        - run: sudo npm install @openapitools/openapi-generator-cli -g
-       - run: sudo apt-get install openjdk-11-jre-headless
+       - run: sudo apt update
+       - run: java -version
        - run: openapi-generator version
        - checkout
        - run: find endpoints -name \*.yaml -a ! -name _\*.yaml | xargs -0 -n1 -P1 openapi-generator validate -i
