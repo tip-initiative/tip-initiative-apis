@@ -2,9 +2,9 @@
  jobs:
    validate:
      docker:
-       - image: cimg/node:14.14.0
+       - image: circleci/node
      steps:
-       - run: sudo apt update
+       - run: sudo npm install npm@latest
        - run: sudo npm install @openapitools/openapi-generator-cli -g
        - run: openapi-generator version
        - checkout
