@@ -4,7 +4,7 @@
      docker:
        - image: circleci/node
      steps:
-       - run: npm install -g npm@7.5.2
+       - run: sudo npm install -g npm@7.5.2
        - run: sudo npm install @openapitools/openapi-generator-cli -g
        - run: openapi-generator version
        - checkout
