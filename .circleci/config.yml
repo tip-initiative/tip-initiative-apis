@@ -1,8 +1,8 @@
- version: 2
+ version: 2.1
  jobs:
    validate:
      docker:
-       - image: circleci/node:12.8.2
+       - image: 'cimg/node:14.14.0'
      steps:
        - run: sudo npm install @openapitools/openapi-generator-cli -g
        - run: openapi-generator version
