@@ -10,7 +10,7 @@ components:
     BuyerImpressionSubscribe:
       properties:
         transactionHeader:
-          $ref: "./CommonSchemas.yaml#/components/schemas/TransactionHeader"
+          $ref: "./commonSchemas.yaml#/components/schemas/TransactionHeader"
         name:
           description: any meaningful name for this subscription
           type: string
@@ -18,12 +18,12 @@ components:
           description: A unique list of Media Outlets including the Seller entity and all Content where impressions occurred
           type: array
           items:
-            $ref: "./CommonSchemas.yaml#/components/schemas/MediaOutlet"
+            $ref: "./commonSchemas.yaml#/components/schemas/MediaOutlet"
         salesElementHeaders:
           description: A unique list of SalesElements  related to the impression included in the message
           type: array
           items:
-            $ref: "./CommonSchemas.yaml#/components/schemas/SalesElementHeader"
+            $ref: "./commonSchemas.yaml#/components/schemas/SalesElementHeader"
         referenceIds:
           description: this array can be used to limit the impression to given set of orders
           type: array
@@ -53,7 +53,7 @@ components:
     SellerImpressionNotification:
       properties:
         transactionHeader:
-          $ref: "./CommonSchemas.yaml#/components/schemas/TransactionHeader"
+          $ref: "./commonSchemas.yaml#/components/schemas/TransactionHeader"
         name:
           description: any meaningful name for this subscription
           type: string
@@ -61,13 +61,13 @@ components:
           description: A unique list of Media Outlets including the Seller entity and all Content where impressions occurred
           type: array
           items:
-            $ref: "./CommonSchemas.yaml#/components/schemas/MediaOutlet"
+            $ref: "./commonSchemas.yaml#/components/schemas/MediaOutlet"
           minItems: 1
         salesElementHeaders:
           description: A unique list of SalesElements  related to the impression included in the message
           type: array
           items:
-            $ref: "./CommonSchemas.yaml#/components/schemas/SalesElementHeader"
+            $ref: "./commonSchemas.yaml#/components/schemas/SalesElementHeader"
           minItems: 1
         referenceIds:
           description: this array can be used to limit the impression to given set of orders
@@ -79,10 +79,10 @@ components:
           description: A list of all creatives delivered against. This object may expand with further metadata about the creative
           type: array
           items:
-            $ref: "./CommonSchemas.yaml#/components/schemas/Creative"
+            $ref: "./commonSchemas.yaml#/components/schemas/Creative"
           minItems: 1
         reportDate:
-          $ref: "./CommonSchemas.yaml#/components/schemas/DateWindow"
+          $ref: "./commonSchemas.yaml#/components/schemas/DateWindow"
         statSource:
           description: |-
             Identifies the originating impressions tracking source if all impressions have the same tracking source. 
