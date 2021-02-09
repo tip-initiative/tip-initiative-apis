@@ -4,10 +4,10 @@
      docker:
        - image: 'cimg/node:14.14.0'
      steps:
-       - run: sudo npm install @openapitools/openapi-generator-cli -g
-       - run: openapi-generator version
+       - run: sudo npm install -g @apidevtools/swagger-cli
+       - run: swagger-cli --version
        - checkout
-       - run: find endpoints -name \*.yaml -a ! -name _\*.yaml | xargs -0 -n1 -P1 openapi-generator validate -i
+       - run: find endpoints -name \*.yaml -a ! -name _\*.yaml | xargs -0 -n1 -P1 swagger-cli validate -d -t yaml
  workflows:
    version: 2
    validation:
