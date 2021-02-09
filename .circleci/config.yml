@@ -7,7 +7,7 @@
        - run: sudo npm install -g @apidevtools/swagger-cli
        - run: swagger-cli --version
        - checkout
-       - run: find endpoints -name \*.yaml -a ! -name _\*.yaml | xargs -0 -n1 -P1 swagger-cli validate -d -t yaml
+       - run: find endpoints -name \*.yaml -a ! -name _\*.yaml -exec swagger-cli validate -d -t yaml {}
  workflows:
    version: 2
    validation:
