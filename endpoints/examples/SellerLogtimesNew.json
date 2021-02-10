@@ -18,7 +18,7 @@
           "referenceSourceName": "KHOU-TV",
           "referenceSourceId": "490",
           "referenceType": "Order",
-          "referenceId": 32323,
+          "referenceId": "A2CAF9C7-C64F-44CA-84E1-DCD51D790E3E",
           "referenceName": "Hyundia P25-54 1Q"
         }
       ],
@@ -75,8 +75,8 @@
           "sunday": false
         },
         "timeWindow": {
-          "startTime": "7:00:00",
-          "endTime": "9:00:00"
+          "startTime": "07:00:00",
+          "endTime": "09:00:00"
         }
       },
       "dateTime": {
@@ -91,7 +91,7 @@
           "referenceSourceName": "KHOU-TV",
           "referenceSourceId": "490",
           "referenceType": "Order",
-          "referenceId": 43544,
+          "referenceId": "19F1BA79-D415-493D-8541-CBA985A740B7",
           "referenceName": "Wendy's 1Q"
         }
       ],
@@ -147,8 +147,8 @@
           "sunday": false
         },
         "timeWindow": {
-          "startTime": "7:00:00",
-          "endTime": "9:00:00"
+          "startTime": "07:00:00",
+          "endTime": "09:00:00"
         }
       },
       "dateTime": {
@@ -163,7 +163,7 @@
           "referenceSourceName": "KHOU-TV",
           "referenceSourceId": "490",
           "referenceType": "Order",
-          "referenceId": 43544,
+          "referenceId": "9A07F777-ADCA-428A-B61B-DB85402E9C57",
           "referenceName": "Wendy's 1Q"
         }
       ],
@@ -219,8 +219,8 @@
           "sunday": false
         },
         "timeWindow": {
-          "startTime": "7:00:00",
-          "endTime": "9:00:00"
+          "startTime": "07:00:00",
+          "endTime": "09:00:00"
         }
       },
       "dateTime": {
@@ -235,7 +235,7 @@
           "referenceSourceName": "KHOU-TV",
           "referenceSourceId": "490",
           "referenceType": "Order",
-          "referenceId": 53222,
+          "referenceId": "1E494D6B-50CE-4814-9217-03D104D13A1C",
           "referenceName": "KIA 1Q"
         }
       ],
@@ -312,7 +312,7 @@
           "referenceSourceName": "KHOU-TV",
           "referenceSourceId": "490",
           "referenceType": "Order",
-          "referenceId": 23333,
+          "referenceId": "FD13BE42-152E-4ACD-B210-C732B787C576",
           "referenceName": "White Castle P18-49"
         }
       ],
@@ -380,7 +380,7 @@
           "referenceSourceName": "KHOU-TV",
           "referenceSourceId": "490",
           "referenceType": "Order",
-          "referenceId": 19877,
+          "referenceId": "ACBAB728-70AD-4DAD-A94A-7511F8553F82",
           "referenceName": "ADT SECURITY P18-49 1Q"
         }
       ],
@@ -449,7 +449,7 @@
           "referenceSourceName": "KHOU-TV",
           "referenceSourceId": "490",
           "referenceType": "Order",
-          "referenceId": 23333,
+          "referenceId": "8DEAA498-EEA8-435F-90CE-ED4B6FFEDBEF",
           "referenceName": "White Castle P18-49"
         }
       ],
@@ -517,7 +517,7 @@
           "referenceSourceName": "KHOU-TV",
           "referenceSourceId": "490",
           "referenceType": "Order",
-          "referenceId": 23333,
+          "referenceId": "248A9CEB-1A97-488F-8756-2BF1EF39988D",
           "referenceName": "KIA P18-49"
         }
       ],
@@ -589,7 +589,7 @@
           "referenceSourceName": "KHOU-TV",
           "referenceSourceId": "490",
           "referenceType": "Order",
-          "referenceId": 32323,
+          "referenceId": "8F15A01D-5D26-42A4-847B-D7E7B73D99E8",
           "referenceName": "Hyundia P25-54 1Q"
         }
       ],

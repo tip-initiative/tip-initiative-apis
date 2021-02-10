@@ -1,17 +1,11 @@
 {
   "transactionHeader": {
-    "tipVersion": "5.0.0",
+    "tipVersion": "5.1.0",
     "transactionId": {
       "transactionId": "9E804522-5668-4D96-AB7C-94105D05EB93",
       "transactionType": "New",
       "sourceId": "490",
       "sourceName": "KHOU-TV"
-    },
-    "originalTransactionId": {
-      "transactionId": "0FE75A8C-2812-456A-9C0C-B2F734D23354",
-      "transactionType": "New",
-      "sourceId": "456",
-      "sourceName": "Canvas Worldwide. LLC"
     },
     "timeStamp": "2020-02-05T11:52:38"
   },
@@ -20,7 +14,7 @@
       "referenceSourceName": "Canvas Worldwide. LLC",
       "referenceSourceId": "456",
       "referenceType": "RFP",
-      "referenceId": 123,
+      "referenceId": "eabcc4b1-693f-483d-9db1-74ef7823ff65",
       "referenceVersionId": "0",
       "referenceName": "Hyundia P25-54 1Q"
     },
@@ -28,7 +22,7 @@
       "referenceSourceName": "KHOU-TV",
       "referenceSourceId": "490",
       "referenceType": "Proposal",
-      "referenceId": 4567,
+      "referenceId": "98015e43-2922-4ce2-a137-1fa4c60084c6",
       "referenceVersionId": "1",
       "referenceName": "Hyundia P25-54 1Q"
     }
@@ -99,7 +93,7 @@
     "billingGranularity": "Order"
   },
   "equivalized": true,
-  "dateWindow": [
+  "dateWindows": [
     {
       "startDate": "2020-02-17",
       "endDate": "2020-03-01"
@@ -182,8 +176,8 @@
             "sunday": false
           },
           "timeWindow": {
-            "startTime": "7:00:00",
-            "endTime": "9:00:00"
+            "startTime": "07:00:00",
+            "endTime": "09:00:00"
           }
         }
       ],
@@ -194,6 +188,11 @@
         {
           "lineNum": "1",
           "inventoryType": "Commercial",
+          "linkType": {
+            "linkNum": 2,
+            "linkType": "Sponsorship"
+          },          
+          "inventoryPosition": "First",
           "inventoryLength": 30,
           "salesElementTransactionDates": [
             {
@@ -243,14 +242,6 @@
               ]
             }
           ]
-        },
-        {
-          "linkType": {
-            "linkNum": 2
-          },
-          "inventoryType": "Interstitial",
-          "inventoryPosition": "First",
-          "inventoryLength": 15
         }
       ]
     },
@@ -259,7 +250,7 @@
         "mediaOutletId": "456",
         "salesElementName": "Prime Weekday",
         "salesElementId": "55",
-        "salesElementType": "Time Based"
+        "salesElementType": "Time-specific"
       },
       "timePeriods": [
         {

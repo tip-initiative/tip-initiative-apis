@@ -1,6 +1,6 @@
 openapi: "3.0.0"
 info:
-  version: 5.1.0
+  version: 6.x.x
   title: Trading Interface Automation Framework For Local TV Transactions.
   description: |
     # Television Interface Practices Initiative (TIP)
@@ -173,6 +173,8 @@ paths:
     $ref: 'orders.yaml#/paths/~1seller~1orders'
   /buyer/commercialInstructions:
     $ref: 'commercialInstructions.yaml#/paths/~1buyer~1commercialInstructions'
+  /buyer/impressions/subscription:
+    $ref: 'impressionssub.yaml#/paths/~1buyer~1impressions~1subscription'
   /seller/commercialInstructions:
     $ref: 'commercialInstructions.yaml#/paths/~1seller~1commercialInstructions'
   /seller/makegood/guidelines:
@@ -185,6 +187,8 @@ paths:
     $ref: 'makegoods.yaml#/paths/~1buyer~1makegood~1offers'
   /seller/impressions:
     $ref: 'impressions.yaml#/paths/~1seller~1impressions'
+  /seller/impressions/notification:
+    $ref: 'impressionssub.yaml#/paths/~1seller~1impressions~1notification'
   /seller/logtimes:
     $ref: 'logTimes.yaml#/paths/~1seller~1logtimes'
   /seller/invoices:

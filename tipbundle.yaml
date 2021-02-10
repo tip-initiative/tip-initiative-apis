@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  version: 5.1.0
+  version: 6.x.x
   title: Trading Interface Automation Framework For Local TV Transactions.
   description: |
     # Television Interface Practices Initiative (TIP)
@@ -191,26 +191,26 @@ paths:
                     mediaOutletMarketName: South Eastern Wisconsin
                     mediaOutletReference: string
                 buyer:
-                  buyerId: string
-                  buyerName: string
-                  buyerReference: string
+                  buyerId: '123'
+                  buyerName: Buy All
+                  buyerReference: Buy All
                 advertiser:
-                  advertiserId: string
-                  advertiserName: string
-                  advertiserReference: string
+                  advertiserId: '456'
+                  advertiserName: Local Autos
+                  advertiserReference: WXYZ News Live
                 contacts:
                   - contactType: Account Executive
-                    referenceSourceName: string
-                    referenceSourceId: string
-                    contactFirstName: string
-                    contactLastName: string
-                    addressLine1: string
-                    addressLine2: string
-                    city: string
-                    state: string
-                    postalCode: string
-                    country: string
-                    phoneNumber: string
+                    referenceSourceName: WXYZ News Live
+                    referenceSourceId: 427CAD68-2375-44E6-8A25-F13557FD01F8
+                    contactFirstName: John
+                    contactLastName: Doe
+                    addressLine1: John's Address
+                    addressLine2: ''
+                    city: Sky City
+                    state: MN
+                    postalCode: '55555'
+                    country: US
+                    phoneNumber: 1(222)345-6789
                     email: user@example.com
                     effectiveDate: '2020-06-09'
                 timePeriods:
@@ -226,12 +226,13 @@ paths:
                       saturday: true
                       sunday: true
                     timeWindow:
-                      startTime: string
+                      startTime: '09:00'
+                      endTime: '11:00'
                 guidelines:
                   - guidelineType: Content
                     excludeOrInclude: Include
-                    guidelineId: string
-                    guidelineName: string
+                    guidelineId: '123'
+                    guidelineName: Kids
                 political: false
                 inventoryTypes:
                   - Commercial
@@ -239,10 +240,10 @@ paths:
                 currency: USD
                 externalComment: Urgent
                 audienceSegments:
-                  - audienceSegmentId: string
-                    audienceSegmentName: string
-                    audienceSegmentReference: string
-                    audienceMethodology: string
+                  - audienceSegmentId: P18-25
+                    audienceSegmentName: People 18 to 25 years old
+                    audienceSegmentReference: '456'
+                    audienceMethodology: Third Party
                     primaryIndicator: true
                     guarantee: true
                     ratingSource: Nielsen
@@ -326,41 +327,37 @@ paths:
                       transactionType: New
                       sourceId: string
                       sourceName: string
-                    originalTransactionId:
-                      transactionId: 3fa85f64-5717-4562-b3fc-2c963f66afa6
-                      transactionType: New
-                      sourceId: string
-                      sourceName: string
                     timeStamp: '2020-07-17T19:56:04.479Z'
                   referenceIds:
                     - referenceSourceName: string
                       referenceSourceId: string
                       referenceSourceLookup: string
                       referenceType: RFP
+                      referenceId: 2910AA14-FC49-4552-A028-E521A00507DA
                       referenceVersionId: string
                       referenceName: string
                   dateSubmitted: '2020-07-17'
                   dueDate: '2020-07-17'
                   buyer:
-                    buyerId: string
-                    buyerName: string
-                    buyerReference: string
+                    buyerId: '123'
+                    buyerName: A New Buyer
+                    buyerReference: '123'
                   commission: 0
                   advertiser:
-                    advertiserId: string
-                    advertiserName: string
-                    advertiserReference: string
+                    advertiserId: '456'
+                    advertiserName: A big Advertiser
+                    advertiserReference: '123'
                   brand:
-                    brandId: string
-                    brandName: string
-                    brandReference: string
+                    brandId: '789'
+                    brandName: Excellent Brand
+                    brandReference: '123'
                   product:
-                    productId: string
-                    productName: string
-                    productReference: string
+                    productId: '0123'
+                    productName: Good Product
+                    productReference: '123'
                   contacts:
                     - contactType: Account Executive
-                      referenceSourceName: string
+                      referenceSourceName: WXYZ
                       referenceSourceId: string
                       contactFirstName: string
                       contactLastName: string
@@ -375,12 +372,12 @@ paths:
                       effectiveDate: '2020-07-17'
                   currency: USD
                   budget:
-                    - budgetAmount: 0
+                    - budgetAmount: 100000
                       budgetAllocation:
                         budgetType: DMA
-                        budgetName: string
-                        budgetAmount: 0
-                        budgetSharePercent: 0
+                        budgetName: Whatever
+                        budgetAmount: 100000
+                        budgetSharePercent: 100
                   timePeriodPreferences:
                     - dateWindow:
                         startDate: '2020-07-17'
@@ -394,14 +391,15 @@ paths:
                         saturday: true
                         sunday: true
                       timeWindow:
-                        startTime: string
+                        startTime: '17:00'
+                        endTime: '20:00'
                   marketPreferences:
                     - string
                   audiencePreferences:
-                    - audienceSegmentId: string
-                      audienceSegmentName: string
-                      audienceSegmentReference: string
-                      audienceMethodology: string
+                    - audienceSegmentId: HH
+                      audienceSegmentName: Households
+                      audienceSegmentReference: '123'
+                      audienceMethodology: Third Party
                       primaryIndicator: true
                       guarantee: true
                       ratingSource: Nielsen
@@ -411,8 +409,8 @@ paths:
                   guidelines:
                     - guidelineType: Content
                       excludeOrInclude: Include
-                      guidelineId: string
-                      guidelineName: string
+                      guidelineId: '125'
+                      guidelineName: Sport
                   objective: string
                   comments: string
                   campaignGoals:
@@ -480,37 +478,32 @@ paths:
               New:
                 value:
                   transactionHeader:
-                    tipVersion: 5.0.0
+                    tipVersion: 5.1.0
                     transactionId:
                       transactionId: 9E804522-5668-4D96-AB7C-94105D05EB93
                       transactionType: New
                       sourceId: '490'
                       sourceName: KHOU-TV
-                    originalTransactionId:
-                      transactionId: 0FE75A8C-2812-456A-9C0C-B2F734D23354
-                      transactionType: New
-                      sourceId: '456'
-                      sourceName: Canvas Worldwide. LLC
                     timeStamp: '2020-02-05T11:52:38'
                   referenceIds:
                     - referenceSourceName: Canvas Worldwide. LLC
                       referenceSourceId: '456'
                       referenceType: RFP
-                      referenceId: 123
+                      referenceId: eabcc4b1-693f-483d-9db1-74ef7823ff65
                       referenceVersionId: '0'
                       referenceName: Hyundia P25-54 1Q
                     - referenceSourceName: KHOU-TV
                       referenceSourceId: '490'
                       referenceType: Proposal
-                      referenceId: 4567
+                      referenceId: 98015e43-2922-4ce2-a137-1fa4c60084c6
                       referenceVersionId: '1'
                       referenceName: Hyundia P25-54 1Q
                   expirationDate: '2020-02-10'
                   buyer:
                     buyerId: '456'
                     buyerName: Canvas Worldwide. LLC
-                    buyerReference: string
-                  commission: 15
+                    buyerReference: Reference text here
+                  commission: 0.15
                   advertiser:
                     advertiserId: '34'
                     advertiserName: Hyundai
@@ -561,14 +554,14 @@ paths:
                     billingCycle: Month
                     billingGranularity: Order
                   equivalized: true
-                  dateWindow:
+                  dateWindows:
                     - startDate: '2020-02-17'
                       endDate: '2020-03-01'
                   cancellationTerms:
                     cancellationType: Quarterly
                     cancellation: 1Q
                     cancellationPriorDays: 10
-                    cancellationPercentage: 15
+                    cancellationPercentage: 0.15
                   timeSeparations:
                     - unitLength: 30
                       timeSeparation: 600
@@ -619,10 +612,71 @@ paths:
                             saturday: false
                             sunday: false
                           timeWindow:
-                            startTime: '7:00:00'
-                            endTime: '9:00:00'
+                            startTime: '07:00:00'
+                            endTime: '09:00:00'
                       programs:
                         - CBS This Morning
+                      salesElementTransactionInventory:
+                        - lineNum: '1'
+                          inventoryType: Commercial
+                          linkType:
+                            linkNum: 2
+                            linkType: Sponsorship
+                          inventoryPosition: First
+                          inventoryLength: 30
+                          salesElementTransactionDates:
+                            - dateType: Week
+                              calendarType: Broadcast
+                              dateWindow:
+                                startDate: '2020-02-17'
+                                endDate: '2020-02-23'
+                              unitCount: 2
+                              rate: 525
+                              audiencesPricingMetrics:
+                                - audienceSegmentId: P25-54
+                                  audienceMetric:
+                                    audienceMetric: Impressions
+                                    audienceMetricValue: 310000
+                                  pricingMetric:
+                                    pricingMetric: CPM
+                                    pricingMetricValue: 1.69
+                            - dateType: Week
+                              calendarType: Broadcast
+                              dateWindow:
+                                startDate: '2020-02-24'
+                                endDate: '2020-03-01'
+                              unitCount: 3
+                              rate: 525
+                              audiencesPricingMetrics:
+                                - audienceSegmentId: P25-54
+                                  audienceMetric:
+                                    audienceMetric: Impressions
+                                    audienceMetricValue: 310000
+                                  pricingMetric:
+                                    pricingMetric: CPM
+                                    pricingMetricValue: 1.69
+                    - salesElement:
+                        mediaOutletId: '456'
+                        salesElementName: Prime Weekday
+                        salesElementId: '55'
+                        salesElementType: Time-specific
+                      timePeriods:
+                        - dateWindow:
+                            startDate: '2020-01-01'
+                            endDate: '2020-06-01'
+                          DOW:
+                            monday: true
+                            tuesday: true
+                            wednesday: true
+                            thursday: true
+                            friday: true
+                            saturday: false
+                            sunday: false
+                          timeWindow:
+                            startTime: '19:00:00'
+                            endTime: '22:00:00'
+                      programs:
+                        - ''
                       salesElementTransactionInventory:
                         - lineNum: '1'
                           inventoryType: Commercial
@@ -718,13 +772,13 @@ paths:
                     - referenceSourceName: Canvas Worldwide. LLC
                       referenceSourceId: '456'
                       referenceType: RFP
-                      referenceId: 123
+                      referenceId: 0FE75A8C-2812-456A-9C0C-B2F734D23354
                       referenceVersionId: '0'
                       referenceName: Hyundia P25-54 1Q
                     - referenceSourceName: KHOU-TV
                       referenceSourceId: '490'
                       referenceType: Proposal
-                      referenceId: 4567
+                      referenceId: 6FC13FB7-1910-4722-B924-0AF7BA62E2D9
                       referenceVersionId: '1'
                       referenceName: Hyundia P25-54 1Q
                   expirationDate: '2020-02-10'
@@ -783,7 +837,7 @@ paths:
                     billingCycle: Month
                     billingGranularity: Order
                   equivalized: true
-                  dateWindow:
+                  dateWindows:
                     - startDate: '2020-02-17'
                       endDate: '2020-03-01'
                   cancellationTerms:
@@ -841,8 +895,8 @@ paths:
                             saturday: false
                             sunday: false
                           timeWindow:
-                            startTime: '7:00:00'
-                            endTime: '9:00:00'
+                            startTime: '07:00:00'
+                            endTime: '09:00:00'
                       programs:
                         - CBS This Morning
                       salesElementTransactionInventory:
@@ -922,153 +976,177 @@ paths:
               New:
                 value:
                   transactionHeader:
-                    tipVersion: string
+                    tipVersion: 5.1.0
                     transactionId:
-                      transactionId: string
+                      transactionId: 4162EF00-24D6-4B5F-BBAD-C8E1879FEC46
                       transactionType: New
-                      sourceId: string
-                      sourceName: string
-                    originalTransactionId:
-                      transactionId: string
-                      transactionType: New
-                      sourceId: string
-                      sourceName: string
-                    timeStamp: '2020-07-01T19:17:28Z'
+                      sourceId: 757C28B5-B573-4969-826D-74C17225CBAD
+                      sourceName: My System ID
+                    timeStamp: '2020-02-05T19:17:28Z'
                   referenceIds:
-                    - referenceSourceName: string
-                      referenceSourceId: string
-                      referenceSourceLookup: string
+                    - referenceSourceName: Canvas Worldwide. LLC
+                      referenceSourceId: '456'
+                      referenceSourceLookup: ''
                       referenceType: RFP
-                      referenceId: 0
-                      referenceVersionId: string
-                      referenceName: string
-                  orderBookedDate: '2020-07-01'
+                      referenceId: C8A91DE6-B69F-46A7-B08D-9D2FB5713B4E
+                      referenceVersionId: '0'
+                      referenceName: Hyundia P25-54 1Q
+                    - referenceSourceName: KHOU-TV
+                      referenceSourceId: '490'
+                      referenceSourceLookup: ''
+                      referenceType: Proposal
+                      referenceId: 571668E8-6858-452C-A364-B56E465535CE
+                      referenceVersionId: '2'
+                      referenceName: Hyundia P25-54 1Q
+                    - referenceSourceName: Canvas Worldwide. LLC
+                      referenceSourceId: '456'
+                      referenceSourceLookup: ''
+                      referenceType: Order
+                      referenceId: 58556E97-D386-4139-AC04-CDBA0B11E8E8
+                      referenceVersionId: '1'
+                      referenceName: Hyundia P25-54 1Q
+                  orderBookedDate: '2020-02-10'
                   buyer:
-                    buyerId: string
-                    buyerName: string
-                    buyerReference: string
-                  commission: 0
+                    buyerId: '456'
+                    buyerName: Canvas Worldwide. LLC
+                    buyerReference: ''
+                  commission: 0.15
                   advertiser:
-                    advertiserId: string
-                    advertiserName: string
-                    advertiserReference: string
+                    advertiserId: '34'
+                    advertiserName: Hyundai
+                    advertiserReference: ''
                   brand:
-                    brandId: string
-                    brandName: string
-                    brandReference: string
+                    brandId: '19'
+                    brandName: Kona
+                    brandReference: ''
                   product:
-                    productId: string
-                    productName: string
-                    productReference: string
+                    productId: '89'
+                    productName: Automobile
+                    productReference: ''
+                  budget:
+                    budgetAmount: 50000
                   cpeCode:
-                    clientCode: string
-                    productCode: string
-                    estimateCode: string
+                    clientCode: HYUN
+                    productCode: AUTO
+                    estimateCode: '987'
                   contacts:
                     - contactType: Account Executive
-                      referenceSourceName: string
-                      referenceSourceId: string
-                      contactFirstName: string
-                      contactLastName: string
-                      addressLine1: string
-                      addressLine2: string
-                      city: string
-                      state: string
-                      postalCode: string
-                      country: string
-                      phoneNumber: string
-                      email: user@example.com
-                      effectiveDate: '2020-07-01'
+                      referenceSourceName: KHOU-TV
+                      referenceSourceId: '12'
+                      contactFirstName: Mary
+                      contactLastName: McCoy
+                      addressLine1: 5718 Westheimer Road
+                      addressLine2: Suite 501
+                      city: Houston
+                      state: TX
+                      postalCode: '77057'
+                      country: USA
+                      phoneNumber: 713-555-5555
+                      email: mmcoy@email.com
+                      effectiveDate: '2007-02-17'
+                    - contactType: Buyer
+                      referenceSourceName: Canvas
+                      referenceSourceId: '45'
+                      contactFirstName: Scott
+                      contactLastName: Evans
+                      addressLine1: 75 Varvick Street
+                      addressLine2: 2nd Floor
+                      city: New York
+                      state: NY
+                      postalCode: '10013'
+                      country: USA
+                      phoneNumber: 212-555-5555
+                      email: sevans@email.com
+                      effectiveDate: '2008-07-17'
                   revenueType: Cash
-                  businessType: string
-                  localNational: Local
-                  dealYear: 0
+                  businessType: Standard
+                  localNational: National
+                  dealYear: 2020-2021
                   calendarType: Broadcast
                   billingOption:
                     billingCalendar: Broadcast
                     billingCycle: Month
                     billingGranularity: Order
-                  equivalized: true
-                  dateWindow:
-                    - startDate: '2020-07-01'
-                      endDate: '2020-07-01'
+                  equivalized: false
+                  dateWindows:
+                    - startDate: '2020-02-17'
+                      endDate: '2020-03-01'
                   cancellationTerms:
                     cancellationType: Quarterly
-                    cancellation: string
-                    cancellationPriorDays: 0
-                    cancellationPercentage: 0
+                    cancellation: 1Q
+                    cancellationPriorDays: 10
+                    cancellationPercentage: 0.15
                   timeSeparations:
-                    - unitLength: 0
-                      timeSeparation: 0
-                  termsOfSales: string
-                  externalComment: string
+                    - unitLength: 30
+                      timeSeparation: 600
+                    - unitLength: 15
+                      timeSeparation: 900
+                  termsOfSales: Contract Terms
+                  externalComment: My comments are here
                   rateCard:
-                    rateCardId: string
-                    rateCardName: string
+                    rateCardId: '123'
+                    rateCardName: Canvas WW standard ratecard
                   currency: USD
                   mediaOutlets:
-                    - mediaOutletId: string
-                      mediaOutletName: string
+                    - mediaOutletId: '456'
+                      mediaOutletName: KHOU-TV
                       mediaOutletType: Broadcast TV
-                      mediaOutletChannel: string
-                      mediaOutletMarketName: string
-                      mediaOutletReference: string
+                      mediaOutletChannel: KHOU-TV
+                      mediaOutletMarketName: Houston
+                      mediaOutletReference: Any Reference
                   audienceSegments:
-                    - mediaOutletId: string
+                    - mediaOutletId: '456'
                       audienceSegment:
-                        audienceSegmentId: string
-                        audienceSegmentName: string
-                        audienceSegmentReference: string
-                        audienceMethodology: string
+                        audienceSegmentId: P25-54
+                        audienceSegmentName: P25-54
+                        audienceSegmentReference: ''
+                        audienceMethodology: ''
                         primaryIndicator: true
                         guarantee: true
                         ratingSource: Nielsen
                         ratingStream: Program Live
                       universes:
-                        - universeType: Market
-                          universeTypeValue: 0
+                        - universeType: DMA
+                          universeTypeValue: 39000
                   salesElements:
                     - salesElement:
-                        mediaOutletId: string
-                        salesElementName: string
-                        salesElementId: string
-                        salesElementType: Time-specific
+                        mediaOutletId: '456'
+                        salesElementName: CBS This Morning
+                        salesElementId: '999'
+                        salesElementType: Program
                       timePeriods:
                         - dateWindow:
-                            startDate: '2020-07-01'
-                            endDate: '2020-07-01'
+                            startDate: '2020-01-01'
+                            endDate: '2020-06-01'
                           DOW:
                             monday: true
                             tuesday: true
                             wednesday: true
                             thursday: true
                             friday: true
-                            saturday: true
-                            sunday: true
+                            saturday: false
+                            sunday: false
                           timeWindow:
-                            startTime: string
-                            endTime: string
+                            startTime: '07:00:00'
+                            endTime: '09:00:00'
                       programs:
-                        - string
+                        - CBS This Morning
                       salesElementTransactionInventory:
-                        - lineNum: string
-                          lineReference: string
+                        - lineNum: '1'
+                          lineReference: ''
                           inventoryType: Commercial
-                          linkType:
-                            linkType: Billboard
-                            linkNum: 0
-                            linkSeq: 0
-                          inventoryPosition: First
-                          inventoryLength: 0
-                          adu: true
-                          bonus: true
+                          inventoryPosition: ''
+                          inventoryLength: 30
+                          adu: null
+                          bonus: null
+                          externalComment: Comments
                           salesElementTransactionDates:
                             - dateType: Week
                               calendarType: Broadcast
                               dateWindow:
-                                startDate: '2020-07-01'
-                                endDate: '2020-07-01'
-                              unitCount: 0
+                                startDate: '2020-02-17'
+                                endDate: '2020-02-23'
+                              unitCount: 2
                               dailyUnitDistribution:
                                 monday: 0
                                 tuesday: 0
@@ -1077,165 +1155,360 @@ paths:
                                 friday: 0
                                 saturday: 0
                                 sunday: 0
-                              rate: 0
+                              rate: 525
+                              externalComment: comments
                               audiencesPricingMetrics:
-                                - audienceSegmentId: string
+                                - audienceSegmentId: P25-54
                                   audienceMetric:
                                     audienceMetric: Impressions
-                                    audienceMetricValue: 0
+                                    audienceMetricValue: 310000
                                   pricingMetric:
                                     pricingMetric: CPM
-                                    pricingMetricValue: 0
+                                    pricingMetricValue: 1.69
+                            - dateType: Week
+                              calendarType: Broadcast
+                              dateWindow:
+                                startDate: '2020-02-24'
+                                endDate: '2020-03-01'
+                              unitCount: 3
+                              dailyUnitDistribution:
+                                monday: 0
+                                tuesday: 0
+                                wednesday: 0
+                                thursday: 0
+                                friday: 0
+                                saturday: 0
+                                sunday: 0
+                              rate: 525
+                              audiencesPricingMetrics:
+                                - audienceSegmentId: P25-54
+                                  audienceMetric:
+                                    audienceMetric: Impressions
+                                    audienceMetricValue: 310000
+                                  pricingMetric:
+                                    pricingMetric: CPM
+                                    pricingMetricValue: 1.69
+                        - lineNum: '2'
+                          lineReference: ''
+                          inventoryType: Commercial
+                          linkType:
+                            linkType: Sponsorship
+                            linkNum: 1
+                            linkSeq: 0
+                          inventoryPosition: First
+                          inventoryLength: 15
+                          adu: null
+                          bonus: null
+                          externalComment: Comments
+                          salesElementTransactionDates:
+                            - dateType: Week
+                              calendarType: Broadcast
+                              dateWindow:
+                                startDate: '2020-02-17'
+                                endDate: '2020-02-23'
+                              unitCount: 1
+                              dailyUnitDistribution:
+                                monday: 0
+                                tuesday: 0
+                                wednesday: 0
+                                thursday: 1
+                                friday: 0
+                                saturday: 0
+                                sunday: 0
+                              rate: 600
+                              externalComment: comments
+                              audiencesPricingMetrics:
+                                - audienceSegmentId: P25-54
+                                  audienceMetric:
+                                    audienceMetric: Impressions
+                                    audienceMetricValue: 310000
+                                  pricingMetric:
+                                    pricingMetric: CPM
+                                    pricingMetricValue: 1.94
+                            - dateType: Week
+                              calendarType: Broadcast
+                              dateWindow:
+                                startDate: '2020-02-24'
+                                endDate: '2020-03-01'
+                              unitCount: 0
+                              dailyUnitDistribution:
+                                monday: 0
+                                tuesday: 0
+                                wednesday: 0
+                                thursday: 1
+                                friday: 0
+                                saturday: 0
+                                sunday: 0
+                              rate: 600
+                              audiencesPricingMetrics:
+                                - audienceSegmentId: P25-54
+                                  audienceMetric:
+                                    audienceMetric: Impressions
+                                    audienceMetricValue: 310000
+                                  pricingMetric:
+                                    pricingMetric: CPM
+                                    pricingMetricValue: 1.94
+                    - salesElement:
+                        mediaOutletId: '456'
+                        salesElementName: Prime Weekday
+                        salesElementId: '55'
+                        salesElementType: Time-specific
+                      timePeriods:
+                        - dateWindow:
+                            startDate: '2020-01-01'
+                            endDate: '2020-06-01'
+                          DOW:
+                            monday: true
+                            tuesday: true
+                            wednesday: true
+                            thursday: true
+                            friday: true
+                            saturday: false
+                            sunday: false
+                          timeWindow:
+                            startTime: '19:00:00'
+                            endTime: '22:00:00'
+                      programs: []
+                      salesElementTransactionInventory:
+                        - lineNum: '3'
+                          lineReference: ''
+                          inventoryType: Commercial
+                          linkType:
+                            linkType: Billboard
+                            linkNum: 0
+                            linkSeq: 0
+                          inventoryPosition: ''
+                          inventoryLength: 30
+                          adu: null
+                          bonus: null
+                          externalComment: Comments
+                          salesElementTransactionDates:
+                            - dateType: Week
+                              calendarType: Broadcast
+                              dateWindow:
+                                startDate: '2020-02-17'
+                                endDate: '2020-02-23'
+                              unitCount: 0
+                              dailyUnitDistribution:
+                                monday: 2
+                                tuesday: 2
+                                wednesday: 2
+                                thursday: 2
+                                friday: 2
+                                saturday: 0
+                                sunday: 0
+                              rate: 300
+                              externalComment: comments
+                              audiencesPricingMetrics:
+                                - audienceSegmentId: P25-54
+                                  audienceMetric:
+                                    audienceMetric: Impressions
+                                    audienceMetricValue: 248000
+                                  pricingMetric:
+                                    pricingMetric: CPM
+                                    pricingMetricValue: 1.21
+                            - dateType: Week
+                              calendarType: Broadcast
+                              dateWindow:
+                                startDate: '2020-02-24'
+                                endDate: '2020-03-01'
+                              unitCount: 0
+                              dailyUnitDistribution:
+                                monday: 2
+                                tuesday: 2
+                                wednesday: 2
+                                thursday: 2
+                                friday: 2
+                                saturday: 0
+                                sunday: 0
+                              rate: 300
+                              audiencesPricingMetrics:
+                                - audienceSegmentId: P25-54
+                                  audienceMetric:
+                                    audienceMetric: Impressions
+                                    audienceMetricValue: 248000
+                                  pricingMetric:
+                                    pricingMetric: CPM
+                                    pricingMetricValue: 1.21
               Change:
                 value:
                   transactionHeader:
-                    tipVersion: string
+                    tipVersion: 5.1.0
                     transactionId:
-                      transactionId: string
+                      transactionId: 4162EF00-24D6-4B5F-BBAD-C8E1879FEC46
                       transactionType: Change
-                      sourceId: string
-                      sourceName: string
+                      sourceId: 757C28B5-B573-4969-826D-74C17225CBAD
+                      sourceName: My System ID
                     originalTransactionId:
-                      transactionId: string
+                      transactionId: 0FE75A8C-2812-456A-9C0C-B2F734D23354
                       transactionType: New
-                      sourceId: string
-                      sourceName: string
-                    timeStamp: '2020-07-01T19:17:28Z'
+                      sourceId: '490'
+                      sourceName: My System ID
+                    timeStamp: '2020-02-05T19:17:28Z'
                   referenceIds:
-                    - referenceSourceName: string
-                      referenceSourceId: string
-                      referenceSourceLookup: string
+                    - referenceSourceName: Canvas Worldwide. LLC
+                      referenceSourceId: '456'
+                      referenceSourceLookup: ''
                       referenceType: RFP
-                      referenceId: 0
-                      referenceVersionId: string
-                      referenceName: string
-                  orderBookedDate: '2020-07-01'
+                      referenceId: C8A91DE6-B69F-46A7-B08D-9D2FB5713B4E
+                      referenceVersionId: '0'
+                      referenceName: Hyundia P25-54 1Q
+                    - referenceSourceName: KHOU-TV
+                      referenceSourceId: '490'
+                      referenceSourceLookup: ''
+                      referenceType: Proposal
+                      referenceId: 571668E8-6858-452C-A364-B56E465535CE
+                      referenceVersionId: '2'
+                      referenceName: Hyundia P25-54 1Q
+                    - referenceSourceName: Canvas Worldwide. LLC
+                      referenceSourceId: '456'
+                      referenceSourceLookup: ''
+                      referenceType: Order
+                      referenceId: 58556E97-D386-4139-AC04-CDBA0B11E8E8
+                      referenceVersionId: '1'
+                      referenceName: Hyundia P25-54 1Q
+                  orderBookedDate: '2020-02-10'
                   buyer:
-                    buyerId: string
-                    buyerName: string
-                    buyerReference: string
-                  commission: 0
+                    buyerId: '456'
+                    buyerName: Canvas Worldwide. LLC
+                    buyerReference: ''
+                  commission: 0.15
                   advertiser:
-                    advertiserId: string
-                    advertiserName: string
-                    advertiserReference: string
+                    advertiserId: '34'
+                    advertiserName: Hyundai
+                    advertiserReference: ''
                   brand:
-                    brandId: string
-                    brandName: string
-                    brandReference: string
+                    brandId: '19'
+                    brandName: Kona
+                    brandReference: ''
                   product:
-                    productId: string
-                    productName: string
-                    productReference: string
+                    productId: '89'
+                    productName: Automobile
+                    productReference: ''
+                  budget:
+                    budgetAmount: 50000
                   cpeCode:
-                    clientCode: string
-                    productCode: string
-                    estimateCode: string
+                    clientCode: HYUN
+                    productCode: AUTO
+                    estimateCode: '987'
                   contacts:
                     - contactType: Account Executive
-                      referenceSourceName: string
-                      referenceSourceId: string
-                      contactFirstName: string
-                      contactLastName: string
-                      addressLine1: string
-                      addressLine2: string
-                      city: string
-                      state: string
-                      postalCode: string
-                      country: string
-                      phoneNumber: string
-                      email: user@example.com
-                      effectiveDate: '2020-07-01'
+                      referenceSourceName: KHOU-TV
+                      referenceSourceId: '12'
+                      contactFirstName: Mary
+                      contactLastName: McCoy
+                      addressLine1: 5718 Westheimer Road
+                      addressLine2: Suite 501
+                      city: Houston
+                      state: TX
+                      postalCode: '77057'
+                      country: USA
+                      phoneNumber: 713-555-5555
+                      email: mmcoy@email.com
+                      effectiveDate: '2007-02-17'
+                    - contactType: Buyer
+                      referenceSourceName: Canvas
+                      referenceSourceId: '45'
+                      contactFirstName: Scott
+                      contactLastName: Evans
+                      addressLine1: 75 Varvick Street
+                      addressLine2: 2nd Floor
+                      city: New York
+                      state: NY
+                      postalCode: '10013'
+                      country: USA
+                      phoneNumber: 212-555-5555
+                      email: sevans@email.com
+                      effectiveDate: '2008-07-17'
                   revenueType: Cash
-                  businessType: string
-                  localNational: Local
-                  dealYear: 0
+                  businessType: Standard
+                  localNational: National
+                  dealYear: 2020-2021
                   calendarType: Broadcast
                   billingOption:
                     billingCalendar: Broadcast
                     billingCycle: Month
                     billingGranularity: Order
-                  equivalized: true
-                  dateWindow:
-                    - startDate: '2020-07-01'
-                      endDate: '2020-07-01'
+                  equivalized: false
+                  dateWindows:
+                    - startDate: '2020-02-17'
+                      endDate: '2020-03-01'
                   cancellationTerms:
                     cancellationType: Quarterly
-                    cancellation: string
-                    cancellationPriorDays: 0
-                    cancellationPercentage: 0
+                    cancellation: 1Q
+                    cancellationPriorDays: 10
+                    cancellationPercentage: 0.15
                   timeSeparations:
-                    - unitLength: 0
-                      timeSeparation: 0
-                  termsOfSales: string
-                  externalComment: string
+                    - unitLength: 30
+                      timeSeparation: 600
+                    - unitLength: 15
+                      timeSeparation: 900
+                  termsOfSales: Contract Terms
+                  externalComment: My comments are here
                   rateCard:
-                    rateCardId: string
-                    rateCardName: string
+                    rateCardId: '123'
+                    rateCardName: Canvas WW standard ratecard
                   currency: USD
                   mediaOutlets:
-                    - mediaOutletId: string
-                      mediaOutletName: string
+                    - mediaOutletId: '456'
+                      mediaOutletName: KHOU-TV
                       mediaOutletType: Broadcast TV
-                      mediaOutletChannel: string
-                      mediaOutletMarketName: string
-                      mediaOutletReference: string
+                      mediaOutletChannel: KHOU-TV
+                      mediaOutletMarketName: Houston
+                      mediaOutletReference: Any Reference
                   audienceSegments:
-                    - mediaOutletId: string
+                    - mediaOutletId: '456'
                       audienceSegment:
-                        audienceSegmentId: string
-                        audienceSegmentName: string
-                        audienceSegmentReference: string
-                        audienceMethodology: string
+                        audienceSegmentId: P25-54
+                        audienceSegmentName: P25-54
+                        audienceSegmentReference: ''
+                        audienceMethodology: ''
                         primaryIndicator: true
                         guarantee: true
                         ratingSource: Nielsen
                         ratingStream: Program Live
                       universes:
-                        - universeType: Market
-                          universeTypeValue: 0
+                        - universeType: DMA
+                          universeTypeValue: 39000
                   salesElements:
                     - salesElement:
-                        mediaOutletId: string
-                        salesElementName: string
-                        salesElementId: string
-                        salesElementType: Time-specific
+                        mediaOutletId: '456'
+                        salesElementName: CBS This Morning
+                        salesElementId: '999'
+                        salesElementType: Program
                       timePeriods:
                         - dateWindow:
-                            startDate: '2020-07-01'
-                            endDate: '2020-07-01'
+                            startDate: '2020-01-01'
+                            endDate: '2020-06-01'
                           DOW:
                             monday: true
                             tuesday: true
                             wednesday: true
                             thursday: true
                             friday: true
-                            saturday: true
-                            sunday: true
+                            saturday: false
+                            sunday: false
                           timeWindow:
-                            startTime: string
-                            endTime: string
+                            startTime: '07:00:00'
+                            endTime: '09:00:00'
                       programs:
-                        - string
+                        - CBS This Morning
                       salesElementTransactionInventory:
-                        - lineNum: string
-                          lineReference: string
+                        - lineNum: '1'
+                          lineReference: ''
                           inventoryType: Commercial
-                          linkType:
-                            linkType: Billboard
-                            linkNum: 0
-                            linkSeq: 0
-                          inventoryPosition: First
-                          inventoryLength: 0
-                          adu: true
-                          bonus: true
+                          inventoryPosition: ''
+                          inventoryLength: 30
+                          adu: null
+                          bonus: null
+                          externalComment: Comments
                           salesElementTransactionDates:
                             - dateType: Week
                               calendarType: Broadcast
                               dateWindow:
-                                startDate: '2020-07-01'
-                                endDate: '2020-07-01'
-                              unitCount: 0
+                                startDate: '2020-02-17'
+                                endDate: '2020-02-23'
+                              unitCount: 2
                               dailyUnitDistribution:
                                 monday: 0
                                 tuesday: 0
@@ -1244,15 +1517,181 @@ paths:
                                 friday: 0
                                 saturday: 0
                                 sunday: 0
-                              rate: 0
+                              rate: 525
+                              externalComment: comments
                               audiencesPricingMetrics:
-                                - audienceSegmentId: string
+                                - audienceSegmentId: P25-54
                                   audienceMetric:
                                     audienceMetric: Impressions
-                                    audienceMetricValue: 0
+                                    audienceMetricValue: 310000
                                   pricingMetric:
                                     pricingMetric: CPM
-                                    pricingMetricValue: 0
+                                    pricingMetricValue: 1.69
+                            - dateType: Week
+                              calendarType: Broadcast
+                              dateWindow:
+                                startDate: '2020-02-24'
+                                endDate: '2020-03-01'
+                              unitCount: 3
+                              dailyUnitDistribution:
+                                monday: 0
+                                tuesday: 0
+                                wednesday: 0
+                                thursday: 0
+                                friday: 0
+                                saturday: 0
+                                sunday: 0
+                              rate: 525
+                              audiencesPricingMetrics:
+                                - audienceSegmentId: P25-54
+                                  audienceMetric:
+                                    audienceMetric: Impressions
+                                    audienceMetricValue: 310000
+                                  pricingMetric:
+                                    pricingMetric: CPM
+                                    pricingMetricValue: 1.69
+                        - lineNum: '2'
+                          lineReference: ''
+                          inventoryType: Commercial
+                          linkType:
+                            linkType: Sponsorship
+                            linkNum: 1
+                            linkSeq: 0
+                          inventoryPosition: First
+                          inventoryLength: 15
+                          adu: null
+                          bonus: null
+                          externalComment: Comments
+                          salesElementTransactionDates:
+                            - dateType: Week
+                              calendarType: Broadcast
+                              dateWindow:
+                                startDate: '2020-02-17'
+                                endDate: '2020-02-23'
+                              unitCount: 1
+                              dailyUnitDistribution:
+                                monday: 0
+                                tuesday: 0
+                                wednesday: 0
+                                thursday: 1
+                                friday: 0
+                                saturday: 0
+                                sunday: 0
+                              rate: 600
+                              externalComment: comments
+                              audiencesPricingMetrics:
+                                - audienceSegmentId: P25-54
+                                  audienceMetric:
+                                    audienceMetric: Impressions
+                                    audienceMetricValue: 310000
+                                  pricingMetric:
+                                    pricingMetric: CPM
+                                    pricingMetricValue: 1.94
+                            - dateType: Week
+                              calendarType: Broadcast
+                              dateWindow:
+                                startDate: '2020-02-24'
+                                endDate: '2020-03-01'
+                              unitCount: 0
+                              dailyUnitDistribution:
+                                monday: 0
+                                tuesday: 0
+                                wednesday: 0
+                                thursday: 1
+                                friday: 0
+                                saturday: 0
+                                sunday: 0
+                              rate: 600
+                              audiencesPricingMetrics:
+                                - audienceSegmentId: P25-54
+                                  audienceMetric:
+                                    audienceMetric: Impressions
+                                    audienceMetricValue: 310000
+                                  pricingMetric:
+                                    pricingMetric: CPM
+                                    pricingMetricValue: 1.94
+                    - salesElement:
+                        mediaOutletId: '456'
+                        salesElementName: Prime Weekday
+                        salesElementId: '55'
+                        salesElementType: Time-specific
+                      timePeriods:
+                        - dateWindow:
+                            startDate: '2020-01-01'
+                            endDate: '2020-06-01'
+                          DOW:
+                            monday: true
+                            tuesday: true
+                            wednesday: true
+                            thursday: true
+                            friday: true
+                            saturday: false
+                            sunday: false
+                          timeWindow:
+                            startTime: '19:00:00'
+                            endTime: '22:00:00'
+                      programs: []
+                      salesElementTransactionInventory:
+                        - lineNum: '3'
+                          lineReference: ''
+                          inventoryType: Commercial
+                          linkType:
+                            linkType: Billboard
+                            linkNum: 0
+                            linkSeq: 0
+                          inventoryPosition: ''
+                          inventoryLength: 30
+                          adu: null
+                          bonus: null
+                          externalComment: Comments
+                          salesElementTransactionDates:
+                            - dateType: Week
+                              calendarType: Broadcast
+                              dateWindow:
+                                startDate: '2020-02-17'
+                                endDate: '2020-02-23'
+                              unitCount: 0
+                              dailyUnitDistribution:
+                                monday: 2
+                                tuesday: 2
+                                wednesday: 2
+                                thursday: 2
+                                friday: 2
+                                saturday: 0
+                                sunday: 0
+                              rate: 300
+                              externalComment: comments
+                              audiencesPricingMetrics:
+                                - audienceSegmentId: P25-54
+                                  audienceMetric:
+                                    audienceMetric: Impressions
+                                    audienceMetricValue: 248000
+                                  pricingMetric:
+                                    pricingMetric: CPM
+                                    pricingMetricValue: 1.21
+                            - dateType: Week
+                              calendarType: Broadcast
+                              dateWindow:
+                                startDate: '2020-02-24'
+                                endDate: '2020-03-01'
+                              unitCount: 0
+                              dailyUnitDistribution:
+                                monday: 2
+                                tuesday: 2
+                                wednesday: 2
+                                thursday: 2
+                                friday: 2
+                                saturday: 0
+                                sunday: 0
+                              rate: 300
+                              audiencesPricingMetrics:
+                                - audienceSegmentId: P25-54
+                                  audienceMetric:
+                                    audienceMetric: Impressions
+                                    audienceMetricValue: 248000
+                                  pricingMetric:
+                                    pricingMetric: CPM
+                                    pricingMetricValue: 1.21
               Cancel:
                 value:
                   $ref: '#/paths/~1buyer~1rfps/post/requestBody/content/application~1json/examples/Cancel/value'
@@ -1397,25 +1836,21 @@ paths:
               New:
                 value:
                   transactionHeader:
-                    tipVersion: string
+                    tipVersion: 5.1.0
                     transactionId:
                       transactionId: 3fa85f64-5717-4562-b3fc-2c963f66afa6
                       transactionType: New
-                      sourceId: string
-                      sourceName: string
-                    originalTransactionId:
-                      transactionId: 3fa85f64-5717-4562-b3fc-2c963f66afa6
-                      transactionType: New
-                      sourceId: string
-                      sourceName: string
+                      sourceId: '123'
+                      sourceName: ABC
                     timeStamp: '2020-07-22T17:47:20.907Z'
                   referenceIds:
-                    - referenceSourceName: string
-                      referenceSourceId: string
-                      referenceSourceLookup: string
-                      referenceType: RFP
-                      referenceVersionId: string
-                      referenceName: string
+                    - referenceSourceName: ABC
+                      referenceSourceId: '123'
+                      referenceSourceLookup: ''
+                      referenceId: 4188F5BC-05CD-455B-AB45-F133E918C901
+                      referenceType: Order
+                      referenceVersionId: '0'
+                      referenceName: any
                   buyer:
                     buyerId: string
                     buyerName: string
@@ -1444,9 +1879,9 @@ paths:
                     productId: string
                     productName: string
                     productReference: string
-                  dateWindow:
-                    startDate: '2020-07-22'
-                    endDate: '2020-07-22'
+                  dateWindows:
+                    - startDate: '2020-07-22'
+                      endDate: '2020-07-22'
                   cpeCode:
                     clientCode: string
                     productCode: string
@@ -1459,12 +1894,12 @@ paths:
                       inventoryTypes:
                         - Commercial
                       mediaOutlet:
-                        mediaOutletId: string
-                        mediaOutletName: string
+                        mediaOutletId: 4188F5BC-05CD-455B-AB45-F133E918C901
+                        mediaOutletName: WXYZ
                         mediaOutletType: Broadcast TV
-                        mediaOutletChannel: string
-                        mediaOutletMarketName: string
-                        mediaOutletReference: string
+                        mediaOutletChannel: '58.1'
+                        mediaOutletMarketName: A Market
+                        mediaOutletReference: ''
                       adId: string
                       name: string
                       brand:
@@ -1495,7 +1930,8 @@ paths:
                             saturday: true
                             sunday: true
                           timeWindow:
-                            startTime: string
+                            startTime: '09:20'
+                            endTime: '09:59'
                       rotationShare: 0
                       patternInstruction: string
                       unitSpecificInstruction:
@@ -1506,23 +1942,24 @@ paths:
                   transactionHeader:
                     tipVersion: 5.1.0
                     transactionId:
-                      transactionId: 62f4e258-02c6-41c6-b6ad-e61b6d90ef01
+                      transactionId: 3fa85f64-5717-4562-b3fc-2c963f66afa6
                       transactionType: Change
-                      sourceId: f3a7a776-f565-4538-8475-0284d24fd916
-                      sourceName: Extrem Reach
+                      sourceId: '123'
+                      sourceName: ABC
                     originalTransactionId:
                       transactionId: 3fa85f64-5717-4562-b3fc-2c963f66afa6
                       transactionType: New
-                      sourceId: f3a7a776-f565-4538-8475-0284d24fd916
-                      sourceName: Extrem Reach
+                      sourceId: string
+                      sourceName: string
                     timeStamp: '2020-07-22T17:47:20.907Z'
                   referenceIds:
-                    - referenceSourceName: string
-                      referenceSourceId: string
-                      referenceSourceLookup: string
-                      referenceType: RFP
-                      referenceVersionId: string
-                      referenceName: string
+                    - referenceSourceName: ABC
+                      referenceSourceId: '123'
+                      referenceSourceLookup: ''
+                      referenceId: 4188F5BC-05CD-455B-AB45-F133E918C901
+                      referenceType: Order
+                      referenceVersionId: '0'
+                      referenceName: any
                   buyer:
                     buyerId: string
                     buyerName: string
@@ -1551,9 +1988,9 @@ paths:
                     productId: string
                     productName: string
                     productReference: string
-                  dateWindow:
-                    startDate: '2020-07-22'
-                    endDate: '2020-07-22'
+                  dateWindows:
+                    - startDate: '2020-07-22'
+                      endDate: '2020-07-22'
                   cpeCode:
                     clientCode: string
                     productCode: string
@@ -1566,12 +2003,12 @@ paths:
                       inventoryTypes:
                         - Commercial
                       mediaOutlet:
-                        mediaOutletId: string
-                        mediaOutletName: string
+                        mediaOutletId: 4188F5BC-05CD-455B-AB45-F133E918C901
+                        mediaOutletName: WXYZ
                         mediaOutletType: Broadcast TV
-                        mediaOutletChannel: string
-                        mediaOutletMarketName: string
-                        mediaOutletReference: string
+                        mediaOutletChannel: '58.1'
+                        mediaOutletMarketName: A Market
+                        mediaOutletReference: ''
                       adId: string
                       name: string
                       brand:
@@ -1602,7 +2039,8 @@ paths:
                             saturday: true
                             sunday: true
                           timeWindow:
-                            startTime: string
+                            startTime: '09:20'
+                            endTime: '09:59'
                       rotationShare: 0
                       patternInstruction: string
                       unitSpecificInstruction:
@@ -1616,6 +2054,34 @@ paths:
                   $ref: '#/paths/~1buyer~1orders/post/requestBody/content/application~1json/examples/Recall/value'
       responses:
         '200':
+          $ref: '#/components/responses/Success'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        default:
+          $ref: '#/components/responses/Unexpected'
+  /buyer/impressions/subscription:
+    post:
+      tags:
+        - Buyer
+      summary: Buyer subscribe to receive notifications everytime impression-level log data is ready to download from the seller
+      description: "Using this endpoint the buyer expresses its desire to receive notifications every time a new impression data are uploaded \t\t\t\t      "
+      operationId: BuyerImpressionsSubscription
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BuyerImpressionSubscribe'
+      responses:
+        '201':
           $ref: '#/components/responses/Success'
         '400':
           $ref: '#/components/responses/BadRequest'
@@ -1695,19 +2161,20 @@ paths:
                   dateSubmitted: '2020-07-24'
                   dueDate: '2020-07-24'
                   mediaOutlet:
-                    mediaOutletId: string
-                    mediaOutletName: string
+                    mediaOutletId: A2CAF9C7-C64F-44CA-84E1-DCD51D790E3E
+                    mediaOutletName: MY TV
                     mediaOutletType: Broadcast TV
-                    mediaOutletChannel: string
-                    mediaOutletMarketName: string
-                    mediaOutletReference: string
+                    mediaOutletChannel: '58.1'
+                    mediaOutletMarketName: My Market
+                    mediaOutletReference: ''
                   referenceIds:
-                    - referenceSourceName: string
-                      referenceSourceId: string
-                      referenceSourceLookup: string
-                      referenceType: RFP
-                      referenceVersionId: string
-                      referenceName: string
+                    - referenceSourceName: ABC
+                      referenceSourceId: '123'
+                      referenceSourceLookup: ''
+                      referenceType: Order
+                      referenceId: A2CAF9C7-C64F-44CA-84E1-DCD51D790E3E
+                      referenceVersionId: ''
+                      referenceName: ''
                   cpeCode:
                     clientCode: string
                     productCode: string
@@ -1773,12 +2240,13 @@ paths:
                     mediaOutletMarketName: string
                     mediaOutletReference: string
                   referenceIds:
-                    - referenceSourceName: string
-                      referenceSourceId: string
-                      referenceSourceLookup: string
-                      referenceType: RFP
-                      referenceVersionId: string
-                      referenceName: string
+                    - referenceSourceName: ABC
+                      referenceSourceId: '123'
+                      referenceSourceLookup: ''
+                      referenceType: Order
+                      referenceId: A1C44270-D790-4329-9F37-6F77EB7ECA85
+                      referenceVersionId: ''
+                      referenceName: any
                   cpeCode:
                     clientCode: string
                     productCode: string
@@ -1845,25 +2313,21 @@ paths:
               New:
                 value:
                   transactionHeader:
-                    tipVersion: string
+                    tipVersion: 5.1.0
                     transactionId:
-                      transactionId: 3fa85f64-5717-4562-b3fc-2c963f66afa6
-                      transactionType: New
-                      sourceId: string
-                      sourceName: string
-                    originalTransactionId:
                       transactionId: 3fa85f64-5717-4562-b3fc-2c963f66afa6
                       transactionType: New
                       sourceId: string
                       sourceName: string
                     timeStamp: '2020-07-24T15:53:14.206Z'
                   referenceIds:
-                    - referenceSourceName: string
-                      referenceSourceId: string
-                      referenceSourceLookup: string
-                      referenceType: RFP
-                      referenceVersionId: string
-                      referenceName: string
+                    - referenceSourceName: ABC
+                      referenceSourceId: '123'
+                      referenceSourceLookup: ''
+                      referenceType: Order
+                      referenceId: 19F1BA79-D415-493D-8541-CBA985A740B7
+                      referenceVersionId: ''
+                      referenceName: ''
                   makegoodType: Resolve Preemption
                   externalComment: string
                   preemptDetails:
@@ -1887,7 +2351,8 @@ paths:
                               saturday: true
                               sunday: true
                             timeWindow:
-                              startTime: string
+                              startTime: '09:10'
+                              endTime: '11:00'
                         programs:
                           - string
                         salesElementTransactionInventory:
@@ -1952,7 +2417,8 @@ paths:
                               saturday: true
                               sunday: true
                             timeWindow:
-                              startTime: string
+                              startTime: '09:20'
+                              endTime: '10:20'
                         programs:
                           - string
                         salesElementTransactionInventory:
@@ -2059,12 +2525,11 @@ paths:
           $ref: '#/components/responses/Unexpected'
   /seller/impressions:
     post:
+      deprecated: true
       tags:
         - Seller
       summary: Seller Creates Impression record in the buyer system
-      description: |-
-
-        Supports a push model where the seller sends files to buyer system on an agreed schedule. Supports a report limited to a single advertiser, brand, product and order.<br/> Supported Transaction Types: New
+      description: 'Supports a push model where the seller sends files to buyer system on an agreed schedule. Supports a report limited to a single advertiser, brand, product and order.<br/> Supported Transaction Types: New'
       operationId: SellerImpressions
       requestBody:
         description: seller POSTs Impressions to buyer or its representative
@@ -2283,6 +2748,34 @@ paths:
           $ref: '#/components/responses/NotAllowed'
         default:
           $ref: '#/components/responses/Unexpected'
+  /seller/impressions/notification:
+    post:
+      tags:
+        - Seller
+      summary: "Seller delivers impression-level log data to buyer system\t"
+      description: "Supports a push model where the seller sends files to buyer system on an agreed schedule.  Supports a report limited to a single advertiser, brand, product and order. Supported Transaction Types: New\t\t\t\t"
+      operationId: SellerImpressionNotification
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SellerImpressionNotification'
+      responses:
+        '200':
+          $ref: '#/components/responses/Accepted'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        default:
+          $ref: '#/components/responses/Unexpected'
   /seller/logtimes:
     post:
       tags:
@@ -2315,7 +2808,7 @@ paths:
                         - referenceSourceName: KHOU-TV
                           referenceSourceId: '490'
                           referenceType: Order
-                          referenceId: 32323
+                          referenceId: A2CAF9C7-C64F-44CA-84E1-DCD51D790E3E
                           referenceName: Hyundia P25-54 1Q
                       cpeCode:
                         clientCode: HYUN
@@ -2362,8 +2855,8 @@ paths:
                           saturday: false
                           sunday: false
                         timeWindow:
-                          startTime: '7:00:00'
-                          endTime: '9:00:00'
+                          startTime: '07:00:00'
+                          endTime: '09:00:00'
                       dateTime:
                         broadcastDate: '2020-02-17'
                         calendarDateTime: '2020-02-17T07:23:00'
@@ -2372,7 +2865,7 @@ paths:
                         - referenceSourceName: KHOU-TV
                           referenceSourceId: '490'
                           referenceType: Order
-                          referenceId: 43544
+                          referenceId: 19F1BA79-D415-493D-8541-CBA985A740B7
                           referenceName: Wendy's 1Q
                       cpeCode:
                         clientCode: WENDY
@@ -2418,8 +2911,8 @@ paths:
                           saturday: false
                           sunday: false
                         timeWindow:
-                          startTime: '7:00:00'
-                          endTime: '9:00:00'
+                          startTime: '07:00:00'
+                          endTime: '09:00:00'
                       dateTime:
                         broadcastDate: '2020-02-17'
                         calendarDateTime: '2020-02-17T07:45:00'
@@ -2428,7 +2921,7 @@ paths:
                         - referenceSourceName: KHOU-TV
                           referenceSourceId: '490'
                           referenceType: Order
-                          referenceId: 43544
+                          referenceId: 9A07F777-ADCA-428A-B61B-DB85402E9C57
                           referenceName: Wendy's 1Q
                       cpeCode:
                         clientCode: WENDY
@@ -2474,8 +2967,8 @@ paths:
                           saturday: false
                           sunday: false
                         timeWindow:
-                          startTime: '7:00:00'
-                          endTime: '9:00:00'
+                          startTime: '07:00:00'
+                          endTime: '09:00:00'
                       dateTime:
                         broadcastDate: '2020-02-17'
                         calendarDateTime: '2020-02-17T07:46:00'
@@ -2484,7 +2977,7 @@ paths:
                         - referenceSourceName: KHOU-TV
                           referenceSourceId: '490'
                           referenceType: Order
-                          referenceId: 53222
+                          referenceId: 1E494D6B-50CE-4814-9217-03D104D13A1C
                           referenceName: KIA 1Q
                       cpeCode:
                         clientCode: KIA
@@ -2544,7 +3037,7 @@ paths:
                         - referenceSourceName: KHOU-TV
                           referenceSourceId: '490'
                           referenceType: Order
-                          referenceId: 23333
+                          referenceId: FD13BE42-152E-4ACD-B210-C732B787C576
                           referenceName: White Castle P18-49
                       cpeCode:
                         clientCode: WHITE CAS
@@ -2597,7 +3090,7 @@ paths:
                         - referenceSourceName: KHOU-TV
                           referenceSourceId: '490'
                           referenceType: Order
-                          referenceId: 19877
+                          referenceId: ACBAB728-70AD-4DAD-A94A-7511F8553F82
                           referenceName: ADT SECURITY P18-49 1Q
                       cpeCode:
                         clientCode: ADT SECURITY
@@ -2651,7 +3144,7 @@ paths:
                         - referenceSourceName: KHOU-TV
                           referenceSourceId: '490'
                           referenceType: Order
-                          referenceId: 23333
+                          referenceId: 8DEAA498-EEA8-435F-90CE-ED4B6FFEDBEF
                           referenceName: White Castle P18-49
                       cpeCode:
                         clientCode: WHITE CAS
@@ -2704,7 +3197,7 @@ paths:
                         - referenceSourceName: KHOU-TV
                           referenceSourceId: '490'
                           referenceType: Order
-                          referenceId: 23333
+                          referenceId: 248A9CEB-1A97-488F-8756-2BF1EF39988D
                           referenceName: KIA P18-49
                       cpeCode:
                         clientCode: KIA
@@ -2760,7 +3253,7 @@ paths:
                         - referenceSourceName: KHOU-TV
                           referenceSourceId: '490'
                           referenceType: Order
-                          referenceId: 32323
+                          referenceId: 8F15A01D-5D26-42A4-847B-D7E7B73D99E8
                           referenceName: Hyundia P25-54 1Q
                       cpeCode:
                         clientCode: HYUN
@@ -3264,6 +3757,7 @@ components:
           description: Date and time the transaction was created - date-time represent UTC of the server
           type: string
           format: date-time
+          nullable: false
       required:
         - tipVersion
         - transactionId
@@ -4590,7 +5084,247 @@ components:
         - salesElements
         - referenceIds
         - creatives
-        - impressions
+    BuyerImpressionSubscribe:
+      properties:
+        transactionHeader:
+          description: A common object defining the general transaction header information
+          properties:
+            tipVersion:
+              description: TIP version of the interface
+              type: string
+            transactionId:
+              description: A common object defining transaction identifier details
+              properties:
+                transactionId:
+                  description: Global unique identifier (GUID)
+                  type: string
+                  format: uuid
+                transactionType:
+                  description: This indicates the type of data exchange being sent
+                  type: string
+                  enum:
+                    - New
+                    - Change
+                    - Cancel
+                    - Reject
+                    - Recall
+                    - Confirm
+                sourceId:
+                  description: Indicates the source "trading partner" unique identification
+                  type: string
+                sourceName:
+                  description: Indicates the source "trading partner" name
+                  type: string
+              required:
+                - transactionId
+                - transactionType
+                - sourceId
+                - sourceName
+            originalTransactionId:
+              $ref: '#/paths/~1buyer~1impressions~1subscription/post/requestBody/content/application~1json/schema/properties/transactionHeader/properties/transactionId'
+            timeStamp:
+              description: Date and time the transaction was created - date-time represent UTC of the server
+              type: string
+              format: date-time
+              nullable: false
+          required:
+            - tipVersion
+            - transactionId
+            - timeStamp
+        name:
+          description: any meaningful name for this subscription
+          type: string
+        mediaoutlets:
+          description: A unique list of Media Outlets including the Seller entity and all Content where impressions occurred
+          type: array
+          items:
+            description: A descriptor common object defining linear broadcast television or non-linear sell-side service
+            properties:
+              mediaOutletId:
+                description: 'Unique persistent identifier for the station, network or entity'
+                type: string
+              mediaOutletName:
+                description: 'Station, network name or entity associated to mediaOutletId'
+                type: string
+              mediaOutletType:
+                description: Type of media outlet
+                type: string
+                enum:
+                  - Broadcast TV
+                  - OTT
+                  - Connected TV
+                  - Addressable TV
+                  - Digital Video
+                  - Mobile Video
+                  - Terrestrial Radio
+                  - Digital Audio
+              mediaOutletChannel:
+                description: Station or network station identification (Channel)
+                type: string
+              mediaOutletMarketName:
+                description: Outlet associated to the market name when applicable
+                type: string
+              mediaOutletReference:
+                description: External mediaoutlet reference to support data mapping differences between systems
+                type: string
+            required:
+              - mediaOutletId
+              - mediaOutletName
+              - mediaOutletType
+        salesElementHeaders:
+          description: A unique list of SalesElements  related to the impression included in the message
+          type: array
+          items:
+            description: A descriptor common object defining the sales element header information
+            properties:
+              mediaOutletId:
+                description: MediaOutlet ID
+                type: string
+              salesElementName:
+                description: Seller's sales element name; this could be either a program or daypart name
+                type: string
+              salesElementId:
+                description: Seller's sales element ID
+                type: string
+              salesElementType:
+                description: 'The type of Sales Element either time, audience or program-based. Audience is used to denote video/OTT which is identified by the MediaOutlet'
+                type: string
+                enum:
+                  - Time-specific
+                  - Program
+                  - Audience
+            required:
+              - mediaOutletId
+              - salesElementName
+              - salesElementId
+              - salesElementType
+        referenceIds:
+          description: this array can be used to limit the impression to given set of orders
+          type: array
+          items:
+            $ref: '#/components/schemas/ReferenceId'
+        frequency:
+          description: Frequency of reporting requested by the buyer
+          type: string
+          enum:
+            - Hourly
+            - Daily
+            - Weekly
+            - Monthly
+        reportSpan:
+          description: Window of time for the report requested by the buyers
+          properties:
+            num:
+              description: 'combined with span Unit this integer is used to express the coverage of the impression content, i.e. 5 days'
+              type: integer
+            spanUnit:
+              type: string
+              enum:
+                - Hours
+                - Days
+                - Weeks
+                - Months
+        statSource:
+          description: |-
+            Identifies the originating impressions tracking source if all impressions have the same tracking source. 
+            The combination of StatSource and MediaOutlet identifies a unique impression.
+          type: string
+        maxChunkSize:
+          description: suggestion to limit size of chunks to maxChunkSize in MB
+          type: integer
+      required:
+        - name
+        - transactionHeader
+    SellerImpressionNotification:
+      properties:
+        transactionHeader:
+          $ref: '#/components/schemas/BuyerImpressionSubscribe/properties/transactionHeader'
+        name:
+          description: any meaningful name for this subscription
+          type: string
+        mediaoutlets:
+          description: A unique list of Media Outlets including the Seller entity and all Content where impressions occurred
+          type: array
+          items:
+            $ref: '#/components/schemas/BuyerImpressionSubscribe/properties/mediaoutlets/items'
+          minItems: 1
+        salesElementHeaders:
+          description: A unique list of SalesElements  related to the impression included in the message
+          type: array
+          items:
+            $ref: '#/components/schemas/BuyerImpressionSubscribe/properties/salesElementHeaders/items'
+          minItems: 1
+        referenceIds:
+          description: this array can be used to limit the impression to given set of orders
+          type: array
+          items:
+            $ref: '#/components/schemas/ReferenceId'
+          minItems: 1
+        creatives:
+          description: A list of all creatives delivered against. This object may expand with further metadata about the creative
+          type: array
+          items:
+            description: Object representing the creative
+            properties:
+              id:
+                description: 'UniqueID from the seller of the Creative [who assigns this in the process]'
+                type: string
+              version:
+                description: Version of the creative
+                type: string
+              name:
+                description: Name of the creative
+                type: string
+              adId:
+                description: 'adId.org defines Ad-ID as 11-alphanumeric code with an optional 12th character as flag for H=High Def, D=3D ads. API will test the Syntax of the code but not validity. Testing for validity and if code is active requires a specific call to the Ad-ID.org server. The API can return the Complete External Access (CEA) metadata about the creative.'
+                type: string
+                pattern: '^([A-Z,a-z,0-9]){11}[H,h,D,d]?$'
+              altAdId:
+                description: Alternate Advertising industry standard unique identifier for the commercial. It could be a legacy ISCI or house identifier created by the creative house or agency.
+                type: string
+              length:
+                description: Length (in seconds) of the Creative
+                type: integer
+            required:
+              - id
+              - name
+              - length
+          minItems: 1
+        reportDate:
+          description: A descriptor common object defining the start and end dates
+          properties:
+            startDate:
+              description: Start Date
+              type: string
+              format: date
+            endDate:
+              description: End Date
+              type: string
+              format: date
+          required:
+            - startDate
+            - endDate
+        statSource:
+          description: |-
+            Identifies the originating impressions tracking source if all impressions have the same tracking source. 
+            The combination of StatSource and MediaOutlet identifies a unique impression.
+          type: string
+        filePrefix:
+          description: the prefix for file name collection in the notification
+          type: string
+        chunks:
+          description: number of chunks associated with the notification
+          type: integer
+      required:
+        - transactionHeader
+        - mediaoutlets
+        - salesElementHeaders
+        - referenceIds
+        - creatives
+        - reportDate
+        - statSource
+        - filePrefix
+        - chunks
     Impression:
       description: An object representing one impression with all associated Ids
       properties:
@@ -4712,10 +5446,7 @@ components:
         - political
         - audienceSegments
     SellerInventoryAvails:
-      description: |-
-        The SellerInventoryAvails Schemas defines:
-        - the Seller response to previously solicited InventoryAvails request from the buyer,
-        - or Unslocited provide the buyer with the catalog of selling products, and optionally provide pricing and audience information
+      description: 'The SellerInventoryAvails Schemas defines:  the Seller response to previously solicited InventoryAvails request from the buyer,  or Unslocited provide the buyer with the catalog of selling products, and optionally provide pricing and audience information'
       properties:
         transactionHeader:
           $ref: '#/components/schemas/TransactionHeader'

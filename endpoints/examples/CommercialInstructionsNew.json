@@ -1,136 +1,132 @@
 {
-    "transactionHeader": {
-      "tipVersion": "string",
-      "transactionId": {
-        "transactionId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-        "transactionType": "New",
-        "sourceId": "string",
-        "sourceName": "string"
+  "transactionHeader": {
+    "tipVersion": "5.1.0",
+    "transactionId": {
+      "transactionId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "transactionType": "New",
+      "sourceId": "123",
+      "sourceName": "ABC"
+    },
+    "timeStamp": "2020-07-22T17:47:20.907Z"
+  },
+  "referenceIds": [
+    {
+      "referenceSourceName": "ABC",
+      "referenceSourceId": "123",
+      "referenceSourceLookup": "",
+      "referenceId":"4188F5BC-05CD-455B-AB45-F133E918C901",
+      "referenceType": "Order",
+      "referenceVersionId": "0",
+      "referenceName": "any"
+    }
+  ],
+  "buyer": {
+    "buyerId": "string",
+    "buyerName": "string",
+    "buyerReference": "string"
+  },
+  "contact": [
+    {
+      "contactType": "Account Executive",
+      "referenceSourceName": "string",
+      "referenceSourceId": "string",
+      "contactLocation": "string",
+      "contactFirstName": "string",
+      "contactLastName": "string",
+      "addressLine1": "string",
+      "addressLine2": "string",
+      "city": "string",
+      "state": "string",
+      "postalCode": "string",
+      "country": "string",
+      "phoneNumber": "string",
+      "email": "user@example.com",
+      "effectiveDate": "2020-07-22"
+    }
+  ],
+  "advertiser": {
+    "advertiserId": "string",
+    "advertiserName": "string",
+    "advertiserReference": "string"
+  },
+  "product": {
+    "productId": "string",
+    "productName": "string",
+    "productReference": "string"
+  },
+  "dateWindows": [{
+    "startDate": "2020-07-22",
+    "endDate": "2020-07-22"
+  }],
+  "cpeCode": {
+    "clientCode": "string",
+    "productCode": "string",
+    "estimateCode": "string"
+  },
+  "instructionComment": "string",
+  "externalComment": "string",
+  "instructionType": "Rotation Share",
+  "instructionDetails": [
+    {
+      "actionType": "New",
+      "inventoryTypes": [
+        "Commercial"
+      ],
+      "mediaOutlet": {
+        "mediaOutletId": "4188F5BC-05CD-455B-AB45-F133E918C901",
+        "mediaOutletName": "WXYZ",
+        "mediaOutletType": "Broadcast TV",
+        "mediaOutletChannel": "58.1",
+        "mediaOutletMarketName": "A Market",
+        "mediaOutletReference": ""
       },
-      "originalTransactionId": {
-        "transactionId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-        "transactionType": "New",
-        "sourceId": "string",
-        "sourceName": "string"
+      "adId": "string",
+      "name": "string",
+      "brand": {
+        "brandId": "string",
+        "brandName": "string",
+        "brandReference": "string"
       },
-      "timeStamp": "2020-07-22T17:47:20.907Z"
-    },
-    "referenceIds": [
-      {
-        "referenceSourceName": "string",
-        "referenceSourceId": "string",
-        "referenceSourceLookup": "string",
-        "referenceType": "RFP",
-        "referenceVersionId": "string",
-        "referenceName": "string"
-      }
-    ],
-    "buyer": {
-      "buyerId": "string",
-      "buyerName": "string",
-      "buyerReference": "string"
-    },
-    "contact": [
-      {
-        "contactType": "Account Executive",
-        "referenceSourceName": "string",
-        "referenceSourceId": "string",
-        "contactLocation": "string",
-        "contactFirstName": "string",
-        "contactLastName": "string",
-        "addressLine1": "string",
-        "addressLine2": "string",
-        "city": "string",
-        "state": "string",
-        "postalCode": "string",
-        "country": "string",
-        "phoneNumber": "string",
-        "email": "user@example.com",
-        "effectiveDate": "2020-07-22"
-      }
-    ],
-    "advertiser": {
-      "advertiserId": "string",
-      "advertiserName": "string",
-      "advertiserReference": "string"
-    },
-    "product": {
-      "productId": "string",
-      "productName": "string",
-      "productReference": "string"
-    },
-    "dateWindow": {
-      "startDate": "2020-07-22",
-      "endDate": "2020-07-22"
-    },
-    "cpeCode": {
-      "clientCode": "string",
-      "productCode": "string",
-      "estimateCode": "string"
-    },
-    "instructionComment": "string",
-    "externalComment": "string",
-    "instructionType": "Rotation Share",
-    "instructionDetails": [
-      {
-        "actionType": "New",
-        "inventoryTypes": [
-          "Commercial"
-        ],
-        "mediaOutlet": {
-          "mediaOutletId": "string",
-          "mediaOutletName": "string",
-          "mediaOutletType": "Broadcast TV",
-          "mediaOutletChannel": "string",
-          "mediaOutletMarketName": "string",
-          "mediaOutletReference": "string"
-        },
-        "adId": "string",
-        "name": "string",
-        "brand": {
-          "brandId": "string",
-          "brandName": "string",
-          "brandReference": "string"
-        },
-        "product": {
-          "productId": "string",
-          "productName": "string",
-          "productReference": "string"
-        },
-        "length": 0,
-        "linkType": {
-          "linkType": "Billboard",
-          "linkNum": 0,
-          "linkSeq": 0
-        },
-        "deliveryDate": "2020-07-22",
-        "deliveryService": "string",
-        "timePeriods": [
-          {
-            "dateWindow": {
-              "startDate": "2020-07-22",
-              "endDate": "2020-07-22"
-            },
-            "DOW": {
-              "monday": true,
-              "tuesday": true,
-              "wednesday": true,
-              "thursday": true,
-              "friday": true,
-              "saturday": true,
-              "sunday": true
-            },
-            "timeWindow": {
-              "startTime": "string"
-            }
+      "product": {
+        "productId": "string",
+        "productName": "string",
+        "productReference": "string"
+      },
+      "length": 0,
+      "linkType": {
+        "linkType": "Billboard",
+        "linkNum": 0,
+        "linkSeq": 0
+      },
+      "deliveryDate": "2020-07-22",
+      "deliveryService": "string",
+      "timePeriods": [
+        {
+          "dateWindow": {
+            "startDate": "2020-07-22",
+            "endDate": "2020-07-22"
+          },
+          "DOW": {
+            "monday": true,
+            "tuesday": true,
+            "wednesday": true,
+            "thursday": true,
+            "friday": true,
+            "saturday": true,
+            "sunday": true
+          },
+          "timeWindow": {
+            "startTime": "09:20",
+            "endTime": "09:59"
           }
-        ],
-        "rotationShare": 0,
-        "patternInstruction": "string",
-        "unitSpecificInstruction": [
-          "string"
-        ],
-        "specialInstructions": "string"
-      }
-    ]
-  }
+        }
+      ],
+      "rotationShare": 0,
+      "patternInstruction": "string",
+      "unitSpecificInstruction": [
+        "string"
+      ],
+      "specialInstructions": "string"
+    }
+  ]
+}

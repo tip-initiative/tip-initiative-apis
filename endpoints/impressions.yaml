@@ -28,6 +28,7 @@ servers:
 paths:
   /seller/impressions:
     post:
+      deprecated: true
       tags:
         - Seller
       summary: Seller Creates Impression record in the buyer system

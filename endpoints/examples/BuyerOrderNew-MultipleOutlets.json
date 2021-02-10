@@ -5,7 +5,7 @@
       "transactionId": "4162EF00-24D6-4B5F-BBAD-C8E1879FEC46",
       "transactionType": "New",
       "sourceId": "757C28B5-B573-4969-826D-74C17225CBAD",
-      "sourceName": "My System ID"
+      "sourceName": "Canvas Worldwide"
     },
     "timeStamp": "2020-02-05T19:17:28Z"
   },
@@ -15,7 +15,7 @@
       "referenceSourceId": "456",
       "referenceSourceLookup": "",
       "referenceType": "RFP",
-      "referenceId": "C8A91DE6-B69F-46A7-B08D-9D2FB5713B4E",
+      "referenceId": "58556E97-D386-4139-AC04-CDBA0B11E8E8",
       "referenceVersionId": "0",
       "referenceName": "Hyundia P25-54 1Q"
     },
@@ -24,7 +24,7 @@
       "referenceSourceId": "490",
       "referenceSourceLookup": "",
       "referenceType": "Proposal",
-      "referenceId": "571668E8-6858-452C-A364-B56E465535CE",
+      "referenceId": "C682966C-FD23-4E2C-97BC-CB29697B4ED4",
       "referenceVersionId": "2",
       "referenceName": "Hyundia P25-54 1Q"
     },
@@ -33,7 +33,7 @@
       "referenceSourceId": "456",
       "referenceSourceLookup": "",
       "referenceType": "Order",
-      "referenceId": "58556E97-D386-4139-AC04-CDBA0B11E8E8",
+      "referenceId": "A87A29FD-57FE-4E94-B489-D8AE699A8D12",
       "referenceVersionId": "1",
       "referenceName": "Hyundia P25-54 1Q"
     }
@@ -61,7 +61,7 @@
     "productReference": ""
   },
   "budget":{
-    "budgetAmount":50000
+    "budgetAmount":85000
   },
   "cpeCode": {
     "clientCode": "HYUN",
@@ -71,7 +71,7 @@
   "contacts": [
     {
       "contactType": "Account Executive",
-      "referenceSourceName": "KHOU-TV",
+      "referenceSourceName": "Tegna",
       "referenceSourceId": "12",
       "contactFirstName": "Mary",
       "contactLastName": "McCoy",
@@ -150,6 +150,14 @@
       "mediaOutletChannel": "KHOU-TV",
       "mediaOutletMarketName": "Houston",
       "mediaOutletReference": "Any Reference"
+    },
+    {
+      "mediaOutletId": "457",
+      "mediaOutletName": "KTBU-TV",
+      "mediaOutletType": "Broadcast TV",
+      "mediaOutletChannel": "KTBU-TV",
+      "mediaOutletMarketName": "Houston",
+      "mediaOutletReference": "Any Reference"
     }
   ],
   "audienceSegments": [
@@ -162,6 +170,25 @@
         "audienceMethodology": "",
         "primaryIndicator": true,
         "guarantee": true,
+        "ratingSource": "Nielsen",
+        "ratingStream": "Program Live"
+      },
+      "universes": [
+        {
+          "universeType": "DMA",
+          "universeTypeValue": 39000
+        }
+      ]
+    },
+    {
+      "mediaOutletId": "456",
+      "audienceSegment": {
+        "audienceSegmentId": "P25-54",
+        "audienceSegmentName": "P25-54",
+        "audienceSegmentReference": "",
+        "audienceMethodology": "",
+        "primaryIndicator": true,
+        "guarantee": false,
         "ratingSource": "Nielsen",
         "ratingStream": "Program Live"
       },
@@ -210,6 +237,11 @@
           "lineNum": "1",
           "lineReference": "",
           "inventoryType": "Commercial",
+          "linkType": {
+            "linkType": "Package",
+            "linkNum": 0,
+            "linkSeq": 0
+          },
           "inventoryPosition": "",
           "inventoryLength": 30,
           "adu": null,
@@ -289,7 +321,7 @@
           "inventoryType": "Commercial",
           "linkType": {
             "linkType": "Sponsorship",
-            "linkNum": 1,
+            "linkNum": 0,
             "linkSeq": 0
           },
           "inventoryPosition": "First",
@@ -402,11 +434,6 @@
           "lineNum": "3",
           "lineReference": "",
           "inventoryType": "Commercial",
-          "linkType": {
-            "linkType": "Billboard",
-            "linkNum": 0,
-            "linkSeq": 0
-          },
           "inventoryPosition": "",
           "inventoryLength": 30,
           "adu": null,
@@ -430,18 +457,18 @@
                 "saturday": 0,
                 "sunday": 0
               },
-              "rate": 300.00,
+              "rate": 150.00,
               "externalComment":"comments",
               "audiencesPricingMetrics": [
                 {
                   "audienceSegmentId": "P25-54",
                   "audienceMetric": {
                     "audienceMetric": "Impressions",
-                    "audienceMetricValue": 248000
+                    "audienceMetricValue": 12000
                   },
                   "pricingMetric": {
                     "pricingMetric": "CPM",
-                    "pricingMetricValue": 1.21
+                    "pricingMetricValue": 1.25
                   }
                 }
               ]
@@ -463,17 +490,132 @@
                 "saturday": 0,
                 "sunday": 0
               },
-              "rate": 300.00,
+              "rate": 150.00,
               "audiencesPricingMetrics": [
                 {
                   "audienceSegmentId": "P25-54",
                   "audienceMetric": {
                     "audienceMetric": "Impressions",
-                    "audienceMetricValue": 248000
+                    "audienceMetricValue": 120000
                   },
                   "pricingMetric": {
                     "pricingMetric": "CPM",
-                    "pricingMetricValue": 1.21
+                    "pricingMetricValue": 1.25
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "salesElement": {
+        "mediaOutletId": "457",
+        "salesElementName": "KTVU Morning News",
+        "salesElementId": "888",
+        "salesElementType": "Program"
+      },
+      "timePeriods": [
+        {
+          "dateWindow": {
+            "startDate": "2020-01-01",
+            "endDate": "2020-06-01"
+          },
+          "DOW": {
+            "monday": true,
+            "tuesday": true,
+            "wednesday": true,
+            "thursday": true,
+            "friday": true,
+            "saturday": false,
+            "sunday": false
+          },
+          "timeWindow": {
+            "startTime": "07:00:00",
+            "endTime": "09:00:00"
+          }
+        }
+      ],
+      "programs": [ "KTVU Morning News"
+      ],
+      "salesElementTransactionInventory": [
+        {
+          "lineNum": "4",
+          "lineReference": "",
+          "inventoryType": "Commercial",
+          "linkType": {
+            "linkType": "Billboard",
+            "linkNum": 0,
+            "linkSeq": 0
+          },
+          "inventoryPosition": "",
+          "inventoryLength": 30,
+          "adu": null,
+          "bonus": null,
+          "externalComment":"Comments",
+          "salesElementTransactionDates": [
+            {
+              "dateType": "Week",
+              "calendarType": "Broadcast",
+              "dateWindow": {
+                "startDate": "2020-02-17",
+                "endDate": "2020-02-23"
+              },
+              "unitCount": 2,
+              "dailyUnitDistribution": {
+                "monday": 0,
+                "tuesday": 0,
+                "wednesday": 0,
+                "thursday": 0,
+                "friday": 0,
+                "saturday": 0,
+                "sunday": 0
+              },
+              "rate": 375.00,
+              "externalComment":"comments",
+              "audiencesPricingMetrics": [
+                {
+                  "audienceSegmentId": "P25-54",
+                  "audienceMetric": {
+                    "audienceMetric": "Impressions",
+                    "audienceMetricValue": 210000
+                  },
+                  "pricingMetric": {
+                    "pricingMetric": "CPM",
+                    "pricingMetricValue": 1.79
+                  }
+                }
+              ]
+            },
+            {
+              "dateType": "Week",
+              "calendarType": "Broadcast",
+              "dateWindow": {
+                "startDate": "2020-02-24",
+                "endDate": "2020-03-01"
+              },
+              "unitCount": 3,
+              "dailyUnitDistribution": {
+                "monday": 0,
+                "tuesday": 0,
+                "wednesday": 0,
+                "thursday": 0,
+                "friday": 0,
+                "saturday": 0,
+                "sunday": 0
+              },
+              "rate": 375.00,
+              "audiencesPricingMetrics": [
+                {
+                  "audienceSegmentId": "P25-54",
+                  "audienceMetric": {
+                    "audienceMetric": "Impressions",
+                    "audienceMetricValue": 210
+                  },
+                  "pricingMetric": {
+                    "pricingMetric": "CPM",
+                    "pricingMetricValue": 1.79
                   }
                 }
               ]

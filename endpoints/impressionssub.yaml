@@ -1,28 +1,42 @@
-openapi: '3.0.2'
+openapi: "3.0.0"
+components:
+ securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+security:
+  - bearerAuth: []
 info:
-  title: API Title
-  version: '1.0'
+  version: 6.x.x
+  title: Impression Subscription and Notification
+  description: Impression Subscription and Notification
+  termsOfService: http://placeholderdomain.io/terms/
+  contact:
+    name: TIP Initiative
+    email: tipinitiative@frontrowadvisory.com
+    url: http://placeholderdomain.io
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
 servers:
-  - url: https://api.server.test/v1
+  - url: http://placeholderdomain.io/v6.x.x
 paths:
-  /seller/impressions/subscribe:
+  /buyer/impressions/subscription:
     post:
       tags:
-        - seller
+        - Buyer
       summary: >-
-        Seller host a subcription enpoint for the buyer to provide a callback URL
+        Buyer subscribe to receive notifications everytime impression-level log data is ready to download from the seller
       description: >-
-        buyers subscribe to ceimpression completed event and receive a notification when this event occurs.
-        A notification will be sent once uploading the impression report asynchonously to an out-of-band location. 
-        These notifications will be “out-of-band”, that is, they will go through a connection other than the subscription connection.
-        notification and upload are asynchronous, as they will be out of the regular request-response flow. 
-      operationId: SellerImpressionsSubscription
+        Using this endpoint the buyer expresses its desire to receive notifications every time a new impression data are uploaded 				      
+      operationId: BuyerImpressionsSubscription
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: "./schemas/impressionSubscription.yaml#/components/schemas/ImpressionSubscription"
+              $ref: "./schemas/impressionsSubscription.yaml#/components/schemas/BuyerImpressionSubscribe"
       responses:
         '201': #Created
           $ref: 'schemas/commonResponses.yaml#/components/responses/Success'
@@ -38,12 +52,36 @@ paths:
           $ref: 'schemas/commonResponses.yaml#/components/responses/NotAllowed'
         default: #unexpected
           $ref: 'schemas/commonResponses.yaml#/components/responses/Unexpected'
-      callbacks:
-        subDelivered:
-          '{$request.body#/callbackUrl}':
-            post:
-              requestBody:
-                $ref: "./schemas/impressionsSchemas.yaml#/components/schemas/SellerImpressions"
-              responses:
-                '200': # OK
-                  $ref: 'schemas/commonResponses.yaml#/components/responses/Success'
+  /seller/impressions/notification:
+    post:
+      tags:
+        - Seller
+      summary: >-
+        Seller delivers impression-level log data to buyer system	
+      description: >-
+        Supports a push model where the seller sends files to buyer system on an agreed schedule. 
+        Supports a report limited to a single advertiser, brand, product and order.
+        Supported Transaction Types: New				
+      operationId: SellerImpressionNotification
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "./schemas/impressionsSubscription.yaml#/components/schemas/SellerImpressionNotification"
+      responses:
+        '200': #Created
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Accepted'
+        '400': #Bad Request
+          $ref: 'schemas/commonResponses.yaml#/components/responses/BadRequest'
+        '401': #Unauthorized
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Unauthorized'
+        '403': #Forbidden
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Forbidden'
+        '404': #Not Found
+          $ref: 'schemas/commonResponses.yaml#/components/responses/NotFound'
+        '405': #Not Allowed
+          $ref: 'schemas/commonResponses.yaml#/components/responses/NotAllowed'
+        default: #unexpected
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Unexpected'
+

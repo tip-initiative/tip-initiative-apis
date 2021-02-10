@@ -115,6 +115,10 @@
       $ref: './commercialInstructionSchemas.yaml#/components/schemas/InstructionDetail'
     SellerImpressions:
       $ref: './impressionsSchemas.yaml#/components/schemas/SellerImpressions'
+    BuyerImpressionSubscribe:
+      $ref: './impressionsSubscription.yaml#/components/schemas/BuyerImpressionSubscribe'
+    SellerImpressionNotification:
+      $ref: './impressionsSubscription.yaml#/components/schemas/SellerImpressionNotification'
     Impression:  
       $ref: './impressionsSchemas.yaml#/components/schemas/Impression'
     BuyerInventoryAvails:
