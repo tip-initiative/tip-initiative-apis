@@ -1,0 +1,103 @@
+{
+  "transactionHeader": {
+    "tipVersion": "6.0.0",
+    "transactionId": {
+      "transactionId": "77DABA23-BC53-4E78-BCDE-AF527F1E62D6",
+      "transactionType": "New",
+      "sourceId": "WPP",
+      "sourceName": "WPP Group"
+    },
+    "timeStamp": "2020-06-09T22:40:17.432Z"
+  },
+  "dateSubmitted": "2020-06-09",
+  "dueDate": "2020-06-09",
+  "mediaOutlets": [
+    {
+      "mediaOutletId": "427CAD68-2375-44E6-8A25-F13557FD01F8",
+      "mediaOutletName": "WXYZ News Live",
+      "mediaOutletType": "Broadcast TV",
+      "mediaOutletChannel": "58.1",
+      "mediaOutletMarketName": "South Eastern Wisconsin",
+      "mediaOutletReference": "string"
+    }
+  ],
+  "buyer": {
+    "buyerId": "123",
+    "buyerName": "Buy All",
+    "buyerReference": "Buy All"
+  },
+  "advertiser": {
+    "advertiserId": "456",
+    "advertiserName": "Local Autos",
+    "advertiserReference": "WXYZ News Live"
+  },
+  "contacts": [
+    {
+      "contactType": "Account Executive",
+      "referenceSourceName": "WXYZ News Live",
+      "referenceSourceId": "427CAD68-2375-44E6-8A25-F13557FD01F8",
+      "contactFirstName": "John",
+      "contactLastName": "Doe",
+      "addressLine1": "John's Address",
+      "addressLine2": "",
+      "city": "Sky City",
+      "state": "MN",
+      "postalCode": "55555",
+      "country": "US",
+      "phoneNumber": "1(222)345-6789",
+      "email": "user@example.com",
+      "effectiveDate": "2020-06-09"
+    }
+  ],
+  "timePeriods": [
+    {
+      "dateWindow": {
+        "startDate": "2020-06-09",
+        "endDate": "2020-06-09"
+      },
+      "DOW": {
+        "monday": true,
+        "tuesday": true,
+        "wednesday": true,
+        "thursday": true,
+        "friday": true,
+        "saturday": true,
+        "sunday": true
+      },
+      "timeWindow": {
+        "startTime": "09:00",
+        "endTime": "11:00"
+      }
+    }
+  ],
+  "guidelines": [
+    {
+      "guidelineType": "Content",
+      "excludeOrInclude": "Include",
+      "guidelineId": "123",
+      "guidelineName": "Kids"
+    }
+  ],
+  "political": false,
+  "inventoryTypes": [
+    "Commercial"
+  ],
+  "maxRate": 1000,
+  "currency": "USD",
+  "externalComment": "Urgent",
+  "audienceSegments": [
+    {
+      "audienceSegmentId": "P18-25",
+      "audienceSegmentName": "People 18 to 25 years old",
+      "audienceSegmentReference": "456",
+      "audienceMethodology": "Third Party",
+      "primaryIndicator": true,
+      "guarantee": true,
+      "ratingSource": "Nielsen",
+      "ratingStream": "Program Live"
+    }
+  ],
+  "pricingMetricOptions": [
+    "CPM"
+  ]
+}

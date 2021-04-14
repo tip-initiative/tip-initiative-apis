@@ -1,7 +1,6 @@
 openapi: "3.0.0"
-
 info:
-  version: 5.1.0
+  version: 6.0.0
   title: Makegoods
   description: Makegoods Endpoints
   termsOfService: http://placeholderdomain.io/terms/
@@ -13,7 +12,7 @@ info:
     name: MIT
     url: https://opensource.org/licenses/MIT
 servers:
-  - url: http://placeholderdomain.io/tip/v5.x.x
+  - url: http://placeholderdomain.io/tip/v6.0.0
 security:
   - bearerAuth: []
 
@@ -34,7 +33,7 @@ paths:
           application/json:
             schema:
               $ref: 'schemas/makegoodsSchemas.yaml#/components/schemas/SellerMakegoodGuidelines'
-            example:
+            examples:
               New:
                 value:
                   $ref: 'examples/SellerMakegoodGuidelinesNew.json'
@@ -68,7 +67,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/BuyerMakegoodGuidelines'
+              $ref: '#/components/schemas/BuyerMakegoodGuidelinesRequest'
             examples:
               New:
                 value:
@@ -112,7 +111,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/SellerMakegoodOffers'
+              $ref: '#/components/schemas/SellerMakegoodOffersRequest'
             examples:
               New:
                 value:
@@ -185,11 +184,11 @@ components:
       scheme: bearer
       bearerFormat: JWT
   schemas:
-    BuyerMakegoodGuidelines:
+    BuyerMakegoodGuidelinesRequest:
       oneOf:
         - $ref: './schemas/makegoodsSchemas.yaml#/components/schemas/BuyerMakegoodGuidelines'
         - $ref: './schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
-    SellerMakegoodOffers:
+    SellerMakegoodOffersRequest:
       oneOf:
         - $ref: './schemas/makegoodsSchemas.yaml#/components/schemas/SellerMakegoodOffers'
         - $ref: './schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'

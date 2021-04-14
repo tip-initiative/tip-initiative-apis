@@ -8,7 +8,7 @@ components:
 security:
   - bearerAuth: []
 info:
-  version: 5.1.0
+  version: 6.0.0
   title: Inventory Avails
   description: Inventory Endpoints
   termsOfService: http://placeholderdomain.io/terms/
@@ -20,7 +20,7 @@ info:
     name: MIT
     url: https://opensource.org/licenses/MIT
 servers:
-  - url: http://placeholderdomain.io/v5.x.x
+  - url: http://placeholderdomain.io/v6.0.0
 
 paths:
   /buyer/inventoryAvails:
@@ -41,9 +41,16 @@ paths:
           application/json:
             schema:
               $ref: 'schemas/inventoryAvailsSchemas.yaml#/components/schemas/BuyerInventoryAvails'
-            example:
-              value:
-                $ref: 'examples/BuyerInventoryAvailsNew.json'
+            examples:
+              New:
+                value:
+                  $ref: 'examples/6.0.0/Buyer/BuyerInventoryAvailsNew.json'
+              Change:
+                value:
+                  $ref: 'examples/6.0.0/Buyer/BuyerInventoryAvailsChange.json'
+              Cancel:
+                value:
+                  $ref: 'examples/6.0.0/GenericResponses/GenericCancel.json'
       responses:
         '200': #OK - in case request can be fullfiled in realtime
           description: OK - in case request can be fullfiled in realtime
@@ -84,6 +91,10 @@ paths:
           application/json:
             schema:
               $ref: 'schemas/inventoryAvailsSchemas.yaml#/components/schemas/SellerInventoryAvails'
+            examples:
+              New:
+                value:
+                  $ref: 'examples/6.0.0/Seller/SellerInventoryAvailsNew.json'
       responses:
         '200': #OK
           $ref: 'schemas/commonResponses.yaml#/components/responses/Success'

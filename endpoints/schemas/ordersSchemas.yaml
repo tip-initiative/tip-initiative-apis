@@ -1,8 +1,8 @@
 openapi: 3.0.0
 info:
-  version: 5.1.0
-  title: Buyer requesting New Order or Order Change Request to Seller
-  description: Buyer/Order
+  version: 6.0.0
+  title: Buyer Order Schemas
+  description: Buyer requesting New Order or Order Change Request to Seller
   termsOfService: http://placeholderdomain.io/terms/
   contact:
     name: TIP Initiative
@@ -20,9 +20,13 @@ components:
         transactionHeader:
           $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
         referenceIds:
+          description: >-
+            Array of ReferenceId objects containing the order id and source references; may also
+            contain originating RFP and Proposal id and source references
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/ReferenceId'
+          minItems: 1
         orderBookedDate:
           description: Date in which the buyer submitted the order, this is the original book date
           type: string
@@ -30,7 +34,7 @@ components:
         buyer:
           $ref: 'commonSchemas.yaml#/components/schemas/Buyer'
         commission:
-          description: Buyer commission percentage
+          description: Buyer commission percentage amount
           type: number
           format: float
         advertiser:
@@ -40,36 +44,38 @@ components:
         product:
           $ref: 'commonSchemas.yaml#/components/schemas/Product'
         budgets:
+          description: Array of Budget objects containing gross total budget and budget allocations
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/Budget'
         cpeCode:
           $ref: 'commonSchemas.yaml#/components/schemas/CpeCode'
         contacts:
+          description: Array of Contact objects
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/Contact'
         revenueType:
-          description: The agreed upon type of payment
+          description: Indicates the type of payment term for the order; extended enum values are allowed
           type: string
           enum:
             - Cash
             - Barter
             - Trade
         businessType:
-          description: Buyer defined type of business
+          description: Defined business type for the order
           type: string
         localNational:
-          description: Local or national marketplace
+          description: Indicates the marketplace; extended enum values are allowed
           type: string
           enum:
             - Local
             - National
         dealYear:
-          description: The broadcast year for the order
+          description: Broadcast year for the order
           type: string
         calendarType:
-          description: The order's calendar that defines start day and end day of a week
+          description: Indicates the calendar defining the start day and end day of a week
           type: string
           enum:
             - Broadcast
@@ -77,41 +83,48 @@ components:
             - Nielsen
         billingOption:
           $ref: 'commonSchemas.yaml#/components/schemas/BillingOption'
-        equivalized:
+        isEquivalized:
           description: >-
             Indicates if the impressions are equivalized (weighted) down or up from a base 30-second
             unit using a ratio of the unit's length
           type: boolean
         dateWindows:
+          description: >-
+            Array of DateWindow objects indicating the order's valid start and end dates; Hiatus
+            dates are excluded
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/DateWindow'
         cancellationTerms:
-          $ref: 'commonSchemas.yaml#/components/schemas/CancellationTerms'
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/CancellationTerm'
         timeSeparations:
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/TimeSeparation'
         termsOfSales:
-          description: Contract terms
+          description: Information specific to payment terms, preemption status, etc.
           type: string
         externalComment:
-          description: Free form text to accommodate transaction comments and/or activities outside the
-            TIP flow
+          description: Free form text to accommodate transaction comments and/or activities outside the TIP flow
           type: string
         rateCard:
           $ref: 'commonSchemas.yaml#/components/schemas/RateCard'
         currency:
           $ref: 'commonSchemas.yaml#/components/schemas/Currency'
         mediaOutlets:
+          description: Array of MediaOutlet objects being ordered
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/MediaOutlet'
         audienceSegments:
+          description: Array of AudienceSegment objects being ordered
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/AudienceSegmentDetail'
         salesElements:
+          description: Array of SalesElementsTransaction objects being ordered
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/SalesElementTransaction'
@@ -125,6 +138,9 @@ components:
         - revenueType
         - businessType
         - calendarType
-        - equivalized
+        - isEquivalized
         - dateWindows
         - mediaOutlets
+    SellerOrders:
+      description: Schema is an alias to CancelConfirmRecallReject object
+      $ref: 'commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'

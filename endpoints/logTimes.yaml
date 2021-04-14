@@ -1,8 +1,6 @@
 openapi: "3.0.0"
-
-
 info:
-  version: 5.1.0
+  version: 6.0.0
   title: Logtimes
   description: Seller Provides a Logtimes report on the buyer's server
   termsOfService: http://placeholderdomain.io/terms/
@@ -14,7 +12,7 @@ info:
     name: MIT
     url: https://opensource.org/licenses/MIT
 servers:
-  - url: http://placeholderdomain.io/v5.x.x
+  - url: http://placeholderdomain.io/v6.0.0
 security:
   - bearerAuth: []
 

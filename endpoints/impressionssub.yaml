@@ -8,7 +8,7 @@ components:
 security:
   - bearerAuth: []
 info:
-  version: 6.x.x
+  version: 6.0.0
   title: Impression Subscription and Notification
   description: Impression Subscription and Notification
   termsOfService: http://placeholderdomain.io/terms/
@@ -20,7 +20,7 @@ info:
     name: MIT
     url: https://opensource.org/licenses/MIT
 servers:
-  - url: http://placeholderdomain.io/v6.x.x
+  - url: http://placeholderdomain.io/v6.0.0
 paths:
   /buyer/impressions/subscription:
     post:
@@ -36,10 +36,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "./schemas/impressionsSubscription.yaml#/components/schemas/BuyerImpressionSubscribe"
+              $ref: "./schemas/impressionsSubscription.yaml#/components/schemas/BuyerImpressionsSubscribe"
       responses:
         '201': #Created
-          $ref: 'schemas/commonResponses.yaml#/components/responses/Success'
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Accepted'
         '400': #Bad Request
           $ref: 'schemas/commonResponses.yaml#/components/responses/BadRequest'
         '401': #Unauthorized
@@ -68,7 +68,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "./schemas/impressionsSubscription.yaml#/components/schemas/SellerImpressionNotification"
+              $ref: "./schemas/impressionsSubscription.yaml#/components/schemas/SellerImpressions"
       responses:
         '200': #Created
           $ref: 'schemas/commonResponses.yaml#/components/responses/Accepted'

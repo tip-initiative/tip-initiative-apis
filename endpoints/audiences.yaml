@@ -1,0 +1,94 @@
+openapi: "3.0.0"
+security:
+  - bearerAuth: []
+info:
+  version: 6.0.0
+  title: Audience APIs
+  description: >-
+    Allows the Buyer to initiate a Request Request to Seller to subscribe to seller's information, 
+    the Seller respond by providing the information based on the schedule specifiend in the subscription.
+    Supported Transaction Types: New, Change, Cancel
+  termsOfService: http://placeholderdomain.io/terms/
+  contact:
+    name: TIP Initiative
+    email: tipinitiative@frontrowadvisory.com
+    url: http://placeholderdomain.io
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+servers:
+  - url: http://placeholderdomain.io/v6.0.0
+paths:
+  /buyer/audiences:
+    post:
+      tags:
+        - Buyer
+      summary: Allows the buyer to ask the seller for Audience information
+      description: >- 
+        Allows the buyer or agency to ask the seller for audience information on periodic basis
+        Supported Transaction Types: New, Change, Cancel			
+      operationId: BuyerAudiences
+      requestBody:
+        description: The request represents a query request defining the parameters and content of the expected audience responses.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BuyerAudiencesRequest'
+      responses:
+        '200': #OK
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Success'
+        '400': #Bad Request
+          $ref: 'schemas/commonResponses.yaml#/components/responses/BadRequest'
+        '401': #Unauthorized
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Unauthorized'
+        '403': #Forbidden
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Forbidden'
+        '404': #Not Found
+          $ref: 'schemas/commonResponses.yaml#/components/responses/NotFound'
+        '405': #Not Allowed
+          $ref: 'schemas/commonResponses.yaml#/components/responses/NotAllowed'
+        default: #unexpected
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Unexpected'
+  /seller/audiences:
+    post:
+      tags:
+        - Seller
+      summary: Allows the seller to provide the buyer or agency with responses for Audience information
+      description: >- 
+        Allows the seller to respond to the buyer or agency request for audience information on periodic basis
+        Supported Transaction Types: New			
+      operationId: SellerAudiences
+      requestBody:
+        description: The request represents a query request defining the parameters and content of the expected audience responses.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: './schemas/audienceSchemas.yaml#/components/schemas/SellerAudiences'
+      responses:
+        '200': #OK
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Success'
+        '400': #Bad Request
+          $ref: 'schemas/commonResponses.yaml#/components/responses/BadRequest'
+        '401': #Unauthorized
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Unauthorized'
+        '403': #Forbidden
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Forbidden'
+        '404': #Not Found
+          $ref: 'schemas/commonResponses.yaml#/components/responses/NotFound'
+        '405': #Not Allowed
+          $ref: 'schemas/commonResponses.yaml#/components/responses/NotAllowed'
+        default: #unexpected
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Unexpected'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    BuyerAudiencesRequest:
+      oneOf:
+        - $ref: './schemas/audienceSchemas.yaml#/components/schemas/BuyerAudiences'
+        - $ref: './schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'

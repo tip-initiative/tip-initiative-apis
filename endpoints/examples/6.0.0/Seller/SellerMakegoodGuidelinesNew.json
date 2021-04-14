@@ -1,0 +1,49 @@
+{
+  "transactionHeader": {
+    "tipVersion": "6.0.0",
+    "transactionId": {
+      "transactionId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "transactionType": "New",
+      "sourceId": "string",
+      "sourceName": "string"
+    },
+    "timeStamp": "2020-07-24T15:51:07.026Z"
+  },
+  "dateSubmitted": "2020-07-24",
+  "dueDate": "2020-07-24",
+  "mediaOutlet": {
+    "mediaOutletId": "A2CAF9C7-C64F-44CA-84E1-DCD51D790E3E",
+    "mediaOutletName": "MY TV",
+    "mediaOutletType": "Broadcast TV",
+    "mediaOutletChannel": "58.1",
+    "mediaOutletMarketName": "My Market",
+    "mediaOutletReference": ""
+  },
+  "referenceIds": [
+    {
+      "referenceSourceName": "ABC",
+      "referenceSourceId": "123",
+      "referenceSourceLookup": "",
+      "referenceType": "Order",
+      "referenceId": "A2CAF9C7-C64F-44CA-84E1-DCD51D790E3E",
+      "referenceVersionId": "",
+      "referenceName": ""
+    }
+  ],
+  "cpeCode": {
+    "clientCode": "string",
+    "productCode": "string",
+    "estimateCode": "string"
+  },
+  "buyer": {
+    "buyerId": "string",
+    "buyerName": "string",
+    "buyerReference": "string"
+  },
+  "advertiser": {
+    "advertiserId": "string",
+    "advertiserName": "string",
+    "advertiserReference": "string"
+  },
+  "makegoodType": "Resolve Preemption"
+}

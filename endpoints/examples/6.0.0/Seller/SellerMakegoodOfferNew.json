@@ -1,0 +1,212 @@
+{
+  "transactionHeader": {
+    "tipVersion": "6.0.0",
+    "transactionId": {
+      "transactionId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "transactionType": "New",
+      "sourceId": "string",
+      "sourceName": "string"
+    },
+    "timeStamp": "2020-07-24T15:53:14.206Z"
+  },
+  "referenceIds": [
+    {
+      "referenceSourceName": "ABC",
+      "referenceSourceId": "123",
+      "referenceSourceLookup": "",
+      "referenceType": "Order",
+      "referenceId": "19F1BA79-D415-493D-8541-CBA985A740B7",
+      "referenceVersionId": "",
+      "referenceName": ""
+    }
+  ],
+  "makegoodType": "Resolve Preemption",
+  "externalComment": "string",
+  "preemptDetails": [
+    {
+      "preemptNum": 0,
+      "salesElement": {
+        "salesElement": {
+          "mediaOutletId": "string",
+          "salesElementName": "string",
+          "salesElementId": "string",
+          "salesElementType": "Time-specific"
+        },
+        "timePeriods": [
+          {
+            "dateWindow": {
+              "startDate": "2020-07-24",
+              "endDate": "2020-07-24"
+            },
+            "DOW": {
+              "monday": true,
+              "tuesday": true,
+              "wednesday": true,
+              "thursday": true,
+              "friday": true,
+              "saturday": true,
+              "sunday": true
+            },
+            "timeWindow": {
+              "startTime": "09:10",
+              "endTime": "11:00"
+            }
+          }
+        ],
+        "programs": [
+          "string"
+        ],
+        "salesElementTransactionInventory": [
+          {
+            "lineNum": "string",
+            "lineReference": "string",
+            "inventoryType": "Commercial",
+            "linkType": {
+              "linkType": "Billboard",
+              "linkNum": 0,
+              "linkSeq": 0
+            },
+            "inventoryPosition": "First",
+            "inventoryLength": 0,
+            "adu": true,
+            "bonus": true,
+            "externalComment": "string",
+            "salesElementTransactionDates": [
+              {
+                "dateType": "Week",
+                "calendarType": "Broadcast",
+                "dateWindow": {
+                  "startDate": "2020-07-24",
+                  "endDate": "2020-07-24"
+                },
+                "unitCount": 0,
+                "dailyUnitDistribution": {
+                  "monday": 0,
+                  "tuesday": 0,
+                  "wednesday": 0,
+                  "thursday": 0,
+                  "friday": 0,
+                  "saturday": 0,
+                  "sunday": 0
+                },
+                "rate": 0,
+                "externalComment": "string",
+                "audiencesPricingMetrics": [
+                  {
+                    "audienceSegmentId": "string",
+                    "audienceMetric": {
+                      "audienceMetric": "Impressions",
+                      "audienceMetricValue": 0
+                    },
+                    "pricingMetric": {
+                      "pricingMetric": "CPM",
+                      "pricingMetricValue": 0
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "preemptReason": "string",
+      "makedgoodNumLink": [
+        0
+      ]
+    }
+  ],
+  "makegoodDetails": [
+    {
+      "makegoodNum": 0,
+      "salesElement": {
+        "salesElement": {
+          "mediaOutletId": "string",
+          "salesElementName": "string",
+          "salesElementId": "string",
+          "salesElementType": "Time-specific"
+        },
+        "timePeriods": [
+          {
+            "dateWindow": {
+              "startDate": "2020-07-24",
+              "endDate": "2020-07-24"
+            },
+            "DOW": {
+              "monday": true,
+              "tuesday": true,
+              "wednesday": true,
+              "thursday": true,
+              "friday": true,
+              "saturday": true,
+              "sunday": true
+            },
+            "timeWindow": {
+              "startTime": "09:20",
+              "endTime": "10:20"
+            }
+          }
+        ],
+        "programs": [
+          "string"
+        ],
+        "salesElementTransactionInventory": [
+          {
+            "lineNum": "string",
+            "lineReference": "string",
+            "inventoryType": "Commercial",
+            "linkType": {
+              "linkType": "Billboard",
+              "linkNum": 0,
+              "linkSeq": 0
+            },
+            "inventoryPosition": "First",
+            "inventoryLength": 0,
+            "adu": true,
+            "bonus": true,
+            "externalComment": "string",
+            "salesElementTransactionDates": [
+              {
+                "dateType": "Week",
+                "calendarType": "Broadcast",
+                "dateWindow": {
+                  "startDate": "2020-07-24",
+                  "endDate": "2020-07-24"
+                },
+                "unitCount": 0,
+                "dailyUnitDistribution": {
+                  "monday": 0,
+                  "tuesday": 0,
+                  "wednesday": 0,
+                  "thursday": 0,
+                  "friday": 0,
+                  "saturday": 0,
+                  "sunday": 0
+                },
+                "rate": 0,
+                "externalComment": "string",
+                "audiencesPricingMetrics": [
+                  {
+                    "audienceSegmentId": "string",
+                    "audienceMetric": {
+                      "audienceMetric": "Impressions",
+                      "audienceMetricValue": 0
+                    },
+                    "pricingMetric": {
+                      "pricingMetric": "CPM",
+                      "pricingMetricValue": 0
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "makegoodReason": "string",
+      "makegoodAssumedConfirm": "Booked",
+      "preemptNumLink": [
+        0
+      ]
+    }
+  ]
+}

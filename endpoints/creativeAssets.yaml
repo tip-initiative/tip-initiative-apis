@@ -1,0 +1,66 @@
+openapi: "3.0.0"
+security:
+  - bearerAuth: []
+info:
+  version: 6.0.0
+  title: Creative Assets API 
+  description: >-
+      Allows the creative agency or supplier of media to provide to the seller the media asset 
+      details that are associated to the physical creative materials prior to air 
+      Supported Transaction Types: New, Change, Cancel, Recall			
+  termsOfService: http://placeholderdomain.io/terms/
+  contact:
+    name: TIP Initiative
+    email: tipinitiative@frontrowadvisory.com
+    url: http://placeholderdomain.io
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+servers:
+  - url: http://placeholderdomain.io/v6.0.0
+paths:
+  /buyer/creativeAssets:
+    post:
+      tags:
+        - Buyer
+      summary: Allows the creative agency or supplier of media to provide to the seller the media asset details
+      description: >- 
+        Allows the creative agency or supplier of media to provide to the seller the media asset 
+        details that are associated to the physical creative materials prior to air 
+        Supported Transaction Types: New, Change, Cancel, Recall			
+      operationId: BuyerCreativeAssets
+      requestBody:
+        description: Schema provides for the definition of creative assets including the format information
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: './schemas/creativeAssetsSchemas.yaml#/components/schemas/BuyerCreativeAssets'
+            examples:
+              New:
+                value:
+                  $ref: 'examples/6.0.0/Buyer/BuyerCreativeAssetsNew.json'
+              Change:
+                value:
+                  $ref: 'examples/6.0.0/Buyer/BuyerCreativeAssetsNew.json'
+              Cancel:
+                value:
+                  $ref: 'examples/6.0.0/GenericResponses/GenericCancel.json'
+              Recall:
+                value:
+                  $ref: 'examples/6.0.0/GenericResponses/GenericRecall.json'
+      responses:
+        '200': #OK
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Success'
+        '400': #Bad Request
+          $ref: 'schemas/commonResponses.yaml#/components/responses/BadRequest'
+        '401': #Unauthorized
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Unauthorized'
+        '403': #Forbidden
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Forbidden'
+        '404': #Not Found
+          $ref: 'schemas/commonResponses.yaml#/components/responses/NotFound'
+        '405': #Not Allowed
+          $ref: 'schemas/commonResponses.yaml#/components/responses/NotAllowed'
+        default: #unexpected
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Unexpected'

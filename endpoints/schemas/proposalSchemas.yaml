@@ -1,8 +1,8 @@
 openapi: 3.0.0
 info:
-  version: 5.1.0
-  title: Create a proposal to send to the buyer system
-  description: Seller/Proposal Schemas
+  version: 6.0.0
+  title: Proposals Schemas
+  description: Create a proposal to send to the buyer system
   termsOfService: http://placeholderdomain.io/terms/
   contact:
     name: TIP Initiative
@@ -16,24 +16,27 @@ components:
   schemas:
     SellerProposals:
       description: >-
-        The data model is shared between the buyers and seller to exchange information and maintain a
-        trail of negotiations concerning proposals
+        Schema is shared between the buyers and seller to exchange information and maintain
+        a trail of negotiations concerning proposals
       properties:
         transactionHeader:
           $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
         referenceIds:
+          description: >-
+            Array of ReferenceId objects containing the proposal id and source references; may
+            also contain originating RFP id and source references
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/ReferenceId'
           minItems: 1
         expirationDate:
-          description: Date in which the pricing and audience estimates expire in the proposal submission
+          description: Expiration date for proposal
           type: string
           format: date
         buyer:
           $ref: 'commonSchemas.yaml#/components/schemas/Buyer'
         commission:
-          description: Buyer commission percentage
+          description: Buyer commission percentage amount
           type: number
           format: float
         advertiser:
@@ -43,73 +46,84 @@ components:
         product:
           $ref: 'commonSchemas.yaml#/components/schemas/Product'
         budgets:
+          description: Array of Budget objects containing gross total budget and budget allocations
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/Budget'
         cpeCode:
           $ref: 'commonSchemas.yaml#/components/schemas/CpeCode'
         contacts:
+          description: Array of Contact objects
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/Contact'
         revenueType:
-          description: The agreed upon type of payment
+          description: Indicates the type of payment; extended enum values are allowed
           type: string
           enum:
             - Cash
             - Barter
             - Trade
         businessType:
-          description: Seller defined type of business
+          description: Seller's defined business type for the proposal
           type: string
         localNational:
-          description: Local or national marketplace
+          description: Indicates the marketplace for the proposal; extended enum values are allowed
           type: string
           enum:
             - Local
             - National
         dealYear:
-          description: The broadcast year in which the proposal is being negotiated
+          description: Broadcast year for the proposal
           type: string
         billingOption:
           $ref: 'commonSchemas.yaml#/components/schemas/BillingOption'
-        equivalized:
+        isEquivalized:
           description: >-
-            Indicates if the impressions are equivalized (weighted) down or up from a base 30-second
-            unit using a ratio of the unit's length.
+            True/False; Indicates if the impressions are equivalized (weighted) down or up from
+            a base 30-second unit using a ratio of the unit's length.
           type: boolean
         dateWindows:
+          description: >-
+            Array of DateWindow objects indicating the valid start and end dates; Hiatus dates
+            are excluded
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/DateWindow'
           minItems: 1
         cancellationTerms:
-          $ref: 'commonSchemas.yaml#/components/schemas/CancellationTerms'
+          description: Array of CancellationTerm objects outlining the proposal terms
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/CancellationTerm'
         timeSeparations:
+          description: Array of TimeSeparation objects outlining the commercial separation rules
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/TimeSeparation'
         termsOfSales:
-          description: The information specific to payment terms, preemption status, etc.
+          description: Information specific to payment terms, preemption status, etc.
           type: string
         externalComment:
-          description: Free form text to accommodate transaction comments and/or activities outside the
-            TIP flow
+          description: Free form text to accommodate transaction comments and/or activities outside the TIP flow
           type: string
         rateCard:
           $ref: 'commonSchemas.yaml#/components/schemas/RateCard'
         currency:
           $ref: 'commonSchemas.yaml#/components/schemas/Currency'
         mediaOutlets:
+          description: Array of MediaOutlet objects being proposed
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/MediaOutlet'
           minItems: 1
         audienceSegments:
+          description: Array of AudienceSegment objects being proposed
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/AudienceSegmentDetail'
         salesElements:
+          description: Array of SalesElementsTransaction objects being proposed
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/SalesElementTransaction'
@@ -121,6 +135,130 @@ components:
         - contacts
         - revenueType
         - businessType
-        - equivalized
+        - isEquivalized
+        - dateWindows
+        - mediaOutlets
+    BuyerProposals:
+      description: >-
+        Schema is shared between the buyers and seller to exchange information and maintain
+        a trail of negotiations concerning proposals
+      properties:
+        transactionHeader:
+          $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
+        referenceIds:
+          description: >-
+            Array of ReferenceId objects containing the proposal id references; may also contain
+            originating RFP id references
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/ReferenceId'
+          minItems: 1
+        expirationDate:
+          description: Expiration date for proposal
+          type: string
+          format: date
+        buyer:
+          $ref: 'commonSchemas.yaml#/components/schemas/Buyer'
+        commission:
+          description: Buyer commission percentage amount
+          type: number
+          format: float
+        advertiser:
+          $ref: 'commonSchemas.yaml#/components/schemas/Advertiser'
+        brand:
+          $ref: 'commonSchemas.yaml#/components/schemas/Brand'
+        product:
+          $ref: 'commonSchemas.yaml#/components/schemas/Product'
+        budgets:
+          description: Array of Budget objects containing total budget and budget allocations
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/Budget'
+        cpeCode:
+          $ref: 'commonSchemas.yaml#/components/schemas/CpeCode'
+        contacts:
+          description: Array of Contact objects
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/Contact'
+        revenueType:
+          description: Indicates the type of payment term; extended enum values are allowed
+          type: string
+          enum:
+            - Cash
+            - Barter
+            - Trade
+        businessType:
+          description: Seller's defined business type for the proposal
+          type: string
+        localNational:
+          description: Indicates the marketplace; extended enum values are allowed
+          type: string
+          enum:
+            - Local
+            - National
+        dealYear:
+          description: Broadcast year for the proposal being negotiated
+          type: string
+        billingOption:
+          $ref: 'commonSchemas.yaml#/components/schemas/BillingOption'
+        isEquivalized:
+          description: >-
+            Indicates if the impressions are equivalized (weighted) down or up from a base 30-second
+            unit using a ratio of the unit's length.
+          type: boolean
+        dateWindows:
+          description: >-
+            Array of DateWindow objects indicating the proposal's valid start and end dates;
+            Hiatus dates are excluded
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/DateWindow'
+          minItems: 1
+        cancellationTerms:
+          description: Array of CancellationTerm Objects outlining terms
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/CancellationTerm'
+        timeSeparations:
+          description: Array of TimeSeparation objects outlining terms
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/TimeSeparation'
+        termsOfSales:
+          description: Information specific to payment terms, preemption status, etc.
+          type: string
+        externalComment:
+          description: Free form text to accommodate transaction comments and/or activities outside the TIP flow
+          type: string
+        rateCard:
+          $ref: 'commonSchemas.yaml#/components/schemas/RateCard'
+        currency:
+          $ref: 'commonSchemas.yaml#/components/schemas/Currency'
+        mediaOutlets:
+          description: Array of MediaOutlet objects being proposed
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/MediaOutlet'
+          minItems: 1
+        audienceSegments:
+          description: Array of AudienceSegment objects being proposed
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/AudienceSegmentDetail'
+        salesElements:
+          description: Array of SalesElementsTransaction objects being proposed
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/SalesElementTransaction'
+      required:
+        - transactionHeader
+        - referenceIds
+        - buyer
+        - commission
+        - contacts
+        - revenueType
+        - businessType
+        - isEquivalized
         - dateWindows
         - mediaOutlets
