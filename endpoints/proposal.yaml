@@ -1,6 +1,6 @@
 openapi: "3.0.0"
 info:
-  version: 5.1.0
+  version: 6.0.0
   title: Proposals
   description: |
     * Allows the seller to respond back to the buyer with the detailed proposal for a given RFP or revised proposal;
@@ -45,7 +45,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/SellerProposals'
+              $ref: '#/components/schemas/SellerProposalsRequest'
             examples:
               New:
                 value:
@@ -91,7 +91,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/SellerProposals'
+              $ref: '#/components/schemas/SellerProposalsRequest'
             examples:
               Change:
                 value:
@@ -121,7 +121,7 @@ components:
       scheme: bearer
       bearerFormat: JWT
   schemas:
-    SellerProposals:
+    SellerProposalsRequest:
       description: Request Body for the endpoint varies based on Transaction type
       oneOf:
         - $ref: './schemas/proposalSchemas.yaml#/components/schemas/SellerProposals'

@@ -2,7 +2,7 @@ openapi: "3.0.0"
 security:
   - bearerAuth: []
 info:
-  version: 5.1.0
+  version: 6.0.0
   title: Commercial Instructions
   description: >-
     Allows the creative agency or service provider of commercial instructions to send new or
@@ -17,7 +17,7 @@ info:
     name: MIT
     url: https://opensource.org/licenses/MIT
 servers:
-  - url: http://placeholderdomain.io/v5.x.x
+  - url: http://placeholderdomain.io/v6.0.0
 paths:
   /buyer/commercialInstructions:
     post:
@@ -36,20 +36,20 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/BuyerCommercialInstructions'
+              $ref: '#/components/schemas/BuyerCommercialInstructionsRequest'
             examples:
               New:
                 value:
-                  $ref: 'examples/CommercialInstructionsNew.json'
+                  $ref: 'examples/6.0.0/Buyer/BuyerCommercialInstructionsNew.json'
               Change:
                 value:
-                  $ref: 'examples/CommercialInstructionsChange.json'
+                  $ref: 'examples/6.0.0/Buyer/BuyerCommercialInstructionsChange.json'
               Cancel:
                 value:
-                  $ref: 'examples/GenericCancel.json'
+                  $ref: 'examples/6.0.0/GenericResponses/GenericCancel.json'
               Recall:
                 value:
-                  $ref: 'examples/GenericRecall.json'
+                  $ref: 'examples/6.0.0/GenericResponses/GenericRecall.json'
       responses:
         '200': #OK
           $ref: 'schemas/commonResponses.yaml#/components/responses/Success'
@@ -84,10 +84,10 @@ paths:
             examples:
               Reject:
                 value:
-                  $ref: 'examples/GenericReject.json'
+                  $ref: 'examples/6.0.0/GenericResponses/GenericReject.json'
               Confirm:
                 value:
-                  $ref: 'examples/GenericConfirm.json'
+                  $ref: 'examples/6.0.0/GenericResponses/GenericConfirm.json'
       responses:
         '200': #OK
           $ref: 'schemas/commonResponses.yaml#/components/responses/Success'
@@ -110,7 +110,7 @@ components:
       scheme: bearer
       bearerFormat: JWT
   schemas:
-    BuyerCommercialInstructions:
+    BuyerCommercialInstructionsRequest:
       description: |
         Users of this contruct have the option to either
         <li>Use the full Commercial Instructions object to deliver New, or change instructions

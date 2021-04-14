@@ -1,9 +1,8 @@
-openapi: "3.0.0"
-
+openapi: 3.0.0
 info:
-  version: 5.1.0
+  version: 6.0.0
   title: Makegood Schemas
-  description: All schemas belonging to makegood defintion
+  description: Makegood Schemas
   termsOfService: http://placeholderdomain.io/terms/
   contact:
     name: TIP Initiative
@@ -12,13 +11,11 @@ info:
   license:
     name: MIT
     url: https://opensource.org/licenses/MIT
-
-paths: {} # no paths
-
+paths: {}
 components:
   schemas:
     SellerMakegoodGuidelines:
-      description: Allows Seller to formulate Makegood Guidelines
+      description: Schema allows seller to request Makegood Guidelines
       properties:
         transactionHeader:
           $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
@@ -27,15 +24,19 @@ components:
           type: string
           format: date
         dueDate:
-          description: Due Date for buyer to respond with guidelines
+          description: Due date for buyer to respond with their guidelines
           type: string
           format: date
         mediaOutlet:
           $ref: 'commonSchemas.yaml#/components/schemas/MediaOutlet'
         referenceIds:
+          description: >-
+            Array of ReferenceId objects containing the order id references; may also contain
+            originating RFP and Proposal id references
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/ReferenceId'
+          minItems: 1
         cpeCode:
           $ref: 'commonSchemas.yaml#/components/schemas/CpeCode'
         buyer:
@@ -43,23 +44,35 @@ components:
         advertiser:
           $ref: 'commonSchemas.yaml#/components/schemas/Advertiser'
         makegoodType:
-          $ref: '#/components/schemas/MakegoodType'
+          description: >-
+            Type(s) of makegood guidelines being requested. The request may contain one or both
+            makegood types
+          type: string
+          enum:
+            - Resolve preemption
+            - Audience Underdelivery
       required:
         - transactionHeader
         - dateSubmitted
         - buyer
-        - makegoodType 
+        - makegoodType
     BuyerMakegoodGuidelines:
-      description: Buyer's list of the makegood guidelines to seller prior to order confirmation
+      description: >-
+        Schema provides buyer's list of updated makegood guidelines to seller before and
+        during a campaign
       properties:
         transactionHeader:
           $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
         mediaOutlet:
           $ref: 'commonSchemas.yaml#/components/schemas/MediaOutlet'
         referenceIds:
+          description: >-
+            Array of ReferenceId objects containing the order id references; may also contain
+            originating RFP and Proposal id and source references
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/ReferenceId'
+          minItems: 1
         cpeCode:
           $ref: 'commonSchemas.yaml#/components/schemas/CpeCode'
         buyer:
@@ -75,24 +88,74 @@ components:
         - transactionHeader
         - buyer
         - makegoodGuidelines
+    MakegoodGuideline:
+      description: Makegood Guidelines Details
+      properties:
+        makegoodType:
+          description: Type of Offer
+          type: string
+          enum:
+            - Resolve preemption
+            - Audience Underdelivery
+        salesElementOriginal:
+          $ref: 'commonSchemas.yaml#/components/schemas/SalesElementHeader'
+        salesElementEquivalent:
+          description: Sales Element (Programming) Acceptance Rule Elements
+          type: string
+          enum:
+            - Same Sales Element
+            - Alternate Sales Element
+        makegoodTargetAudienceLimit:
+          description: >-
+            Percent of the total original primary audience that can be delivered as makegoods.
+            This is a target goal rather than a contractual limit. For audience underdelivery
+            no Audience Limit is needed.
+          type: number
+          format: float
+        makegoodRatio:
+          description: Maximum number of makegood spots allowed to resolve preempt/missed unit -
+          type: integer
+        makegoodWindow:
+          description: Rule defined for makegood window to resolve preempt/missed unit
+          type: string
+          enum:
+            - Original Broadcast Week
+            - Original Broadcast Month
+            - Within Flight Dates
+        externalComment:
+          description: Free form text to accommodate transaction comments and/or activities outside the TIP flow
+          type: string
+      required:
+        - makegoodType
+        - salesElementEquivalent
     SellerMakegoodOffers:
       description: Makegood Offer data schema
       properties:
         transactionHeader:
           $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
         referenceIds:
+          description: >-
+            Array of ReferenceId objects containing the order id references; may also contain
+            originating RFP and Proposal id references
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/ReferenceId'
+          minItems: 1
         makegoodType:
-            $ref: '#/components/schemas/MakegoodType'
+          description: Type of Makegood Offer
+          type: string
+          enum:
+            - Resolve preemption
+            - Audience Underdelivery
         externalComment:
+          description: Free form text to accommodate transaction comments and/or activities outside the TIP flow
           type: string
         preemptDetails:
+          description: Array of preempt details; Required when makegood type is equal to Resolve Preemptions
           type: array
           items:
             $ref: '#/components/schemas/PreemptDetail'
-          minItems: 0
+          minItems: 1
         makegoodDetails:
           type: array
           items:
@@ -103,92 +166,69 @@ components:
         - referenceIds
         - makegoodType
         - makegoodDetails
-# Local Objects  
-    MakegoodType:
-      description: |
-        The type(s) of makegood guidelines being requested. 
-        The request may contain one or both makegood types
-      type: string
-      enum:
-        - Resolve Preemption
-        - Audience Underdelivery
-    MakegoodGuideline:
-      properties:
-        makegoodType:
-          $ref: '#/components/schemas/MakegoodType'
-        salesElementOriginal:
-          $ref: 'commonSchemas.yaml#/components/schemas/SalesElementHeader'
-        salesElementEquivalent:
-          description: Sales Element (Programming) Acceptance Rule Elements
-          type: string
-          enum:
-            - Same Sales Element
-            - Alternate Sales Element
-        makegoodTargetAudienceLimit:
-          description: > 
-            The percent of the total original primary audience that can be delivered as makegoods.
-            This is a target goal rather than a contractual limit. 
-            For audience underdelivery no Audience Limit is needed.
-          type: number
-          format: float
-        makegoodRatio:
-          description: The maximum number of makegood spots allowed to resolve preempt/missed unit
-          type: number
-          format: integer
-        makegoodWindow:
-          description: Rule defined for makegood window to resolve preempt/missed unit
-          type: string
-          enum:
-            - Original Broadcast Week
-            - Original Broadcast Month
-            - Within Flight Dates
-        externalComment:
-          description: >
-            Free form text to accommodate transaction comments and/or activities outside 
-            the TIP flow. (TIP recommends not using a comment field as it will be used as a catch-all.)
-          type: string
-      required:
-        - makegoodType
-        - salesElementEquivalent
     PreemptDetail:
+      description: Preempt details
       properties:
         preemptNum:
-          description: Sequential number to be used when linking makegood offer
-          type: number
-          format: integer
-          minimum: 1
+          type: string
         salesElement:
           $ref: 'commonSchemas.yaml#/components/schemas/SalesElementTransaction'
         preemptReason:
+          description: Free form text to accommodate transaction comments and/or activities outside the TIP flow
           type: string
-        makedgoodNumLink:
+        makegoodNumLinks:
+          description: List of makegoodNum proposed to substitute for this preempt
           type: array
-          uniqueItems: true
           items:
             type: integer
-            minimum: 1
       required:
         - preemptNum
     MakegoodOfferDetail:
+      description: Packages common makegood attributes into single object
       properties:
         makegoodNum:
-          description: Sequential number to be used when linking makegood offer
-          type: number
-          format: integer
-          minimum: 1
+          description: Unique ID associated to makegood offer
+          type: integer
         salesElement:
           $ref: 'commonSchemas.yaml#/components/schemas/SalesElementTransaction'
         makegoodReason:
+          description: Free form text to accommodate transaction comments and/or activities outside the TIP flow
           type: string
         makegoodAssumedConfirm:
+          description: >-
+            Makegood is 'assumed confirmed' based on buyer-seller discussions made outside of
+            framework. Booked indicates the seller has originated placement in the traffic system.
+            If no action is taken the spot will air. This field indicates the urgency to take
+            action.
+            'Not Booked' -
+            'Booked' - Spot has already been placed in traffic system
           type: string
           enum:
             - Booked
             - Not Booked
-        preemptNumLink:
+        preemptNumLinks:
+          description: List of preemptNum being replaced by this makegood.
           type: array
-          uniqueItems: true
           items:
             type: integer
-            minimum: 1  
-
+      required:
+        - makegoodNum
+        - salesElement
+    BuyerMakegoodOffers:
+      description: Alias to Generic CancelConfirmRecallReject Object
+      properties:
+        transactionHeader:
+          $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
+        referenceIds:
+          description: >-
+            Array of ReferenceId objects containing the order id references; may also contain
+            originating RFP and Proposal id references
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/ReferenceId'
+          minItems: 1
+        comments:
+          description: Free form comments
+          type: string
+      required:
+        - transactionHeader

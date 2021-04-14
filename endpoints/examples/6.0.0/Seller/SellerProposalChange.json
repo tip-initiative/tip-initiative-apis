@@ -1,0 +1,251 @@
+{
+    "transactionHeader": {
+      "tipVersion": "6.0.0",
+      "transactionId": {
+        "transactionId": "9E804522-5668-4D96-AB7C-94105D05EB93",
+        "transactionType": "Change",
+        "sourceId": "496",
+        "sourceName": "Canvas Worldwide. LLC"
+      },
+      "originalTransactionId": {
+        "transactionId": "0FE75A8C-2812-456A-9C0C-B2F734D23354",
+        "transactionType": "New",
+        "sourceId": "490",
+        "sourceName": "KHOU-TV"
+      },
+      "timeStamp": "2020-02-05T11:52:38"
+    },
+    "referenceIds": [
+        {
+            "referenceSourceName": "Canvas Worldwide. LLC",
+            "referenceSourceId": "456",
+            "referenceType": "RFP",
+            "referenceId": "0FE75A8C-2812-456A-9C0C-B2F734D23354",
+            "referenceVersionId": "0",
+            "referenceName": "Hyundia P25-54 1Q"
+          },
+          {
+            "referenceSourceName": "KHOU-TV",
+            "referenceSourceId": "490",
+            "referenceType": "Proposal",
+            "referenceId": "6FC13FB7-1910-4722-B924-0AF7BA62E2D9",
+            "referenceVersionId": "1",
+            "referenceName": "Hyundia P25-54 1Q"
+          }
+            ],
+    "expirationDate": "2020-02-10",
+    "buyer": {
+      "buyerId": "456",
+      "buyerName": "Canvas Worldwide. LLC",
+      "buyerReference": "string"
+    },
+    "commission": 15,
+    "advertiser": {
+      "advertiserId": "34",
+      "advertiserName": "Hyundai",
+      "advertiserReference": "53"
+    },
+    "brand": {
+      "brandId": "19",
+      "brandName": "Kona",
+      "brandReference": "25"
+    },
+    "product": {
+      "productId": "89",
+      "productName": "Automobile",
+      "productReference": "99"
+    },
+    "contacts": [
+        {
+            "contactType": "Account Executive",
+            "referenceSourceName": "KHOU-TV",
+            "referenceSourceId": "490",
+            "contactFirstName": "Mary",
+            "contactLastName": "McCoy",
+            "addressLine1": "5718 Westheimer Road",
+            "addressLine2": "Suite 501",
+            "city": "Houston",
+            "state": "TX",
+            "postalCode": "77057",
+            "country": "USA",
+            "phoneNumber": "713-555-5555",
+            "email": "mmcoy@email.com",
+            "effectiveDate": "2007-02-17"
+          },
+          {
+            "contactType": "Buyer",
+            "referenceSourceName": "Canvas Worldwide. LLC",
+            "referenceSourceId": "456",
+            "contactFirstName": "Scott",
+            "contactLastName": "Evans",
+            "addressLine1": "75 Varvick Street",
+            "addressLine2": "2nd Floor",
+            "city": "New York",
+            "state": "NY",
+            "postalCode": "10013",
+            "country": "USA",
+            "phoneNumber": "212-555-5555",
+            "email": "sevans@email.com",
+            "effectiveDate": "2007-02-17"
+          }
+            ],
+    "revenueType": "Cash",
+    "businessType": "Standard",
+    "localNational": "National",
+    "dealYear": 2020,
+    "billingOption": {
+      "billingCalendar": "Broadcast",
+      "billingCycle": "Month",
+      "billingGranularity": "Order"
+    },
+    "equivalized": true,
+    "dateWindows": [
+      {
+        "startDate": "2020-02-17",
+        "endDate": "2020-03-01"
+      }
+    ],
+    "cancellationTerms": {
+      "cancellationType": "Quarterly",
+      "cancellation": "1Q",
+      "cancellationPriorDays": 10,
+      "cancellationPercentage": 15
+    },
+    "timeSeparations": [
+        {
+            "unitLength": 30,
+            "timeSeparation": 600
+          },
+          {
+            "unitLength": 15,
+            "timeSeparation": 900
+          }
+            ],
+    "termsOfSales": "Contract Terms",
+    "externalComment": "",
+    "rateCard": {
+      "rateCardId": "123",
+      "rateCardName": "Canvas WW standard ratecard"
+    },
+    "currency": "USD",
+    "mediaOutlets": [
+      {
+        "mediaOutletId": "456",
+        "mediaOutletName": "KHOU-TV",
+        "mediaOutletType": "Broadcast TV",
+        "mediaOutletChannel": "KHOU-TV",
+        "mediaOutletMarketName": "Houston"
+      }
+    ],
+    "audienceSegments": [
+      {
+        "mediaOutletId": "456",
+        "audienceSegment": {
+          "audienceSegmentId": "P25-54",
+          "audienceSegmentName": "P25-54",
+          "audienceSegmentReference": "string",
+          "audienceMethodology": "string",
+          "primaryIndicator": true,
+          "guarantee": true,
+          "ratingSource": "Nielsen",
+          "ratingStream": "Program Live"
+        },
+        "universes": [
+          {
+            "universeType": "Market",
+            "universeTypeValue": 39000
+          }
+        ]
+      }
+    ],
+    "salesElements": [
+      {
+        "salesElement": {
+          "mediaOutletId": "456",
+          "salesElementName": "CBS This Morning",
+          "salesElementId": "999",
+          "salesElementType": "Program"
+        },
+        "timePeriods": [
+          {
+            "dateWindow": {
+              "startDate": "2020-01-01",
+              "endDate": "2020-06-01"
+            },
+            "DOW": {
+              "monday": true,
+              "tuesday": true,
+              "wednesday": true,
+              "thursday": true,
+              "friday": true,
+              "saturday": false,
+              "sunday": false
+            },
+            "timeWindow": {
+              "startTime": "07:00:00",
+              "endTime": "09:00:00"
+            }
+          }
+        ],
+        "programs": [
+          "CBS This Morning"
+        ],
+        "salesElementTransactionInventory": [
+          {
+            "lineNum": "1",
+            "inventoryType": "Commercial",
+            "inventoryLength": 30,
+            "salesElementTransactionDates": [
+              {
+                "dateType": "Week",
+                "calendarType": "Broadcast",
+                "dateWindow": {
+                  "startDate": "2020-02-17",
+                  "endDate": "2020-02-23"
+                },
+                "unitCount": 2,
+                "rate": 525.00,
+                "audiencesPricingMetrics": [
+                  {
+                    "audienceSegmentId": "P25-54",
+                    "audienceMetric": {
+                      "audienceMetric": "Impressions",
+                      "audienceMetricValue": 310000
+                    },
+                    "pricingMetric": {
+                      "pricingMetric": "CPM",
+                      "pricingMetricValue": 1.69
+                    }
+                  }
+                ]
+              },
+              {
+                "dateType": "Week",
+                "calendarType": "Broadcast",
+                "dateWindow": {
+                  "startDate": "2020-02-24",
+                  "endDate": "2020-03-01"
+                },
+                "unitCount": 3,
+                "rate": 525,
+                "audiencesPricingMetrics": [
+                  {
+                    "audienceSegmentId": "P25-54",
+                    "audienceMetric": {
+                      "audienceMetric": "Impressions",
+                      "audienceMetricValue": 310000
+                    },
+                    "pricingMetric": {
+                      "pricingMetric": "CPM",
+                      "pricingMetricValue": 1.69
+                    }
+                  }
+                ]
+              }
+
+            ]
+          }
+        ]
+      }
+    ]
+  }

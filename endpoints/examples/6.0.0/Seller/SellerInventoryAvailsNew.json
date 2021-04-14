@@ -1,0 +1,159 @@
+{
+    "transactionHeader": {
+      "tipVersion": "6.0.0",
+      "transactionId": {
+        "transactionId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "transactionType": "New",
+        "sourceId": "123",
+        "sourceName": "Any"
+      },
+      "timeStamp": "2020-12-18T21:08:01.308Z"
+    },
+    "dateSubmitted": "2020-12-18",
+    "buyer": {
+      "buyerId": "string",
+      "buyerName": "string",
+      "buyerReference": "string"
+    },
+    "advertiser": {
+      "advertiserId": "string",
+      "advertiserName": "string",
+      "advertiserReference": "string"
+    },
+    "contacts": [
+      {
+        "contactType": "Account Executive",
+        "referenceSourceName": "string",
+        "referenceSourceId": "string",
+        "salesOffices": [
+          "string"
+        ],
+        "contactFirstName": "string",
+        "contactLastName": "string",
+        "addressLine1": "string",
+        "addressLine2": "string",
+        "city": "string",
+        "state": "string",
+        "postalCode": "string",
+        "country": "string",
+        "phoneNumber": "string",
+        "email": "user@example.com",
+        "effectiveDate": "2020-12-18"
+      }
+    ],
+    "rateCard": {
+      "rateCardId": "string",
+      "rateCardName": "string"
+    },
+    "currency": "USD",
+    "political": true,
+    "mediaOutlets": [
+      {
+        "mediaOutletId": "string",
+        "mediaOutletName": "string",
+        "mediaOutletType": "Broadcast TV",
+        "mediaOutletChannel": "string",
+        "mediaOutletMarketName": "string",
+        "mediaOutletReference": "string"
+      }
+    ],
+    "audienceSegments": [
+      {
+        "mediaOutletId": "string",
+        "audienceSegment": {
+          "audienceSegmentId": "string",
+          "audienceSegmentName": "string",
+          "audienceSegmentReference": "string",
+          "audienceMethodology": "string",
+          "primaryIndicator": true,
+          "guarantee": true,
+          "ratingSource": "string",
+          "ratingStream": "string"
+        },
+        "universes": [
+          {
+            "universeType": "Market",
+            "universeTypeValue": 0
+          }
+        ]
+      }
+    ],
+    "availWindow": {
+      "startDate": "2020-12-18",
+      "endDate": "2020-12-18"
+    },
+    "salesElements": [
+      {
+        "salesElement": {
+          "mediaOutletId": "string",
+          "salesElementName": "string",
+          "salesElementId": "string",
+          "salesElementType": "Time-specific"
+        },
+        "timePeriods": [
+          {
+            "dateWindow": {
+              "startDate": "2020-12-18",
+              "endDate": "2020-12-18"
+            },
+            "DOW": {
+              "monday": true,
+              "tuesday": true,
+              "wednesday": true,
+              "thursday": true,
+              "friday": true,
+              "saturday": true,
+              "sunday": true
+            },
+            "timeWindow": {
+              "startTime": "10:00",
+              "endTime": "13:00"
+            }
+          }
+        ],
+        "programs": [
+          "string"
+        ],
+        "salesElementInventory": [
+          {
+            "inventoryType": "Commercial",
+            "linkType": {
+              "linkType": "Billboard",
+              "linkNum": 0,
+              "linkSeq": 0
+            },
+            "inventoryPosition": "First",
+            "inventoryLength": 0,
+            "salesElementInventoryDates": [
+              {
+                "dateType": "Day",
+                "calendarType": "Broadcast",
+                "dateWindow": {
+                  "startDate": "2020-12-18",
+                  "endDate": "2020-12-18"
+                },
+                "inventoryCapacity": "string",
+                "inventoryAvails": "string",
+                "inventoryMax": "string",
+                "rate": 0,
+                "audiencesPricingMetrics": [
+                  {
+                    "audienceSegmentId": "string",
+                    "type": "Selling",
+                    "audienceMetric": {
+                      "audienceMetric": "Impressions",
+                      "audienceMetricValue": 0
+                    },
+                    "pricingMetric": {
+                      "pricingMetric": "CPM",
+                      "pricingMetricValue": 0
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }

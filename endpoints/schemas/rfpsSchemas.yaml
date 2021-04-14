@@ -1,8 +1,8 @@
 openapi: 3.0.0
 info:
-  version: 5.1.0
-  title: RFP Schema
-  description: RFP Schema
+  version: 6.0.0
+  title: RFP Schemas
+  description: Request For Proposal Schemas
   termsOfService: http://placeholderdomain.io/terms/
   contact:
     name: TIP Initiative
@@ -16,21 +16,23 @@ components:
   schemas:
     BuyerRFPS:
       description: >-
-        Using the BuyerRFPS schema, the buyers is able to express the criteria that need to be met when
+        Schema allows the buyers is able to express the criteria that need to be met when
         responding with a proposal
       properties:
         transactionHeader:
           $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
         referenceIds:
+          description: Array of ReferenceId objects containing the RFP id and source references
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/ReferenceId'
+          minItems: 1
         dateSubmitted:
-          description: Buyer submit date for the RFP
+          description: RFP submission date
           type: string
           format: date
         dueDate:
-          description: Due date for the proposal response
+          description: Response due date for proposal
           type: string
           format: date
         buyer:
@@ -39,6 +41,7 @@ components:
           description: Buyer commission percentage amount
           type: number
           format: float
+          example: 15
         advertiser:
           $ref: 'commonSchemas.yaml#/components/schemas/Advertiser'
         brand:
@@ -46,6 +49,7 @@ components:
         product:
           $ref: 'commonSchemas.yaml#/components/schemas/Product'
         contacts:
+          description: Array of Contact objects
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/Contact'
@@ -56,30 +60,49 @@ components:
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/Budget'
         timePeriodPreferences:
+          description: Array of TimePeriod objects containing the buyer's preferences
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/TimePeriod'
           minItems: 1
         marketPreferences:
-          description: |-
-            List of market preferences (AND)
-            "<Market Name>"
+          description: ArrayList of marketPreferences containing the buyer's preferences
           type: array
           items:
             type: string
+            example: [
+  "Houston",
+  "Austin"
+]
         audiencePreferences:
+          description: Array of AudienceSegment objects containing the buyer's preferences
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/AudienceSegment'
+        targetingPreferences:
+          description: ArrayList of TargetingPreference containing the buyer's preferences
+          type: array
+          items:
+            type: string
+            example: [
+  "Auto Intenders"
+]
+        frequencyPreferences:
+          description: Array of FrequencyCapping objects containing the buyer's preferences
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/FrequencyCapping'
         unitLengthPreferences:
-          description: |-
-            List of unit length preferences (AND)
-            "<Unit Length>"
+          description: ArrayList of unitLengthsPreferences containing the buyer's preferences
           type: array
           items:
             type: integer
+            example: [
+  30,
+  15
+]
         guidelines:
-          description: Guidelines for proposal
+          description: Array of Guideline objects containing the buyer's preferences
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/Guideline'
@@ -103,20 +126,20 @@ components:
     CampaignGoal:
       properties:
         distributionType:
-          description: Goal type element used for distribution
+          description: Indicates the distribution type for the goal; extended enum values are allowed
           type: string
           enum:
-            - MediaType
+            - Media Outlet Type
             - Daypart
             - Market
+            - AddedValue
             - Quarter
             - Month
             - Week
-            - AddedValue
         distributionMethod:
           description: >-
-            Distribution method elements; impressions or GRP distributions pertain to the primary audience
-            segment
+            Distribution method elements; impressions or GRP distributions pertain to the primary
+            audience segment; extended enum values are allowed
           type: string
           enum:
             - Impressions
@@ -125,33 +148,30 @@ components:
             - Budget
         distributionName:
           description: >-
-            This is the name for the distribution type; for example it could be Daypart Name, or Quarter
-            Name, etc.
+            Name associated to the distributionType; for example it could be MediaOutletType
+            such as Local Broadcast TV, or a specific Daypart Name, or Specific Quarter Name,
+            etc.
           type: string
         distribution:
-          description: This defines how the distributions for the method are being defined
+          description: Indicates if the distributionValue is a percentage or exact value
           type: string
           enum:
             - Percentage
             - Exact Value
         distributionValue:
-          description: >-
-            This is the value for the distribution goal; it could be exact numeric value or a a percentage
-            amount
+          description: Distribution goal value
           type: number
           format: float
         distributionOrder:
           description: >-
-            Only populate when multiple distributions types are defined; defines the nesting order for
-            the distributions
+            Populate when multiple distributions types are defined to define a nesting order
+            for the distributions
           type: integer
           minimum: 0
         distributionOrderParent:
-          description: >-
-            Only populate when multiple distributions types are defined; defines the parent when there
-            are multiple nesting orders
+          description: Populate when multiple distributions to indicate the parent of a nesting order
           type: integer
-          nullable: true
+          nullable: True
       required:
         - distributionType
         - distributionMethod

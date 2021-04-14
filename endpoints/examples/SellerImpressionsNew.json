@@ -1,6 +1,6 @@
 {
   "transactionHeader": {
-    "tipVersion": "5.x.x",
+    "tipVersion": "5.1.0",
     "transactionId": {
       "transactionId": "a1ca50d0-c066-4ec8-bc31-2aa05d8106a2",
       "transactionType": "New",

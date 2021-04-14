@@ -9,7 +9,7 @@ security:
   - bearerAuth: []
 
 info:
-  version: 5.1.0
+  version: 6.0.0
   title: Seller Impressions
   description: >-
     Supports a push model where the seller sends files to buyer system on an agreed schedule.
@@ -23,7 +23,7 @@ info:
     name: MIT
     url: https://opensource.org/licenses/MIT
 servers:
-  - url: http://placeholderdomain.io/v5.x.x
+  - url: http://placeholderdomain.io/v6.0.0
 
 paths:
   /seller/impressions:

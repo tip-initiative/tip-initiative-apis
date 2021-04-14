@@ -1,8 +1,10 @@
 openapi: 3.0.0
 info:
-  version: 5.1.0
-  title: logTimes Schemas
-  description: logTimes Schemas
+  version: 6.0.0
+  title: Log Time Schemas
+  description: >-
+    Allows the seller to send to the buyer the log times information. No Request from
+    buyer is required
   termsOfService: http://placeholderdomain.io/terms/
   contact:
     name: TIP Initiative
@@ -20,29 +22,46 @@ components:
         transactionHeader:
           $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
         externalComment:
-          description: A string that indicates additional information the seller can send to the buyer
+          description: String that indicates additional information the seller can send to the buyer
           type: string
+        mediaOutlets:
+          description: Array of MediaOutlet objects
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/MediaOutlet'
         units:
-          description: The units listed in the API units can be defined by the system that is creating
-            the API.
+          description: Units listed in the API units can be defined by the system that is creating the API.
           type: array
           items:
             $ref: '#/components/schemas/Unit'
       required:
         - transactionHeader
+        - mediaOutlets
         - units
     Unit:
       description: Unit detail information
       properties:
         unitId:
           description: >-
-            Seller generated unique number for unit (ID will likely change if unit is moved to another
-            week during recon process).
+            Seller generated unique number for unit (ID will likely change if unit is moved to
+            another week during recon process).
           type: string
         referenceIds:
+          description: >-
+            Array of ReferenceId objects containing the order id references; may also contain
+            originating RFP and Proposal id and source references
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/ReferenceId'
+          minItems: 1
+        lineReferences:
+          description: >-
+            Array of identifier objects to identify a line id and system source; note- once the
+            identifier object has been adopted the goal is to remove existing lineNum
+            and lineReference
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/Identifier'
         cpeCode:
           $ref: 'commonSchemas.yaml#/components/schemas/CpeCode'
         buyer:
@@ -53,54 +72,64 @@ components:
           $ref: 'commonSchemas.yaml#/components/schemas/Brand'
         product:
           $ref: 'commonSchemas.yaml#/components/schemas/Product'
-        salesElement:
+        salesElementHeader:
           $ref: 'commonSchemas.yaml#/components/schemas/SalesElementHeader'
         program:
-          description: The "as-aired" program name
+          description: This indicates the program the spot aired in -  'as-aired' information
           type: string
         daypart:
-          description: The "as-aired" seller's daypart name
+          description: This indicates the daypart the spot aired in -  'as-aired' information
           type: string
         inventoryType:
-          $ref: 'commonSchemas.yaml#/components/schemas/InventoryType'
+          description: Type of advertising such as a commercial, billboard or other types of advertisement
+          type: string
         linkType:
           $ref: 'commonSchemas.yaml#/components/schemas/LinkType'
-        makegood:
-          description: Indicates if the unit is a makegood
+        isMakegood:
+          description: Indicates if the spot is a makegood
           type: boolean
-        adu:
-          description: Indicates if the unit is a ADU
+        isAdu:
+          description: >-
+            Audience Deficiency Unit; Units of commercial advertising inventory made available
+            to advertisers as fulfillment for the inventory the advertisers purchased that ran
+            in programs that under-delivered on contracted audience demographic ratings
           type: boolean
         preemptUnitIds:
           description: >-
-            Desired if unit's Makegood indicator is "Y"; "original" preempted unit(s) being resolved
-            by makegood; there may be one too many preempt unit ids being resolved
+            ArrayList of the 'original' preempted unit being resolved when the isMakegood
+            indicator is 'Y';  a makegood unit may be resolved by one too many preempt spots
           type: array
           items:
             type: string
-        bonus:
-          description: Indicates if the unit is a no-charge bonus
+        isBonus:
+          description: >-
+            $0 (i.e., free) ad impressions/pricing that a publisher includes with paid media
+            to maximize the overall proposal/order
           type: boolean
         length:
-          description: The duration of the unit in seconds
+          description: Length of commercial unit
+          type: integer
+        airedLength:
+          description: Actual lenth of commerical unit
           type: integer
         rate:
-          description: Unit Rate
+          description: Gross unit rate
           type: number
           format: float
-        adId:
-          description: >-
-            Advertising industry standard unique identifier for the commercial. Can be an official AD-ID
-            or any other ID.
-          type: string
+        creative:
+          $ref: 'commonSchemas.yaml#/components/schemas/Creative'
         status:
-          description: |-
-            Aired - 'as aired' reconciliation for the spot is complete
-            No Run - spot either did not run or didn't run as contracted when the broadcast log was played out
-            Scheduled - spot is placed on a pre log that has not yet been played out
-            Finalized - spot is placed on a log that is in a 'final status' and ready to be played out. The spot is locked from edits
-            Not Scheduled - spot has not yet been placed on a future broadcast log
-            Preempted - spot has been removed from a future broadcast log; the buyer will be offered a makegood or issued a credit
+          description: >-
+            Indicated the airing status for the spot
+            Aired  = 'as-aired' reconciliation for the spot is complete
+            No Run = spot either did not run or didn't run as contracted when the broadcast
+            log was played out
+            Scheduled  = spot is placed on a pre log that has not yet been played out
+            Finalized = spot is placed on a log that is in a 'final status' and ready to be
+            played out and the spot is locked from edits
+            Not Scheduled = spot has not yet been placed on a future broadcast log
+            Preempted = spot has been removed from a future broadcast log; the buyer will be
+            offered a makegood or issued a credit
           type: string
           enum:
             - Aired
@@ -109,53 +138,65 @@ components:
             - Finalized
             - Not Scheduled
             - Preempted
-        creditInd:
-          description: Indicate if the unit was issued a credit
+        isCredit:
+          description: Indicate if the spot was issued a credit due to a discrepancy
           type: boolean
         timePeriod:
+          description: >-
+            Array of TimePeriod objects indicating SalesElement ordered day and time
+            period constraints
           $ref: 'commonSchemas.yaml#/components/schemas/TimePeriod'
         dateTime:
+          description: Not required when unit's status is 'No Run'
           $ref: 'commonSchemas.yaml#/components/schemas/DateTime'
         childUnits:
+          description: Array of ChildUnit objects
           type: array
           items:
             $ref: '#/components/schemas/ChildUnit'
       required:
         - unitId
         - referenceIds
+        - lineReferences
         - advertiser
         - product
-        - salesElement
+        - salesElementHeader
         - length
         - status
     ChildUnit:
       description: >-
-        Child unit details for footprint unit to support Audience Network, Diginet or other forms of
-        "child" units
+        Child unit details for footprint unit to support Audience Network, Diginet or other
+        forms of 'child' units
       properties:
         unitId:
-          description: Unique identifier for "child" unit; Required if unit was sold as a cluster of
-            units
+          description: >-
+            Seller generated identifier for the child spot; conditional when there is a 'parent'
+            unit is sold as a footprint
           type: string
-        mediaOutlet:
-          $ref: 'commonSchemas.yaml#/components/schemas/MediaOutlet'
+        salesElementHeader:
+          $ref: 'commonSchemas.yaml#/components/schemas/SalesElementHeader'
         rate:
-          description: Unit rate associated to the "child" unit
+          description: Gross unit rate
           type: number
           format: float
-        adId:
+        creative:
           description: >-
-            Advertising industry standard unique identifier for the commercial ; Required if child unit
-            status is "Aired"
-          type: string
+            Array of identifier objects containing the creative information; at  least
+            one identifier object must be provided if spot status is equal to 'Aired'
+            or 'Finalized'
+          $ref: 'commonSchemas.yaml#/components/schemas/Creative'
         status:
-          description: |-
-            Aired - 'as aired' reconciliation for the spot is complete
-            No Run - spot either did not run or didn't run as contracted when the broadcast log was played out
-            Scheduled - spot is placed on a pre log that has not yet been played out
-            Finalized - spot is placed on a log that is in a 'final status' and ready to be played out. The spot is locked from edits
-            Not Scheduled - spot has not yet been placed on a future broadcast log
-            Preempted - spot has been removed from a future broadcast log; the buyer will be offered a makegood or issued a credit
+          description: >-
+            Indicated the airing status for the spot -
+            Aired  = 'as-aired' reconciliation for the spot is complete
+            No Run = spot either did not run or didn't run as contracted when the broadcast
+            log was played out
+            Scheduled  = spot is placed on a pre log that has not yet been played out
+            Finalized = spot is placed on a log that is in a 'final status' and ready to be
+            played out and the spot is locked from edits
+            Not Scheduled = spot has not yet been placed on a future broadcast log
+            Preempted = spot has been removed from a future broadcast log; the buyer will be
+            offered a makegood or issued a credit
           type: string
           enum:
             - Aired
@@ -164,8 +205,9 @@ components:
             - Finalized
             - Not Scheduled
             - Preempted
-        reason:
-          description: Reason description for No-Run status
-          type: string
         dateTime:
+          description: Required if the child's unit is equal to 'Aired'
           $ref: 'commonSchemas.yaml#/components/schemas/DateTime'
+      required:
+        - unitId
+        - salesElementHeader

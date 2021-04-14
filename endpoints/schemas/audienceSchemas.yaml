@@ -1,0 +1,244 @@
+openapi: 3.0.0
+info:
+  version: 6.0.0
+  title: Audience Schemas
+  description: Audience Schemas
+  termsOfService: http://placeholderdomain.io/terms/
+  contact:
+    name: TIP Initiative
+    email: tipinitiative@frontrowadvisory.com
+    url: http://placeholderdomain.io
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+paths: {}
+components:
+  schemas:
+    SellerAudiences:
+      description: Data model description here
+      properties:
+        transactionHeader:
+          $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
+        buyer:
+          $ref: 'commonSchemas.yaml#/components/schemas/Buyer'
+        contacts:
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/Contact'
+        mediaOutlets:
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/MediaOutlet'
+        audienceSegments:
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/AudienceSegmentDetail'
+        externalComment:
+          description: String that indicates additional information the seller may send to the the buyer
+          type: string
+        audienceDetails:
+          type: array
+          items:
+            $ref: '#/components/schemas/AudienceDetail'
+      required:
+        - transactionHeader
+        - mediaOutlets
+        - audienceDetails
+    AudienceDetail:
+      description: Audience detail information
+      properties:
+        detailType:
+          description: Determines the type of details; Unit-Based buy should i include linear unit spot details
+          type: string
+          enum:
+            - Unit-Based
+            - Audience-Based
+        dateType:
+          type: string
+          enum:
+            - Hour
+            - Day
+            - Week
+            - Month
+            - Quarter
+        calendarType:
+          description: Differentiates between OTT using Calendar and Linear using Broadcast Calendar.
+          type: string
+          enum:
+            - Broadcast
+            - Calendar
+        dateWindow:
+          $ref: 'commonSchemas.yaml#/components/schemas/DateWindow'
+        referenceIds:
+          description: >-
+            Array of ReferenceId objects containing the order id references; may also contain
+            originating RFP and Proposal id references
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/ReferenceId'
+          minItems: 1
+        cpeCode:
+          $ref: 'commonSchemas.yaml#/components/schemas/CpeCode'
+        advertiser:
+          $ref: 'commonSchemas.yaml#/components/schemas/Advertiser'
+        brand:
+          $ref: 'commonSchemas.yaml#/components/schemas/Brand'
+        product:
+          $ref: 'commonSchemas.yaml#/components/schemas/Product'
+        salesElementHeader:
+          $ref: 'commonSchemas.yaml#/components/schemas/SalesElementHeader'
+        daypart:
+          description: as-aired sellers daypart name
+          type: string
+        inventoryType:
+          type: string
+        length:
+          type: integer
+        pricingMetric:
+          $ref: 'commonSchemas.yaml#/components/schemas/PricingMetric'
+        unitCount:
+          description: Number of 'units' either in spots or impressions
+          type: integer
+          minimum: 0
+        audienceTargets:
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/AudienceTarget'
+        audiencePricingMetrics:
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/AudiencePricingMetric'
+        unitDetails:
+          type: array
+          items:
+            $ref: '#/components/schemas/AudienceUnitDetail'
+      required:
+        - detailType
+        - dateType
+        - calendarType
+        - dateWindow
+        - referenceIds
+        - advertiser
+        - product
+        - salesElementHeader
+    AudienceUnitDetail:
+      description: >-
+        Audience detail information for the individual linear units; this is optional
+        information when the audience detailType is equal to Unit
+      properties:
+        unitId:
+          description: Seller generated unique number - Required when unit type is equal to units
+          type: string
+        creative:
+          $ref: 'commonSchemas.yaml#/components/schemas/Creative'
+        dateTime:
+          $ref: 'commonSchemas.yaml#/components/schemas/DateTime'
+        rate:
+          description: Contracted rate associated to the unit
+          type: number
+          format: float
+        audiencePricingMetrics:
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/AudiencePricingMetric'
+        comment:
+          description: Overall comments associated to the unit
+          type: string
+        childUnits:
+          type: array
+          items:
+            $ref: '#/components/schemas/AudienceChildUnitDetail'
+      required:
+        - unitId
+        - creative
+        - audiencePricingMetrics
+    AudienceChildUnitDetail:
+      description: >-
+        Child unit details for footprint unit to support Audience Network, Diginet or other
+        forms of 'child' units
+      properties:
+        unitId:
+          description: Unique identifier for 'child' unit; Required if unit was sold as a cluster of units
+          type: string
+        mediaOutlet:
+          description: Required if ParentUnitId is populated
+          $ref: 'commonSchemas.yaml#/components/schemas/MediaOutlet'
+        creative:
+          $ref: 'commonSchemas.yaml#/components/schemas/Creative'
+        dateTime:
+          description: Required if the child's unit is equal to 'Aired'
+          $ref: 'commonSchemas.yaml#/components/schemas/DateTime'
+        rate:
+          description: Unit rate associated to the 'child' unit
+          type: number
+          format: float
+        audiencePricingMetrics:
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/AudiencePricingMetric'
+        comment:
+          description: Overall comment for the unit
+          type: string
+      required:
+        - creative
+        - audiencePricingMetrics
+    BuyerAudiences:
+      description: >-
+        Schema allows the buyer to formulate a query for audience post buy information
+        that meet the listed conditions
+      properties:
+        transactionHeader:
+          $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
+        name:
+          description: Buyer request reference name
+          type: string
+        referenceIds:
+          description: >-
+            Array of ReferenceId objects containing the order id references; may also contain
+            originating RFP and Proposal id and source references
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/ReferenceId'
+          minItems: 1
+        mediaOutlets:
+          description: Array of mediaOutlet objects being requested
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/MediaOutlet'
+          minItems: 1
+        buyer:
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/Buyer'
+        advertiser:
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/Advertiser'
+        contacts:
+          description: Array of Contact objects
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/Contact'
+        dayOfWeek:
+          $ref: 'commonSchemas.yaml#/components/schemas/DayOfWeek'
+        timeWindows:
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/TimeWindow'
+        inventoryTypes:
+          description: ArrayList of InventoryTypes being requested
+          type: array
+          items:
+            type: string
+        externalComment:
+          description: Free form text to accommodate transaction comments and/or activities outside the TIP flow
+          type: string
+        frequency:
+          description: Frequency of reporting requested by the buyer
+          $ref: 'commonSchemas.yaml#/components/schemas/Frequency'
+        reportSpan:
+          description: Window of time for the report requested by the buyers
+          $ref: 'commonSchemas.yaml#/components/schemas/DynamicDateWindow'
+      required:
+        - transactionHeader
+        - referenceIds
