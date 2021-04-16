@@ -26,7 +26,7 @@ components:
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/ReferenceId'
-          minItems: 1
+          minItems: 1           
         dateSubmitted:
           description: RFP submission date
           type: string
@@ -70,10 +70,7 @@ components:
           type: array
           items:
             type: string
-            example: [
-  "Houston",
-  "Austin"
-]
+          example: ["Houston", "Austin"]
         audiencePreferences:
           description: Array of AudienceSegment objects containing the buyer's preferences
           type: array
@@ -84,9 +81,7 @@ components:
           type: array
           items:
             type: string
-            example: [
-  "Auto Intenders"
-]
+            example: ["Auto Intenders"]
         frequencyPreferences:
           description: Array of FrequencyCapping objects containing the buyer's preferences
           type: array
@@ -97,10 +92,7 @@ components:
           type: array
           items:
             type: integer
-            example: [
-  30,
-  15
-]
+            example: [ 30,  15]
         guidelines:
           description: Array of Guideline objects containing the buyer's preferences
           type: array

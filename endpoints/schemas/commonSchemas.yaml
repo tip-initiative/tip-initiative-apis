@@ -198,10 +198,7 @@ components:
           type: array
           items:
             type: string
-            example: [
-  "$50,000 - $75,000",
-  "$75,000, -$100,000"
-]
+          example: ["$50,000 - $75,000", "$75,000, -$100,000"]
       required:
         - excludeOrInclude
         - targetAttribute
@@ -380,7 +377,7 @@ components:
           type: string
           enum:
             - Frontload
-            - Even Distribution
+            - Even
             - Daily Fast ASAP
             - Daily Even
             - Flight ASAP
@@ -819,10 +816,7 @@ components:
             type: string
           uniqueItems: True
           nullable: True
-          example: [
-  "Dallas, TX",
-  "NYC, NY"
-]
+          example: ["Dallas, TX",  "NYC, NY"]
         contactFirstName:
           description: Contact First Name
           type: string
@@ -1216,7 +1210,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/AudiencePricingMetric'
-            nullable: True
+          nullable: True
         externalComment:
           description: >-
             Free form comments string that can be used in any of the many interfaces the Sales
@@ -1229,8 +1223,12 @@ components:
         - dateWindow
     Frequency:
       properties:
+        whenAvailable:
+          type: boolean
         every:
-          description: associated with number, to indicate the unit of time
+          description: >-
+            Indicates the unit of time in which to receive the information available
+            in the subscription
           type: string
           enum:
             - One Time Only
@@ -1238,10 +1236,10 @@ components:
             - Day
             - Week
             - Month
-            - Quarter
-            - Year
         onDay:
-          description: Unique items. the days of the week on which the report is expected to be generated
+          description: >-
+            Valid when every is equal to week; unique list the days of the week on which the
+            data (report) is expected to be generated
           type: array
           items:
             type: string
@@ -1255,20 +1253,13 @@ components:
               - Sun
         onDate:
           description: >-
-            Unique items. the days of the month on which the report is expected to be generated;
-            when used with Quarter or Year only two valid dates are applicable 1 indicates
-            beginning of the interval and 31 indicates the end of the interval
+            Valid when every is equal to Month; unique day(s) of the month on which the data
+            ( report) is expected to be generated; the values in onDate must be restricted
+            to 1, 2, 3, 4, 5 to in dicate 1st, 2nd, ... of the month.
           type: array
           items:
             type: integer
-            example: [
-  1,
-  15
-]
-        at:
-          type: string
-          pattern: ^(([0-1][0-9])|(2[0-3]))(:[0-5][0-9]){2}$
-          example: "11:45"
+          example: [1, 15]
         isEndNever:
           description: >-
             Indicates if the report subscription will stay active until it is terminated by the
@@ -1284,46 +1275,19 @@ components:
           format: date
           nullable: True
           default: 
-        endOccurAfter:
-          description: >-
-            indicates if the report subscription must end after the specified number of times.
-            if specified it takes preceedence over isEndNever. if endOn is specified report
-            would stop after either date is reached or number of occurrences whichever comes
-            first
-          type: integer
-          minimum: 0
-          nullable: True
-      required:
-        - every
     DynamicDateWindow:
       properties:
-        startPeriod:
-          description: Date will be calculated relative the report generate date
-          $ref: '#/components/schemas/DynamicDate'
-        endPeriod:
-          $ref: '#/components/schemas/DynamicDate'
-      required:
-        - startPeriod
-        - endPeriod
-    DynamicDate:
-      properties:
-        relativity:
+        periodType:
           type: string
           enum:
-            - Hour
-            - Day
-            - Week
-            - Month
-            - Quarter
-            - Year
-        number:
-          description: >-
-            Number may be negiative to indicate periods prior to the date on which the report
-            will be generated
+            - Days
+            - Weeks
+            - Months
+        numPeriods:
+          description: Date will be calculated relative the report generate date
           type: integer
       required:
-        - relativity
-        - number
+        - numPeriods
     ItemDetail:
       properties:
         itemType:
@@ -1423,10 +1387,7 @@ components:
           type: array
           items:
             type: string
-            example: [
-  "ENG-US",
-  "ENG-UK"
-]
+          example: [ "ENG-US",  "ENG-UK"]
         aspect:
           description: Aspect ratio
           type: string

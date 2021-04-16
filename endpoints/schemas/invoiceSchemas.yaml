@@ -26,7 +26,7 @@ components:
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/ReferenceId'
-          minItems: 1
+          minItems: 1           
         invoiceDate:
           description: Original Invoice Date
           type: string
@@ -76,12 +76,12 @@ components:
           description: Buyer commission amount
           type: number
           format: float
-        salesTax:
+        salesTaxes:
           description: Total sales tax when applicable
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/ItemDetail'
-        discount:
+        discounts:
           description: Total discount when applicable
           type: array
           items:
@@ -170,7 +170,7 @@ components:
           type: integer
         cpeCode:
           $ref: 'commonSchemas.yaml#/components/schemas/CpeCode'
-        billableRevenue:
+        billableCosts:
           description: >-
             Indicates if the gross and net costs are booked or earned revenues calculated from
             the actual impression delivery; extended enum values are allowed

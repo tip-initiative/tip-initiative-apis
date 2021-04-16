@@ -15,7 +15,9 @@ paths: {}
 components:
   schemas:
     SellerAudiences:
-      description: Data model description here
+      description: >-
+        A representation of the Actual Audience delivery information for comparison against
+        contract delivery goals
       properties:
         transactionHeader:
           $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
@@ -76,7 +78,7 @@ components:
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/ReferenceId'
-          minItems: 1
+          minItems: 1           
         cpeCode:
           $ref: 'commonSchemas.yaml#/components/schemas/CpeCode'
         advertiser:
@@ -88,7 +90,7 @@ components:
         salesElementHeader:
           $ref: 'commonSchemas.yaml#/components/schemas/SalesElementHeader'
         daypart:
-          description: as-aired sellers daypart name
+          description: \'as-aired\' seller\'s daypart name
           type: string
         inventoryType:
           type: string
@@ -199,7 +201,7 @@ components:
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/ReferenceId'
-          minItems: 1
+          minItems: 1           
         mediaOutlets:
           description: Array of mediaOutlet objects being requested
           type: array
@@ -219,17 +221,17 @@ components:
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/Contact'
-        dayOfWeek:
-          $ref: 'commonSchemas.yaml#/components/schemas/DayOfWeek'
-        timeWindows:
+        audienceTargets:
+          description: Array of AudienceTarget objects
           type: array
           items:
-            $ref: 'commonSchemas.yaml#/components/schemas/TimeWindow'
-        inventoryTypes:
-          description: ArrayList of InventoryTypes being requested
+            $ref: 'commonSchemas.yaml#/components/schemas/AudienceTarget'
+        audienceSegments:
+          description: Array of AudienceSegment objects being requested
           type: array
           items:
-            type: string
+            $ref: 'commonSchemas.yaml#/components/schemas/AudienceSegment'
+          minItems: 1
         externalComment:
           description: Free form text to accommodate transaction comments and/or activities outside the TIP flow
           type: string
@@ -241,4 +243,4 @@ components:
           $ref: 'commonSchemas.yaml#/components/schemas/DynamicDateWindow'
       required:
         - transactionHeader
-        - referenceIds
+        - name
