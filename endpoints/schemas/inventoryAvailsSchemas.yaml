@@ -77,12 +77,6 @@ components:
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/PricingMetricOption'
-        frequency:
-          description: Frequency of reporting requested by the buyer
-          $ref: 'commonSchemas.yaml#/components/schemas/Frequency'
-        reportSpan:
-          description: Window of time for the report requested by the buyers
-          $ref: 'commonSchemas.yaml#/components/schemas/DynamicDateWindow'
       required:
         - transactionHeader
         - mediaOutlets
@@ -125,7 +119,7 @@ components:
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/AudienceSegmentDetail'
-            nullable: True
+          nullable: True
         availWindow:
           $ref: 'commonSchemas.yaml#/components/schemas/DateWindow'
         salesElements:

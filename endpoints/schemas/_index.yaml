@@ -91,8 +91,6 @@
       $ref: 'commonSchemas.yaml#/components/schemas/Frequency'
     DynamicDateWindow:
       $ref: 'commonSchemas.yaml#/components/schemas/DynamicDateWindow'
-    DynamicDate:
-      $ref: 'commonSchemas.yaml#/components/schemas/DynamicDate'
     ItemDetail:
       $ref: 'commonSchemas.yaml#/components/schemas/ItemDetail'
     CancelConfirmRecallReject:
@@ -142,8 +140,6 @@
     BuyerOrders:
       $ref: 'ordersSchemas.yaml#/components/schemas/BuyerOrders'
 #   From SheetName /seller/orders to File  ordersSchemas.yaml
-#    SellerOrders:
-#      $ref: 'ordersSchemas.yaml#/components/schemas/SellerOrders'
 #   From SheetName buyer/creativeAssets to File  creativeAssetsSchemas.yaml
     BuyerCreativeAssets:
       $ref: 'creativeAssetsSchemas.yaml#/components/schemas/BuyerCreativeAssets'
@@ -153,8 +149,6 @@
     InstructionDetail:
       $ref: 'commercialInstructionSchemas.yaml#/components/schemas/InstructionDetail'
 #   From SheetName /seller/commercialInstructions to File  commercialInstructionSchemas.yaml
-#    SellerCommercialInstructions:
-#      $ref: 'commercialInstructionSchemas.yaml#/components/schemas/SellerCommercialInstructions'
 #   From SheetName /seller/logtimes to File  logTimesSchemas.yaml
     SellerLogtimes:
       $ref: 'logTimesSchemas.yaml#/components/schemas/SellerLogtimes'

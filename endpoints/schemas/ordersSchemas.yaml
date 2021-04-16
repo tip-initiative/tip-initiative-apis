@@ -15,7 +15,9 @@ paths: {}
 components:
   schemas:
     BuyerOrders:
-      description: Buyers Ordering entity
+      description: >-
+        Represent the data necessary to describe an order including terms, dates, products,
+        media outlets in addition to all reference data
       properties:
         transactionHeader:
           $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
@@ -26,7 +28,7 @@ components:
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/ReferenceId'
-          minItems: 1
+          minItems: 1           
         orderBookedDate:
           description: Date in which the buyer submitted the order, this is the original book date
           type: string
