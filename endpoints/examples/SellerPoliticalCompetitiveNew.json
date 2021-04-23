@@ -1,0 +1,44 @@
+{ 
+  "transactionHeader": { 
+    "tipVersion": "5.1.0", 
+    "transactionId": { 
+      "transactionId": "6A61B212-4DBD-431E-A953-8873561AF781", 
+      "transactionType": "New", 
+      "sourceId": "490", 
+      "sourceName": "WQRF-TV" 
+    }, 
+    "timeStamp": "2020-07-01T19:17:28Z" 
+  }, 
+  "politicalCompetitive": [ 
+    { 
+      "id" : "123456789", 
+      "flightStart" : "2020-07-08", 
+      "flightEnd" : "2020-07-15", 
+      "advertiser" : "an Advertiser", 
+      "agency" : "an Agency", 
+      "market" : "Chicago", 
+      "station" : "WQRF", 
+      "adSeconds" : 30, 
+      "totalDollars" : 2000.00, 
+      "state" : "IL", 
+      "repFirm" : "a Rep Firm", 
+      "bandCode" : "TV", 
+      "affiliate" : "An affiliate"
+    }, 
+    { 
+      "id" : "123456790", 
+      "flightStart" : "2020-07-15", 
+      "flightEnd" : "2020-07-22", 
+      "advertiser" : "another Advertiser", 
+      "agency" : "another Agency", 
+      "market" : "Chicago", 
+      "station" : "WQRF", 
+      "adSeconds" : 60, 
+      "totalDollars" : 2500.00, 
+      "state" : "IL", 
+      "repFirm" : "a Rep Firm", 
+      "bandCode" : "TV", 
+      "affiliate" : "An affiliate" 
+    } 
+  ] 
+} 
