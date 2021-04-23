@@ -1,0 +1,113 @@
+openapi: 3.0.0
+info:
+  version: 5.1.0
+  title: Political Competitive Schema
+  description: Political Competitive Schema
+  termsOfService: http://placeholderdomain.io/terms/
+  contact:
+    name: TIP Initiative
+    email: tipinitiative@frontrowadvisory.com
+    url: http://placeholderdomain.io
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+paths: {}
+components:
+  schemas:
+    SellerPoliticalCompetitives:
+      description: Political Competitive schema
+      properties:
+        transactionHeader:
+          $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
+        politicalCompetitive:
+          type: array
+          items:
+            $ref: '#/components/schemas/politicalCompetitive'
+      required:
+        - transactionHeader
+        - politicalCompetitive
+    politicalCompetitive:
+      description: Individual Buy Information
+      properties:
+        id:
+          description: Buy Id
+          type: string
+        flightStart:
+          description: Start Date of Buy Flight
+          type: date
+        flightEnd:
+          description: End Date of Buy Flight
+          type: date
+        advertiser:
+          description: Advertiser name
+          type: string
+        agency:
+          description: Name of agency purchasing the buy for advertiser
+          type: string
+        market:
+          description: Market in which the buy is airing
+          type: string
+        station:
+          description: Name of station buy is airing on
+          type: string
+        adSeconds:
+          description: Spot length in seconds
+          type: integer
+        totalDollars:
+          description: Total dollars for the spot length and scheduled week
+          type: decimal
+        state:
+          description: US state abbreviation
+          type: string
+        repFirm:
+          description: Distributor or station group
+          type: string
+        affiliate:
+          description: Affiliate name. Required for TV orders
+          type: string
+        bandCode:
+          description: TV or radio identifier
+          type: string
+          enum:
+            - tv
+            - fm
+            - am
+        cableBroadcastTag:
+          description: Cable or broadcast identifier
+          type: string
+          enum:
+            - cable
+            - broadcast
+            - radio
+            - satellite
+            - addressableCable
+        partyTag:
+          description: Party of the advertiser, ie, Republican or Democrat
+          type: string
+        issueCandidateTag:
+          description: Purpose; candidate or issue
+          type: string
+        electionTag:
+          description: Type and level of election
+          type: string
+        targetAudienceTag:
+          description: Audience or demographic targeted
+          type: string
+        raceTag:
+          description: Election race targeted
+          type: string
+        targetTag:
+          description: Political geo targeted
+          type: string
+      required:
+        - id
+        - flightStart
+        - flightEnd
+        - advertiser
+        - agency
+        - market
+        - station
+        - adSeconds
+        - totalDollars
+        - state
+        - repFirm
