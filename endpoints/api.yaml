@@ -200,6 +200,7 @@ info:
     | Linear TV | A term used for real-time television services that are transmitted on a schedule. Most TV programs originate as linear TV but may become time-shifted for later viewing. |
     | Media Outlet | Station or network (seller) |
     | Piggyback | Back-to-back scheduling of two or more brand commercials of one advertiser in network or spot positions. |
+    | Political Competitive | Summaries of political buys made available by sellers to buyers to report on the national media environment. |
     | Preemption | A term used when a unit does not air as originally scheduled. |
     | Private Marketplace | Programmatic trading environment in which a publisher makes available a segment of inventory to an advertiser at a defined price. |
     | Programmatic TV (PTV): | An automated, technology- or data-driven method of buying linear TV |
@@ -267,6 +268,8 @@ paths:
     $ref: 'audiences.yaml#/paths/~1buyer~1audiences'
   /seller/audiences:
     $ref: 'audiences.yaml#/paths/~1seller~1audiences'
+  /seller/politicalCompetitives:
+    $ref: 'politicalCompetitive.yaml#/paths/~1seller~1politicalCompetitives'
 components:
   securitySchemes:
     bearerAuth:
