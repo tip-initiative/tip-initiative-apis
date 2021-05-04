@@ -89,8 +89,8 @@
       $ref: 'commonSchemas.yaml#/components/schemas/SalesElementTransactionDate'
     Frequency:
       $ref: 'commonSchemas.yaml#/components/schemas/Frequency'
-    DynamicDateWindow:
-      $ref: 'commonSchemas.yaml#/components/schemas/DynamicDateWindow'
+    DynamicDate:
+      $ref: 'commonSchemas.yaml#/components/schemas/DynamicDate'
     ItemDetail:
       $ref: 'commonSchemas.yaml#/components/schemas/ItemDetail'
     CancelConfirmRecallReject:
@@ -119,9 +119,9 @@
       $ref: 'commonSchemas.yaml#/components/schemas/IpAddress'
     Impression:
       $ref: 'commonSchemas.yaml#/components/schemas/Impression'
-#   From SheetName /buyer/inventoryAvails to File  inventoryAvailsSchemas.yaml
-    BuyerInventoryAvails:
-      $ref: 'inventoryAvailsSchemas.yaml#/components/schemas/BuyerInventoryAvails'
+#   From SheetName /buyer/inventoryAvails/Subscription to File  inventoryAvailsSchemas.yaml
+    BuyerInventoryAvailsSubscription:
+      $ref: 'inventoryAvailsSchemas.yaml#/components/schemas/BuyerInventoryAvailsSubscription'
 #   From SheetName /seller/inventoryAvails to File  inventoryAvailsSchemas.yaml
     SellerInventoryAvails:
       $ref: 'inventoryAvailsSchemas.yaml#/components/schemas/SellerInventoryAvails'
@@ -171,9 +171,9 @@
       $ref: 'audienceSchemas.yaml#/components/schemas/AudienceUnitDetail'
     AudienceChildUnitDetail:
       $ref: 'audienceSchemas.yaml#/components/schemas/AudienceChildUnitDetail'
-#   From SheetName /buyer/audiences to File  audienceSchemas.yaml
-    BuyerAudiences:
-      $ref: 'audienceSchemas.yaml#/components/schemas/BuyerAudiences'
+#   From SheetName /buyer/audiences/subscription to File  audienceSchemas.yaml
+    BuyerAudiencesSubscription:
+      $ref: 'audienceSchemas.yaml#/components/schemas/BuyerAudiencesSubscription'
 #   From SheetName /seller/makegoodGuidelines to File  makegoodsSchemas.yaml
     SellerMakegoodGuidelines:
       $ref: 'makegoodsSchemas.yaml#/components/schemas/SellerMakegoodGuidelines'

@@ -28,7 +28,7 @@ components:
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/ReferenceId'
-          minItems: 1           
+          minItems: 1
         buyer:
           $ref: 'commonSchemas.yaml#/components/schemas/Buyer'
         contacts:

@@ -42,11 +42,10 @@ info:
     |Changes from Release 5.1.0. to Release 6.0.0.|	
     |---------------------------------------------|	
     |Added a new Identifier object to the common schemas 		|
-    |Added a new AudienceTarget object to the common schemas 		|
-    |Added a new FrequencyCapping object to the common schemas 		|
-    |Added a new Span object to the common schemas 		|
-    |Added a new Creative object to the common schemas 		|
-    |Added a new Format object to the common schemas		|
+    |Added a new AudienceTarget object to the common schemas to support video and cross platform sales 		|
+    |Added a new FrequencyCapping object to the common schemas to support and cross platform sales 		|
+    |Added a new Frequency object to the common schemas to support subscription frequency of receiving report 		|
+    |Added a new DyanamicDate object to the common schemas to indicate the values to be used when calculating a start date, or end date relative to the report date 		|
     |Modified the PricingMetric common object in the common schema to support gross and net values 		|
     |Modified the MediaOutlet object in the common schema to support an array of mediaOutletId Identifiers		|
     |Modified the MediaOutlet object in the common schema and changed the mediaOutletType format from enum constraints to string 		|
@@ -72,12 +71,11 @@ info:
     |Modified the SalesElementTransaction object in the common schema to and changed salesElement to salesElementHeader, added new devices property, and and modified salesElementInventorys name to be consistent with array naming standards		|
     |Modified the SalesElementTransactionInventory object in the common schema to support new properties for  lineReferences, companionTypeIds and changed the Boolean property names to start with 'is'		|
     |Modified the SalesElementTransactionDate object in the common schema and added new properties to support frequencyCapping, pricingMetric, grossCost, netCost and audienceTargets		|
+    |Modified the distributionType in the RFP CampaignGoals to support a new Unit Length in the enum constraints 		|
     |Modified the Error object in the common schema to support a new errorList dictionary 		|
     |Modified the Event object in the common schema and changed boolean property names to start with 'is' 		|
-    |Modified the BuyerInventoryAvails data model to support a new property for name e.g. name of subscription/request		|
     |Modified the BuyerInventoryAvails data model and removed dateSubmitted property		|
     |Modified the BuyerInventoryAvails data model and changed all Boolean property names to start with 'is' 		|
-    |Modified the BuyerInventoryAvails data model and added new properties to support frequency and reportSpan objects		|
     |Modified the SellerInventoryAvails data model and changed all Boolean property names to start with 'is' 		|
     |Modified the SellerProposals data model and changed all Boolean property names to start with 'is' 		|
     |Modified the BuyerProposals data model and changed all Boolean property names to start with 'is' 		|
@@ -85,7 +83,6 @@ info:
     |Modified the BuyerCommercialInstructions and changed dateWindow from an array to a singular date		|
     |Modified the BuyerCommercialInstructions and replaced the adId property with the creative object		|
     |Modified the BuyerCommercialInstructions data model and removed name and length properties from InstructionDetail since are properties in the creative common schema		|
-    |Modified the BuyerCommercialInstructions data model and removed the unitSpecificInstructions from the InstructionDetail		|
     |Modified the SellerLogtimes data model to support an array of mediaOutlets objects		|
     |Modified the SellerLogtimes data model in the Unit detail to support an array of lineReference identifiers		|
     |Modified the SellerLogtimes data model and changed all Boolean properties to start with 'is' 		|
@@ -99,10 +96,9 @@ info:
     |Modified the SellerInvoice data model to renamed the units property to unitCount 		|
     |Modified the SellerInvoice data model and changed all Boolean properties to begin with 'is' 		|
     |Added a new SellerAudience data model to the framework 		|
-    |Added a new BuyerLogTimes data model to the framework to support request (subscription) to seller's logtimes		|
-    |Added new BuyerCreativeAssets data model to the framework		|
-    |Added new BuyerImpressionsSubscribe data model to the framework 		|
-    |Added a new SellerImpressions data model to the framework |
+    |Added a new BuyerLogTimes/Subscribe data model to the framework to support a request and /or subscription to seller's logtimes		|
+    |Added a new BuyerAudience/Subscribe data model to the framework to support a request and /or subscription to seller's logtimes		|
+    |Added new BuyerImpressionsSubscribe data model to the framework 		    |
     
     ## Release 5.1.0 Notes
 
@@ -227,8 +223,8 @@ servers:
 security:
   - bearerAuth: []
 paths:
-  /buyer/inventoryAvails:
-    $ref: 'inventoryAvails.yaml#/paths/~1buyer~1inventoryAvails'
+  /buyer/inventoryAvails/subscription:
+    $ref: 'inventoryAvails.yaml#/paths/~1buyer~1inventoryAvails~1subscription'
   /seller/inventoryAvails:
     $ref: 'inventoryAvails.yaml#/paths/~1seller~1inventoryAvails'
   /buyer/rfps:
@@ -241,12 +237,16 @@ paths:
     $ref: 'orders.yaml#/paths/~1buyer~1orders'
   /seller/orders:
     $ref: 'orders.yaml#/paths/~1seller~1orders'
-  /buyer/creativeAssets:
-    $ref: 'creativeAssets.yaml#/paths/~1buyer~1creativeAssets'
+#  /buyer/creativeAssets:
+#    $ref: 'creativeAssets.yaml#/paths/~1buyer~1creativeAssets'
   /buyer/commercialInstructions:
     $ref: 'commercialInstructions.yaml#/paths/~1buyer~1commercialInstructions'
   /seller/commercialInstructions:
     $ref: 'commercialInstructions.yaml#/paths/~1seller~1commercialInstructions'
+  /buyer/logtimes/subscription:
+    $ref: 'logTimes.yaml#/paths/~1buyer~1logtimes~1subscription'
+  /seller/logtimes:
+    $ref: 'logTimes.yaml#/paths/~1seller~1logtimes'  
   /seller/makegood/guidelines:
     $ref: 'makegoods.yaml#/paths/~1seller~1makegood~1guidelines'
   /buyer/makegood/guidelines:
@@ -259,12 +259,10 @@ paths:
     $ref: 'impressionssub.yaml#/paths/~1buyer~1impressions~1subscription'
   /seller/impressions/notification:
     $ref: 'impressionssub.yaml#/paths/~1seller~1impressions~1notification'
-  /seller/logtimes:
-    $ref: 'logTimes.yaml#/paths/~1seller~1logtimes'
   /seller/invoices:
     $ref: 'invoice.yaml#/paths/~1seller~1invoices'
-  /buyer/audiences:
-    $ref: 'audiences.yaml#/paths/~1buyer~1audiences'
+  /buyer/audiences/subscription:
+    $ref: 'audiences.yaml#/paths/~1buyer~1audiences~1subscription'
   /seller/audiences:
     $ref: 'audiences.yaml#/paths/~1seller~1audiences'
 components:

@@ -53,7 +53,7 @@ components:
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/ReferenceId'
-          minItems: 1           
+          minItems: 1
         lineReferences:
           description: >-
             Array of identifier objects to identify a line id and system source; note- once the
@@ -106,10 +106,10 @@ components:
             $0 (i.e., free) ad impressions/pricing that a publisher includes with paid media
             to maximize the overall proposal/order
           type: boolean
-        length:
+        airedLength:
           description: Length of commercial unit
           type: integer
-        airedLength:
+        bookedLength:
           description: Actual lenth of commerical unit
           type: integer
         rate:
@@ -163,7 +163,7 @@ components:
         - advertiser
         - product
         - salesElementHeader
-        - length
+        - airedLength
         - status
     ChildUnit:
       description: >-
@@ -213,3 +213,82 @@ components:
       required:
         - unitId
         - salesElementHeader
+    BuyerLogTimesSubscription:
+      description: >-
+        Schema allows the buyer to formulate a query for log times information that meet
+        the listed conditions
+      properties:
+        transactionHeader:
+          $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
+        name:
+          description: Buyer request reference name
+          type: string
+          example: Post log and reconciled logs only
+        referenceIds:
+          description: >-
+            Array of ReferenceId objects containing the order id references; may also contain
+            originating RFP and Proposal id and source references
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/ReferenceId'
+        mediaOutlets:
+          description: Array of mediaOutlet objects being requested
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/MediaOutlet'
+          minItems: 1
+        buyer:
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/Buyer'
+        advertiser:
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/Advertiser'
+        contacts:
+          description: Array of Contact objects
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/Contact'
+        inventoryTypes:
+          description: ArrayList of InventoryTypes being requested
+          type: array
+          items:
+            type: string
+        statuses:
+          description: >-
+            Indicated the airing status being requested
+            Aired  = 'as-aired' reconciliation for the spot is complete
+            No Run = spot either did not run or didn't run as contracted when the broadcast
+            log was played out
+            Scheduled  = spot is placed on a pre log that has not yet been played out
+            Finalized = spot is placed on a log that is in a 'final status' and ready to be
+            played out and the spot is locked from edits
+            Not Scheduled = spot has not yet been placed on a future broadcast log
+            Preempted = spot has been removed from a future broadcast log; the buyer will be
+            offered a makegood or issued a credit
+          type: array
+          items:
+            type: string
+            enum:
+              - Aired
+              - Scheduled
+              - No Run
+              - Finalized
+              - Not Scheduled
+              - Preempted
+        frequency:
+          $ref: 'commonSchemas.yaml#/components/schemas/Frequency'
+        startDate:
+          oneOf:
+            - $ref: 'commonSchemas.yaml#/components/schemas/DynamicDate'
+            - type: string
+              format: date
+        endDate:
+          oneOf:
+            - $ref: 'commonSchemas.yaml#/components/schemas/DynamicDate'
+            - type: string
+              format: date
+      required:
+        - transactionHeader
+        - referenceIds

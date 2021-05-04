@@ -28,7 +28,7 @@ components:
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/ReferenceId'
-          minItems: 1           
+          minItems: 1
         orderBookedDate:
           description: Date in which the buyer submitted the order, this is the original book date
           type: string
@@ -76,13 +76,6 @@ components:
         dealYear:
           description: Broadcast year for the order
           type: string
-        calendarType:
-          description: Indicates the calendar defining the start day and end day of a week
-          type: string
-          enum:
-            - Broadcast
-            - Calendar
-            - Nielsen
         billingOption:
           $ref: 'commonSchemas.yaml#/components/schemas/BillingOption'
         isEquivalized:

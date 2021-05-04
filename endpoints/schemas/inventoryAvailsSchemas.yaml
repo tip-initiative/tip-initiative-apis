@@ -14,7 +14,7 @@ info:
 paths: {}
 components:
   schemas:
-    BuyerInventoryAvails:
+    BuyerInventoryAvailsSubscription:
       description: Schema allows the buyer to formulate a query for Inventory meeting the listed conditions
       properties:
         transactionHeader:
@@ -62,7 +62,6 @@ components:
             type: string
         currency:
           $ref: 'commonSchemas.yaml#/components/schemas/Currency'
-          default: USD
         externalComment:
           description: Free form text to accommodate transaction comments and/or activities outside the TIP flow
           type: string
@@ -77,6 +76,18 @@ components:
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/PricingMetricOption'
+        frequency:
+          $ref: 'commonSchemas.yaml#/components/schemas/Frequency'
+        startDate:
+          oneOf:
+            - $ref: 'commonSchemas.yaml#/components/schemas/DynamicDate'
+            - type: string
+              format: date
+        endDate:
+          oneOf:
+            - $ref: 'commonSchemas.yaml#/components/schemas/DynamicDate'
+            - type: string
+              format: date
       required:
         - transactionHeader
         - mediaOutlets

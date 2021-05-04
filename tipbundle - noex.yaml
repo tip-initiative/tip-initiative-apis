@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   version: 6.0.0
   title: Trading Interface Automation Framework For Local TV Transactions.
-  description: "# Television Interface Practices Initiative (TIP)\n\nTrading Interface Automation Framework For Local TV Transactions.\n\n## Confidentiality Note\n\nThe detailed Workflow and API Framework in this document has been\nsynthesized from several technology vendor contributions. The contributions\nhighlighted the broad adoption of commonly used specs and in some cases,\nthere was an original work contribution from the TIP Initiative and\nFrontrow Advisory.  The TIP Initiative has thoroughly reviewed this\ndocument to ensure details have been appropriately abstracted and\nsynthesized.  This report does not include any specific proprietary work\nfrom a single technology vendor or source.\n\n## Version History\n\n| Version | Date | Author |\n|---------|------|--------|\n|0.1.0|\t09/25/17|\tInitial Draft\tTIP Initiative / Frontrow Advisory|\n|0.2.0|\t10/09/17|\tInitial Draft\tTIP Initiative / Frontrow Advisory|\n|1.0.0|\t11/11/17|\tRelease \tTIP Initiative / Frontrow Advisory|\n|1.1.0|\t02/22/17|\tDraft\tTIP Initiative / Frontrow Advisory|\n|2.0.0|\t04/06/17|\tRelease \tTIP Initiative / Frontrow Advisory|\n|2.1.0|\t06/29/18|\tDraft\tTIP Initiative / Frontrow Advisory|\n|3.0.0|\t10/23/18|\tRelease\tTIP Initiative / Frontrow Advisory|\n|3.1.0|\t02/01/19|\tRelease\tTIP Initiative / Frontrow Advisory|\n|4.0.0|\t05/16/19|\tRelease\tTIP Initiative / Frontrow Advisory|\n|4.2.0|\t01/24/20|\tRelease\tTIP Initiative / Frontrow Advisory|\n|4.3.0|\t04/01/20|\tDraft\tTIP Initiative / Frontrow Advisory|\n|5.0.0|\t05/05/20|\tRelease\tTIP Initiative / Frontrow Advisory|\n|5.1.0|\t08/13/20|\tRelease\tTIP Initiative / Frontrow Advisory|\n|6.0.0|\tTBD|\tThis draft \tTIP Initiative / Frontrow Advisory|\n\n## Release 6.0.0 Notes\n\n|Changes from Release 5.1.0. to Release 6.0.0.|\t\n|---------------------------------------------|\t\n|Added a new Identifier object to the common schemas \t\t|\n|Added a new AudienceTarget object to the common schemas \t\t|\n|Added a new FrequencyCapping object to the common schemas \t\t|\n|Added a new Span object to the common schemas \t\t|\n|Added a new Creative object to the common schemas \t\t|\n|Added a new Format object to the common schemas\t\t|\n|Modified the PricingMetric common object in the common schema to support gross and net values \t\t|\n|Modified the MediaOutlet object in the common schema to support an array of mediaOutletId Identifiers\t\t|\n|Modified the MediaOutlet object in the common schema and changed the mediaOutletType format from enum constraints to string \t\t|\n|Modified the Advertiser object in the common schema to support an array of advertiserId Identifiers\t\t|\n|Modified the Brand object in the common schema to support an array of brandId Identifiers\t\t|\n|Modified the Buyer object in the common schema to support an array of buyerId Identifiers\t\t|\n|Modified the Product object in the common schema to support an array of productId Identifiers\t\t|\n|Modified the AudienceSegment in the common schema to support an array of audienceSegementIds identifiers\t\t|\n|Modified the AudienceSegment in the common schema and changed Boolean properties names to start with 'is' e.g. isPrimary\t\t|\n|Modified the PriceMetric Object in the common schema to support a new SPOT value in the enum constraints \t\t|\n|Modified the PricingMetric Object in the common schema to support a netValue in addition to the grossValue\t\t|\n|Modified the RateCard object in the common schema and added a currency property \t\t|\n|Modified the Guideline object in the common schema and removed the guidelineId property and changed guidelineName to guidelines to support an array of values \t\t|\n|Modified the DateWindow object in the common schema and changed the endDate from required to optional\t\t|\n|Modified the TimeWindow object in the common schema and changed the endTime from required to optional and removed the enum from the data type\t\t|\n|Modified the DayofWeek object in the common schema and changed Boolean property names to start with 'is' e.g.  isMonday, isTuesday, etc. \t\t|\n|Modified the DailyUnitDistribution object in the common schema to support a new pacingRule and modified the days in the week from required to optional\t\t|\n|Modified the SalesElement object in the common schema and changed the salesElement property name to salesElementHeader\t\t|\n|Modified the SalesElement object in the common schema and added a new devices property  \t\t|\n|Modified the SalesElement object in the common schema and changed salesElementInventories property name to to ElementInventorys to be consistent with array naming standards\t\t|\n|Modified the SalesElementInventory object in the common schema and added a new property for an array of companionTypeIds \t\t|\n|Modified the SalesElementInventoryDate and changed the dateType and calendarType from required to optional\t\t|\n|Modified the SalesElementTransaction object in the common schema to and changed salesElement to salesElementHeader, added new devices property, and and modified salesElementInventorys name to be consistent with array naming standards\t\t|\n|Modified the SalesElementTransactionInventory object in the common schema to support new properties for  lineReferences, companionTypeIds and changed the Boolean property names to start with 'is'\t\t|\n|Modified the SalesElementTransactionDate object in the common schema and added new properties to support frequencyCapping, pricingMetric, grossCost, netCost and audienceTargets\t\t|\n|Modified the Error object in the common schema to support a new errorList dictionary \t\t|\n|Modified the Event object in the common schema and changed boolean property names to start with 'is' \t\t|\n|Modified the BuyerInventoryAvails data model to support a new property for name e.g. name of subscription/request\t\t|\n|Modified the BuyerInventoryAvails data model and removed dateSubmitted property\t\t|\n|Modified the BuyerInventoryAvails data model and changed all Boolean property names to start with 'is' \t\t|\n|Modified the BuyerInventoryAvails data model and added new properties to support frequency and reportSpan objects\t\t|\n|Modified the SellerInventoryAvails data model and changed all Boolean property names to start with 'is' \t\t|\n|Modified the SellerProposals data model and changed all Boolean property names to start with 'is' \t\t|\n|Modified the BuyerProposals data model and changed all Boolean property names to start with 'is' \t\t|\n|Modified the BuyerOrders data model and changed all Boolean property names to start with 'is' and removed calendarType property\t\t|\n|Modified the BuyerCommercialInstructions and changed dateWindow from an array to a singular date\t\t|\n|Modified the BuyerCommercialInstructions and replaced the adId property with the creative object\t\t|\n|Modified the BuyerCommercialInstructions data model and removed name and length properties from InstructionDetail since are properties in the creative common schema\t\t|\n|Modified the BuyerCommercialInstructions data model and removed the unitSpecificInstructions from the InstructionDetail\t\t|\n|Modified the SellerLogtimes data model to support an array of mediaOutlets objects\t\t|\n|Modified the SellerLogtimes data model in the Unit detail to support an array of lineReference identifiers\t\t|\n|Modified the SellerLogtimes data model and changed all Boolean properties to start with 'is' \t\t|\n|Modified the SellerLogtimes data model and changed the salesElement property name to salesElementHeader \t\t|\n|Modified the SellerLogTimes data model and replaced the adId property with the creative object\t\t|\n|Modified the SellerInvoices data model and added new properties to support  salesTax and discount \t\t|\n|Modified the SellerInvoices data model and added an array of mediaOutlets to the 'header' \t\t|\n|Modified the SellerInvoices data model and added array of lineReference identifiers to the lineDetails\t\t|\n|Modified the SellerInvoices data model and changed the name from salesElement to salesElementHeader\t\t|\n|Modified the SellerInvoices data model and added new properties to support pricingMetric, grossCost, NetCost, and audienceTargets to the LineDetail\t\t|\n|Modified the SellerInvoice data model to renamed the units property to unitCount \t\t|\n|Modified the SellerInvoice data model and changed all Boolean properties to begin with 'is' \t\t|\n|Added a new SellerAudience data model to the framework \t\t|\n|Added a new BuyerLogTimes data model to the framework to support request (subscription) to seller's logtimes\t\t|\n|Added new BuyerCreativeAssets data model to the framework\t\t|\n|Added new BuyerImpressionsSubscribe data model to the framework \t\t|\n|Added a new SellerImpressions data model to the framework |\n\n## Release 5.1.0 Notes\n\n| Changes from Release 5.0.0 to Release 5.1.0 |\n|---------------------------------------------|\n| Added Transaction Type guidelines to framework |\n| Added new section to each tab to indicate the valid methods |\n| Added new common object to support budgetAllocations by budget type |\n| Added new common object to support budget amount and optional budgetAllocation common object |\n| Changed the budget property in RFP from Property to Object |\n| Added new budget common object to Proposal and Order |\n| Added new BuyerProposals to framework to support buyer change requests to a seller's proposal |\n| Changed SellerMakegoodOffers to support an array of preemptDetails and makegoodOfferDetails with the option to link preempt details to makegood offer or makegood offer(s) to preempt detail e.g. 1:1, 2:1, etc. |\n| Added external comments to the SalesElementTransactionInventory and SalesElementTransactionDate that may be used for overall comments and/or the change request rationale to a proposal or order |\n| Changed dealYear property in Proposal and Order from Integer to String |\n| Added new section to each tab to indicate the valid response codes |\n| Added mediaoutlet object to BuyerMakegoodGuidelines |\n| Added SellerImpressions (Video/OTT) |\n| Added new common objects to framework to support SellerImpressions |\n| Added JSON examples to Github |\n| Renamed several endpoint names to plural (Avails, RFPs, Proposals, Orders, Invoices) to follow OpenAPI naming conventions |\n| Added salesOffice to Contact common object |\n| Added SellerCommercialInstructions to the framework to support confirm or reject of commercial instructions |\n| BuyerOrderRecall - Now included in BuyerOrder |\n| SellerOrderConfirm - Now included in SellerOrder (NEW) |\n| SellerOrderReject - Now included in SellerOrder (NEW) |\n| SellerMakegoodRecall - Now included in SellerMakegoodOffer |\n| BuyerMakegoodConfirm - Now included in BuyerMakegoodOffer (NEW) |\n| BuyerMakegoodReject - Now included in BuyerMakegoodOffer (NEW) |\n| Changed ratingSource and ratingStream in the AudienceSegment common object from enums to strings |\n| Added type to the audiencePricingMetric common object that identifies the type of audience and /or pricing being provided (Selling, Actual or Projection) |\n| Added Report Window to Impressions |\n| Added new examples section |\n\n## Release 5.0.0 Notes\n\n| Changes from Release 4.2.0 to Release 5.0.0 | Source |\n|-------------------------------------------|--------|\n| Applied consistent style to Framework including lowerCamelCase | Vendor feedback |\n| SalesElement structures to define product catalog to support inventory avails and transactions | Vendor feedback |\n| Vendor sign-off of updates to Logtimes, Commercial Instructions, Invoices | Frontrow Advisory |\n| Implemented TimePeriod object | Vendor feedback |\n| Interface titles (tabs names) refer to \"sender/\" and \"interface\" (e.g. \"seller/ Logtimes\") | Vendor feedback |\n| Transitioned to DateTime in order to support Broadcast Date and Calendar Date/Time military (HH:MM:SS 24hrs) | Vendor feedback |\n| Changed TransactionId to a GUID | Vendor feedback |\n| Created common objects: <ul><li>audienceSegmentDetail</li><li>pricingMetricOption</li><li>audiencePricingMetricUniverse</li><li>currency</li><li>ratecard</li><li>dateTime</li><li>timePeriod</li><li>dayDistribution</li><li>inventoryPosition</li><li>inventoryType</li></ul> | Vendor feedback |\n\n### Updated Buyer endpoints:\n\n* /buyer/commercialInstructions\n\n### New Buyer endpoints:\n\n* /buyer/inventoryAvails (request)\n* /buyer/RFP\n* /buyer/order\n\n### Updated Seller endpoints:\n\n* /seller/logtimes\n* /seller/invoice\n\n### New Seller endpoints:\n\n* /seller/inventoryAvails (response)\n* /seller/proposal\n* /seller/orderConfirmReject\n\n## General Glossary\n\n| Term | Definition |\n|------|------------|\n| Advanced TV | Television paired with technology that allows for new features, components or uses Addressable, programmatic, over-the-top (OTT) and interactive are all subsets of advanced TV. |\n| Application Program Interface (API) | A set of routines, protocols, and tools for building software applications. The API specifies how software components should interact and are the building blocks to integrate systems and platforms to access data and perform operations. |\n| Alternate ID (AD ID) | A unique identifier for commercial copy assigned to most commercials by advertising agencies. |\n| Automated Ad Buying | Or programmatic, typically refers to the use of software to purchase digital advertising, as opposed to the traditional process that involves RFPs, human negotiations and manual insertion orders. The challenge for traditional media companies is the complexity of the process and terminology in digital programmatic. It’s basically using machines to buy ads. |\n| Air Date | Traditional linear broadcast of a commercial; also refers to the exact date that the commercial spot ran. |\n| Avail | Remaining unsold units of time for sale within a container, |\n| Bookend | A scheduling constraint defined for a pair of units on the same deal wherein the one unit should air in the first slot of a break and the second should air in the last slot of the same break. |\n| Brand | Name used to distinguish one product from its competitors. It can apply to a single product, an entire product line, or even a company. |\n| Cancellation Options | Included as part of national upfront negotiations that indicate a date and dollar amount by quarter in which the buyer may choose to exercise the cancellation of dollars. Movie accounts may have rolling cancellation dates |\n| Composition Index | Measures the concentration of a particular target group of consumers on a given website or ad network, compared to the concentration of that target in the total Internet population. |\n| CPM | Cost Per thousand - The cost of advertising per thousand potential customers reached by a given broadcast advertisement. |\n| CPP | Cost Per Rating Point - The cost of reaching one percent of the target audience within a specified geographic area. Used by many media planners in developing, setting, and allocating rating point goals for marketing budgets. |\n| Creative | Another name for commercial. |\n| Demographic (Demo) | Division of the audience into various segments. |\n| Data Management Platform (DMP) | Software that collects and organizes either a buyer’s or seller’s first-party audience data from its website or station feed to improve audience segmentation and enable targeting. |\n| Demand Side Platform (DSP) | Software platform that feeds a buyer’s media specifications onto an exchange, manages multiple exchange accounts and bids across those accounts. |\n| Electronic Data Interchange (EDI) | A communication technology used to transmit data from one system to another as a batch file exchange process. |\n| Estimate  | Reference code used in buying systems for reconciliation |\n| Equivalized | Units whose impressions are weighted down or up from 30-second impressions based on their ratio of their length to 30 seconds. For example, if a selling title has projected 30-second impressions of 50,000 for a particular demo, equivalized impressions for a 15-second unit would be 25,000 and for a 60-second unit would be 100,000. |\n| Goals | Goals are usually defined by the buyer at the time of the RPF and used as part of the negotiations between the buyer and seller. Goals could be as broad as overall campaign goal or broken down further into various segments, which usually are daypart. |\n| Interstitial | One of a series of short items broadcast between program segments. This term can refer to promos, vignettes, or any other short form of programming |\n| Inventory Type | Type of advertising inventory \"commercials\" |\n| Linear TV | A term used for real-time television services that are transmitted on a schedule. Most TV programs originate as linear TV but may become time-shifted for later viewing. |\n| Media Outlet | Station or network (seller) |\n| Piggyback | Back-to-back scheduling of two or more brand commercials of one advertiser in network or spot positions. |\n| Preemption | A term used when a unit does not air as originally scheduled. |\n| Private Marketplace | Programmatic trading environment in which a publisher makes available a segment of inventory to an advertiser at a defined price. |\n| Programmatic TV (PTV): | An automated, technology- or data-driven method of buying linear TV |\n| Rating Source | The rating source and data stream for the audience actuals e.g. Program Live, Commercial Rating +3, etc. |\n| Reach & Frequency | Number of households exposed to a broadcast media schedule (reach) multiplied by the number of time they are exposed (frequency). The result indicates total potential audience exposure in a given geographical area. |\n| Sandwich |\n| Service or Web Service | A software system designed to support interoperable machine-to-machine interaction over a network. |\n| Supply Side Platform (SSP) | Software platform that feeds a station’s inventory onto the Exchange and allows the station to manage their ad impressions and to maximize revenue. |\n| Time Separation | A limitation on an ad sales deal that requires units to be separated from themselves or other units in the same primary product category or for the same advertiser by a specified length of time; this may be by unit length or across lengths |\n| Trading Desk | The team executing the buys using a DSP. |\n| Universe | The total number of persons/homes in a given population. There are multiple types of universe e.g. Total US, cable coverage, market, zip code, etc. |\n| Upfront | A term indicating that an advertiser has purchased advertising for the coming broadcast year in an early buying season, typically for the benefit of lower rates and CPM guarantees |\n| Vignette | Any short item of programming that can be inserted in a program break. See also interstitial. |\n| VPVH | Viewers per viewing household – more common in national buys. |\n"
+  description: "# Television Interface Practices Initiative (TIP)\n\nTrading Interface Automation Framework For Local TV Transactions.\n\n## Confidentiality Note\n\nThe detailed Workflow and API Framework in this document has been\nsynthesized from several technology vendor contributions. The contributions\nhighlighted the broad adoption of commonly used specs and in some cases,\nthere was an original work contribution from the TIP Initiative and\nFrontrow Advisory.  The TIP Initiative has thoroughly reviewed this\ndocument to ensure details have been appropriately abstracted and\nsynthesized.  This report does not include any specific proprietary work\nfrom a single technology vendor or source.\n\n## Version History\n\n| Version | Date | Author |\n|---------|------|--------|\n|0.1.0|\t09/25/17|\tInitial Draft\tTIP Initiative / Frontrow Advisory|\n|0.2.0|\t10/09/17|\tInitial Draft\tTIP Initiative / Frontrow Advisory|\n|1.0.0|\t11/11/17|\tRelease \tTIP Initiative / Frontrow Advisory|\n|1.1.0|\t02/22/17|\tDraft\tTIP Initiative / Frontrow Advisory|\n|2.0.0|\t04/06/17|\tRelease \tTIP Initiative / Frontrow Advisory|\n|2.1.0|\t06/29/18|\tDraft\tTIP Initiative / Frontrow Advisory|\n|3.0.0|\t10/23/18|\tRelease\tTIP Initiative / Frontrow Advisory|\n|3.1.0|\t02/01/19|\tRelease\tTIP Initiative / Frontrow Advisory|\n|4.0.0|\t05/16/19|\tRelease\tTIP Initiative / Frontrow Advisory|\n|4.2.0|\t01/24/20|\tRelease\tTIP Initiative / Frontrow Advisory|\n|4.3.0|\t04/01/20|\tDraft\tTIP Initiative / Frontrow Advisory|\n|5.0.0|\t05/05/20|\tRelease\tTIP Initiative / Frontrow Advisory|\n|5.1.0|\t08/13/20|\tRelease\tTIP Initiative / Frontrow Advisory|\n|6.0.0|\tTBD|\tThis draft \tTIP Initiative / Frontrow Advisory|\n\n## Release 6.0.0 Notes\n\n|Changes from Release 5.1.0. to Release 6.0.0.|\t\n|---------------------------------------------|\t\n|Added a new Identifier object to the common schemas \t\t|\n|Added a new AudienceTarget object to the common schemas to support video and cross platform sales \t\t|\n|Added a new FrequencyCapping object to the common schemas to support and cross platform sales \t\t|\n|Added a new Frequency object to the common schemas to support subscription frequency of receiving report \t\t|\n|Added a new DyanamicDate object to the common schemas to indicate the values to be used when calculating a start date, or end date relative to the report date \t\t|\n|Modified the PricingMetric common object in the common schema to support gross and net values \t\t|\n|Modified the MediaOutlet object in the common schema to support an array of mediaOutletId Identifiers\t\t|\n|Modified the MediaOutlet object in the common schema and changed the mediaOutletType format from enum constraints to string \t\t|\n|Modified the Advertiser object in the common schema to support an array of advertiserId Identifiers\t\t|\n|Modified the Brand object in the common schema to support an array of brandId Identifiers\t\t|\n|Modified the Buyer object in the common schema to support an array of buyerId Identifiers\t\t|\n|Modified the Product object in the common schema to support an array of productId Identifiers\t\t|\n|Modified the AudienceSegment in the common schema to support an array of audienceSegementIds identifiers\t\t|\n|Modified the AudienceSegment in the common schema and changed Boolean properties names to start with 'is' e.g. isPrimary\t\t|\n|Modified the PriceMetric Object in the common schema to support a new SPOT value in the enum constraints \t\t|\n|Modified the PricingMetric Object in the common schema to support a netValue in addition to the grossValue\t\t|\n|Modified the RateCard object in the common schema and added a currency property \t\t|\n|Modified the Guideline object in the common schema and removed the guidelineId property and changed guidelineName to guidelines to support an array of values \t\t|\n|Modified the DateWindow object in the common schema and changed the endDate from required to optional\t\t|\n|Modified the TimeWindow object in the common schema and changed the endTime from required to optional and removed the enum from the data type\t\t|\n|Modified the DayofWeek object in the common schema and changed Boolean property names to start with 'is' e.g.  isMonday, isTuesday, etc. \t\t|\n|Modified the DailyUnitDistribution object in the common schema to support a new pacingRule and modified the days in the week from required to optional\t\t|\n|Modified the SalesElement object in the common schema and changed the salesElement property name to salesElementHeader\t\t|\n|Modified the SalesElement object in the common schema and added a new devices property  \t\t|\n|Modified the SalesElement object in the common schema and changed salesElementInventories property name to to ElementInventorys to be consistent with array naming standards\t\t|\n|Modified the SalesElementInventory object in the common schema and added a new property for an array of companionTypeIds \t\t|\n|Modified the SalesElementInventoryDate and changed the dateType and calendarType from required to optional\t\t|\n|Modified the SalesElementTransaction object in the common schema to and changed salesElement to salesElementHeader, added new devices property, and and modified salesElementInventorys name to be consistent with array naming standards\t\t|\n|Modified the SalesElementTransactionInventory object in the common schema to support new properties for  lineReferences, companionTypeIds and changed the Boolean property names to start with 'is'\t\t|\n|Modified the SalesElementTransactionDate object in the common schema and added new properties to support frequencyCapping, pricingMetric, grossCost, netCost and audienceTargets\t\t|\n|Modified the distributionType in the RFP CampaignGoals to support a new Unit Length in the enum constraints \t\t|\n|Modified the Error object in the common schema to support a new errorList dictionary \t\t|\n|Modified the Event object in the common schema and changed boolean property names to start with 'is' \t\t|\n|Modified the BuyerInventoryAvails data model and removed dateSubmitted property\t\t|\n|Modified the BuyerInventoryAvails data model and changed all Boolean property names to start with 'is' \t\t|\n|Modified the SellerInventoryAvails data model and changed all Boolean property names to start with 'is' \t\t|\n|Modified the SellerProposals data model and changed all Boolean property names to start with 'is' \t\t|\n|Modified the BuyerProposals data model and changed all Boolean property names to start with 'is' \t\t|\n|Modified the BuyerOrders data model and changed all Boolean property names to start with 'is' and removed calendarType property\t\t|\n|Modified the BuyerCommercialInstructions and changed dateWindow from an array to a singular date\t\t|\n|Modified the BuyerCommercialInstructions and replaced the adId property with the creative object\t\t|\n|Modified the BuyerCommercialInstructions data model and removed name and length properties from InstructionDetail since are properties in the creative common schema\t\t|\n|Modified the SellerLogtimes data model to support an array of mediaOutlets objects\t\t|\n|Modified the SellerLogtimes data model in the Unit detail to support an array of lineReference identifiers\t\t|\n|Modified the SellerLogtimes data model and changed all Boolean properties to start with 'is' \t\t|\n|Modified the SellerLogtimes data model and changed the salesElement property name to salesElementHeader \t\t|\n|Modified the SellerLogTimes data model and replaced the adId property with the creative object\t\t|\n|Modified the SellerInvoices data model and added new properties to support  salesTax and discount \t\t|\n|Modified the SellerInvoices data model and added an array of mediaOutlets to the 'header' \t\t|\n|Modified the SellerInvoices data model and added array of lineReference identifiers to the lineDetails\t\t|\n|Modified the SellerInvoices data model and changed the name from salesElement to salesElementHeader\t\t|\n|Modified the SellerInvoices data model and added new properties to support pricingMetric, grossCost, NetCost, and audienceTargets to the LineDetail\t\t|\n|Modified the SellerInvoice data model to renamed the units property to unitCount \t\t|\n|Modified the SellerInvoice data model and changed all Boolean properties to begin with 'is' \t\t|\n|Added a new SellerAudience data model to the framework \t\t|\n|Added a new BuyerLogTimes/Subscribe data model to the framework to support a request and /or subscription to seller's logtimes\t\t|\n|Added a new BuyerAudience/Subscribe data model to the framework to support a request and /or subscription to seller's logtimes\t\t|\n|Added new BuyerImpressionsSubscribe data model to the framework \t\t    |\n\n## Release 5.1.0 Notes\n\n| Changes from Release 5.0.0 to Release 5.1.0 |\n|---------------------------------------------|\n| Added Transaction Type guidelines to framework |\n| Added new section to each tab to indicate the valid methods |\n| Added new common object to support budgetAllocations by budget type |\n| Added new common object to support budget amount and optional budgetAllocation common object |\n| Changed the budget property in RFP from Property to Object |\n| Added new budget common object to Proposal and Order |\n| Added new BuyerProposals to framework to support buyer change requests to a seller's proposal |\n| Changed SellerMakegoodOffers to support an array of preemptDetails and makegoodOfferDetails with the option to link preempt details to makegood offer or makegood offer(s) to preempt detail e.g. 1:1, 2:1, etc. |\n| Added external comments to the SalesElementTransactionInventory and SalesElementTransactionDate that may be used for overall comments and/or the change request rationale to a proposal or order |\n| Changed dealYear property in Proposal and Order from Integer to String |\n| Added new section to each tab to indicate the valid response codes |\n| Added mediaoutlet object to BuyerMakegoodGuidelines |\n| Added SellerImpressions (Video/OTT) |\n| Added new common objects to framework to support SellerImpressions |\n| Added JSON examples to Github |\n| Renamed several endpoint names to plural (Avails, RFPs, Proposals, Orders, Invoices) to follow OpenAPI naming conventions |\n| Added salesOffice to Contact common object |\n| Added SellerCommercialInstructions to the framework to support confirm or reject of commercial instructions |\n| BuyerOrderRecall - Now included in BuyerOrder |\n| SellerOrderConfirm - Now included in SellerOrder (NEW) |\n| SellerOrderReject - Now included in SellerOrder (NEW) |\n| SellerMakegoodRecall - Now included in SellerMakegoodOffer |\n| BuyerMakegoodConfirm - Now included in BuyerMakegoodOffer (NEW) |\n| BuyerMakegoodReject - Now included in BuyerMakegoodOffer (NEW) |\n| Changed ratingSource and ratingStream in the AudienceSegment common object from enums to strings |\n| Added type to the audiencePricingMetric common object that identifies the type of audience and /or pricing being provided (Selling, Actual or Projection) |\n| Added Report Window to Impressions |\n| Added new examples section |\n\n## Release 5.0.0 Notes\n\n| Changes from Release 4.2.0 to Release 5.0.0 | Source |\n|-------------------------------------------|--------|\n| Applied consistent style to Framework including lowerCamelCase | Vendor feedback |\n| SalesElement structures to define product catalog to support inventory avails and transactions | Vendor feedback |\n| Vendor sign-off of updates to Logtimes, Commercial Instructions, Invoices | Frontrow Advisory |\n| Implemented TimePeriod object | Vendor feedback |\n| Interface titles (tabs names) refer to \"sender/\" and \"interface\" (e.g. \"seller/ Logtimes\") | Vendor feedback |\n| Transitioned to DateTime in order to support Broadcast Date and Calendar Date/Time military (HH:MM:SS 24hrs) | Vendor feedback |\n| Changed TransactionId to a GUID | Vendor feedback |\n| Created common objects: <ul><li>audienceSegmentDetail</li><li>pricingMetricOption</li><li>audiencePricingMetricUniverse</li><li>currency</li><li>ratecard</li><li>dateTime</li><li>timePeriod</li><li>dayDistribution</li><li>inventoryPosition</li><li>inventoryType</li></ul> | Vendor feedback |\n\n### Updated Buyer endpoints:\n\n* /buyer/commercialInstructions\n\n### New Buyer endpoints:\n\n* /buyer/inventoryAvails (request)\n* /buyer/RFP\n* /buyer/order\n\n### Updated Seller endpoints:\n\n* /seller/logtimes\n* /seller/invoice\n\n### New Seller endpoints:\n\n* /seller/inventoryAvails (response)\n* /seller/proposal\n* /seller/orderConfirmReject\n\n## General Glossary\n\n| Term | Definition |\n|------|------------|\n| Advanced TV | Television paired with technology that allows for new features, components or uses Addressable, programmatic, over-the-top (OTT) and interactive are all subsets of advanced TV. |\n| Application Program Interface (API) | A set of routines, protocols, and tools for building software applications. The API specifies how software components should interact and are the building blocks to integrate systems and platforms to access data and perform operations. |\n| Alternate ID (AD ID) | A unique identifier for commercial copy assigned to most commercials by advertising agencies. |\n| Automated Ad Buying | Or programmatic, typically refers to the use of software to purchase digital advertising, as opposed to the traditional process that involves RFPs, human negotiations and manual insertion orders. The challenge for traditional media companies is the complexity of the process and terminology in digital programmatic. It’s basically using machines to buy ads. |\n| Air Date | Traditional linear broadcast of a commercial; also refers to the exact date that the commercial spot ran. |\n| Avail | Remaining unsold units of time for sale within a container, |\n| Bookend | A scheduling constraint defined for a pair of units on the same deal wherein the one unit should air in the first slot of a break and the second should air in the last slot of the same break. |\n| Brand | Name used to distinguish one product from its competitors. It can apply to a single product, an entire product line, or even a company. |\n| Cancellation Options | Included as part of national upfront negotiations that indicate a date and dollar amount by quarter in which the buyer may choose to exercise the cancellation of dollars. Movie accounts may have rolling cancellation dates |\n| Composition Index | Measures the concentration of a particular target group of consumers on a given website or ad network, compared to the concentration of that target in the total Internet population. |\n| CPM | Cost Per thousand - The cost of advertising per thousand potential customers reached by a given broadcast advertisement. |\n| CPP | Cost Per Rating Point - The cost of reaching one percent of the target audience within a specified geographic area. Used by many media planners in developing, setting, and allocating rating point goals for marketing budgets. |\n| Creative | Another name for commercial. |\n| Demographic (Demo) | Division of the audience into various segments. |\n| Data Management Platform (DMP) | Software that collects and organizes either a buyer’s or seller’s first-party audience data from its website or station feed to improve audience segmentation and enable targeting. |\n| Demand Side Platform (DSP) | Software platform that feeds a buyer’s media specifications onto an exchange, manages multiple exchange accounts and bids across those accounts. |\n| Electronic Data Interchange (EDI) | A communication technology used to transmit data from one system to another as a batch file exchange process. |\n| Estimate  | Reference code used in buying systems for reconciliation |\n| Equivalized | Units whose impressions are weighted down or up from 30-second impressions based on their ratio of their length to 30 seconds. For example, if a selling title has projected 30-second impressions of 50,000 for a particular demo, equivalized impressions for a 15-second unit would be 25,000 and for a 60-second unit would be 100,000. |\n| Goals | Goals are usually defined by the buyer at the time of the RPF and used as part of the negotiations between the buyer and seller. Goals could be as broad as overall campaign goal or broken down further into various segments, which usually are daypart. |\n| Interstitial | One of a series of short items broadcast between program segments. This term can refer to promos, vignettes, or any other short form of programming |\n| Inventory Type | Type of advertising inventory \"commercials\" |\n| Linear TV | A term used for real-time television services that are transmitted on a schedule. Most TV programs originate as linear TV but may become time-shifted for later viewing. |\n| Media Outlet | Station or network (seller) |\n| Piggyback | Back-to-back scheduling of two or more brand commercials of one advertiser in network or spot positions. |\n| Preemption | A term used when a unit does not air as originally scheduled. |\n| Private Marketplace | Programmatic trading environment in which a publisher makes available a segment of inventory to an advertiser at a defined price. |\n| Programmatic TV (PTV): | An automated, technology- or data-driven method of buying linear TV |\n| Rating Source | The rating source and data stream for the audience actuals e.g. Program Live, Commercial Rating +3, etc. |\n| Reach & Frequency | Number of households exposed to a broadcast media schedule (reach) multiplied by the number of time they are exposed (frequency). The result indicates total potential audience exposure in a given geographical area. |\n| Sandwich |\n| Service or Web Service | A software system designed to support interoperable machine-to-machine interaction over a network. |\n| Supply Side Platform (SSP) | Software platform that feeds a station’s inventory onto the Exchange and allows the station to manage their ad impressions and to maximize revenue. |\n| Time Separation | A limitation on an ad sales deal that requires units to be separated from themselves or other units in the same primary product category or for the same advertiser by a specified length of time; this may be by unit length or across lengths |\n| Trading Desk | The team executing the buys using a DSP. |\n| Universe | The total number of persons/homes in a given population. There are multiple types of universe e.g. Total US, cable coverage, market, zip code, etc. |\n| Upfront | A term indicating that an advertiser has purchased advertising for the coming broadcast year in an early buying season, typically for the benefit of lower rates and CPM guarantees |\n| Vignette | Any short item of programming that can be inserted in a program break. See also interstitial. |\n| VPVH | Viewers per viewing household – more common in national buys. |\n"
   termsOfService: 'http://placeholderdomain.io/terms/'
   contact:
     name: TIP Initiative
@@ -16,7 +16,7 @@ servers:
 security:
   - bearerAuth: []
 paths:
-  /buyer/inventoryAvails:
+  /buyer/inventoryAvails/subscription:
     post:
       tags:
         - Buyer
@@ -29,7 +29,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/BuyerInventoryAvails'
+              $ref: '#/components/schemas/BuyerInventoryAvailsSubscription'
       responses:
         '200':
           description: OK - in case request can be fullfiled in realtime
@@ -236,35 +236,6 @@ paths:
           $ref: '#/components/responses/NotAllowed'
         default:
           $ref: '#/components/responses/Unexpected'
-  /buyer/creativeAssets:
-    post:
-      tags:
-        - Buyer
-      summary: Allows the creative agency or supplier of media to provide to the seller the media asset details
-      description: "Allows the creative agency or supplier of media to provide to the seller the media asset  details that are associated to the physical creative materials prior to air  Supported Transaction Types: New, Change, Cancel, Recall\t\t\t"
-      operationId: BuyerCreativeAssets
-      requestBody:
-        description: Schema provides for the definition of creative assets including the format information
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/BuyerCreativeAssets'
-      responses:
-        '200':
-          $ref: '#/components/responses/Success'
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '405':
-          $ref: '#/components/responses/NotAllowed'
-        default:
-          $ref: '#/components/responses/Unexpected'
   /buyer/commercialInstructions:
     post:
       tags:
@@ -314,6 +285,129 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/CancelConfirmRecallReject'
+      responses:
+        '200':
+          $ref: '#/components/responses/Success'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        default:
+          $ref: '#/components/responses/Unexpected'
+  /buyer/logtimes/subscription:
+    post:
+      tags:
+        - Buyer
+      summary: Allows the Buyer to initiate a request to subscribe to receive the seller's log time information
+      description: 'This endpoint is hosted at the seller end. Allows the Buyer to to initiate a Request Request to Seller to subscribe to seller''s information Supported Transaction Types: New, Change, '
+      operationId: BuyerLogtimesSubscription
+      requestBody:
+        description: seller provides the Log Times report to the buyer's system
+        required: true
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - description: Schema allows the buyer to formulate a query for log times information that meet the listed conditions
+                  properties:
+                    transactionHeader:
+                      $ref: '#/components/schemas/TransactionHeader'
+                    name:
+                      description: Buyer request reference name
+                      type: string
+                      example: Post log and reconciled logs only
+                    referenceIds:
+                      description: Array of ReferenceId objects containing the order id references; may also contain originating RFP and Proposal id and source references
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/ReferenceId'
+                    mediaOutlets:
+                      description: Array of mediaOutlet objects being requested
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/MediaOutlet'
+                      minItems: 1
+                    buyer:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/Buyer'
+                    advertiser:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/Advertiser'
+                    contacts:
+                      description: Array of Contact objects
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/Contact'
+                    inventoryTypes:
+                      description: ArrayList of InventoryTypes being requested
+                      type: array
+                      items:
+                        type: string
+                    statuses:
+                      description: Indicated the airing status being requested Aired  = 'as-aired' reconciliation for the spot is complete No Run = spot either did not run or didn't run as contracted when the broadcast log was played out Scheduled  = spot is placed on a pre log that has not yet been played out Finalized = spot is placed on a log that is in a 'final status' and ready to be played out and the spot is locked from edits Not Scheduled = spot has not yet been placed on a future broadcast log Preempted = spot has been removed from a future broadcast log; the buyer will be offered a makegood or issued a credit
+                      type: array
+                      items:
+                        type: string
+                        enum:
+                          - Aired
+                          - Scheduled
+                          - No Run
+                          - Finalized
+                          - Not Scheduled
+                          - Preempted
+                    frequency:
+                      $ref: '#/components/schemas/Frequency'
+                    startDate:
+                      oneOf:
+                        - $ref: '#/components/schemas/DynamicDate'
+                        - type: string
+                          format: date
+                    endDate:
+                      oneOf:
+                        - $ref: '#/components/schemas/DynamicDate'
+                        - type: string
+                          format: date
+                  required:
+                    - transactionHeader
+                    - referenceIds
+                - $ref: '#/components/schemas/CancelConfirmRecallReject'
+      responses:
+        '200':
+          $ref: '#/components/responses/Success'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        default:
+          $ref: '#/components/responses/Unexpected'
+  /seller/logtimes:
+    post:
+      tags:
+        - Seller
+      summary: Seller Creates Logtimes record in the buyer system
+      description: 'Allows the seller to send to the buyer the log times information. No Request from buyer is Required.<br/> Supported Transaction Types: New, Change'
+      operationId: SellerLogtimes
+      requestBody:
+        description: seller provides the Log Times report to the buyer's system
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SellerLogtimes'
       responses:
         '200':
           $ref: '#/components/responses/Success'
@@ -510,35 +604,6 @@ paths:
           $ref: '#/components/responses/NotAllowed'
         default:
           $ref: '#/components/responses/Unexpected'
-  /seller/logtimes:
-    post:
-      tags:
-        - Seller
-      summary: Seller Creates Logtimes record in the buyer system
-      description: 'Allows the seller to send to the buyer the log times information. No Request from buyer is Required.<br/> Supported Transaction Types: New, Change'
-      operationId: SellerLogtimes
-      requestBody:
-        description: seller provides the Log Times report to the buyer's system
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/SellerLogtimes'
-      responses:
-        '200':
-          $ref: '#/components/responses/Success'
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '405':
-          $ref: '#/components/responses/NotAllowed'
-        default:
-          $ref: '#/components/responses/Unexpected'
   /seller/invoices:
     post:
       tags:
@@ -570,7 +635,7 @@ paths:
           $ref: '#/components/responses/NotAllowed'
         default:
           $ref: '#/components/responses/Unexpected'
-  /buyer/audiences:
+  /buyer/audiences/subscription:
     post:
       tags:
         - Buyer
@@ -584,7 +649,7 @@ paths:
           application/json:
             schema:
               oneOf:
-                - $ref: '#/components/schemas/BuyerAudiences'
+                - $ref: '#/components/schemas/BuyerAudiencesSubscription'
                 - $ref: '#/components/schemas/CancelConfirmRecallReject'
       responses:
         '200':
@@ -985,7 +1050,7 @@ components:
           type: string
           enum:
             - Frontload
-            - Even Distribution
+            - Even
             - Daily Fast ASAP
             - Daily Even
             - Flight ASAP
@@ -1098,6 +1163,7 @@ components:
         - GBP
         - MXN
         - AUD
+      default: USD
     CpeCode:
       description: 'Packages the buyer''s client code, product code and estimate codes'
       properties:
@@ -1150,7 +1216,6 @@ components:
           example: 1Q'22 Rate Card
         currency:
           $ref: '#/components/schemas/Currency'
-          default: USD
       required:
         - rateCardName
     Budget:
@@ -1771,7 +1836,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/AudiencePricingMetric'
-            nullable: true
+          nullable: true
         externalComment:
           description: 'Free form comments string that can be used in any of the many interfaces the Sales Element objects appears. For example it can be used to support buyer or seller generic comments to guide the line-level negotiations in the proposal. It could include comments about the audience, rate, date, and units.'
           type: string
@@ -1779,20 +1844,24 @@ components:
       required:
         - dateWindow
     Frequency:
+      description: Indicates the recurrence pattern at which an associated TIP request will be auto generated
       properties:
+        effectiveOn:
+          description: 'When true, indicates that the report subscription will stay active until it is terminated by the requester Cancel Request. When false, indicates that the report will terminate either on the date indicated by the endOn or the number of after the number of occurences indicated in endOccurAfter'
+          type: string
+          format: date
+          example: 2020-08-12T00:00:00.000Z
         every:
-          description: 'associated with number, to indicate the unit of time'
+          description: Indicates the unit of time in which to receive the information available in the subscription
           type: string
           enum:
-            - One Time Only
+            - When Available
             - Hour
             - Day
             - Week
             - Month
-            - Quarter
-            - Year
         onDay:
-          description: Unique items. the days of the week on which the report is expected to be generated
+          description: Valid when every is equal to week; unique list the days of the week on which the data (report) is expected to be generated
           type: array
           items:
             type: string
@@ -1805,47 +1874,33 @@ components:
               - Sat
               - Sun
         onDate:
-          description: Unique items. the days of the month on which the report is expected to be generated; when used with Quarter or Year only two valid dates are applicable 1 indicates beginning of the interval and 31 indicates the end of the interval
+          description: 'Valid when every is equal to Month; unique day(s) of the month on which the data ( report) is expected to be generated; the values in onDate must be restricted to 1, 2, 3, 4, 5 to indicate 1st, 2nd, ... of the month.'
           type: array
           items:
             type: integer
             example:
               - 1
               - 15
-        at:
-          type: string
-          pattern: '^(([0-1][0-9])|(2[0-3]))(:[0-5][0-9]){2}$'
-          example: '11:45'
         isEndNever:
           description: Indicates if the report subscription will stay active until it is terminated by the requester Cancel Request
           type: boolean
           default: true
         endOn:
-          description: Indicate if the subscription must end at a specific date. if specified it takes preceedence over isEndNever. if endOccurAfter is specified report would stop after either date is reached or number of occurrences whichever comes first
+          description: Indicate if the subscription must end at a specific date. if specified it takes precedence over isEndNever. if endOccurAfter is specified report would stop after either date is reached or number of occurrences whichever comes first
           type: string
           format: date
           nullable: true
           default: null
         endOccurAfter:
-          description: indicates if the report subscription must end after the specified number of times. if specified it takes preceedence over isEndNever. if endOn is specified report would stop after either date is reached or number of occurrences whichever comes first
+          description: Indicates if the report subscription must end after the specified number of times. When specified it takes precedence over isEndNever. if endOn is specified report  would stop after either date is reached or number of occurrences whichever comes first
           type: integer
           minimum: 0
           nullable: true
-      required:
-        - every
-    DynamicDateWindow:
-      properties:
-        startPeriod:
-          description: Date will be calculated relative the report generate date
-          $ref: '#/components/schemas/DynamicDate'
-        endPeriod:
-          $ref: '#/components/schemas/DynamicDate'
-      required:
-        - startPeriod
-        - endPeriod
     DynamicDate:
+      description: 'Indicates the values to be used when calculating a start date, or end date relative to the report date.'
       properties:
-        relativity:
+        offsetType:
+          description: Provides the unit for the offset value
           type: string
           enum:
             - Hour
@@ -1854,20 +1909,23 @@ components:
             - Month
             - Quarter
             - Year
-        number:
-          description: Number may be negiative to indicate periods prior to the date on which the report will be generated
+        offset:
+          description: 'negative offset mean number of offsetypes prior to reporting day, positive number mean number of offsettypes following the reporting day.  0 indicates the reporting day'
           type: integer
+          example: -7
       required:
-        - relativity
-        - number
+        - offsetType
+        - offset
     ItemDetail:
+      description: 'Indicates the values to be used in invoice tax, discount or other type of user-defined invoice item'
       properties:
         itemType:
-          description: Indicates the type of Tax or Discount presented in the associated value
+          description: 'Indicates the type of Tax type, Discount, or any other type presented in the associated value'
           type: string
           nullable: false
           example: Sales Tax
         value:
+          description: Indicates the value associated to the type of the item type.
           type: number
           format: float
           example: 1245.55
@@ -2191,7 +2249,7 @@ components:
         - device
         - geo
         - events
-    BuyerInventoryAvails:
+    BuyerInventoryAvailsSubscription:
       description: Schema allows the buyer to formulate a query for Inventory meeting the listed conditions
       properties:
         transactionHeader:
@@ -2239,7 +2297,6 @@ components:
             type: string
         currency:
           $ref: '#/components/schemas/Currency'
-          default: USD
         externalComment:
           description: Free form text to accommodate transaction comments and/or activities outside the TIP flow
           type: string
@@ -2255,11 +2312,17 @@ components:
           items:
             $ref: '#/components/schemas/PricingMetricOption'
         frequency:
-          description: Frequency of reporting requested by the buyer
           $ref: '#/components/schemas/Frequency'
-        reportSpan:
-          description: Window of time for the report requested by the buyers
-          $ref: '#/components/schemas/DynamicDateWindow'
+        startDate:
+          oneOf:
+            - $ref: '#/components/schemas/DynamicDate'
+            - type: string
+              format: date
+        endDate:
+          oneOf:
+            - $ref: '#/components/schemas/DynamicDate'
+            - type: string
+              format: date
       required:
         - transactionHeader
         - mediaOutlets
@@ -2299,7 +2362,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/AudienceSegmentDetail'
-            nullable: true
+          nullable: true
         availWindow:
           $ref: '#/components/schemas/DateWindow'
         salesElements:
@@ -2428,6 +2491,7 @@ components:
             - Media Outlet Type
             - Daypart
             - Market
+            - Unit Length
             - AddedValue
             - Quarter
             - Month
@@ -2702,7 +2766,7 @@ components:
         - dateWindows
         - mediaOutlets
     BuyerOrders:
-      description: Buyers Ordering entity
+      description: 'Represent the data necessary to describe an order including terms, dates, products, media outlets in addition to all reference data'
       properties:
         transactionHeader:
           $ref: '#/components/schemas/TransactionHeader'
@@ -2759,13 +2823,6 @@ components:
         dealYear:
           description: Broadcast year for the order
           type: string
-        calendarType:
-          description: Indicates the calendar defining the start day and end day of a week
-          type: string
-          enum:
-            - Broadcast
-            - Calendar
-            - Nielsen
         billingOption:
           $ref: '#/components/schemas/BillingOption'
         isEquivalized:
@@ -3057,10 +3114,10 @@ components:
         isBonus:
           description: '$0 (i.e., free) ad impressions/pricing that a publisher includes with paid media to maximize the overall proposal/order'
           type: boolean
-        length:
+        airedLength:
           description: Length of commercial unit
           type: integer
-        airedLength:
+        bookedLength:
           description: Actual lenth of commerical unit
           type: integer
         rate:
@@ -3082,9 +3139,11 @@ components:
         isCredit:
           description: Indicate if the spot was issued a credit due to a discrepancy
           type: boolean
-        timePeriod:
+        timePeriods:
           description: Array of TimePeriod objects indicating SalesElement ordered day and time period constraints
-          $ref: '#/components/schemas/TimePeriod'
+          type: array
+          items:
+            $ref: '#/components/schemas/TimePeriod'
         dateTime:
           description: Not required when unit's status is 'No Run'
           $ref: '#/components/schemas/DateTime'
@@ -3100,7 +3159,7 @@ components:
         - advertiser
         - product
         - salesElementHeader
-        - length
+        - airedLength
         - status
     ChildUnit:
       description: 'Child unit details for footprint unit to support Audience Network, Diginet or other forms of ''child'' units'
@@ -3160,11 +3219,17 @@ components:
             $ref: '#/components/schemas/ReferenceId'
           minItems: 1
         frequency:
-          description: Frequency of reporting requested by the buyer
           $ref: '#/components/schemas/Frequency'
-        reportSpan:
-          description: Window of time for the report requested by the buyers
-          $ref: '#/components/schemas/DynamicDateWindow'
+        startDate:
+          oneOf:
+            - $ref: '#/components/schemas/DynamicDate'
+            - type: string
+              format: date
+        endDate:
+          oneOf:
+            - $ref: '#/components/schemas/DynamicDate'
+            - type: string
+              format: date
         statSource:
           description: Identifies the originating impressions tracking source if all impressions have the same tracking source. The combination of StatSource and MediaOutlet identifies a unique impression.
           type: string
@@ -3225,7 +3290,7 @@ components:
         - filePrefix
         - chunks
     SellerAudiences:
-      description: Data model description here
+      description: A representation of the Actual Audience delivery information for comparison against contract delivery goals
       properties:
         transactionHeader:
           $ref: '#/components/schemas/TransactionHeader'
@@ -3386,7 +3451,7 @@ components:
       required:
         - creative
         - audiencePricingMetrics
-    BuyerAudiences:
+    BuyerAudiencesSubscription:
       description: Schema allows the buyer to formulate a query for audience post buy information that meet the listed conditions
       properties:
         transactionHeader:
@@ -3419,29 +3484,35 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Contact'
-        dayOfWeek:
-          $ref: '#/components/schemas/DayOfWeek'
-        timeWindows:
+        audienceTargets:
+          description: Array of AudienceTarget objects
           type: array
           items:
-            $ref: '#/components/schemas/TimeWindow'
-        inventoryTypes:
-          description: ArrayList of InventoryTypes being requested
+            $ref: '#/components/schemas/AudienceTarget'
+        audienceSegments:
+          description: Array of AudienceSegment objects being requested
           type: array
           items:
-            type: string
+            $ref: '#/components/schemas/AudienceSegment'
+          minItems: 1
         externalComment:
           description: Free form text to accommodate transaction comments and/or activities outside the TIP flow
           type: string
         frequency:
-          description: Frequency of reporting requested by the buyer
           $ref: '#/components/schemas/Frequency'
-        reportSpan:
-          description: Window of time for the report requested by the buyers
-          $ref: '#/components/schemas/DynamicDateWindow'
+        startDate:
+          oneOf:
+            - $ref: '#/components/schemas/DynamicDate'
+            - type: string
+              format: date
+        endDate:
+          oneOf:
+            - $ref: '#/components/schemas/DynamicDate'
+            - type: string
+              format: date
       required:
         - transactionHeader
-        - referenceIds
+        - name
     SellerMakegoodGuidelines:
       description: Schema allows seller to request Makegood Guidelines
       properties:
@@ -3462,7 +3533,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ReferenceId'
-          minItems: 1
         cpeCode:
           $ref: '#/components/schemas/CpeCode'
         buyer:
@@ -3492,7 +3562,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ReferenceId'
-          minItems: 1
         cpeCode:
           $ref: '#/components/schemas/CpeCode'
         buyer:
@@ -3546,7 +3615,7 @@ components:
         - makegoodType
         - salesElementEquivalent
     SellerMakegoodOffers:
-      description: Makegood Offer data schema
+      description: Seller Makegood offer Model allows the seller to communicate the proposed changes to an existing and runnin ad compaign
       properties:
         transactionHeader:
           $ref: '#/components/schemas/TransactionHeader'
@@ -3555,7 +3624,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ReferenceId'
-          minItems: 1
         makegoodType:
           description: Type of Makegood Offer
           type: string
@@ -3570,7 +3638,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PreemptDetail'
-          minItems: 1
+          minItems: 0
         makegoodDetails:
           type: array
           items:
@@ -3699,12 +3767,12 @@ components:
           description: Buyer commission amount
           type: number
           format: float
-        salesTax:
+        salesTaxes:
           description: Total sales tax when applicable
           type: array
           items:
             $ref: '#/components/schemas/ItemDetail'
-        discount:
+        discounts:
           description: Total discount when applicable
           type: array
           items:
@@ -3784,7 +3852,7 @@ components:
           type: integer
         cpeCode:
           $ref: '#/components/schemas/CpeCode'
-        billableRevenue:
+        billableCosts:
           description: Indicates if the gross and net costs are booked or earned revenues calculated from the actual impression delivery; extended enum values are allowed
           type: string
           enum:
@@ -3825,7 +3893,7 @@ components:
         - grossCost
         - netCost
     UnitDetail:
-      description: Unit details information (required for 'unit' type only)
+      description: Unit details information (required for 'Spot' type)
       properties:
         unitId:
           description: Seller generated unique number for a linear television spot
