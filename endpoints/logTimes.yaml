@@ -56,6 +56,40 @@ paths:
           $ref: 'schemas/commonResponses.yaml#/components/responses/NotAllowed'
         default: #unexpected
           $ref: 'schemas/commonResponses.yaml#/components/responses/Unexpected'
+  /buyer/logtimes/subscription:
+    post:
+      tags:
+        - Buyer
+      summary: Allows the Buyer to initiate a request to subscribe to receive the seller's log time information
+      description: >-
+          This endpoint is hosted at the seller end. Allows the Buyer to
+          to initiate a Request Request to Seller to subscribe to seller's information
+          Supported Transaction Types: New, Change, 
+      operationId: BuyerLogtimesSubscription
+      requestBody:
+        description: seller provides the Log Times report to the buyer's system
+        required: true
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - $ref: 'schemas/logTimesSchemas.yaml#/components/schemas/BuyerLogTimesSubscription'
+                - $ref: 'schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
+      responses:
+        '200': #OK
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Success'
+        '400': #Bad Request
+          $ref: 'schemas/commonResponses.yaml#/components/responses/BadRequest'
+        '401': #Unauthorized
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Unauthorized'
+        '403': #Forbidden
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Forbidden'
+        '404': #Not Found
+          $ref: 'schemas/commonResponses.yaml#/components/responses/NotFound'
+        '405': #Not Allowed
+          $ref: 'schemas/commonResponses.yaml#/components/responses/NotAllowed'
+        default: #unexpected
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Unexpected'
 components:
  securitySchemes:
     bearerAuth:

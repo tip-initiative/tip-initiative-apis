@@ -198,7 +198,10 @@ components:
           type: array
           items:
             type: string
-          example: ["$50,000 - $75,000", "$75,000, -$100,000"]
+            example: [
+  "$50,000 - $75,000",
+  "$75,000, -$100,000"
+]
       required:
         - excludeOrInclude
         - targetAttribute
@@ -502,6 +505,7 @@ components:
         - GBP
         - MXN
         - AUD
+      default: USD
     CpeCode:
       description: Packages the buyer's client code, product code and estimate codes
       properties:
@@ -554,7 +558,6 @@ components:
           example: 1Q'22 Rate Card
         currency:
           $ref: '#/components/schemas/Currency'
-          default: USD
       required:
         - rateCardName
     Budget:
@@ -814,9 +817,12 @@ components:
           type: array
           items:
             type: string
-          uniqueItems: True
-          nullable: True
-          example: ["Dallas, TX",  "NYC, NY"]
+            uniqueItems: True
+            nullable: True
+            example: [
+  "Dallas, TX",
+  "NYC, NY"
+]
         contactFirstName:
           description: Contact First Name
           type: string
@@ -1222,16 +1228,24 @@ components:
       required:
         - dateWindow
     Frequency:
+      description: Indicates the recurrence pattern at which an associated TIP request will be auto generated
       properties:
-        whenAvailable:
-          type: boolean
+        effectiveOn:
+          description: >-
+            When true, indicates that the report subscription will stay active until
+            it is terminated by the requester Cancel Request. When false, indicates that the
+            report will terminate either on the date indicated by the endOn or the number of
+            after the number of occurences indicated in endOccurAfter
+          type: string
+          format: date
+          example: 2020-08-12
         every:
           description: >-
             Indicates the unit of time in which to receive the information available
             in the subscription
           type: string
           enum:
-            - One Time Only
+            - When Available
             - Hour
             - Day
             - Week
@@ -1255,11 +1269,11 @@ components:
           description: >-
             Valid when every is equal to Month; unique day(s) of the month on which the data
             ( report) is expected to be generated; the values in onDate must be restricted
-            to 1, 2, 3, 4, 5 to in dicate 1st, 2nd, ... of the month.
+            to 1, 2, 3, 4, 5 to indicate 1st, 2nd, ... of the month.
           type: array
           items:
             type: integer
-          example: [1, 15]
+            example: [1,15]
         isEndNever:
           description: >-
             Indicates if the report subscription will stay active until it is terminated by the
@@ -1268,34 +1282,60 @@ components:
           default: true
         endOn:
           description: >-
-            Indicate if the subscription must end at a specific date. if specified
-            it takes preceedence over isEndNever. if endOccurAfter is specified report would
-            stop after either date is reached or number of occurrences whichever comes first
+            Indicate if the subscription must end at a specific date. if specified it takes precedence
+            over isEndNever. if endOccurAfter is specified report would stop after either date
+            is reached or number of occurrences whichever comes first
           type: string
           format: date
           nullable: True
           default: 
-    DynamicDateWindow:
+        endOccurAfter:
+          description: >-
+            Indicates if the report subscription must end after the specified number of times.
+            When specified it takes precedence over isEndNever. if endOn is specified report  would
+            stop after either date is reached or number of occurrences whichever comes first
+          type: integer
+          minimum: 0
+          nullable: True
+    DynamicDate:
+      description: >-
+        Indicates the values to be used when calculating a start date, or end date relative
+        to the report date.
       properties:
-        periodType:
+        offsetType:
+          description: Provides the unit for the offset value
           type: string
           enum:
-            - Days
-            - Weeks
-            - Months
-        numPeriods:
-          description: Date will be calculated relative the report generate date
+            - Hour
+            - Day
+            - Week
+            - Month
+            - Quarter
+            - Year
+        offset:
+          description: >-
+            negative offset mean number of offsetypes prior to reporting day, positive number
+            mean number of offsettypes following the reporting day.  0 indicates the reporting
+            day
           type: integer
+          example: -7
       required:
-        - numPeriods
+        - offsetType
+        - offset
     ItemDetail:
+      description: >-
+        Indicates the values to be used in invoice tax, discount or other type of user-defined
+        invoice item
       properties:
         itemType:
-          description: Indicates the type of Tax or Discount presented in the associated value
+          description: >-
+            Indicates the type of Tax type, Discount, or any other type presented in the associated
+            value
           type: string
           nullable: False
           example: "Sales Tax"
         value:
+          description: Indicates the value associated to the type of the item type.
           type: number
           format: float
           example: 1245.55
@@ -1387,7 +1427,10 @@ components:
           type: array
           items:
             type: string
-          example: [ "ENG-US",  "ENG-UK"]
+            example: [
+  "ENG-US",
+  "ENG-UK"
+]
         aspect:
           description: Aspect ratio
           type: string

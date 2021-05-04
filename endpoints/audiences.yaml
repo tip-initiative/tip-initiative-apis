@@ -19,7 +19,7 @@ info:
 servers:
   - url: http://placeholderdomain.io/v6.0.0
 paths:
-  /buyer/audiences:
+  /buyer/audiences/subscription:
     post:
       tags:
         - Buyer
@@ -90,5 +90,5 @@ components:
   schemas:
     BuyerAudiencesRequest:
       oneOf:
-        - $ref: './schemas/audienceSchemas.yaml#/components/schemas/BuyerAudiences'
+        - $ref: './schemas/audienceSchemas.yaml#/components/schemas/BuyerAudiencesSubscription'
         - $ref: './schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'

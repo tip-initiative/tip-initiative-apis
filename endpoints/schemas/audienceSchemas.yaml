@@ -78,7 +78,7 @@ components:
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/ReferenceId'
-          minItems: 1           
+          minItems: 1
         cpeCode:
           $ref: 'commonSchemas.yaml#/components/schemas/CpeCode'
         advertiser:
@@ -90,7 +90,7 @@ components:
         salesElementHeader:
           $ref: 'commonSchemas.yaml#/components/schemas/SalesElementHeader'
         daypart:
-          description: \'as-aired\' seller\'s daypart name
+          description: as-aired sellers daypart name
           type: string
         inventoryType:
           type: string
@@ -184,7 +184,7 @@ components:
       required:
         - creative
         - audiencePricingMetrics
-    BuyerAudiences:
+    BuyerAudiencesSubscription:
       description: >-
         Schema allows the buyer to formulate a query for audience post buy information
         that meet the listed conditions
@@ -201,7 +201,7 @@ components:
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/ReferenceId'
-          minItems: 1           
+          minItems: 1
         mediaOutlets:
           description: Array of mediaOutlet objects being requested
           type: array
@@ -236,11 +236,17 @@ components:
           description: Free form text to accommodate transaction comments and/or activities outside the TIP flow
           type: string
         frequency:
-          description: Frequency of reporting requested by the buyer
           $ref: 'commonSchemas.yaml#/components/schemas/Frequency'
-        reportSpan:
-          description: Window of time for the report requested by the buyers
-          $ref: 'commonSchemas.yaml#/components/schemas/DynamicDateWindow'
+        startDate:
+          oneOf:
+            - $ref: 'commonSchemas.yaml#/components/schemas/DynamicDate'
+            - type: string
+              format: date
+        endDate:
+          oneOf:
+            - $ref: 'commonSchemas.yaml#/components/schemas/DynamicDate'
+            - type: string
+              format: date
       required:
         - transactionHeader
         - name

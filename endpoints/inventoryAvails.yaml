@@ -23,7 +23,7 @@ servers:
   - url: http://placeholderdomain.io/v6.0.0
 
 paths:
-  /buyer/inventoryAvails:
+  /buyer/inventoryAvails/subscription:
     post:
       tags:
         - Buyer
@@ -40,7 +40,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: 'schemas/inventoryAvailsSchemas.yaml#/components/schemas/BuyerInventoryAvails'
+              $ref: 'schemas/inventoryAvailsSchemas.yaml#/components/schemas/BuyerInventoryAvailsSubscription'
             examples:
               New:
                 value:

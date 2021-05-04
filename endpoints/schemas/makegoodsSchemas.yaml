@@ -36,7 +36,6 @@ components:
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/ReferenceId'
-          minItems: 1           
         cpeCode:
           $ref: 'commonSchemas.yaml#/components/schemas/CpeCode'
         buyer:
@@ -72,7 +71,6 @@ components:
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/ReferenceId'
-          minItems: 1           
         cpeCode:
           $ref: 'commonSchemas.yaml#/components/schemas/CpeCode'
         buyer:
@@ -129,7 +127,9 @@ components:
         - makegoodType
         - salesElementEquivalent
     SellerMakegoodOffers:
-      description: Makegood Offer data schema
+      description: >-
+        Seller Makegood offer Model allows the seller to communicate the proposed changes
+        to an existing and runnin ad compaign
       properties:
         transactionHeader:
           $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
@@ -140,7 +140,6 @@ components:
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/ReferenceId'
-          minItems: 1           
         makegoodType:
           description: Type of Makegood Offer
           type: string
@@ -155,7 +154,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PreemptDetail'
-          minItems: 1
+          minItems: 0
         makegoodDetails:
           type: array
           items:
@@ -226,7 +225,7 @@ components:
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/ReferenceId'
-          minItems: 1           
+          minItems: 1
         comments:
           description: Free form comments
           type: string
