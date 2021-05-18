@@ -14,16 +14,16 @@ info:
 paths: {}
 components:
   schemas:
-    BuyerImpressionsSubscribe:
+    BuyerImpressionsSubscription:
       description: >-
         Schema supports a notification format that allows the buyer to define the parameters
         for the impressions payload such as frequency, time span, orders, etc.
       properties:
+        transactionHeader:
+          $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
         name:
           description: Free form text as a name for this subscription
           type: string
-        transactionHeader:
-          $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
         mediaOutlets:
           description: >-
             Unique list of Media Outlets including the Seller entity and all Content
@@ -32,6 +32,7 @@ components:
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/MediaOutlet'
           minItems: 1
+          uniqueItems: true
         salesElementHeaders:
           description: Unique list of SalesElements related to the impression included in the message
           type: array
@@ -70,7 +71,9 @@ components:
       required:
         - name
         - transactionHeader
-    SellerImpressions:
+      xml:
+        name: BuyerImpressionsSubscriptionRequest
+    SellerImpressionsNotification:
       description: >-
         Schema supports an asynchronous response to a subscription informing the buyer that
         a new delivery of Impressions is ready to download
@@ -85,12 +88,14 @@ components:
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/MediaOutlet'
           minItems: 1
+          uniqueItems: true
         salesElementHeaders:
           description: Unique list of SalesElements related to the impression included in the message
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/SalesElementHeader'
           minItems: 1
+          uniqueItems: true
         referenceIds:
           description: >-
             referenceId must contain a minimum of one item. A list of identifying information
@@ -131,3 +136,5 @@ components:
         - statSource
         - filePrefix
         - chunks
+      xml:
+        name: SellerImpressionsNotificationRequest

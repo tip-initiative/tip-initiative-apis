@@ -212,20 +212,24 @@ components:
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/Buyer'
+          minItems: 1           
         advertiser:
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/Advertiser'
+          minItems: 1           
         contacts:
           description: Array of Contact objects
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/Contact'
+          minItems: 1           
         audienceTargets:
           description: Array of AudienceTarget objects
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/AudienceTarget'
+          minItems: 1           
         audienceSegments:
           description: Array of AudienceSegment objects being requested
           type: array

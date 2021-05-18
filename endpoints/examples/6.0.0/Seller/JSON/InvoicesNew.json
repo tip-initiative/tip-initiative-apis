@@ -1,0 +1,313 @@
+{
+  "transactionHeader": {
+    "tipVersion": "6.0.0",
+    "transactionId": {
+      "transactionId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "transactionType": "New",
+      "sourceId": "YSELL-1234",
+      "sourceName": "YSELL Seller"
+    },
+    "timeStamp": "2021-05-06T19:53:04.885Z"
+  },
+  "referenceIds": [
+    {
+      "referenceSourceName": "YSELL Seller",
+      "referenceSourceId": "YSELL-1234",
+      "referenceType": "Order",
+	  "referenceId": "ORD-5678",
+      "referenceVersionId": 1,
+      "referenceName": "Hyundai 1Q22"
+    },
+    {
+      "referenceSourceName": "YSELL Seller",
+      "referenceSourceId": "YSELL-1234",
+      "referenceType": "Invoice",
+	  "referenceId": "ORD-5678-1",
+      "referenceVersionId": 1,
+      "referenceName": "Hyundai 1Q22"
+    }
+  ],
+  "invoiceDate": "2021-08-25",
+  "invoiceRevisionDate": "2021-08-25",
+  "billingOption": {
+    "billingCalendar": "Broadcast",
+    "billingCycle": "Month",
+    "billingGranularity": "Order"
+  },
+  "dueDate": "2021-09-25",
+  "dateWindow": {
+    "startDate": "2021-07-01",
+    "endDate": "2021-07-31"
+  },
+  "businessType": "Cash",
+  "buyer": {
+    "buyerIds": [
+      {
+        "id": "YSELL-7890",
+        "version": "0",
+        "srcId": "YSELL-1234",
+        "srcName": "YSELL Seller"
+      }
+    ],
+    "buyerName": "Canvas Worldwide. LLC"
+  },
+  "localNational": "Local",
+  "advertiser": {
+    "advertiserIds": [
+      {
+        "id": "YSELL-0980",
+        "version": "0",
+        "srcId": "YSELL-1234",
+        "srcName": "YSELL Seller"
+      }
+    ],
+    "advertiserName": "Hyundai"
+  },
+  "contacts": [
+    {
+      "contactType": "Account Executive",
+	  "contactIds": [
+		{
+        "id": "CNT-1234",
+        "version": "0",
+        "srcId": "XVEN-1234",
+        "srcName": "XVEN Buyer"			
+		}
+    ],
+	  "salesOffices": ["Dallas, TX", "NYC, NY"],
+      "contactFirstName": "John",
+      "contactLastName": "Doe",
+      "addressLine1": "1234 N. Main Street",
+      "city": "A City",
+      "state": "UT",
+      "postalCode": "00000-0000",
+      "country": "USA",
+      "phoneNumber": "1(000)000-0000",
+      "email": "john.doe@example.com",
+      "effectiveDate": "2021-05-06"
+    }
+  ],
+  "revenueType": "Cash",
+  "grossAmount": 10000,
+  "commission": 8,
+  "salesTaxes": [
+    {
+      "itemType": "Sales Tax",
+      "value": 1245.55
+    }
+  ],
+  "discounts": [
+    {
+      "itemType": "Promotional",
+      "value": 400
+    }
+  ],
+  "netAmount": 10845.55,
+  "currency": "USD",
+  "remittanceInfo": {
+    "referenceSourceIds": [
+		{
+			"id": "RMT-1234",
+			"version": "0",
+			"srcId": "XVEN-1234",
+			"srcName": "XVEN Buyer"			
+		}
+    ],
+    "contactFirstName": "Jane",
+    "contactLastName": "Doe",
+    "addressLine1": "2358 W Main Street",
+    "city": "B City",
+    "state": "UT",
+    "postalCode": "00000-0000",
+    "country": "USA",
+    "phoneNumber": "1(000)000-0000",
+    "contactEmail": "jane.doe@example.com"
+  },
+  "mediaOutlets": [
+    {
+      "mediaOutletIds": [
+        {
+          "id": "KHOU-TV",
+          "version": "0",
+          "srcId": "XVEN-1234",
+          "srcName": "XVEN Buyer"
+        }
+      ],
+      "mediaOutletName": "KHOU-TV",
+      "mediaOutletType": "Local TV",
+      "mediaOutletChannel": "KHOU-TV",
+      "mediaOutletMarketName": "Houston, TX"
+    }
+  ],
+  "externalComment": "Thanks for your business",
+  "lineDetails": [
+    {
+      "lineNum": "1",
+      "lineReference": "1",
+      "lineReferences": [
+        {
+          "id": "ORD-5678-1",
+          "version": "0",
+          "srcId": "YSELL-1234",
+          "srcName": "YSELL Seller"
+        }
+      ],
+      "type": "Spot",
+      "brand": {
+        "brandIds": [
+          {
+            "id": "BRD-1234",
+            "version": "0",
+            "srcId": "YSELL-1234",
+            "srcName": "YSELL Seller"
+          }
+        ],
+        "brandName": "Kona"
+      },
+      "product": {
+        "productIds": [
+          {
+            "id": "PRO-1234",
+            "version": "0",
+            "srcId": "YSELL-1234",
+            "srcName": "YSELL Seller"
+          }
+        ],
+        "productName": "Automobile"
+      },
+      "salesElementHeader": {
+        "mediaOutletId": "KHOU-TV",
+        "salesElementName": "Primetime",
+        "salesElementId": "YSELL-9999",
+        "salesElementType": "Time-specific"
+      },
+      "inventoryType": "Commercial",
+      "timePeriod": [
+        {
+          "dateWindow": {
+            "startDate": "2021-05-06",
+            "endDate": "2021-05-06"
+          },
+          "DOW": {
+            "isMonday": true,
+            "isTuesday": true,
+            "isWednesday": true,
+            "isThursday": true,
+            "isFriday": true,
+            "isSaturday": true,
+            "isSunday": true
+          },
+          "timeWindow": {
+            "startTime": "09:00",
+            "endTime": "11:00"
+          }
+        }
+      ],
+      "length": 30,
+      "cpeCode": {
+        "clientCode": "string",
+        "productCode": "string",
+        "estimateCode": "string"
+      },
+      "billableCosts": "Booked",
+      "pricingMetric": {
+        "PricingMetricOption": "CPM",
+        "grossValue": 0,
+        "netValue": 0
+      },
+      "grossCost": 150,
+      "netCost": 127.5,
+      "audienceTargets": [
+        {
+          "excludeOrInclude": "Include",
+          "audienceTargetIds": [
+            {
+              "id": "string",
+              "version": "string",
+              "srcId": "string",
+              "srcName": "string"
+            }
+          ],
+          "targetAttribute": "HH Income",
+          "value": [
+            [
+              "$50,000 - $75,000",
+              "$75,000, -$100,000"
+            ]
+          ]
+        }
+      ],
+      "unitCount": 0,
+      "unitDetails": [
+        {
+          "unitId": "string",
+          "creative": {
+            "ids": [
+              {
+                "id": "string",
+                "version": "string",
+                "srcId": "string",
+                "srcName": "string"
+              }
+            ],
+            "name": "string",
+            "status": "Final",
+            "length": 0
+          },
+          "dateTime": {
+            "broadcastDate": "2021-05-06",
+            "calendarDateTime": "2021-05-06T19:53:04.885Z"
+          },
+          "podPosition": "First",
+          "linkType": {
+            "linkType": "Billboard",
+            "linkNum": 0,
+            "linkSeq": 0
+          },
+          "isPreempt": false,
+          "isMakegood": false,
+          "isAdu": false,
+          "isBonus": false,
+          "grossRate": 100,
+          "isCredit": false,
+          "adjustmentReason": "",
+          "comment": "",
+          "childUnitDetails": [
+            {
+              "unitId": "string",
+              "salesElementHeader": {
+                "mediaOutletId": "string",
+                "salesElementName": "Primetime",
+                "salesElementId": "string",
+                "salesElementType": "Time-specific"
+              },
+              "grossRate": 0,
+              "creative": {
+                "ids": [
+                  {
+                    "id": "string",
+                    "version": "string",
+                    "srcId": "string",
+                    "srcName": "string"
+                  }
+                ],
+                "name": "string",
+                "status": "Final",
+                "length": 0
+              },
+              "isPreempt": true,
+              "isMakegood": true,
+              "isAdu": true,
+              "isCredit": true,
+              "adjustmentReason": "string",
+              "dateTime": {
+                "broadcastDate": "2021-05-06",
+                "calendarDateTime": "2021-05-06T19:53:04.885Z"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -37,10 +37,20 @@ paths:
             examples:
               New:
                 value:
-                  $ref: 'examples/SellerLogtimesNew.json'
+                  $ref: 'examples\6.0.0\Seller\JSON\LogtimesNew.json'
               Change:
                 value:
-                  $ref: 'examples/SellerLogtimesNew.json'
+                  $ref: 'examples\6.0.0\Seller\JSON\LogtimesChange.json'
+          application/xml:
+            schema:
+              $ref: 'schemas/logTimesSchemas.yaml#/components/schemas/SellerLogtimes'
+            examples:
+              New:
+                value:
+                  $ref: 'examples\6.0.0\Seller\XML\LogtimesNew.xml'
+              Change:
+                value:
+                  $ref: 'examples\6.0.0\Seller\XML\LogtimesChange.xml'
       responses:
         '200': #OK
           $ref: 'schemas/commonResponses.yaml#/components/responses/Success'
@@ -64,7 +74,7 @@ paths:
       description: >-
           This endpoint is hosted at the seller end. Allows the Buyer to
           to initiate a Request Request to Seller to subscribe to seller's information
-          Supported Transaction Types: New, Change, 
+          Supported Transaction Types: New, Change, Cancel
       operationId: BuyerLogtimesSubscription
       requestBody:
         description: seller provides the Log Times report to the buyer's system
@@ -75,6 +85,35 @@ paths:
               oneOf:
                 - $ref: 'schemas/logTimesSchemas.yaml#/components/schemas/BuyerLogTimesSubscription'
                 - $ref: 'schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
+              xml:
+                name: BuyerLogTimesSubscriptionRequest
+            examples:
+              New:
+                value:
+                  $ref: 'examples\6.0.0\Buyer\JSON\LogtimesSubscriptionNew.json'
+              Change:
+                value:
+                  $ref: 'examples\6.0.0\Buyer\JSON\LogtimesSubscriptionChange.json'
+              Cancel:
+                value:
+                  $ref: 'examples\6.0.0\Buyer\JSON\LogtimesSubscriptionCancel.json'
+          application/xml:
+            schema:
+              oneOf:
+                - $ref: 'schemas/logTimesSchemas.yaml#/components/schemas/BuyerLogTimesSubscription'
+                - $ref: 'schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
+              xml:
+                name: BuyerLogTimesSubscriptionRequest
+            examples:
+              New:
+                value:
+                  $ref: 'examples\6.0.0\Buyer\XML\LogtimesSubscriptionNew.xml'
+              Change:
+                value:
+                  $ref: 'examples\6.0.0\Buyer\XML\LogtimesSubscriptionChange.xml'
+              Cancel:
+                value:
+                  $ref: 'examples\6.0.0\Buyer\XML\LogtimesSubscriptionCancel.xml'
       responses:
         '200': #OK
           $ref: 'schemas/commonResponses.yaml#/components/responses/Success'

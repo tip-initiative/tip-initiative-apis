@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<BuyerImpressionsSubscriptionRequest>
+	<transactionHeader>
+		<tipVersion>6.0.0</tipVersion>
+		<transactionId>
+			<transactionId>BF7F7D82-1335-4C3B-ABD0-7545872A56DE</transactionId>
+			<transactionType>Change</transactionType>
+			<sourceId>XBuy-1234</sourceId>
+			<sourceName>XVEN Buyer</sourceName>
+		</transactionId>
+		<originalTransactionId>
+			<transactionId>3fa85f64-5717-4562-b3fc-2c963f66afa6</transactionId>
+			<transactionType>New</transactionType>
+			<sourceId>XBuy-1234</sourceId>
+			<sourceName>XVEN Buyer</sourceName>
+		</originalTransactionId>
+		<timeStamp>2021-05-06T19:01:50.610Z</timeStamp>
+	</transactionHeader>
+	<name>My Hourly Impression Subscription (All Orders) Include last  2 hours</name>
+	<mediaOutlets>
+		<mediaOutletIds>
+			<id>KAAB-TV</id>
+			<version>0</version>
+			<srcId>KAAB-TV</srcId>
+			<srcName>KAAB-TV</srcName>
+		</mediaOutletIds>
+		<mediaOutletName>KAAB-TV</mediaOutletName>
+		<mediaOutletType>Local TV</mediaOutletType>
+		<mediaOutletChannel>12.1</mediaOutletChannel>
+		<mediaOutletMarketName>Houston, TX</mediaOutletMarketName>
+	</mediaOutlets>
+	<frequency>
+		<effectiveOn>2020-08-12T00:00:00.000Z</effectiveOn>
+		<every>Hour</every>
+		<isEndNever>true</isEndNever>
+	</frequency>
+	<startDate>
+		<offsetType>Hour</offsetType>
+		<offset>-2</offset>
+	</startDate>
+	<endDate>
+		<offsetType>Hour</offsetType>
+		<offset>0</offset>
+	</endDate>
+	<statSource>Google DFP</statSource>
+	<maxChunkSize>100</maxChunkSize>
+</BuyerImpressionsSubscriptionRequest>

@@ -37,6 +37,13 @@ paths:
               New:
                 value:
                   $ref: 'examples/SellerMakegoodGuidelinesNew.json'
+          application/xml:
+            schema:
+              $ref: 'schemas/makegoodsSchemas.yaml#/components/schemas/SellerMakegoodGuidelines'
+            examples:
+              New:
+                value:
+                  $ref: 'examples/SellerMakegoodGuidelinesNew.json'
       responses:
         '202': #Accepted
           $ref: 'schemas/commonResponses.yaml#/components/responses/Accepted'
@@ -66,6 +73,19 @@ paths:
         required: true
         content:
           application/json:
+            schema:
+              $ref: '#/components/schemas/BuyerMakegoodGuidelinesRequest'
+            examples:
+              New:
+                value:
+                  $ref: 'examples/BuyerMakegoodGuidelinesNew.json'
+              Change:
+                value:
+                  $ref: 'examples/BuyerMakegoodGuidelinesNew.json'
+              Cancel:
+                value:
+                  $ref: 'examples/GenericCancel.json'
+          application/xml:
             schema:
               $ref: '#/components/schemas/BuyerMakegoodGuidelinesRequest'
             examples:
@@ -125,6 +145,22 @@ paths:
               Recall:
                 value:
                   $ref: 'examples/GenericRecall.json'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/SellerMakegoodOffersRequest'
+            examples:
+              New:
+                value:
+                  $ref: 'examples/SellerMakegoodOfferNew.json'
+              Change:
+                value:
+                  $ref: 'examples/SellerMakegoodOfferNew.json'
+              Cancel:
+                value:
+                  $ref: 'examples/GenericCancel.json'
+              Recall:
+                value:
+                  $ref: 'examples/GenericRecall.json'
       responses:
         '200': #OK
           $ref: 'schemas/commonResponses.yaml#/components/responses/Success'
@@ -162,6 +198,16 @@ paths:
               Reject:
                 value:
                   $ref: 'examples/GenericReject.json'
+          application/xml:
+            schema:
+              $ref: 'schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
+            examples:
+              Confirm:
+                value:
+                  $ref: 'examples/GenericConfirm.json'
+              Reject:
+                value:
+                  $ref: 'examples/GenericReject.json'
       responses:
         '200': #OK
           $ref: 'schemas/commonResponses.yaml#/components/responses/Success'
@@ -188,7 +234,11 @@ components:
       oneOf:
         - $ref: './schemas/makegoodsSchemas.yaml#/components/schemas/BuyerMakegoodGuidelines'
         - $ref: './schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
+      xml:
+        name: BuyerMakegoodGuidelinesRequest
     SellerMakegoodOffersRequest:
       oneOf:
         - $ref: './schemas/makegoodsSchemas.yaml#/components/schemas/SellerMakegoodOffers'
         - $ref: './schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
+      xml:
+        name: SellerMakegoodOffersRequest

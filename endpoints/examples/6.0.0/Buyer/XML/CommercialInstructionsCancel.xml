@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<BuyerCommercialInstructionsRequest>
+	<transactionHeader>
+		<tipVersion>6.0.0</tipVersion>
+		<transactionId>
+			<transactionId>0E300E0A-17AA-420C-92C6-D7C795256CB0</transactionId>
+			<transactionType>Cancel</transactionType>
+			<sourceId>490</sourceId>
+			<sourceName>KHOU-TV</sourceName>
+		</transactionId>
+		<originalTransactionId>
+			<transactionId>3fa85f64-5717-4562-b3fc-2c963f66afa6</transactionId>
+			<transactionType>New</transactionType>
+			<sourceId>490</sourceId>
+			<sourceName>KHOU-TV</sourceName>
+		</originalTransactionId>
+		<timeStamp>2020-07-17T20:04:55.220Z</timeStamp>
+	</transactionHeader>
+	<referenceIds>
+		<referenceSourceName>KUOU-TV</referenceSourceName>
+		<referenceSourceId>490</referenceSourceId>
+		<referenceSourceLookup></referenceSourceLookup>
+		<referenceType>Order</referenceType>
+		<referenceId>123456</referenceId>
+		<referenceVersionId></referenceVersionId>
+		<referenceName>string</referenceName>
+	</referenceIds>
+	<comments>Sample comment from message originator</comments>
+</BuyerCommercialInstructionsRequest>

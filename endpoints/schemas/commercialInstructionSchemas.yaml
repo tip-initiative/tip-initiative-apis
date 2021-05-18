@@ -36,6 +36,7 @@ components:
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/Contact'
+          minItems: 1           
         advertiser:
           $ref: 'commonSchemas.yaml#/components/schemas/Advertiser'
         product:
@@ -84,6 +85,7 @@ components:
           type: array
           items:
             type: string
+          example: ["CM", "Bookend"]            
         mediaOutlet:
           $ref: 'commonSchemas.yaml#/components/schemas/MediaOutlet'
         creative:

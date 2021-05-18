@@ -1,0 +1,170 @@
+{
+  "transactionHeader": {
+    "tipVersion": "5.1.0",
+    "transactionId": {
+      "transactionId": "BA5C4CEB-238D-4163-8BB5-7AE2129E37F2",
+      "transactionType": "Change",
+      "sourceId": "490",
+      "sourceName": "KHOU-TV"
+    },
+    "originalTransactionId": {
+      "transactionId": "6A61B212-4DBD-431E-A953-8873561AF781",
+      "transactionType": "New",
+      "sourceId": "490",
+      "sourceName": "KHOU-TV"
+    },
+    "timeStamp": "2020-07-01T19:17:28Z"
+  },
+  "externalComment": "Seller's Comment",
+  "mediaOutlets": [
+    {
+      "mediaOutletIds": [
+        {
+          "id": "490",
+          "version": "0",
+          "srcId": "490",
+          "srcName": "KHOU-TV"
+        }
+      ],
+      "mediaOutletName": "KHOU-TV",
+      "mediaOutletType": "Local TV",
+      "mediaOutletChannel": "KHOU-TV",
+      "mediaOutletMarketName": "Houston, TX"
+    }
+  ],
+  "units": [
+    {
+      "unitId": "15555",
+      "referenceIds": [
+        {
+          "referenceSourceName": "KHOU-TV",
+          "referenceSourceId": "490",
+          "referenceType": "Order",
+          "referenceId": "A2CAF9C7-C64F-44CA-84E1-DCD51D790E3E",
+          "referenceName": "Hyundia P25-54 1Q"
+        }
+      ],
+      "lineReferences": [
+        {
+          "id": "Hyn-2554-1",
+          "version": "0",
+          "srcId": "XVEN-1234",
+          "srcName": "XVEN Buyer"
+        },
+        {
+          "id": "1",
+          "version": "0",
+          "srcId": "490",
+          "srcName": "KHOU-TV"
+        }
+      ],
+      "cpeCode": {
+        "clientCode": "HYUN",
+        "productCode": "AUTO",
+        "estimateCode": "987"
+      },
+      "buyer": {
+        "buyerIds": [
+          {
+            "id": "456",
+            "version": "0",
+            "srcId": "490",
+            "srcName": "KHOU-TV"
+          }
+        ],
+        "buyerName": "Canvas Worldwide. LLC"
+      },
+      "advertiser": {
+        "advertiserIds": [
+          {
+            "id": "34",
+            "version": "0",
+            "srcId": "490",
+            "srcName": "KHOU-TV"
+          }
+        ],
+        "advertiserName": "Hyundai"
+      },
+      "brand": {
+        "brandIds": [
+          {
+            "id": "19",
+            "version": "0",
+            "srcId": "490",
+            "srcName": "KHOU-TV"
+          }
+        ],
+        "brandName": "Kona"
+      },
+      "product": {
+        "productIds": [
+          {
+            "id": "89",
+            "version": "0",
+            "srcId": "490",
+            "srcName": "KHOU-TV"
+          }
+        ],
+        "productName": "Automobile"
+      },
+      "salesElementHeader": {
+        "mediaOutletId": "490",
+        "salesElementName": "CBS This Morning",
+        "salesElementId": "56",
+        "salesElementType": "Program"
+      },
+      "program": "CBS This Morning",
+      "daypart": "Morning",
+      "inventoryType": "Commercial",
+      "airedLength": 30,
+      "bookedLength": 30,
+      "rate": 525,
+      "creative": {
+        "ids": [
+          {
+            "id": "HYUN1234",
+            "version": "0",
+            "srcId": "490",
+            "srcName": "KHOU-TV"
+          },
+          {
+            "id": "ABCD000123H",
+            "version": "0",
+            "srcId": "Ad-id.org",
+            "srcName": "Ad ID code"
+          }
+        ],
+        "name": "Name of Creative",
+        "status": "Final",
+        "length": 30
+      },
+      "status": "Aired",
+      "isCredit": false,
+      "timePeriods": [
+        {
+          "dateWindow": {
+            "startDate": "2021-08-06",
+            "endDate": "2021-08-06"
+          },
+          "DOW": {
+            "isMonday": true,
+            "isTuesday": true,
+            "isWednesday": true,
+            "isThursday": true,
+            "isFriday": true,
+            "isSaturday": true,
+            "isSunday": true
+          },
+          "timeWindow": {
+            "startTime": "07:00",
+            "endTime": "09:00"
+          }
+        }
+      ],
+      "dateTime": {
+        "broadcastDate": "2021-08-06",
+        "calendarDateTime": "2021-08-06T19:49:23.706Z"
+      }
+    }
+  ]
+}

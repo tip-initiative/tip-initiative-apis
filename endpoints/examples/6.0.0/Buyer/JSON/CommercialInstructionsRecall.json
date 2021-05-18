@@ -1,0 +1,30 @@
+{
+    "transactionHeader": {
+      "tipVersion": "6.0.0",
+      "transactionId": {
+        "transactionId": "0E300E0A-17AA-420C-92C6-D7C795256CB0",
+        "transactionType": "Recall",
+        "sourceId": "490",
+        "sourceName": "KHOU-TV"
+      },
+      "originalTransactionId": {
+        "transactionId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "transactionType": "New",
+        "sourceId": "490",
+        "sourceName": "KHOU-TV"
+      },
+      "timeStamp": "2020-07-17T20:04:55.220Z"
+    },
+    "referenceIds": [
+      {
+        "referenceSourceName": "KUOU-TV",
+        "referenceSourceId": "490",
+        "referenceSourceLookup": "",
+        "referenceType": "Order",
+        "referenceId": "123456",
+        "referenceVersionId": "",
+        "referenceName": "string"
+      }
+    ],
+    "comments": "Sample comment from message originator"
+  }

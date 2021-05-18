@@ -70,3 +70,5 @@ components:
       oneOf:
         - $ref: 'schemas/rfpsSchemas.yaml#/components/schemas/BuyerRFPS'
         - $ref: 'schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
+      xml:
+        name: BuyerRFPSRequest

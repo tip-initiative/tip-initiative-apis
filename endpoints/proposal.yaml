@@ -126,3 +126,5 @@ components:
       oneOf:
         - $ref: './schemas/proposalSchemas.yaml#/components/schemas/SellerProposals'
         - $ref: './schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
+      xml:
+        name: SellerProposalsRequest

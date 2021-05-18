@@ -36,7 +36,38 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "./schemas/impressionsSubscription.yaml#/components/schemas/BuyerImpressionsSubscribe"
+              oneOf:
+                - $ref: "./schemas/impressionsSubscription.yaml#/components/schemas/BuyerImpressionsSubscription"
+                - $ref: './schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
+              xml:
+                name: BuyerImpressionsSubscriptionRequest
+            examples:
+              New:
+                value:
+                  $ref: 'examples\6.0.0\Buyer\JSON\ImpressionsSubscriptionNew.json'
+              Change:
+                value:
+                  $ref: 'examples\6.0.0\Buyer\JSON\ImpressionsSubscriptionChange.json' 
+              Cancel:
+                value:
+                  $ref: 'examples\6.0.0\Buyer\JSON\ImpressionsSubscriptionCancel.json'
+          application/xml:
+            schema:
+              oneOf:
+                - $ref: "./schemas/impressionsSubscription.yaml#/components/schemas/BuyerImpressionsSubscription"
+                - $ref: './schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
+              xml:
+                name: BuyerImpressionsSubscriptionRequest
+            examples:
+              New:
+                value:
+                  $ref: 'examples\6.0.0\Buyer\XML\ImpressionsSubscriptionNew.xml'
+              Change:
+                value:
+                  $ref: 'examples\6.0.0\Buyer\XML\ImpressionsSubscriptionChange.xml'                
+              Cancel:
+                value:
+                  $ref: 'examples\6.0.0\Buyer\XML\ImpressionsSubscriptionCancel.xml'
       responses:
         '201': #Created
           $ref: 'schemas/commonResponses.yaml#/components/responses/Accepted'
@@ -68,7 +99,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "./schemas/impressionsSubscription.yaml#/components/schemas/SellerImpressions"
+              $ref: "./schemas/impressionsSubscription.yaml#/components/schemas/SellerImpressionsNotification"
+          application/xml:
+            schema:
+              $ref: "./schemas/impressionsSubscription.yaml#/components/schemas/SellerImpressionsNotification"
       responses:
         '200': #Created
           $ref: 'schemas/commonResponses.yaml#/components/responses/Accepted'

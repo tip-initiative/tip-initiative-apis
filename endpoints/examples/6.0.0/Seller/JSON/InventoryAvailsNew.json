@@ -1,0 +1,203 @@
+{
+  "transactionHeader": {
+    "tipVersion": "6.0.0",
+    "transactionId": {
+      "transactionId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "transactionType": "New",
+      "sourceId": "YSELL-1234",
+      "sourceName": "YSELL Seller"
+    },
+    "timeStamp": "2021-05-06T18:32:44.757Z"
+  },
+  "dateSubmitted": "2021-05-06",
+  "buyer": {
+    "buyerIds": [
+      {
+        "id": "Xbuy-1234",
+        "version": "0",
+        "srcId": "XVEN-1234",
+        "srcName": "XVEN Buyer"
+      }
+    ],
+    "buyerName": "Canvas Worldwide. LLC"
+  },
+  "advertiser": {
+    "advertiserIds": [
+      {
+        "id": "XADV-3456",
+        "version": "0",
+        "srcId": "XVEN-1234",
+        "srcName": "XVEN Buyer"
+      }
+    ],
+    "advertiserName": "Hyundai"
+  },
+  "contacts": [
+    {
+      "contactType": "Account Executive",
+	  "contactIds": [
+		{
+        "id": "CNT-1234",
+        "version": "0",
+        "srcId": "XVEN-1234",
+        "srcName": "XVEN Buyer"			
+		}
+    ],
+	  "salesOffices": ["Dallas, TX", "NYC, NY"],
+      "contactFirstName": "John",
+      "contactLastName": "Doe",
+      "addressLine1": "1234 N. Main Street",
+      "city": "A City",
+      "state": "UT",
+      "postalCode": "00000-0000",
+      "country": "USA",
+      "phoneNumber": "1(000)000-0000",
+      "email": "john.doe@example.com",
+      "effectiveDate": "2021-05-06"
+    }
+  ],
+  "rateCard": {
+    "rateCardId": 1,
+    "rateCardName": "1Q'22 Rate Card",
+    "currency": "USD"
+  },
+  "isPolitical": false,
+  "mediaOutlets": [
+    {
+      "mediaOutletIds": [
+        {
+          "id": "KHOU-TV",
+          "version": "0",
+          "srcId": "XVEN-1234",
+          "srcName": "XVEN Buyer"
+        }
+      ],
+      "mediaOutletName": "KHOU-TV",
+      "mediaOutletType": "Local TV",
+      "mediaOutletChannel": "KHOU-TV",
+      "mediaOutletMarketName": "Houston, TX"
+    }
+  ],
+  "audienceSegments": [
+    {
+      "mediaOutletIds": [
+        {
+          "id": "KHOU-TV",
+          "version": "0",
+          "srcId": "YSELL-1234",
+          "srcName": "XSell Seller"
+        }
+      ],
+      "audienceSegment": {
+        "audienceSegmentIds": [
+          {
+            "id": "P15-25",
+            "version": "0",
+            "srcId": "YSELL-1234",
+            "srcName": "YSELL Seller"
+          }
+        ],
+        "audienceSegmentName": "P18-49",
+        "audienceMethodology": "Daypart Average",
+        "isPrimary": true,
+        "isGuarantee": true,
+        "ratingSource": "Nielsen",
+        "ratingStream": "Program Live"
+      },
+      "universes": [
+        {
+          "universeType": "Market",
+          "universeTypeValue": 0
+        }
+      ]
+    }
+  ],
+  "availWindow": {
+    "startDate": "2021-08-06",
+    "endDate": "2021-08-20"
+  },
+  "salesElements": [
+    {
+      "salesElementHeader": {
+        "mediaOutletId": "YSELL-1234",
+        "salesElementName": "Primetime",
+        "salesElementId": "string",
+        "salesElementType": "Time-specific"
+      },
+      "timePeriods": [
+        {
+          "dateWindow": {
+            "startDate": "2021-08-06",
+            "endDate": "2021-08-20"
+          },
+          "DOW": {
+            "isMonday": true,
+            "isTuesday": true,
+            "isWednesday": true,
+            "isThursday": true,
+            "isFriday": true,
+            "isSaturday": true,
+            "isSunday": true
+          },
+          "timeWindow": {
+            "startTime": "09:00",
+            "endTime": "11:00"
+          }
+        }
+      ],
+      "devices": [
+        "PlayStation"
+      ],
+      "programs": [
+        "Mid Morning News"
+      ],
+      "salesElementInventorys": [
+        {
+          "inventoryType": "Commercial",
+          "linkType": {
+            "linkType": "Billboard",
+            "linkNum": 0,
+            "linkSeq": 0
+          },
+          "inventoryPosition": "First",
+          "inventoryLength": 30,
+          "salesElementInventoryDates": [
+            {
+              "dateType": "Day",
+              "calendarType": "Broadcast",
+              "dateWindow": {
+                "startDate": "2021-08-06",
+                "endDate": "2021-08-20"
+              },
+              "inventoryCapacity": 0,
+              "inventoryAvails": 0,
+              "inventoryMax": 0,
+              "audiencesPricingMetrics": [
+                {
+                  "audienceSegmentIds": [
+                    {
+                      "id": "P15-25",
+                      "version": "0",
+                      "srcId": "YSELL-1234",
+                      "srcName": "YSELL Seller"
+                    }
+                  ],
+                  "type": "Selling",
+                  "audienceMetric": {
+                    "audienceMetric": "Impressions",
+                    "audienceMetricValue": 43256
+                  },
+                  "pricingMetric": {
+                    "PricingMetricOption": "CPM",
+                    "grossValue": 0,
+                    "netValue": 0
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

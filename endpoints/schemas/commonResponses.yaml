@@ -15,17 +15,44 @@ paths: {}
 components:
   responses:
     Success:
-      description: 200 OK - request accepted successfully 
+      description: 200 OK - request accepted successfully
       content:
         application/json:
           schema:
             $ref: 'commonSchemas.yaml#/components/schemas/AcceptedResponse'
+          example:
+            $ref: '../examples\6.0.0\GenericResponses\JSON\200Success.json'
+        application/xml:
+          schema:
+            $ref: 'commonSchemas.yaml#/components/schemas/AcceptedResponse'
+          example:
+            $ref: '../examples\6.0.0\GenericResponses\XML\200Success.xml'
+    Created:
+      description: 201 Created - request created successfully
+      content:
+        application/json:
+          schema:
+            $ref: 'commonSchemas.yaml#/components/schemas/AcceptedResponse'
+          example:
+            $ref: '../examples\6.0.0\GenericResponses\JSON\201Created.json'
+        application/xml:
+          schema:
+            $ref: 'commonSchemas.yaml#/components/schemas/AcceptedResponse'
+          example:
+            $ref: '../examples\6.0.0\GenericResponses\XML\201Created.xml'
     Accepted:
-      description: Accepted - request accepted, Actual response will follow at later time
+      description: 'Accepted - request accepted, Actual response will follow at later time'
       content:
         application/json:
           schema:
             $ref: 'commonSchemas.yaml#/components/schemas/AcceptedResponse'
+          example:
+            $ref: '../examples\6.0.0\GenericResponses\JSON\202Accepted.json'
+        application/xml:
+          schema:
+            $ref: 'commonSchemas.yaml#/components/schemas/AcceptedResponse'
+          example:
+            $ref: '../examples\6.0.0\GenericResponses\XML\202Accepted.xml'
     BadRequest:
       description: Bad Request - payload is ill formed or contains invalid data
       content:
@@ -33,10 +60,14 @@ components:
           schema:
             $ref: 'commonSchemas.yaml#/components/schemas/Error'
           example:
-            errorCode: 400
-            errorMessage: Bad Request - payload is ill formed or contains invalid data
+            $ref: '../examples\6.0.0\GenericResponses\JSON\400BadRequest.json'
+        application/xml:
+          schema:
+            $ref: 'commonSchemas.yaml#/components/schemas/Error'
+          example:
+            $ref: '../examples\6.0.0\GenericResponses\XML\400BadRequest.xml'
     Unauthorized:
-      description: Unauthorized - Unauthorized, invalid credentials or expired access token
+      description: 'Unauthorized - Unauthorized, invalid credentials or expired access token'
       headers:
         WWW-Authenticate:
           schema:
@@ -46,35 +77,51 @@ components:
           schema:
             $ref: 'commonSchemas.yaml#/components/schemas/Error'
           example:
-            errorCode: 401
-            errorMessage: Unauthorized, invalid credentials or expired access token
+            $ref: '../examples\6.0.0\GenericResponses\JSON\401Unauthorized.json'
+        application/xml:
+          schema:
+            $ref: 'commonSchemas.yaml#/components/schemas/Error'
+          example:
+            $ref: '../examples\6.0.0\GenericResponses\XML\401Unauthorized.xml'
     Forbidden:
-      description: Forbidden, additional previliges are needed
+      description: 'Forbidden, additional previliges are needed'
       content:
         application/json:
           schema:
             $ref: 'commonSchemas.yaml#/components/schemas/Error'
           example:
-            errorCode: 403
-            errorMessage: Forbidden, additional previliges are needed
+            $ref: '../examples\6.0.0\GenericResponses\JSON\403Forbidden.json'
+        application/xml:
+          schema:
+            $ref: 'commonSchemas.yaml#/components/schemas/Error'
+          example:
+            $ref: '../examples\6.0.0\GenericResponses\XML\403Forbidden.xml'
     NotFound:
-      description: Not Found, Requested entity does not exist
+      description: 'Not Found, Requested entity does not exist'
       content:
         application/json:
           schema:
             $ref: 'commonSchemas.yaml#/components/schemas/Error'
           example:
-            errorCode: 404
-            errorMessage: Requested entity does not exist
+            $ref: '../examples\6.0.0\GenericResponses\JSON\404NotFound.json'
+        application/xml:
+          schema:
+            $ref: 'commonSchemas.yaml#/components/schemas/Error'
+          example:
+            $ref: '../examples\6.0.0\GenericResponses\XML\404NotFound.xml'
     NotAllowed:
-      description: Not Allowed, Requested operation is not allowed on entity
+      description: 'Not Allowed, Requested operation is not allowed on entity'
       content:
         application/json:
           schema:
             $ref: 'commonSchemas.yaml#/components/schemas/Error'
           example:
-            errorCode: 405
-            errorMessage: Requested operation is not allowed on entity
+            $ref: '../examples\6.0.0\GenericResponses\JSON\405NotAllowed.json'
+        application/xml:
+          schema:
+            $ref: 'commonSchemas.yaml#/components/schemas/Error'
+          example:
+            $ref: '../examples\6.0.0\GenericResponses\XML\405NotAllowed.xml'
     Unexpected:
       description: Unexpected error occured
       content:
@@ -82,5 +129,9 @@ components:
           schema:
             $ref: 'commonSchemas.yaml#/components/schemas/Error'
           example:
-            errorCode: 500
-            errorMessage: Unexpected error Occured
+            $ref: '../examples\6.0.0\GenericResponses\JSON\500Error.json'
+        application/xml:
+          schema:
+            $ref: 'commonSchemas.yaml#/components/schemas/Error'
+          example:
+            $ref: '../examples\6.0.0\GenericResponses\XML\500Error.xml'

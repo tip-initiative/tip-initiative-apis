@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Error>
+	<errorCode>401</errorCode>
+	<errorMessage>Unauthorized, invalid credentials or expired access token</errorMessage>
+</Error>

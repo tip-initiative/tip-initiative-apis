@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<SellerCommercialInstructionsRequest>
+	<transactionHeader>
+		<tipVersion>6.0.0</tipVersion>
+		<transactionId>
+			<transactionId>3fa85f64-5717-4562-b3fc-2c963f66afa6</transactionId>
+			<transactionType>Reject</transactionType>
+			<sourceId>456</sourceId>
+			<sourceName>Canvas Worldwide. LLC</sourceName>
+		</transactionId>
+		<originalTransactionId>
+			<transactionId>B906A0A9-19FA-4F06-B94D-22E4F1D9120C</transactionId>
+			<transactionType>New</transactionType>
+			<sourceId>490</sourceId>
+			<sourceName>KHOU-TV</sourceName>
+		</originalTransactionId>
+		<timeStamp>2020-07-17T20:04:55.220Z</timeStamp>
+	</transactionHeader>
+	<referenceIds>
+		<referenceSourceName>KHOU-TV</referenceSourceName>
+		<referenceSourceId>490</referenceSourceId>
+		<referenceSourceLookup></referenceSourceLookup>
+		<referenceType>Order</referenceType>
+		<referenceId>123456</referenceId>
+		<referenceVersionId></referenceVersionId>
+		<referenceName>Nissan July Sale</referenceName>
+	</referenceIds>
+	<comments>Thanks for your efforts we decided to cancel</comments>
+</SellerCommercialInstructionsRequest>

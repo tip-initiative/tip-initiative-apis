@@ -1,0 +1,30 @@
+{
+  "transactionHeader": {
+    "tipVersion": "6.0.0",
+    "transactionId": {
+      "transactionId": "BF7F7D82-1335-4C3B-ABD0-7545872A56DE",
+      "transactionType": "Cancel",
+      "sourceId": "XBuy-1234",
+      "sourceName": "XVEN Buyer"
+    },
+    "originalTransactionId": {
+      "transactionId": "BF7F7D82-1335-4C3B-ABD0-7545872A56DE",
+      "transactionType": "Change",
+      "sourceId": "XBuy-1234",
+      "sourceName": "XVEN Buyer"
+    },
+    "timeStamp": "2021-05-06T19:01:50.610Z"
+  },
+  "referenceIds": [
+	  {
+		"referenceSourceName": "KUOU-TV",
+		"referenceSourceId": "490",
+		"referenceSourceLookup": "",
+		"referenceType": "Subscription",
+		"referenceId": "BF7F7D82-1335-4C3B-ABD0-7545872A56DE",
+		"referenceVersionId": "",
+		"referenceName": "string"
+	  }
+	],
+"comments": "Sample comment from message originator"
+  }
