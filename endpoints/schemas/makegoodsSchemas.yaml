@@ -36,6 +36,7 @@ components:
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/ReferenceId'
+          minItems: 1           
         cpeCode:
           $ref: 'commonSchemas.yaml#/components/schemas/CpeCode'
         buyer:
@@ -71,6 +72,7 @@ components:
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/ReferenceId'
+          minItems: 1           
         cpeCode:
           $ref: 'commonSchemas.yaml#/components/schemas/CpeCode'
         buyer:
@@ -140,6 +142,7 @@ components:
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/ReferenceId'
+          minItems: 1           
         makegoodType:
           description: Type of Makegood Offer
           type: string
@@ -195,12 +198,13 @@ components:
           type: string
         makegoodAssumedConfirm:
           description: >-
-            Makegood is 'assumed confirmed' based on buyer-seller discussions made outside of
-            framework. Booked indicates the seller has originated placement in the traffic system.
-            If no action is taken the spot will air. This field indicates the urgency to take
-            action.
-            'Not Booked' -
-            'Booked' - Spot has already been placed in traffic system
+            Indicates the status of the makegood offers to communicate any buyer- buyer-seller
+            negiotiations that may have been made outside of the framework
+            Not Booked - indicates the unit has not been booked in the seller's system
+            and waiting acceptance
+                          
+            Booked -  indicates the unit has already been booked in the seller's system and
+            is assumed confirmed booked
           type: string
           enum:
             - Booked

@@ -146,3 +146,5 @@ components:
         - mediaOutlets
         - availWindow
         - salesElements
+      xml:
+        name: SellerInventoryAvailsRequest

@@ -121,3 +121,5 @@ components:
       oneOf:
         - $ref: './schemas/ordersSchemas.yaml#/components/schemas/BuyerOrders'
         - $ref: './schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
+      xml:
+        name: BuyerOrdersRequest

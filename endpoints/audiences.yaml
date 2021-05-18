@@ -34,9 +34,32 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/BuyerAudiencesRequest'
+              $ref: '#/components/schemas/BuyerAudiencesSubscriptionRequest'
+            examples:
+              New:
+                value: 
+                  $ref: './examples/6.0.0/Buyer/JSON/AudiencesSubscriptionNew.json'
+              Change:
+                value:
+                  $ref: './examples/6.0.0/Buyer/JSON/AudiencesSubscriptionChange.json'
+              Cancel:
+                value:
+                  $ref: './examples/6.0.0/Buyer/JSON/AudiencesSubscriptionCancel.json'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/BuyerAudiencesSubscriptionRequest'
+            examples:
+              New:
+                value: 
+                  $ref: './examples/6.0.0/Buyer/XML/AudiencesSubscriptionNew.xml'
+              Change:
+                value:
+                  $ref: './examples/6.0.0/Buyer/XML/AudiencesSubscriptionChange.xml'
+              Cancel:
+                value:
+                  $ref: './examples/6.0.0/Buyer/XML/AudiencesSubscriptionCancel.xml'
       responses:
-        '200': #OK
+        '201': #Created
           $ref: 'schemas/commonResponses.yaml#/components/responses/Success'
         '400': #Bad Request
           $ref: 'schemas/commonResponses.yaml#/components/responses/BadRequest'
@@ -66,6 +89,9 @@ paths:
           application/json:
             schema:
               $ref: './schemas/audienceSchemas.yaml#/components/schemas/SellerAudiences'
+          application/xml:
+            schema:
+              $ref: './schemas/audienceSchemas.yaml#/components/schemas/SellerAudiences'
       responses:
         '200': #OK
           $ref: 'schemas/commonResponses.yaml#/components/responses/Success'
@@ -88,7 +114,9 @@ components:
       scheme: bearer
       bearerFormat: JWT
   schemas:
-    BuyerAudiencesRequest:
+    BuyerAudiencesSubscriptionRequest:
       oneOf:
         - $ref: './schemas/audienceSchemas.yaml#/components/schemas/BuyerAudiencesSubscription'
         - $ref: './schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
+      xml:
+        name: BuyerAudiencesSubscriptionRequest

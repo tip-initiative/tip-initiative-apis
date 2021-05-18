@@ -29,178 +29,267 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/BuyerInventoryAvailsSubscription'
+              oneOf:
+                - $ref: '#/components/schemas/BuyerInventoryAvailsSubscription'
+                - $ref: '#/components/schemas/CancelConfirmRecallReject'
+              xml:
+                name: BuyerInventoryAvailsRequest
             examples:
               New:
                 value:
                   transactionHeader:
                     tipVersion: 6.0.0
                     transactionId:
-                      transactionId: 77DABA23-BC53-4E78-BCDE-AF527F1E62D6
+                      transactionId: 3fa85f64-5717-4562-b3fc-2c963f66afa6
                       transactionType: New
-                      sourceId: WPP
-                      sourceName: WPP Group
-                    timeStamp: '2020-06-09T22:40:17.432Z'
-                  dateSubmitted: '2020-06-09'
-                  dueDate: '2020-06-09'
+                      sourceId: XVEN-1234
+                      sourceName: XVEN Buyer
+                    timeStamp: '2021-05-06T18:27:49.064Z'
+                  name: Twice a Month Inventory Avails for next 4 weeks from reporting date
                   mediaOutlets:
-                    - mediaOutletId: 427CAD68-2375-44E6-8A25-F13557FD01F8
-                      mediaOutletName: WXYZ News Live
-                      mediaOutletType: Broadcast TV
-                      mediaOutletChannel: '58.1'
-                      mediaOutletMarketName: South Eastern Wisconsin
-                      mediaOutletReference: string
+                    - mediaOutletIds:
+                        - id: KHOU-TV
+                          version: '0'
+                          srcId: XVEN-1234
+                          srcName: XVEN Buyer
+                      mediaOutletName: string
+                      mediaOutletType: Local TV
+                      mediaOutletChannel: KHOU-TV
+                      mediaOutletMarketName: 'Houston, TX'
                   buyer:
-                    buyerId: '123'
-                    buyerName: Buy All
-                    buyerReference: Buy All
+                    buyerIds:
+                      - id: XVEN-1234
+                        version: '0'
+                        srcId: XVEN-1234
+                        srcName: XVEN Buyer
+                    buyerName: Canvas Worldwide. LLC
                   advertiser:
-                    advertiserId: '456'
-                    advertiserName: Local Autos
-                    advertiserReference: WXYZ News Live
+                    advertiserIds:
+                      - id: ADV-4567
+                        version: '0'
+                        srcId: XVEN-1234
+                        srcName: XVEN Buyer
+                    advertiserName: Hyundai
                   contacts:
                     - contactType: Account Executive
-                      referenceSourceName: WXYZ News Live
-                      referenceSourceId: 427CAD68-2375-44E6-8A25-F13557FD01F8
+                      contactIds:
+                        - id: CNT-1234
+                          version: '0'
+                          srcId: XVEN-1234
+                          srcName: XVEN Buyer
+                      salesOffices:
+                        - 'Dallas, TX'
+                        - 'NYC, NY'
                       contactFirstName: John
                       contactLastName: Doe
-                      addressLine1: John's Address
-                      addressLine2: ''
-                      city: Sky City
-                      state: MN
-                      postalCode: '55555'
-                      country: US
-                      phoneNumber: 1(222)345-6789
-                      email: user@example.com
-                      effectiveDate: '2020-06-09'
-                  timePeriods:
-                    - dateWindow:
-                        startDate: '2020-06-09'
-                        endDate: '2020-06-09'
-                      DOW:
-                        monday: true
-                        tuesday: true
-                        wednesday: true
-                        thursday: true
-                        friday: true
-                        saturday: true
-                        sunday: true
-                      timeWindow:
-                        startTime: '09:00'
-                        endTime: '11:00'
+                      addressLine1: 1234 N. Main Street
+                      city: A City
+                      state: UT
+                      postalCode: 00000-0000
+                      country: USA
+                      phoneNumber: 1(000)000-0000
+                      email: john.doe@example.com
+                      effectiveDate: '2021-05-06'
+                  dayOfWeek:
+                    isMonday: true
+                    isTuesday: true
+                    isWednesday: true
+                    isThursday: true
+                    isFriday: true
+                    isSaturday: true
+                    isSunday: true
+                  timeWindows:
+                    - startTime: '09:00'
+                      endTime: '11:00'
                   guidelines:
                     - guidelineType: Content
-                      excludeOrInclude: Include
-                      guidelineId: '123'
-                      guidelineName: Kids
-                  political: false
+                      excludeOrInclude: Exclude
+                      guidelines:
+                        - Violence
                   inventoryTypes:
-                    - Commercial
-                  maxRate: 1000
+                    - Commercials
+                    - Sponsorships
                   currency: USD
-                  externalComment: Urgent
+                  externalComment: string
                   audienceSegments:
-                    - audienceSegmentId: P18-25
-                      audienceSegmentName: People 18 to 25 years old
-                      audienceSegmentReference: '456'
-                      audienceMethodology: Third Party
-                      primaryIndicator: true
-                      guarantee: true
+                    - audienceSegmentIds:
+                        - id: string
+                          version: string
+                          srcId: string
+                          srcName: string
+                      audienceSegmentName: P18-49
+                      audienceSegmentReference: string
+                      audienceMethodology: Daypart Average
+                      isPrimary: true
+                      isGuarantee: true
                       ratingSource: Nielsen
                       ratingStream: Program Live
                   pricingMetricOptions:
                     - CPM
+                  frequency:
+                    effectiveOn: '2020-08-12T00:00:00.000Z'
+                    every: Month
+                    onDate:
+                      - 1
+                      - 15
+                    stratDate:
+                      offsetType: Week
+                      offset: 0
+                    endDate:
+                      offsetType: Week
+                      offset: 4
               Change:
                 value:
                   transactionHeader:
                     tipVersion: 6.0.0
                     transactionId:
-                      transactionId: 77DABA23-BC53-4E78-BCDE-AF527F1E62D6
+                      transactionId: E6361115-E919-461D-AE72-6311E4B9F57E
+                      transactionType: Change
+                      sourceId: XVEN-1234
+                      sourceName: XVEN Buyer
+                    originalTransactionId:
+                      transactionId: 3fa85f64-5717-4562-b3fc-2c963f66afa6
                       transactionType: New
-                      sourceId: WPP
-                      sourceName: WPP Group
-                    timeStamp: '2020-06-09T22:40:17.432Z'
-                  dateSubmitted: '2020-06-09'
-                  dueDate: '2020-06-09'
+                      sourceId: XVEN-1234
+                      sourceName: XVEN Buyer
+                    timeStamp: '2021-05-06T18:27:49.064Z'
+                  name: 'Change to once Month, on first Monday, Inventory Avails for next 4 weeks from reporting date'
                   mediaOutlets:
-                    - mediaOutletId: 427CAD68-2375-44E6-8A25-F13557FD01F8
-                      mediaOutletName: WXYZ News Live
-                      mediaOutletType: Broadcast TV
-                      mediaOutletChannel: '58.1'
-                      mediaOutletMarketName: South Eastern Wisconsin
-                      mediaOutletReference: string
+                    - mediaOutletIds:
+                        - id: KHOU-TV
+                          version: '0'
+                          srcId: XVEN-1234
+                          srcName: XVEN Buyer
+                      mediaOutletName: string
+                      mediaOutletType: Local TV
+                      mediaOutletChannel: KHOU-TV
+                      mediaOutletMarketName: 'Houston, TX'
                   buyer:
-                    buyerId: '123'
-                    buyerName: Buy All
-                    buyerReference: Buy All
+                    buyerIds:
+                      - id: XVEN-1234
+                        version: '0'
+                        srcId: XVEN-1234
+                        srcName: XVEN Buyer
+                    buyerName: Canvas Worldwide. LLC
                   advertiser:
-                    advertiserId: '456'
-                    advertiserName: Local Autos
-                    advertiserReference: WXYZ News Live
+                    advertiserIds:
+                      - id: ADV-4567
+                        version: '0'
+                        srcId: XVEN-1234
+                        srcName: XVEN Buyer
+                    advertiserName: Hyundai
                   contacts:
                     - contactType: Account Executive
-                      referenceSourceName: WXYZ News Live
-                      referenceSourceId: 427CAD68-2375-44E6-8A25-F13557FD01F8
+                      contactIds:
+                        - id: CNT-1234
+                          version: '0'
+                          srcId: XVEN-1234
+                          srcName: XVEN Buyer
+                      salesOffices:
+                        - 'Dallas, TX'
+                        - 'NYC, NY'
                       contactFirstName: John
                       contactLastName: Doe
-                      addressLine1: John's Address
-                      addressLine2: ''
-                      city: Sky City
-                      state: MN
-                      postalCode: '55555'
-                      country: US
-                      phoneNumber: 1(222)345-6789
-                      email: user@example.com
-                      effectiveDate: '2020-06-09'
-                  timePeriods:
-                    - dateWindow:
-                        startDate: '2020-06-09'
-                        endDate: '2020-06-09'
-                      DOW:
-                        monday: true
-                        tuesday: true
-                        wednesday: true
-                        thursday: true
-                        friday: true
-                        saturday: true
-                        sunday: true
-                      timeWindow:
-                        startTime: '09:00'
-                        endTime: '11:00'
+                      addressLine1: 1234 N. Main Street
+                      city: A City
+                      state: UT
+                      postalCode: 00000-0000
+                      country: USA
+                      phoneNumber: 1(000)000-0000
+                      email: john.doe@example.com
+                      effectiveDate: '2021-05-06'
+                  dayOfWeek:
+                    isMonday: true
+                    isTuesday: true
+                    isWednesday: true
+                    isThursday: true
+                    isFriday: true
+                    isSaturday: true
+                    isSunday: true
+                  timeWindows:
+                    - startTime: '09:00'
+                      endTime: '11:00'
                   guidelines:
                     - guidelineType: Content
-                      excludeOrInclude: Include
-                      guidelineId: '123'
-                      guidelineName: Kids
-                  political: false
+                      excludeOrInclude: Exclude
+                      guidelines:
+                        - Violence
                   inventoryTypes:
-                    - Commercial
-                  maxRate: 1000
+                    - Commercials
+                    - Sponsorships
                   currency: USD
-                  externalComment: Urgent
+                  externalComment: string
                   audienceSegments:
-                    - audienceSegmentId: P18-25
-                      audienceSegmentName: People 18 to 25 years old
-                      audienceSegmentReference: '456'
-                      audienceMethodology: Third Party
-                      primaryIndicator: true
-                      guarantee: true
+                    - audienceSegmentIds:
+                        - id: string
+                          version: string
+                          srcId: string
+                          srcName: string
+                      audienceSegmentName: P18-49
+                      audienceSegmentReference: string
+                      audienceMethodology: Daypart Average
+                      isPrimary: true
+                      isGuarantee: true
                       ratingSource: Nielsen
                       ratingStream: Program Live
                   pricingMetricOptions:
                     - CPM
+                  frequency:
+                    effectiveOn: '2020-08-12T00:00:00.000Z'
+                    every: Month
+                    onDay:
+                      - Mon
+                    onDate:
+                      - - 1
+                    stratDate:
+                      offsetType: Week
+                      offset: 0
+                    endDate:
+                      offsetType: Week
+                      offset: 4
               Cancel:
                 value:
-                  $ref: '#/paths/~1buyer~1commercialInstructions/post/requestBody/content/application~1json/examples/Cancel/value'
+                  transactionHeader:
+                    tipVersion: 6.0.0
+                    transactionId:
+                      transactionId: E6361115-E919-461D-AE72-6311E4B9F57E
+                      transactionType: Cancel
+                      sourceId: XBuy-1234
+                      sourceName: XVEN Buyer
+                    originalTransactionId:
+                      transactionId: BF7F7D82-1335-4C3B-ABD0-7545872A56DE
+                      transactionType: Change
+                      sourceId: XBuy-1234
+                      sourceName: XVEN Buyer
+                    timeStamp: '2021-05-06T19:01:50.610Z'
+                  referenceIds:
+                    - referenceSourceName: KUOU-TV
+                      referenceSourceId: '490'
+                      referenceSourceLookup: ''
+                      referenceType: Subscription
+                      referenceId: BF7F7D82-1335-4C3B-ABD0-7545872A56DE
+                      referenceVersionId: ''
+                      referenceName: string
+                  comments: Sample comment from message originator
+          application/xml:
+            schema:
+              oneOf:
+                - $ref: '#/components/schemas/BuyerInventoryAvailsSubscription'
+                - $ref: '#/components/schemas/CancelConfirmRecallReject'
+              xml:
+                name: BuyerInventoryAvailsRequest
+            examples:
+              New:
+                value: "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n<BuyerInventoryAvailsRequest>\r\n\t<transactionHeader>\r\n\t\t<tipVersion>6.0.0</tipVersion>\r\n\t\t<transactionId>\r\n\t\t\t<transactionId>3fa85f64-5717-4562-b3fc-2c963f66afa6</transactionId>\r\n\t\t\t<transactionType>New</transactionType>\r\n\t\t\t<sourceId>XVEN-1234</sourceId>\r\n\t\t\t<sourceName>XVEN Buyer</sourceName>\r\n\t\t</transactionId>\r\n\t\t<timeStamp>2021-05-06T18:27:49.064Z</timeStamp>\r\n\t</transactionHeader>\r\n\t<name>Twice a Month Inventory Avails for next 4 weeks from reporting date</name>\r\n\t<mediaOutlets>\r\n\t\t<mediaOutletIds>\r\n\t\t\t<id>KHOU-TV</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>XVEN-1234</srcId>\r\n\t\t\t<srcName>XVEN Buyer</srcName>\r\n\t\t</mediaOutletIds>\r\n\t\t<mediaOutletName>string</mediaOutletName>\r\n\t\t<mediaOutletType>Local TV</mediaOutletType>\r\n\t\t<mediaOutletChannel>KHOU-TV</mediaOutletChannel>\r\n\t\t<mediaOutletMarketName>Houston, TX</mediaOutletMarketName>\r\n\t</mediaOutlets>\r\n\t<buyer>\r\n\t\t<buyerIds>\r\n\t\t\t<id>XVEN-1234</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>XVEN-1234</srcId>\r\n\t\t\t<srcName>XVEN Buyer</srcName>\r\n\t\t</buyerIds>\r\n\t\t<buyerName>Canvas Worldwide. LLC</buyerName>\r\n\t</buyer>\r\n\t<advertiser>\r\n\t\t<advertiserIds>\r\n\t\t\t<id>ADV-4567</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>XVEN-1234</srcId>\r\n\t\t\t<srcName>XVEN Buyer</srcName>\r\n\t\t</advertiserIds>\r\n\t\t<advertiserName>Hyundai</advertiserName>\r\n\t</advertiser>\r\n\t<contacts>\r\n\t\t<contactType>Account Executive</contactType>\r\n\t\t<contactIds>\r\n\t\t\t<id>CNT-1234</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>XVEN-1234</srcId>\r\n\t\t\t<srcName>XVEN Buyer</srcName>\r\n\t\t</contactIds>\r\n\t\t<salesOffices>Dallas, TX</salesOffices>\r\n\t\t<salesOffices>NYC, NY</salesOffices>\r\n\t\t<contactFirstName>John</contactFirstName>\r\n\t\t<contactLastName>Doe</contactLastName>\r\n\t\t<addressLine1>1234 N. Main Street</addressLine1>\r\n\t\t<city>A City</city>\r\n\t\t<state>UT</state>\r\n\t\t<postalCode>00000-0000</postalCode>\r\n\t\t<country>USA</country>\r\n\t\t<phoneNumber>1(000)000-0000</phoneNumber>\r\n\t\t<email>john.doe@example.com</email>\r\n\t\t<effectiveDate>2021-05-06</effectiveDate>\r\n\t</contacts>\r\n\t<dayOfWeek>\r\n\t\t<isMonday>true</isMonday>\r\n\t\t<isTuesday>true</isTuesday>\r\n\t\t<isWednesday>true</isWednesday>\r\n\t\t<isThursday>true</isThursday>\r\n\t\t<isFriday>true</isFriday>\r\n\t\t<isSaturday>true</isSaturday>\r\n\t\t<isSunday>true</isSunday>\r\n\t</dayOfWeek>\r\n\t<timeWindows>\r\n\t\t<startTime>09:00</startTime>\r\n\t\t<endTime>11:00</endTime>\r\n\t</timeWindows>\r\n\t<guidelines>\r\n\t\t<guidelineType>Content</guidelineType>\r\n\t\t<excludeOrInclude>Exclude</excludeOrInclude>\r\n\t\t<guidelines>Violence</guidelines>\r\n\t</guidelines>\r\n\t<inventoryTypes>Commercials</inventoryTypes>\r\n\t<inventoryTypes>Sponsorships</inventoryTypes>\r\n\t<currency>USD</currency>\r\n\t<externalComment>string</externalComment>\r\n\t<audienceSegments>\r\n\t\t<audienceSegmentIds>\r\n\t\t\t<id>string</id>\r\n\t\t\t<version>string</version>\r\n\t\t\t<srcId>string</srcId>\r\n\t\t\t<srcName>string</srcName>\r\n\t\t</audienceSegmentIds>\r\n\t\t<audienceSegmentName>P18-49</audienceSegmentName>\r\n\t\t<audienceSegmentReference>string</audienceSegmentReference>\r\n\t\t<audienceMethodology>Daypart Average</audienceMethodology>\r\n\t\t<isPrimary>true</isPrimary>\r\n\t\t<isGuarantee>true</isGuarantee>\r\n\t\t<ratingSource>Nielsen</ratingSource>\r\n\t\t<ratingStream>Program Live</ratingStream>\r\n\t</audienceSegments>\r\n\t<pricingMetricOptions>CPM</pricingMetricOptions>\r\n\t<frequency>\r\n\t\t<effectiveOn>2020-08-12T00:00:00.000Z</effectiveOn>\r\n\t\t<every>Month</every>\r\n\t\t<onDate>1</onDate>\r\n\t\t<onDate>15</onDate>\r\n\t\t<stratDate>\r\n\t\t\t<offsetType>Week</offsetType>\r\n\t\t\t<offset>0</offset>\r\n\t\t</stratDate>\r\n\t\t<endDate>\r\n\t\t\t<offsetType>Week</offsetType>\r\n\t\t\t<offset>4</offset>\r\n\t\t</endDate>\r\n\t</frequency>\r\n</BuyerInventoryAvailsRequest>"
+              Change:
+                value: "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n<BuyerInventoryAvailsRequest>\r\n\t<transactionHeader>\r\n\t\t<tipVersion>6.0.0</tipVersion>\r\n\t\t<transactionId>\r\n\t\t\t<transactionId>E6361115-E919-461D-AE72-6311E4B9F57E</transactionId>\r\n\t\t\t<transactionType>Change</transactionType>\r\n\t\t\t<sourceId>XVEN-1234</sourceId>\r\n\t\t\t<sourceName>XVEN Buyer</sourceName>\r\n\t\t</transactionId>\r\n\t\t<originalTransactionId>\r\n\t\t\t<transactionId>3fa85f64-5717-4562-b3fc-2c963f66afa6</transactionId>\r\n\t\t\t<transactionType>New</transactionType>\r\n\t\t\t<sourceId>XVEN-1234</sourceId>\r\n\t\t\t<sourceName>XVEN Buyer</sourceName>\r\n\t\t</originalTransactionId>\r\n\t\t<timeStamp>2021-05-06T18:27:49.064Z</timeStamp>\r\n\t</transactionHeader>\r\n\t<name>Change to once Month, on first Monday, Inventory Avails for next 4 weeks from reporting date</name>\r\n\t<mediaOutlets>\r\n\t\t<mediaOutletIds>\r\n\t\t\t<id>KHOU-TV</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>XVEN-1234</srcId>\r\n\t\t\t<srcName>XVEN Buyer</srcName>\r\n\t\t</mediaOutletIds>\r\n\t\t<mediaOutletName>string</mediaOutletName>\r\n\t\t<mediaOutletType>Local TV</mediaOutletType>\r\n\t\t<mediaOutletChannel>KHOU-TV</mediaOutletChannel>\r\n\t\t<mediaOutletMarketName>Houston, TX</mediaOutletMarketName>\r\n\t</mediaOutlets>\r\n\t<buyer>\r\n\t\t<buyerIds>\r\n\t\t\t<id>XVEN-1234</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>XVEN-1234</srcId>\r\n\t\t\t<srcName>XVEN Buyer</srcName>\r\n\t\t</buyerIds>\r\n\t\t<buyerName>Canvas Worldwide. LLC</buyerName>\r\n\t</buyer>\r\n\t<advertiser>\r\n\t\t<advertiserIds>\r\n\t\t\t<id>ADV-4567</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>XVEN-1234</srcId>\r\n\t\t\t<srcName>XVEN Buyer</srcName>\r\n\t\t</advertiserIds>\r\n\t\t<advertiserName>Hyundai</advertiserName>\r\n\t</advertiser>\r\n\t<contacts>\r\n\t\t<contactType>Account Executive</contactType>\r\n\t\t<contactIds>\r\n\t\t\t<id>CNT-1234</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>XVEN-1234</srcId>\r\n\t\t\t<srcName>XVEN Buyer</srcName>\r\n\t\t</contactIds>\r\n\t\t<salesOffices>Dallas, TX</salesOffices>\r\n\t\t<salesOffices>NYC, NY</salesOffices>\r\n\t\t<contactFirstName>John</contactFirstName>\r\n\t\t<contactLastName>Doe</contactLastName>\r\n\t\t<addressLine1>1234 N. Main Street</addressLine1>\r\n\t\t<city>A City</city>\r\n\t\t<state>UT</state>\r\n\t\t<postalCode>00000-0000</postalCode>\r\n\t\t<country>USA</country>\r\n\t\t<phoneNumber>1(000)000-0000</phoneNumber>\r\n\t\t<email>john.doe@example.com</email>\r\n\t\t<effectiveDate>2021-05-06</effectiveDate>\r\n\t</contacts>\r\n\t<dayOfWeek>\r\n\t\t<isMonday>true</isMonday>\r\n\t\t<isTuesday>true</isTuesday>\r\n\t\t<isWednesday>true</isWednesday>\r\n\t\t<isThursday>true</isThursday>\r\n\t\t<isFriday>true</isFriday>\r\n\t\t<isSaturday>true</isSaturday>\r\n\t\t<isSunday>true</isSunday>\r\n\t</dayOfWeek>\r\n\t<timeWindows>\r\n\t\t<startTime>09:00</startTime>\r\n\t\t<endTime>11:00</endTime>\r\n\t</timeWindows>\r\n\t<guidelines>\r\n\t\t<guidelineType>Content</guidelineType>\r\n\t\t<excludeOrInclude>Exclude</excludeOrInclude>\r\n\t\t<guidelines>Violence</guidelines>\r\n\t</guidelines>\r\n\t<inventoryTypes>Commercials</inventoryTypes>\r\n\t<inventoryTypes>Sponsorships</inventoryTypes>\r\n\t<currency>USD</currency>\r\n\t<externalComment>string</externalComment>\r\n\t<audienceSegments>\r\n\t\t<audienceSegmentIds>\r\n\t\t\t<id>string</id>\r\n\t\t\t<version>string</version>\r\n\t\t\t<srcId>string</srcId>\r\n\t\t\t<srcName>string</srcName>\r\n\t\t</audienceSegmentIds>\r\n\t\t<audienceSegmentName>P18-49</audienceSegmentName>\r\n\t\t<audienceSegmentReference>string</audienceSegmentReference>\r\n\t\t<audienceMethodology>Daypart Average</audienceMethodology>\r\n\t\t<isPrimary>true</isPrimary>\r\n\t\t<isGuarantee>true</isGuarantee>\r\n\t\t<ratingSource>Nielsen</ratingSource>\r\n\t\t<ratingStream>Program Live</ratingStream>\r\n\t</audienceSegments>\r\n\t<pricingMetricOptions>CPM</pricingMetricOptions>\r\n\t<frequency>\r\n\t\t<effectiveOn>2020-08-12T00:00:00.000Z</effectiveOn>\r\n\t\t<every>Month</every>\r\n\t\t<onDay>Mon</onDay>\r\n\t\t<onDate>1</onDate>\r\n\t\t<stratDate>\r\n\t\t\t<offsetType>Week</offsetType>\r\n\t\t\t<offset>0</offset>\r\n\t\t</stratDate>\r\n\t\t<endDate>\r\n\t\t\t<offsetType>Week</offsetType>\r\n\t\t\t<offset>4</offset>\r\n\t\t</endDate>\r\n\t</frequency>\r\n</BuyerInventoryAvailsRequest>"
+              Cancel:
+                value: "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n<BuyerInventoryAvailsRequest>\r\n\t<transactionHeader>\r\n\t\t<tipVersion>6.0.0</tipVersion>\r\n\t\t<transactionId>\r\n\t\t\t<transactionId>E6361115-E919-461D-AE72-6311E4B9F57E</transactionId>\r\n\t\t\t<transactionType>Cancel</transactionType>\r\n\t\t\t<sourceId>XBuy-1234</sourceId>\r\n\t\t\t<sourceName>XVEN Buyer</sourceName>\r\n\t\t</transactionId>\r\n\t\t<originalTransactionId>\r\n\t\t\t<transactionId>BF7F7D82-1335-4C3B-ABD0-7545872A56DE</transactionId>\r\n\t\t\t<transactionType>Change</transactionType>\r\n\t\t\t<sourceId>XBuy-1234</sourceId>\r\n\t\t\t<sourceName>XVEN Buyer</sourceName>\r\n\t\t</originalTransactionId>\r\n\t\t<timeStamp>2021-05-06T19:01:50.610Z</timeStamp>\r\n\t</transactionHeader>\r\n\t<referenceIds>\r\n\t\t<referenceSourceName>KUOU-TV</referenceSourceName>\r\n\t\t<referenceSourceId>490</referenceSourceId>\r\n\t\t<referenceSourceLookup></referenceSourceLookup>\r\n\t\t<referenceType>Subscription</referenceType>\r\n\t\t<referenceId>BF7F7D82-1335-4C3B-ABD0-7545872A56DE</referenceId>\r\n\t\t<referenceVersionId></referenceVersionId>\r\n\t\t<referenceName>string</referenceName>\r\n\t</referenceIds>\r\n\t<comments>Sample comment from message originator</comments>\r\n</BuyerInventoryAvailsRequest>"
       responses:
         '200':
-          description: OK - in case request can be fullfiled in realtime
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/SellerInventoryAvails'
-        '202':
-          $ref: '#/components/responses/Accepted'
+          $ref: '#/components/responses/Success'
+        '201':
+          $ref: '#/components/responses/Created'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -236,114 +325,145 @@ paths:
                     transactionId:
                       transactionId: 3fa85f64-5717-4562-b3fc-2c963f66afa6
                       transactionType: New
-                      sourceId: '123'
-                      sourceName: Any
-                    timeStamp: '2020-12-18T21:08:01.308Z'
-                  dateSubmitted: '2020-12-18'
+                      sourceId: YSELL-1234
+                      sourceName: YSELL Seller
+                    timeStamp: '2021-05-06T18:32:44.757Z'
+                  dateSubmitted: '2021-05-06'
                   buyer:
-                    buyerId: string
-                    buyerName: string
-                    buyerReference: string
+                    buyerIds:
+                      - id: Xbuy-1234
+                        version: '0'
+                        srcId: XVEN-1234
+                        srcName: XVEN Buyer
+                    buyerName: Canvas Worldwide. LLC
                   advertiser:
-                    advertiserId: string
-                    advertiserName: string
-                    advertiserReference: string
+                    advertiserIds:
+                      - id: XADV-3456
+                        version: '0'
+                        srcId: XVEN-1234
+                        srcName: XVEN Buyer
+                    advertiserName: Hyundai
                   contacts:
                     - contactType: Account Executive
-                      referenceSourceName: string
-                      referenceSourceId: string
+                      contactIds:
+                        - id: CNT-1234
+                          version: '0'
+                          srcId: XVEN-1234
+                          srcName: XVEN Buyer
                       salesOffices:
-                        - string
-                      contactFirstName: string
-                      contactLastName: string
-                      addressLine1: string
-                      addressLine2: string
-                      city: string
-                      state: string
-                      postalCode: string
-                      country: string
-                      phoneNumber: string
-                      email: user@example.com
-                      effectiveDate: '2020-12-18'
+                        - 'Dallas, TX'
+                        - 'NYC, NY'
+                      contactFirstName: John
+                      contactLastName: Doe
+                      addressLine1: 1234 N. Main Street
+                      city: A City
+                      state: UT
+                      postalCode: 00000-0000
+                      country: USA
+                      phoneNumber: 1(000)000-0000
+                      email: john.doe@example.com
+                      effectiveDate: '2021-05-06'
                   rateCard:
-                    rateCardId: string
-                    rateCardName: string
-                  currency: USD
-                  political: true
+                    rateCardId: 1
+                    rateCardName: 1Q'22 Rate Card
+                    currency: USD
+                  isPolitical: false
                   mediaOutlets:
-                    - mediaOutletId: string
-                      mediaOutletName: string
-                      mediaOutletType: Broadcast TV
-                      mediaOutletChannel: string
-                      mediaOutletMarketName: string
-                      mediaOutletReference: string
+                    - mediaOutletIds:
+                        - id: KHOU-TV
+                          version: '0'
+                          srcId: XVEN-1234
+                          srcName: XVEN Buyer
+                      mediaOutletName: KHOU-TV
+                      mediaOutletType: Local TV
+                      mediaOutletChannel: KHOU-TV
+                      mediaOutletMarketName: 'Houston, TX'
                   audienceSegments:
-                    - mediaOutletId: string
+                    - mediaOutletIds:
+                        - id: KHOU-TV
+                          version: '0'
+                          srcId: YSELL-1234
+                          srcName: XSell Seller
                       audienceSegment:
-                        audienceSegmentId: string
-                        audienceSegmentName: string
-                        audienceSegmentReference: string
-                        audienceMethodology: string
-                        primaryIndicator: true
-                        guarantee: true
-                        ratingSource: string
-                        ratingStream: string
+                        audienceSegmentIds:
+                          - id: P15-25
+                            version: '0'
+                            srcId: YSELL-1234
+                            srcName: YSELL Seller
+                        audienceSegmentName: P18-49
+                        audienceMethodology: Daypart Average
+                        isPrimary: true
+                        isGuarantee: true
+                        ratingSource: Nielsen
+                        ratingStream: Program Live
                       universes:
                         - universeType: Market
                           universeTypeValue: 0
                   availWindow:
-                    startDate: '2020-12-18'
-                    endDate: '2020-12-18'
+                    startDate: '2021-08-06'
+                    endDate: '2021-08-20'
                   salesElements:
-                    - salesElement:
-                        mediaOutletId: string
-                        salesElementName: string
+                    - salesElementHeader:
+                        mediaOutletId: YSELL-1234
+                        salesElementName: Primetime
                         salesElementId: string
                         salesElementType: Time-specific
                       timePeriods:
                         - dateWindow:
-                            startDate: '2020-12-18'
-                            endDate: '2020-12-18'
+                            startDate: '2021-08-06'
+                            endDate: '2021-08-20'
                           DOW:
-                            monday: true
-                            tuesday: true
-                            wednesday: true
-                            thursday: true
-                            friday: true
-                            saturday: true
-                            sunday: true
+                            isMonday: true
+                            isTuesday: true
+                            isWednesday: true
+                            isThursday: true
+                            isFriday: true
+                            isSaturday: true
+                            isSunday: true
                           timeWindow:
-                            startTime: '10:00'
-                            endTime: '13:00'
+                            startTime: '09:00'
+                            endTime: '11:00'
+                      devices:
+                        - PlayStation
                       programs:
-                        - string
-                      salesElementInventory:
+                        - Mid Morning News
+                      salesElementInventorys:
                         - inventoryType: Commercial
                           linkType:
                             linkType: Billboard
                             linkNum: 0
                             linkSeq: 0
                           inventoryPosition: First
-                          inventoryLength: 0
+                          inventoryLength: 30
                           salesElementInventoryDates:
                             - dateType: Day
                               calendarType: Broadcast
                               dateWindow:
-                                startDate: '2020-12-18'
-                                endDate: '2020-12-18'
-                              inventoryCapacity: string
-                              inventoryAvails: string
-                              inventoryMax: string
-                              rate: 0
+                                startDate: '2021-08-06'
+                                endDate: '2021-08-20'
+                              inventoryCapacity: 0
+                              inventoryAvails: 0
+                              inventoryMax: 0
                               audiencesPricingMetrics:
-                                - audienceSegmentId: string
+                                - audienceSegmentIds:
+                                    - id: P15-25
+                                      version: '0'
+                                      srcId: YSELL-1234
+                                      srcName: YSELL Seller
                                   type: Selling
                                   audienceMetric:
                                     audienceMetric: Impressions
-                                    audienceMetricValue: 0
+                                    audienceMetricValue: 43256
                                   pricingMetric:
-                                    pricingMetric: CPM
-                                    pricingMetricValue: 0
+                                    PricingMetricOption: CPM
+                                    grossValue: 0
+                                    netValue: 0
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/SellerInventoryAvails'
+            examples:
+              New:
+                value: "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n<SellerInventoryAvailsRequest>\r\n\t<transactionHeader>\r\n\t\t<tipVersion>6.0.0</tipVersion>\r\n\t\t<transactionId>\r\n\t\t\t<transactionId>3fa85f64-5717-4562-b3fc-2c963f66afa6</transactionId>\r\n\t\t\t<transactionType>New</transactionType>\r\n\t\t\t<sourceId>YSELL-1234</sourceId>\r\n\t\t\t<sourceName>YSELL Seller</sourceName>\r\n\t\t</transactionId>\r\n\t\t<timeStamp>2021-05-06T18:32:44.757Z</timeStamp>\r\n\t</transactionHeader>\r\n\t<dateSubmitted>2021-05-06</dateSubmitted>\r\n\t<buyer>\r\n\t\t<buyerIds>\r\n\t\t\t<id>Xbuy-1234</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>XVEN-1234</srcId>\r\n\t\t\t<srcName>XVEN Buyer</srcName>\r\n\t\t</buyerIds>\r\n\t\t<buyerName>Canvas Worldwide. LLC</buyerName>\r\n\t</buyer>\r\n\t<advertiser>\r\n\t\t<advertiserIds>\r\n\t\t\t<id>XADV-3456</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>XVEN-1234</srcId>\r\n\t\t\t<srcName>XVEN Buyer</srcName>\r\n\t\t</advertiserIds>\r\n\t\t<advertiserName>Hyundai</advertiserName>\r\n\t</advertiser>\r\n\t<contacts>\r\n\t\t<contactType>Account Executive</contactType>\r\n\t\t<contactIds>\r\n\t\t\t<id>CNT-1234</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>XVEN-1234</srcId>\r\n\t\t\t<srcName>XVEN Buyer</srcName>\r\n\t\t</contactIds>\r\n\t\t<salesOffices>Dallas, TX</salesOffices>\r\n\t\t<salesOffices>NYC, NY</salesOffices>\r\n\t\t<contactFirstName>John</contactFirstName>\r\n\t\t<contactLastName>Doe</contactLastName>\r\n\t\t<addressLine1>1234 N. Main Street</addressLine1>\r\n\t\t<city>A City</city>\r\n\t\t<state>UT</state>\r\n\t\t<postalCode>00000-0000</postalCode>\r\n\t\t<country>USA</country>\r\n\t\t<phoneNumber>1(000)000-0000</phoneNumber>\r\n\t\t<email>john.doe@example.com</email>\r\n\t\t<effectiveDate>2021-05-06</effectiveDate>\r\n\t</contacts>\r\n\t<rateCard>\r\n\t\t<rateCardId>1</rateCardId>\r\n\t\t<rateCardName>1Q'22 Rate Card</rateCardName>\r\n\t\t<currency>USD</currency>\r\n\t</rateCard>\r\n\t<isPolitical>false</isPolitical>\r\n\t<mediaOutlets>\r\n\t\t<mediaOutletIds>\r\n\t\t\t<id>KHOU-TV</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>XVEN-1234</srcId>\r\n\t\t\t<srcName>XVEN Buyer</srcName>\r\n\t\t</mediaOutletIds>\r\n\t\t<mediaOutletName>KHOU-TV</mediaOutletName>\r\n\t\t<mediaOutletType>Local TV</mediaOutletType>\r\n\t\t<mediaOutletChannel>KHOU-TV</mediaOutletChannel>\r\n\t\t<mediaOutletMarketName>Houston, TX</mediaOutletMarketName>\r\n\t</mediaOutlets>\r\n\t<audienceSegments>\r\n\t\t<mediaOutletIds>\r\n\t\t\t<id>KHOU-TV</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>YSELL-1234</srcId>\r\n\t\t\t<srcName>XSell Seller</srcName>\r\n\t\t</mediaOutletIds>\r\n\t\t<audienceSegment>\r\n\t\t\t<audienceSegmentIds>\r\n\t\t\t\t<id>P15-25</id>\r\n\t\t\t\t<version>0</version>\r\n\t\t\t\t<srcId>YSELL-1234</srcId>\r\n\t\t\t\t<srcName>YSELL Seller</srcName>\r\n\t\t\t</audienceSegmentIds>\r\n\t\t\t<audienceSegmentName>P18-49</audienceSegmentName>\r\n\t\t\t<audienceMethodology>Daypart Average</audienceMethodology>\r\n\t\t\t<isPrimary>true</isPrimary>\r\n\t\t\t<isGuarantee>true</isGuarantee>\r\n\t\t\t<ratingSource>Nielsen</ratingSource>\r\n\t\t\t<ratingStream>Program Live</ratingStream>\r\n\t\t</audienceSegment>\r\n\t\t<universes>\r\n\t\t\t<universeType>Market</universeType>\r\n\t\t\t<universeTypeValue>0</universeTypeValue>\r\n\t\t</universes>\r\n\t</audienceSegments>\r\n\t<availWindow>\r\n\t\t<startDate>2021-08-06</startDate>\r\n\t\t<endDate>2021-08-20</endDate>\r\n\t</availWindow>\r\n\t<salesElements>\r\n\t\t<salesElementHeader>\r\n\t\t\t<mediaOutletId>YSELL-1234</mediaOutletId>\r\n\t\t\t<salesElementName>Primetime</salesElementName>\r\n\t\t\t<salesElementId>string</salesElementId>\r\n\t\t\t<salesElementType>Time-specific</salesElementType>\r\n\t\t</salesElementHeader>\r\n\t\t<timePeriods>\r\n\t\t\t<dateWindow>\r\n\t\t\t\t<startDate>2021-08-06</startDate>\r\n\t\t\t\t<endDate>2021-08-20</endDate>\r\n\t\t\t</dateWindow>\r\n\t\t\t<DOW>\r\n\t\t\t\t<isMonday>true</isMonday>\r\n\t\t\t\t<isTuesday>true</isTuesday>\r\n\t\t\t\t<isWednesday>true</isWednesday>\r\n\t\t\t\t<isThursday>true</isThursday>\r\n\t\t\t\t<isFriday>true</isFriday>\r\n\t\t\t\t<isSaturday>true</isSaturday>\r\n\t\t\t\t<isSunday>true</isSunday>\r\n\t\t\t</DOW>\r\n\t\t\t<timeWindow>\r\n\t\t\t\t<startTime>09:00</startTime>\r\n\t\t\t\t<endTime>11:00</endTime>\r\n\t\t\t</timeWindow>\r\n\t\t</timePeriods>\r\n\t\t<devices>PlayStation</devices>\r\n\t\t<programs>Mid Morning News</programs>\r\n\t\t<salesElementInventorys>\r\n\t\t\t<inventoryType>Commercial</inventoryType>\r\n\t\t\t<linkType>\r\n\t\t\t\t<linkType>Billboard</linkType>\r\n\t\t\t\t<linkNum>0</linkNum>\r\n\t\t\t\t<linkSeq>0</linkSeq>\r\n\t\t\t</linkType>\r\n\t\t\t<inventoryPosition>First</inventoryPosition>\r\n\t\t\t<inventoryLength>30</inventoryLength>\r\n\t\t\t<salesElementInventoryDates>\r\n\t\t\t\t<dateType>Day</dateType>\r\n\t\t\t\t<calendarType>Broadcast</calendarType>\r\n\t\t\t\t<dateWindow>\r\n\t\t\t\t\t<startDate>2021-08-06</startDate>\r\n\t\t\t\t\t<endDate>2021-08-20</endDate>\r\n\t\t\t\t</dateWindow>\r\n\t\t\t\t<inventoryCapacity>0</inventoryCapacity>\r\n\t\t\t\t<inventoryAvails>0</inventoryAvails>\r\n\t\t\t\t<inventoryMax>0</inventoryMax>\r\n\t\t\t\t<audiencesPricingMetrics>\r\n\t\t\t\t\t<audienceSegmentIds>\r\n\t\t\t\t\t\t<id>P15-25</id>\r\n\t\t\t\t\t\t<version>0</version>\r\n\t\t\t\t\t\t<srcId>YSELL-1234</srcId>\r\n\t\t\t\t\t\t<srcName>YSELL Seller</srcName>\r\n\t\t\t\t\t</audienceSegmentIds>\r\n\t\t\t\t\t<type>Selling</type>\r\n\t\t\t\t\t<audienceMetric>\r\n\t\t\t\t\t\t<audienceMetric>Impressions</audienceMetric>\r\n\t\t\t\t\t\t<audienceMetricValue>43256</audienceMetricValue>\r\n\t\t\t\t\t</audienceMetric>\r\n\t\t\t\t\t<pricingMetric>\r\n\t\t\t\t\t\t<PricingMetricOption>CPM</PricingMetricOption>\r\n\t\t\t\t\t\t<grossValue>0</grossValue>\r\n\t\t\t\t\t\t<netValue>0</netValue>\r\n\t\t\t\t\t</pricingMetric>\r\n\t\t\t\t</audiencesPricingMetrics>\r\n\t\t\t</salesElementInventoryDates>\r\n\t\t</salesElementInventorys>\r\n\t</salesElements>\r\n</SellerInventoryAvailsRequest>"
       responses:
         '200':
           $ref: '#/components/responses/Success'
@@ -375,6 +495,8 @@ paths:
               oneOf:
                 - $ref: '#/components/schemas/BuyerRFPS'
                 - $ref: '#/components/schemas/CancelConfirmRecallReject'
+              xml:
+                name: BuyerRFPSRequest
             examples:
               New:
                 value:
@@ -810,6 +932,8 @@ paths:
               oneOf:
                 - $ref: '#/components/schemas/SellerProposals'
                 - $ref: '#/components/schemas/CancelConfirmRecallReject'
+              xml:
+                name: SellerProposalsRequest
             examples:
               Change:
                 value:
@@ -1030,6 +1154,8 @@ paths:
               oneOf:
                 - $ref: '#/components/schemas/BuyerOrders'
                 - $ref: '#/components/schemas/CancelConfirmRecallReject'
+              xml:
+                name: BuyerOrdersRequest
             examples:
               New:
                 value:
@@ -1883,13 +2009,7 @@ paths:
         content:
           application/json:
             schema:
-              description: |
-                Users of this contruct have the option to either
-                <li>Use the full Commercial Instructions object to deliver New, or change instructions
-                <li>Use the alternate object to recall, or cancel a previously sent instructions.
-              oneOf:
-                - $ref: '#/components/schemas/BuyerCommercialInstructions'
-                - $ref: '#/components/schemas/CancelConfirmRecallReject'
+              $ref: '#/paths/~1buyer~1commercialInstructions/post/requestBody/content/application~1xml/schema'
             examples:
               New:
                 value:
@@ -1898,223 +2018,267 @@ paths:
                     transactionId:
                       transactionId: 3fa85f64-5717-4562-b3fc-2c963f66afa6
                       transactionType: New
-                      sourceId: '123'
-                      sourceName: ABC
-                    timeStamp: '2020-07-22T17:47:20.907Z'
+                      sourceId: EXT-123
+                      sourceName: Creative Assets Company
+                    timeStamp: '2021-05-06T18:54:24.221Z'
                   referenceIds:
-                    - referenceSourceName: ABC
-                      referenceSourceId: '123'
-                      referenceSourceLookup: ''
-                      referenceId: 4188F5BC-05CD-455B-AB45-F133E918C901
+                    - referenceSourceName: KHOU-TV
+                      referenceSourceId: KHOU-5678
                       referenceType: Order
-                      referenceVersionId: '0'
-                      referenceName: any
+                      referenceVersionId: 0
+                      referenceName: Hyundai 1Q22
                   buyer:
-                    buyerId: string
-                    buyerName: string
-                    buyerReference: string
-                  contact:
+                    buyerIds:
+                      - id: BUYER-178
+                        version: '0'
+                        srcId: XBuy-1234
+                        srcName: XVEN Buyer
+                    buyerName: Canvas Worldwide. LLC
+                  contacts:
                     - contactType: Account Executive
-                      referenceSourceName: string
-                      referenceSourceId: string
-                      contactLocation: string
-                      contactFirstName: string
-                      contactLastName: string
-                      addressLine1: string
-                      addressLine2: string
-                      city: string
-                      state: string
-                      postalCode: string
-                      country: string
-                      phoneNumber: string
-                      email: user@example.com
-                      effectiveDate: '2020-07-22'
+                      referenceSourceName: XVEN Buyer
+                      referenceSourceId: XBuy-1234
+                      salesOffices:
+                        - - 'Dallas, TX'
+                          - 'NYC, NY'
+                      contactFirstName: Jane
+                      contactLastName: Doe
+                      addressLine1: 546 Main Avenue
+                      city: City Rapids
+                      state: B State
+                      postalCode: 00000-0000
+                      country: USA
+                      phoneNumber: +1(000)000-00000
+                      email: jane@example.com
+                      effectiveDate: '2021-05-06'
                   advertiser:
-                    advertiserId: string
-                    advertiserName: string
-                    advertiserReference: string
+                    advertiserIds:
+                      - id: EXT-654
+                        version: '0'
+                        srcId: EXT-123
+                        srcName: Creative Assets Company
+                    advertiserName: Hyundai
                   product:
-                    productId: string
-                    productName: string
+                    productIds:
+                      - id: EXT-0001
+                        version: '0'
+                        srcName: Creative Assets Company
+                    productName: Automobile
                     productReference: string
-                  dateWindows:
-                    - startDate: '2020-07-22'
-                      endDate: '2020-07-22'
+                  dateWindow:
+                    startDate: '2021-05-06'
+                    endDate: '2021-05-06'
                   cpeCode:
-                    clientCode: string
-                    productCode: string
-                    estimateCode: string
-                  instructionComment: string
-                  externalComment: string
+                    clientCode: EXT-0002
+                    productCode: EXT-0001
+                    estimateCode: '001002'
+                  instructionComment: Any Instructions
+                  externalComment: More instruction or comments
                   instructionType: Rotation Share
                   instructionDetails:
                     - actionType: New
                       inventoryTypes:
-                        - Commercial
+                        - Bookend
                       mediaOutlet:
-                        mediaOutletId: 4188F5BC-05CD-455B-AB45-F133E918C901
-                        mediaOutletName: WXYZ
-                        mediaOutletType: Broadcast TV
-                        mediaOutletChannel: '58.1'
-                        mediaOutletMarketName: A Market
-                        mediaOutletReference: ''
-                      adId: string
-                      name: string
+                        mediaOutletIds:
+                          - id: TV-124
+                            version: '0'
+                            srcId: XBuy-1234
+                            srcName: XVEN Buyer
+                        mediaOutletName: KHOU-TV
+                        mediaOutletType: Local TV
+                        mediaOutletChannel: KHOU-TV
+                        mediaOutletMarketName: 'Houston, TX'
+                      creative:
+                        ids:
+                          - id: TYRN8899H
+                            version: '0'
+                            srcName: AdID.org
+                        name: '2020 Labor Day Sales Event - RAV4 :15'
+                        status: Not Final
+                        length: 15
                       brand:
-                        brandId: string
-                        brandName: string
-                        brandReference: string
+                        brandIds:
+                          - id: TOY-123
+                            version: '0'
+                            srcId: XBuy-1234
+                            srcName: XVEN Buyer
+                        brandName: Compact SUV RAV4
                       product:
-                        productId: string
-                        productName: string
-                        productReference: string
-                      length: 0
+                        productIds:
+                          - id: AUT-123
+                            version: '0'
+                            srcId: XBuy-1234
+                            srcName: XVEN Buyer
+                        productName: Automobile
                       linkType:
-                        linkType: Billboard
-                        linkNum: 0
-                        linkSeq: 0
-                      deliveryDate: '2020-07-22'
-                      deliveryService: string
+                        linkType: Bookend
+                        linkNum: 1
+                        linkSeq: 1
+                      deliveryDate: '2021-05-06'
+                      deliveryService: Adstream
                       timePeriods:
                         - dateWindow:
-                            startDate: '2020-07-22'
-                            endDate: '2020-07-22'
+                            startDate: '2021-05-06'
+                            endDate: '2021-05-06'
                           DOW:
-                            monday: true
-                            tuesday: true
-                            wednesday: true
-                            thursday: true
-                            friday: true
-                            saturday: true
-                            sunday: true
+                            isMonday: true
+                            isTuesday: true
+                            isWednesday: true
+                            isThursday: true
+                            isFriday: true
+                            isSaturday: true
+                            isSunday: true
                           timeWindow:
-                            startTime: '09:20'
-                            endTime: '09:59'
-                      rotationShare: 0
-                      patternInstruction: string
-                      unitSpecificInstruction:
-                        - string
-                      specialInstructions: string
+                            startTime: '9:00'
+                            endTime: '17:00'
+                      rotationShare: 100
+                      patternInstruction: 'null'
+                      unitSpecificInstructions:
+                        - 'null'
+                      specialInstructions: 'null'
               Change:
                 value:
                   transactionHeader:
                     tipVersion: 6.0.0
                     transactionId:
-                      transactionId: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+                      transactionId: 40299727-4FF6-43E5-A627-4791C994BC58
                       transactionType: Change
-                      sourceId: '123'
-                      sourceName: ABC
+                      sourceId: EXT-123
+                      sourceName: Creative Assets Company
                     originalTransactionId:
                       transactionId: 3fa85f64-5717-4562-b3fc-2c963f66afa6
                       transactionType: New
-                      sourceId: string
-                      sourceName: string
-                    timeStamp: '2020-07-22T17:47:20.907Z'
+                      sourceId: EXT-123
+                      sourceName: Creative Assets Company
+                    timeStamp: '2021-05-06T18:54:24.221Z'
                   referenceIds:
-                    - referenceSourceName: ABC
-                      referenceSourceId: '123'
-                      referenceSourceLookup: ''
-                      referenceId: 4188F5BC-05CD-455B-AB45-F133E918C901
+                    - referenceSourceName: KHOU-TV
+                      referenceSourceId: KHOU-5678
                       referenceType: Order
-                      referenceVersionId: '0'
-                      referenceName: any
+                      referenceVersionId: 0
+                      referenceName: Hyundai 1Q22
                   buyer:
-                    buyerId: string
-                    buyerName: string
-                    buyerReference: string
-                  contact:
+                    buyerIds:
+                      - id: BUYER-178
+                        version: '0'
+                        srcId: XBuy-1234
+                        srcName: XVEN Buyer
+                    buyerName: Canvas Worldwide. LLC
+                  contacts:
                     - contactType: Account Executive
-                      referenceSourceName: string
-                      referenceSourceId: string
-                      contactLocation: string
-                      contactFirstName: string
-                      contactLastName: string
-                      addressLine1: string
-                      addressLine2: string
-                      city: string
-                      state: string
-                      postalCode: string
-                      country: string
-                      phoneNumber: string
-                      email: user@example.com
-                      effectiveDate: '2020-07-22'
+                      referenceSourceName: XVEN Buyer
+                      referenceSourceId: XBuy-1234
+                      salesOffices:
+                        - - 'Dallas, TX'
+                          - 'NYC, NY'
+                      contactFirstName: Jane
+                      contactLastName: Doe
+                      addressLine1: 546 Main Avenue
+                      city: City Rapids
+                      state: B State
+                      postalCode: 00000-0000
+                      country: USA
+                      phoneNumber: +1(000)000-00000
+                      email: jane@example.com
+                      effectiveDate: '2021-05-06'
                   advertiser:
-                    advertiserId: string
-                    advertiserName: string
-                    advertiserReference: string
+                    advertiserIds:
+                      - id: EXT-654
+                        version: '0'
+                        srcId: EXT-123
+                        srcName: Creative Assets Company
+                    advertiserName: Hyundai
                   product:
-                    productId: string
-                    productName: string
+                    productIds:
+                      - id: EXT-0001
+                        version: '0'
+                        srcName: Creative Assets Company
+                    productName: Automobile
                     productReference: string
-                  dateWindows:
-                    - startDate: '2020-07-22'
-                      endDate: '2020-07-22'
+                  dateWindow:
+                    startDate: '2021-05-06'
+                    endDate: '2021-05-06'
                   cpeCode:
-                    clientCode: string
-                    productCode: string
-                    estimateCode: string
-                  instructionComment: string
-                  externalComment: string
+                    clientCode: EXT-0002
+                    productCode: EXT-0001
+                    estimateCode: '001002'
+                  instructionComment: Any Instructions
+                  externalComment: More instruction or comments
                   instructionType: Rotation Share
                   instructionDetails:
                     - actionType: New
                       inventoryTypes:
-                        - Commercial
+                        - Bookend
                       mediaOutlet:
-                        mediaOutletId: 4188F5BC-05CD-455B-AB45-F133E918C901
-                        mediaOutletName: WXYZ
-                        mediaOutletType: Broadcast TV
-                        mediaOutletChannel: '58.1'
-                        mediaOutletMarketName: A Market
-                        mediaOutletReference: ''
-                      adId: string
-                      name: string
+                        mediaOutletIds:
+                          - id: TV-124
+                            version: '0'
+                            srcId: XBuy-1234
+                            srcName: XVEN Buyer
+                        mediaOutletName: KHOU-TV
+                        mediaOutletType: Local TV
+                        mediaOutletChannel: KHOU-TV
+                        mediaOutletMarketName: 'Houston, TX'
+                      creative:
+                        ids:
+                          - id: TYRN8899H
+                            version: '0'
+                            srcName: AdID.org
+                        name: '2020 Labor Day Sales Event - RAV4 :15'
+                        status: Not Final
+                        length: 15
                       brand:
-                        brandId: string
-                        brandName: string
-                        brandReference: string
+                        brandIds:
+                          - id: TOY-123
+                            version: '0'
+                            srcId: XBuy-1234
+                            srcName: XVEN Buyer
+                        brandName: Compact SUV RAV4
                       product:
-                        productId: string
-                        productName: string
-                        productReference: string
-                      length: 0
+                        productIds:
+                          - id: AUT-123
+                            version: '0'
+                            srcId: XBuy-1234
+                            srcName: XVEN Buyer
+                        productName: Automobile
                       linkType:
-                        linkType: Billboard
-                        linkNum: 0
-                        linkSeq: 0
-                      deliveryDate: '2020-07-22'
-                      deliveryService: string
+                        linkType: Bookend
+                        linkNum: 1
+                        linkSeq: 1
+                      deliveryDate: '2021-05-06'
+                      deliveryService: Adstream
                       timePeriods:
                         - dateWindow:
-                            startDate: '2020-07-22'
-                            endDate: '2020-07-22'
+                            startDate: '2021-05-06'
+                            endDate: '2021-05-06'
                           DOW:
-                            monday: true
-                            tuesday: true
-                            wednesday: true
-                            thursday: true
-                            friday: true
-                            saturday: true
-                            sunday: true
+                            isMonday: true
+                            isTuesday: true
+                            isWednesday: true
+                            isThursday: true
+                            isFriday: true
+                            isSaturday: true
+                            isSunday: true
                           timeWindow:
-                            startTime: '09:20'
-                            endTime: '09:59'
-                      rotationShare: 0
-                      patternInstruction: string
-                      unitSpecificInstruction:
-                        - string
-                      specialInstructions: string
+                            startTime: '9:00'
+                            endTime: '17:00'
+                      rotationShare: 100
+                      patternInstruction: 'null'
+                      unitSpecificInstructions:
+                        - 'null'
+                      specialInstructions: 'null'
               Cancel:
                 value:
                   transactionHeader:
                     tipVersion: 6.0.0
                     transactionId:
-                      transactionId: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+                      transactionId: 0E300E0A-17AA-420C-92C6-D7C795256CB0
                       transactionType: Cancel
                       sourceId: '490'
                       sourceName: KHOU-TV
                     originalTransactionId:
-                      transactionId: B906A0A9-19FA-4F06-B94D-22E4F1D9120C
+                      transactionId: 3fa85f64-5717-4562-b3fc-2c963f66afa6
                       transactionType: New
                       sourceId: '490'
                       sourceName: KHOU-TV
@@ -2133,25 +2297,45 @@ paths:
                   transactionHeader:
                     tipVersion: 6.0.0
                     transactionId:
-                      transactionId: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+                      transactionId: 0E300E0A-17AA-420C-92C6-D7C795256CB0
                       transactionType: Recall
                       sourceId: '490'
                       sourceName: KHOU-TV
                     originalTransactionId:
-                      transactionId: B906A0A9-19FA-4F06-B94D-22E4F1D9120C
+                      transactionId: 3fa85f64-5717-4562-b3fc-2c963f66afa6
                       transactionType: New
                       sourceId: '490'
                       sourceName: KHOU-TV
                     timeStamp: '2020-07-17T20:04:55.220Z'
                   referenceIds:
-                    - referenceSourceName: KHOU-TV
+                    - referenceSourceName: KUOU-TV
                       referenceSourceId: '490'
                       referenceSourceLookup: ''
-                      referenceType: Proposal
+                      referenceType: Order
                       referenceId: '123456'
                       referenceVersionId: ''
-                      referenceName: Q2 Proposal for Premium Sport Equipments
-                  comments: Sorry for sending incomplete proposal; Per our discussion 10% discount will be applied
+                      referenceName: string
+                  comments: Sample comment from message originator
+          application/xml:
+            schema:
+              description: |-
+                Users of this contruct have the option to either
+                  - Use the full Commercial Instructions object to deliver New, or change instructions
+                  - Use the alternate object to recall, or cancel a previously sent instructions.
+              oneOf:
+                - $ref: '#/components/schemas/BuyerCommercialInstructions'
+                - $ref: '#/components/schemas/CancelConfirmRecallReject'
+              xml:
+                name: BuyerCommercialInstructionsRequest
+            examples:
+              New:
+                value: "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n<BuyerCommercialInstructionsRequest>\r\n\t<transactionHeader>\r\n\t\t<tipVersion>6.0.0</tipVersion>\r\n\t\t<transactionId>\r\n\t\t\t<transactionId>3fa85f64-5717-4562-b3fc-2c963f66afa6</transactionId>\r\n\t\t\t<transactionType>New</transactionType>\r\n\t\t\t<sourceId>EXT-123</sourceId>\r\n\t\t\t<sourceName>Creative Assets Company</sourceName>\r\n\t\t</transactionId>\r\n\t\t<timeStamp>2021-05-06T18:54:24.221Z</timeStamp>\r\n\t</transactionHeader>\r\n\t<referenceIds>\r\n\t\t<referenceSourceName>KHOU-TV</referenceSourceName>\r\n\t\t<referenceSourceId>KHOU-5678</referenceSourceId>\r\n\t\t<referenceType>Order</referenceType>\r\n\t\t<referenceVersionId>0</referenceVersionId>\r\n\t\t<referenceName>Hyundai 1Q22</referenceName>\r\n\t</referenceIds>\r\n\t<buyer>\r\n\t\t<buyerIds>\r\n\t\t\t<id>BUYER-178</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>XBuy-1234</srcId>\r\n\t\t\t<srcName>XVEN Buyer</srcName>\r\n\t\t</buyerIds>\r\n\t\t<buyerName>Canvas Worldwide. LLC</buyerName>\r\n\t</buyer>\r\n\t<contacts>\r\n\t\t<contactType>Account Executive</contactType>\r\n\t\t<referenceSourceName>XVEN Buyer</referenceSourceName>\r\n\t\t<referenceSourceId>XBuy-1234</referenceSourceId>\r\n\t\t<salesOffices>Dallas, TX</salesOffices>\r\n\t\t<salesOffices>NYC, NY</salesOffices>\r\n\t\t<contactFirstName>Jane</contactFirstName>\r\n\t\t<contactLastName>Doe</contactLastName>\r\n\t\t<addressLine1>546 Main Avenue</addressLine1>\r\n\t\t<city>City Rapids</city>\r\n\t\t<state>B State</state>\r\n\t\t<postalCode>00000-0000</postalCode>\r\n\t\t<country>USA</country>\r\n\t\t<phoneNumber>+1(000)000-00000</phoneNumber>\r\n\t\t<email>jane@example.com</email>\r\n\t\t<effectiveDate>2021-05-06</effectiveDate>\r\n\t</contacts>\r\n\t<advertiser>\r\n\t\t<advertiserIds>\r\n\t\t\t<id>EXT-654</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>EXT-123</srcId>\r\n\t\t\t<srcName>Creative Assets Company</srcName>\r\n\t\t</advertiserIds>\r\n\t\t<advertiserName>Hyundai</advertiserName>\r\n\t</advertiser>\r\n\t<product>\r\n\t\t<productIds>\r\n\t\t\t<id>EXT-0001</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcName>Creative Assets Company</srcName>\r\n\t\t</productIds>\r\n\t\t<productName>Automobile</productName>\r\n\t\t<productReference>string</productReference>\r\n\t</product>\r\n\t<dateWindow>\r\n\t\t<startDate>2021-05-06</startDate>\r\n\t\t<endDate>2021-05-06</endDate>\r\n\t</dateWindow>\r\n\t<cpeCode>\r\n\t\t<clientCode>EXT-0002</clientCode>\r\n\t\t<productCode>EXT-0001</productCode>\r\n\t\t<estimateCode>001002</estimateCode>\r\n\t</cpeCode>\r\n\t<instructionComment>Any Instructions</instructionComment>\r\n\t<externalComment>More instruction or comments</externalComment>\r\n\t<instructionType>Rotation Share</instructionType>\r\n\t<instructionDetails>\r\n\t\t<actionType>New</actionType>\r\n\t\t<inventoryTypes>Bookend</inventoryTypes>\r\n\t\t<mediaOutlet>\r\n\t\t\t<mediaOutletIds>\r\n\t\t\t\t<id>TV-124</id>\r\n\t\t\t\t<version>0</version>\r\n\t\t\t\t<srcId>XBuy-1234</srcId>\r\n\t\t\t\t<srcName>XVEN Buyer</srcName>\r\n\t\t\t</mediaOutletIds>\r\n\t\t\t<mediaOutletName>KHOU-TV</mediaOutletName>\r\n\t\t\t<mediaOutletType>Local TV</mediaOutletType>\r\n\t\t\t<mediaOutletChannel>KHOU-TV</mediaOutletChannel>\r\n\t\t\t<mediaOutletMarketName>Houston, TX</mediaOutletMarketName>\r\n\t\t</mediaOutlet>\r\n\t\t<creative>\r\n\t\t\t<ids>\r\n\t\t\t\t<id>TYRN8899H</id>\r\n\t\t\t\t<version>0</version>\r\n\t\t\t\t<srcName>AdID.org</srcName>\r\n\t\t\t</ids>\r\n\t\t\t<name>2020 Labor Day Sales Event - RAV4 :15</name>\r\n\t\t\t<status>Not Final</status>\r\n\t\t\t<length>15</length>\r\n\t\t</creative>\r\n\t\t<brand>\r\n\t\t\t<brandIds>\r\n\t\t\t\t<id>TOY-123</id>\r\n\t\t\t\t<version>0</version>\r\n\t\t\t\t<srcId>XBuy-1234</srcId>\r\n\t\t\t\t<srcName>XVEN Buyer</srcName>\r\n\t\t\t</brandIds>\r\n\t\t\t<brandName>Compact SUV RAV4</brandName>\r\n\t\t</brand>\r\n\t\t<product>\r\n\t\t\t<productIds>\r\n\t\t\t\t<id>AUT-123</id>\r\n\t\t\t\t<version>0</version>\r\n\t\t\t\t<srcId>XBuy-1234</srcId>\r\n\t\t\t\t<srcName>XVEN Buyer</srcName>\r\n\t\t\t</productIds>\r\n\t\t\t<productName>Automobile</productName>\r\n\t\t</product>\r\n\t\t<linkType>\r\n\t\t\t<linkType>Bookend</linkType>\r\n\t\t\t<linkNum>1</linkNum>\r\n\t\t\t<linkSeq>1</linkSeq>\r\n\t\t</linkType>\r\n\t\t<deliveryDate>2021-05-06</deliveryDate>\r\n\t\t<deliveryService>Adstream</deliveryService>\r\n\t\t<timePeriods>\r\n\t\t\t<dateWindow>\r\n\t\t\t\t<startDate>2021-05-06</startDate>\r\n\t\t\t\t<endDate>2021-05-06</endDate>\r\n\t\t\t</dateWindow>\r\n\t\t\t<DOW>\r\n\t\t\t\t<isMonday>true</isMonday>\r\n\t\t\t\t<isTuesday>true</isTuesday>\r\n\t\t\t\t<isWednesday>true</isWednesday>\r\n\t\t\t\t<isThursday>true</isThursday>\r\n\t\t\t\t<isFriday>true</isFriday>\r\n\t\t\t\t<isSaturday>true</isSaturday>\r\n\t\t\t\t<isSunday>true</isSunday>\r\n\t\t\t</DOW>\r\n\t\t\t<timeWindow>\r\n\t\t\t\t<startTime>9:00</startTime>\r\n\t\t\t\t<endTime>17:00</endTime>\r\n\t\t\t</timeWindow>\r\n\t\t</timePeriods>\r\n\t\t<rotationShare>100</rotationShare>\r\n\t\t<patternInstruction>null</patternInstruction>\r\n\t\t<unitSpecificInstructions>null</unitSpecificInstructions>\r\n\t\t<specialInstructions>null</specialInstructions>\r\n\t</instructionDetails>\r\n</BuyerCommercialInstructionsRequest>"
+              Change:
+                value: "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n<BuyerCommercialInstructionsRequest>\r\n\t<transactionHeader>\r\n\t\t<tipVersion>6.0.0</tipVersion>\r\n\t\t<transactionId>\r\n\t\t\t<transactionId>40299727-4FF6-43E5-A627-4791C994BC58</transactionId>\r\n\t\t\t<transactionType>Change</transactionType>\r\n\t\t\t<sourceId>EXT-123</sourceId>\r\n\t\t\t<sourceName>Creative Assets Company</sourceName>\r\n\t\t</transactionId>\r\n\t\t<originalTransactionId>\r\n\t\t\t<transactionId>3fa85f64-5717-4562-b3fc-2c963f66afa6</transactionId>\r\n\t\t\t<transactionType>New</transactionType>\r\n\t\t\t<sourceId>EXT-123</sourceId>\r\n\t\t\t<sourceName>Creative Assets Company</sourceName>\r\n\t\t</originalTransactionId>\r\n\t\t<timeStamp>2021-05-06T18:54:24.221Z</timeStamp>\r\n\t</transactionHeader>\r\n\t<referenceIds>\r\n\t\t<referenceSourceName>KHOU-TV</referenceSourceName>\r\n\t\t<referenceSourceId>KHOU-5678</referenceSourceId>\r\n\t\t<referenceType>Order</referenceType>\r\n\t\t<referenceVersionId>0</referenceVersionId>\r\n\t\t<referenceName>Hyundai 1Q22</referenceName>\r\n\t</referenceIds>\r\n\t<buyer>\r\n\t\t<buyerIds>\r\n\t\t\t<id>BUYER-178</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>XBuy-1234</srcId>\r\n\t\t\t<srcName>XVEN Buyer</srcName>\r\n\t\t</buyerIds>\r\n\t\t<buyerName>Canvas Worldwide. LLC</buyerName>\r\n\t</buyer>\r\n\t<contacts>\r\n\t\t<contactType>Account Executive</contactType>\r\n\t\t<referenceSourceName>XVEN Buyer</referenceSourceName>\r\n\t\t<referenceSourceId>XBuy-1234</referenceSourceId>\r\n\t\t<salesOffices>Dallas, TX</salesOffices>\r\n\t\t<salesOffices>NYC, NY</salesOffices>\r\n\t\t<contactFirstName>Jane</contactFirstName>\r\n\t\t<contactLastName>Doe</contactLastName>\r\n\t\t<addressLine1>546 Main Avenue</addressLine1>\r\n\t\t<city>City Rapids</city>\r\n\t\t<state>B State</state>\r\n\t\t<postalCode>00000-0000</postalCode>\r\n\t\t<country>USA</country>\r\n\t\t<phoneNumber>+1(000)000-00000</phoneNumber>\r\n\t\t<email>jane@example.com</email>\r\n\t\t<effectiveDate>2021-05-06</effectiveDate>\r\n\t</contacts>\r\n\t<advertiser>\r\n\t\t<advertiserIds>\r\n\t\t\t<id>EXT-654</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>EXT-123</srcId>\r\n\t\t\t<srcName>Creative Assets Company</srcName>\r\n\t\t</advertiserIds>\r\n\t\t<advertiserName>Hyundai</advertiserName>\r\n\t</advertiser>\r\n\t<product>\r\n\t\t<productIds>\r\n\t\t\t<id>EXT-0001</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcName>Creative Assets Company</srcName>\r\n\t\t</productIds>\r\n\t\t<productName>Automobile</productName>\r\n\t\t<productReference>string</productReference>\r\n\t</product>\r\n\t<dateWindow>\r\n\t\t<startDate>2021-05-06</startDate>\r\n\t\t<endDate>2021-05-06</endDate>\r\n\t</dateWindow>\r\n\t<cpeCode>\r\n\t\t<clientCode>EXT-0002</clientCode>\r\n\t\t<productCode>EXT-0001</productCode>\r\n\t\t<estimateCode>001002</estimateCode>\r\n\t</cpeCode>\r\n\t<instructionComment>Any Instructions</instructionComment>\r\n\t<externalComment>More instruction or comments</externalComment>\r\n\t<instructionType>Rotation Share</instructionType>\r\n\t<instructionDetails>\r\n\t\t<actionType>New</actionType>\r\n\t\t<inventoryTypes>Bookend</inventoryTypes>\r\n\t\t<mediaOutlet>\r\n\t\t\t<mediaOutletIds>\r\n\t\t\t\t<id>TV-124</id>\r\n\t\t\t\t<version>0</version>\r\n\t\t\t\t<srcId>XBuy-1234</srcId>\r\n\t\t\t\t<srcName>XVEN Buyer</srcName>\r\n\t\t\t</mediaOutletIds>\r\n\t\t\t<mediaOutletName>KHOU-TV</mediaOutletName>\r\n\t\t\t<mediaOutletType>Local TV</mediaOutletType>\r\n\t\t\t<mediaOutletChannel>KHOU-TV</mediaOutletChannel>\r\n\t\t\t<mediaOutletMarketName>Houston, TX</mediaOutletMarketName>\r\n\t\t</mediaOutlet>\r\n\t\t<creative>\r\n\t\t\t<ids>\r\n\t\t\t\t<id>TYRN8899H</id>\r\n\t\t\t\t<version>0</version>\r\n\t\t\t\t<srcName>AdID.org</srcName>\r\n\t\t\t</ids>\r\n\t\t\t<name>2020 Labor Day Sales Event - RAV4 :15</name>\r\n\t\t\t<status>Not Final</status>\r\n\t\t\t<length>15</length>\r\n\t\t</creative>\r\n\t\t<brand>\r\n\t\t\t<brandIds>\r\n\t\t\t\t<id>TOY-123</id>\r\n\t\t\t\t<version>0</version>\r\n\t\t\t\t<srcId>XBuy-1234</srcId>\r\n\t\t\t\t<srcName>XVEN Buyer</srcName>\r\n\t\t\t</brandIds>\r\n\t\t\t<brandName>Compact SUV RAV4</brandName>\r\n\t\t</brand>\r\n\t\t<product>\r\n\t\t\t<productIds>\r\n\t\t\t\t<id>AUT-123</id>\r\n\t\t\t\t<version>0</version>\r\n\t\t\t\t<srcId>XBuy-1234</srcId>\r\n\t\t\t\t<srcName>XVEN Buyer</srcName>\r\n\t\t\t</productIds>\r\n\t\t\t<productName>Automobile</productName>\r\n\t\t</product>\r\n\t\t<linkType>\r\n\t\t\t<linkType>Bookend</linkType>\r\n\t\t\t<linkNum>1</linkNum>\r\n\t\t\t<linkSeq>1</linkSeq>\r\n\t\t</linkType>\r\n\t\t<deliveryDate>2021-05-06</deliveryDate>\r\n\t\t<deliveryService>Adstream</deliveryService>\r\n\t\t<timePeriods>\r\n\t\t\t<dateWindow>\r\n\t\t\t\t<startDate>2021-05-06</startDate>\r\n\t\t\t\t<endDate>2021-05-06</endDate>\r\n\t\t\t</dateWindow>\r\n\t\t\t<DOW>\r\n\t\t\t\t<isMonday>true</isMonday>\r\n\t\t\t\t<isTuesday>true</isTuesday>\r\n\t\t\t\t<isWednesday>true</isWednesday>\r\n\t\t\t\t<isThursday>true</isThursday>\r\n\t\t\t\t<isFriday>true</isFriday>\r\n\t\t\t\t<isSaturday>true</isSaturday>\r\n\t\t\t\t<isSunday>true</isSunday>\r\n\t\t\t</DOW>\r\n\t\t\t<timeWindow>\r\n\t\t\t\t<startTime>9:00</startTime>\r\n\t\t\t\t<endTime>17:00</endTime>\r\n\t\t\t</timeWindow>\r\n\t\t</timePeriods>\r\n\t\t<rotationShare>100</rotationShare>\r\n\t\t<patternInstruction>null</patternInstruction>\r\n\t\t<unitSpecificInstructions>null</unitSpecificInstructions>\r\n\t\t<specialInstructions>null</specialInstructions>\r\n\t</instructionDetails>\r\n</BuyerCommercialInstructionsRequest>"
+              Cancel:
+                value: "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n<BuyerCommercialInstructionsRequest>\r\n\t<transactionHeader>\r\n\t\t<tipVersion>6.0.0</tipVersion>\r\n\t\t<transactionId>\r\n\t\t\t<transactionId>0E300E0A-17AA-420C-92C6-D7C795256CB0</transactionId>\r\n\t\t\t<transactionType>Cancel</transactionType>\r\n\t\t\t<sourceId>490</sourceId>\r\n\t\t\t<sourceName>KHOU-TV</sourceName>\r\n\t\t</transactionId>\r\n\t\t<originalTransactionId>\r\n\t\t\t<transactionId>3fa85f64-5717-4562-b3fc-2c963f66afa6</transactionId>\r\n\t\t\t<transactionType>New</transactionType>\r\n\t\t\t<sourceId>490</sourceId>\r\n\t\t\t<sourceName>KHOU-TV</sourceName>\r\n\t\t</originalTransactionId>\r\n\t\t<timeStamp>2020-07-17T20:04:55.220Z</timeStamp>\r\n\t</transactionHeader>\r\n\t<referenceIds>\r\n\t\t<referenceSourceName>KUOU-TV</referenceSourceName>\r\n\t\t<referenceSourceId>490</referenceSourceId>\r\n\t\t<referenceSourceLookup></referenceSourceLookup>\r\n\t\t<referenceType>Order</referenceType>\r\n\t\t<referenceId>123456</referenceId>\r\n\t\t<referenceVersionId></referenceVersionId>\r\n\t\t<referenceName>string</referenceName>\r\n\t</referenceIds>\r\n\t<comments>Sample comment from message originator</comments>\r\n</BuyerCommercialInstructionsRequest>"
+              Recall:
+                value: "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n<BuyerCommercialInstructionsRequest>\r\n\t<transactionHeader>\r\n\t\t<tipVersion>6.0.0</tipVersion>\r\n\t\t<transactionId>\r\n\t\t\t<transactionId>0E300E0A-17AA-420C-92C6-D7C795256CB0</transactionId>\r\n\t\t\t<transactionType>Recall</transactionType>\r\n\t\t\t<sourceId>490</sourceId>\r\n\t\t\t<sourceName>KHOU-TV</sourceName>\r\n\t\t</transactionId>\r\n\t\t<originalTransactionId>\r\n\t\t\t<transactionId>3fa85f64-5717-4562-b3fc-2c963f66afa6</transactionId>\r\n\t\t\t<transactionType>New</transactionType>\r\n\t\t\t<sourceId>490</sourceId>\r\n\t\t\t<sourceName>KHOU-TV</sourceName>\r\n\t\t</originalTransactionId>\r\n\t\t<timeStamp>2020-07-17T20:04:55.220Z</timeStamp>\r\n\t</transactionHeader>\r\n\t<referenceIds>\r\n\t\t<referenceSourceName>KUOU-TV</referenceSourceName>\r\n\t\t<referenceSourceId>490</referenceSourceId>\r\n\t\t<referenceSourceLookup></referenceSourceLookup>\r\n\t\t<referenceType>Order</referenceType>\r\n\t\t<referenceId>123456</referenceId>\r\n\t\t<referenceVersionId></referenceVersionId>\r\n\t\t<referenceName>string</referenceName>\r\n\t</referenceIds>\r\n\t<comments>Sample comment from message originator</comments>\r\n</BuyerCommercialInstructionsRequest>"
       responses:
         '200':
           $ref: '#/components/responses/Success'
@@ -2182,30 +2366,6 @@ paths:
             schema:
               $ref: '#/components/schemas/CancelConfirmRecallReject'
             examples:
-              Reject:
-                value:
-                  transactionHeader:
-                    tipVersion: 6.0.0
-                    transactionId:
-                      transactionId: 3fa85f64-5717-4562-b3fc-2c963f66afa6
-                      transactionType: Reject
-                      sourceId: '456'
-                      sourceName: Canvas Worldwide. LLC
-                    originalTransactionId:
-                      transactionId: B906A0A9-19FA-4F06-B94D-22E4F1D9120C
-                      transactionType: New
-                      sourceId: '490'
-                      sourceName: KHOU-TV
-                    timeStamp: '2020-07-17T20:04:55.220Z'
-                  referenceIds:
-                    - referenceSourceName: KHOU-TV
-                      referenceSourceId: '490'
-                      referenceSourceLookup: ''
-                      referenceType: Proposal
-                      referenceId: '123456'
-                      referenceVersionId: ''
-                      referenceName: Nissan July Sale
-                  comments: Thanks for your efforts we decided to cancel our campaign due to current environmet.
               Confirm:
                 value:
                   transactionHeader:
@@ -2225,11 +2385,43 @@ paths:
                     - referenceSourceName: Canvas Worldwide. LLC
                       referenceSourceId: '456'
                       referenceSourceLookup: ''
-                      referenceType: Proposal
+                      referenceType: Order
                       referenceId: '123456'
                       referenceVersionId: ''
                       referenceName: Canvas Worldwide. LLC Q1
                   comments: 'Thank you Very much; good to do business with you :)'
+              Reject:
+                value:
+                  transactionHeader:
+                    tipVersion: 6.0.0
+                    transactionId:
+                      transactionId: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+                      transactionType: Reject
+                      sourceId: '456'
+                      sourceName: Canvas Worldwide. LLC
+                    originalTransactionId:
+                      transactionId: B906A0A9-19FA-4F06-B94D-22E4F1D9120C
+                      transactionType: New
+                      sourceId: '490'
+                      sourceName: KHOU-TV
+                    timeStamp: '2020-07-17T20:04:55.220Z'
+                  referenceIds:
+                    - referenceSourceName: KHOU-TV
+                      referenceSourceId: '490'
+                      referenceSourceLookup: ''
+                      referenceType: Order
+                      referenceId: '123456'
+                      referenceVersionId: ''
+                      referenceName: Nissan July Sale
+                  comments: Thanks for your efforts we decided to cancel
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/CancelConfirmRecallReject'
+            examples:
+              Confirm:
+                value: "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n<SellerCommercialInstructionsRequest>\r\n\t<transactionHeader>\r\n\t\t<tipVersion>6.0.0</tipVersion>\r\n\t\t<transactionId>\r\n\t\t\t<transactionId>3fa85f64-5717-4562-b3fc-2c963f66afa6</transactionId>\r\n\t\t\t<transactionType>Confirm</transactionType>\r\n\t\t\t<sourceId>456</sourceId>\r\n\t\t\t<sourceName>Canvas Worldwide. LLC</sourceName>\r\n\t\t</transactionId>\r\n\t\t<originalTransactionId>\r\n\t\t\t<transactionId>B906A0A9-19FA-4F06-B94D-22E4F1D9120C</transactionId>\r\n\t\t\t<transactionType>New</transactionType>\r\n\t\t\t<sourceId>490</sourceId>\r\n\t\t\t<sourceName>KHOU-TV</sourceName>\r\n\t\t</originalTransactionId>\r\n\t\t<timeStamp>2020-07-17T20:04:55.220Z</timeStamp>\r\n\t</transactionHeader>\r\n\t<referenceIds>\r\n\t\t<referenceSourceName>Canvas Worldwide. LLC</referenceSourceName>\r\n\t\t<referenceSourceId>456</referenceSourceId>\r\n\t\t<referenceSourceLookup></referenceSourceLookup>\r\n\t\t<referenceType>Order</referenceType>\r\n\t\t<referenceId>123456</referenceId>\r\n\t\t<referenceVersionId></referenceVersionId>\r\n\t\t<referenceName>Canvas Worldwide. LLC Q1</referenceName>\r\n\t</referenceIds>\r\n\t<comments>Thank you Very much; good to do business with you :)</comments>\r\n</SellerCommercialInstructionsRequest>"
+              Reject:
+                value: "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n<SellerCommercialInstructionsRequest>\r\n\t<transactionHeader>\r\n\t\t<tipVersion>6.0.0</tipVersion>\r\n\t\t<transactionId>\r\n\t\t\t<transactionId>3fa85f64-5717-4562-b3fc-2c963f66afa6</transactionId>\r\n\t\t\t<transactionType>Reject</transactionType>\r\n\t\t\t<sourceId>456</sourceId>\r\n\t\t\t<sourceName>Canvas Worldwide. LLC</sourceName>\r\n\t\t</transactionId>\r\n\t\t<originalTransactionId>\r\n\t\t\t<transactionId>B906A0A9-19FA-4F06-B94D-22E4F1D9120C</transactionId>\r\n\t\t\t<transactionType>New</transactionType>\r\n\t\t\t<sourceId>490</sourceId>\r\n\t\t\t<sourceName>KHOU-TV</sourceName>\r\n\t\t</originalTransactionId>\r\n\t\t<timeStamp>2020-07-17T20:04:55.220Z</timeStamp>\r\n\t</transactionHeader>\r\n\t<referenceIds>\r\n\t\t<referenceSourceName>KHOU-TV</referenceSourceName>\r\n\t\t<referenceSourceId>490</referenceSourceId>\r\n\t\t<referenceSourceLookup></referenceSourceLookup>\r\n\t\t<referenceType>Order</referenceType>\r\n\t\t<referenceId>123456</referenceId>\r\n\t\t<referenceVersionId></referenceVersionId>\r\n\t\t<referenceName>Nissan July Sale</referenceName>\r\n\t</referenceIds>\r\n\t<comments>Thanks for your efforts we decided to cancel</comments>\r\n</SellerCommercialInstructionsRequest>"
       responses:
         '200':
           $ref: '#/components/responses/Success'
@@ -2259,71 +2451,10 @@ paths:
           application/json:
             schema:
               oneOf:
-                - description: Schema allows the buyer to formulate a query for log times information that meet the listed conditions
-                  properties:
-                    transactionHeader:
-                      $ref: '#/components/schemas/TransactionHeader'
-                    name:
-                      description: Buyer request reference name
-                      type: string
-                      example: Post log and reconciled logs only
-                    referenceIds:
-                      description: Array of ReferenceId objects containing the order id references; may also contain originating RFP and Proposal id and source references
-                      type: array
-                      items:
-                        $ref: '#/components/schemas/ReferenceId'
-                    mediaOutlets:
-                      description: Array of mediaOutlet objects being requested
-                      type: array
-                      items:
-                        $ref: '#/components/schemas/MediaOutlet'
-                      minItems: 1
-                    buyer:
-                      type: array
-                      items:
-                        $ref: '#/components/schemas/Buyer'
-                    advertiser:
-                      type: array
-                      items:
-                        $ref: '#/components/schemas/Advertiser'
-                    contacts:
-                      description: Array of Contact objects
-                      type: array
-                      items:
-                        $ref: '#/components/schemas/Contact'
-                    inventoryTypes:
-                      description: ArrayList of InventoryTypes being requested
-                      type: array
-                      items:
-                        type: string
-                    statuses:
-                      description: Indicated the airing status being requested Aired  = 'as-aired' reconciliation for the spot is complete No Run = spot either did not run or didn't run as contracted when the broadcast log was played out Scheduled  = spot is placed on a pre log that has not yet been played out Finalized = spot is placed on a log that is in a 'final status' and ready to be played out and the spot is locked from edits Not Scheduled = spot has not yet been placed on a future broadcast log Preempted = spot has been removed from a future broadcast log; the buyer will be offered a makegood or issued a credit
-                      type: array
-                      items:
-                        type: string
-                        enum:
-                          - Aired
-                          - Scheduled
-                          - No Run
-                          - Finalized
-                          - Not Scheduled
-                          - Preempted
-                    frequency:
-                      $ref: '#/components/schemas/Frequency'
-                    startDate:
-                      oneOf:
-                        - $ref: '#/components/schemas/DynamicDate'
-                        - type: string
-                          format: date
-                    endDate:
-                      oneOf:
-                        - $ref: '#/components/schemas/DynamicDate'
-                        - type: string
-                          format: date
-                  required:
-                    - transactionHeader
-                    - referenceIds
+                - $ref: '#/components/schemas/BuyerLogTimesSubscription'
                 - $ref: '#/components/schemas/CancelConfirmRecallReject'
+              xml:
+                name: BuyerLogTimesSubscriptionRequest
       responses:
         '200':
           $ref: '#/components/responses/Success'
@@ -2975,6 +3106,8 @@ paths:
               oneOf:
                 - $ref: '#/components/schemas/BuyerMakegoodGuidelines'
                 - $ref: '#/components/schemas/CancelConfirmRecallReject'
+              xml:
+                name: BuyerMakegoodGuidelinesRequest
             examples:
               New:
                 value:
@@ -3063,6 +3196,8 @@ paths:
               oneOf:
                 - $ref: '#/components/schemas/SellerMakegoodOffers'
                 - $ref: '#/components/schemas/CancelConfirmRecallReject'
+              xml:
+                name: SellerMakegoodOffersRequest
             examples:
               New:
                 value:
@@ -3289,7 +3424,121 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/BuyerImpressionsSubscribe'
+              oneOf:
+                - $ref: '#/components/schemas/BuyerImpressionsSubscription'
+                - $ref: '#/components/schemas/CancelConfirmRecallReject'
+              xml:
+                name: BuyerImpressionsSubscriptionRequest
+            examples:
+              New:
+                value:
+                  transactionHeader:
+                    tipVersion: 6.0.0
+                    transactionId:
+                      transactionId: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+                      transactionType: New
+                      sourceId: XBuy-1234
+                      sourceName: XVEN Buyer
+                    timeStamp: '2021-05-06T19:01:50.610Z'
+                  name: My Hourly Impression Subscription (All Orders)
+                  mediaOutlets:
+                    - mediaOutletIds:
+                        - id: KAAB-TV
+                          version: '0'
+                          srcId: KAAB-TV
+                          srcName: KAAB-TV
+                      mediaOutletName: KAAB-TV
+                      mediaOutletType: Local TV
+                      mediaOutletChannel: '12.1'
+                      mediaOutletMarketName: 'Houston, TX'
+                  frequency:
+                    effectiveOn: '2020-08-12T00:00:00.000Z'
+                    every: Hour
+                    isEndNever: true
+                  startDate:
+                    offsetType: Hour
+                    offset: -1
+                  endDate:
+                    offsetType: Hour
+                    offset: 0
+                  statSource: Google DFP
+                  maxChunkSize: 100
+              Change:
+                value:
+                  transactionHeader:
+                    tipVersion: 6.0.0
+                    transactionId:
+                      transactionId: BF7F7D82-1335-4C3B-ABD0-7545872A56DE
+                      transactionType: Change
+                      sourceId: XBuy-1234
+                      sourceName: XVEN Buyer
+                    originalTransactionId:
+                      transactionId: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+                      transactionType: New
+                      sourceId: XBuy-1234
+                      sourceName: XVEN Buyer
+                    timeStamp: '2021-05-06T19:01:50.610Z'
+                  name: My Hourly Impression Subscription (All Orders) Include last  2 hours
+                  mediaOutlets:
+                    - mediaOutletIds:
+                        - id: KAAB-TV
+                          version: '0'
+                          srcId: KAAB-TV
+                          srcName: KAAB-TV
+                      mediaOutletName: KAAB-TV
+                      mediaOutletType: Local TV
+                      mediaOutletChannel: '12.1'
+                      mediaOutletMarketName: 'Houston, TX'
+                  frequency:
+                    effectiveOn: '2020-08-12T00:00:00.000Z'
+                    every: Hour
+                    isEndNever: true
+                  startDate:
+                    offsetType: Hour
+                    offset: -2
+                  endDate:
+                    offsetType: Hour
+                    offset: 0
+                  statSource: Google DFP
+                  maxChunkSize: 100
+              Cancel:
+                value:
+                  transactionHeader:
+                    tipVersion: 6.0.0
+                    transactionId:
+                      transactionId: BF7F7D82-1335-4C3B-ABD0-7545872A56DE
+                      transactionType: Cancel
+                      sourceId: XBuy-1234
+                      sourceName: XVEN Buyer
+                    originalTransactionId:
+                      transactionId: BF7F7D82-1335-4C3B-ABD0-7545872A56DE
+                      transactionType: Change
+                      sourceId: XBuy-1234
+                      sourceName: XVEN Buyer
+                    timeStamp: '2021-05-06T19:01:50.610Z'
+                  referenceIds:
+                    - referenceSourceName: KUOU-TV
+                      referenceSourceId: '490'
+                      referenceSourceLookup: ''
+                      referenceType: Subscription
+                      referenceId: BF7F7D82-1335-4C3B-ABD0-7545872A56DE
+                      referenceVersionId: ''
+                      referenceName: string
+                  comments: Sample comment from message originator
+          application/xml:
+            schema:
+              oneOf:
+                - $ref: '#/components/schemas/BuyerImpressionsSubscription'
+                - $ref: '#/components/schemas/CancelConfirmRecallReject'
+              xml:
+                name: BuyerImpressionsSubscriptionRequest
+            examples:
+              New:
+                value: "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n<BuyerImpressionsSubscriptionRequest>\r\n\t<transactionHeader>\r\n\t\t<tipVersion>6.0.0</tipVersion>\r\n\t\t<transactionId>\r\n\t\t\t<transactionId>3fa85f64-5717-4562-b3fc-2c963f66afa6</transactionId>\r\n\t\t\t<transactionType>New</transactionType>\r\n\t\t\t<sourceId>XBuy-1234</sourceId>\r\n\t\t\t<sourceName>XVEN Buyer</sourceName>\r\n\t\t</transactionId>\r\n\t\t<timeStamp>2021-05-06T19:01:50.610Z</timeStamp>\r\n\t</transactionHeader>\r\n\t<name>My Hourly Impression Subscription (All Orders)</name>\r\n\t<mediaOutlets>\r\n\t\t<mediaOutletIds>\r\n\t\t\t<id>KAAB-TV</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>KAAB-TV</srcId>\r\n\t\t\t<srcName>KAAB-TV</srcName>\r\n\t\t</mediaOutletIds>\r\n\t\t<mediaOutletName>KAAB-TV</mediaOutletName>\r\n\t\t<mediaOutletType>Local TV</mediaOutletType>\r\n\t\t<mediaOutletChannel>12.1</mediaOutletChannel>\r\n\t\t<mediaOutletMarketName>Houston, TX</mediaOutletMarketName>\r\n\t</mediaOutlets>\r\n\t<frequency>\r\n\t\t<effectiveOn>2020-08-12T00:00:00.000Z</effectiveOn>\r\n\t\t<every>Hour</every>\r\n\t\t<isEndNever>true</isEndNever>\r\n\t</frequency>\r\n\t<startDate>\r\n\t\t<offsetType>Hour</offsetType>\r\n\t\t<offset>-1</offset>\r\n\t</startDate>\r\n\t<endDate>\r\n\t\t<offsetType>Hour</offsetType>\r\n\t\t<offset>0</offset>\r\n\t</endDate>\r\n\t<statSource>Google DFP</statSource>\r\n\t<maxChunkSize>100</maxChunkSize>\r\n</BuyerImpressionsSubscriptionRequest>"
+              Change:
+                value: "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n<BuyerImpressionsSubscriptionRequest>\r\n\t<transactionHeader>\r\n\t\t<tipVersion>6.0.0</tipVersion>\r\n\t\t<transactionId>\r\n\t\t\t<transactionId>BF7F7D82-1335-4C3B-ABD0-7545872A56DE</transactionId>\r\n\t\t\t<transactionType>Change</transactionType>\r\n\t\t\t<sourceId>XBuy-1234</sourceId>\r\n\t\t\t<sourceName>XVEN Buyer</sourceName>\r\n\t\t</transactionId>\r\n\t\t<originalTransactionId>\r\n\t\t\t<transactionId>3fa85f64-5717-4562-b3fc-2c963f66afa6</transactionId>\r\n\t\t\t<transactionType>New</transactionType>\r\n\t\t\t<sourceId>XBuy-1234</sourceId>\r\n\t\t\t<sourceName>XVEN Buyer</sourceName>\r\n\t\t</originalTransactionId>\r\n\t\t<timeStamp>2021-05-06T19:01:50.610Z</timeStamp>\r\n\t</transactionHeader>\r\n\t<name>My Hourly Impression Subscription (All Orders) Include last  2 hours</name>\r\n\t<mediaOutlets>\r\n\t\t<mediaOutletIds>\r\n\t\t\t<id>KAAB-TV</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>KAAB-TV</srcId>\r\n\t\t\t<srcName>KAAB-TV</srcName>\r\n\t\t</mediaOutletIds>\r\n\t\t<mediaOutletName>KAAB-TV</mediaOutletName>\r\n\t\t<mediaOutletType>Local TV</mediaOutletType>\r\n\t\t<mediaOutletChannel>12.1</mediaOutletChannel>\r\n\t\t<mediaOutletMarketName>Houston, TX</mediaOutletMarketName>\r\n\t</mediaOutlets>\r\n\t<frequency>\r\n\t\t<effectiveOn>2020-08-12T00:00:00.000Z</effectiveOn>\r\n\t\t<every>Hour</every>\r\n\t\t<isEndNever>true</isEndNever>\r\n\t</frequency>\r\n\t<startDate>\r\n\t\t<offsetType>Hour</offsetType>\r\n\t\t<offset>-2</offset>\r\n\t</startDate>\r\n\t<endDate>\r\n\t\t<offsetType>Hour</offsetType>\r\n\t\t<offset>0</offset>\r\n\t</endDate>\r\n\t<statSource>Google DFP</statSource>\r\n\t<maxChunkSize>100</maxChunkSize>\r\n</BuyerImpressionsSubscriptionRequest>"
+              Cancel:
+                value: "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n<BuyerImpressionsSubscriptionRequest>\r\n\t<transactionHeader>\r\n\t\t<tipVersion>6.0.0</tipVersion>\r\n\t\t<transactionId>\r\n\t\t\t<transactionId>BF7F7D82-1335-4C3B-ABD0-7545872A56DE</transactionId>\r\n\t\t\t<transactionType>Cancel</transactionType>\r\n\t\t\t<sourceId>XBuy-1234</sourceId>\r\n\t\t\t<sourceName>XVEN Buyer</sourceName>\r\n\t\t</transactionId>\r\n\t\t<originalTransactionId>\r\n\t\t\t<transactionId>BF7F7D82-1335-4C3B-ABD0-7545872A56DE</transactionId>\r\n\t\t\t<transactionType>Change</transactionType>\r\n\t\t\t<sourceId>XBuy-1234</sourceId>\r\n\t\t\t<sourceName>XVEN Buyer</sourceName>\r\n\t\t</originalTransactionId>\r\n\t\t<timeStamp>2021-05-06T19:01:50.610Z</timeStamp>\r\n\t</transactionHeader>\r\n\t<referenceIds>\r\n\t\t<referenceSourceName>KUOU-TV</referenceSourceName>\r\n\t\t<referenceSourceId>490</referenceSourceId>\r\n\t\t<referenceSourceLookup></referenceSourceLookup>\r\n\t\t<referenceType>Subscription</referenceType>\r\n\t\t<referenceId>BF7F7D82-1335-4C3B-ABD0-7545872A56DE</referenceId>\r\n\t\t<referenceVersionId></referenceVersionId>\r\n\t\t<referenceName>string</referenceName>\r\n\t</referenceIds>\r\n\t<comments>Sample comment from message originator</comments>\r\n</BuyerImpressionsSubscriptionRequest>"
       responses:
         '201':
           $ref: '#/components/responses/Accepted'
@@ -3317,7 +3566,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/SellerImpressions'
+              $ref: '#/components/schemas/SellerImpressionsNotification'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/SellerImpressionsNotification'
       responses:
         '200':
           $ref: '#/components/responses/Accepted'
@@ -3346,392 +3598,508 @@ paths:
         content:
           application/json:
             schema:
-              oneOf:
-                - $ref: '#/components/schemas/SellerInvoices'
-                - $ref: '#/components/schemas/CancelConfirmRecallReject'
+              $ref: '#/paths/~1seller~1invoices/post/requestBody/content/application~1xml/schema'
             examples:
               New:
                 value:
                   transactionHeader:
-                    tipVersion: 5.1.0
+                    tipVersion: 6.0.0
                     transactionId:
-                      transactionId: B906A0A9-19FA-4F06-B94D-22E4F1D9120C
+                      transactionId: 3fa85f64-5717-4562-b3fc-2c963f66afa6
                       transactionType: New
-                      sourceId: '490'
-                      sourceName: KHOU-TV
-                    timeStamp: '2020-02-05T11:52:38'
+                      sourceId: YSELL-1234
+                      sourceName: YSELL Seller
+                    timeStamp: '2021-05-06T19:53:04.885Z'
                   referenceIds:
-                    - referenceSourceName: KHOU-TV
-                      referenceSourceId: '490'
-                      referenceType: Proposal
-                      referenceId: 4567
-                      referenceVersionId: '2'
-                      referenceName: Hyundia P25-54 1Q
-                    - referenceSourceName: Canvas Worldwide. LLC
-                      referenceSourceId: '456'
+                    - referenceSourceName: YSELL Seller
+                      referenceSourceId: YSELL-1234
                       referenceType: Order
-                      referenceId: 7623
-                      referenceVersionId: '2'
-                      referenceName: Hyundia P25-54 1Q
-                    - referenceSourceName: KHOU-TV
-                      referenceSourceId: '490'
-                      referenceType: Order
-                      referenceId: 32323
-                      referenceVersionId: '2'
-                      referenceName: Hyundia P25-54 1Q
-                    - referenceSourceName: KHOU-TV
-                      referenceSourceId: '490'
+                      referenceId: ORD-5678
+                      referenceVersionId: 1
+                      referenceName: Hyundai 1Q22
+                    - referenceSourceName: YSELL Seller
+                      referenceSourceId: YSELL-1234
                       referenceType: Invoice
-                      referenceId: 45
-                      referenceVersionId: '0'
-                      referenceName: Hyundia P25-54 1Q
-                  invoiceDate: '2020-03-02'
+                      referenceId: ORD-5678-1
+                      referenceVersionId: 1
+                      referenceName: Hyundai 1Q22
+                  invoiceDate: '2021-08-25'
+                  invoiceRevisionDate: '2021-08-25'
                   billingOption:
                     billingCalendar: Broadcast
                     billingCycle: Month
                     billingGranularity: Order
-                  dueDate: '2020-04-13'
+                  dueDate: '2021-09-25'
                   dateWindow:
-                    startDate: '2020-01-26'
-                    endDate: '2020-02-23'
-                  businessType: Standard
+                    startDate: '2021-07-01'
+                    endDate: '2021-07-31'
+                  businessType: Cash
                   buyer:
-                    buyerId: '456'
+                    buyerIds:
+                      - id: YSELL-7890
+                        version: '0'
+                        srcId: YSELL-1234
+                        srcName: YSELL Seller
                     buyerName: Canvas Worldwide. LLC
-                    buyerReference: 'Optional: Reference text here'
-                  localNational: National
+                  localNational: Local
                   advertiser:
-                    advertiserId: '34'
+                    advertiserIds:
+                      - id: YSELL-0980
+                        version: '0'
+                        srcId: YSELL-1234
+                        srcName: YSELL Seller
                     advertiserName: Hyundai
-                    advertiserReference: '53'
                   contacts:
                     - contactType: Account Executive
-                      referenceSourceName: KHOU-TV
-                      referenceSourceId: '490'
-                      contactFirstName: Mary
-                      contactLastName: McCoy
-                      addressLine1: 5718 Westheimer Road
-                      city: Houston
-                      state: TX
-                      postalCode: '77057'
+                      contactIds:
+                        - id: CNT-1234
+                          version: '0'
+                          srcId: XVEN-1234
+                          srcName: XVEN Buyer
+                      salesOffices:
+                        - 'Dallas, TX'
+                        - 'NYC, NY'
+                      contactFirstName: John
+                      contactLastName: Doe
+                      addressLine1: 1234 N. Main Street
+                      city: A City
+                      state: UT
+                      postalCode: 00000-0000
                       country: USA
-                      phoneNumber: 713-555-5555
-                      email: mmcoy@email.com
-                      effectiveDate: '2007-02-17'
-                  buylineCashTrade: Cash
-                  grossAmount: 0
-                  commission: 0
-                  salesTax: 0
-                  netAmount: 0
+                      phoneNumber: 1(000)000-0000
+                      email: john.doe@example.com
+                      effectiveDate: '2021-05-06'
+                  revenueType: Cash
+                  grossAmount: 10000
+                  commission: 8
+                  salesTaxes:
+                    - itemType: Sales Tax
+                      value: 1245.55
+                  discounts:
+                    - itemType: Promotional
+                      value: 400
+                  netAmount: 10845.55
                   currency: USD
                   remittanceInfo:
-                    referenceSourceId: '490'
-                    referenceName: KHOU-TV
-                    addressLine1: PO Box 14200
-                    city: Houston
-                    state: TX
-                    postalCode: '77001'
-                    phoneNumber: 281-555-5555
-                    contactEmail: BillingDept@KHOU.tv
-                  externalComment: 'Optional: Comments here'
+                    referenceSourceIds:
+                      - id: RMT-1234
+                        version: '0'
+                        srcId: XVEN-1234
+                        srcName: XVEN Buyer
+                    contactFirstName: Jane
+                    contactLastName: Doe
+                    addressLine1: 2358 W Main Street
+                    city: B City
+                    state: UT
+                    postalCode: 00000-0000
+                    country: USA
+                    phoneNumber: 1(000)000-0000
+                    contactEmail: jane.doe@example.com
+                  mediaOutlets:
+                    - mediaOutletIds:
+                        - id: KHOU-TV
+                          version: '0'
+                          srcId: XVEN-1234
+                          srcName: XVEN Buyer
+                      mediaOutletName: KHOU-TV
+                      mediaOutletType: Local TV
+                      mediaOutletChannel: KHOU-TV
+                      mediaOutletMarketName: 'Houston, TX'
+                  externalComment: Thanks for your business
                   lineDetails:
-                    - buyLineIdReference: '1'
-                      unitType: Units
+                    - lineNum: '1'
+                      lineReference: '1'
+                      lineReferences:
+                        - id: ORD-5678-1
+                          version: '0'
+                          srcId: YSELL-1234
+                          srcName: YSELL Seller
+                      type: Spot
                       brand:
-                        brandId: '19'
+                        brandIds:
+                          - id: BRD-1234
+                            version: '0'
+                            srcId: YSELL-1234
+                            srcName: YSELL Seller
                         brandName: Kona
                       product:
-                        productId: '89'
+                        productIds:
+                          - id: PRO-1234
+                            version: '0'
+                            srcId: YSELL-1234
+                            srcName: YSELL Seller
                         productName: Automobile
-                      salesElement:
-                        mediaOutletId: '490'
-                        salesElementName: CBS This Morning
-                        salesElementId: '999'
-                        salesElementType: Program
+                      salesElementHeader:
+                        mediaOutletId: KHOU-TV
+                        salesElementName: Primetime
+                        salesElementId: YSELL-9999
+                        salesElementType: Time-specific
+                      inventoryType: Commercial
                       timePeriod:
-                        dateWindow:
-                          startDate: '2020-02-17'
-                          endDate: '2020-02-23'
-                        DOW:
-                          monday: true
-                          tuesday: true
-                          wednesday: true
-                          thursday: true
-                          friday: true
-                          saturday: false
-                          sunday: false
-                        timeWindow:
-                          startTime: '07:00:00'
-                          endTime: '09:00:00'
+                        - dateWindow:
+                            startDate: '2021-05-06'
+                            endDate: '2021-05-06'
+                          DOW:
+                            isMonday: true
+                            isTuesday: true
+                            isWednesday: true
+                            isThursday: true
+                            isFriday: true
+                            isSaturday: true
+                            isSunday: true
+                          timeWindow:
+                            startTime: '09:00'
+                            endTime: '11:00'
                       length: 30
                       cpeCode:
-                        clientCode: HYUN
-                        productCode: AUTO
-                        estimateCode: '987'
-                      billableRevenue: Booked
-                      inventoryType: Commercial
-                      audiencePricingMetric:
-                        audienceSegmentId: string
-                        audienceMetric:
-                          audienceMetric: Impressions
-                          audienceMetricValue: 0
-                        pricingMetric:
-                          pricingMetric: CPM
-                          pricingMetricValue: 1.69
-                      totalUnits: 2
+                        clientCode: string
+                        productCode: string
+                        estimateCode: string
+                      billableCosts: Booked
+                      pricingMetric:
+                        PricingMetricOption: CPM
+                        grossValue: 0
+                        netValue: 0
+                      grossCost: 150
+                      netCost: 127.5
+                      audienceTargets:
+                        - excludeOrInclude: Include
+                          audienceTargetIds:
+                            - id: string
+                              version: string
+                              srcId: string
+                              srcName: string
+                          targetAttribute: HH Income
+                          value:
+                            - - '$50,000 - $75,000'
+                              - '$75,000, -$100,000'
+                      unitCount: 0
                       unitDetails:
-                        - unitId: '5699'
-                          adId: HYUN1234
+                        - unitId: string
+                          creative:
+                            ids:
+                              - id: string
+                                version: string
+                                srcId: string
+                                srcName: string
+                            name: string
+                            status: Final
+                            length: 0
                           dateTime:
-                            broadcastDate: '2020-02-17'
-                            calendarDateTime: '2020-02-17T07:23:00'
-                          preempt: false
-                          makegood: false
-                          adu: false
-                          bonus: false
-                          rate: 525
-                          credit: false
-                          comment: 'Optional: Comment here'
-                        - unitId: '567100'
-                          adId: HYUN1235
-                          dateTime:
-                            broadcastDate: '2020-02-17'
-                            calendarDateTime: '2020-02-17T08:23:00'
-                          preempt: false
-                          makegood: false
-                          adu: false
-                          bonus: false
-                          rate: 525
-                          credit: false
-                          comment: 'Optional : comments here'
-                    - buyLineIdReference: '2'
-                      unitType: Units
-                      brand:
-                        brandId: '19'
-                        brandName: Kona
-                      product:
-                        productId: '89'
-                        productName: Automobile
-                      salesElement:
-                        mediaOutletId: '490'
-                        salesElementName: CBS This Morning
-                        salesElementId: '999'
-                        salesElementType: Program
-                      timePeriod:
-                        dateWindow:
-                          startDate: '2020-02-17'
-                          endDate: '2020-02-23'
-                        DOW:
-                          monday: true
-                          tuesday: true
-                          wednesday: true
-                          thursday: true
-                          friday: true
-                          saturday: false
-                          sunday: false
-                        timeWindow:
-                          startTime: '07:00:00'
-                          endTime: '09:00:00'
-                      length: 15
-                      cpeCode:
-                        clientCode: HYUN
-                        productCode: AUTO
-                        estimateCode: '987'
-                      billableRevenue: Booked
-                      inventoryType: interstial
-                      audiencePricingMetric:
-                        audienceSegmentId: string
-                        audienceMetric:
-                          audienceMetric: Impressions
-                          audienceMetricValue: 0
-                        pricingMetric:
-                          pricingMetric: CPM
-                          pricingMetricValue: 1.94
-                      totalUnits: 1
-                      unitDetails:
-                        - unitId: '56799'
-                          adId: HYUN1234
-                          dateTime:
-                            broadcastDate: '2020-02-17'
-                            calendarDateTime: '2020-02-17T07:05:00'
-                          preempt: false
-                          makegood: false
-                          adu: false
-                          bonus: false
-                          rate: 600
-                          credit: false
-                          comment: 'Optional: Comment here'
-                    - buyLineIdReference: '3'
-                      unitType: Units
-                      brand:
-                        brandId: '19'
-                        brandName: Kona
-                      product:
-                        productId: '89'
-                        productName: Automobile
-                      salesElement:
-                        mediaOutletId: '490'
-                        salesElementName: Prime Weekend
-                        salesElementId: '55'
-                        salesElementType: Time Based
-                      timePeriod:
-                        dateWindow:
-                          startDate: '2020-02-17'
-                          endDate: '2020-02-23'
-                        DOW:
-                          monday: false
-                          tuesday: false
-                          wednesday: false
-                          thursday: false
-                          friday: false
-                          saturday: true
-                          sunday: true
-                        timeWindow:
-                          startTime: '19:00:00'
-                          endTime: '22:00:00'
-                      length: 30
-                      cpeCode:
-                        clientCode: HYUN
-                        productCode: AUTO
-                        estimateCode: '987'
-                      billableRevenue: Booked
-                      inventoryType: Commercial
-                      audiencePricingMetric:
-                        audienceSegmentId: string
-                        audienceMetric:
-                          audienceMetric: Impressions
-                          audienceMetricValue: 0
-                        pricingMetric:
-                          pricingMetric: CPM
-                          pricingMetricValue: 1.21
-                      totalUnits: 10
-                      unitDetails:
-                        - unitId: '56799'
-                          adId: HYUN1234
-                          dateTime:
-                            broadcastDate: '2020-02-17'
-                            calendarDateTime: '2020-02-17T19:14:00'
-                          preempt: false
-                          makegood: false
-                          adu: false
-                          bonus: false
-                          rate: 525
-                          credit: false
-                          comment: 'Optional: Comment here'
-                        - unitId: '567100'
-                          adId: HYUN1235
-                          dateTime:
-                            broadcastDate: '2020-02-17'
-                            calendarDateTime: '2020-02-17T19:33:00'
-                          preempt: false
-                          makegood: false
-                          adu: false
-                          bonus: false
-                          rate: 525
-                          credit: false
-                          comment: 'Optional: Comment here'
-                        - unitId: '56799'
-                          adId: HYUN1238
-                          dateTime:
-                            broadcastDate: '2020-02-18'
-                            calendarDateTime: '2020-02-18T19:23:00'
-                          preempt: false
-                          makegood: false
-                          adu: false
-                          bonus: false
-                          rate: 525
-                          credit: false
-                          comment: 'Optional: Comment here'
-                        - unitId: '56799'
-                          adId: HYUN1234
-                          dateTime:
-                            broadcastDate: '2020-02-18'
-                            calendarDateTime: '2020-02-18T19:44:00'
-                          preempt: false
-                          makegood: false
-                          adu: false
-                          bonus: false
-                          rate: 525
-                          credit: false
-                          comment: 'Optional: Comment here'
-                        - unitId: '56799'
-                          adId: HYUN1235
-                          dateTime:
-                            broadcastDate: '2020-02-19'
-                            calendarDateTime: '2020-02-19T19:23:00'
-                          preempt: false
-                          makegood: false
-                          adu: false
-                          bonus: false
-                          rate: 525
-                          credit: false
-                          comment: 'Optional: Comment here'
-                        - unitId: '56799'
-                          adId: HYUN1238
-                          dateTime:
-                            broadcastDate: '2020-02-19'
-                            calendarDateTime: '2020-02-19T20:23:00'
-                          preempt: false
-                          makegood: false
-                          adu: false
-                          bonus: false
-                          rate: 525
-                          credit: false
-                          comment: 'Optional: Comment here'
-                        - unitId: '56799'
-                          adId: HYUN1234
-                          dateTime:
-                            broadcastDate: '2020-02-20'
-                            calendarDateTime: '2020-02-20T19:23:00'
-                          preempt: false
-                          makegood: false
-                          adu: false
-                          bonus: false
-                          rate: 525
-                          credit: false
-                          comment: 'Optional: Comment here'
-                        - unitId: '56799'
-                          adId: HYUN1235
-                          dateTime:
-                            broadcastDate: '2020-02-20'
-                            calendarDateTime: '2020-02-20T19:45:00'
-                          preempt: false
-                          makegood: false
-                          adu: false
-                          bonus: false
-                          rate: 525
-                          credit: false
-                          comment: 'Optional: Comment here'
-                        - unitId: '56799'
-                          adId: HYUN1238
-                          dateTime:
-                            broadcastDate: '2020-02-21'
-                            calendarDateTime: '2020-02-21T20:23:00'
-                          preempt: false
-                          makegood: false
-                          adu: false
-                          bonus: false
-                          rate: 525
-                          credit: false
-                          comment: 'Optional: Comment here'
-                        - unitId: '56799'
-                          adId: HYUN1234
-                          dateTime:
-                            broadcastDate: '2020-02-21'
-                            calendarDateTime: '2020-02-21T19:45:00'
-                          preempt: false
-                          makegood: false
-                          adu: false
-                          bonus: false
-                          rate: 525
-                          credit: false
-                          comment: 'Optional: Comment here'
+                            broadcastDate: '2021-05-06'
+                            calendarDateTime: '2021-05-06T19:53:04.885Z'
+                          podPosition: First
+                          linkType:
+                            linkType: Billboard
+                            linkNum: 0
+                            linkSeq: 0
+                          isPreempt: false
+                          isMakegood: false
+                          isAdu: false
+                          isBonus: false
+                          grossRate: 100
+                          isCredit: false
+                          adjustmentReason: ''
+                          comment: ''
+                          childUnitDetails:
+                            - unitId: string
+                              salesElementHeader:
+                                mediaOutletId: string
+                                salesElementName: Primetime
+                                salesElementId: string
+                                salesElementType: Time-specific
+                              grossRate: 0
+                              creative:
+                                ids:
+                                  - id: string
+                                    version: string
+                                    srcId: string
+                                    srcName: string
+                                name: string
+                                status: Final
+                                length: 0
+                              isPreempt: true
+                              isMakegood: true
+                              isAdu: true
+                              isCredit: true
+                              adjustmentReason: string
+                              dateTime:
+                                broadcastDate: '2021-05-06'
+                                calendarDateTime: '2021-05-06T19:53:04.885Z'
               Change:
                 value:
-                  $ref: '#/paths/~1seller~1invoices/post/requestBody/content/application~1json/examples/New/value'
+                  transactionHeader:
+                    tipVersion: 6.0.0
+                    transactionId:
+                      transactionId: 582C423D-7507-4A72-95EC-6534C465D326
+                      transactionType: Change
+                      sourceId: YSELL-1234
+                      sourceName: YSELL Seller
+                    originalTransactionId:
+                      transactionId: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+                      transactionType: New
+                      sourceId: XVEN-1234
+                      sourceName: XVEN Buyer
+                    timeStamp: '2021-05-06T19:53:04.885Z'
+                  referenceIds:
+                    - referenceSourceName: YSELL Seller
+                      referenceSourceId: YSELL-1234
+                      referenceType: Order
+                      referenceId: ORD-5678
+                      referenceVersionId: 1
+                      referenceName: Hyundai 1Q22
+                    - referenceSourceName: YSELL Seller
+                      referenceSourceId: YSELL-1234
+                      referenceType: Invoice
+                      referenceId: ORD-5678-1
+                      referenceVersionId: 1
+                      referenceName: Hyundai 1Q22
+                  invoiceDate: '2021-08-25'
+                  invoiceRevisionDate: '2021-08-25'
+                  billingOption:
+                    billingCalendar: Broadcast
+                    billingCycle: Month
+                    billingGranularity: Order
+                  dueDate: '2021-09-25'
+                  dateWindow:
+                    startDate: '2021-07-01'
+                    endDate: '2021-07-31'
+                  businessType: Cash
+                  buyer:
+                    buyerIds:
+                      - id: YSELL-7890
+                        version: '0'
+                        srcId: YSELL-1234
+                        srcName: YSELL Seller
+                    buyerName: Canvas Worldwide. LLC
+                  localNational: Local
+                  advertiser:
+                    advertiserIds:
+                      - id: YSELL-0980
+                        version: '0'
+                        srcId: YSELL-1234
+                        srcName: YSELL Seller
+                    advertiserName: Hyundai
+                  contacts:
+                    - contactType: Account Executive
+                      contactIds:
+                        - id: CNT-1234
+                          version: '0'
+                          srcId: XVEN-1234
+                          srcName: XVEN Buyer
+                      salesOffices:
+                        - 'Dallas, TX'
+                        - 'NYC, NY'
+                      contactFirstName: John
+                      contactLastName: Doe
+                      addressLine1: 1234 N. Main Street
+                      city: A City
+                      state: UT
+                      postalCode: 00000-0000
+                      country: USA
+                      phoneNumber: 1(000)000-0000
+                      email: john.doe@example.com
+                      effectiveDate: '2021-05-06'
+                  revenueType: Cash
+                  grossAmount: 10000
+                  commission: 8
+                  salesTaxes:
+                    - itemType: Sales Tax
+                      value: 1245.55
+                  discounts:
+                    - itemType: Promotional
+                      value: 400
+                  netAmount: 10845.55
+                  currency: USD
+                  remittanceInfo:
+                    referenceSourceIds:
+                      - id: RMT-1234
+                        version: '0'
+                        srcId: XVEN-1234
+                        srcName: XVEN Buyer
+                    contactFirstName: Jane
+                    contactLastName: Doe
+                    addressLine1: 2358 W Main Street
+                    city: B City
+                    state: UT
+                    postalCode: 00000-0000
+                    country: USA
+                    phoneNumber: 1(000)000-0000
+                    contactEmail: jane.doe@example.com
+                  mediaOutlets:
+                    - mediaOutletIds:
+                        - id: KHOU-TV
+                          version: '0'
+                          srcId: XVEN-1234
+                          srcName: XVEN Buyer
+                      mediaOutletName: KHOU-TV
+                      mediaOutletType: Local TV
+                      mediaOutletChannel: KHOU-TV
+                      mediaOutletMarketName: 'Houston, TX'
+                  externalComment: Thanks for your business
+                  lineDetails:
+                    - lineNum: '1'
+                      lineReference: '1'
+                      lineReferences:
+                        - id: ORD-5678-1
+                          version: '0'
+                          srcId: YSELL-1234
+                          srcName: YSELL Seller
+                      type: Spot
+                      brand:
+                        brandIds:
+                          - id: BRD-1234
+                            version: '0'
+                            srcId: YSELL-1234
+                            srcName: YSELL Seller
+                        brandName: Kona
+                      product:
+                        productIds:
+                          - id: PRO-1234
+                            version: '0'
+                            srcId: YSELL-1234
+                            srcName: YSELL Seller
+                        productName: Automobile
+                      salesElementHeader:
+                        mediaOutletId: KHOU-TV
+                        salesElementName: Primetime
+                        salesElementId: YSELL-9999
+                        salesElementType: Time-specific
+                      inventoryType: Commercial
+                      timePeriod:
+                        - dateWindow:
+                            startDate: '2021-05-06'
+                            endDate: '2021-05-06'
+                          DOW:
+                            isMonday: true
+                            isTuesday: true
+                            isWednesday: true
+                            isThursday: true
+                            isFriday: true
+                            isSaturday: true
+                            isSunday: true
+                          timeWindow:
+                            startTime: '09:00'
+                            endTime: '11:00'
+                      length: 30
+                      cpeCode:
+                        clientCode: string
+                        productCode: string
+                        estimateCode: string
+                      billableCosts: Booked
+                      pricingMetric:
+                        PricingMetricOption: CPM
+                        grossValue: 0
+                        netValue: 0
+                      grossCost: 150
+                      netCost: 127.5
+                      audienceTargets:
+                        - excludeOrInclude: Include
+                          audienceTargetIds:
+                            - id: string
+                              version: string
+                              srcId: string
+                              srcName: string
+                          targetAttribute: HH Income
+                          value:
+                            - - '$50,000 - $75,000'
+                              - '$75,000, -$100,000'
+                      unitCount: 0
+                      unitDetails:
+                        - unitId: string
+                          creative:
+                            ids:
+                              - id: string
+                                version: string
+                                srcId: string
+                                srcName: string
+                            name: string
+                            status: Final
+                            length: 0
+                          dateTime:
+                            broadcastDate: '2021-05-06'
+                            calendarDateTime: '2021-05-06T19:53:04.885Z'
+                          podPosition: First
+                          linkType:
+                            linkType: Billboard
+                            linkNum: 0
+                            linkSeq: 0
+                          isPreempt: false
+                          isMakegood: false
+                          isAdu: false
+                          isBonus: false
+                          grossRate: 100
+                          isCredit: false
+                          adjustmentReason: ''
+                          comment: ''
+                          childUnitDetails:
+                            - unitId: string
+                              salesElementHeader:
+                                mediaOutletId: string
+                                salesElementName: Primetime
+                                salesElementId: string
+                                salesElementType: Time-specific
+                              grossRate: 0
+                              creative:
+                                ids:
+                                  - id: string
+                                    version: string
+                                    srcId: string
+                                    srcName: string
+                                name: string
+                                status: Final
+                                length: 0
+                              isPreempt: true
+                              isMakegood: true
+                              isAdu: true
+                              isCredit: true
+                              adjustmentReason: string
+                              dateTime:
+                                broadcastDate: '2021-05-06'
+                                calendarDateTime: '2021-05-06T19:53:04.885Z'
               Cancel:
                 value:
-                  $ref: '#/paths/~1buyer~1rfps/post/requestBody/content/application~1json/examples/Cancel/value'
+                  transactionHeader:
+                    tipVersion: 6.0.0
+                    transactionId:
+                      transactionId: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+                      transactionType: Cancel
+                      sourceId: '456'
+                      sourceName: Canvas Worldwide. LLC
+                    originalTransactionId:
+                      transactionId: B906A0A9-19FA-4F06-B94D-22E4F1D9120C
+                      transactionType: New
+                      sourceId: '490'
+                      sourceName: KHOU-TV
+                    timeStamp: '2020-07-17T20:04:55.220Z'
+                  referenceIds:
+                    - referenceSourceName: YSELL Seller
+                      referenceSourceId: YSELL-1234
+                      referenceType: Order
+                      referenceId: ORD-5678
+                      referenceVersionId: 1
+                      referenceName: Hyundai 1Q22
+                    - referenceSourceName: YSELL Seller
+                      referenceSourceId: YSELL-1234
+                      referenceType: Invoice
+                      referenceId: ORD-5678-1
+                      referenceVersionId: 1
+                      referenceName: Hyundai 1Q22
+                  comments: 'Thank you Very much; good to do business with you :)'
+          application/xml:
+            schema:
+              oneOf:
+                - $ref: '#/components/schemas/SellerInvoices'
+                - $ref: '#/components/schemas/CancelConfirmRecallReject'
+              xml:
+                name: SellerInvoicesRequest
+            examples:
+              New:
+                value: "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n<SellerInvoicesRequest>\r\n\t<transactionHeader>\r\n\t\t<tipVersion>6.0.0</tipVersion>\r\n\t\t<transactionId>\r\n\t\t\t<transactionId>3fa85f64-5717-4562-b3fc-2c963f66afa6</transactionId>\r\n\t\t\t<transactionType>New</transactionType>\r\n\t\t\t<sourceId>YSELL-1234</sourceId>\r\n\t\t\t<sourceName>YSELL Seller</sourceName>\r\n\t\t</transactionId>\r\n\t\t<timeStamp>2021-05-06T19:53:04.885Z</timeStamp>\r\n\t</transactionHeader>\r\n\t<referenceIds>\r\n\t\t<referenceSourceName>YSELL Seller</referenceSourceName>\r\n\t\t<referenceSourceId>YSELL-1234</referenceSourceId>\r\n\t\t<referenceType>Order</referenceType>\r\n\t\t<referenceId>ORD-5678</referenceId>\r\n\t\t<referenceVersionId>1</referenceVersionId>\r\n\t\t<referenceName>Hyundai 1Q22</referenceName>\r\n\t</referenceIds>\r\n\t<referenceIds>\r\n\t\t<referenceSourceName>YSELL Seller</referenceSourceName>\r\n\t\t<referenceSourceId>YSELL-1234</referenceSourceId>\r\n\t\t<referenceType>Invoice</referenceType>\r\n\t\t<referenceId>ORD-5678-1</referenceId>\r\n\t\t<referenceVersionId>1</referenceVersionId>\r\n\t\t<referenceName>Hyundai 1Q22</referenceName>\r\n\t</referenceIds>\r\n\t<invoiceDate>2021-08-25</invoiceDate>\r\n\t<invoiceRevisionDate>2021-08-25</invoiceRevisionDate>\r\n\t<billingOption>\r\n\t\t<billingCalendar>Broadcast</billingCalendar>\r\n\t\t<billingCycle>Month</billingCycle>\r\n\t\t<billingGranularity>Order</billingGranularity>\r\n\t</billingOption>\r\n\t<dueDate>2021-09-25</dueDate>\r\n\t<dateWindow>\r\n\t\t<startDate>2021-07-01</startDate>\r\n\t\t<endDate>2021-07-31</endDate>\r\n\t</dateWindow>\r\n\t<businessType>Cash</businessType>\r\n\t<buyer>\r\n\t\t<buyerIds>\r\n\t\t\t<id>YSELL-7890</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>YSELL-1234</srcId>\r\n\t\t\t<srcName>YSELL Seller</srcName>\r\n\t\t</buyerIds>\r\n\t\t<buyerName>Canvas Worldwide. LLC</buyerName>\r\n\t</buyer>\r\n\t<localNational>Local</localNational>\r\n\t<advertiser>\r\n\t\t<advertiserIds>\r\n\t\t\t<id>YSELL-0980</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>YSELL-1234</srcId>\r\n\t\t\t<srcName>YSELL Seller</srcName>\r\n\t\t</advertiserIds>\r\n\t\t<advertiserName>Hyundai</advertiserName>\r\n\t</advertiser>\r\n\t<contacts>\r\n\t\t<contactType>Account Executive</contactType>\r\n\t\t<contactIds>\r\n\t\t\t<id>CNT-1234</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>XVEN-1234</srcId>\r\n\t\t\t<srcName>XVEN Buyer</srcName>\r\n\t\t</contactIds>\r\n\t\t<salesOffices>Dallas, TX</salesOffices>\r\n\t\t<salesOffices>NYC, NY</salesOffices>\r\n\t\t<contactFirstName>John</contactFirstName>\r\n\t\t<contactLastName>Doe</contactLastName>\r\n\t\t<addressLine1>1234 N. Main Street</addressLine1>\r\n\t\t<city>A City</city>\r\n\t\t<state>UT</state>\r\n\t\t<postalCode>00000-0000</postalCode>\r\n\t\t<country>USA</country>\r\n\t\t<phoneNumber>1(000)000-0000</phoneNumber>\r\n\t\t<email>john.doe@example.com</email>\r\n\t\t<effectiveDate>2021-05-06</effectiveDate>\r\n\t</contacts>\r\n\t<revenueType>Cash</revenueType>\r\n\t<grossAmount>10000</grossAmount>\r\n\t<commission>8</commission>\r\n\t<salesTaxes>\r\n\t\t<itemType>Sales Tax</itemType>\r\n\t\t<value>1245.55</value>\r\n\t</salesTaxes>\r\n\t<discounts>\r\n\t\t<itemType>Promotional</itemType>\r\n\t\t<value>400</value>\r\n\t</discounts>\r\n\t<netAmount>10845.55</netAmount>\r\n\t<currency>USD</currency>\r\n\t<remittanceInfo>\r\n\t\t<referenceSourceIds>\r\n\t\t\t<id>RMT-1234</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>XVEN-1234</srcId>\r\n\t\t\t<srcName>XVEN Buyer</srcName>\r\n\t\t</referenceSourceIds>\r\n\t\t<contactFirstName>Jane</contactFirstName>\r\n\t\t<contactLastName>Doe</contactLastName>\r\n\t\t<addressLine1>2358 W Main Street</addressLine1>\r\n\t\t<city>B City</city>\r\n\t\t<state>UT</state>\r\n\t\t<postalCode>00000-0000</postalCode>\r\n\t\t<country>USA</country>\r\n\t\t<phoneNumber>1(000)000-0000</phoneNumber>\r\n\t\t<contactEmail>jane.doe@example.com</contactEmail>\r\n\t</remittanceInfo>\r\n\t<mediaOutlets>\r\n\t\t<mediaOutletIds>\r\n\t\t\t<id>KHOU-TV</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>XVEN-1234</srcId>\r\n\t\t\t<srcName>XVEN Buyer</srcName>\r\n\t\t</mediaOutletIds>\r\n\t\t<mediaOutletName>KHOU-TV</mediaOutletName>\r\n\t\t<mediaOutletType>Local TV</mediaOutletType>\r\n\t\t<mediaOutletChannel>KHOU-TV</mediaOutletChannel>\r\n\t\t<mediaOutletMarketName>Houston, TX</mediaOutletMarketName>\r\n\t</mediaOutlets>\r\n\t<externalComment>Thanks for your business</externalComment>\r\n\t<lineDetails>\r\n\t\t<lineNum>1</lineNum>\r\n\t\t<lineReference>1</lineReference>\r\n\t\t<lineReferences>\r\n\t\t\t<id>ORD-5678-1</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>YSELL-1234</srcId>\r\n\t\t\t<srcName>YSELL Seller</srcName>\r\n\t\t</lineReferences>\r\n\t\t<type>Spot</type>\r\n\t\t<brand>\r\n\t\t\t<brandIds>\r\n\t\t\t\t<id>BRD-1234</id>\r\n\t\t\t\t<version>0</version>\r\n\t\t\t\t<srcId>YSELL-1234</srcId>\r\n\t\t\t\t<srcName>YSELL Seller</srcName>\r\n\t\t\t</brandIds>\r\n\t\t\t<brandName>Kona</brandName>\r\n\t\t</brand>\r\n\t\t<product>\r\n\t\t\t<productIds>\r\n\t\t\t\t<id>PRO-1234</id>\r\n\t\t\t\t<version>0</version>\r\n\t\t\t\t<srcId>YSELL-1234</srcId>\r\n\t\t\t\t<srcName>YSELL Seller</srcName>\r\n\t\t\t</productIds>\r\n\t\t\t<productName>Automobile</productName>\r\n\t\t</product>\r\n\t\t<salesElementHeader>\r\n\t\t\t<mediaOutletId>KHOU-TV</mediaOutletId>\r\n\t\t\t<salesElementName>Primetime</salesElementName>\r\n\t\t\t<salesElementId>YSELL-9999</salesElementId>\r\n\t\t\t<salesElementType>Time-specific</salesElementType>\r\n\t\t</salesElementHeader>\r\n\t\t<inventoryType>Commercial</inventoryType>\r\n\t\t<timePeriod>\r\n\t\t\t<dateWindow>\r\n\t\t\t\t<startDate>2021-05-06</startDate>\r\n\t\t\t\t<endDate>2021-05-06</endDate>\r\n\t\t\t</dateWindow>\r\n\t\t\t<DOW>\r\n\t\t\t\t<isMonday>true</isMonday>\r\n\t\t\t\t<isTuesday>true</isTuesday>\r\n\t\t\t\t<isWednesday>true</isWednesday>\r\n\t\t\t\t<isThursday>true</isThursday>\r\n\t\t\t\t<isFriday>true</isFriday>\r\n\t\t\t\t<isSaturday>true</isSaturday>\r\n\t\t\t\t<isSunday>true</isSunday>\r\n\t\t\t</DOW>\r\n\t\t\t<timeWindow>\r\n\t\t\t\t<startTime>09:00</startTime>\r\n\t\t\t\t<endTime>11:00</endTime>\r\n\t\t\t</timeWindow>\r\n\t\t</timePeriod>\r\n\t\t<length>30</length>\r\n\t\t<cpeCode>\r\n\t\t\t<clientCode>string</clientCode>\r\n\t\t\t<productCode>string</productCode>\r\n\t\t\t<estimateCode>string</estimateCode>\r\n\t\t</cpeCode>\r\n\t\t<billableCosts>Booked</billableCosts>\r\n\t\t<pricingMetric>\r\n\t\t\t<PricingMetricOption>CPM</PricingMetricOption>\r\n\t\t\t<grossValue>0</grossValue>\r\n\t\t\t<netValue>0</netValue>\r\n\t\t</pricingMetric>\r\n\t\t<grossCost>150</grossCost>\r\n\t\t<netCost>127.5</netCost>\r\n\t\t<audienceTargets>\r\n\t\t\t<excludeOrInclude>Include</excludeOrInclude>\r\n\t\t\t<audienceTargetIds>\r\n\t\t\t\t<id>string</id>\r\n\t\t\t\t<version>string</version>\r\n\t\t\t\t<srcId>string</srcId>\r\n\t\t\t\t<srcName>string</srcName>\r\n\t\t\t</audienceTargetIds>\r\n\t\t\t<targetAttribute>HH Income</targetAttribute>\r\n\t\t\t<value>$50,000 - $75,000</value>\r\n\t\t\t<value>$75,000, -$100,000</value>\r\n\t\t</audienceTargets>\r\n\t\t<unitCount>0</unitCount>\r\n\t\t<unitDetails>\r\n\t\t\t<unitId>string</unitId>\r\n\t\t\t<creative>\r\n\t\t\t\t<ids>\r\n\t\t\t\t\t<id>string</id>\r\n\t\t\t\t\t<version>string</version>\r\n\t\t\t\t\t<srcId>string</srcId>\r\n\t\t\t\t\t<srcName>string</srcName>\r\n\t\t\t\t</ids>\r\n\t\t\t\t<name>string</name>\r\n\t\t\t\t<status>Final</status>\r\n\t\t\t\t<length>0</length>\r\n\t\t\t</creative>\r\n\t\t\t<dateTime>\r\n\t\t\t\t<broadcastDate>2021-05-06</broadcastDate>\r\n\t\t\t\t<calendarDateTime>2021-05-06T19:53:04.885Z</calendarDateTime>\r\n\t\t\t</dateTime>\r\n\t\t\t<podPosition>First</podPosition>\r\n\t\t\t<linkType>\r\n\t\t\t\t<linkType>Billboard</linkType>\r\n\t\t\t\t<linkNum>0</linkNum>\r\n\t\t\t\t<linkSeq>0</linkSeq>\r\n\t\t\t</linkType>\r\n\t\t\t<isPreempt>false</isPreempt>\r\n\t\t\t<isMakegood>false</isMakegood>\r\n\t\t\t<isAdu>false</isAdu>\r\n\t\t\t<isBonus>false</isBonus>\r\n\t\t\t<grossRate>100</grossRate>\r\n\t\t\t<isCredit>false</isCredit>\r\n\t\t\t<adjustmentReason></adjustmentReason>\r\n\t\t\t<comment></comment>\r\n\t\t\t<childUnitDetails>\r\n\t\t\t\t<unitId>string</unitId>\r\n\t\t\t\t<salesElementHeader>\r\n\t\t\t\t\t<mediaOutletId>string</mediaOutletId>\r\n\t\t\t\t\t<salesElementName>Primetime</salesElementName>\r\n\t\t\t\t\t<salesElementId>string</salesElementId>\r\n\t\t\t\t\t<salesElementType>Time-specific</salesElementType>\r\n\t\t\t\t</salesElementHeader>\r\n\t\t\t\t<grossRate>0</grossRate>\r\n\t\t\t\t<creative>\r\n\t\t\t\t\t<ids>\r\n\t\t\t\t\t\t<id>string</id>\r\n\t\t\t\t\t\t<version>string</version>\r\n\t\t\t\t\t\t<srcId>string</srcId>\r\n\t\t\t\t\t\t<srcName>string</srcName>\r\n\t\t\t\t\t</ids>\r\n\t\t\t\t\t<name>string</name>\r\n\t\t\t\t\t<status>Final</status>\r\n\t\t\t\t\t<length>0</length>\r\n\t\t\t\t</creative>\r\n\t\t\t\t<isPreempt>true</isPreempt>\r\n\t\t\t\t<isMakegood>true</isMakegood>\r\n\t\t\t\t<isAdu>true</isAdu>\r\n\t\t\t\t<isCredit>true</isCredit>\r\n\t\t\t\t<adjustmentReason>string</adjustmentReason>\r\n\t\t\t\t<dateTime>\r\n\t\t\t\t\t<broadcastDate>2021-05-06</broadcastDate>\r\n\t\t\t\t\t<calendarDateTime>2021-05-06T19:53:04.885Z</calendarDateTime>\r\n\t\t\t\t</dateTime>\r\n\t\t\t</childUnitDetails>\r\n\t\t</unitDetails>\r\n\t</lineDetails>\r\n</SellerInvoicesRequest>"
+              Change:
+                value: "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n<SellerInvoicesRequest>\r\n\t<transactionHeader>\r\n\t\t<tipVersion>6.0.0</tipVersion>\r\n\t\t<transactionId>\r\n\t\t\t<transactionId>582C423D-7507-4A72-95EC-6534C465D326</transactionId>\r\n\t\t\t<transactionType>Change</transactionType>\r\n\t\t\t<sourceId>YSELL-1234</sourceId>\r\n\t\t\t<sourceName>YSELL Seller</sourceName>\r\n\t\t</transactionId>\r\n\t\t<originalTransactionId>\r\n\t\t\t<transactionId>3fa85f64-5717-4562-b3fc-2c963f66afa6</transactionId>\r\n\t\t\t<transactionType>New</transactionType>\r\n\t\t\t<sourceId>XVEN-1234</sourceId>\r\n\t\t\t<sourceName>XVEN Buyer</sourceName>\r\n\t\t</originalTransactionId>\r\n\t\t<timeStamp>2021-05-06T19:53:04.885Z</timeStamp>\r\n\t</transactionHeader>\r\n\t<referenceIds>\r\n\t\t<referenceSourceName>YSELL Seller</referenceSourceName>\r\n\t\t<referenceSourceId>YSELL-1234</referenceSourceId>\r\n\t\t<referenceType>Order</referenceType>\r\n\t\t<referenceId>ORD-5678</referenceId>\r\n\t\t<referenceVersionId>1</referenceVersionId>\r\n\t\t<referenceName>Hyundai 1Q22</referenceName>\r\n\t</referenceIds>\r\n\t<referenceIds>\r\n\t\t<referenceSourceName>YSELL Seller</referenceSourceName>\r\n\t\t<referenceSourceId>YSELL-1234</referenceSourceId>\r\n\t\t<referenceType>Invoice</referenceType>\r\n\t\t<referenceId>ORD-5678-1</referenceId>\r\n\t\t<referenceVersionId>1</referenceVersionId>\r\n\t\t<referenceName>Hyundai 1Q22</referenceName>\r\n\t</referenceIds>\r\n\t<invoiceDate>2021-08-25</invoiceDate>\r\n\t<invoiceRevisionDate>2021-08-25</invoiceRevisionDate>\r\n\t<billingOption>\r\n\t\t<billingCalendar>Broadcast</billingCalendar>\r\n\t\t<billingCycle>Month</billingCycle>\r\n\t\t<billingGranularity>Order</billingGranularity>\r\n\t</billingOption>\r\n\t<dueDate>2021-09-25</dueDate>\r\n\t<dateWindow>\r\n\t\t<startDate>2021-07-01</startDate>\r\n\t\t<endDate>2021-07-31</endDate>\r\n\t</dateWindow>\r\n\t<businessType>Cash</businessType>\r\n\t<buyer>\r\n\t\t<buyerIds>\r\n\t\t\t<id>YSELL-7890</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>YSELL-1234</srcId>\r\n\t\t\t<srcName>YSELL Seller</srcName>\r\n\t\t</buyerIds>\r\n\t\t<buyerName>Canvas Worldwide. LLC</buyerName>\r\n\t</buyer>\r\n\t<localNational>Local</localNational>\r\n\t<advertiser>\r\n\t\t<advertiserIds>\r\n\t\t\t<id>YSELL-0980</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>YSELL-1234</srcId>\r\n\t\t\t<srcName>YSELL Seller</srcName>\r\n\t\t</advertiserIds>\r\n\t\t<advertiserName>Hyundai</advertiserName>\r\n\t</advertiser>\r\n\t<contacts>\r\n\t\t<contactType>Account Executive</contactType>\r\n\t\t<contactIds>\r\n\t\t\t<id>CNT-1234</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>XVEN-1234</srcId>\r\n\t\t\t<srcName>XVEN Buyer</srcName>\r\n\t\t</contactIds>\r\n\t\t<salesOffices>Dallas, TX</salesOffices>\r\n\t\t<salesOffices>NYC, NY</salesOffices>\r\n\t\t<contactFirstName>John</contactFirstName>\r\n\t\t<contactLastName>Doe</contactLastName>\r\n\t\t<addressLine1>1234 N. Main Street</addressLine1>\r\n\t\t<city>A City</city>\r\n\t\t<state>UT</state>\r\n\t\t<postalCode>00000-0000</postalCode>\r\n\t\t<country>USA</country>\r\n\t\t<phoneNumber>1(000)000-0000</phoneNumber>\r\n\t\t<email>john.doe@example.com</email>\r\n\t\t<effectiveDate>2021-05-06</effectiveDate>\r\n\t</contacts>\r\n\t<revenueType>Cash</revenueType>\r\n\t<grossAmount>10000</grossAmount>\r\n\t<commission>8</commission>\r\n\t<salesTaxes>\r\n\t\t<itemType>Sales Tax</itemType>\r\n\t\t<value>1245.55</value>\r\n\t</salesTaxes>\r\n\t<discounts>\r\n\t\t<itemType>Promotional</itemType>\r\n\t\t<value>400</value>\r\n\t</discounts>\r\n\t<netAmount>10845.55</netAmount>\r\n\t<currency>USD</currency>\r\n\t<remittanceInfo>\r\n\t\t<referenceSourceIds>\r\n\t\t\t<id>RMT-1234</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>XVEN-1234</srcId>\r\n\t\t\t<srcName>XVEN Buyer</srcName>\r\n\t\t</referenceSourceIds>\r\n\t\t<contactFirstName>Jane</contactFirstName>\r\n\t\t<contactLastName>Doe</contactLastName>\r\n\t\t<addressLine1>2358 W Main Street</addressLine1>\r\n\t\t<city>B City</city>\r\n\t\t<state>UT</state>\r\n\t\t<postalCode>00000-0000</postalCode>\r\n\t\t<country>USA</country>\r\n\t\t<phoneNumber>1(000)000-0000</phoneNumber>\r\n\t\t<contactEmail>jane.doe@example.com</contactEmail>\r\n\t</remittanceInfo>\r\n\t<mediaOutlets>\r\n\t\t<mediaOutletIds>\r\n\t\t\t<id>KHOU-TV</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>XVEN-1234</srcId>\r\n\t\t\t<srcName>XVEN Buyer</srcName>\r\n\t\t</mediaOutletIds>\r\n\t\t<mediaOutletName>KHOU-TV</mediaOutletName>\r\n\t\t<mediaOutletType>Local TV</mediaOutletType>\r\n\t\t<mediaOutletChannel>KHOU-TV</mediaOutletChannel>\r\n\t\t<mediaOutletMarketName>Houston, TX</mediaOutletMarketName>\r\n\t</mediaOutlets>\r\n\t<externalComment>Thanks for your business</externalComment>\r\n\t<lineDetails>\r\n\t\t<lineNum>1</lineNum>\r\n\t\t<lineReference>1</lineReference>\r\n\t\t<lineReferences>\r\n\t\t\t<id>ORD-5678-1</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>YSELL-1234</srcId>\r\n\t\t\t<srcName>YSELL Seller</srcName>\r\n\t\t</lineReferences>\r\n\t\t<type>Spot</type>\r\n\t\t<brand>\r\n\t\t\t<brandIds>\r\n\t\t\t\t<id>BRD-1234</id>\r\n\t\t\t\t<version>0</version>\r\n\t\t\t\t<srcId>YSELL-1234</srcId>\r\n\t\t\t\t<srcName>YSELL Seller</srcName>\r\n\t\t\t</brandIds>\r\n\t\t\t<brandName>Kona</brandName>\r\n\t\t</brand>\r\n\t\t<product>\r\n\t\t\t<productIds>\r\n\t\t\t\t<id>PRO-1234</id>\r\n\t\t\t\t<version>0</version>\r\n\t\t\t\t<srcId>YSELL-1234</srcId>\r\n\t\t\t\t<srcName>YSELL Seller</srcName>\r\n\t\t\t</productIds>\r\n\t\t\t<productName>Automobile</productName>\r\n\t\t</product>\r\n\t\t<salesElementHeader>\r\n\t\t\t<mediaOutletId>KHOU-TV</mediaOutletId>\r\n\t\t\t<salesElementName>Primetime</salesElementName>\r\n\t\t\t<salesElementId>YSELL-9999</salesElementId>\r\n\t\t\t<salesElementType>Time-specific</salesElementType>\r\n\t\t</salesElementHeader>\r\n\t\t<inventoryType>Commercial</inventoryType>\r\n\t\t<timePeriod>\r\n\t\t\t<dateWindow>\r\n\t\t\t\t<startDate>2021-05-06</startDate>\r\n\t\t\t\t<endDate>2021-05-06</endDate>\r\n\t\t\t</dateWindow>\r\n\t\t\t<DOW>\r\n\t\t\t\t<isMonday>true</isMonday>\r\n\t\t\t\t<isTuesday>true</isTuesday>\r\n\t\t\t\t<isWednesday>true</isWednesday>\r\n\t\t\t\t<isThursday>true</isThursday>\r\n\t\t\t\t<isFriday>true</isFriday>\r\n\t\t\t\t<isSaturday>true</isSaturday>\r\n\t\t\t\t<isSunday>true</isSunday>\r\n\t\t\t</DOW>\r\n\t\t\t<timeWindow>\r\n\t\t\t\t<startTime>09:00</startTime>\r\n\t\t\t\t<endTime>11:00</endTime>\r\n\t\t\t</timeWindow>\r\n\t\t</timePeriod>\r\n\t\t<length>30</length>\r\n\t\t<cpeCode>\r\n\t\t\t<clientCode>string</clientCode>\r\n\t\t\t<productCode>string</productCode>\r\n\t\t\t<estimateCode>string</estimateCode>\r\n\t\t</cpeCode>\r\n\t\t<billableCosts>Booked</billableCosts>\r\n\t\t<pricingMetric>\r\n\t\t\t<PricingMetricOption>CPM</PricingMetricOption>\r\n\t\t\t<grossValue>0</grossValue>\r\n\t\t\t<netValue>0</netValue>\r\n\t\t</pricingMetric>\r\n\t\t<grossCost>150</grossCost>\r\n\t\t<netCost>127.5</netCost>\r\n\t\t<audienceTargets>\r\n\t\t\t<excludeOrInclude>Include</excludeOrInclude>\r\n\t\t\t<audienceTargetIds>\r\n\t\t\t\t<id>string</id>\r\n\t\t\t\t<version>string</version>\r\n\t\t\t\t<srcId>string</srcId>\r\n\t\t\t\t<srcName>string</srcName>\r\n\t\t\t</audienceTargetIds>\r\n\t\t\t<targetAttribute>HH Income</targetAttribute>\r\n\t\t\t<value>$50,000 - $75,000</value>\r\n\t\t\t<value>$75,000, -$100,000</value>\r\n\t\t</audienceTargets>\r\n\t\t<unitCount>0</unitCount>\r\n\t\t<unitDetails>\r\n\t\t\t<unitId>string</unitId>\r\n\t\t\t<creative>\r\n\t\t\t\t<ids>\r\n\t\t\t\t\t<id>string</id>\r\n\t\t\t\t\t<version>string</version>\r\n\t\t\t\t\t<srcId>string</srcId>\r\n\t\t\t\t\t<srcName>string</srcName>\r\n\t\t\t\t</ids>\r\n\t\t\t\t<name>string</name>\r\n\t\t\t\t<status>Final</status>\r\n\t\t\t\t<length>0</length>\r\n\t\t\t</creative>\r\n\t\t\t<dateTime>\r\n\t\t\t\t<broadcastDate>2021-05-06</broadcastDate>\r\n\t\t\t\t<calendarDateTime>2021-05-06T19:53:04.885Z</calendarDateTime>\r\n\t\t\t</dateTime>\r\n\t\t\t<podPosition>First</podPosition>\r\n\t\t\t<linkType>\r\n\t\t\t\t<linkType>Billboard</linkType>\r\n\t\t\t\t<linkNum>0</linkNum>\r\n\t\t\t\t<linkSeq>0</linkSeq>\r\n\t\t\t</linkType>\r\n\t\t\t<isPreempt>false</isPreempt>\r\n\t\t\t<isMakegood>false</isMakegood>\r\n\t\t\t<isAdu>false</isAdu>\r\n\t\t\t<isBonus>false</isBonus>\r\n\t\t\t<grossRate>100</grossRate>\r\n\t\t\t<isCredit>false</isCredit>\r\n\t\t\t<adjustmentReason></adjustmentReason>\r\n\t\t\t<comment></comment>\r\n\t\t\t<childUnitDetails>\r\n\t\t\t\t<unitId>string</unitId>\r\n\t\t\t\t<salesElementHeader>\r\n\t\t\t\t\t<mediaOutletId>string</mediaOutletId>\r\n\t\t\t\t\t<salesElementName>Primetime</salesElementName>\r\n\t\t\t\t\t<salesElementId>string</salesElementId>\r\n\t\t\t\t\t<salesElementType>Time-specific</salesElementType>\r\n\t\t\t\t</salesElementHeader>\r\n\t\t\t\t<grossRate>0</grossRate>\r\n\t\t\t\t<creative>\r\n\t\t\t\t\t<ids>\r\n\t\t\t\t\t\t<id>string</id>\r\n\t\t\t\t\t\t<version>string</version>\r\n\t\t\t\t\t\t<srcId>string</srcId>\r\n\t\t\t\t\t\t<srcName>string</srcName>\r\n\t\t\t\t\t</ids>\r\n\t\t\t\t\t<name>string</name>\r\n\t\t\t\t\t<status>Final</status>\r\n\t\t\t\t\t<length>0</length>\r\n\t\t\t\t</creative>\r\n\t\t\t\t<isPreempt>true</isPreempt>\r\n\t\t\t\t<isMakegood>true</isMakegood>\r\n\t\t\t\t<isAdu>true</isAdu>\r\n\t\t\t\t<isCredit>true</isCredit>\r\n\t\t\t\t<adjustmentReason>string</adjustmentReason>\r\n\t\t\t\t<dateTime>\r\n\t\t\t\t\t<broadcastDate>2021-05-06</broadcastDate>\r\n\t\t\t\t\t<calendarDateTime>2021-05-06T19:53:04.885Z</calendarDateTime>\r\n\t\t\t\t</dateTime>\r\n\t\t\t</childUnitDetails>\r\n\t\t</unitDetails>\r\n\t</lineDetails>\r\n</SellerInvoicesRequest>"
+              Cancel:
+                value: "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n<SellerInvoicesRequest>\r\n\t<transactionHeader>\r\n\t\t<tipVersion>6.0.0</tipVersion>\r\n\t\t<transactionId>\r\n\t\t\t<transactionId>3fa85f64-5717-4562-b3fc-2c963f66afa6</transactionId>\r\n\t\t\t<transactionType>Cancel</transactionType>\r\n\t\t\t<sourceId>456</sourceId>\r\n\t\t\t<sourceName>Canvas Worldwide. LLC</sourceName>\r\n\t\t</transactionId>\r\n\t\t<originalTransactionId>\r\n\t\t\t<transactionId>B906A0A9-19FA-4F06-B94D-22E4F1D9120C</transactionId>\r\n\t\t\t<transactionType>New</transactionType>\r\n\t\t\t<sourceId>490</sourceId>\r\n\t\t\t<sourceName>KHOU-TV</sourceName>\r\n\t\t</originalTransactionId>\r\n\t\t<timeStamp>2020-07-17T20:04:55.220Z</timeStamp>\r\n\t</transactionHeader>\r\n\t<referenceIds>\r\n\t\t<referenceSourceName>YSELL Seller</referenceSourceName>\r\n\t\t<referenceSourceId>YSELL-1234</referenceSourceId>\r\n\t\t<referenceType>Order</referenceType>\r\n\t\t<referenceId>ORD-5678</referenceId>\r\n\t\t<referenceVersionId>1</referenceVersionId>\r\n\t\t<referenceName>Hyundai 1Q22</referenceName>\r\n\t</referenceIds>\r\n\t<referenceIds>\r\n\t\t<referenceSourceName>YSELL Seller</referenceSourceName>\r\n\t\t<referenceSourceId>YSELL-1234</referenceSourceId>\r\n\t\t<referenceType>Invoice</referenceType>\r\n\t\t<referenceId>ORD-5678-1</referenceId>\r\n\t\t<referenceVersionId>1</referenceVersionId>\r\n\t\t<referenceName>Hyundai 1Q22</referenceName>\r\n\t</referenceIds>\r\n\t<comments>Thank you Very much; good to do business with you :)</comments>\r\n</SellerInvoicesRequest>"
       responses:
         '200':
           $ref: '#/components/responses/Success'
@@ -3760,11 +4128,211 @@ paths:
         content:
           application/json:
             schema:
+              $ref: '#/paths/~1buyer~1audiences~1subscription/post/requestBody/content/application~1xml/schema'
+            examples:
+              New:
+                value:
+                  transactionHeader:
+                    tipVersion: 6.0.0
+                    transactionId:
+                      transactionId: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+                      transactionType: New
+                      sourceId: XBuy-1234
+                      sourceName: XVEN Buyer
+                    timeStamp: '2021-05-06T19:09:12.795Z'
+                  name: Bi Monthly Subscription
+                  referenceIds:
+                    - referenceSourceName: KHOU-TV
+                      referenceSourceId: KHOUTV-123
+                      referenceSourceLookup: string
+                      referenceType: Order
+                      referenceId: OR-12356
+                      referenceVersionId: 0
+                      referenceName: Hyundai 1Q22
+                  mediaOutlets:
+                    - mediaOutletIds:
+                        - id: TV-124
+                          version: '0'
+                          srcId: XBuy-1234
+                          srcName: XVEN Buyer
+                      mediaOutletName: KHOU-TV
+                      mediaOutletType: Local TV
+                      mediaOutletChannel: KHOU-TV
+                      mediaOutletMarketName: 'Houston, TX'
+                  buyer:
+                    - buyerIds:
+                        - id: BUYER-178
+                          version: '0'
+                          srcId: XBuy-1234
+                          srcName: XVEN Buyer
+                      buyerName: Canvas Worldwide. LLC
+                  advertiser:
+                    - advertiserIds:
+                        - id: ADV-143
+                          version: '0'
+                          srcId: XBuy-1234
+                          srcName: XVEN Buyer
+                      advertiserName: Hyundai
+                  contacts:
+                    - contactType: Account Executive
+                      referenceSourceName: XVEN Buyer
+                      referenceSourceId: XBuy-1234
+                      salesOffices:
+                        - - 'Dallas, TX'
+                          - 'NYC, NY'
+                      contactFirstName: John
+                      contactLastName: Doe
+                      addressLine1: 1234 Main Street
+                      city: City Falls
+                      state: A State
+                      postalCode: 00000-0000
+                      country: USA
+                      phoneNumber: 1(888)123-4568
+                      email: user@example.com
+                      effectiveDate: '2021-05-06'
+                  audienceTargets:
+                    - excludeOrInclude: Include
+                      audienceTargetIds:
+                        - id: AUD-123
+                          version: '0'
+                          srcId: XBuy-1234
+                          srcName: XVEN Buyer
+                      targetAttribute: HH Income
+                      value:
+                        - - '$50,000 - $75,000'
+                          - '$75,000, -$100,000'
+                  externalComment: string
+                  frequency:
+                    effectiveOn: '2020-08-12T00:00:00.000Z'
+                    every: Month
+                    onDate:
+                      - - 1
+                        - 15
+                    isEndNever: true
+              Change:
+                value:
+                  transactionHeader:
+                    tipVersion: 6.0.0
+                    transactionId:
+                      transactionId: DA93C8D1-72AB-4615-859D-1281F4F25ECA
+                      transactionType: Change
+                      sourceId: XBuy-1234
+                      sourceName: XVEN Buyer
+                    originalTransactionId:
+                      transactionId: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+                      transactionType: New
+                      sourceId: XBuy-1234
+                      sourceName: XVEN Buyer
+                    timeStamp: '2021-05-06T19:09:12.795Z'
+                  name: Bi Monthly Subscription
+                  referenceIds:
+                    - referenceSourceName: KHOU-TV
+                      referenceSourceId: KHOUTV-123
+                      referenceSourceLookup: string
+                      referenceType: Order
+                      referenceId: OR-12356
+                      referenceVersionId: 0
+                      referenceName: Hyundai 1Q22
+                  mediaOutlets:
+                    - mediaOutletIds:
+                        - id: TV-124
+                          version: '0'
+                          srcId: XBuy-1234
+                          srcName: XVEN Buyer
+                      mediaOutletName: KHOU-TV
+                      mediaOutletType: Local TV
+                      mediaOutletChannel: KHOU-TV
+                      mediaOutletMarketName: 'Houston, TX'
+                  buyer:
+                    - buyerIds:
+                        - id: BUYER-178
+                          version: '0'
+                          srcId: XBuy-1234
+                          srcName: XVEN Buyer
+                      buyerName: Canvas Worldwide. LLC
+                  advertiser:
+                    - advertiserIds:
+                        - id: ADV-143
+                          version: '0'
+                          srcId: XBuy-1234
+                          srcName: XVEN Buyer
+                      advertiserName: Hyundai
+                  contacts:
+                    - contactType: Account Executive
+                      referenceSourceName: XVEN Buyer
+                      referenceSourceId: XBuy-1234
+                      salesOffices:
+                        - - 'Dallas, TX'
+                          - 'NYC, NY'
+                      contactFirstName: John
+                      contactLastName: Doe
+                      addressLine1: 1234 Main Street
+                      city: City Falls
+                      state: A State
+                      postalCode: 00000-0000
+                      country: USA
+                      phoneNumber: 1(888)123-4568
+                      email: joe@example.com
+                      effectiveDate: '2021-05-06'
+                  audienceTargets:
+                    - excludeOrInclude: Include
+                      audienceTargetIds:
+                        - id: AUD-123
+                          version: '0'
+                          srcId: XBuy-1234
+                          srcName: XVEN Buyer
+                      targetAttribute: HH Income
+                      value:
+                        - - '$50,000 - $75,000'
+                          - '$75,000, -$100,000'
+                  externalComment: string
+                  frequency:
+                    effectiveOn: '2020-08-12T00:00:00.000Z'
+                    every: Month
+                    onDate:
+                      - - 1
+                        - 15
+                    isEndNever: false
+                    endOn: '2021-05-06'
+              Cancel:
+                value:
+                  transactionHeader:
+                    tipVersion: 6.0.0
+                    transactionId:
+                      transactionId: DA93C8D1-72AB-4615-859D-1281F4F25ECA
+                      transactionType: Cancel
+                      sourceId: XBuy-1234
+                      sourceName: XVEN Buyer
+                    originalTransactionId:
+                      transactionId: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+                      transactionType: New
+                      sourceId: XBuy-1234
+                      sourceName: XVEN Buyer
+                    timeStamp: '2021-05-06T19:34:02.271Z'
+                  referenceIds:
+                    - referenceSourceName: KHOU-TV
+                      referenceSourceId: string
+                      referenceSourceLookup: string
+                      referenceType: RFP
+                      referenceVersionId: 1
+                      referenceName: Hyundai 1Q22
+                  comments: My Suscription
+          application/xml:
+            schema:
               oneOf:
                 - $ref: '#/components/schemas/BuyerAudiencesSubscription'
                 - $ref: '#/components/schemas/CancelConfirmRecallReject'
+              xml:
+                name: BuyerAudiencesSubscriptionRequest
+            examples:
+              New:
+                value: "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n<BuyerAudiencesSubscriptionRequest>\r\n\t<transactionHeader>\r\n\t\t<tipVersion>6.0.0</tipVersion>\r\n\t\t<transactionId>\r\n\t\t\t<transactionId>3fa85f64-5717-4562-b3fc-2c963f66afa6</transactionId>\r\n\t\t\t<transactionType>New</transactionType>\r\n\t\t\t<sourceId>XBuy-1234</sourceId>\r\n\t\t\t<sourceName>XVEN Buyer</sourceName>\r\n\t\t</transactionId>\r\n\t\t<timeStamp>2021-05-06T19:09:12.795Z</timeStamp>\r\n\t</transactionHeader>\r\n\t<name>Bi Monthly Subscription</name>\r\n\t<referenceIds>\r\n\t\t<referenceSourceName>KHOU-TV</referenceSourceName>\r\n\t\t<referenceSourceId>KHOUTV-123</referenceSourceId>\r\n\t\t<referenceSourceLookup>string</referenceSourceLookup>\r\n\t\t<referenceType>Order</referenceType>\r\n\t\t<referenceId>OR-12356</referenceId>\r\n\t\t<referenceVersionId>0</referenceVersionId>\r\n\t\t<referenceName>Hyundai 1Q22</referenceName>\r\n\t</referenceIds>\r\n\t<mediaOutlets>\r\n\t\t<mediaOutletIds>\r\n\t\t\t<id>TV-124</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>XBuy-1234</srcId>\r\n\t\t\t<srcName>XVEN Buyer</srcName>\r\n\t\t</mediaOutletIds>\r\n\t\t<mediaOutletName>KHOU-TV</mediaOutletName>\r\n\t\t<mediaOutletType>Local TV</mediaOutletType>\r\n\t\t<mediaOutletChannel>KHOU-TV</mediaOutletChannel>\r\n\t\t<mediaOutletMarketName>Houston, TX</mediaOutletMarketName>\r\n\t</mediaOutlets>\r\n\t<buyer>\r\n\t\t<buyerIds>\r\n\t\t\t<id>BUYER-178</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>XBuy-1234</srcId>\r\n\t\t\t<srcName>XVEN Buyer</srcName>\r\n\t\t</buyerIds>\r\n\t\t<buyerName>Canvas Worldwide. LLC</buyerName>\r\n\t</buyer>\r\n\t<advertiser>\r\n\t\t<advertiserIds>\r\n\t\t\t<id>ADV-143</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>XBuy-1234</srcId>\r\n\t\t\t<srcName>XVEN Buyer</srcName>\r\n\t\t</advertiserIds>\r\n\t\t<advertiserName>Hyundai</advertiserName>\r\n\t</advertiser>\r\n\t<contacts>\r\n\t\t<contactType>Account Executive</contactType>\r\n\t\t<referenceSourceName>XVEN Buyer</referenceSourceName>\r\n\t\t<referenceSourceId>XBuy-1234</referenceSourceId>\r\n\t\t<salesOffices>Dallas, TX</salesOffices>\r\n\t\t<salesOffices>NYC, NY</salesOffices>\r\n\t\t<contactFirstName>John</contactFirstName>\r\n\t\t<contactLastName>Doe</contactLastName>\r\n\t\t<addressLine1>1234 Main Street</addressLine1>\r\n\t\t<city>City Falls</city>\r\n\t\t<state>A State</state>\r\n\t\t<postalCode>00000-0000</postalCode>\r\n\t\t<country>USA</country>\r\n\t\t<phoneNumber>1(888)123-4568</phoneNumber>\r\n\t\t<email>user@example.com</email>\r\n\t\t<effectiveDate>2021-05-06</effectiveDate>\r\n\t</contacts>\r\n\t<audienceTargets>\r\n\t\t<excludeOrInclude>Include</excludeOrInclude>\r\n\t\t<audienceTargetIds>\r\n\t\t\t<id>AUD-123</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>XBuy-1234</srcId>\r\n\t\t\t<srcName>XVEN Buyer</srcName>\r\n\t\t</audienceTargetIds>\r\n\t\t<targetAttribute>HH Income</targetAttribute>\r\n\t\t<value>$50,000 - $75,000</value>\r\n\t\t<value>$75,000, -$100,000</value>\r\n\t</audienceTargets>\r\n\t<externalComment>string</externalComment>\r\n\t<frequency>\r\n\t\t<effectiveOn>2020-08-12T00:00:00.000Z</effectiveOn>\r\n\t\t<every>Month</every>\r\n\t\t<onDate>1</onDate>\r\n\t\t<onDate>15</onDate>\r\n\t\t<isEndNever>true</isEndNever>\r\n\t</frequency>\r\n</BuyerAudiencesSubscriptionRequest>"
+              Change:
+                value: "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n<BuyerAudiencesSubscriptionRequest>\r\n\t<transactionHeader>\r\n\t\t<tipVersion>6.0.0</tipVersion>\r\n\t\t<transactionId>\r\n\t\t\t<transactionId>DA93C8D1-72AB-4615-859D-1281F4F25ECA</transactionId>\r\n\t\t\t<transactionType>Change</transactionType>\r\n\t\t\t<sourceId>XBuy-1234</sourceId>\r\n\t\t\t<sourceName>XVEN Buyer</sourceName>\r\n\t\t</transactionId>\r\n\t\t<originalTransactionId>\r\n\t\t\t<transactionId>3fa85f64-5717-4562-b3fc-2c963f66afa6</transactionId>\r\n\t\t\t<transactionType>New</transactionType>\r\n\t\t\t<sourceId>XBuy-1234</sourceId>\r\n\t\t\t<sourceName>XVEN Buyer</sourceName>\r\n\t\t</originalTransactionId>\r\n\t\t<timeStamp>2021-05-06T19:09:12.795Z</timeStamp>\r\n\t</transactionHeader>\r\n\t<name>Bi Monthly Subscription</name>\r\n\t<referenceIds>\r\n\t\t<referenceSourceName>KHOU-TV</referenceSourceName>\r\n\t\t<referenceSourceId>KHOUTV-123</referenceSourceId>\r\n\t\t<referenceSourceLookup>string</referenceSourceLookup>\r\n\t\t<referenceType>Order</referenceType>\r\n\t\t<referenceId>OR-12356</referenceId>\r\n\t\t<referenceVersionId>0</referenceVersionId>\r\n\t\t<referenceName>Hyundai 1Q22</referenceName>\r\n\t</referenceIds>\r\n\t<mediaOutlets>\r\n\t\t<mediaOutletIds>\r\n\t\t\t<id>TV-124</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>XBuy-1234</srcId>\r\n\t\t\t<srcName>XVEN Buyer</srcName>\r\n\t\t</mediaOutletIds>\r\n\t\t<mediaOutletName>KHOU-TV</mediaOutletName>\r\n\t\t<mediaOutletType>Local TV</mediaOutletType>\r\n\t\t<mediaOutletChannel>KHOU-TV</mediaOutletChannel>\r\n\t\t<mediaOutletMarketName>Houston, TX</mediaOutletMarketName>\r\n\t</mediaOutlets>\r\n\t<buyer>\r\n\t\t<buyerIds>\r\n\t\t\t<id>BUYER-178</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>XBuy-1234</srcId>\r\n\t\t\t<srcName>XVEN Buyer</srcName>\r\n\t\t</buyerIds>\r\n\t\t<buyerName>Canvas Worldwide. LLC</buyerName>\r\n\t</buyer>\r\n\t<advertiser>\r\n\t\t<advertiserIds>\r\n\t\t\t<id>ADV-143</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>XBuy-1234</srcId>\r\n\t\t\t<srcName>XVEN Buyer</srcName>\r\n\t\t</advertiserIds>\r\n\t\t<advertiserName>Hyundai</advertiserName>\r\n\t</advertiser>\r\n\t<contacts>\r\n\t\t<contactType>Account Executive</contactType>\r\n\t\t<referenceSourceName>XVEN Buyer</referenceSourceName>\r\n\t\t<referenceSourceId>XBuy-1234</referenceSourceId>\r\n\t\t<salesOffices>Dallas, TX</salesOffices>\r\n\t\t<salesOffices>NYC, NY</salesOffices>\r\n\t\t<contactFirstName>John</contactFirstName>\r\n\t\t<contactLastName>Doe</contactLastName>\r\n\t\t<addressLine1>1234 Main Street</addressLine1>\r\n\t\t<city>City Falls</city>\r\n\t\t<state>A State</state>\r\n\t\t<postalCode>00000-0000</postalCode>\r\n\t\t<country>USA</country>\r\n\t\t<phoneNumber>1(888)123-4568</phoneNumber>\r\n\t\t<email>user@example.com</email>\r\n\t\t<effectiveDate>2021-05-06</effectiveDate>\r\n\t</contacts>\r\n\t<audienceTargets>\r\n\t\t<excludeOrInclude>Include</excludeOrInclude>\r\n\t\t<audienceTargetIds>\r\n\t\t\t<id>AUD-123</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>XBuy-1234</srcId>\r\n\t\t\t<srcName>XVEN Buyer</srcName>\r\n\t\t</audienceTargetIds>\r\n\t\t<targetAttribute>HH Income</targetAttribute>\r\n\t\t<value>$50,000 - $75,000</value>\r\n\t\t<value>$75,000, -$100,000</value>\r\n\t</audienceTargets>\r\n\t<externalComment>string</externalComment>\r\n\t<frequency>\r\n\t\t<effectiveOn>2020-08-12T00:00:00.000Z</effectiveOn>\r\n\t\t<every>Month</every>\r\n\t\t<onDate>1</onDate>\r\n\t\t<onDate>15</onDate>\r\n\t\t<isEndNever>false</isEndNever>\r\n\t\t<endOn>2021-05-06</endOn>\r\n\t</frequency>\r\n</BuyerAudiencesSubscriptionRequest>"
+              Cancel:
+                value: "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n<BuyerAudiencesSubscriptionRequest>\r\n\t<transactionHeader>\r\n\t\t<tipVersion>6.0.0</tipVersion>\r\n\t\t<transactionId>\r\n\t\t\t<transactionId>DA93C8D1-72AB-4615-859D-1281F4F25ECA</transactionId>\r\n\t\t\t<transactionType>Cancel</transactionType>\r\n\t\t\t<sourceId>XBuy-1234</sourceId>\r\n\t\t\t<sourceName>XVEN Buyer</sourceName>\r\n\t\t</transactionId>\r\n\t\t<originalTransactionId>\r\n\t\t\t<transactionId>3fa85f64-5717-4562-b3fc-2c963f66afa6</transactionId>\r\n\t\t\t<transactionType>New</transactionType>\r\n\t\t\t<sourceId>XBuy-1234</sourceId>\r\n\t\t\t<sourceName>XVEN Buyer</sourceName>\r\n\t\t</originalTransactionId>\r\n\t\t<timeStamp>2021-05-06T19:34:02.271Z</timeStamp>\r\n\t</transactionHeader>\r\n\t<referenceIds>\r\n\t\t<referenceSourceName>KHOU-TV</referenceSourceName>\r\n\t\t<referenceSourceId>string</referenceSourceId>\r\n\t\t<referenceSourceLookup>string</referenceSourceLookup>\r\n\t\t<referenceType>RFP</referenceType>\r\n\t\t<referenceVersionId>1</referenceVersionId>\r\n\t\t<referenceName>Hyundai 1Q22</referenceName>\r\n\t</referenceIds>\r\n\t<comments>My Suscription</comments>\r\n</BuyerAudiencesSubscriptionRequest>"
       responses:
-        '200':
+        '201':
           $ref: '#/components/responses/Success'
         '400':
           $ref: '#/components/responses/BadRequest'
@@ -3790,6 +4358,9 @@ paths:
         required: true
         content:
           application/json:
+            schema:
+              $ref: '#/components/schemas/SellerAudiences'
+          application/xml:
             schema:
               $ref: '#/components/schemas/SellerAudiences'
       responses:
@@ -3820,6 +4391,7 @@ components:
         tipVersion:
           description: TIP version of the interface
           type: string
+          example: 6.0.0
         transactionId:
           $ref: '#/components/schemas/TransactionId'
         originalTransactionId:
@@ -3828,6 +4400,7 @@ components:
           description: Date and time the transaction was created - date-time represent UTC of the server
           type: string
           format: date-time
+          example: '2021-07-21T17:32:28Z'
       required:
         - tipVersion
         - transactionId
@@ -3839,6 +4412,7 @@ components:
           description: Global unique identifier (GUID)
           type: string
           format: uuid
+          example: 1C237FDD-940D-499E-AA20-DF3B9CE0908E
         transactionType:
           description: Indicates the transaction type
           type: string
@@ -3852,9 +4426,11 @@ components:
         sourceId:
           description: Indicates the unique identifier of the source of information from an external system
           type: string
+          example: ABC-1234
         sourceName:
           description: Indicates the name of the source of information from an external system
           type: string
+          example: TIPApi
       required:
         - transactionId
         - transactionType
@@ -3872,6 +4448,7 @@ components:
         mediaOutletName:
           description: 'Station, network name or entity associated to mediaOutletId'
           type: string
+          example: MBLTV - My Best Local TV Station
         mediaOutletType:
           description: 'Indicates the type of media; for example Local TV, Diginet TV, National Cable TV, Local Cable TV, Video Streaming Service, Satellite, Website, App, Audio Streaming Service, Radio Station, Unwired, Parent'
           type: string
@@ -3990,9 +4567,9 @@ components:
           type: array
           items:
             type: string
-            example:
-              - '$50,000 - $75,000'
-              - '$75,000, -$100,000'
+          example:
+            - '$50,000 - $75,000'
+            - '$75,000, -$100,000'
       required:
         - excludeOrInclude
         - targetAttribute
@@ -4247,6 +4824,7 @@ components:
             - Deal
             - Order
             - Invoice
+            - Subscription
         referenceId:
           description: Indicates the number or string ID associated with the reference type
           oneOf:
@@ -4558,22 +5136,22 @@ components:
             - Payee
             - Creative
             - Delivery Service
-        referenceSourceName:
-          description: Name associated with the organization that is supplying the contact information
-          type: string
-        referenceSourceId:
-          description: ID associated with the organization
-          type: string
+        contactIds:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identifier'
+          nullable: false
+          minItems: 1
         salesOffices:
           description: ArrayList of offices associated to the contact
           type: array
           items:
             type: string
-            uniqueItems: true
-            nullable: true
-            example:
-              - 'Dallas, TX'
-              - 'NYC, NY'
+          uniqueItems: true
+          nullable: true
+          example:
+            - 'Dallas, TX'
+            - 'NYC, NY'
         contactFirstName:
           description: Contact First Name
           type: string
@@ -4618,17 +5196,19 @@ components:
           format: date
       required:
         - contactType
-        - referenceSourceName
-        - referenceSourceId
+        - contactIds
         - contactFirstName
         - contactLastName
         - effectiveDate
     RemittanceInfo:
       description: Invoice remittance Information and billing instructions
       properties:
-        referenceSourceId:
+        referenceSourceIds:
           description: ID associated with the remittance
-          type: string
+          type: array
+          items:
+            $ref: '#/components/schemas/Identifier'
+          minItems: 1
         referenceName:
           description: Name associated with the remittance
           type: string
@@ -4682,6 +5262,8 @@ components:
           description: Comments
           type: string
           nullable: true
+      required:
+        - referenceSourceIds
     SalesElementHeader:
       description: Sales element header information
       properties:
@@ -4990,9 +5572,9 @@ components:
           type: array
           items:
             type: integer
-            example:
-              - 1
-              - 15
+          example:
+            - 1
+            - 15
         isEndNever:
           description: Indicates if the report subscription will stay active until it is terminated by the requester Cancel Request
           type: boolean
@@ -5079,6 +5661,8 @@ components:
       required:
         - errorCode
         - errorMessage
+      xml:
+        name: Error
     AcceptedResponse:
       description: Defines successful return from all APIs
       properties:
@@ -5091,6 +5675,8 @@ components:
       required:
         - transactionId
         - timeStamp
+      xml:
+        name: AcceptedResponse
     Creative:
       description: Object representing the creative
       properties:
@@ -5128,9 +5714,9 @@ components:
           type: array
           items:
             type: string
-            example:
-              - ENG-US
-              - ENG-UK
+          example:
+            - ENG-US
+            - ENG-UK
         aspect:
           description: Aspect ratio
           type: string
@@ -5301,6 +5887,9 @@ components:
       type: string
       example: 192.168.001.001
       pattern: '^([0-9]{1,3}[.]){3}([0-9]{1,3})|([0-9a-fA-F]{4}[:]){7}[0-9a-fA-F]{4}$'
+    AdId:
+      type: string
+      pattern: '^([A-Z,a-z,0-9]){11}[H,h,D,d]?$'
     Impression:
       description: One impression with all associated Ids
       properties:
@@ -5490,6 +6079,8 @@ components:
         - mediaOutlets
         - availWindow
         - salesElements
+      xml:
+        name: SellerInventoryAvailsRequest
     BuyerRFPS:
       description: Schema allows the buyers is able to express the criteria that need to be met when responding with a proposal
       properties:
@@ -5987,65 +6578,9 @@ components:
         - contacts
         - revenueType
         - businessType
-        - calendarType
         - isEquivalized
         - dateWindows
         - mediaOutlets
-    BuyerCreativeAssets:
-      description: Schema provides for the definition of creative assets including the format information
-      properties:
-        transactionHeader:
-          $ref: '#/components/schemas/TransactionHeader'
-        creative:
-          description: Object that gives the details for the creative asset
-          $ref: '#/components/schemas/Creative'
-        timePeriods:
-          type: array
-          items:
-            $ref: '#/components/schemas/TimePeriod'
-        formats:
-          type: array
-          items:
-            $ref: '#/components/schemas/Format'
-        mediaOutlets:
-          type: array
-          items:
-            $ref: '#/components/schemas/MediaOutlet'
-        deliveryDate:
-          description: Delivery date for receiving or making available the asset
-          type: string
-          format: date
-        deliveryService:
-          description: Type of delivery service that will supply the the asset
-          type: string
-        buyer:
-          $ref: '#/components/schemas/Buyer'
-        contacts:
-          description: Array of contacts
-          type: array
-          items:
-            $ref: '#/components/schemas/Contact'
-        advertiser:
-          $ref: '#/components/schemas/Advertiser'
-        brand:
-          $ref: '#/components/schemas/Brand'
-        product:
-          $ref: '#/components/schemas/Product'
-        guideLines:
-          type: array
-          items:
-            $ref: '#/components/schemas/Guideline'
-        comment:
-          description: Free form text to accommodate transaction comments and/or activities outside the TIP flow
-          type: string
-      required:
-        - transactionHeader
-        - creative
-        - timePeriods
-        - deliveryDate
-        - deliveryService
-        - buyer
-        - product
     BuyerCommercialInstructions:
       description: 'Schema provides for the definition of detailed Commercial Instructions including patterns, rotations, weight'
       properties:
@@ -6064,6 +6599,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Contact'
+          minItems: 1
         advertiser:
           $ref: '#/components/schemas/Advertiser'
         product:
@@ -6110,6 +6646,9 @@ components:
           type: array
           items:
             type: string
+          example:
+            - CM
+            - Bookend
         mediaOutlet:
           $ref: '#/components/schemas/MediaOutlet'
         creative:
@@ -6304,20 +6843,86 @@ components:
       required:
         - unitId
         - salesElementHeader
-    BuyerImpressionsSubscribe:
+    BuyerLogTimesSubscription:
+      description: Schema allows the buyer to formulate a query for log times information that meet the listed conditions
+      properties:
+        transactionHeader:
+          $ref: '#/components/schemas/TransactionHeader'
+        name:
+          description: Buyer request reference name
+          type: string
+          example: Post log and reconciled logs only
+        referenceIds:
+          description: Array of ReferenceId objects containing the order id references; may also contain originating RFP and Proposal id and source references
+          type: array
+          items:
+            $ref: '#/components/schemas/ReferenceId'
+        mediaOutlets:
+          description: Array of mediaOutlet objects being requested
+          type: array
+          items:
+            $ref: '#/components/schemas/MediaOutlet'
+          minItems: 1
+        buyer:
+          type: array
+          items:
+            $ref: '#/components/schemas/Buyer'
+        advertiser:
+          type: array
+          items:
+            $ref: '#/components/schemas/Advertiser'
+        contacts:
+          description: Array of Contact objects
+          type: array
+          items:
+            $ref: '#/components/schemas/Contact'
+        inventoryTypes:
+          description: ArrayList of InventoryTypes being requested
+          type: array
+          items:
+            type: string
+        statuses:
+          description: Indicated the airing status being requested Aired  = 'as-aired' reconciliation for the spot is complete No Run = spot either did not run or didn't run as contracted when the broadcast log was played out Scheduled  = spot is placed on a pre log that has not yet been played out Finalized = spot is placed on a log that is in a 'final status' and ready to be played out and the spot is locked from edits Not Scheduled = spot has not yet been placed on a future broadcast log Preempted = spot has been removed from a future broadcast log; the buyer will be offered a makegood or issued a credit
+          type: array
+          items:
+            type: string
+            enum:
+              - Aired
+              - Scheduled
+              - No Run
+              - Finalized
+              - Not Scheduled
+              - Preempted
+        frequency:
+          $ref: '#/components/schemas/Frequency'
+        startDate:
+          oneOf:
+            - $ref: '#/components/schemas/DynamicDate'
+            - type: string
+              format: date
+        endDate:
+          oneOf:
+            - $ref: '#/components/schemas/DynamicDate'
+            - type: string
+              format: date
+      required:
+        - transactionHeader
+        - referenceIds
+    BuyerImpressionsSubscription:
       description: 'Schema supports a notification format that allows the buyer to define the parameters for the impressions payload such as frequency, time span, orders, etc.'
       properties:
+        transactionHeader:
+          $ref: '#/components/schemas/TransactionHeader'
         name:
           description: Free form text as a name for this subscription
           type: string
-        transactionHeader:
-          $ref: '#/components/schemas/TransactionHeader'
         mediaOutlets:
           description: Unique list of Media Outlets including the Seller entity and all Content where impressions occurred
           type: array
           items:
             $ref: '#/components/schemas/MediaOutlet'
           minItems: 1
+          uniqueItems: true
         salesElementHeaders:
           description: Unique list of SalesElements related to the impression included in the message
           type: array
@@ -6351,7 +6956,9 @@ components:
       required:
         - name
         - transactionHeader
-    SellerImpressions:
+      xml:
+        name: BuyerImpressionsSubscriptionRequest
+    SellerImpressionsNotification:
       description: Schema supports an asynchronous response to a subscription informing the buyer that a new delivery of Impressions is ready to download
       properties:
         transactionHeader:
@@ -6362,12 +6969,14 @@ components:
           items:
             $ref: '#/components/schemas/MediaOutlet'
           minItems: 1
+          uniqueItems: true
         salesElementHeaders:
           description: Unique list of SalesElements related to the impression included in the message
           type: array
           items:
             $ref: '#/components/schemas/SalesElementHeader'
           minItems: 1
+          uniqueItems: true
         referenceIds:
           description: 'referenceId must contain a minimum of one item. A list of identifying information regarding order, proposal, and RFP related to the impressions included in the message'
           type: array
@@ -6401,6 +7010,8 @@ components:
         - statSource
         - filePrefix
         - chunks
+      xml:
+        name: SellerImpressionsNotificationRequest
     SellerAudiences:
       description: A representation of the Actual Audience delivery information for comparison against contract delivery goals
       properties:
@@ -6587,20 +7198,24 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Buyer'
+          minItems: 1
         advertiser:
           type: array
           items:
             $ref: '#/components/schemas/Advertiser'
+          minItems: 1
         contacts:
           description: Array of Contact objects
           type: array
           items:
             $ref: '#/components/schemas/Contact'
+          minItems: 1
         audienceTargets:
           description: Array of AudienceTarget objects
           type: array
           items:
             $ref: '#/components/schemas/AudienceTarget'
+          minItems: 1
         audienceSegments:
           description: Array of AudienceSegment objects being requested
           type: array
@@ -6645,6 +7260,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ReferenceId'
+          minItems: 1
         cpeCode:
           $ref: '#/components/schemas/CpeCode'
         buyer:
@@ -6674,6 +7290,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ReferenceId'
+          minItems: 1
         cpeCode:
           $ref: '#/components/schemas/CpeCode'
         buyer:
@@ -6736,6 +7353,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ReferenceId'
+          minItems: 1
         makegoodType:
           description: Type of Makegood Offer
           type: string
@@ -6790,7 +7408,10 @@ components:
           description: Free form text to accommodate transaction comments and/or activities outside the TIP flow
           type: string
         makegoodAssumedConfirm:
-          description: Makegood is 'assumed confirmed' based on buyer-seller discussions made outside of framework. Booked indicates the seller has originated placement in the traffic system. If no action is taken the spot will air. This field indicates the urgency to take action. 'Not Booked' - 'Booked' - Spot has already been placed in traffic system
+          description: |-
+            Indicates the status of the makegood offers to communicate any buyer- buyer-seller negiotiations that may have been made outside of the framework Not Booked - indicates the unit has not been booked in the seller's system and waiting acceptance
+                          
+            Booked -  indicates the unit has already been booked in the seller's system and is assumed confirmed booked
           type: string
           enum:
             - Booked
@@ -7087,12 +7708,39 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/AcceptedResponse'
+          example:
+            transactionId: 586CF11F-E783-4AF6-ADCE-56818FD4F412
+            timeStamp: '2021-05-05T13:51:00Z'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/AcceptedResponse'
+          example: "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n<AcceptedResponse>\r\n\t<transactionId>586CF11F-E783-4AF6-ADCE-56818FD4F412</transactionId>\r\n\t<timeStamp>2021-05-05T13:51:00Z</timeStamp>\r\n</AcceptedResponse>"
+    Created:
+      description: 201 Created - request created successfully
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AcceptedResponse'
+          example:
+            transactionId: 586CF11F-E783-4AF6-ADCE-56818FD4F412
+            timeStamp: '2021-05-05T13:51:00Z'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/AcceptedResponse'
+          example: "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n<AcceptedResponse>\r\n\t<transactionId>586CF11F-E783-4AF6-ADCE-56818FD4F412</transactionId>\r\n\t<timeStamp>2021-05-05T13:51:00Z</timeStamp>\r\n</AcceptedResponse>"
     Accepted:
       description: 'Accepted - request accepted, Actual response will follow at later time'
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/AcceptedResponse'
+          example:
+            transactionId: 586CF11F-E783-4AF6-ADCE-56818FD4F412
+            timeStamp: '2021-05-05T13:51:00Z'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/AcceptedResponse'
+          example: "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n<AcceptedResponse>\r\n\t<transactionId>586CF11F-E783-4AF6-ADCE-56818FD4F412</transactionId>\r\n\t<timeStamp>2021-05-05T13:51:00Z</timeStamp>\r\n</AcceptedResponse>"
     BadRequest:
       description: Bad Request - payload is ill formed or contains invalid data
       content:
@@ -7102,6 +7750,10 @@ components:
           example:
             errorCode: 400
             errorMessage: Bad Request - payload is ill formed or contains invalid data
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example: "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n<Error>\r\n\t<errorCode>400</errorCode>\r\n\t<errorMessage>Bad Request - payload is ill formed or contains invalid data</errorMessage>\r\n</Error>"
     Unauthorized:
       description: 'Unauthorized - Unauthorized, invalid credentials or expired access token'
       headers:
@@ -7115,6 +7767,10 @@ components:
           example:
             errorCode: 401
             errorMessage: 'Unauthorized, invalid credentials or expired access token'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example: "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n<Error>\r\n\t<errorCode>401</errorCode>\r\n\t<errorMessage>Unauthorized, invalid credentials or expired access token</errorMessage>\r\n</Error>"
     Forbidden:
       description: 'Forbidden, additional previliges are needed'
       content:
@@ -7124,6 +7780,10 @@ components:
           example:
             errorCode: 403
             errorMessage: 'Forbidden, additional previliges are needed'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example: "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n<Error>\r\n\t<errorCode>403</errorCode>\r\n\t<errorMessage>Forbidden, additional previliges are needed</errorMessage>\r\n</Error>"
     NotFound:
       description: 'Not Found, Requested entity does not exist'
       content:
@@ -7133,6 +7793,10 @@ components:
           example:
             errorCode: 404
             errorMessage: Requested entity does not exist
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example: "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n<Error>\r\n\t<errorCode>404</errorCode>\r\n\t<errorMessage>Requested entity does not exist</errorMessage>\r\n</Error>"
     NotAllowed:
       description: 'Not Allowed, Requested operation is not allowed on entity'
       content:
@@ -7142,6 +7806,10 @@ components:
           example:
             errorCode: 405
             errorMessage: Requested operation is not allowed on entity
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example: "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n<Error>\r\n\t<errorCode>405</errorCode>\r\n\t<errorMessage>Requested operation is not allowed on entity</errorMessage>\r\n</Error>"
     Unexpected:
       description: Unexpected error occured
       content:
@@ -7150,4 +7818,8 @@ components:
             $ref: '#/components/schemas/Error'
           example:
             errorCode: 500
-            errorMessage: Unexpected error Occured
+            errorMessage: Unexpected or unhandeled error Occured
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example: "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n<Error>\r\n\t<errorCode>500</errorCode>\r\n\t<errorMessage>Unexpected or Unhandeled error Occured</errorMessage>\r\n</Error>"

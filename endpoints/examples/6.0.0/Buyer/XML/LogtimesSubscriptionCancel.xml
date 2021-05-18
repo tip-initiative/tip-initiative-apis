@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<BuyerLogTimesSubscriptionRequest>
+	<transactionHeader>
+		<tipVersion>6.0.0</tipVersion>
+		<transactionId>
+			<transactionId>BF7F7D82-1335-4C3B-ABD0-7545872A56DE</transactionId>
+			<transactionType>Cancel</transactionType>
+			<sourceId>XBuy-1234</sourceId>
+			<sourceName>XVEN Buyer</sourceName>
+		</transactionId>
+		<originalTransactionId>
+			<transactionId>40299727-4FF6-43E5-A627-4791C994BC58</transactionId>
+			<transactionType>Change</transactionType>
+			<sourceId>XBuy-1234</sourceId>
+			<sourceName>XVEN Buyer</sourceName>
+		</originalTransactionId>
+		<timeStamp>2021-05-06T19:01:50.610Z</timeStamp>
+	</transactionHeader>
+	<referenceIds>
+		<referenceSourceName>KUOU-TV</referenceSourceName>
+		<referenceSourceId>490</referenceSourceId>
+		<referenceSourceLookup></referenceSourceLookup>
+		<referenceType>Subscription</referenceType>
+		<referenceId>BF7F7D82-1335-4C3B-ABD0-7545872A56DE</referenceId>
+		<referenceVersionId></referenceVersionId>
+		<referenceName>string</referenceName>
+	</referenceIds>
+	<comments>Sample comment from message originator</comments>
+</BuyerLogTimesSubscriptionRequest>

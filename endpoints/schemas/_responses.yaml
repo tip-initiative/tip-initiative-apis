@@ -1,5 +1,7 @@
     Success:
       $ref: './commonResponses.yaml#/components/responses/Success'
+    Created:
+      $ref: './commonResponses.yaml#/components/responses/Created'
     Accepted:
       $ref: './commonResponses.yaml#/components/responses/Accepted'
     BadRequest:

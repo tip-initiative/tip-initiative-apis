@@ -1,0 +1,44 @@
+{
+  "transactionHeader": {
+    "tipVersion": "6.0.0",
+    "transactionId": {
+      "transactionId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "transactionType": "New",
+      "sourceId": "XBuy-1234",
+      "sourceName": "XVEN Buyer"
+    },
+    "timeStamp": "2021-05-06T19:01:50.610Z"
+  },
+  "name": "My Hourly Impression Subscription (All Orders)",
+  "mediaOutlets": [
+    {
+      "mediaOutletIds": [
+        {
+          "id": "KAAB-TV",
+          "version": "0",
+          "srcId": "KAAB-TV",
+          "srcName": "KAAB-TV"
+        }
+      ],
+      "mediaOutletName": "KAAB-TV",
+      "mediaOutletType": "Local TV",
+      "mediaOutletChannel": "12.1",
+      "mediaOutletMarketName": "Houston, TX"
+    }
+  ],
+  "frequency": {
+    "effectiveOn": "2020-08-12T00:00:00.000Z",
+    "every": "Hour",
+    "isEndNever": true
+  },
+  "startDate": {
+	  "offsetType": "Hour",
+	  "offset": -1
+  },
+  "endDate": {
+	  "offsetType": "Hour",
+	  "offset": 0
+  },
+  "statSource": "Google DFP",
+  "maxChunkSize": 100
+}

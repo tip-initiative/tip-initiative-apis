@@ -117,6 +117,8 @@
       $ref: 'commonSchemas.yaml#/components/schemas/Crypto'
     IpAddress:
       $ref: 'commonSchemas.yaml#/components/schemas/IpAddress'
+    AdId:
+      $ref: 'commonSchemas.yaml#/components/schemas/AdId'
     Impression:
       $ref: 'commonSchemas.yaml#/components/schemas/Impression'
 #   From SheetName /buyer/inventoryAvails/Subscription to File  inventoryAvailsSchemas.yaml
@@ -140,9 +142,6 @@
     BuyerOrders:
       $ref: 'ordersSchemas.yaml#/components/schemas/BuyerOrders'
 #   From SheetName /seller/orders to File  ordersSchemas.yaml
-#   From SheetName buyer/creativeAssets to File  creativeAssetsSchemas.yaml
-    BuyerCreativeAssets:
-      $ref: 'creativeAssetsSchemas.yaml#/components/schemas/BuyerCreativeAssets'
 #   From SheetName /buyer/commercialInstructions to File  commercialInstructionSchemas.yaml
     BuyerCommercialInstructions:
       $ref: 'commercialInstructionSchemas.yaml#/components/schemas/BuyerCommercialInstructions'
@@ -156,12 +155,15 @@
       $ref: 'logTimesSchemas.yaml#/components/schemas/Unit'
     ChildUnit:
       $ref: 'logTimesSchemas.yaml#/components/schemas/ChildUnit'
+#   From SheetName /buyer/logtimes/subscription to File  logTimesSchemas.yaml
+    BuyerLogTimesSubscription:
+      $ref: 'logTimesSchemas.yaml#/components/schemas/BuyerLogTimesSubscription'
 #   From SheetName /buyer/impressions/subscription  to File  impressionsSubscription.yaml
-    BuyerImpressionsSubscribe:
-      $ref: 'impressionsSubscription.yaml#/components/schemas/BuyerImpressionsSubscribe'
+    BuyerImpressionsSubscription:
+      $ref: 'impressionsSubscription.yaml#/components/schemas/BuyerImpressionsSubscription'
 #   From SheetName /seller/impressions/notification to File  impressionsSubscription.yaml
-    SellerImpressions:
-      $ref: 'impressionsSubscription.yaml#/components/schemas/SellerImpressions'
+    SellerImpressionsNotification:
+      $ref: 'impressionsSubscription.yaml#/components/schemas/SellerImpressionsNotification'
 #   From SheetName /seller/audiences to File  audienceSchemas.yaml
     SellerAudiences:
       $ref: 'audienceSchemas.yaml#/components/schemas/SellerAudiences'

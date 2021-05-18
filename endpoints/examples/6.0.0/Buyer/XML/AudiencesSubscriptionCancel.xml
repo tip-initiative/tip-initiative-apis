@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<BuyerAudiencesSubscriptionRequest>
+	<transactionHeader>
+		<tipVersion>6.0.0</tipVersion>
+		<transactionId>
+			<transactionId>DA93C8D1-72AB-4615-859D-1281F4F25ECA</transactionId>
+			<transactionType>Cancel</transactionType>
+			<sourceId>XBuy-1234</sourceId>
+			<sourceName>XVEN Buyer</sourceName>
+		</transactionId>
+		<originalTransactionId>
+			<transactionId>3fa85f64-5717-4562-b3fc-2c963f66afa6</transactionId>
+			<transactionType>New</transactionType>
+			<sourceId>XBuy-1234</sourceId>
+			<sourceName>XVEN Buyer</sourceName>
+		</originalTransactionId>
+		<timeStamp>2021-05-06T19:34:02.271Z</timeStamp>
+	</transactionHeader>
+	<referenceIds>
+		<referenceSourceName>KHOU-TV</referenceSourceName>
+		<referenceSourceId>string</referenceSourceId>
+		<referenceSourceLookup>string</referenceSourceLookup>
+		<referenceType>RFP</referenceType>
+		<referenceVersionId>1</referenceVersionId>
+		<referenceName>Hyundai 1Q22</referenceName>
+	</referenceIds>
+	<comments>My Suscription</comments>
+</BuyerAudiencesSubscriptionRequest>

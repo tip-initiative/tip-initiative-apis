@@ -132,7 +132,6 @@ components:
         - contacts
         - revenueType
         - businessType
-        - calendarType
         - isEquivalized
         - dateWindows
         - mediaOutlets

@@ -36,13 +36,26 @@ paths:
             examples:
               New:
                 value:
-                  $ref: 'examples/SellerInvoiceNew.json'
+                  $ref: 'examples\6.0.0\Seller\JSON\InvoicesNew.json'
               Change:
                 value:
-                  $ref: 'examples/SellerInvoiceNew.json'
+                  $ref: 'examples\6.0.0\Seller\JSON\InvoicesChange.json'
               Cancel:
                 value:
-                  $ref: 'examples/GenericCancel.json'
+                  $ref: 'examples\6.0.0\Seller\JSON\InvoicesCancel.json'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/SellerInvoicesRequest'
+            examples:
+              New:
+                value:
+                  $ref: 'examples\6.0.0\Seller\XML\InvoicesNew.xml'
+              Change:
+                value:
+                  $ref: 'examples\6.0.0\Seller\XML\InvoicesChange.xml'
+              Cancel:
+                value:
+                  $ref: 'examples\6.0.0\Seller\XML\InvoicesCancel.xml'
       responses:
         '200': #OK
           $ref: 'schemas/commonResponses.yaml#/components/responses/Success'
@@ -69,3 +82,5 @@ components:
       oneOf:
         - $ref: './schemas/invoiceSchemas.yaml#/components/schemas/SellerInvoices'
         - $ref: './schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
+      xml:
+        name: SellerInvoicesRequest
