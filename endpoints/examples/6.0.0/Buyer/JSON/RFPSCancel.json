@@ -1,0 +1,29 @@
+{
+  "transactionHeader": {
+    "tipVersion": "6.0.0",
+    "transactionId": {
+      "transactionId": "6C895361-97B0-43F0-976C-A4E77DDD78FD",
+      "transactionType": "Cancel",
+      "sourceId": "ABC-1234",
+      "sourceName": "TIPApi"
+    },
+    "originalTransactionId": {
+      "transactionId": "1C237FDD-940D-499E-AA20-DF3B9CE0908E",
+      "transactionType": "New",
+      "sourceId": "ABC-1234",
+      "sourceName": "TIPApi"
+    },
+    "timeStamp": "2021-07-21T17:32:28Z"
+  },
+  "referenceIds": [
+    {
+      "referenceSourceName": "KHOU-TV",
+      "referenceSourceId": "ABC-1234",
+      "referenceType": "RFP",
+	  "referenceId": "RFP-1234",
+      "referenceVersionId": 1,
+      "referenceName": "Hyundai 1Q22"
+    }
+  ],
+  "comments": "We decide to pull this RFP. Thanks for your understanding."
+}

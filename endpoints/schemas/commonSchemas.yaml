@@ -485,6 +485,7 @@ components:
           oneOf:
             - type: integer
             - type: string
+          example: REF-1234
         referenceVersionId:
           description: Version number associated with the reference id; this is used to track to track changes
           type: string
@@ -817,8 +818,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Identifier'
-          nullable: false
           minItems: 1
+          nullable: false
         salesOffices:
           description: ArrayList of offices associated to the contact
           type: array
@@ -833,9 +834,11 @@ components:
         contactFirstName:
           description: Contact First Name
           type: string
+          example: John
         contactLastName:
           description: Contact Last Name
           type: string
+          example: Doe
         addressLine1:
           description: Contact Address Line 1
           type: string

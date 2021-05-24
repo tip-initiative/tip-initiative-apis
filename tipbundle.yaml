@@ -1931,7 +1931,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CancelConfirmRecallReject'
+              allOf:
+                - $ref: '#/components/schemas/CancelConfirmRecallReject'
+              xml:
+                name: SellerOrdersRequest
             examples:
               Reject:
                 value:
@@ -2364,7 +2367,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CancelConfirmRecallReject'
+              $ref: '#/paths/~1seller~1commercialInstructions/post/requestBody/content/application~1xml/schema'
             examples:
               Confirm:
                 value:
@@ -2416,7 +2419,10 @@ paths:
                   comments: Thanks for your efforts we decided to cancel
           application/xml:
             schema:
-              $ref: '#/components/schemas/CancelConfirmRecallReject'
+              allOf:
+                - $ref: '#/components/schemas/CancelConfirmRecallReject'
+              xml:
+                name: SellerCommercialInstructionsRequest
             examples:
               Confirm:
                 value: "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n<SellerCommercialInstructionsRequest>\r\n\t<transactionHeader>\r\n\t\t<tipVersion>6.0.0</tipVersion>\r\n\t\t<transactionId>\r\n\t\t\t<transactionId>3fa85f64-5717-4562-b3fc-2c963f66afa6</transactionId>\r\n\t\t\t<transactionType>Confirm</transactionType>\r\n\t\t\t<sourceId>456</sourceId>\r\n\t\t\t<sourceName>Canvas Worldwide. LLC</sourceName>\r\n\t\t</transactionId>\r\n\t\t<originalTransactionId>\r\n\t\t\t<transactionId>B906A0A9-19FA-4F06-B94D-22E4F1D9120C</transactionId>\r\n\t\t\t<transactionType>New</transactionType>\r\n\t\t\t<sourceId>490</sourceId>\r\n\t\t\t<sourceName>KHOU-TV</sourceName>\r\n\t\t</originalTransactionId>\r\n\t\t<timeStamp>2020-07-17T20:04:55.220Z</timeStamp>\r\n\t</transactionHeader>\r\n\t<referenceIds>\r\n\t\t<referenceSourceName>Canvas Worldwide. LLC</referenceSourceName>\r\n\t\t<referenceSourceId>456</referenceSourceId>\r\n\t\t<referenceSourceLookup></referenceSourceLookup>\r\n\t\t<referenceType>Order</referenceType>\r\n\t\t<referenceId>123456</referenceId>\r\n\t\t<referenceVersionId></referenceVersionId>\r\n\t\t<referenceName>Canvas Worldwide. LLC Q1</referenceName>\r\n\t</referenceIds>\r\n\t<comments>Thank you Very much; good to do business with you :)</comments>\r\n</SellerCommercialInstructionsRequest>"
@@ -2442,7 +2448,7 @@ paths:
       tags:
         - Buyer
       summary: Allows the Buyer to initiate a request to subscribe to receive the seller's log time information
-      description: 'This endpoint is hosted at the seller end. Allows the Buyer to to initiate a Request Request to Seller to subscribe to seller''s information Supported Transaction Types: New, Change, '
+      description: 'This endpoint is hosted at the seller end. Allows the Buyer to to initiate a Request Request to Seller to subscribe to seller''s information Supported Transaction Types: New, Change, Cancel'
       operationId: BuyerLogtimesSubscription
       requestBody:
         description: seller provides the Log Times report to the buyer's system
@@ -2455,6 +2461,193 @@ paths:
                 - $ref: '#/components/schemas/CancelConfirmRecallReject'
               xml:
                 name: BuyerLogTimesSubscriptionRequest
+            examples:
+              New:
+                value:
+                  transactionHeader:
+                    tipVersion: 6.0.0
+                    transactionId:
+                      transactionId: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+                      transactionType: New
+                      sourceId: XVEN-1234
+                      sourceName: XVEN Buyer
+                    timeStamp: '2021-05-06T18:55:15.003Z'
+                  name: 'Post log and reconciled logs only When Available, Never Ends'
+                  referenceIds:
+                    - referenceSourceName: XVEN-1234
+                      referenceSourceId: XVEN Buyer
+                      referenceSourceLookup: string
+                      referenceType: Order
+                      referenceVersionId: 0
+                      referenceName: Hyundai 1Q22
+                  mediaOutlets:
+                    - mediaOutletIds:
+                        - id: KHOU-TV
+                          version: '0'
+                          srcId: XVEN-1234
+                          srcName: XVEN Buyer
+                      mediaOutletName: KHOW-TV
+                      mediaOutletType: Local TV
+                      mediaOutletChannel: KHOU-TV
+                      mediaOutletMarketName: 'Houston, TX'
+                  buyer:
+                    - buyerIds:
+                        - id: BUY-123
+                          version: '0'
+                          srcId: XVEN-1234
+                          srcName: XVEN Buyer
+                      buyerName: Canvas Worldwide. LLC
+                  advertiser:
+                    - advertiserIds:
+                        - id: ADV-123
+                          version: '0'
+                          srcId: XVEN-1234
+                          srcName: XVEN Buyer
+                      advertiserName: Hyundai
+                  contacts:
+                    - contactType: Account Executive
+                      contactIds:
+                        - id: CNT-1234
+                          version: '0'
+                          srcId: XVEN-1234
+                          srcName: XVEN Buyer
+                      salesOffices:
+                        - 'Dallas, TX'
+                        - 'NYC, NY'
+                      contactFirstName: John
+                      contactLastName: Doe
+                      addressLine1: 1234 N. Main Street
+                      city: A City
+                      state: UT
+                      postalCode: 00000-0000
+                      country: USA
+                      phoneNumber: 1(000)000-0000
+                      email: john.doe@example.com
+                      effectiveDate: '2021-05-06'
+                  inventoryTypes:
+                    - Commercial
+                  statuses:
+                    - Aired
+                    - Finalized
+                  frequency:
+                    effectiveOn: '2020-08-12T00:00:00.000Z'
+                    every: When Available
+                    isEndNever: true
+              Change:
+                value:
+                  transactionHeader:
+                    tipVersion: 6.0.0
+                    transactionId:
+                      transactionId: 40299727-4FF6-43E5-A627-4791C994BC58
+                      transactionType: Change
+                      sourceId: XVEN-1234
+                      sourceName: XVEN Buyer
+                    originalTransactionId:
+                      transactionId: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+                      transactionType: New
+                      sourceId: XVEN-1234
+                      sourceName: XVEN Buyer
+                    timeStamp: '2021-05-06T18:55:15.003Z'
+                  name: 'Post log and reconciled logs only When Available, Ends after 10 occurences'
+                  referenceIds:
+                    - referenceSourceName: XVEN-1234
+                      referenceSourceId: XVEN Buyer
+                      referenceSourceLookup: string
+                      referenceType: Order
+                      referenceVersionId: 0
+                      referenceName: Hyundai 1Q22
+                  mediaOutlets:
+                    - mediaOutletIds:
+                        - id: KHOU-TV
+                          version: '0'
+                          srcId: XVEN-1234
+                          srcName: XVEN Buyer
+                      mediaOutletName: KHOW-TV
+                      mediaOutletType: Local TV
+                      mediaOutletChannel: KHOU-TV
+                      mediaOutletMarketName: 'Houston, TX'
+                  buyer:
+                    - buyerIds:
+                        - id: BUY-123
+                          version: '0'
+                          srcId: XVEN-1234
+                          srcName: XVEN Buyer
+                      buyerName: Canvas Worldwide. LLC
+                  advertiser:
+                    - advertiserIds:
+                        - id: ADV-123
+                          version: '0'
+                          srcId: XVEN-1234
+                          srcName: XVEN Buyer
+                      advertiserName: Hyundai
+                  contacts:
+                    - contactType: Account Executive
+                      contactIds:
+                        - id: CNT-1234
+                          version: '0'
+                          srcId: XVEN-1234
+                          srcName: XVEN Buyer
+                      salesOffices:
+                        - 'Dallas, TX'
+                        - 'NYC, NY'
+                      contactFirstName: John
+                      contactLastName: Doe
+                      addressLine1: 1234 N. Main Street
+                      city: A City
+                      state: UT
+                      postalCode: 00000-0000
+                      country: USA
+                      phoneNumber: 1(000)000-0000
+                      email: john.doe@example.com
+                      effectiveDate: '2021-05-06'
+                  inventoryTypes:
+                    - Commercial
+                  statuses:
+                    - Aired
+                    - Finalized
+                  frequency:
+                    effectiveOn: '2020-08-12T00:00:00.000Z'
+                    every: When Available
+                    isEndNever: false
+                    endOccurAfter: 10
+              Cancel:
+                value:
+                  transactionHeader:
+                    tipVersion: 6.0.0
+                    transactionId:
+                      transactionId: BF7F7D82-1335-4C3B-ABD0-7545872A56DE
+                      transactionType: Cancel
+                      sourceId: XBuy-1234
+                      sourceName: XVEN Buyer
+                    originalTransactionId:
+                      transactionId: 40299727-4FF6-43E5-A627-4791C994BC58
+                      transactionType: Change
+                      sourceId: XBuy-1234
+                      sourceName: XVEN Buyer
+                    timeStamp: '2021-05-06T19:01:50.610Z'
+                  referenceIds:
+                    - referenceSourceName: KUOU-TV
+                      referenceSourceId: '490'
+                      referenceSourceLookup: ''
+                      referenceType: Subscription
+                      referenceId: BF7F7D82-1335-4C3B-ABD0-7545872A56DE
+                      referenceVersionId: ''
+                      referenceName: string
+                  comments: Sample comment from message originator
+          application/xml:
+            schema:
+              oneOf:
+                - $ref: '#/components/schemas/BuyerLogTimesSubscription'
+                - $ref: '#/components/schemas/CancelConfirmRecallReject'
+              xml:
+                name: BuyerLogTimesSubscriptionRequest
+            examples:
+              New:
+                value: "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n<BuyerLogTimesSubscriptionRequest>\r\n\t<transactionHeader>\r\n\t\t<tipVersion>6.0.0</tipVersion>\r\n\t\t<transactionId>\r\n\t\t\t<transactionId>3fa85f64-5717-4562-b3fc-2c963f66afa6</transactionId>\r\n\t\t\t<transactionType>New</transactionType>\r\n\t\t\t<sourceId>XVEN-1234</sourceId>\r\n\t\t\t<sourceName>XVEN Buyer</sourceName>\r\n\t\t</transactionId>\r\n\t\t<timeStamp>2021-05-06T18:55:15.003Z</timeStamp>\r\n\t</transactionHeader>\r\n\t<name>Post log and reconciled logs only When Available, Never Ends</name>\r\n\t<referenceIds>\r\n\t\t<referenceSourceName>XVEN-1234</referenceSourceName>\r\n\t\t<referenceSourceId>XVEN Buyer</referenceSourceId>\r\n\t\t<referenceSourceLookup>string</referenceSourceLookup>\r\n\t\t<referenceType>Order</referenceType>\r\n\t\t<referenceVersionId>0</referenceVersionId>\r\n\t\t<referenceName>Hyundai 1Q22</referenceName>\r\n\t</referenceIds>\r\n\t<mediaOutlets>\r\n\t\t<mediaOutletIds>\r\n\t\t\t<id>KHOU-TV</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>XVEN-1234</srcId>\r\n\t\t\t<srcName>XVEN Buyer</srcName>\r\n\t\t</mediaOutletIds>\r\n\t\t<mediaOutletName>KHOW-TV</mediaOutletName>\r\n\t\t<mediaOutletType>Local TV</mediaOutletType>\r\n\t\t<mediaOutletChannel>KHOU-TV</mediaOutletChannel>\r\n\t\t<mediaOutletMarketName>Houston, TX</mediaOutletMarketName>\r\n\t</mediaOutlets>\r\n\t<buyer>\r\n\t\t<buyerIds>\r\n\t\t\t<id>BUY-123</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>XVEN-1234</srcId>\r\n\t\t\t<srcName>XVEN Buyer</srcName>\r\n\t\t</buyerIds>\r\n\t\t<buyerName>Canvas Worldwide. LLC</buyerName>\r\n\t</buyer>\r\n\t<advertiser>\r\n\t\t<advertiserIds>\r\n\t\t\t<id>ADV-123</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>XVEN-1234</srcId>\r\n\t\t\t<srcName>XVEN Buyer</srcName>\r\n\t\t</advertiserIds>\r\n\t\t<advertiserName>Hyundai</advertiserName>\r\n\t</advertiser>\r\n\t<contacts>\r\n\t\t<contactType>Account Executive</contactType>\r\n\t\t<contactIds>\r\n\t\t\t<id>CNT-1234</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>XVEN-1234</srcId>\r\n\t\t\t<srcName>XVEN Buyer</srcName>\r\n\t\t</contactIds>\r\n\t\t<salesOffices>Dallas, TX</salesOffices>\r\n\t\t<salesOffices>NYC, NY</salesOffices>\r\n\t\t<contactFirstName>John</contactFirstName>\r\n\t\t<contactLastName>Doe</contactLastName>\r\n\t\t<addressLine1>1234 N. Main Street</addressLine1>\r\n\t\t<city>A City</city>\r\n\t\t<state>UT</state>\r\n\t\t<postalCode>00000-0000</postalCode>\r\n\t\t<country>USA</country>\r\n\t\t<phoneNumber>1(000)000-0000</phoneNumber>\r\n\t\t<email>john.doe@example.com</email>\r\n\t\t<effectiveDate>2021-05-06</effectiveDate>\r\n\t</contacts>\r\n\t<inventoryTypes>Commercial</inventoryTypes>\r\n\t<statuses>Aired</statuses>\r\n\t<statuses>Finalized</statuses>\r\n\t<frequency>\r\n\t\t<effectiveOn>2020-08-12T00:00:00.000Z</effectiveOn>\r\n\t\t<every>When Available</every>\r\n\t\t<isEndNever>true</isEndNever>\r\n\t</frequency>\r\n</BuyerLogTimesSubscriptionRequest>"
+              Change:
+                value: "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n<BuyerLogTimesSubscriptionRequest>\r\n\t<transactionHeader>\r\n\t\t<tipVersion>6.0.0</tipVersion>\r\n\t\t<transactionId>\r\n\t\t\t<transactionId>40299727-4FF6-43E5-A627-4791C994BC58</transactionId>\r\n\t\t\t<transactionType>Change</transactionType>\r\n\t\t\t<sourceId>XVEN-1234</sourceId>\r\n\t\t\t<sourceName>XVEN Buyer</sourceName>\r\n\t\t</transactionId>\r\n\t\t<originalTransactionId>\r\n\t\t\t<transactionId>3fa85f64-5717-4562-b3fc-2c963f66afa6</transactionId>\r\n\t\t\t<transactionType>New</transactionType>\r\n\t\t\t<sourceId>XVEN-1234</sourceId>\r\n\t\t\t<sourceName>XVEN Buyer</sourceName>\r\n\t\t</originalTransactionId>\r\n\t\t<timeStamp>2021-05-06T18:55:15.003Z</timeStamp>\r\n\t</transactionHeader>\r\n\t<name>Post log and reconciled logs only When Available, Ends after 10 occurences</name>\r\n\t<referenceIds>\r\n\t\t<referenceSourceName>XVEN-1234</referenceSourceName>\r\n\t\t<referenceSourceId>XVEN Buyer</referenceSourceId>\r\n\t\t<referenceSourceLookup>string</referenceSourceLookup>\r\n\t\t<referenceType>Order</referenceType>\r\n\t\t<referenceVersionId>0</referenceVersionId>\r\n\t\t<referenceName>Hyundai 1Q22</referenceName>\r\n\t</referenceIds>\r\n\t<mediaOutlets>\r\n\t\t<mediaOutletIds>\r\n\t\t\t<id>KHOU-TV</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>XVEN-1234</srcId>\r\n\t\t\t<srcName>XVEN Buyer</srcName>\r\n\t\t</mediaOutletIds>\r\n\t\t<mediaOutletName>KHOW-TV</mediaOutletName>\r\n\t\t<mediaOutletType>Local TV</mediaOutletType>\r\n\t\t<mediaOutletChannel>KHOU-TV</mediaOutletChannel>\r\n\t\t<mediaOutletMarketName>Houston, TX</mediaOutletMarketName>\r\n\t</mediaOutlets>\r\n\t<buyer>\r\n\t\t<buyerIds>\r\n\t\t\t<id>BUY-123</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>XVEN-1234</srcId>\r\n\t\t\t<srcName>XVEN Buyer</srcName>\r\n\t\t</buyerIds>\r\n\t\t<buyerName>Canvas Worldwide. LLC</buyerName>\r\n\t</buyer>\r\n\t<advertiser>\r\n\t\t<advertiserIds>\r\n\t\t\t<id>ADV-123</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>XVEN-1234</srcId>\r\n\t\t\t<srcName>XVEN Buyer</srcName>\r\n\t\t</advertiserIds>\r\n\t\t<advertiserName>Hyundai</advertiserName>\r\n\t</advertiser>\r\n\t<contacts>\r\n\t\t<contactType>Account Executive</contactType>\r\n\t\t<contactIds>\r\n\t\t\t<id>CNT-1234</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>XVEN-1234</srcId>\r\n\t\t\t<srcName>XVEN Buyer</srcName>\r\n\t\t</contactIds>\r\n\t\t<salesOffices>Dallas, TX</salesOffices>\r\n\t\t<salesOffices>NYC, NY</salesOffices>\r\n\t\t<contactFirstName>John</contactFirstName>\r\n\t\t<contactLastName>Doe</contactLastName>\r\n\t\t<addressLine1>1234 N. Main Street</addressLine1>\r\n\t\t<city>A City</city>\r\n\t\t<state>UT</state>\r\n\t\t<postalCode>00000-0000</postalCode>\r\n\t\t<country>USA</country>\r\n\t\t<phoneNumber>1(000)000-0000</phoneNumber>\r\n\t\t<email>john.doe@example.com</email>\r\n\t\t<effectiveDate>2021-05-06</effectiveDate>\r\n\t</contacts>\r\n\t<inventoryTypes>Commercial</inventoryTypes>\r\n\t<statuses>Aired</statuses>\r\n\t<statuses>Finalized</statuses>\r\n\t<frequency>\r\n\t\t<effectiveOn>2020-08-12T00:00:00.000Z</effectiveOn>\r\n\t\t<every>When Available</every>\r\n\t\t<isEndNever>false</isEndNever>\r\n\t\t<endOccurAfter>10</endOccurAfter>\r\n\t</frequency>\r\n</BuyerLogTimesSubscriptionRequest>"
+              Cancel:
+                value: "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n<BuyerLogTimesSubscriptionRequest>\r\n\t<transactionHeader>\r\n\t\t<tipVersion>6.0.0</tipVersion>\r\n\t\t<transactionId>\r\n\t\t\t<transactionId>BF7F7D82-1335-4C3B-ABD0-7545872A56DE</transactionId>\r\n\t\t\t<transactionType>Cancel</transactionType>\r\n\t\t\t<sourceId>XBuy-1234</sourceId>\r\n\t\t\t<sourceName>XVEN Buyer</sourceName>\r\n\t\t</transactionId>\r\n\t\t<originalTransactionId>\r\n\t\t\t<transactionId>40299727-4FF6-43E5-A627-4791C994BC58</transactionId>\r\n\t\t\t<transactionType>Change</transactionType>\r\n\t\t\t<sourceId>XBuy-1234</sourceId>\r\n\t\t\t<sourceName>XVEN Buyer</sourceName>\r\n\t\t</originalTransactionId>\r\n\t\t<timeStamp>2021-05-06T19:01:50.610Z</timeStamp>\r\n\t</transactionHeader>\r\n\t<referenceIds>\r\n\t\t<referenceSourceName>KUOU-TV</referenceSourceName>\r\n\t\t<referenceSourceId>490</referenceSourceId>\r\n\t\t<referenceSourceLookup></referenceSourceLookup>\r\n\t\t<referenceType>Subscription</referenceType>\r\n\t\t<referenceId>BF7F7D82-1335-4C3B-ABD0-7545872A56DE</referenceId>\r\n\t\t<referenceVersionId></referenceVersionId>\r\n\t\t<referenceName>string</referenceName>\r\n\t</referenceIds>\r\n\t<comments>Sample comment from message originator</comments>\r\n</BuyerLogTimesSubscriptionRequest>"
       responses:
         '200':
           $ref: '#/components/responses/Success'
@@ -2496,6 +2689,16 @@ paths:
                       sourceName: KHOU-TV
                     timeStamp: '2020-07-01T19:17:28Z'
                   externalComment: Seller's Comment
+                  mediaOutlets:
+                    - mediaOutletIds:
+                        - id: '490'
+                          version: '0'
+                          srcId: '490'
+                          srcName: KHOU-TV
+                      mediaOutletName: KHOU-TV
+                      mediaOutletType: Local TV
+                      mediaOutletChannel: KHOU-TV
+                      mediaOutletMarketName: 'Houston, TX'
                   units:
                     - unitId: '15555'
                       referenceIds:
@@ -2504,26 +2707,48 @@ paths:
                           referenceType: Order
                           referenceId: A2CAF9C7-C64F-44CA-84E1-DCD51D790E3E
                           referenceName: Hyundia P25-54 1Q
+                      lineReferences:
+                        - id: Hyn-2554-1
+                          version: '0'
+                          srcId: XVEN-1234
+                          srcName: XVEN Buyer
+                        - id: '1'
+                          version: '0'
+                          srcId: '490'
+                          srcName: KHOU-TV
                       cpeCode:
                         clientCode: HYUN
                         productCode: AUTO
                         estimateCode: '987'
                       buyer:
-                        buyerId: '456'
+                        buyerIds:
+                          - id: '456'
+                            version: '0'
+                            srcId: '490'
+                            srcName: KHOU-TV
                         buyerName: Canvas Worldwide. LLC
-                        buyerReference: 'Optional: Reference text here'
                       advertiser:
-                        advertiserId: '34'
+                        advertiserIds:
+                          - id: '34'
+                            version: '0'
+                            srcId: '490'
+                            srcName: KHOU-TV
                         advertiserName: Hyundai
-                        advertiserReference: 'Optional: Reference text here'
                       brand:
-                        brandId: '19'
+                        brandIds:
+                          - id: '19'
+                            version: '0'
+                            srcId: '490'
+                            srcName: KHOU-TV
                         brandName: Kona
-                        brandReference: 'Optional: Reference text here'
                       product:
-                        productId: '89'
+                        productIds:
+                          - id: '89'
+                            version: '0'
+                            srcId: '490'
+                            srcName: KHOU-TV
                         productName: Automobile
-                      salesElement:
+                      salesElementHeader:
                         mediaOutletId: '490'
                         salesElementName: CBS This Morning
                         salesElementId: '56'
@@ -2531,476 +2756,169 @@ paths:
                       program: CBS This Morning
                       daypart: Morning
                       inventoryType: Commercial
-                      length: 30
+                      airedLength: 30
+                      bookedLength: 30
                       rate: 525
-                      adId: HYUN1234
+                      creative:
+                        ids:
+                          - id: HYUN1234
+                            version: '0'
+                            srcId: '490'
+                            srcName: KHOU-TV
+                          - id: ABCD000123H
+                            version: '0'
+                            srcId: Ad-id.org
+                            srcName: Ad ID code
+                        name: Name of Creative
+                        status: Final
+                        length: 30
                       status: Aired
-                      creditInd: false
-                      timePeriod:
-                        dateWindow:
-                          startDate: '2020-02-17'
-                          endDate: '2020-03-01'
-                        DOW:
-                          monday: true
-                          tuesday: true
-                          wednesday: true
-                          thursday: true
-                          friday: true
-                          saturday: false
-                          sunday: false
-                        timeWindow:
-                          startTime: '07:00:00'
-                          endTime: '09:00:00'
+                      isCredit: false
+                      timePeriods:
+                        - dateWindow:
+                            startDate: '2021-08-06'
+                            endDate: '2021-08-06'
+                          DOW:
+                            isMonday: true
+                            isTuesday: true
+                            isWednesday: true
+                            isThursday: true
+                            isFriday: true
+                            isSaturday: true
+                            isSunday: true
+                          timeWindow:
+                            startTime: '07:00'
+                            endTime: '09:00'
                       dateTime:
-                        broadcastDate: '2020-02-17'
-                        calendarDateTime: '2020-02-17T07:23:00'
-                    - unitId: '16555'
+                        broadcastDate: '2021-08-06'
+                        calendarDateTime: '2021-08-06T19:49:23.706Z'
+              Change:
+                value:
+                  transactionHeader:
+                    tipVersion: 5.1.0
+                    transactionId:
+                      transactionId: BA5C4CEB-238D-4163-8BB5-7AE2129E37F2
+                      transactionType: Change
+                      sourceId: '490'
+                      sourceName: KHOU-TV
+                    originalTransactionId:
+                      transactionId: 6A61B212-4DBD-431E-A953-8873561AF781
+                      transactionType: New
+                      sourceId: '490'
+                      sourceName: KHOU-TV
+                    timeStamp: '2020-07-01T19:17:28Z'
+                  externalComment: Seller's Comment
+                  mediaOutlets:
+                    - mediaOutletIds:
+                        - id: '490'
+                          version: '0'
+                          srcId: '490'
+                          srcName: KHOU-TV
+                      mediaOutletName: KHOU-TV
+                      mediaOutletType: Local TV
+                      mediaOutletChannel: KHOU-TV
+                      mediaOutletMarketName: 'Houston, TX'
+                  units:
+                    - unitId: '15555'
                       referenceIds:
                         - referenceSourceName: KHOU-TV
                           referenceSourceId: '490'
                           referenceType: Order
-                          referenceId: 19F1BA79-D415-493D-8541-CBA985A740B7
-                          referenceName: Wendy's 1Q
-                      cpeCode:
-                        clientCode: WENDY
-                        productCode: FAST FOOD
-                        estimateCode: '999'
-                      buyer:
-                        buyerId: '989'
-                        buyerName: Wunderman
-                        buyerReference: 'Optional: Reference text here'
-                      advertiser:
-                        advertiserId: '555'
-                        advertiserName: Wendy's
-                        advertiserReference: 'Optional: Reference text here'
-                      product:
-                        productId: '999'
-                        productName: Fast Food
-                      salesElement:
-                        mediaOutletId: '490'
-                        salesElementName: The Talk
-                        salesElementId: '57'
-                        salesElementType: Program
-                      program: The Talk
-                      daypart: Morning
-                      inventoryType: Commercial
-                      linkType:
-                        linkType: Bookend
-                        linkNum: 1
-                      length: 15
-                      rate: 525
-                      adId: WEND1234
-                      status: Aired
-                      creditInd: false
-                      timePeriod:
-                        dateWindow:
-                          startDate: '2020-02-17'
-                          endDate: '2020-03-01'
-                        DOW:
-                          monday: true
-                          tuesday: true
-                          wednesday: true
-                          thursday: true
-                          friday: true
-                          saturday: false
-                          sunday: false
-                        timeWindow:
-                          startTime: '07:00:00'
-                          endTime: '09:00:00'
-                      dateTime:
-                        broadcastDate: '2020-02-17'
-                        calendarDateTime: '2020-02-17T07:45:00'
-                    - unitId: '16555'
-                      referenceIds:
-                        - referenceSourceName: KHOU-TV
-                          referenceSourceId: '490'
-                          referenceType: Order
-                          referenceId: 9A07F777-ADCA-428A-B61B-DB85402E9C57
-                          referenceName: Wendy's 1Q
-                      cpeCode:
-                        clientCode: WENDY
-                        productCode: FAST FOOD
-                        estimateCode: '999'
-                      buyer:
-                        buyerId: '989'
-                        buyerName: Wunderman
-                        buyerReference: 'Optional: Reference text here'
-                      advertiser:
-                        advertiserId: '555'
-                        advertiserName: Wendy's
-                        advertiserReference: 'Optional: Reference text here'
-                      product:
-                        productId: '999'
-                        productName: Fast Food
-                      salesElement:
-                        mediaOutletId: '490'
-                        salesElementName: The Talk
-                        salesElementId: '57'
-                        salesElementType: Program
-                      program: The Talk
-                      daypart: Morning
-                      inventoryType: Commercial
-                      linkType:
-                        linkType: Bookend
-                        linkNum: 1
-                      length: 15
-                      rate: 525
-                      adId: WEND1235
-                      status: Aired
-                      creditInd: false
-                      timePeriod:
-                        dateWindow:
-                          startDate: '2020-02-17'
-                          endDate: '2020-03-01'
-                        DOW:
-                          monday: true
-                          tuesday: true
-                          wednesday: true
-                          thursday: true
-                          friday: true
-                          saturday: false
-                          sunday: false
-                        timeWindow:
-                          startTime: '07:00:00'
-                          endTime: '09:00:00'
-                      dateTime:
-                        broadcastDate: '2020-02-17'
-                        calendarDateTime: '2020-02-17T07:46:00'
-                    - unitId: '17555'
-                      referenceIds:
-                        - referenceSourceName: KHOU-TV
-                          referenceSourceId: '490'
-                          referenceType: Order
-                          referenceId: 1E494D6B-50CE-4814-9217-03D104D13A1C
-                          referenceName: KIA 1Q
-                      cpeCode:
-                        clientCode: KIA
-                        productCode: AUTO
-                        estimateCode: '996'
-                      buyer:
-                        buyerId: '456'
-                        buyerName: Canvas Worldwide. LLC
-                        buyerReference: 'Optional: Reference text here'
-                      advertiser:
-                        advertiserId: '558'
-                        advertiserName: Kia
-                        advertiserReference: 'Optional: Reference text here'
-                      brand:
-                        brandId: '29'
-                        brandName: Forte
-                        brandReference: 'Optional: Reference text here'
-                      product:
-                        productId: '89'
-                        productName: Automobile
-                      salesElement:
-                        mediaOutletId: '490'
-                        salesElementName: Prime
-                        salesElementId: '58'
-                        salesElementType: Time-Specific
-                      program: Prime Movie
-                      daypart: Prime
-                      inventoryType: Commercial
-                      makegood: true
-                      preemptUnitIds:
-                        - '12345'
-                      length: 30
-                      rate: 525
-                      adId: KIAC1234
-                      status: Aired
-                      creditInd: false
-                      timePeriod:
-                        dateWindow:
-                          startDate: '2020-01-06'
-                          endDate: '2020-03-31'
-                        DOW:
-                          monday: true
-                          tuesday: true
-                          wednesday: true
-                          thursday: true
-                          friday: true
-                          saturday: false
-                          sunday: false
-                        timeWindow:
-                          startTime: '16:00:00'
-                          endTime: '17:00:00'
-                      dateTime:
-                        broadcastDate: '2020-02-17'
-                        calendarDateTime: '2020-02-17T16:45:00'
-                    - unitId: '18555'
-                      referenceIds:
-                        - referenceSourceName: KHOU-TV
-                          referenceSourceId: '490'
-                          referenceType: Order
-                          referenceId: FD13BE42-152E-4ACD-B210-C732B787C576
-                          referenceName: White Castle P18-49
-                      cpeCode:
-                        clientCode: WHITE CAS
-                        productCode: FAST FOOD
-                        estimateCode: '998'
-                      buyer:
-                        buyerId: '1023'
-                        buyerName: Cross Media
-                        buyerReference: 'Optional: Reference text here'
-                      advertiser:
-                        advertiserId: '998'
-                        advertiserName: White Castle
-                        advertiserReference: 'Optional: Reference text here'
-                      product:
-                        productId: '999'
-                        productName: Fast Food
-                      salesElement:
-                        mediaOutletId: '490'
-                        salesElementName: CBS This Morning
-                        salesElementId: '56'
-                        salesElementType: Program
-                      program: CBS This Morning
-                      daypart: Morning
-                      inventoryType: Commercial
-                      length: 30
-                      rate: 525
-                      adId: WHITE1234
-                      status: Aired
-                      creditInd: false
-                      timePeriod:
-                        dateWindow:
-                          startDate: '2020-01-12'
-                          endDate: '2020-03-12'
-                        DOW:
-                          monday: true
-                          tuesday: true
-                          wednesday: true
-                          thursday: true
-                          friday: true
-                          saturday: false
-                          sunday: false
-                        timeWindow:
-                          startTime: '16:00:00'
-                          endTime: '17:00:00'
-                      dateTime:
-                        broadcastDate: '2020-02-17'
-                        calendarDateTime: '2020-02-17T16:46:00'
-                    - unitId: '19555'
-                      referenceIds:
-                        - referenceSourceName: KHOU-TV
-                          referenceSourceId: '490'
-                          referenceType: Order
-                          referenceId: ACBAB728-70AD-4DAD-A94A-7511F8553F82
-                          referenceName: ADT SECURITY P18-49 1Q
-                      cpeCode:
-                        clientCode: ADT SECURITY
-                        productCode: SECURITY
-                        estimateCode: '888'
-                      buyer:
-                        buyerId: '1055'
-                        buyerName: McCann
-                        buyerReference: 'Optional: Reference text here'
-                      advertiser:
-                        advertiserId: '1234'
-                        advertiserName: ADT Security
-                        advertiserReference: 'Optional: Reference text here'
-                      product:
-                        productId: '767'
-                        productName: Security
-                      salesElement:
-                        mediaOutletId: '490'
-                        salesElementName: CBS This Morning
-                        salesElementId: '56'
-                        salesElementType: Program
-                      program: CBS This Morning
-                      daypart: Morning
-                      inventoryType: Commercial
-                      bonus: true
-                      length: 30
-                      rate: 0
-                      adId: ADTS1234
-                      status: Aired
-                      creditInd: false
-                      timePeriod:
-                        dateWindow:
-                          startDate: '2020-01-20'
-                          endDate: '2020-04-23'
-                        DOW:
-                          monday: true
-                          tuesday: true
-                          wednesday: true
-                          thursday: true
-                          friday: true
-                          saturday: false
-                          sunday: false
-                        timeWindow:
-                          startTime: '17:00:00'
-                          endTime: '18:00:00'
-                      dateTime:
-                        broadcastDate: '2020-02-17'
-                        calendarDateTime: '2020-02-17T17:11:00'
-                    - unitId: '20555'
-                      referenceIds:
-                        - referenceSourceName: KHOU-TV
-                          referenceSourceId: '490'
-                          referenceType: Order
-                          referenceId: 8DEAA498-EEA8-435F-90CE-ED4B6FFEDBEF
-                          referenceName: White Castle P18-49
-                      cpeCode:
-                        clientCode: WHITE CAS
-                        productCode: FAST FOOD
-                        estimateCode: '998'
-                      buyer:
-                        buyerId: '1023'
-                        buyerName: Cross Media
-                        buyerReference: 'Optional: Reference text here'
-                      advertiser:
-                        advertiserId: '998'
-                        advertiserName: White Castle
-                        advertiserReference: 'Optional: Reference text here'
-                      product:
-                        productId: '999'
-                        productName: Fast Food
-                      salesElement:
-                        mediaOutletId: '490'
-                        salesElementName: CBS This Morning
-                        salesElementId: '56'
-                        salesElementType: Program
-                      program: CBS This Morning
-                      daypart: Morning
-                      adu: true
-                      length: 30
-                      rate: 0
-                      adId: WHITE5555
-                      status: Aired
-                      creditInd: false
-                      timePeriod:
-                        dateWindow:
-                          startDate: '2020-01-12'
-                          endDate: '2020-03-12'
-                        DOW:
-                          monday: true
-                          tuesday: true
-                          wednesday: true
-                          thursday: true
-                          friday: true
-                          saturday: false
-                          sunday: false
-                        timeWindow:
-                          startTime: '17:00:00'
-                          endTime: '18:00:00'
-                      dateTime:
-                        broadcastDate: '2020-02-17'
-                        calendarDateTime: '2020-02-17T17:13:00'
-                    - unitId: '20551'
-                      referenceIds:
-                        - referenceSourceName: KHOU-TV
-                          referenceSourceId: '490'
-                          referenceType: Order
-                          referenceId: 248A9CEB-1A97-488F-8756-2BF1EF39988D
-                          referenceName: KIA P18-49
-                      cpeCode:
-                        clientCode: KIA
-                        productCode: AUTO
-                        estimateCode: '996'
-                      buyer:
-                        buyerId: '1023'
-                        buyerName: Cross Media
-                        buyerReference: 'Optional: Reference text here'
-                      advertiser:
-                        advertiserId: '558'
-                        advertiserName: Kia
-                        advertiserReference: 'Optional: Reference text here'
-                      brand:
-                        brandId: '29'
-                        brandName: Forte
-                        brandReference: 'Optional: Reference text here'
-                      product:
-                        productId: '89'
-                        productName: Automobile
-                      salesElement:
-                        mediaOutletId: '490'
-                        salesElementName: Weekend Non-Sports
-                        salesElementId: '99'
-                        salesElementType: Time-Specific
-                      program: Weekend Movie
-                      daypart: Weekend
-                      inventoryType: Commercial
-                      length: 15
-                      rate: 0
-                      status: No Run
-                      creditInd: true
-                      timePeriod:
-                        dateWindow:
-                          startDate: '2020-01-06'
-                          endDate: '2020-03-31'
-                        DOW:
-                          monday: true
-                          tuesday: true
-                          wednesday: true
-                          thursday: true
-                          friday: true
-                          saturday: false
-                          sunday: false
-                        timeWindow:
-                          startTime: '18:00:00'
-                          endTime: '19:00:00'
-                      dateTime:
-                        broadcastDate: '2020-02-17'
-                        calendarDateTime: '2020-02-17T17:11:00'
-                    - unitId: '16556'
-                      referenceIds:
-                        - referenceSourceName: KHOU-TV
-                          referenceSourceId: '490'
-                          referenceType: Order
-                          referenceId: 8F15A01D-5D26-42A4-847B-D7E7B73D99E8
+                          referenceId: A2CAF9C7-C64F-44CA-84E1-DCD51D790E3E
                           referenceName: Hyundia P25-54 1Q
+                      lineReferences:
+                        - id: Hyn-2554-1
+                          version: '0'
+                          srcId: XVEN-1234
+                          srcName: XVEN Buyer
+                        - id: '1'
+                          version: '0'
+                          srcId: '490'
+                          srcName: KHOU-TV
                       cpeCode:
                         clientCode: HYUN
                         productCode: AUTO
-                        estimateCode: '997'
+                        estimateCode: '987'
                       buyer:
-                        buyerId: '456'
-                        buyerName: Cross Media
-                        buyerReference: 'Optional: Reference text here'
+                        buyerIds:
+                          - id: '456'
+                            version: '0'
+                            srcId: '490'
+                            srcName: KHOU-TV
+                        buyerName: Canvas Worldwide. LLC
                       advertiser:
-                        advertiserId: '34'
+                        advertiserIds:
+                          - id: '34'
+                            version: '0'
+                            srcId: '490'
+                            srcName: KHOU-TV
                         advertiserName: Hyundai
-                        advertiserReference: 'Optional: Reference text here'
                       brand:
-                        brandId: '19'
+                        brandIds:
+                          - id: '19'
+                            version: '0'
+                            srcId: '490'
+                            srcName: KHOU-TV
                         brandName: Kona
-                        brandReference: 'Optional: Reference text here'
                       product:
-                        productId: '89'
+                        productIds:
+                          - id: '89'
+                            version: '0'
+                            srcId: '490'
+                            srcName: KHOU-TV
                         productName: Automobile
-                      salesElement:
+                      salesElementHeader:
                         mediaOutletId: '490'
-                        salesElementName: Late Fringe
-                        salesElementId: '102'
-                        salesElementType: Time-Specific
-                      program: Overnight Movie
-                      daypart: Late Fringe
+                        salesElementName: CBS This Morning
+                        salesElementId: '56'
+                        salesElementType: Program
+                      program: CBS This Morning
+                      daypart: Morning
                       inventoryType: Commercial
-                      length: 15
+                      airedLength: 30
+                      bookedLength: 30
                       rate: 525
+                      creative:
+                        ids:
+                          - id: HYUN1234
+                            version: '0'
+                            srcId: '490'
+                            srcName: KHOU-TV
+                          - id: ABCD000123H
+                            version: '0'
+                            srcId: Ad-id.org
+                            srcName: Ad ID code
+                        name: Name of Creative
+                        status: Final
+                        length: 30
                       status: Aired
-                      creditInd: false
-                      timePeriod:
-                        dateWindow:
-                          startDate: '2020-02-17'
-                          endDate: '2020-03-01'
-                        DOW:
-                          monday: true
-                          tuesday: true
-                          wednesday: true
-                          thursday: true
-                          friday: true
-                          saturday: false
-                          sunday: false
-                        timeWindow:
-                          startTime: '18:00:00'
-                          endTime: '19:00:00'
+                      isCredit: false
+                      timePeriods:
+                        - dateWindow:
+                            startDate: '2021-08-06'
+                            endDate: '2021-08-06'
+                          DOW:
+                            isMonday: true
+                            isTuesday: true
+                            isWednesday: true
+                            isThursday: true
+                            isFriday: true
+                            isSaturday: true
+                            isSunday: true
+                          timeWindow:
+                            startTime: '07:00'
+                            endTime: '09:00'
                       dateTime:
-                        broadcastDate: '2020-02-17'
-                        calendarDateTime: '2020-02-17T17:14:00'
+                        broadcastDate: '2021-08-06'
+                        calendarDateTime: '2021-08-06T19:49:23.706Z'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/SellerLogtimes'
+            examples:
+              New:
+                value: "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n<SellerLogtimesRequest>\r\n\t<transactionHeader>\r\n\t\t<tipVersion>5.1.0</tipVersion>\r\n\t\t<transactionId>\r\n\t\t\t<transactionId>6A61B212-4DBD-431E-A953-8873561AF781</transactionId>\r\n\t\t\t<transactionType>New</transactionType>\r\n\t\t\t<sourceId>490</sourceId>\r\n\t\t\t<sourceName>KHOU-TV</sourceName>\r\n\t\t</transactionId>\r\n\t\t<timeStamp>2020-07-01T19:17:28Z</timeStamp>\r\n\t</transactionHeader>\r\n\t<externalComment>Seller's Comment</externalComment>\r\n\t<mediaOutlets>\r\n\t\t<mediaOutletIds>\r\n\t\t\t<id>490</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>490</srcId>\r\n\t\t\t<srcName>KHOU-TV</srcName>\r\n\t\t</mediaOutletIds>\r\n\t\t<mediaOutletName>KHOU-TV</mediaOutletName>\r\n\t\t<mediaOutletType>Local TV</mediaOutletType>\r\n\t\t<mediaOutletChannel>KHOU-TV</mediaOutletChannel>\r\n\t\t<mediaOutletMarketName>Houston, TX</mediaOutletMarketName>\r\n\t</mediaOutlets>\r\n\t<units>\r\n\t\t<unitId>15555</unitId>\r\n\t\t<referenceIds>\r\n\t\t\t<referenceSourceName>KHOU-TV</referenceSourceName>\r\n\t\t\t<referenceSourceId>490</referenceSourceId>\r\n\t\t\t<referenceType>Order</referenceType>\r\n\t\t\t<referenceId>A2CAF9C7-C64F-44CA-84E1-DCD51D790E3E</referenceId>\r\n\t\t\t<referenceName>Hyundia P25-54 1Q</referenceName>\r\n\t\t</referenceIds>\r\n\t\t<lineReferences>\r\n\t\t\t<id>Hyn-2554-1</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>XVEN-1234</srcId>\r\n\t\t\t<srcName>XVEN Buyer</srcName>\r\n\t\t</lineReferences>\r\n\t\t<lineReferences>\r\n\t\t\t<id>1</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>490</srcId>\r\n\t\t\t<srcName>KHOU-TV</srcName>\r\n\t\t</lineReferences>\r\n\t\t<cpeCode>\r\n\t\t\t<clientCode>HYUN</clientCode>\r\n\t\t\t<productCode>AUTO</productCode>\r\n\t\t\t<estimateCode>987</estimateCode>\r\n\t\t</cpeCode>\r\n\t\t<buyer>\r\n\t\t\t<buyerIds>\r\n\t\t\t\t<id>456</id>\r\n\t\t\t\t<version>0</version>\r\n\t\t\t\t<srcId>490</srcId>\r\n\t\t\t\t<srcName>KHOU-TV</srcName>\r\n\t\t\t</buyerIds>\r\n\t\t\t<buyerName>Canvas Worldwide. LLC</buyerName>\r\n\t\t</buyer>\r\n\t\t<advertiser>\r\n\t\t\t<advertiserIds>\r\n\t\t\t\t<id>34</id>\r\n\t\t\t\t<version>0</version>\r\n\t\t\t\t<srcId>490</srcId>\r\n\t\t\t\t<srcName>KHOU-TV</srcName>\r\n\t\t\t</advertiserIds>\r\n\t\t\t<advertiserName>Hyundai</advertiserName>\r\n\t\t</advertiser>\r\n\t\t<brand>\r\n\t\t\t<brandIds>\r\n\t\t\t\t<id>19</id>\r\n\t\t\t\t<version>0</version>\r\n\t\t\t\t<srcId>490</srcId>\r\n\t\t\t\t<srcName>KHOU-TV</srcName>\r\n\t\t\t</brandIds>\r\n\t\t\t<brandName>Kona</brandName>\r\n\t\t</brand>\r\n\t\t<product>\r\n\t\t\t<productIds>\r\n\t\t\t\t<id>89</id>\r\n\t\t\t\t<version>0</version>\r\n\t\t\t\t<srcId>490</srcId>\r\n\t\t\t\t<srcName>KHOU-TV</srcName>\r\n\t\t\t</productIds>\r\n\t\t\t<productName>Automobile</productName>\r\n\t\t</product>\r\n\t\t<salesElementHeader>\r\n\t\t\t<mediaOutletId>490</mediaOutletId>\r\n\t\t\t<salesElementName>CBS This Morning</salesElementName>\r\n\t\t\t<salesElementId>56</salesElementId>\r\n\t\t\t<salesElementType>Program</salesElementType>\r\n\t\t</salesElementHeader>\r\n\t\t<program>CBS This Morning</program>\r\n\t\t<daypart>Morning</daypart>\r\n\t\t<inventoryType>Commercial</inventoryType>\r\n\t\t<airedLength>30</airedLength>\r\n\t\t<bookedLength>30</bookedLength>\r\n\t\t<rate>525</rate>\r\n\t\t<creative>\r\n\t\t\t<ids>\r\n\t\t\t\t<id>HYUN1234</id>\r\n\t\t\t\t<version>0</version>\r\n\t\t\t\t<srcId>490</srcId>\r\n\t\t\t\t<srcName>KHOU-TV</srcName>\r\n\t\t\t</ids>\r\n\t\t\t<ids>\r\n\t\t\t\t<id>ABCD000123H</id>\r\n\t\t\t\t<version>0</version>\r\n\t\t\t\t<srcId>Ad-id.org</srcId>\r\n\t\t\t\t<srcName>Ad ID code</srcName>\r\n\t\t\t</ids>\r\n\t\t\t<name>Name of Creative</name>\r\n\t\t\t<status>Final</status>\r\n\t\t\t<length>30</length>\r\n\t\t</creative>\r\n\t\t<status>Aired</status>\r\n\t\t<isCredit>false</isCredit>\r\n\t\t<timePeriods>\r\n\t\t\t<dateWindow>\r\n\t\t\t\t<startDate>2021-08-06</startDate>\r\n\t\t\t\t<endDate>2021-08-06</endDate>\r\n\t\t\t</dateWindow>\r\n\t\t\t<DOW>\r\n\t\t\t\t<isMonday>true</isMonday>\r\n\t\t\t\t<isTuesday>true</isTuesday>\r\n\t\t\t\t<isWednesday>true</isWednesday>\r\n\t\t\t\t<isThursday>true</isThursday>\r\n\t\t\t\t<isFriday>true</isFriday>\r\n\t\t\t\t<isSaturday>true</isSaturday>\r\n\t\t\t\t<isSunday>true</isSunday>\r\n\t\t\t</DOW>\r\n\t\t\t<timeWindow>\r\n\t\t\t\t<startTime>07:00</startTime>\r\n\t\t\t\t<endTime>09:00</endTime>\r\n\t\t\t</timeWindow>\r\n\t\t</timePeriods>\r\n\t\t<dateTime>\r\n\t\t\t<broadcastDate>2021-08-06</broadcastDate>\r\n\t\t\t<calendarDateTime>2021-08-06T19:49:23.706Z</calendarDateTime>\r\n\t\t</dateTime>\r\n\t</units>\r\n</SellerLogtimesRequest>"
               Change:
-                value:
-                  $ref: '#/paths/~1seller~1logtimes/post/requestBody/content/application~1json/examples/New/value'
+                value: "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n<SellerLogtimesRequest>\r\n\t<transactionHeader>\r\n\t\t<tipVersion>5.1.0</tipVersion>\r\n\t\t<transactionId>\r\n\t\t\t<transactionId>BA5C4CEB-238D-4163-8BB5-7AE2129E37F2</transactionId>\r\n\t\t\t<transactionType>Change</transactionType>\r\n\t\t\t<sourceId>490</sourceId>\r\n\t\t\t<sourceName>KHOU-TV</sourceName>\r\n\t\t</transactionId>\r\n\t\t<orginalTransactionId>\r\n\t\t\t<transactionId>6A61B212-4DBD-431E-A953-8873561AF781</transactionId>\r\n\t\t\t<transactionType>New</transactionType>\r\n\t\t\t<sourceId>490</sourceId>\r\n\t\t\t<sourceName>KHOU-TV</sourceName>\r\n\t\t</orginalTransactionId>\r\n\t\t<timeStamp>2020-07-01T19:17:28Z</timeStamp>\r\n\t</transactionHeader>\r\n\t<externalComment>Seller's Comment</externalComment>\r\n\t<mediaOutlets>\r\n\t\t<mediaOutletIds>\r\n\t\t\t<id>490</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>490</srcId>\r\n\t\t\t<srcName>KHOU-TV</srcName>\r\n\t\t</mediaOutletIds>\r\n\t\t<mediaOutletName>KHOU-TV</mediaOutletName>\r\n\t\t<mediaOutletType>Local TV</mediaOutletType>\r\n\t\t<mediaOutletChannel>KHOU-TV</mediaOutletChannel>\r\n\t\t<mediaOutletMarketName>Houston, TX</mediaOutletMarketName>\r\n\t</mediaOutlets>\r\n\t<units>\r\n\t\t<unitId>15555</unitId>\r\n\t\t<referenceIds>\r\n\t\t\t<referenceSourceName>KHOU-TV</referenceSourceName>\r\n\t\t\t<referenceSourceId>490</referenceSourceId>\r\n\t\t\t<referenceType>Order</referenceType>\r\n\t\t\t<referenceId>A2CAF9C7-C64F-44CA-84E1-DCD51D790E3E</referenceId>\r\n\t\t\t<referenceName>Hyundia P25-54 1Q</referenceName>\r\n\t\t</referenceIds>\r\n\t\t<lineReferences>\r\n\t\t\t<id>Hyn-2554-1</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>XVEN-1234</srcId>\r\n\t\t\t<srcName>XVEN Buyer</srcName>\r\n\t\t</lineReferences>\r\n\t\t<lineReferences>\r\n\t\t\t<id>1</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>490</srcId>\r\n\t\t\t<srcName>KHOU-TV</srcName>\r\n\t\t</lineReferences>\r\n\t\t<cpeCode>\r\n\t\t\t<clientCode>HYUN</clientCode>\r\n\t\t\t<productCode>AUTO</productCode>\r\n\t\t\t<estimateCode>987</estimateCode>\r\n\t\t</cpeCode>\r\n\t\t<buyer>\r\n\t\t\t<buyerIds>\r\n\t\t\t\t<id>456</id>\r\n\t\t\t\t<version>0</version>\r\n\t\t\t\t<srcId>490</srcId>\r\n\t\t\t\t<srcName>KHOU-TV</srcName>\r\n\t\t\t</buyerIds>\r\n\t\t\t<buyerName>Canvas Worldwide. LLC</buyerName>\r\n\t\t</buyer>\r\n\t\t<advertiser>\r\n\t\t\t<advertiserIds>\r\n\t\t\t\t<id>34</id>\r\n\t\t\t\t<version>0</version>\r\n\t\t\t\t<srcId>490</srcId>\r\n\t\t\t\t<srcName>KHOU-TV</srcName>\r\n\t\t\t</advertiserIds>\r\n\t\t\t<advertiserName>Hyundai</advertiserName>\r\n\t\t</advertiser>\r\n\t\t<brand>\r\n\t\t\t<brandIds>\r\n\t\t\t\t<id>19</id>\r\n\t\t\t\t<version>0</version>\r\n\t\t\t\t<srcId>490</srcId>\r\n\t\t\t\t<srcName>KHOU-TV</srcName>\r\n\t\t\t</brandIds>\r\n\t\t\t<brandName>Kona</brandName>\r\n\t\t</brand>\r\n\t\t<product>\r\n\t\t\t<productIds>\r\n\t\t\t\t<id>89</id>\r\n\t\t\t\t<version>0</version>\r\n\t\t\t\t<srcId>490</srcId>\r\n\t\t\t\t<srcName>KHOU-TV</srcName>\r\n\t\t\t</productIds>\r\n\t\t\t<productName>Automobile</productName>\r\n\t\t</product>\r\n\t\t<salesElementHeader>\r\n\t\t\t<mediaOutletId>490</mediaOutletId>\r\n\t\t\t<salesElementName>CBS This Morning</salesElementName>\r\n\t\t\t<salesElementId>56</salesElementId>\r\n\t\t\t<salesElementType>Program</salesElementType>\r\n\t\t</salesElementHeader>\r\n\t\t<program>CBS This Morning</program>\r\n\t\t<daypart>Morning</daypart>\r\n\t\t<inventoryType>Commercial</inventoryType>\r\n\t\t<airedLength>30</airedLength>\r\n\t\t<bookedLength>30</bookedLength>\r\n\t\t<rate>525</rate>\r\n\t\t<creative>\r\n\t\t\t<ids>\r\n\t\t\t\t<id>HYUN1234</id>\r\n\t\t\t\t<version>0</version>\r\n\t\t\t\t<srcId>490</srcId>\r\n\t\t\t\t<srcName>KHOU-TV</srcName>\r\n\t\t\t</ids>\r\n\t\t\t<ids>\r\n\t\t\t\t<id>ABCD000123H</id>\r\n\t\t\t\t<version>0</version>\r\n\t\t\t\t<srcId>Ad-id.org</srcId>\r\n\t\t\t\t<srcName>Ad ID code</srcName>\r\n\t\t\t</ids>\r\n\t\t\t<name>Name of Creative</name>\r\n\t\t\t<status>Final</status>\r\n\t\t\t<length>30</length>\r\n\t\t</creative>\r\n\t\t<status>Aired</status>\r\n\t\t<isCredit>false</isCredit>\r\n\t\t<timePeriods>\r\n\t\t\t<dateWindow>\r\n\t\t\t\t<startDate>2021-08-06</startDate>\r\n\t\t\t\t<endDate>2021-08-06</endDate>\r\n\t\t\t</dateWindow>\r\n\t\t\t<DOW>\r\n\t\t\t\t<isMonday>true</isMonday>\r\n\t\t\t\t<isTuesday>true</isTuesday>\r\n\t\t\t\t<isWednesday>true</isWednesday>\r\n\t\t\t\t<isThursday>true</isThursday>\r\n\t\t\t\t<isFriday>true</isFriday>\r\n\t\t\t\t<isSaturday>true</isSaturday>\r\n\t\t\t\t<isSunday>true</isSunday>\r\n\t\t\t</DOW>\r\n\t\t\t<timeWindow>\r\n\t\t\t\t<startTime>07:00</startTime>\r\n\t\t\t\t<endTime>09:00</endTime>\r\n\t\t\t</timeWindow>\r\n\t\t</timePeriods>\r\n\t\t<dateTime>\r\n\t\t\t<broadcastDate>2021-08-06</broadcastDate>\r\n\t\t\t<calendarDateTime>2021-08-06T19:49:23.706Z</calendarDateTime>\r\n\t\t</dateTime>\r\n\t</units>\r\n</SellerLogtimesRequest>"
       responses:
         '200':
           $ref: '#/components/responses/Success'
@@ -3036,43 +2954,57 @@ paths:
               New:
                 value:
                   transactionHeader:
-                    tipVersion: 5.1.0
+                    tipVersion: 6.0.0
                     transactionId:
-                      transactionId: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+                      transactionId: 1C237FDD-940D-499E-AA20-DF3B9CE0908E
                       transactionType: New
-                      sourceId: string
-                      sourceName: string
-                    timeStamp: '2020-07-24T15:51:07.026Z'
-                  dateSubmitted: '2020-07-24'
-                  dueDate: '2020-07-24'
+                      sourceId: ABC-1234
+                      sourceName: TIPApi
+                    timeStamp: '2021-07-21T17:32:28Z'
+                  dateSubmitted: '2021-05-20'
+                  dueDate: '2021-05-20'
                   mediaOutlet:
-                    mediaOutletId: A2CAF9C7-C64F-44CA-84E1-DCD51D790E3E
-                    mediaOutletName: MY TV
-                    mediaOutletType: Broadcast TV
-                    mediaOutletChannel: '58.1'
-                    mediaOutletMarketName: My Market
-                    mediaOutletReference: ''
+                    mediaOutletIds:
+                      - id: KHOU-TV
+                        version: '0'
+                        srcId: ABC-1234
+                        srcName: TIPApi
+                    mediaOutletName: MBLTV - My Best Local TV Station
+                    mediaOutletType: Local TV
+                    mediaOutletChannel: KHOU-TV
+                    mediaOutletMarketName: 'Houston, TX'
                   referenceIds:
-                    - referenceSourceName: ABC
-                      referenceSourceId: '123'
-                      referenceSourceLookup: ''
+                    - referenceSourceName: KHOU-TV
+                      referenceSourceId: ABC-1234
                       referenceType: Order
-                      referenceId: A2CAF9C7-C64F-44CA-84E1-DCD51D790E3E
-                      referenceVersionId: ''
-                      referenceName: ''
+                      referenceId: ORD-1234
+                      referenceVersionId: 1
+                      referenceName: Hyundai 1Q22
                   cpeCode:
-                    clientCode: string
-                    productCode: string
-                    estimateCode: string
+                    clientCode: CLE-1234
+                    productCode: AUTO
+                    estimateCode: AU-12345
                   buyer:
-                    buyerId: string
-                    buyerName: string
-                    buyerReference: string
+                    buyerIds:
+                      - id: BUY-123
+                        version: '0'
+                        srcId: ABC-1234
+                        srcName: TIPApi
+                    buyerName: Canvas Worldwide. LLC
                   advertiser:
-                    advertiserId: string
-                    advertiserName: string
-                    advertiserReference: string
-                  makegoodType: Resolve Preemption
+                    advertiserIds:
+                      - id: ADV-1234
+                        version: '0'
+                        srcId: ABC-1234
+                        srcName: TIPApi
+                    advertiserName: Hyundai
+                  makegoodType: Resolve preemption
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/SellerMakegoodGuidelines'
+            examples:
+              New:
+                value: "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n<SellerMakegoodGuidelinesRequest>\r\n\t<transactionHeader>\r\n\t\t<tipVersion>6.0.0</tipVersion>\r\n\t\t<transactionId>\r\n\t\t\t<transactionId>1C237FDD-940D-499E-AA20-DF3B9CE0908E</transactionId>\r\n\t\t\t<transactionType>New</transactionType>\r\n\t\t\t<sourceId>ABC-1234</sourceId>\r\n\t\t\t<sourceName>TIPApi</sourceName>\r\n\t\t</transactionId>\r\n\t\t<timeStamp>2021-07-21T17:32:28Z</timeStamp>\r\n\t</transactionHeader>\r\n\t<dateSubmitted>2021-05-20</dateSubmitted>\r\n\t<dueDate>2021-05-20</dueDate>\r\n\t<mediaOutlet>\r\n\t\t<mediaOutletIds>\r\n\t\t\t<id>KHOU-TV</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>ABC-1234</srcId>\r\n\t\t\t<srcName>TIPApi</srcName>\r\n\t\t</mediaOutletIds>\r\n\t\t<mediaOutletName>MBLTV - My Best Local TV Station</mediaOutletName>\r\n\t\t<mediaOutletType>Local TV</mediaOutletType>\r\n\t\t<mediaOutletChannel>KHOU-TV</mediaOutletChannel>\r\n\t\t<mediaOutletMarketName>Houston, TX</mediaOutletMarketName>\r\n\t</mediaOutlet>\r\n\t<referenceIds>\r\n\t\t<referenceSourceName>KHOU-TV</referenceSourceName>\r\n\t\t<referenceSourceId>ABC-1234</referenceSourceId>\r\n\t\t<referenceType>Order</referenceType>\r\n\t\t<referenceId>ORD-1234</referenceId>\r\n\t\t<referenceVersionId>1</referenceVersionId>\r\n\t\t<referenceName>Hyundai 1Q22</referenceName>\r\n\t</referenceIds>\r\n\t<cpeCode>\r\n\t\t<clientCode>CLE-1234</clientCode>\r\n\t\t<productCode>AUTO</productCode>\r\n\t\t<estimateCode>AU-12345</estimateCode>\r\n\t</cpeCode>\r\n\t<buyer>\r\n\t\t<buyerIds>\r\n\t\t\t<id>BUY-123</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>ABC-1234</srcId>\r\n\t\t\t<srcName>TIPApi</srcName>\r\n\t\t</buyerIds>\r\n\t\t<buyerName>Canvas Worldwide. LLC</buyerName>\r\n\t</buyer>\r\n\t<advertiser>\r\n\t\t<advertiserIds>\r\n\t\t\t<id>ADV-1234</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>ABC-1234</srcId>\r\n\t\t\t<srcName>TIPApi</srcName>\r\n\t\t</advertiserIds>\r\n\t\t<advertiserName>Hyundai</advertiserName>\r\n\t</advertiser>\r\n\t<makegoodType>Resolve preemption</makegoodType>\r\n</SellerMakegoodGuidelinesRequest>"
       responses:
         '202':
           $ref: '#/components/responses/Accepted'
@@ -3103,6 +3035,152 @@ paths:
         content:
           application/json:
             schema:
+              $ref: '#/paths/~1buyer~1makegood~1guidelines/post/requestBody/content/application~1xml/schema'
+            examples:
+              New:
+                value:
+                  transactionHeader:
+                    tipVersion: 6.0.0
+                    transactionId:
+                      transactionId: 1C237FDD-940D-499E-AA20-DF3B9CE0908E
+                      transactionType: New
+                      sourceId: ABC-1234
+                      sourceName: TIPApi
+                    timeStamp: '2021-07-21T17:32:28Z'
+                  mediaOutlet:
+                    mediaOutletIds:
+                      - id: KHOU-TV
+                        version: '0'
+                        srcId: ABC-1234
+                        srcName: TIPApi
+                    mediaOutletName: MBLTV - My Best Local TV Station
+                    mediaOutletType: Local TV
+                    mediaOutletChannel: KHOU-TV
+                    mediaOutletMarketName: 'Houston, TX'
+                  referenceIds:
+                    - referenceSourceName: KHOU-TV
+                      referenceSourceId: ABC-1234
+                      referenceType: Order
+                      referenceId: ORD-1234
+                      referenceVersionId: 1
+                      referenceName: Hyundai 1Q22
+                  cpeCode:
+                    clientCode: CLE-1234
+                    productCode: AUTO
+                    estimateCode: AU-12345
+                  buyer:
+                    buyerIds:
+                      - id: BUY-123
+                        version: '0'
+                        srcId: ABC-1234
+                        srcName: TIPApi
+                    buyerName: Canvas Worldwide. LLC
+                  advertiser:
+                    advertiserIds:
+                      - id: ADV-1234
+                        version: '0'
+                        srcId: ABC-1234
+                        srcName: TIPApi
+                    advertiserName: Hyundai
+                  makegoodGuidelines:
+                    - makegoodType: Resolve preemption
+                      salesElementOriginal:
+                        mediaOutletId: KHOU-TV
+                        salesElementName: Primetime
+                        salesElementId: SE-1234
+                        salesElementType: Time-specific
+                      salesElementEquivalent: Same Sales Element
+                      makegoodTargetAudienceLimit: 100
+                      makegoodRatio: 1
+                      makegoodWindow: Original Broadcast Week
+                      externalComment: Shifted to Next Run
+              Change:
+                value:
+                  transactionHeader:
+                    tipVersion: 6.0.0
+                    transactionId:
+                      transactionId: 6C895361-97B0-43F0-976C-A4E77DDD78FD
+                      transactionType: Change
+                      sourceId: ABC-1234
+                      sourceName: TIPApi
+                    originalTransactionId:
+                      transactionId: 1C237FDD-940D-499E-AA20-DF3B9CE0908E
+                      transactionType: New
+                      sourceId: ABC-1234
+                      sourceName: TIPApi
+                    timeStamp: '2021-07-21T17:32:28Z'
+                  mediaOutlet:
+                    mediaOutletIds:
+                      - id: KHOU-TV
+                        version: '0'
+                        srcId: ABC-1234
+                        srcName: TIPApi
+                    mediaOutletName: MBLTV - My Best Local TV Station
+                    mediaOutletType: Local TV
+                    mediaOutletChannel: KHOU-TV
+                    mediaOutletMarketName: 'Houston, TX'
+                  referenceIds:
+                    - referenceSourceName: KHOU-TV
+                      referenceSourceId: ABC-1234
+                      referenceType: Order
+                      referenceId: ORD-1234
+                      referenceVersionId: 1
+                      referenceName: Hyundai 1Q22
+                  cpeCode:
+                    clientCode: CLE-1234
+                    productCode: AUTO
+                    estimateCode: AU-12345
+                  buyer:
+                    buyerIds:
+                      - id: BUY-123
+                        version: '0'
+                        srcId: ABC-1234
+                        srcName: TIPApi
+                    buyerName: Canvas Worldwide. LLC
+                  advertiser:
+                    advertiserIds:
+                      - id: ADV-1234
+                        version: '0'
+                        srcId: ABC-1234
+                        srcName: TIPApi
+                    advertiserName: Hyundai
+                  makegoodGuidelines:
+                    - makegoodType: Resolve preemption
+                      salesElementOriginal:
+                        mediaOutletId: KHOU-TV
+                        salesElementName: Primetime
+                        salesElementId: SE-1234
+                        salesElementType: Time-specific
+                      salesElementEquivalent: Same Sales Element
+                      makegoodTargetAudienceLimit: 100
+                      makegoodRatio: 2
+                      makegoodWindow: Original Broadcast Week
+                      externalComment: Shifted to Next Run
+              Cancel:
+                value:
+                  transactionHeader:
+                    tipVersion: 6.0.0
+                    transactionId:
+                      transactionId: 6C895361-97B0-43F0-976C-A4E77DDD78FD
+                      transactionType: Cancel
+                      sourceId: ABC-1234
+                      sourceName: TIPApi
+                    originalTransactionId:
+                      transactionId: 1C237FDD-940D-499E-AA20-DF3B9CE0908E
+                      transactionType: New
+                      sourceId: ABC-1234
+                      sourceName: TIPApi
+                    timeStamp: '2021-07-21T17:32:28Z'
+                  referenceIds:
+                    - referenceSourceName: KHOU-TV
+                      referenceSourceId: ABC-1234
+                      referenceType: Order
+                      referenceId: ORD-1234
+                      referenceVersionId: 1
+                      referenceName: Hyundai 1Q22
+                  comments: Please ignore previous guidelines. newly updated ones are to be provided
+          application/xml:
+            schema:
               oneOf:
                 - $ref: '#/components/schemas/BuyerMakegoodGuidelines'
                 - $ref: '#/components/schemas/CancelConfirmRecallReject'
@@ -3110,60 +3188,11 @@ paths:
                 name: BuyerMakegoodGuidelinesRequest
             examples:
               New:
-                value:
-                  transactionHeader:
-                    tipVersion: 5.1.0
-                    transactionId:
-                      transactionId: 3fa85f64-5717-4562-b3fc-2c963f66afa6
-                      transactionType: New
-                      sourceId: string
-                      sourceName: string
-                    timeStamp: '2020-07-24T15:56:29.442Z'
-                  mediaOutlet:
-                    mediaOutletId: string
-                    mediaOutletName: string
-                    mediaOutletType: Broadcast TV
-                    mediaOutletChannel: string
-                    mediaOutletMarketName: string
-                    mediaOutletReference: string
-                  referenceIds:
-                    - referenceSourceName: ABC
-                      referenceSourceId: '123'
-                      referenceSourceLookup: ''
-                      referenceType: Order
-                      referenceId: A1C44270-D790-4329-9F37-6F77EB7ECA85
-                      referenceVersionId: ''
-                      referenceName: any
-                  cpeCode:
-                    clientCode: string
-                    productCode: string
-                    estimateCode: string
-                  buyer:
-                    buyerId: string
-                    buyerName: string
-                    buyerReference: string
-                  advertiser:
-                    advertiserId: string
-                    advertiserName: string
-                    advertiserReference: string
-                  makegoodGuidelines:
-                    - makegoodType: Resolve Preemption
-                      salesElementOriginal:
-                        mediaOutletId: string
-                        salesElementName: string
-                        salesElementId: string
-                        salesElementType: Time-specific
-                      salesElementEquivalent: Same Sales Element
-                      makegoodTargetAudienceLimit: 0
-                      makegoodRatio: 0
-                      makegoodWindow: Original Broadcast Week
-                      externalComment: string
+                value: "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n<BuyerMakegoodGuidelinesRequest>\r\n\t<transactionHeader>\r\n\t\t<tipVersion>6.0.0</tipVersion>\r\n\t\t<transactionId>\r\n\t\t\t<transactionId>1C237FDD-940D-499E-AA20-DF3B9CE0908E</transactionId>\r\n\t\t\t<transactionType>New</transactionType>\r\n\t\t\t<sourceId>ABC-1234</sourceId>\r\n\t\t\t<sourceName>TIPApi</sourceName>\r\n\t\t</transactionId>\r\n\t\t<timeStamp>2021-07-21T17:32:28Z</timeStamp>\r\n\t</transactionHeader>\r\n\t<mediaOutlet>\r\n\t\t<mediaOutletIds>\r\n\t\t\t<id>KHOU-TV</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>ABC-1234</srcId>\r\n\t\t\t<srcName>TIPApi</srcName>\r\n\t\t</mediaOutletIds>\r\n\t\t<mediaOutletName>MBLTV - My Best Local TV Station</mediaOutletName>\r\n\t\t<mediaOutletType>Local TV</mediaOutletType>\r\n\t\t<mediaOutletChannel>KHOU-TV</mediaOutletChannel>\r\n\t\t<mediaOutletMarketName>Houston, TX</mediaOutletMarketName>\r\n\t</mediaOutlet>\r\n\t<referenceIds>\r\n\t\t<referenceSourceName>KHOU-TV</referenceSourceName>\r\n\t\t<referenceSourceId>ABC-1234</referenceSourceId>\r\n\t\t<referenceType>Order</referenceType>\r\n\t\t<referenceId>ORD-1234</referenceId>\r\n\t\t<referenceVersionId>1</referenceVersionId>\r\n\t\t<referenceName>Hyundai 1Q22</referenceName>\r\n\t</referenceIds>\r\n\t<cpeCode>\r\n\t\t<clientCode>CLE-1234</clientCode>\r\n\t\t<productCode>AUTO</productCode>\r\n\t\t<estimateCode>AU-12345</estimateCode>\r\n\t</cpeCode>\r\n\t<buyer>\r\n\t\t<buyerIds>\r\n\t\t\t<id>BUY-123</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>ABC-1234</srcId>\r\n\t\t\t<srcName>TIPApi</srcName>\r\n\t\t</buyerIds>\r\n\t\t<buyerName>Canvas Worldwide. LLC</buyerName>\r\n\t</buyer>\r\n\t<advertiser>\r\n\t\t<advertiserIds>\r\n\t\t\t<id>ADV-1234</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>ABC-1234</srcId>\r\n\t\t\t<srcName>TIPApi</srcName>\r\n\t\t</advertiserIds>\r\n\t\t<advertiserName>Hyundai</advertiserName>\r\n\t</advertiser>\r\n\t<makegoodGuidelines>\r\n\t\t<makegoodType>Resolve preemption</makegoodType>\r\n\t\t<salesElementOriginal>\r\n\t\t\t<mediaOutletId>KHOU-TV</mediaOutletId>\r\n\t\t\t<salesElementName>Primetime</salesElementName>\r\n\t\t\t<salesElementId>SE-1234</salesElementId>\r\n\t\t\t<salesElementType>Time-specific</salesElementType>\r\n\t\t</salesElementOriginal>\r\n\t\t<salesElementEquivalent>Same Sales Element</salesElementEquivalent>\r\n\t\t<makegoodTargetAudienceLimit>100</makegoodTargetAudienceLimit>\r\n\t\t<makegoodRatio>1</makegoodRatio>\r\n\t\t<makegoodWindow>Original Broadcast Week</makegoodWindow>\r\n\t\t<externalComment>Shifted to Next Run</externalComment>\r\n\t</makegoodGuidelines>\r\n</BuyerMakegoodGuidelinesRequest>"
               Change:
-                value:
-                  $ref: '#/paths/~1buyer~1makegood~1guidelines/post/requestBody/content/application~1json/examples/New/value'
+                value: "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n<BuyerMakegoodGuidelinesRequest>\r\n\t<transactionHeader>\r\n\t\t<tipVersion>6.0.0</tipVersion>\r\n\t\t<transactionId>\r\n\t\t\t<transactionId>6C895361-97B0-43F0-976C-A4E77DDD78FD</transactionId>\r\n\t\t\t<transactionType>Change</transactionType>\r\n\t\t\t<sourceId>ABC-1234</sourceId>\r\n\t\t\t<sourceName>TIPApi</sourceName>\r\n\t\t</transactionId>\r\n\t\t<originalTransactionId>\r\n\t\t\t<transactionId>1C237FDD-940D-499E-AA20-DF3B9CE0908E</transactionId>\r\n\t\t\t<transactionType>New</transactionType>\r\n\t\t\t<sourceId>ABC-1234</sourceId>\r\n\t\t\t<sourceName>TIPApi</sourceName>\r\n\t\t</originalTransactionId>\r\n\t\t<timeStamp>2021-07-21T17:32:28Z</timeStamp>\r\n\t</transactionHeader>\r\n\t<mediaOutlet>\r\n\t\t<mediaOutletIds>\r\n\t\t\t<id>KHOU-TV</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>ABC-1234</srcId>\r\n\t\t\t<srcName>TIPApi</srcName>\r\n\t\t</mediaOutletIds>\r\n\t\t<mediaOutletName>MBLTV - My Best Local TV Station</mediaOutletName>\r\n\t\t<mediaOutletType>Local TV</mediaOutletType>\r\n\t\t<mediaOutletChannel>KHOU-TV</mediaOutletChannel>\r\n\t\t<mediaOutletMarketName>Houston, TX</mediaOutletMarketName>\r\n\t</mediaOutlet>\r\n\t<referenceIds>\r\n\t\t<referenceSourceName>KHOU-TV</referenceSourceName>\r\n\t\t<referenceSourceId>ABC-1234</referenceSourceId>\r\n\t\t<referenceType>Order</referenceType>\r\n\t\t<referenceId>ORD-1234</referenceId>\r\n\t\t<referenceVersionId>1</referenceVersionId>\r\n\t\t<referenceName>Hyundai 1Q22</referenceName>\r\n\t</referenceIds>\r\n\t<cpeCode>\r\n\t\t<clientCode>CLE-1234</clientCode>\r\n\t\t<productCode>AUTO</productCode>\r\n\t\t<estimateCode>AU-12345</estimateCode>\r\n\t</cpeCode>\r\n\t<buyer>\r\n\t\t<buyerIds>\r\n\t\t\t<id>BUY-123</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>ABC-1234</srcId>\r\n\t\t\t<srcName>TIPApi</srcName>\r\n\t\t</buyerIds>\r\n\t\t<buyerName>Canvas Worldwide. LLC</buyerName>\r\n\t</buyer>\r\n\t<advertiser>\r\n\t\t<advertiserIds>\r\n\t\t\t<id>ADV-1234</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>ABC-1234</srcId>\r\n\t\t\t<srcName>TIPApi</srcName>\r\n\t\t</advertiserIds>\r\n\t\t<advertiserName>Hyundai</advertiserName>\r\n\t</advertiser>\r\n\t<makegoodGuidelines>\r\n\t\t<makegoodType>Resolve preemption</makegoodType>\r\n\t\t<salesElementOriginal>\r\n\t\t\t<mediaOutletId>KHOU-TV</mediaOutletId>\r\n\t\t\t<salesElementName>Primetime</salesElementName>\r\n\t\t\t<salesElementId>SE-1234</salesElementId>\r\n\t\t\t<salesElementType>Time-specific</salesElementType>\r\n\t\t</salesElementOriginal>\r\n\t\t<salesElementEquivalent>Same Sales Element</salesElementEquivalent>\r\n\t\t<makegoodTargetAudienceLimit>100</makegoodTargetAudienceLimit>\r\n\t\t<makegoodRatio>2</makegoodRatio>\r\n\t\t<makegoodWindow>Original Broadcast Week</makegoodWindow>\r\n\t\t<externalComment>Shifted to Next Run</externalComment>\r\n\t</makegoodGuidelines>\r\n</BuyerMakegoodGuidelinesRequest>"
               Cancel:
-                value:
-                  $ref: '#/paths/~1buyer~1rfps/post/requestBody/content/application~1json/examples/Cancel/value'
+                value: "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n<BuyerMakegoodGuidelinesRequest>\r\n\t<transactionHeader>\r\n\t\t<tipVersion>6.0.0</tipVersion>\r\n\t\t<transactionId>\r\n\t\t\t<transactionId>6C895361-97B0-43F0-976C-A4E77DDD78FD</transactionId>\r\n\t\t\t<transactionType>Cancel</transactionType>\r\n\t\t\t<sourceId>ABC-1234</sourceId>\r\n\t\t\t<sourceName>TIPApi</sourceName>\r\n\t\t</transactionId>\r\n\t\t<originalTransactionId>\r\n\t\t\t<transactionId>1C237FDD-940D-499E-AA20-DF3B9CE0908E</transactionId>\r\n\t\t\t<transactionType>New</transactionType>\r\n\t\t\t<sourceId>ABC-1234</sourceId>\r\n\t\t\t<sourceName>TIPApi</sourceName>\r\n\t\t</originalTransactionId>\r\n\t\t<timeStamp>2021-07-21T17:32:28Z</timeStamp>\r\n\t</transactionHeader>\r\n\t<referenceIds>\r\n\t\t<referenceSourceName>KHOU-TV</referenceSourceName>\r\n\t\t<referenceSourceId>ABC-1234</referenceSourceId>\r\n\t\t<referenceType>Order</referenceType>\r\n\t\t<referenceId>ORD-1234</referenceId>\r\n\t\t<referenceVersionId>1</referenceVersionId>\r\n\t\t<referenceName>Hyundai 1Q22</referenceName>\r\n\t</referenceIds>\r\n\t<comments>Please ignore previous guidelines. newly updated ones are to be provided</comments>\r\n</BuyerMakegoodGuidelinesRequest>"
       responses:
         '200':
           $ref: '#/components/responses/Success'
@@ -3193,6 +3222,305 @@ paths:
         content:
           application/json:
             schema:
+              $ref: '#/paths/~1seller~1makegood~1offers/post/requestBody/content/application~1xml/schema'
+            examples:
+              New:
+                value:
+                  transactionHeader:
+                    tipVersion: 6.0.0
+                    transactionId:
+                      transactionId: 1C237FDD-940D-499E-AA20-DF3B9CE0908E
+                      transactionType: New
+                      sourceId: ABC-1234
+                      sourceName: TIPApi
+                    timeStamp: '2021-07-21T17:32:28Z'
+                  referenceIds:
+                    - referenceSourceName: KHOU-TV
+                      referenceSourceId: ABC-1234
+                      referenceType: Order
+                      referenceId: REF-1234
+                      referenceVersionId: 1
+                      referenceName: Hyundai 1Q22
+                  makegoodType: Resolve preemption
+                  externalComment: Due to technical difficulties we have to preempt your spot
+                  preemptDetails:
+                    - preemptNum: string
+                      salesElement:
+                        salesElementHeader:
+                          mediaOutletId: KHOU-TV
+                          salesElementName: Primetime
+                          salesElementId: SE-1234
+                          salesElementType: Time-specific
+                        timePeriods:
+                          - dateWindow:
+                              startDate: '2021-05-20'
+                              endDate: '2021-05-20'
+                            DOW:
+                              isMonday: true
+                              isTuesday: true
+                              isWednesday: true
+                              isThursday: true
+                              isFriday: true
+                              isSaturday: true
+                              isSunday: true
+                            timeWindow:
+                              startTime: string
+                              endTime: string
+                        devices:
+                          - Smart TV
+                        programs:
+                          - Local News
+                        salesElementTransactionInventorys:
+                          - lineNum: string
+                            lineReference: string
+                            lineReferences:
+                              - id: string
+                                version: string
+                                srcId: string
+                                srcName: string
+                            inventoryType: string
+                            companionTypeIds:
+                              - string
+                            linkType:
+                              linkType: Billboard
+                              linkNum: 0
+                              linkSeq: 0
+                            inventoryPosition: First
+                            inventoryLength: 0
+                            isAdu: true
+                            isBonus: true
+                            externalComment: string
+                            salesElementTransactionDates:
+                              - dateType: Day
+                                calendarType: Broadcast
+                                unitCount: 0
+                                dailyUnitDistribution:
+                                  pacingRule:
+                                    type: Frontload
+                                    rateType: Absolute
+                                  monday: 0
+                                  tuesday: 0
+                                  wednesday: 0
+                                  thursday: 0
+                                  friday: 0
+                                  saturday: 0
+                                  sunday: 0
+                                frequencyCappings:
+                                  - period: Minute
+                                    perPeriod: 0
+                                    value: 0
+                                pricingMetric:
+                                  PricingMetricOption: CPM
+                                  grossValue: 0
+                                  netValue: 0
+                                grossCost: 150
+                                netCost: 127.5
+                                audienceTargets:
+                                  - excludeOrInclude: Include
+                                    audienceTargetIds:
+                                      - id: string
+                                        version: string
+                                        srcId: string
+                                        srcName: string
+                                    targetAttribute: HH Income
+                                    value:
+                                      - '$50,000 - $75,000'
+                                      - '$75,000, -$100,000'
+                                audiencesPricingMetrics:
+                                  - audienceSegmentIds:
+                                      - id: string
+                                        version: string
+                                        srcId: string
+                                        srcName: string
+                                    type: Selling
+                                    audienceMetric:
+                                      audienceMetric: Impressions
+                                      audienceMetricValue: 43256
+                                externalComment: string
+                      preemptReason: Cancellation due to technical Problems
+                      makegoodNumLinks:
+                        - 0
+                  makegoodDetails:
+                    - makegoodNum: 0
+                      makegoodReason: string
+                      makegoodAssumedConfirm: Booked
+                      preemptNumLinks:
+                        - 0
+              Change:
+                value:
+                  transactionHeader:
+                    tipVersion: 6.0.0
+                    transactionId:
+                      transactionId: 1FF605BA-86B0-420A-9166-DB7E12AEBA94
+                      transactionType: Change
+                      sourceId: ABC-1234
+                      sourceName: TIPApi
+                    originalTransactionId:
+                      transactionId: 1C237FDD-940D-499E-AA20-DF3B9CE0908E
+                      transactionType: New
+                      sourceId: ABC-1234
+                      sourceName: TIPApi
+                    timeStamp: '2021-07-21T17:32:28Z'
+                  referenceIds:
+                    - referenceSourceName: KHOU-TV
+                      referenceSourceId: ABC-1234
+                      referenceType: Order
+                      referenceId: REF-1234
+                      referenceVersionId: 1
+                      referenceName: Hyundai 1Q22
+                  makegoodType: Resolve preemption
+                  externalComment: Due to technical difficulties we have to preempt your spot
+                  preemptDetails:
+                    - preemptNum: string
+                      salesElement:
+                        salesElementHeader:
+                          mediaOutletId: KHOU-TV
+                          salesElementName: Primetime
+                          salesElementId: SE-1234
+                          salesElementType: Time-specific
+                        timePeriods:
+                          - dateWindow:
+                              startDate: '2021-05-20'
+                              endDate: '2021-05-20'
+                            DOW:
+                              isMonday: true
+                              isTuesday: true
+                              isWednesday: true
+                              isThursday: true
+                              isFriday: true
+                              isSaturday: true
+                              isSunday: true
+                            timeWindow:
+                              startTime: string
+                              endTime: string
+                        devices:
+                          - Smart TV
+                        programs:
+                          - Local News
+                        salesElementTransactionInventorys:
+                          - lineNum: string
+                            lineReference: string
+                            lineReferences:
+                              - id: string
+                                version: string
+                                srcId: string
+                                srcName: string
+                            inventoryType: string
+                            companionTypeIds:
+                              - string
+                            linkType:
+                              linkType: Billboard
+                              linkNum: 0
+                              linkSeq: 0
+                            inventoryPosition: First
+                            inventoryLength: 0
+                            isAdu: true
+                            isBonus: true
+                            externalComment: string
+                            salesElementTransactionDates:
+                              - dateType: Day
+                                calendarType: Broadcast
+                                unitCount: 0
+                                dailyUnitDistribution:
+                                  pacingRule:
+                                    type: Frontload
+                                    rateType: Absolute
+                                  monday: 0
+                                  tuesday: 0
+                                  wednesday: 0
+                                  thursday: 0
+                                  friday: 0
+                                  saturday: 0
+                                  sunday: 0
+                                frequencyCappings:
+                                  - period: Minute
+                                    perPeriod: 0
+                                    value: 0
+                                pricingMetric:
+                                  PricingMetricOption: CPM
+                                  grossValue: 0
+                                  netValue: 0
+                                grossCost: 150
+                                netCost: 127.5
+                                audienceTargets:
+                                  - excludeOrInclude: Include
+                                    audienceTargetIds:
+                                      - id: string
+                                        version: string
+                                        srcId: string
+                                        srcName: string
+                                    targetAttribute: HH Income
+                                    value:
+                                      - '$50,000 - $75,000'
+                                      - '$75,000, -$100,000'
+                                audiencesPricingMetrics:
+                                  - audienceSegmentIds:
+                                      - id: string
+                                        version: string
+                                        srcId: string
+                                        srcName: string
+                                    type: Selling
+                                    audienceMetric:
+                                      audienceMetric: Impressions
+                                      audienceMetricValue: 43256
+                                externalComment: string
+                      preemptReason: Cancellation due to technical Problems
+                      makegoodNumLinks:
+                        - 0
+                  makegoodDetails:
+                    - makegoodNum: 0
+                      makegoodReason: string
+                      makegoodAssumedConfirm: Booked
+                      preemptNumLinks:
+                        - 0
+              Cancel:
+                value:
+                  transactionHeader:
+                    tipVersion: 6.0.0
+                    transactionId:
+                      transactionId: 6C895361-97B0-43F0-976C-A4E77DDD78FD
+                      transactionType: Cancel
+                      sourceId: ABC-1234
+                      sourceName: TIPApi
+                    originalTransactionId:
+                      transactionId: 1C237FDD-940D-499E-AA20-DF3B9CE0908E
+                      transactionType: New
+                      sourceId: ABC-1234
+                      sourceName: TIPApi
+                    timeStamp: '2021-07-21T17:32:28Z'
+                  referenceIds:
+                    - referenceSourceName: KHOU-TV
+                      referenceSourceId: ABC-1234
+                      referenceType: Order
+                      referenceId: ORD-1234
+                      referenceVersionId: 1
+                      referenceName: Hyundai 1Q22
+                  comments: Please ignore previous guidelines. newly updated ones are to be provided
+              Recall:
+                value:
+                  transactionHeader:
+                    tipVersion: 6.0.0
+                    transactionId:
+                      transactionId: 6C895361-97B0-43F0-976C-A4E77DDD78FD
+                      transactionType: Recall
+                      sourceId: ABC-1234
+                      sourceName: TIPApi
+                    originalTransactionId:
+                      transactionId: 1C237FDD-940D-499E-AA20-DF3B9CE0908E
+                      transactionType: New
+                      sourceId: ABC-1234
+                      sourceName: TIPApi
+                    timeStamp: '2021-07-21T17:32:28Z'
+                  referenceIds:
+                    - referenceSourceName: KHOU-TV
+                      referenceSourceId: ABC-1234
+                      referenceType: Order
+                      referenceId: ORD-1234
+                      referenceVersionId: 1
+                      referenceName: Hyundai 1Q22
+                  comments: Please ignore previous guidelines. newly updated ones are to be provided
+          application/xml:
+            schema:
               oneOf:
                 - $ref: '#/components/schemas/SellerMakegoodOffers'
                 - $ref: '#/components/schemas/CancelConfirmRecallReject'
@@ -3200,167 +3528,13 @@ paths:
                 name: SellerMakegoodOffersRequest
             examples:
               New:
-                value:
-                  transactionHeader:
-                    tipVersion: 5.1.0
-                    transactionId:
-                      transactionId: 3fa85f64-5717-4562-b3fc-2c963f66afa6
-                      transactionType: New
-                      sourceId: string
-                      sourceName: string
-                    timeStamp: '2020-07-24T15:53:14.206Z'
-                  referenceIds:
-                    - referenceSourceName: ABC
-                      referenceSourceId: '123'
-                      referenceSourceLookup: ''
-                      referenceType: Order
-                      referenceId: 19F1BA79-D415-493D-8541-CBA985A740B7
-                      referenceVersionId: ''
-                      referenceName: ''
-                  makegoodType: Resolve Preemption
-                  externalComment: string
-                  preemptDetails:
-                    - preemptNum: 0
-                      salesElement:
-                        salesElement:
-                          mediaOutletId: string
-                          salesElementName: string
-                          salesElementId: string
-                          salesElementType: Time-specific
-                        timePeriods:
-                          - dateWindow:
-                              startDate: '2020-07-24'
-                              endDate: '2020-07-24'
-                            DOW:
-                              monday: true
-                              tuesday: true
-                              wednesday: true
-                              thursday: true
-                              friday: true
-                              saturday: true
-                              sunday: true
-                            timeWindow:
-                              startTime: '09:10'
-                              endTime: '11:00'
-                        programs:
-                          - string
-                        salesElementTransactionInventory:
-                          - lineNum: string
-                            lineReference: string
-                            inventoryType: Commercial
-                            linkType:
-                              linkType: Billboard
-                              linkNum: 0
-                              linkSeq: 0
-                            inventoryPosition: First
-                            inventoryLength: 0
-                            adu: true
-                            bonus: true
-                            externalComment: string
-                            salesElementTransactionDates:
-                              - dateType: Week
-                                calendarType: Broadcast
-                                dateWindow:
-                                  startDate: '2020-07-24'
-                                  endDate: '2020-07-24'
-                                unitCount: 0
-                                dailyUnitDistribution:
-                                  monday: 0
-                                  tuesday: 0
-                                  wednesday: 0
-                                  thursday: 0
-                                  friday: 0
-                                  saturday: 0
-                                  sunday: 0
-                                rate: 0
-                                externalComment: string
-                                audiencesPricingMetrics:
-                                  - audienceSegmentId: string
-                                    audienceMetric:
-                                      audienceMetric: Impressions
-                                      audienceMetricValue: 0
-                                    pricingMetric:
-                                      pricingMetric: CPM
-                                      pricingMetricValue: 0
-                      preemptReason: string
-                      makedgoodNumLink:
-                        - 0
-                  makegoodDetails:
-                    - makegoodNum: 0
-                      salesElement:
-                        salesElement:
-                          mediaOutletId: string
-                          salesElementName: string
-                          salesElementId: string
-                          salesElementType: Time-specific
-                        timePeriods:
-                          - dateWindow:
-                              startDate: '2020-07-24'
-                              endDate: '2020-07-24'
-                            DOW:
-                              monday: true
-                              tuesday: true
-                              wednesday: true
-                              thursday: true
-                              friday: true
-                              saturday: true
-                              sunday: true
-                            timeWindow:
-                              startTime: '09:20'
-                              endTime: '10:20'
-                        programs:
-                          - string
-                        salesElementTransactionInventory:
-                          - lineNum: string
-                            lineReference: string
-                            inventoryType: Commercial
-                            linkType:
-                              linkType: Billboard
-                              linkNum: 0
-                              linkSeq: 0
-                            inventoryPosition: First
-                            inventoryLength: 0
-                            adu: true
-                            bonus: true
-                            externalComment: string
-                            salesElementTransactionDates:
-                              - dateType: Week
-                                calendarType: Broadcast
-                                dateWindow:
-                                  startDate: '2020-07-24'
-                                  endDate: '2020-07-24'
-                                unitCount: 0
-                                dailyUnitDistribution:
-                                  monday: 0
-                                  tuesday: 0
-                                  wednesday: 0
-                                  thursday: 0
-                                  friday: 0
-                                  saturday: 0
-                                  sunday: 0
-                                rate: 0
-                                externalComment: string
-                                audiencesPricingMetrics:
-                                  - audienceSegmentId: string
-                                    audienceMetric:
-                                      audienceMetric: Impressions
-                                      audienceMetricValue: 0
-                                    pricingMetric:
-                                      pricingMetric: CPM
-                                      pricingMetricValue: 0
-                      makegoodReason: string
-                      makegoodAssumedConfirm: Booked
-                      preemptNumLink:
-                        - 0
+                value: "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n<SellerMakegoodOffersRequest>\r\n\t<transactionHeader>\r\n\t\t<tipVersion>6.0.0</tipVersion>\r\n\t\t<transactionId>\r\n\t\t\t<transactionId>1C237FDD-940D-499E-AA20-DF3B9CE0908E</transactionId>\r\n\t\t\t<transactionType>New</transactionType>\r\n\t\t\t<sourceId>ABC-1234</sourceId>\r\n\t\t\t<sourceName>TIPApi</sourceName>\r\n\t\t</transactionId>\r\n\t\t<timeStamp>2021-07-21T17:32:28Z</timeStamp>\r\n\t</transactionHeader>\r\n\t<referenceIds>\r\n\t\t<referenceSourceName>KHOU-TV</referenceSourceName>\r\n\t\t<referenceSourceId>ABC-1234</referenceSourceId>\r\n\t\t<referenceType>Order</referenceType>\r\n\t\t<referenceId>REF-1234</referenceId>\r\n\t\t<referenceVersionId>1</referenceVersionId>\r\n\t\t<referenceName>Hyundai 1Q22</referenceName>\r\n\t</referenceIds>\r\n\t<makegoodType>Resolve preemption</makegoodType>\r\n\t<externalComment>Due to technical difficulties we have to preempt your spot</externalComment>\r\n\t<preemptDetails>\r\n\t\t<preemptNum>string</preemptNum>\r\n\t\t<salesElement>\r\n\t\t\t<salesElementHeader>\r\n\t\t\t\t<mediaOutletId>KHOU-TV</mediaOutletId>\r\n\t\t\t\t<salesElementName>Primetime</salesElementName>\r\n\t\t\t\t<salesElementId>SE-1234</salesElementId>\r\n\t\t\t\t<salesElementType>Time-specific</salesElementType>\r\n\t\t\t</salesElementHeader>\r\n\t\t\t<timePeriods>\r\n\t\t\t\t<dateWindow>\r\n\t\t\t\t\t<startDate>2021-05-20</startDate>\r\n\t\t\t\t\t<endDate>2021-05-20</endDate>\r\n\t\t\t\t</dateWindow>\r\n\t\t\t\t<DOW>\r\n\t\t\t\t\t<isMonday>true</isMonday>\r\n\t\t\t\t\t<isTuesday>true</isTuesday>\r\n\t\t\t\t\t<isWednesday>true</isWednesday>\r\n\t\t\t\t\t<isThursday>true</isThursday>\r\n\t\t\t\t\t<isFriday>true</isFriday>\r\n\t\t\t\t\t<isSaturday>true</isSaturday>\r\n\t\t\t\t\t<isSunday>true</isSunday>\r\n\t\t\t\t</DOW>\r\n\t\t\t\t<timeWindow>\r\n\t\t\t\t\t<startTime>string</startTime>\r\n\t\t\t\t\t<endTime>string</endTime>\r\n\t\t\t\t</timeWindow>\r\n\t\t\t</timePeriods>\r\n\t\t\t<devices>Smart TV</devices>\r\n\t\t\t<programs>Local News</programs>\r\n\t\t\t<salesElementTransactionInventorys>\r\n\t\t\t\t<lineNum>string</lineNum>\r\n\t\t\t\t<lineReference>string</lineReference>\r\n\t\t\t\t<lineReferences>\r\n\t\t\t\t\t<id>string</id>\r\n\t\t\t\t\t<version>string</version>\r\n\t\t\t\t\t<srcId>string</srcId>\r\n\t\t\t\t\t<srcName>string</srcName>\r\n\t\t\t\t</lineReferences>\r\n\t\t\t\t<inventoryType>string</inventoryType>\r\n\t\t\t\t<companionTypeIds>string</companionTypeIds>\r\n\t\t\t\t<linkType>\r\n\t\t\t\t\t<linkType>Billboard</linkType>\r\n\t\t\t\t\t<linkNum>0</linkNum>\r\n\t\t\t\t\t<linkSeq>0</linkSeq>\r\n\t\t\t\t</linkType>\r\n\t\t\t\t<inventoryPosition>First</inventoryPosition>\r\n\t\t\t\t<inventoryLength>0</inventoryLength>\r\n\t\t\t\t<isAdu>true</isAdu>\r\n\t\t\t\t<isBonus>true</isBonus>\r\n\t\t\t\t<externalComment>string</externalComment>\r\n\t\t\t\t<salesElementTransactionDates>\r\n\t\t\t\t\t<dateType>Day</dateType>\r\n\t\t\t\t\t<calendarType>Broadcast</calendarType>\r\n\t\t\t\t\t<unitCount>0</unitCount>\r\n\t\t\t\t\t<dailyUnitDistribution>\r\n\t\t\t\t\t\t<pacingRule>\r\n\t\t\t\t\t\t\t<type>Frontload</type>\r\n\t\t\t\t\t\t\t<rateType>Absolute</rateType>\r\n\t\t\t\t\t\t</pacingRule>\r\n\t\t\t\t\t\t<monday>0</monday>\r\n\t\t\t\t\t\t<tuesday>0</tuesday>\r\n\t\t\t\t\t\t<wednesday>0</wednesday>\r\n\t\t\t\t\t\t<thursday>0</thursday>\r\n\t\t\t\t\t\t<friday>0</friday>\r\n\t\t\t\t\t\t<saturday>0</saturday>\r\n\t\t\t\t\t\t<sunday>0</sunday>\r\n\t\t\t\t\t</dailyUnitDistribution>\r\n\t\t\t\t\t<frequencyCappings>\r\n\t\t\t\t\t\t<period>Minute</period>\r\n\t\t\t\t\t\t<perPeriod>0</perPeriod>\r\n\t\t\t\t\t\t<value>0</value>\r\n\t\t\t\t\t</frequencyCappings>\r\n\t\t\t\t\t<pricingMetric>\r\n\t\t\t\t\t\t<PricingMetricOption>CPM</PricingMetricOption>\r\n\t\t\t\t\t\t<grossValue>0</grossValue>\r\n\t\t\t\t\t\t<netValue>0</netValue>\r\n\t\t\t\t\t</pricingMetric>\r\n\t\t\t\t\t<grossCost>150</grossCost>\r\n\t\t\t\t\t<netCost>127.5</netCost>\r\n\t\t\t\t\t<audienceTargets>\r\n\t\t\t\t\t\t<excludeOrInclude>Include</excludeOrInclude>\r\n\t\t\t\t\t\t<audienceTargetIds>\r\n\t\t\t\t\t\t\t<id>string</id>\r\n\t\t\t\t\t\t\t<version>string</version>\r\n\t\t\t\t\t\t\t<srcId>string</srcId>\r\n\t\t\t\t\t\t\t<srcName>string</srcName>\r\n\t\t\t\t\t\t</audienceTargetIds>\r\n\t\t\t\t\t\t<targetAttribute>HH Income</targetAttribute>\r\n\t\t\t\t\t\t<value>$50,000 - $75,000</value>\r\n\t\t\t\t\t\t<value>$75,000, -$100,000</value>\r\n\t\t\t\t\t</audienceTargets>\r\n\t\t\t\t\t<audiencesPricingMetrics>\r\n\t\t\t\t\t\t<audienceSegmentIds>\r\n\t\t\t\t\t\t\t<id>string</id>\r\n\t\t\t\t\t\t\t<version>string</version>\r\n\t\t\t\t\t\t\t<srcId>string</srcId>\r\n\t\t\t\t\t\t\t<srcName>string</srcName>\r\n\t\t\t\t\t\t</audienceSegmentIds>\r\n\t\t\t\t\t\t<type>Selling</type>\r\n\t\t\t\t\t\t<audienceMetric>\r\n\t\t\t\t\t\t\t<audienceMetric>Impressions</audienceMetric>\r\n\t\t\t\t\t\t\t<audienceMetricValue>43256</audienceMetricValue>\r\n\t\t\t\t\t\t</audienceMetric>\r\n\t\t\t\t\t</audiencesPricingMetrics>\r\n\t\t\t\t\t<externalComment>string</externalComment>\r\n\t\t\t\t</salesElementTransactionDates>\r\n\t\t\t</salesElementTransactionInventorys>\r\n\t\t</salesElement>\r\n\t\t<preemptReason>Cancellation due to technical Problems</preemptReason>\r\n\t\t<makegoodNumLinks>0</makegoodNumLinks>\r\n\t</preemptDetails>\r\n\t<makegoodDetails>\r\n\t\t<makegoodNum>0</makegoodNum>\r\n\t\t<makegoodReason>string</makegoodReason>\r\n\t\t<makegoodAssumedConfirm>Booked</makegoodAssumedConfirm>\r\n\t\t<preemptNumLinks>0</preemptNumLinks>\r\n\t</makegoodDetails>\r\n</SellerMakegoodOffersRequest>"
               Change:
-                value:
-                  $ref: '#/paths/~1seller~1makegood~1offers/post/requestBody/content/application~1json/examples/New/value'
+                value: "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n<SellerMakegoodOffersRequest>\r\n\t<transactionHeader>\r\n\t\t<tipVersion>6.0.0</tipVersion>\r\n\t\t<transactionId>\r\n\t\t\t<transactionId>1FF605BA-86B0-420A-9166-DB7E12AEBA94</transactionId>\r\n\t\t\t<transactionType>Change</transactionType>\r\n\t\t\t<sourceId>ABC-1234</sourceId>\r\n\t\t\t<sourceName>TIPApi</sourceName>\r\n\t\t</transactionId>\r\n\t\t<originalTransactionId>\r\n\t\t\t<transactionId>1C237FDD-940D-499E-AA20-DF3B9CE0908E</transactionId>\r\n\t\t\t<transactionType>New</transactionType>\r\n\t\t\t<sourceId>ABC-1234</sourceId>\r\n\t\t\t<sourceName>TIPApi</sourceName>\r\n\t\t</originalTransactionId>\r\n\t\t<timeStamp>2021-07-21T17:32:28Z</timeStamp>\r\n\t</transactionHeader>\r\n\t<referenceIds>\r\n\t\t<referenceSourceName>KHOU-TV</referenceSourceName>\r\n\t\t<referenceSourceId>ABC-1234</referenceSourceId>\r\n\t\t<referenceType>Order</referenceType>\r\n\t\t<referenceId>REF-1234</referenceId>\r\n\t\t<referenceVersionId>1</referenceVersionId>\r\n\t\t<referenceName>Hyundai 1Q22</referenceName>\r\n\t</referenceIds>\r\n\t<makegoodType>Resolve preemption</makegoodType>\r\n\t<externalComment>Due to technical difficulties we have to preempt your spot</externalComment>\r\n\t<preemptDetails>\r\n\t\t<preemptNum>string</preemptNum>\r\n\t\t<salesElement>\r\n\t\t\t<salesElementHeader>\r\n\t\t\t\t<mediaOutletId>KHOU-TV</mediaOutletId>\r\n\t\t\t\t<salesElementName>Primetime</salesElementName>\r\n\t\t\t\t<salesElementId>SE-1234</salesElementId>\r\n\t\t\t\t<salesElementType>Time-specific</salesElementType>\r\n\t\t\t</salesElementHeader>\r\n\t\t\t<timePeriods>\r\n\t\t\t\t<dateWindow>\r\n\t\t\t\t\t<startDate>2021-05-20</startDate>\r\n\t\t\t\t\t<endDate>2021-05-20</endDate>\r\n\t\t\t\t</dateWindow>\r\n\t\t\t\t<DOW>\r\n\t\t\t\t\t<isMonday>true</isMonday>\r\n\t\t\t\t\t<isTuesday>true</isTuesday>\r\n\t\t\t\t\t<isWednesday>true</isWednesday>\r\n\t\t\t\t\t<isThursday>true</isThursday>\r\n\t\t\t\t\t<isFriday>true</isFriday>\r\n\t\t\t\t\t<isSaturday>true</isSaturday>\r\n\t\t\t\t\t<isSunday>true</isSunday>\r\n\t\t\t\t</DOW>\r\n\t\t\t\t<timeWindow>\r\n\t\t\t\t\t<startTime>string</startTime>\r\n\t\t\t\t\t<endTime>string</endTime>\r\n\t\t\t\t</timeWindow>\r\n\t\t\t</timePeriods>\r\n\t\t\t<devices>Smart TV</devices>\r\n\t\t\t<programs>Local News</programs>\r\n\t\t\t<salesElementTransactionInventorys>\r\n\t\t\t\t<lineNum>string</lineNum>\r\n\t\t\t\t<lineReference>string</lineReference>\r\n\t\t\t\t<lineReferences>\r\n\t\t\t\t\t<id>string</id>\r\n\t\t\t\t\t<version>string</version>\r\n\t\t\t\t\t<srcId>string</srcId>\r\n\t\t\t\t\t<srcName>string</srcName>\r\n\t\t\t\t</lineReferences>\r\n\t\t\t\t<inventoryType>string</inventoryType>\r\n\t\t\t\t<companionTypeIds>string</companionTypeIds>\r\n\t\t\t\t<linkType>\r\n\t\t\t\t\t<linkType>Billboard</linkType>\r\n\t\t\t\t\t<linkNum>0</linkNum>\r\n\t\t\t\t\t<linkSeq>0</linkSeq>\r\n\t\t\t\t</linkType>\r\n\t\t\t\t<inventoryPosition>First</inventoryPosition>\r\n\t\t\t\t<inventoryLength>0</inventoryLength>\r\n\t\t\t\t<isAdu>true</isAdu>\r\n\t\t\t\t<isBonus>true</isBonus>\r\n\t\t\t\t<externalComment>string</externalComment>\r\n\t\t\t\t<salesElementTransactionDates>\r\n\t\t\t\t\t<dateType>Day</dateType>\r\n\t\t\t\t\t<calendarType>Broadcast</calendarType>\r\n\t\t\t\t\t<unitCount>0</unitCount>\r\n\t\t\t\t\t<dailyUnitDistribution>\r\n\t\t\t\t\t\t<pacingRule>\r\n\t\t\t\t\t\t\t<type>Frontload</type>\r\n\t\t\t\t\t\t\t<rateType>Absolute</rateType>\r\n\t\t\t\t\t\t</pacingRule>\r\n\t\t\t\t\t\t<monday>0</monday>\r\n\t\t\t\t\t\t<tuesday>0</tuesday>\r\n\t\t\t\t\t\t<wednesday>0</wednesday>\r\n\t\t\t\t\t\t<thursday>0</thursday>\r\n\t\t\t\t\t\t<friday>0</friday>\r\n\t\t\t\t\t\t<saturday>0</saturday>\r\n\t\t\t\t\t\t<sunday>0</sunday>\r\n\t\t\t\t\t</dailyUnitDistribution>\r\n\t\t\t\t\t<frequencyCappings>\r\n\t\t\t\t\t\t<period>Minute</period>\r\n\t\t\t\t\t\t<perPeriod>0</perPeriod>\r\n\t\t\t\t\t\t<value>0</value>\r\n\t\t\t\t\t</frequencyCappings>\r\n\t\t\t\t\t<pricingMetric>\r\n\t\t\t\t\t\t<PricingMetricOption>CPM</PricingMetricOption>\r\n\t\t\t\t\t\t<grossValue>0</grossValue>\r\n\t\t\t\t\t\t<netValue>0</netValue>\r\n\t\t\t\t\t</pricingMetric>\r\n\t\t\t\t\t<grossCost>150</grossCost>\r\n\t\t\t\t\t<netCost>127.5</netCost>\r\n\t\t\t\t\t<audienceTargets>\r\n\t\t\t\t\t\t<excludeOrInclude>Include</excludeOrInclude>\r\n\t\t\t\t\t\t<audienceTargetIds>\r\n\t\t\t\t\t\t\t<id>string</id>\r\n\t\t\t\t\t\t\t<version>string</version>\r\n\t\t\t\t\t\t\t<srcId>string</srcId>\r\n\t\t\t\t\t\t\t<srcName>string</srcName>\r\n\t\t\t\t\t\t</audienceTargetIds>\r\n\t\t\t\t\t\t<targetAttribute>HH Income</targetAttribute>\r\n\t\t\t\t\t\t<value>$50,000 - $75,000</value>\r\n\t\t\t\t\t\t<value>$75,000, -$100,000</value>\r\n\t\t\t\t\t</audienceTargets>\r\n\t\t\t\t\t<audiencesPricingMetrics>\r\n\t\t\t\t\t\t<audienceSegmentIds>\r\n\t\t\t\t\t\t\t<id>string</id>\r\n\t\t\t\t\t\t\t<version>string</version>\r\n\t\t\t\t\t\t\t<srcId>string</srcId>\r\n\t\t\t\t\t\t\t<srcName>string</srcName>\r\n\t\t\t\t\t\t</audienceSegmentIds>\r\n\t\t\t\t\t\t<type>Selling</type>\r\n\t\t\t\t\t\t<audienceMetric>\r\n\t\t\t\t\t\t\t<audienceMetric>Impressions</audienceMetric>\r\n\t\t\t\t\t\t\t<audienceMetricValue>43256</audienceMetricValue>\r\n\t\t\t\t\t\t</audienceMetric>\r\n\t\t\t\t\t</audiencesPricingMetrics>\r\n\t\t\t\t\t<externalComment>string</externalComment>\r\n\t\t\t\t</salesElementTransactionDates>\r\n\t\t\t</salesElementTransactionInventorys>\r\n\t\t</salesElement>\r\n\t\t<preemptReason>Cancellation due to technical Problems</preemptReason>\r\n\t\t<makegoodNumLinks>0</makegoodNumLinks>\r\n\t</preemptDetails>\r\n\t<makegoodDetails>\r\n\t\t<makegoodNum>0</makegoodNum>\r\n\t\t<makegoodReason>string</makegoodReason>\r\n\t\t<makegoodAssumedConfirm>Booked</makegoodAssumedConfirm>\r\n\t\t<preemptNumLinks>0</preemptNumLinks>\r\n\t</makegoodDetails>\r\n</SellerMakegoodOffersRequest>"
               Cancel:
-                value:
-                  $ref: '#/paths/~1buyer~1rfps/post/requestBody/content/application~1json/examples/Cancel/value'
+                value: "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n<SellerMakegoodOffersRequest>\r\n\t<transactionHeader>\r\n\t\t<tipVersion>6.0.0</tipVersion>\r\n\t\t<transactionId>\r\n\t\t\t<transactionId>6C895361-97B0-43F0-976C-A4E77DDD78FD</transactionId>\r\n\t\t\t<transactionType>Cancel</transactionType>\r\n\t\t\t<sourceId>ABC-1234</sourceId>\r\n\t\t\t<sourceName>TIPApi</sourceName>\r\n\t\t</transactionId>\r\n\t\t<originalTransactionId>\r\n\t\t\t<transactionId>1C237FDD-940D-499E-AA20-DF3B9CE0908E</transactionId>\r\n\t\t\t<transactionType>New</transactionType>\r\n\t\t\t<sourceId>ABC-1234</sourceId>\r\n\t\t\t<sourceName>TIPApi</sourceName>\r\n\t\t</originalTransactionId>\r\n\t\t<timeStamp>2021-07-21T17:32:28Z</timeStamp>\r\n\t</transactionHeader>\r\n\t<referenceIds>\r\n\t\t<referenceSourceName>KHOU-TV</referenceSourceName>\r\n\t\t<referenceSourceId>ABC-1234</referenceSourceId>\r\n\t\t<referenceType>Order</referenceType>\r\n\t\t<referenceId>ORD-1234</referenceId>\r\n\t\t<referenceVersionId>1</referenceVersionId>\r\n\t\t<referenceName>Hyundai 1Q22</referenceName>\r\n\t</referenceIds>\r\n\t<comments>Please ignore previous guidelines. newly updated ones are to be provided</comments>\r\n</SellerMakegoodOffersRequest>"
               Recall:
-                value:
-                  $ref: '#/paths/~1buyer~1orders/post/requestBody/content/application~1json/examples/Recall/value'
+                value: "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n<SellerMakegoodOffersRequest>\r\n\t<transactionHeader>\r\n\t\t<tipVersion>6.0.0</tipVersion>\r\n\t\t<transactionId>\r\n\t\t\t<transactionId>6C895361-97B0-43F0-976C-A4E77DDD78FD</transactionId>\r\n\t\t\t<transactionType>Recall</transactionType>\r\n\t\t\t<sourceId>ABC-1234</sourceId>\r\n\t\t\t<sourceName>TIPApi</sourceName>\r\n\t\t</transactionId>\r\n\t\t<originalTransactionId>\r\n\t\t\t<transactionId>1C237FDD-940D-499E-AA20-DF3B9CE0908E</transactionId>\r\n\t\t\t<transactionType>New</transactionType>\r\n\t\t\t<sourceId>ABC-1234</sourceId>\r\n\t\t\t<sourceName>TIPApi</sourceName>\r\n\t\t</originalTransactionId>\r\n\t\t<timeStamp>2021-07-21T17:32:28Z</timeStamp>\r\n\t</transactionHeader>\r\n\t<referenceIds>\r\n\t\t<referenceSourceName>KHOU-TV</referenceSourceName>\r\n\t\t<referenceSourceId>ABC-1234</referenceSourceId>\r\n\t\t<referenceType>Order</referenceType>\r\n\t\t<referenceId>ORD-1234</referenceId>\r\n\t\t<referenceVersionId>1</referenceVersionId>\r\n\t\t<referenceName>Hyundai 1Q22</referenceName>\r\n\t</referenceIds>\r\n\t<comments>Please ignore previous guidelines. newly updated ones are to be provided</comments>\r\n</SellerMakegoodOffersRequest>"
       responses:
         '200':
           $ref: '#/components/responses/Success'
@@ -3389,14 +3563,65 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CancelConfirmRecallReject'
+              $ref: '#/paths/~1buyer~1makegood~1offers/post/requestBody/content/application~1xml/schema'
             examples:
               Confirm:
                 value:
-                  $ref: '#/paths/~1seller~1orders/post/requestBody/content/application~1json/examples/Confirm/value'
+                  transactionHeader:
+                    tipVersion: 6.0.0
+                    transactionId:
+                      transactionId: 6C895361-97B0-43F0-976C-A4E77DDD78FD
+                      transactionType: Confirm
+                      sourceId: ABC-1234
+                      sourceName: TIPApi
+                    originalTransactionId:
+                      transactionId: 1C237FDD-940D-499E-AA20-DF3B9CE0908E
+                      transactionType: New
+                      sourceId: ABC-1234
+                      sourceName: TIPApi
+                    timeStamp: '2021-07-21T17:32:28Z'
+                  referenceIds:
+                    - referenceSourceName: KHOU-TV
+                      referenceSourceId: ABC-1234
+                      referenceType: Order
+                      referenceId: ORD-1234
+                      referenceVersionId: 1
+                      referenceName: Hyundai 1Q22
+                  comments: Offer Confirmed
               Reject:
                 value:
-                  $ref: '#/paths/~1seller~1orders/post/requestBody/content/application~1json/examples/Reject/value'
+                  transactionHeader:
+                    tipVersion: 6.0.0
+                    transactionId:
+                      transactionId: 6C895361-97B0-43F0-976C-A4E77DDD78FD
+                      transactionType: Reject
+                      sourceId: ABC-1234
+                      sourceName: TIPApi
+                    originalTransactionId:
+                      transactionId: 1C237FDD-940D-499E-AA20-DF3B9CE0908E
+                      transactionType: New
+                      sourceId: ABC-1234
+                      sourceName: TIPApi
+                    timeStamp: '2021-07-21T17:32:28Z'
+                  referenceIds:
+                    - referenceSourceName: KHOU-TV
+                      referenceSourceId: ABC-1234
+                      referenceType: Order
+                      referenceId: ORD-1234
+                      referenceVersionId: 1
+                      referenceName: Hyundai 1Q22
+                  comments: 'Offer Does not meet Goals, Rejected.'
+          application/xml:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/CancelConfirmRecallReject'
+              xml:
+                name: BuyerMakegoodOffersRequest
+            examples:
+              Confirm:
+                value: "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n<SellerMakegoodOffersRequest>\r\n\t<transactionHeader>\r\n\t\t<tipVersion>6.0.0</tipVersion>\r\n\t\t<transactionId>\r\n\t\t\t<transactionId>6C895361-97B0-43F0-976C-A4E77DDD78FD</transactionId>\r\n\t\t\t<transactionType>Confirm</transactionType>\r\n\t\t\t<sourceId>ABC-1234</sourceId>\r\n\t\t\t<sourceName>TIPApi</sourceName>\r\n\t\t</transactionId>\r\n\t\t<originalTransactionId>\r\n\t\t\t<transactionId>1C237FDD-940D-499E-AA20-DF3B9CE0908E</transactionId>\r\n\t\t\t<transactionType>New</transactionType>\r\n\t\t\t<sourceId>ABC-1234</sourceId>\r\n\t\t\t<sourceName>TIPApi</sourceName>\r\n\t\t</originalTransactionId>\r\n\t\t<timeStamp>2021-07-21T17:32:28Z</timeStamp>\r\n\t</transactionHeader>\r\n\t<referenceIds>\r\n\t\t<referenceSourceName>KHOU-TV</referenceSourceName>\r\n\t\t<referenceSourceId>ABC-1234</referenceSourceId>\r\n\t\t<referenceType>Order</referenceType>\r\n\t\t<referenceId>ORD-1234</referenceId>\r\n\t\t<referenceVersionId>1</referenceVersionId>\r\n\t\t<referenceName>Hyundai 1Q22</referenceName>\r\n\t</referenceIds>\r\n\t<comments>We approve this offer</comments>\r\n</SellerMakegoodOffersRequest>"
+              Reject:
+                value: "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n<SellerMakegoodOffersRequest>\r\n\t<transactionHeader>\r\n\t\t<tipVersion>6.0.0</tipVersion>\r\n\t\t<transactionId>\r\n\t\t\t<transactionId>6C895361-97B0-43F0-976C-A4E77DDD78FD</transactionId>\r\n\t\t\t<transactionType>Reject</transactionType>\r\n\t\t\t<sourceId>ABC-1234</sourceId>\r\n\t\t\t<sourceName>TIPApi</sourceName>\r\n\t\t</transactionId>\r\n\t\t<originalTransactionId>\r\n\t\t\t<transactionId>1C237FDD-940D-499E-AA20-DF3B9CE0908E</transactionId>\r\n\t\t\t<transactionType>New</transactionType>\r\n\t\t\t<sourceId>ABC-1234</sourceId>\r\n\t\t\t<sourceName>TIPApi</sourceName>\r\n\t\t</originalTransactionId>\r\n\t\t<timeStamp>2021-07-21T17:32:28Z</timeStamp>\r\n\t</transactionHeader>\r\n\t<referenceIds>\r\n\t\t<referenceSourceName>KHOU-TV</referenceSourceName>\r\n\t\t<referenceSourceId>ABC-1234</referenceSourceId>\r\n\t\t<referenceType>Order</referenceType>\r\n\t\t<referenceId>ORD-1234</referenceId>\r\n\t\t<referenceVersionId>1</referenceVersionId>\r\n\t\t<referenceName>Hyundai 1Q22</referenceName>\r\n\t</referenceIds>\r\n\t<comments>Offer does not meet goals, rejected</comments>\r\n</SellerMakegoodOffersRequest>"
       responses:
         '200':
           $ref: '#/components/responses/Success'
@@ -4830,6 +5055,7 @@ components:
           oneOf:
             - type: integer
             - type: string
+          example: REF-1234
         referenceVersionId:
           description: Version number associated with the reference id; this is used to track to track changes
           type: string
@@ -7278,6 +7504,8 @@ components:
         - dateSubmitted
         - buyer
         - makegoodType
+      xml:
+        name: SellerMakegoodGuidelinesRequest
     BuyerMakegoodGuidelines:
       description: Schema provides buyer's list of updated makegood guidelines to seller before and during a campaign
       properties:

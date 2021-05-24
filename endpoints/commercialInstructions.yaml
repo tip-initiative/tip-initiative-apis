@@ -96,7 +96,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: './schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
+              $ref: '#/components/schemas/SellerCommercialInstructionsRequest'
             examples:
               Confirm:
                 value:
@@ -106,7 +106,7 @@ paths:
                   $ref: 'examples/6.0.0/Seller/JSON/GenericReject.json'
           application/xml:
             schema:
-              $ref: './schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
+              $ref: '#/components/schemas/SellerCommercialInstructionsRequest'
             examples:
               Confirm:
                 value:
@@ -146,4 +146,9 @@ components:
         - $ref: './schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
       xml:
         name: BuyerCommercialInstructionsRequest
+    SellerCommercialInstructionsRequest:
+      allOf:
+        - $ref: './schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
+      xml:
+        name: SellerCommercialInstructionsRequest
   

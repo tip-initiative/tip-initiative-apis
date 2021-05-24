@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<SellerMakegoodOffersRequest>
+	<transactionHeader>
+		<tipVersion>6.0.0</tipVersion>
+		<transactionId>
+			<transactionId>6C895361-97B0-43F0-976C-A4E77DDD78FD</transactionId>
+			<transactionType>Reject</transactionType>
+			<sourceId>ABC-1234</sourceId>
+			<sourceName>TIPApi</sourceName>
+		</transactionId>
+		<originalTransactionId>
+			<transactionId>1C237FDD-940D-499E-AA20-DF3B9CE0908E</transactionId>
+			<transactionType>New</transactionType>
+			<sourceId>ABC-1234</sourceId>
+			<sourceName>TIPApi</sourceName>
+		</originalTransactionId>
+		<timeStamp>2021-07-21T17:32:28Z</timeStamp>
+	</transactionHeader>
+	<referenceIds>
+		<referenceSourceName>KHOU-TV</referenceSourceName>
+		<referenceSourceId>ABC-1234</referenceSourceId>
+		<referenceType>Order</referenceType>
+		<referenceId>ORD-1234</referenceId>
+		<referenceVersionId>1</referenceVersionId>
+		<referenceName>Hyundai 1Q22</referenceName>
+	</referenceIds>
+	<comments>Offer does not meet goals, rejected</comments>
+</SellerMakegoodOffersRequest>

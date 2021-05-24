@@ -1,0 +1,151 @@
+{
+  "transactionHeader": {
+    "tipVersion": "6.0.0",
+    "transactionId": {
+      "transactionId": "1C237FDD-940D-499E-AA20-DF3B9CE0908E",
+      "transactionType": "New",
+      "sourceId": "ABC-1234",
+      "sourceName": "TIPApi"
+    },
+    "timeStamp": "2021-07-21T17:32:28Z"
+  },
+  "referenceIds": [
+    {
+      "referenceSourceName": "KHOU-TV",
+      "referenceSourceId": "string",
+      "referenceSourceLookup": "string",
+      "referenceType": "RFP",
+      "referenceId": "REF-1234",
+      "referenceVersionId": 1,
+      "referenceName": "Hyundai 1Q22"
+    }
+  ],
+  "dateSubmitted": "2021-05-20",
+  "dueDate": "2021-05-20",
+  "buyer": {
+    "buyerIds": [
+      {
+        "id": "Buy-1234",
+        "version": "0",
+        "srcId": "ABC-1234",
+        "srcName": "TIPApi"
+      }
+    ],
+    "buyerName": "Canvas Worldwide. LLC"
+  },
+  "commission": 15,
+  "contacts": [
+    {
+      "contactType": "Account Executive",
+      "contactIds": [
+		  {
+			"id": "CNT-1234",
+			"version": "0",
+			"srcId": "ABC-1234",
+			"srcName": "TIPApi"
+		  }
+      ],
+      "salesOffices": [
+        "Dallas, TX",
+        "NYC, NY"
+      ],
+      "contactFirstName": "John",
+      "contactLastName": "Doe",
+      "email": "john.doe@example.com",
+      "effectiveDate": "2021-05-20"
+    }
+  ],
+  "currency": "USD",
+  "budgets": [
+    {
+      "budgetAmount": 120000,
+      "budgetAllocation": {
+        "budgetType": "DMA",
+        "budgetName": "string",
+        "budgetAmount": 12000,
+        "budgetSharePercent": 10
+      }
+    }
+  ],
+  "timePeriodPreferences": [
+    {
+      "dateWindow": {
+        "startDate": "2021-05-20",
+        "endDate": "2021-07-20"
+      },
+      "DOW": {
+        "isMonday": true,
+        "isTuesday": true,
+        "isWednesday": true,
+        "isThursday": true,
+        "isFriday": true,
+        "isSaturday": false,
+        "isSunday": false
+      },
+      "timeWindow": {
+        "startTime": "07:00",
+        "endTime": "12:00"
+      }
+    }
+  ],
+  "marketPreferences": [
+    [
+      "Houston",
+      "Austin"
+    ]
+  ],
+  "audiencePreferences": [
+    {
+      "audienceSegmentIds": [
+        null
+      ],
+      "audienceSegmentName": "P18-49",
+      "audienceSegmentReference": "string",
+      "audienceMethodology": "Daypart Average",
+      "isPrimary": true,
+      "isGuarantee": true,
+      "ratingSource": "Nielsen",
+      "ratingStream": "Program Live"
+    }
+  ],
+  "targetingPreferences": [
+    [
+      "Auto Intenders"
+    ]
+  ],
+  "frequencyPreferences": [
+    {
+      "period": "Minute",
+      "perPeriod": 0,
+      "value": 0
+    }
+  ],
+  "unitLengthPreferences": [
+    [
+      30,
+      15
+    ]
+  ],
+  "guidelines": [
+    {
+      "guidelineType": "Content",
+      "excludeOrInclude": "Include",
+      "guidelines": [
+        "string"
+      ]
+    }
+  ],
+  "objective": "string",
+  "comments": "string",
+  "campaignGoals": [
+    {
+      "distributionType": "Media Outlet Type",
+      "distributionMethod": "Impressions",
+      "distributionName": "string",
+      "distribution": "Percentage",
+      "distributionValue": 0,
+      "distributionOrder": 0,
+      "distributionOrderParent": 0
+    }
+  ]
+}

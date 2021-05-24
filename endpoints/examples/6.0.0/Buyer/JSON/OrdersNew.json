@@ -1,0 +1,312 @@
+{
+  "transactionHeader": {
+    "tipVersion": "6.0.0",
+    "transactionId": {
+      "transactionId": "1C237FDD-940D-499E-AA20-DF3B9CE0908E",
+      "transactionType": "New",
+      "sourceId": "Buy-6789",
+      "sourceName": "TIP Buyer"
+    },
+    "timeStamp": "2021-07-21T17:32:28Z"
+  },
+  "referenceIds": [
+    {
+      "referenceSourceName": "TIPApi",
+      "referenceSourceId": "ABC-1234",
+      "referenceType": "RFP",
+      "referenceId": "REF-1234",
+      "referenceVersionId": 0,
+      "referenceName": "Hyundai 1Q22"
+    },
+    {
+      "referenceSourceName": "KHOU-TV",
+      "referenceSourceId": "KHOU-TV",
+      "referenceType": "Proposal",
+      "referenceId": "PRP-1234",
+      "referenceVersionId": 1,
+      "referenceName": "Hyundai 1Q22"
+    },
+    {
+      "referenceSourceName": "Buy-6789",
+      "referenceSourceId": "TIP Buyer",
+      "referenceType": "Order",
+      "referenceId": "ORD-56789",
+      "referenceVersionId": 0,
+      "referenceName": "Hyundai 1Q22"
+    }
+  ],
+  "orderBookedDate": "2021-05-24",
+  "buyer": {
+    "buyerIds": [
+      {
+        "id": "Buy-12345",
+        "version": "0",
+        "srcId": "KHOU-TV",
+        "srcName": "KHOU-TV"
+      }
+    ],
+    "buyerName": "Canvas Worldwide. LLC"
+  },
+  "commission": 10,
+  "advertiser": {
+    "advertiserIds": [
+      {
+        "id": "ADV-12345",
+        "version": "0",
+        "srcId": "KHOU-TV",
+        "srcName": "KHOU-TV"
+      }
+    ],
+    "advertiserName": "Hyundai"
+  },
+  "brand": {
+    "brandIds": [
+      {
+        "id": "BRD-12345",
+        "version": "0",
+        "srcId": "KHOU-TV",
+        "srcName": "KHOU-TV"
+      }
+    ],
+    "brandName": "Kona"
+  },
+  "product": {
+    "productIds": [
+      {
+        "id": "PRD-12345",
+        "version": "0",
+        "srcId": "KHOU-TV",
+        "srcName": "KHOU-TV"
+      }
+    ],
+    "productName": "Automobile"
+  },
+  "budgets": [
+    {
+      "budgetAmount": 120000,
+      "budgetAllocation": {
+        "budgetType": "DMA",
+        "budgetName": "Summer Compaign 2021",
+        "budgetAmount": 12000,
+        "budgetSharePercent": 10
+      }
+    }
+  ],
+  "cpeCode": {
+    "clientCode": "CLN-1234",
+    "productCode": "PRD-12345",
+    "estimateCode": "P123C456"
+  },
+  "contacts": [
+    {
+      "contactType": "Account Executive",
+      "contactIds": [
+      {
+        "id": "CNT-12345",
+        "version": "0",
+        "srcId": "KHOU-TV",
+        "srcName": "KHOU-TV"
+      }
+      ],
+      "salesOffices": [
+        "Dallas, TX",
+        "NYC, NY"
+      ],
+      "contactFirstName": "John",
+      "contactLastName": "Doe",
+      "email": "user@example.com",
+      "effectiveDate": "2021-05-21"
+    }
+  ],
+  "revenueType": "Cash",
+  "businessType": "string",
+  "localNational": "Local",
+  "dealYear": "string",
+  "billingOption": {
+    "billingCalendar": "Broadcast",
+    "billingCycle": "Month",
+    "billingGranularity": "Order"
+  },
+  "isEquivalized": true,
+  "dateWindows": [
+    {
+      "startDate": "2021-07-01",
+      "endDate": "2021-09-21"
+    }
+  ],
+  "cancellationTerms": [
+    {
+      "cancellationType": "Quarterly",
+      "cancellationPriorDays": 14,
+      "cancellationPercentage": 25
+    }
+  ],
+  "timeSeparations": [
+    {
+      "unitLength": 30,
+      "timeSeparation": 900
+    }
+  ],
+  "termsOfSales": "Terms Of Sales",
+  "externalComment": "Purchase Order is reflective of submitted proposal version #1",
+  "rateCard": {
+    "rateCardId": 1,
+    "rateCardName": "1Q'22 Rate Card"
+  },
+  "currency": "USD",
+  "mediaOutlets": [
+    {
+      "mediaOutletIds": [
+      {
+        "id": "KHOU-TV",
+        "version": "0",
+        "srcId": "KHOU-TV",
+        "srcName": "KHOU-TV"
+      }
+      ],
+      "mediaOutletName": "MBLTV - My Best Local TV Station",
+      "mediaOutletType": "Local TV",
+      "mediaOutletChannel": "KHOU-TV",
+      "mediaOutletMarketName": "Houston, TX"
+    }
+  ],
+  "audienceSegments": [
+    {
+      "mediaOutletIds": [
+        "KHOU-TV"
+      ],
+      "audienceSegment": {
+        "audienceSegmentIds": [
+			{
+				"id": "P18-49",
+				"version": "0",
+				"srcId": "KHOU-TV",
+				"srcName": "KHOU-TV"
+			}
+        ],
+        "audienceSegmentName": "P18-49",
+        "audienceMethodology": "Daypart Average",
+        "isPrimary": true,
+        "isGuarantee": true,
+        "ratingSource": "Nielsen",
+        "ratingStream": "Program Live"
+      },
+      "universes": [
+        {
+          "universeType": "Market",
+          "universeTypeValue": 0
+        }
+      ]
+    }
+  ],
+  "salesElements": [
+    {
+      "salesElementHeader": {
+        "mediaOutletId": "KHOU-TV",
+        "salesElementName": "Primetime",
+        "salesElementId": "SL-1234",
+        "salesElementType": "Time-specific"
+      },
+      "timePeriods": [
+        {
+          "DOW": {
+            "isMonday": true,
+            "isTuesday": true,
+            "isWednesday": true,
+            "isThursday": true,
+            "isFriday": true,
+            "isSaturday": true,
+            "isSunday": true
+          },
+          "timeWindow": {
+            "startTime": "07:00",
+            "endTime": "11:00"
+          }
+        }
+      ],
+      "devices": [
+        "Smart TV"
+      ],
+      "programs": [
+        "Mid Morning News"
+      ],
+      "salesElementTransactionInventorys": [
+        {
+          "lineNum": "1",
+          "lineReference": "",
+          "lineReferences": [
+			{
+				"id": "LN-1234",
+				"version": "0",
+				"srcId": "KHOU-TV",
+				"srcName": "KHOU-TV"
+			}
+          ],
+          "inventoryType": "Commercial",
+          "inventoryPosition": "First",
+          "inventoryLength": 30,
+          "salesElementTransactionDates": [
+            {
+              "dateType": "Day",
+              "calendarType": "Broadcast",
+              "unitCount": 10,
+              "dailyUnitDistribution": {
+                "pacingRule": {
+                  "type": "Frontload",
+                  "rateType": "Absolute"
+                },
+                "monday": 2,
+                "tuesday": 2,
+                "wednesday": 2,
+                "thursday": 2,
+                "friday": 2,
+                "saturday": 0,
+                "sunday": 0
+              },
+              "frequencyCappings": [
+                {
+                  "period": "Minute",
+                  "perPeriod": 0,
+                  "value": 0
+                }
+              ],
+              "pricingMetric": {
+                "PricingMetricOption": "CPM",
+                "grossValue": 0,
+                "netValue": 0
+              },
+              "grossCost": 150,
+              "netCost": 127.5,
+              "audienceTargets": [
+                {
+                  "excludeOrInclude": "Include",
+                  "audienceTargetIds": [
+                    null
+                  ],
+                  "targetAttribute": "HH Income",
+                  "value": [
+                    "$50,000 - $75,000",
+                    "$75,000, -$100,000"
+                  ]
+                }
+              ],
+              "audiencesPricingMetrics": [
+                {
+                  "audienceSegmentIds": [
+                    null
+                  ],
+                  "type": "Selling",
+                  "audienceMetric": {
+                    "audienceMetric": "Impressions",
+                    "audienceMetricValue": 43256
+                  }
+                }
+              ],
+              "externalComment": "Changes or amission need to be approved by buyer before air time."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

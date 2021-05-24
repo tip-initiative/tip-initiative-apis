@@ -53,6 +53,7 @@ components:
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/Contact'
+          minItems: 1
         currency:
           $ref: 'commonSchemas.yaml#/components/schemas/Currency'
         budgets:

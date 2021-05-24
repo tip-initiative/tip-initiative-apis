@@ -36,14 +36,14 @@ paths:
             examples:
               New:
                 value:
-                  $ref: 'examples/SellerMakegoodGuidelinesNew.json'
+                  $ref: 'examples\6.0.0\Seller\JSON\MakegoodGuidelinesNew.json'
           application/xml:
             schema:
               $ref: 'schemas/makegoodsSchemas.yaml#/components/schemas/SellerMakegoodGuidelines'
             examples:
               New:
                 value:
-                  $ref: 'examples/SellerMakegoodGuidelinesNew.json'
+                  $ref: 'examples\6.0.0\Seller\XML\MakegoodGuidelinesNew.xml'
       responses:
         '202': #Accepted
           $ref: 'schemas/commonResponses.yaml#/components/responses/Accepted'
@@ -78,26 +78,26 @@ paths:
             examples:
               New:
                 value:
-                  $ref: 'examples/BuyerMakegoodGuidelinesNew.json'
+                  $ref: 'examples\6.0.0\Buyer\JSON\MakegoodGuidelinesNew.json'
               Change:
                 value:
-                  $ref: 'examples/BuyerMakegoodGuidelinesNew.json'
+                  $ref: 'examples\6.0.0\Buyer\JSON\MakegoodGuidelinesChange.json'
               Cancel:
                 value:
-                  $ref: 'examples/GenericCancel.json'
+                  $ref: 'examples\6.0.0\Buyer\JSON\MakegoodGuidelinesCancel.json'
           application/xml:
             schema:
               $ref: '#/components/schemas/BuyerMakegoodGuidelinesRequest'
             examples:
               New:
                 value:
-                  $ref: 'examples/BuyerMakegoodGuidelinesNew.json'
+                  $ref: 'examples\6.0.0\Buyer\XML\MakegoodGuidelinesNew.xml'
               Change:
                 value:
-                  $ref: 'examples/BuyerMakegoodGuidelinesNew.json'
+                  $ref: 'examples\6.0.0\Buyer\XML\MakegoodGuidelinesChange.xml'
               Cancel:
                 value:
-                  $ref: 'examples/GenericCancel.json'
+                  $ref: 'examples\6.0.0\Buyer\XML\MakegoodGuidelinesCancel.xml'
       responses:
         '200': #OK
           $ref: 'schemas/commonResponses.yaml#/components/responses/Success'
@@ -135,32 +135,32 @@ paths:
             examples:
               New:
                 value:
-                  $ref: 'examples/SellerMakegoodOfferNew.json'
+                  $ref: 'examples\6.0.0\Seller\JSON\MakegoodOffersNew.json'
               Change:
                 value:
-                  $ref: 'examples/SellerMakegoodOfferNew.json'
+                  $ref: 'examples\6.0.0\Seller\JSON\MakegoodOffersChange.json'
               Cancel:
                 value:
-                  $ref: 'examples/GenericCancel.json'
+                  $ref: 'examples\6.0.0\Seller\JSON\MakegoodOffersCancel.json'
               Recall:
                 value:
-                  $ref: 'examples/GenericRecall.json'
+                  $ref: 'examples\6.0.0\Seller\JSON\MakegoodOffersRecall.json'
           application/xml:
             schema:
               $ref: '#/components/schemas/SellerMakegoodOffersRequest'
             examples:
               New:
                 value:
-                  $ref: 'examples/SellerMakegoodOfferNew.json'
+                  $ref: 'examples\6.0.0\Seller\XML\MakegoodOffersNew.xml'
               Change:
                 value:
-                  $ref: 'examples/SellerMakegoodOfferNew.json'
+                  $ref: 'examples\6.0.0\Seller\XML\MakegoodOffersChange.xml'
               Cancel:
                 value:
-                  $ref: 'examples/GenericCancel.json'
+                  $ref: 'examples\6.0.0\Seller\XML\MakegoodOffersCancel.xml'
               Recall:
                 value:
-                  $ref: 'examples/GenericRecall.json'
+                  $ref: 'examples\6.0.0\Seller\XML\MakegoodOffersRecall.xml'
       responses:
         '200': #OK
           $ref: 'schemas/commonResponses.yaml#/components/responses/Success'
@@ -190,24 +190,24 @@ paths:
         content:
           application/json:
             schema:
-              $ref: 'schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
+              $ref: '#/components/schemas/BuyerMakegoodOffersRequest'
             examples:
               Confirm:
                 value:
-                  $ref: 'examples/GenericConfirm.json'
+                  $ref: 'examples\6.0.0\Buyer\JSON\MakegoodOffersConfirm.json'
               Reject:
                 value:
-                  $ref: 'examples/GenericReject.json'
+                  $ref: 'examples\6.0.0\Buyer\JSON\MakegoodOffersReject.json'
           application/xml:
             schema:
-              $ref: 'schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
+              $ref: '#/components/schemas/BuyerMakegoodOffersRequest'
             examples:
               Confirm:
                 value:
-                  $ref: 'examples/GenericConfirm.json'
+                  $ref: 'examples\6.0.0\Buyer\XML\MakegoodOffersConfirm.xml'
               Reject:
                 value:
-                  $ref: 'examples/GenericReject.json'
+                  $ref: 'examples\6.0.0\Buyer\XML\MakegoodOffersReject.xml'
       responses:
         '200': #OK
           $ref: 'schemas/commonResponses.yaml#/components/responses/Success'
@@ -242,3 +242,8 @@ components:
         - $ref: './schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
       xml:
         name: SellerMakegoodOffersRequest
+    BuyerMakegoodOffersRequest:
+      allOf:
+        -   $ref:   'schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
+      xml:
+        name: BuyerMakegoodOffersRequest
