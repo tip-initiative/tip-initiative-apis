@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<SellerOrdersRequest>
+	<transactionHeader>
+		<tipVersion>6.0.0</tipVersion>
+		<transactionId>
+			<transactionId>1C237FDD-940D-499E-AA20-DF3B9CE0908E</transactionId>
+			<transactionType>Reject</transactionType>
+			<sourceId>ABC-1234</sourceId>
+			<sourceName>TIPApi</sourceName>
+		</transactionId>
+		<originalTransactionId>
+			<transactionId>3F8A1041-95A8-4BC1-9473-F6B1B3277A71</transactionId>
+			<transactionType>Change</transactionType>
+			<sourceId>Buy-6789</sourceId>
+			<sourceName>TIP Buyer</sourceName>
+		</originalTransactionId>
+		<timeStamp>2021-07-21T17:32:28Z</timeStamp>
+	</transactionHeader>
+	<referenceIds>
+		<referenceSourceName>Buy-6789</referenceSourceName>
+		<referenceSourceId>TIP Buyer</referenceSourceId>
+		<referenceType>Order</referenceType>
+		<referenceId>ORD-56789</referenceId>
+		<referenceVersionId>1</referenceVersionId>
+		<referenceName>Hyundai 1Q22</referenceName>
+	</referenceIds>
+	<comments>Order included many deviations from original proposal. Additional discussion is needed.</comments>
+</SellerOrdersRequest>

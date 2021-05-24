@@ -82,11 +82,7 @@ paths:
         content:
           application/json:
             schema:
-              oneOf:
-                - $ref: 'schemas/logTimesSchemas.yaml#/components/schemas/BuyerLogTimesSubscription'
-                - $ref: 'schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
-              xml:
-                name: BuyerLogTimesSubscriptionRequest
+                $ref: '#components/schemas/BuyerLogTimesSubscriptionRequest'
             examples:
               New:
                 value:
@@ -99,11 +95,7 @@ paths:
                   $ref: 'examples\6.0.0\Buyer\JSON\LogtimesSubscriptionCancel.json'
           application/xml:
             schema:
-              oneOf:
-                - $ref: 'schemas/logTimesSchemas.yaml#/components/schemas/BuyerLogTimesSubscription'
-                - $ref: 'schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
-              xml:
-                name: BuyerLogTimesSubscriptionRequest
+                $ref: '#components/schemas/BuyerLogTimesSubscriptionRequest'
             examples:
               New:
                 value:
@@ -130,8 +122,16 @@ paths:
         default: #unexpected
           $ref: 'schemas/commonResponses.yaml#/components/responses/Unexpected'
 components:
- securitySchemes:
+  securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
       bearerFormat: JWT
+  schemas:
+    BuyerLogTimesSubscriptionRequest:
+      oneOf:
+        - $ref: 'schemas/logTimesSchemas.yaml#/components/schemas/BuyerLogTimesSubscription'
+        - $ref: 'schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
+      xml:
+        name: BuyerLogTimesSubscriptionRequest
+

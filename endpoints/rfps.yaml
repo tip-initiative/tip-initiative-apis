@@ -39,10 +39,20 @@ paths:
             examples:
               New:
                 value:
-                  $ref: 'examples/BuyerRfpsNew.json'
+                  $ref: 'examples\6.0.0\Buyer\JSON\RFPSNew.json'
               Cancel:
                 value:
-                  $ref: 'examples/GenericCancel.json'
+                  $ref: 'examples\6.0.0\Buyer\JSON\RFPSCancel.json'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/BuyerRFPSRequest'
+            examples:
+              New:
+                value:
+                  $ref: 'examples\6.0.0\Buyer\XML\RFPSNew.xml'
+              Cancel:
+                value:
+                  $ref: 'examples\6.0.0\Buyer\XML\RFPSCancel.xml'
       responses:
         '202': #OK
           $ref: 'schemas/commonResponses.yaml#/components/responses/Accepted'

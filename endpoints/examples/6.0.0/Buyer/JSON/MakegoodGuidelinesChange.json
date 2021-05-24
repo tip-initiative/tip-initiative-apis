@@ -1,0 +1,85 @@
+{
+  "transactionHeader": {
+    "tipVersion": "6.0.0",
+    "transactionId": {
+      "transactionId": "6C895361-97B0-43F0-976C-A4E77DDD78FD",
+      "transactionType": "Change",
+      "sourceId": "ABC-1234",
+      "sourceName": "TIPApi"
+    },
+    "originalTransactionId": {
+      "transactionId": "1C237FDD-940D-499E-AA20-DF3B9CE0908E",
+      "transactionType": "New",
+      "sourceId": "ABC-1234",
+      "sourceName": "TIPApi"
+    },
+    "timeStamp": "2021-07-21T17:32:28Z"
+  },
+  "mediaOutlet": {
+    "mediaOutletIds": [
+      {
+        "id": "KHOU-TV",
+        "version": "0",
+        "srcId": "ABC-1234",
+        "srcName": "TIPApi"
+      }
+    ],
+    "mediaOutletName": "MBLTV - My Best Local TV Station",
+    "mediaOutletType": "Local TV",
+    "mediaOutletChannel": "KHOU-TV",
+    "mediaOutletMarketName": "Houston, TX"
+  },
+  "referenceIds": [
+    {
+      "referenceSourceName": "KHOU-TV",
+      "referenceSourceId": "ABC-1234",
+      "referenceType": "Order",
+	  "referenceId": "ORD-1234",
+      "referenceVersionId": 1,
+      "referenceName": "Hyundai 1Q22"
+    }
+  ],
+  "cpeCode": {
+    "clientCode": "CLE-1234",
+    "productCode": "AUTO",
+    "estimateCode": "AU-12345"
+  },
+  "buyer": {
+    "buyerIds": [
+      {
+        "id": "BUY-123",
+        "version": "0",
+        "srcId": "ABC-1234",
+        "srcName": "TIPApi"
+      }
+    ],
+    "buyerName": "Canvas Worldwide. LLC"
+  },
+  "advertiser": {
+    "advertiserIds": [
+      {
+        "id": "ADV-1234",
+        "version": "0",
+        "srcId": "ABC-1234",
+        "srcName": "TIPApi"
+      }
+    ],
+    "advertiserName": "Hyundai"
+  },
+  "makegoodGuidelines": [
+    {
+      "makegoodType": "Resolve preemption",
+      "salesElementOriginal": {
+        "mediaOutletId": "KHOU-TV",
+        "salesElementName": "Primetime",
+        "salesElementId": "SE-1234",
+        "salesElementType": "Time-specific"
+      },
+      "salesElementEquivalent": "Same Sales Element",
+      "makegoodTargetAudienceLimit": 100,
+      "makegoodRatio": 2,
+      "makegoodWindow": "Original Broadcast Week",
+      "externalComment": "Shifted to Next Run"
+    }
+  ]
+}

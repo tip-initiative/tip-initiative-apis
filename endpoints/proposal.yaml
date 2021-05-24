@@ -49,18 +49,36 @@ paths:
             examples:
               New:
                 value:
-                  $ref: 'examples/SellerProposalNew.json'
+                  $ref: 'examples\6.0.0\Seller\JSON\ProposalsNew.json'
               Change:
                 value:
-                  $ref: 'examples/SellerProposalChange.json'
+                  $ref: 'examples\6.0.0\Seller\JSON\ProposalsChange.json'
               Cancel:
                   value:
-                    $ref: 'examples/GenericCancel.json'
+                    $ref: 'examples\6.0.0\Seller\JSON\ProposalsCancel.json'
               Recall:
                   value:
-                    $ref: 'examples/GenericRecall.json'
+                    $ref: 'examples\6.0.0\Seller\JSON\ProposalsRecall.json'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/SellerProposalsRequest'
+            examples:
+              New:
+                value:
+                  $ref: 'examples\6.0.0\Seller\XML\ProposalsNew.xml'
+              Change:
+                value:
+                  $ref: 'examples\6.0.0\Seller\XML\ProposalsChange.xml'
+              Cancel:
+                  value:
+                    $ref: 'examples\6.0.0\Seller\XML\ProposalsCancel.xml'
+              Recall:
+                  value:
+                    $ref: 'examples\6.0.0\Seller\XML\ProposalsRecall.xml'
       responses:
-        '202': #OK
+        '201': #Created
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Created'
+        '202': #Accepted
           $ref: 'schemas/commonResponses.yaml#/components/responses/Accepted'
         '400': #Bad Request
           $ref: 'schemas/commonResponses.yaml#/components/responses/BadRequest'
@@ -95,12 +113,24 @@ paths:
             examples:
               Change:
                 value:
-                  $ref: 'examples/SellerProposalChange.json'
+                  $ref: 'examples\6.0.0\Buyer\JSON\ProposalsChange.json'
               Recall:
                   value:
-                    $ref: 'examples/GenericRecall.json'
+                    $ref: 'examples\6.0.0\Buyer\JSON\ProposalsRecall.json'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/BuyerProposalsRequest'
+            examples:
+              Change:
+                value:
+                  $ref: 'examples\6.0.0\Buyer\XML\ProposalsChange.xml'
+              Recall:
+                  value:
+                    $ref: 'examples\6.0.0\Buyer\XML\ProposalsRecall.xml'
       responses:
-        '202': #OK
+        '201': #Created
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Created'
+        '202': #Accepted
           $ref: 'schemas/commonResponses.yaml#/components/responses/Accepted'
         '400': #Bad Request
           $ref: 'schemas/commonResponses.yaml#/components/responses/BadRequest'
@@ -128,3 +158,12 @@ components:
         - $ref: './schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
       xml:
         name: SellerProposalsRequest
+    BuyerProposalsRequest:
+      description: ->
+        Request Body for the endpoint varies based on Transaction type. 
+        This request is similar to that generated at the seller side
+      oneOf:
+        - $ref: './schemas/proposalSchemas.yaml#/components/schemas/SellerProposals'
+        - $ref: './schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
+      xml:
+        name: BuyerProposalsRequest
