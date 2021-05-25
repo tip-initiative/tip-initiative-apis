@@ -491,110 +491,104 @@ paths:
         content:
           application/json:
             schema:
-              description: Request Body for the endpoint varies based on Transaction type
-              oneOf:
-                - $ref: '#/components/schemas/BuyerRFPS'
-                - $ref: '#/components/schemas/CancelConfirmRecallReject'
-              xml:
-                name: BuyerRFPSRequest
+              $ref: '#/paths/~1buyer~1rfps/post/requestBody/content/application~1xml/schema'
             examples:
               New:
                 value:
                   transactionHeader:
-                    tipVersion: 5.1.0
+                    tipVersion: 6.0.0
                     transactionId:
-                      transactionId: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+                      transactionId: 1C237FDD-940D-499E-AA20-DF3B9CE0908E
                       transactionType: New
-                      sourceId: string
-                      sourceName: string
-                    timeStamp: '2020-07-17T19:56:04.479Z'
+                      sourceId: ABC-1234
+                      sourceName: TIPApi
+                    timeStamp: '2021-07-21T17:32:28Z'
                   referenceIds:
-                    - referenceSourceName: string
+                    - referenceSourceName: KHOU-TV
                       referenceSourceId: string
                       referenceSourceLookup: string
                       referenceType: RFP
-                      referenceId: 2910AA14-FC49-4552-A028-E521A00507DA
-                      referenceVersionId: string
-                      referenceName: string
-                  dateSubmitted: '2020-07-17'
-                  dueDate: '2020-07-17'
+                      referenceId: REF-1234
+                      referenceVersionId: 1
+                      referenceName: Hyundai 1Q22
+                  dateSubmitted: '2021-05-20'
+                  dueDate: '2021-05-20'
                   buyer:
-                    buyerId: '123'
-                    buyerName: A New Buyer
-                    buyerReference: '123'
-                  commission: 0
-                  advertiser:
-                    advertiserId: '456'
-                    advertiserName: A big Advertiser
-                    advertiserReference: '123'
-                  brand:
-                    brandId: '789'
-                    brandName: Excellent Brand
-                    brandReference: '123'
-                  product:
-                    productId: '0123'
-                    productName: Good Product
-                    productReference: '123'
+                    buyerIds:
+                      - id: Buy-1234
+                        version: '0'
+                        srcId: ABC-1234
+                        srcName: TIPApi
+                    buyerName: Canvas Worldwide. LLC
+                  commission: 15
                   contacts:
                     - contactType: Account Executive
-                      referenceSourceName: WXYZ
-                      referenceSourceId: string
-                      contactFirstName: string
-                      contactLastName: string
-                      addressLine1: string
-                      addressLine2: string
-                      city: string
-                      state: string
-                      postalCode: string
-                      country: string
-                      phoneNumber: string
-                      email: user@example.com
-                      effectiveDate: '2020-07-17'
+                      contactIds:
+                        - id: CNT-1234
+                          version: '0'
+                          srcId: ABC-1234
+                          srcName: TIPApi
+                      salesOffices:
+                        - 'Dallas, TX'
+                        - 'NYC, NY'
+                      contactFirstName: John
+                      contactLastName: Doe
+                      email: john.doe@example.com
+                      effectiveDate: '2021-05-20'
                   currency: USD
-                  budget:
-                    - budgetAmount: 100000
+                  budgets:
+                    - budgetAmount: 120000
                       budgetAllocation:
                         budgetType: DMA
-                        budgetName: Whatever
-                        budgetAmount: 100000
-                        budgetSharePercent: 100
+                        budgetName: string
+                        budgetAmount: 12000
+                        budgetSharePercent: 10
                   timePeriodPreferences:
                     - dateWindow:
-                        startDate: '2020-07-17'
-                        endDate: '2020-07-17'
+                        startDate: '2021-05-20'
+                        endDate: '2021-07-20'
                       DOW:
-                        monday: true
-                        tuesday: true
-                        wednesday: true
-                        thursday: true
-                        friday: true
-                        saturday: true
-                        sunday: true
+                        isMonday: true
+                        isTuesday: true
+                        isWednesday: true
+                        isThursday: true
+                        isFriday: true
+                        isSaturday: false
+                        isSunday: false
                       timeWindow:
-                        startTime: '17:00'
-                        endTime: '20:00'
+                        startTime: '07:00'
+                        endTime: '12:00'
                   marketPreferences:
-                    - string
+                    - - Houston
+                      - Austin
                   audiencePreferences:
-                    - audienceSegmentId: HH
-                      audienceSegmentName: Households
-                      audienceSegmentReference: '123'
-                      audienceMethodology: Third Party
-                      primaryIndicator: true
-                      guarantee: true
+                    - audienceSegmentIds:
+                        - null
+                      audienceSegmentName: P18-49
+                      audienceSegmentReference: string
+                      audienceMethodology: Daypart Average
+                      isPrimary: true
+                      isGuarantee: true
                       ratingSource: Nielsen
                       ratingStream: Program Live
+                  targetingPreferences:
+                    - - Auto Intenders
+                  frequencyPreferences:
+                    - period: Minute
+                      perPeriod: 0
+                      value: 0
                   unitLengthPreferences:
-                    - 0
+                    - - 30
+                      - 15
                   guidelines:
                     - guidelineType: Content
                       excludeOrInclude: Include
-                      guidelineId: '125'
-                      guidelineName: Sport
+                      guidelines:
+                        - string
                   objective: string
                   comments: string
                   campaignGoals:
-                    - distributionType: MediaType
+                    - distributionType: Media Outlet Type
                       distributionMethod: Impressions
                       distributionName: string
                       distribution: Percentage
@@ -604,27 +598,39 @@ paths:
               Cancel:
                 value:
                   transactionHeader:
-                    tipVersion: 5.1.0
+                    tipVersion: 6.0.0
                     transactionId:
-                      transactionId: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+                      transactionId: 6C895361-97B0-43F0-976C-A4E77DDD78FD
                       transactionType: Cancel
-                      sourceId: '490'
-                      sourceName: KHOU-TV
+                      sourceId: ABC-1234
+                      sourceName: TIPApi
                     originalTransactionId:
-                      transactionId: B906A0A9-19FA-4F06-B94D-22E4F1D9120C
+                      transactionId: 1C237FDD-940D-499E-AA20-DF3B9CE0908E
                       transactionType: New
-                      sourceId: '490'
-                      sourceName: KHOU-TV
-                    timeStamp: '2020-07-17T20:04:55.220Z'
+                      sourceId: ABC-1234
+                      sourceName: TIPApi
+                    timeStamp: '2021-07-21T17:32:28Z'
                   referenceIds:
-                    - referenceSourceName: KUOU-TV
-                      referenceSourceId: '490'
-                      referenceSourceLookup: ''
-                      referenceType: Order
-                      referenceId: '123456'
-                      referenceVersionId: ''
-                      referenceName: string
-                  comments: Sample comment from message originator
+                    - referenceSourceName: KHOU-TV
+                      referenceSourceId: ABC-1234
+                      referenceType: RFP
+                      referenceId: RFP-1234
+                      referenceVersionId: 1
+                      referenceName: Hyundai 1Q22
+                  comments: We decide to pull this RFP. Thanks for your understanding.
+          application/xml:
+            schema:
+              description: Request Body for the endpoint varies based on Transaction type
+              oneOf:
+                - $ref: '#/components/schemas/BuyerRFPS'
+                - $ref: '#/components/schemas/CancelConfirmRecallReject'
+              xml:
+                name: BuyerRFPSRequest
+            examples:
+              New:
+                value: "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n<BuyerRFPSRequest>\r\n\t<transactionHeader>\r\n\t\t<tipVersion>6.0.0</tipVersion>\r\n\t\t<transactionId>\r\n\t\t\t<transactionId>1C237FDD-940D-499E-AA20-DF3B9CE0908E</transactionId>\r\n\t\t\t<transactionType>New</transactionType>\r\n\t\t\t<sourceId>ABC-1234</sourceId>\r\n\t\t\t<sourceName>TIPApi</sourceName>\r\n\t\t</transactionId>\r\n\t\t<timeStamp>2021-07-21T17:32:28Z</timeStamp>\r\n\t</transactionHeader>\r\n\t<referenceIds>\r\n\t\t<referenceSourceName>KHOU-TV</referenceSourceName>\r\n\t\t<referenceSourceId>string</referenceSourceId>\r\n\t\t<referenceSourceLookup>string</referenceSourceLookup>\r\n\t\t<referenceType>RFP</referenceType>\r\n\t\t<referenceId>REF-1234</referenceId>\r\n\t\t<referenceVersionId>1</referenceVersionId>\r\n\t\t<referenceName>Hyundai 1Q22</referenceName>\r\n\t</referenceIds>\r\n\t<dateSubmitted>2021-05-20</dateSubmitted>\r\n\t<dueDate>2021-05-20</dueDate>\r\n\t<buyer>\r\n\t\t<buyerIds>\r\n\t\t\t<id>Buy-1234</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>ABC-1234</srcId>\r\n\t\t\t<srcName>TIPApi</srcName>\r\n\t\t</buyerIds>\r\n\t\t<buyerName>Canvas Worldwide. LLC</buyerName>\r\n\t</buyer>\r\n\t<commission>15</commission>\r\n\t<contacts>\r\n\t\t<contactType>Account Executive</contactType>\r\n\t\t<contactIds>\r\n\t\t\t<id>CNT-1234</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>ABC-1234</srcId>\r\n\t\t\t<srcName>TIPApi</srcName>\r\n\t\t</contactIds>\r\n\t\t<salesOffices>Dallas, TX</salesOffices>\r\n\t\t<salesOffices>NYC, NY</salesOffices>\r\n\t\t<contactFirstName>John</contactFirstName>\r\n\t\t<contactLastName>Doe</contactLastName>\r\n\t\t<email>john.doe@example.com</email>\r\n\t\t<effectiveDate>2021-05-20</effectiveDate>\r\n\t</contacts>\r\n\t<currency>USD</currency>\r\n\t<budgets>\r\n\t\t<budgetAmount>120000</budgetAmount>\r\n\t\t<budgetAllocation>\r\n\t\t\t<budgetType>DMA</budgetType>\r\n\t\t\t<budgetName>string</budgetName>\r\n\t\t\t<budgetAmount>12000</budgetAmount>\r\n\t\t\t<budgetSharePercent>10</budgetSharePercent>\r\n\t\t</budgetAllocation>\r\n\t</budgets>\r\n\t<timePeriodPreferences>\r\n\t\t<dateWindow>\r\n\t\t\t<startDate>2021-05-20</startDate>\r\n\t\t\t<endDate>2021-07-20</endDate>\r\n\t\t</dateWindow>\r\n\t\t<DOW>\r\n\t\t\t<isMonday>true</isMonday>\r\n\t\t\t<isTuesday>true</isTuesday>\r\n\t\t\t<isWednesday>true</isWednesday>\r\n\t\t\t<isThursday>true</isThursday>\r\n\t\t\t<isFriday>true</isFriday>\r\n\t\t\t<isSaturday>false</isSaturday>\r\n\t\t\t<isSunday>false</isSunday>\r\n\t\t</DOW>\r\n\t\t<timeWindow>\r\n\t\t\t<startTime>07:00</startTime>\r\n\t\t\t<endTime>12:00</endTime>\r\n\t\t</timeWindow>\r\n\t</timePeriodPreferences>\r\n\t<marketPreferences>Houston</marketPreferences>\r\n\t<marketPreferences>Austin</marketPreferences>\r\n\t<audiencePreferences>\r\n\t\t<audienceSegmentIds />\r\n\t\t<audienceSegmentName>P18-49</audienceSegmentName>\r\n\t\t<audienceSegmentReference>string</audienceSegmentReference>\r\n\t\t<audienceMethodology>Daypart Average</audienceMethodology>\r\n\t\t<isPrimary>true</isPrimary>\r\n\t\t<isGuarantee>true</isGuarantee>\r\n\t\t<ratingSource>Nielsen</ratingSource>\r\n\t\t<ratingStream>Program Live</ratingStream>\r\n\t</audiencePreferences>\r\n\t<targetingPreferences>Auto Intenders</targetingPreferences>\r\n\t<frequencyPreferences>\r\n\t\t<period>Minute</period>\r\n\t\t<perPeriod>0</perPeriod>\r\n\t\t<value>0</value>\r\n\t</frequencyPreferences>\r\n\t<unitLengthPreferences>30</unitLengthPreferences>\r\n\t<unitLengthPreferences>15</unitLengthPreferences>\r\n\t<guidelines>\r\n\t\t<guidelineType>Content</guidelineType>\r\n\t\t<excludeOrInclude>Include</excludeOrInclude>\r\n\t\t<guidelines>string</guidelines>\r\n\t</guidelines>\r\n\t<objective>string</objective>\r\n\t<comments>string</comments>\r\n\t<campaignGoals>\r\n\t\t<distributionType>Media Outlet Type</distributionType>\r\n\t\t<distributionMethod>Impressions</distributionMethod>\r\n\t\t<distributionName>string</distributionName>\r\n\t\t<distribution>Percentage</distribution>\r\n\t\t<distributionValue>0</distributionValue>\r\n\t\t<distributionOrder>0</distributionOrder>\r\n\t\t<distributionOrderParent>0</distributionOrderParent>\r\n\t</campaignGoals>\r\n</BuyerRFPSRequest>"
+              Cancel:
+                value: "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n<BuyerRFPSRequest>\r\n\t<transactionHeader>\r\n\t\t<tipVersion>6.0.0</tipVersion>\r\n\t\t<transactionId>\r\n\t\t\t<transactionId>6C895361-97B0-43F0-976C-A4E77DDD78FD</transactionId>\r\n\t\t\t<transactionType>Cancel</transactionType>\r\n\t\t\t<sourceId>ABC-1234</sourceId>\r\n\t\t\t<sourceName>TIPApi</sourceName>\r\n\t\t</transactionId>\r\n\t\t<originalTransactionId>\r\n\t\t\t<transactionId>1C237FDD-940D-499E-AA20-DF3B9CE0908E</transactionId>\r\n\t\t\t<transactionType>New</transactionType>\r\n\t\t\t<sourceId>ABC-1234</sourceId>\r\n\t\t\t<sourceName>TIPApi</sourceName>\r\n\t\t</originalTransactionId>\r\n\t\t<timeStamp>2021-07-21T17:32:28Z</timeStamp>\r\n\t</transactionHeader>\r\n\t<referenceIds>\r\n\t\t<referenceSourceName>KHOU-TV</referenceSourceName>\r\n\t\t<referenceSourceId>ABC-1234</referenceSourceId>\r\n\t\t<referenceType>RFP</referenceType>\r\n\t\t<referenceId>RFP-1234</referenceId>\r\n\t\t<referenceVersionId>1</referenceVersionId>\r\n\t\t<referenceName>Hyundai 1Q22</referenceName>\r\n\t</referenceIds>\r\n\t<comments>We decide to pull this RFP. Thanks for your understanding.</comments>\r\n</BuyerRFPSRequest>"
       responses:
         '202':
           $ref: '#/components/responses/Accepted'
@@ -658,250 +664,491 @@ paths:
               New:
                 value:
                   transactionHeader:
-                    tipVersion: 5.1.0
+                    tipVersion: 6.0.0
                     transactionId:
-                      transactionId: 9E804522-5668-4D96-AB7C-94105D05EB93
+                      transactionId: 1C237FDD-940D-499E-AA20-DF3B9CE0908E
                       transactionType: New
-                      sourceId: '490'
-                      sourceName: KHOU-TV
-                    timeStamp: '2020-02-05T11:52:38'
+                      sourceId: ABC-1234
+                      sourceName: TIPApi
+                    timeStamp: '2021-07-21T17:32:28Z'
                   referenceIds:
-                    - referenceSourceName: Canvas Worldwide. LLC
-                      referenceSourceId: '456'
+                    - referenceSourceName: TIPApi
+                      referenceSourceId: ABC-1234
                       referenceType: RFP
-                      referenceId: eabcc4b1-693f-483d-9db1-74ef7823ff65
-                      referenceVersionId: '0'
-                      referenceName: Hyundia P25-54 1Q
+                      referenceId: REF-1234
+                      referenceVersionId: 0
+                      referenceName: Hyundai 1Q22
                     - referenceSourceName: KHOU-TV
-                      referenceSourceId: '490'
+                      referenceSourceId: KHOU-TV
                       referenceType: Proposal
-                      referenceId: 98015e43-2922-4ce2-a137-1fa4c60084c6
-                      referenceVersionId: '1'
-                      referenceName: Hyundia P25-54 1Q
-                  expirationDate: '2020-02-10'
+                      referenceId: PRP-1234
+                      referenceVersionId: 0
+                      referenceName: Hyundai 1Q22
+                  expirationDate: '2021-06-30'
                   buyer:
-                    buyerId: '456'
+                    buyerIds:
+                      - id: Buy-12345
+                        version: '0'
+                        srcId: KHOU-TV
+                        srcName: KHOU-TV
                     buyerName: Canvas Worldwide. LLC
-                    buyerReference: Reference text here
-                  commission: 0.15
+                  commission: 10
                   advertiser:
-                    advertiserId: '34'
+                    advertiserIds:
+                      - id: ADV-12345
+                        version: '0'
+                        srcId: KHOU-TV
+                        srcName: KHOU-TV
                     advertiserName: Hyundai
-                    advertiserReference: '53'
                   brand:
-                    brandId: '19'
+                    brandIds:
+                      - id: BRD-12345
+                        version: '0'
+                        srcId: KHOU-TV
+                        srcName: KHOU-TV
                     brandName: Kona
-                    brandReference: '25'
                   product:
-                    productId: '89'
+                    productIds:
+                      - id: PRD-12345
+                        version: '0'
+                        srcId: KHOU-TV
+                        srcName: KHOU-TV
                     productName: Automobile
-                    productReference: '99'
+                  budgets:
+                    - budgetAmount: 120000
+                      budgetAllocation:
+                        budgetType: DMA
+                        budgetName: Summer Compaign 2021
+                        budgetAmount: 12000
+                        budgetSharePercent: 10
+                  cpeCode:
+                    clientCode: CLN-1234
+                    productCode: PRD-12345
+                    estimateCode: P123C456
                   contacts:
                     - contactType: Account Executive
-                      referenceSourceName: KHOU-TV
-                      referenceSourceId: '490'
-                      contactFirstName: Mary
-                      contactLastName: McCoy
-                      addressLine1: 5718 Westheimer Road
-                      addressLine2: Suite 501
-                      city: Houston
-                      state: TX
-                      postalCode: '77057'
-                      country: USA
-                      phoneNumber: 713-555-5555
-                      email: mmcoy@email.com
-                      effectiveDate: '2007-02-17'
-                    - contactType: Buyer
-                      referenceSourceName: Canvas Worldwide. LLC
-                      referenceSourceId: '456'
-                      contactFirstName: Scott
-                      contactLastName: Evans
-                      addressLine1: 75 Varvick Street
-                      addressLine2: 2nd Floor
-                      city: New York
-                      state: NY
-                      postalCode: '10013'
-                      country: USA
-                      phoneNumber: 212-555-5555
-                      email: sevans@email.com
-                      effectiveDate: '2007-02-17'
+                      contactIds:
+                        - id: CNT-12345
+                          version: '0'
+                          srcId: KHOU-TV
+                          srcName: KHOU-TV
+                      salesOffices:
+                        - 'Dallas, TX'
+                        - 'NYC, NY'
+                      contactFirstName: John
+                      contactLastName: Doe
+                      email: user@example.com
+                      effectiveDate: '2021-05-21'
                   revenueType: Cash
-                  businessType: Standard
-                  localNational: National
-                  dealYear: 2020
+                  businessType: string
+                  localNational: Local
+                  dealYear: string
                   billingOption:
                     billingCalendar: Broadcast
                     billingCycle: Month
                     billingGranularity: Order
-                  equivalized: true
+                  isEquivalized: true
                   dateWindows:
-                    - startDate: '2020-02-17'
-                      endDate: '2020-03-01'
+                    - startDate: '2021-07-01'
+                      endDate: '2021-09-21'
                   cancellationTerms:
-                    cancellationType: Quarterly
-                    cancellation: 1Q
-                    cancellationPriorDays: 10
-                    cancellationPercentage: 0.15
+                    - cancellationType: Quarterly
+                      cancellationPriorDays: 14
+                      cancellationPercentage: 25
                   timeSeparations:
                     - unitLength: 30
-                      timeSeparation: 600
-                    - unitLength: 15
                       timeSeparation: 900
-                  termsOfSales: Contract Terms
-                  externalComment: ''
+                  termsOfSales: Terms Of Sales
+                  externalComment: No Comments
                   rateCard:
-                    rateCardId: '123'
-                    rateCardName: Canvas WW standard ratecard
+                    rateCardId: 1
+                    rateCardName: 1Q'22 Rate Card
                   currency: USD
                   mediaOutlets:
-                    - mediaOutletId: '456'
-                      mediaOutletName: KHOU-TV
-                      mediaOutletType: Broadcast TV
+                    - mediaOutletIds:
+                        - id: KHOU-TV
+                          version: '0'
+                          srcId: KHOU-TV
+                          srcName: KHOU-TV
+                      mediaOutletName: MBLTV - My Best Local TV Station
+                      mediaOutletType: Local TV
                       mediaOutletChannel: KHOU-TV
-                      mediaOutletMarketName: Houston
+                      mediaOutletMarketName: 'Houston, TX'
                   audienceSegments:
-                    - mediaOutletId: '456'
+                    - mediaOutletIds:
+                        - KHOU-TV
                       audienceSegment:
-                        audienceSegmentId: P25-54
-                        audienceSegmentName: P25-54
-                        audienceSegmentReference: string
-                        audienceMethodology: string
-                        primaryIndicator: true
-                        guarantee: true
+                        audienceSegmentIds:
+                          - id: P18-49
+                            version: '0'
+                            srcId: KHOU-TV
+                            srcName: KHOU-TV
+                        audienceSegmentName: P18-49
+                        audienceMethodology: Daypart Average
+                        isPrimary: true
+                        isGuarantee: true
                         ratingSource: Nielsen
                         ratingStream: Program Live
                       universes:
                         - universeType: Market
-                          universeTypeValue: 39000
+                          universeTypeValue: 0
                   salesElements:
-                    - salesElement:
-                        mediaOutletId: '456'
-                        salesElementName: CBS This Morning
-                        salesElementId: '999'
-                        salesElementType: Program
+                    - salesElementHeader:
+                        mediaOutletId: KHOU-TV
+                        salesElementName: Primetime
+                        salesElementId: SL-1234
+                        salesElementType: Time-specific
                       timePeriods:
-                        - dateWindow:
-                            startDate: '2020-01-01'
-                            endDate: '2020-06-01'
-                          DOW:
-                            monday: true
-                            tuesday: true
-                            wednesday: true
-                            thursday: true
-                            friday: true
-                            saturday: false
-                            sunday: false
+                        - DOW:
+                            isMonday: true
+                            isTuesday: true
+                            isWednesday: true
+                            isThursday: true
+                            isFriday: true
+                            isSaturday: true
+                            isSunday: true
                           timeWindow:
-                            startTime: '07:00:00'
-                            endTime: '09:00:00'
+                            startTime: '07:00'
+                            endTime: '11:00'
+                      devices:
+                        - Smart TV
                       programs:
-                        - CBS This Morning
-                      salesElementTransactionInventory:
+                        - Mid Morning News
+                      salesElementTransactionInventorys:
                         - lineNum: '1'
+                          lineReference: ''
+                          lineReferences:
+                            - id: LN-1234
+                              version: '0'
+                              srcId: KHOU-TV
+                              srcName: KHOU-TV
                           inventoryType: Commercial
-                          linkType:
-                            linkNum: 2
-                            linkType: Sponsorship
                           inventoryPosition: First
                           inventoryLength: 30
                           salesElementTransactionDates:
-                            - dateType: Week
+                            - dateType: Day
                               calendarType: Broadcast
-                              dateWindow:
-                                startDate: '2020-02-17'
-                                endDate: '2020-02-23'
-                              unitCount: 2
-                              rate: 525
+                              unitCount: 10
+                              dailyUnitDistribution:
+                                pacingRule:
+                                  type: Frontload
+                                  rateType: Absolute
+                                monday: 2
+                                tuesday: 2
+                                wednesday: 2
+                                thursday: 2
+                                friday: 2
+                                saturday: 0
+                                sunday: 0
+                              frequencyCappings:
+                                - period: Minute
+                                  perPeriod: 0
+                                  value: 0
+                              pricingMetric:
+                                PricingMetricOption: CPM
+                                grossValue: 0
+                                netValue: 0
+                              grossCost: 150
+                              netCost: 127.5
+                              audienceTargets:
+                                - excludeOrInclude: Include
+                                  audienceTargetIds:
+                                    - null
+                                  targetAttribute: HH Income
+                                  value:
+                                    - '$50,000 - $75,000'
+                                    - '$75,000, -$100,000'
                               audiencesPricingMetrics:
-                                - audienceSegmentId: P25-54
+                                - audienceSegmentIds:
+                                    - null
+                                  type: Selling
                                   audienceMetric:
                                     audienceMetric: Impressions
-                                    audienceMetricValue: 310000
-                                  pricingMetric:
-                                    pricingMetric: CPM
-                                    pricingMetricValue: 1.69
-                            - dateType: Week
-                              calendarType: Broadcast
-                              dateWindow:
-                                startDate: '2020-02-24'
-                                endDate: '2020-03-01'
-                              unitCount: 3
-                              rate: 525
-                              audiencesPricingMetrics:
-                                - audienceSegmentId: P25-54
-                                  audienceMetric:
-                                    audienceMetric: Impressions
-                                    audienceMetricValue: 310000
-                                  pricingMetric:
-                                    pricingMetric: CPM
-                                    pricingMetricValue: 1.69
-                    - salesElement:
-                        mediaOutletId: '456'
-                        salesElementName: Prime Weekday
-                        salesElementId: '55'
-                        salesElementType: Time-specific
-                      timePeriods:
-                        - dateWindow:
-                            startDate: '2020-01-01'
-                            endDate: '2020-06-01'
-                          DOW:
-                            monday: true
-                            tuesday: true
-                            wednesday: true
-                            thursday: true
-                            friday: true
-                            saturday: false
-                            sunday: false
-                          timeWindow:
-                            startTime: '19:00:00'
-                            endTime: '22:00:00'
-                      programs:
-                        - ''
-                      salesElementTransactionInventory:
-                        - lineNum: '1'
-                          inventoryType: Commercial
-                          inventoryLength: 30
-                          salesElementTransactionDates:
-                            - dateType: Week
-                              calendarType: Broadcast
-                              dateWindow:
-                                startDate: '2020-02-17'
-                                endDate: '2020-02-23'
-                              unitCount: 2
-                              rate: 525
-                              audiencesPricingMetrics:
-                                - audienceSegmentId: P25-54
-                                  audienceMetric:
-                                    audienceMetric: Impressions
-                                    audienceMetricValue: 310000
-                                  pricingMetric:
-                                    pricingMetric: CPM
-                                    pricingMetricValue: 1.69
-                            - dateType: Week
-                              calendarType: Broadcast
-                              dateWindow:
-                                startDate: '2020-02-24'
-                                endDate: '2020-03-01'
-                              unitCount: 3
-                              rate: 525
-                              audiencesPricingMetrics:
-                                - audienceSegmentId: P25-54
-                                  audienceMetric:
-                                    audienceMetric: Impressions
-                                    audienceMetricValue: 310000
-                                  pricingMetric:
-                                    pricingMetric: CPM
-                                    pricingMetricValue: 1.69
+                                    audienceMetricValue: 43256
+                              externalComment: string
               Change:
                 value:
-                  $ref: '#/paths/~1buyer~1proposals/post/requestBody/content/application~1json/examples/Change/value'
+                  transactionHeader:
+                    tipVersion: 6.0.0
+                    transactionId:
+                      transactionId: 241993AE-9BB6-42B0-854D-9E7889D42904
+                      transactionType: Change
+                      sourceId: ABC-1234
+                      sourceName: TIPApi
+                    originalTransactionId:
+                      transactionId: 1C237FDD-940D-499E-AA20-DF3B9CE0908E
+                      transactionType: New
+                      sourceId: ABC-1234
+                      sourceName: TIPApi
+                    timeStamp: '2021-07-22T17:32:28Z'
+                  referenceIds:
+                    - referenceSourceName: TIPApi
+                      referenceSourceId: ABC-1234
+                      referenceType: RFP
+                      referenceId: REF-1234
+                      referenceVersionId: 0
+                      referenceName: Hyundai 1Q22
+                    - referenceSourceName: KHOU-TV
+                      referenceSourceId: KHOU-TV
+                      referenceType: Proposal
+                      referenceId: PRP-1234
+                      referenceVersionId: 1
+                      referenceName: Hyundai 1Q22
+                  expirationDate: '2021-06-30'
+                  buyer:
+                    buyerIds:
+                      - id: Buy-12345
+                        version: '0'
+                        srcId: KHOU-TV
+                        srcName: KHOU-TV
+                    buyerName: Canvas Worldwide. LLC
+                  commission: 10
+                  advertiser:
+                    advertiserIds:
+                      - id: ADV-12345
+                        version: '0'
+                        srcId: KHOU-TV
+                        srcName: KHOU-TV
+                    advertiserName: Hyundai
+                  brand:
+                    brandIds:
+                      - id: BRD-12345
+                        version: '0'
+                        srcId: KHOU-TV
+                        srcName: KHOU-TV
+                    brandName: Kona
+                  product:
+                    productIds:
+                      - id: PRD-12345
+                        version: '0'
+                        srcId: KHOU-TV
+                        srcName: KHOU-TV
+                    productName: Automobile
+                  budgets:
+                    - budgetAmount: 120000
+                      budgetAllocation:
+                        budgetType: DMA
+                        budgetName: Summer Compaign 2021
+                        budgetAmount: 12000
+                        budgetSharePercent: 10
+                  cpeCode:
+                    clientCode: CLN-1234
+                    productCode: PRD-12345
+                    estimateCode: P123C456
+                  contacts:
+                    - contactType: Account Executive
+                      contactIds:
+                        - id: CNT-12345
+                          version: '0'
+                          srcId: KHOU-TV
+                          srcName: KHOU-TV
+                      salesOffices:
+                        - 'Dallas, TX'
+                        - 'NYC, NY'
+                      contactFirstName: John
+                      contactLastName: Doe
+                      email: user@example.com
+                      effectiveDate: '2021-05-21'
+                  revenueType: Cash
+                  businessType: string
+                  localNational: Local
+                  dealYear: string
+                  billingOption:
+                    billingCalendar: Broadcast
+                    billingCycle: Month
+                    billingGranularity: Order
+                  isEquivalized: true
+                  dateWindows:
+                    - startDate: '2021-07-01'
+                      endDate: '2021-09-21'
+                  cancellationTerms:
+                    - cancellationType: Quarterly
+                      cancellationPriorDays: 14
+                      cancellationPercentage: 25
+                  timeSeparations:
+                    - unitLength: 30
+                      timeSeparation: 900
+                  termsOfSales: Terms Of Sales
+                  externalComment: This newer version addresses concernes presented during our negotiations.
+                  rateCard:
+                    rateCardId: 1
+                    rateCardName: 1Q'22 Rate Card
+                  currency: USD
+                  mediaOutlets:
+                    - mediaOutletIds:
+                        - id: KHOU-TV
+                          version: '0'
+                          srcId: KHOU-TV
+                          srcName: KHOU-TV
+                      mediaOutletName: MBLTV - My Best Local TV Station
+                      mediaOutletType: Local TV
+                      mediaOutletChannel: KHOU-TV
+                      mediaOutletMarketName: 'Houston, TX'
+                  audienceSegments:
+                    - mediaOutletIds:
+                        - KHOU-TV
+                      audienceSegment:
+                        audienceSegmentIds:
+                          - id: P18-49
+                            version: '0'
+                            srcId: KHOU-TV
+                            srcName: KHOU-TV
+                        audienceSegmentName: P18-49
+                        audienceMethodology: Daypart Average
+                        isPrimary: true
+                        isGuarantee: true
+                        ratingSource: Nielsen
+                        ratingStream: Program Live
+                      universes:
+                        - universeType: Market
+                          universeTypeValue: 0
+                  salesElements:
+                    - salesElementHeader:
+                        mediaOutletId: KHOU-TV
+                        salesElementName: Primetime
+                        salesElementId: SL-1234
+                        salesElementType: Time-specific
+                      timePeriods:
+                        - DOW:
+                            isMonday: true
+                            isTuesday: true
+                            isWednesday: true
+                            isThursday: true
+                            isFriday: true
+                            isSaturday: true
+                            isSunday: true
+                          timeWindow:
+                            startTime: '07:00'
+                            endTime: '11:00'
+                      devices:
+                        - Smart TV
+                      programs:
+                        - Mid Morning News
+                      salesElementTransactionInventorys:
+                        - lineNum: '1'
+                          lineReference: ''
+                          lineReferences:
+                            - id: LN-1234
+                              version: '0'
+                              srcId: KHOU-TV
+                              srcName: KHOU-TV
+                          inventoryType: Commercial
+                          inventoryPosition: First
+                          inventoryLength: 30
+                          salesElementTransactionDates:
+                            - dateType: Day
+                              calendarType: Broadcast
+                              unitCount: 10
+                              dailyUnitDistribution:
+                                pacingRule:
+                                  type: Frontload
+                                  rateType: Absolute
+                                monday: 2
+                                tuesday: 2
+                                wednesday: 2
+                                thursday: 2
+                                friday: 2
+                                saturday: 0
+                                sunday: 0
+                              frequencyCappings:
+                                - period: Minute
+                                  perPeriod: 0
+                                  value: 0
+                              pricingMetric:
+                                PricingMetricOption: CPM
+                                grossValue: 0
+                                netValue: 0
+                              grossCost: 150
+                              netCost: 127.5
+                              audienceTargets:
+                                - excludeOrInclude: Include
+                                  audienceTargetIds:
+                                    - null
+                                  targetAttribute: HH Income
+                                  value:
+                                    - '$50,000 - $75,000'
+                                    - '$75,000, -$100,000'
+                              audiencesPricingMetrics:
+                                - audienceSegmentIds:
+                                    - null
+                                  type: Selling
+                                  audienceMetric:
+                                    audienceMetric: Impressions
+                                    audienceMetricValue: 43256
+                              externalComment: string
               Cancel:
                 value:
-                  $ref: '#/paths/~1buyer~1rfps/post/requestBody/content/application~1json/examples/Cancel/value'
+                  transactionHeader:
+                    tipVersion: 6.0.0
+                    transactionId:
+                      transactionId: 6C895361-97B0-43F0-976C-A4E77DDD78FD
+                      transactionType: Cancel
+                      sourceId: ABC-1234
+                      sourceName: TIPApi
+                    originalTransactionId:
+                      transactionId: 1C237FDD-940D-499E-AA20-DF3B9CE0908E
+                      transactionType: Change
+                      sourceId: ABC-1234
+                      sourceName: TIPApi
+                    timeStamp: '2021-07-21T17:32:28Z'
+                  referenceIds:
+                    - referenceSourceName: TIPApi
+                      referenceSourceId: ABC-1234
+                      referenceType: RFP
+                      referenceId: REF-1234
+                      referenceVersionId: 0
+                      referenceName: Hyundai 1Q22
+                    - referenceSourceName: KHOU-TV
+                      referenceSourceId: KHOU-TV
+                      referenceType: Proposal
+                      referenceId: PRP-1234
+                      referenceVersionId: 1
+                      referenceName: Hyundai 1Q22
+                  comments: Please Cancel entire proposal. newly updated ones are to be provided
               Recall:
                 value:
-                  $ref: '#/paths/~1buyer~1orders/post/requestBody/content/application~1json/examples/Recall/value'
+                  transactionHeader:
+                    tipVersion: 6.0.0
+                    transactionId:
+                      transactionId: 6C895361-97B0-43F0-976C-A4E77DDD78FD
+                      transactionType: Recall
+                      sourceId: ABC-1234
+                      sourceName: TIPApi
+                    originalTransactionId:
+                      transactionId: 241993AE-9BB6-42B0-854D-9E7889D42904
+                      transactionType: Change
+                      sourceId: ABC-1234
+                      sourceName: TIPApi
+                    timeStamp: '2021-07-21T17:32:28Z'
+                  referenceIds:
+                    - referenceSourceName: TIPApi
+                      referenceSourceId: ABC-1234
+                      referenceType: RFP
+                      referenceId: REF-1234
+                      referenceVersionId: 0
+                      referenceName: Hyundai 1Q22
+                    - referenceSourceName: KHOU-TV
+                      referenceSourceId: KHOU-TV
+                      referenceType: Proposal
+                      referenceId: PRP-1234
+                      referenceVersionId: 1
+                      referenceName: Hyundai 1Q22
+                  comments: Please ignore previous Proposal changes indicated in version#1. newly updated ones are to follow.
+          application/xml:
+            schema:
+              $ref: '#/paths/~1buyer~1proposals/post/requestBody/content/application~1json/schema'
+            examples:
+              New:
+                value: "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n<SellerProposalsRequest>\r\n\t<transactionHeader>\r\n\t\t<tipVersion>6.0.0</tipVersion>\r\n\t\t<transactionId>\r\n\t\t\t<transactionId>1C237FDD-940D-499E-AA20-DF3B9CE0908E</transactionId>\r\n\t\t\t<transactionType>New</transactionType>\r\n\t\t\t<sourceId>ABC-1234</sourceId>\r\n\t\t\t<sourceName>TIPApi</sourceName>\r\n\t\t</transactionId>\r\n\t\t<timeStamp>2021-07-21T17:32:28Z</timeStamp>\r\n\t</transactionHeader>\r\n\t<referenceIds>\r\n\t\t<referenceSourceName>TIPApi</referenceSourceName>\r\n\t\t<referenceSourceId>ABC-1234</referenceSourceId>\r\n\t\t<referenceType>RFP</referenceType>\r\n\t\t<referenceId>REF-1234</referenceId>\r\n\t\t<referenceVersionId>0</referenceVersionId>\r\n\t\t<referenceName>Hyundai 1Q22</referenceName>\r\n\t</referenceIds>\r\n\t<referenceIds>\r\n\t\t<referenceSourceName>KHOU-TV</referenceSourceName>\r\n\t\t<referenceSourceId>KHOU-TV</referenceSourceId>\r\n\t\t<referenceType>Proposal</referenceType>\r\n\t\t<referenceId>PRP-1234</referenceId>\r\n\t\t<referenceVersionId>0</referenceVersionId>\r\n\t\t<referenceName>Hyundai 1Q22</referenceName>\r\n\t</referenceIds>\r\n\t<expirationDate>2021-06-30</expirationDate>\r\n\t<buyer>\r\n\t\t<buyerIds>\r\n\t\t\t<id>Buy-12345</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>KHOU-TV</srcId>\r\n\t\t\t<srcName>KHOU-TV</srcName>\r\n\t\t</buyerIds>\r\n\t\t<buyerName>Canvas Worldwide. LLC</buyerName>\r\n\t</buyer>\r\n\t<commission>10</commission>\r\n\t<advertiser>\r\n\t\t<advertiserIds>\r\n\t\t\t<id>ADV-12345</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>KHOU-TV</srcId>\r\n\t\t\t<srcName>KHOU-TV</srcName>\r\n\t\t</advertiserIds>\r\n\t\t<advertiserName>Hyundai</advertiserName>\r\n\t</advertiser>\r\n\t<brand>\r\n\t\t<brandIds>\r\n\t\t\t<id>BRD-12345</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>KHOU-TV</srcId>\r\n\t\t\t<srcName>KHOU-TV</srcName>\r\n\t\t</brandIds>\r\n\t\t<brandName>Kona</brandName>\r\n\t</brand>\r\n\t<product>\r\n\t\t<productIds>\r\n\t\t\t<id>PRD-12345</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>KHOU-TV</srcId>\r\n\t\t\t<srcName>KHOU-TV</srcName>\r\n\t\t</productIds>\r\n\t\t<productName>Automobile</productName>\r\n\t</product>\r\n\t<budgets>\r\n\t\t<budgetAmount>120000</budgetAmount>\r\n\t\t<budgetAllocation>\r\n\t\t\t<budgetType>DMA</budgetType>\r\n\t\t\t<budgetName>Summer Compaign 2021</budgetName>\r\n\t\t\t<budgetAmount>12000</budgetAmount>\r\n\t\t\t<budgetSharePercent>10</budgetSharePercent>\r\n\t\t</budgetAllocation>\r\n\t</budgets>\r\n\t<cpeCode>\r\n\t\t<clientCode>CLN-1234</clientCode>\r\n\t\t<productCode>PRD-12345</productCode>\r\n\t\t<estimateCode>P123C456</estimateCode>\r\n\t</cpeCode>\r\n\t<contacts>\r\n\t\t<contactType>Account Executive</contactType>\r\n\t\t<contactIds>\r\n\t\t\t<id>CNT-12345</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>KHOU-TV</srcId>\r\n\t\t\t<srcName>KHOU-TV</srcName>\r\n\t\t</contactIds>\r\n\t\t<salesOffices>Dallas, TX</salesOffices>\r\n\t\t<salesOffices>NYC, NY</salesOffices>\r\n\t\t<contactFirstName>John</contactFirstName>\r\n\t\t<contactLastName>Doe</contactLastName>\r\n\t\t<email>user@example.com</email>\r\n\t\t<effectiveDate>2021-05-21</effectiveDate>\r\n\t</contacts>\r\n\t<revenueType>Cash</revenueType>\r\n\t<businessType>string</businessType>\r\n\t<localNational>Local</localNational>\r\n\t<dealYear>string</dealYear>\r\n\t<billingOption>\r\n\t\t<billingCalendar>Broadcast</billingCalendar>\r\n\t\t<billingCycle>Month</billingCycle>\r\n\t\t<billingGranularity>Order</billingGranularity>\r\n\t</billingOption>\r\n\t<isEquivalized>true</isEquivalized>\r\n\t<dateWindows>\r\n\t\t<startDate>2021-07-01</startDate>\r\n\t\t<endDate>2021-09-21</endDate>\r\n\t</dateWindows>\r\n\t<cancellationTerms>\r\n\t\t<cancellationType>Quarterly</cancellationType>\r\n\t\t<cancellationPriorDays>14</cancellationPriorDays>\r\n\t\t<cancellationPercentage>25</cancellationPercentage>\r\n\t</cancellationTerms>\r\n\t<timeSeparations>\r\n\t\t<unitLength>30</unitLength>\r\n\t\t<timeSeparation>900</timeSeparation>\r\n\t</timeSeparations>\r\n\t<termsOfSales>Terms Of Sales</termsOfSales>\r\n\t<externalComment>No Comments</externalComment>\r\n\t<rateCard>\r\n\t\t<rateCardId>1</rateCardId>\r\n\t\t<rateCardName>1Q'22 Rate Card</rateCardName>\r\n\t</rateCard>\r\n\t<currency>USD</currency>\r\n\t<mediaOutlets>\r\n\t\t<mediaOutletIds>\r\n\t\t\t<id>KHOU-TV</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>KHOU-TV</srcId>\r\n\t\t\t<srcName>KHOU-TV</srcName>\r\n\t\t</mediaOutletIds>\r\n\t\t<mediaOutletName>MBLTV - My Best Local TV Station</mediaOutletName>\r\n\t\t<mediaOutletType>Local TV</mediaOutletType>\r\n\t\t<mediaOutletChannel>KHOU-TV</mediaOutletChannel>\r\n\t\t<mediaOutletMarketName>Houston, TX</mediaOutletMarketName>\r\n\t</mediaOutlets>\r\n\t<audienceSegments>\r\n\t\t<mediaOutletIds>KHOU-TV</mediaOutletIds>\r\n\t\t<audienceSegment>\r\n\t\t\t<audienceSegmentIds>\r\n\t\t\t\t<id>P18-49</id>\r\n\t\t\t\t<version>0</version>\r\n\t\t\t\t<srcId>KHOU-TV</srcId>\r\n\t\t\t\t<srcName>KHOU-TV</srcName>\r\n\t\t\t</audienceSegmentIds>\r\n\t\t\t<audienceSegmentName>P18-49</audienceSegmentName>\r\n\t\t\t<audienceMethodology>Daypart Average</audienceMethodology>\r\n\t\t\t<isPrimary>true</isPrimary>\r\n\t\t\t<isGuarantee>true</isGuarantee>\r\n\t\t\t<ratingSource>Nielsen</ratingSource>\r\n\t\t\t<ratingStream>Program Live</ratingStream>\r\n\t\t</audienceSegment>\r\n\t\t<universes>\r\n\t\t\t<universeType>Market</universeType>\r\n\t\t\t<universeTypeValue>0</universeTypeValue>\r\n\t\t</universes>\r\n\t</audienceSegments>\r\n\t<salesElements>\r\n\t\t<salesElementHeader>\r\n\t\t\t<mediaOutletId>KHOU-TV</mediaOutletId>\r\n\t\t\t<salesElementName>Primetime</salesElementName>\r\n\t\t\t<salesElementId>SL-1234</salesElementId>\r\n\t\t\t<salesElementType>Time-specific</salesElementType>\r\n\t\t</salesElementHeader>\r\n\t\t<timePeriods>\r\n\t\t\t<DOW>\r\n\t\t\t\t<isMonday>true</isMonday>\r\n\t\t\t\t<isTuesday>true</isTuesday>\r\n\t\t\t\t<isWednesday>true</isWednesday>\r\n\t\t\t\t<isThursday>true</isThursday>\r\n\t\t\t\t<isFriday>true</isFriday>\r\n\t\t\t\t<isSaturday>true</isSaturday>\r\n\t\t\t\t<isSunday>true</isSunday>\r\n\t\t\t</DOW>\r\n\t\t\t<timeWindow>\r\n\t\t\t\t<startTime>07:00</startTime>\r\n\t\t\t\t<endTime>11:00</endTime>\r\n\t\t\t</timeWindow>\r\n\t\t</timePeriods>\r\n\t\t<devices>Smart TV</devices>\r\n\t\t<programs>Mid Morning News</programs>\r\n\t\t<salesElementTransactionInventorys>\r\n\t\t\t<lineNum>1</lineNum>\r\n\t\t\t<lineReference></lineReference>\r\n\t\t\t<lineReferences>\r\n\t\t\t\t<id>LN-1234</id>\r\n\t\t\t\t<version>0</version>\r\n\t\t\t\t<srcId>KHOU-TV</srcId>\r\n\t\t\t\t<srcName>KHOU-TV</srcName>\r\n\t\t\t</lineReferences>\r\n\t\t\t<inventoryType>Commercial</inventoryType>\r\n\t\t\t<inventoryPosition>First</inventoryPosition>\r\n\t\t\t<inventoryLength>30</inventoryLength>\r\n\t\t\t<salesElementTransactionDates>\r\n\t\t\t\t<dateType>Day</dateType>\r\n\t\t\t\t<calendarType>Broadcast</calendarType>\r\n\t\t\t\t<unitCount>10</unitCount>\r\n\t\t\t\t<dailyUnitDistribution>\r\n\t\t\t\t\t<pacingRule>\r\n\t\t\t\t\t\t<type>Frontload</type>\r\n\t\t\t\t\t\t<rateType>Absolute</rateType>\r\n\t\t\t\t\t</pacingRule>\r\n\t\t\t\t\t<monday>2</monday>\r\n\t\t\t\t\t<tuesday>2</tuesday>\r\n\t\t\t\t\t<wednesday>2</wednesday>\r\n\t\t\t\t\t<thursday>2</thursday>\r\n\t\t\t\t\t<friday>2</friday>\r\n\t\t\t\t\t<saturday>0</saturday>\r\n\t\t\t\t\t<sunday>0</sunday>\r\n\t\t\t\t</dailyUnitDistribution>\r\n\t\t\t\t<frequencyCappings>\r\n\t\t\t\t\t<period>Minute</period>\r\n\t\t\t\t\t<perPeriod>0</perPeriod>\r\n\t\t\t\t\t<value>0</value>\r\n\t\t\t\t</frequencyCappings>\r\n\t\t\t\t<pricingMetric>\r\n\t\t\t\t\t<PricingMetricOption>CPM</PricingMetricOption>\r\n\t\t\t\t\t<grossValue>0</grossValue>\r\n\t\t\t\t\t<netValue>0</netValue>\r\n\t\t\t\t</pricingMetric>\r\n\t\t\t\t<grossCost>150</grossCost>\r\n\t\t\t\t<netCost>127.5</netCost>\r\n\t\t\t\t<audienceTargets>\r\n\t\t\t\t\t<excludeOrInclude>Include</excludeOrInclude>\r\n\t\t\t\t\t<audienceTargetIds />\r\n\t\t\t\t\t<targetAttribute>HH Income</targetAttribute>\r\n\t\t\t\t\t<value>$50,000 - $75,000</value>\r\n\t\t\t\t\t<value>$75,000, -$100,000</value>\r\n\t\t\t\t</audienceTargets>\r\n\t\t\t\t<audiencesPricingMetrics>\r\n\t\t\t\t\t<audienceSegmentIds />\r\n\t\t\t\t\t<type>Selling</type>\r\n\t\t\t\t\t<audienceMetric>\r\n\t\t\t\t\t\t<audienceMetric>Impressions</audienceMetric>\r\n\t\t\t\t\t\t<audienceMetricValue>43256</audienceMetricValue>\r\n\t\t\t\t\t</audienceMetric>\r\n\t\t\t\t</audiencesPricingMetrics>\r\n\t\t\t\t<externalComment>string</externalComment>\r\n\t\t\t</salesElementTransactionDates>\r\n\t\t</salesElementTransactionInventorys>\r\n\t</salesElements>\r\n</SellerProposalsRequest>"
+              Change:
+                value: "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n<SellerProposalsRequest>\r\n\t<transactionHeader>\r\n\t\t<tipVersion>6.0.0</tipVersion>\r\n\t\t<transactionId>\r\n\t\t\t<transactionId>241993AE-9BB6-42B0-854D-9E7889D42904</transactionId>\r\n\t\t\t<transactionType>Change</transactionType>\r\n\t\t\t<sourceId>ABC-1234</sourceId>\r\n\t\t\t<sourceName>TIPApi</sourceName>\r\n\t\t</transactionId>\r\n\t\t<originalTransactionId>\r\n\t\t\t<transactionId>1C237FDD-940D-499E-AA20-DF3B9CE0908E</transactionId>\r\n\t\t\t<transactionType>New</transactionType>\r\n\t\t\t<sourceId>ABC-1234</sourceId>\r\n\t\t\t<sourceName>TIPApi</sourceName>\r\n\t\t</originalTransactionId>\r\n\t\t<timeStamp>2021-07-22T17:32:28Z</timeStamp>\r\n\t</transactionHeader>\r\n\t<referenceIds>\r\n\t\t<referenceSourceName>TIPApi</referenceSourceName>\r\n\t\t<referenceSourceId>ABC-1234</referenceSourceId>\r\n\t\t<referenceType>RFP</referenceType>\r\n\t\t<referenceId>REF-1234</referenceId>\r\n\t\t<referenceVersionId>0</referenceVersionId>\r\n\t\t<referenceName>Hyundai 1Q22</referenceName>\r\n\t</referenceIds>\r\n\t<referenceIds>\r\n\t\t<referenceSourceName>KHOU-TV</referenceSourceName>\r\n\t\t<referenceSourceId>KHOU-TV</referenceSourceId>\r\n\t\t<referenceType>Proposal</referenceType>\r\n\t\t<referenceId>PRP-1234</referenceId>\r\n\t\t<referenceVersionId>1</referenceVersionId>\r\n\t\t<referenceName>Hyundai 1Q22</referenceName>\r\n\t</referenceIds>\r\n\t<expirationDate>2021-06-30</expirationDate>\r\n\t<buyer>\r\n\t\t<buyerIds>\r\n\t\t\t<id>Buy-12345</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>KHOU-TV</srcId>\r\n\t\t\t<srcName>KHOU-TV</srcName>\r\n\t\t</buyerIds>\r\n\t\t<buyerName>Canvas Worldwide. LLC</buyerName>\r\n\t</buyer>\r\n\t<commission>10</commission>\r\n\t<advertiser>\r\n\t\t<advertiserIds>\r\n\t\t\t<id>ADV-12345</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>KHOU-TV</srcId>\r\n\t\t\t<srcName>KHOU-TV</srcName>\r\n\t\t</advertiserIds>\r\n\t\t<advertiserName>Hyundai</advertiserName>\r\n\t</advertiser>\r\n\t<brand>\r\n\t\t<brandIds>\r\n\t\t\t<id>BRD-12345</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>KHOU-TV</srcId>\r\n\t\t\t<srcName>KHOU-TV</srcName>\r\n\t\t</brandIds>\r\n\t\t<brandName>Kona</brandName>\r\n\t</brand>\r\n\t<product>\r\n\t\t<productIds>\r\n\t\t\t<id>PRD-12345</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>KHOU-TV</srcId>\r\n\t\t\t<srcName>KHOU-TV</srcName>\r\n\t\t</productIds>\r\n\t\t<productName>Automobile</productName>\r\n\t</product>\r\n\t<budgets>\r\n\t\t<budgetAmount>120000</budgetAmount>\r\n\t\t<budgetAllocation>\r\n\t\t\t<budgetType>DMA</budgetType>\r\n\t\t\t<budgetName>Summer Compaign 2021</budgetName>\r\n\t\t\t<budgetAmount>12000</budgetAmount>\r\n\t\t\t<budgetSharePercent>10</budgetSharePercent>\r\n\t\t</budgetAllocation>\r\n\t</budgets>\r\n\t<cpeCode>\r\n\t\t<clientCode>CLN-1234</clientCode>\r\n\t\t<productCode>PRD-12345</productCode>\r\n\t\t<estimateCode>P123C456</estimateCode>\r\n\t</cpeCode>\r\n\t<contacts>\r\n\t\t<contactType>Account Executive</contactType>\r\n\t\t<contactIds>\r\n\t\t\t<id>CNT-12345</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>KHOU-TV</srcId>\r\n\t\t\t<srcName>KHOU-TV</srcName>\r\n\t\t</contactIds>\r\n\t\t<salesOffices>Dallas, TX</salesOffices>\r\n\t\t<salesOffices>NYC, NY</salesOffices>\r\n\t\t<contactFirstName>John</contactFirstName>\r\n\t\t<contactLastName>Doe</contactLastName>\r\n\t\t<email>user@example.com</email>\r\n\t\t<effectiveDate>2021-05-21</effectiveDate>\r\n\t</contacts>\r\n\t<revenueType>Cash</revenueType>\r\n\t<businessType>string</businessType>\r\n\t<localNational>Local</localNational>\r\n\t<dealYear>string</dealYear>\r\n\t<billingOption>\r\n\t\t<billingCalendar>Broadcast</billingCalendar>\r\n\t\t<billingCycle>Month</billingCycle>\r\n\t\t<billingGranularity>Order</billingGranularity>\r\n\t</billingOption>\r\n\t<isEquivalized>true</isEquivalized>\r\n\t<dateWindows>\r\n\t\t<startDate>2021-07-01</startDate>\r\n\t\t<endDate>2021-09-21</endDate>\r\n\t</dateWindows>\r\n\t<cancellationTerms>\r\n\t\t<cancellationType>Quarterly</cancellationType>\r\n\t\t<cancellationPriorDays>14</cancellationPriorDays>\r\n\t\t<cancellationPercentage>25</cancellationPercentage>\r\n\t</cancellationTerms>\r\n\t<timeSeparations>\r\n\t\t<unitLength>30</unitLength>\r\n\t\t<timeSeparation>900</timeSeparation>\r\n\t</timeSeparations>\r\n\t<termsOfSales>Terms Of Sales</termsOfSales>\r\n\t<externalComment>This newer version addresses concernes presented during our negotiations.</externalComment>\r\n\t<rateCard>\r\n\t\t<rateCardId>1</rateCardId>\r\n\t\t<rateCardName>1Q'22 Rate Card</rateCardName>\r\n\t</rateCard>\r\n\t<currency>USD</currency>\r\n\t<mediaOutlets>\r\n\t\t<mediaOutletIds>\r\n\t\t\t<id>KHOU-TV</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>KHOU-TV</srcId>\r\n\t\t\t<srcName>KHOU-TV</srcName>\r\n\t\t</mediaOutletIds>\r\n\t\t<mediaOutletName>MBLTV - My Best Local TV Station</mediaOutletName>\r\n\t\t<mediaOutletType>Local TV</mediaOutletType>\r\n\t\t<mediaOutletChannel>KHOU-TV</mediaOutletChannel>\r\n\t\t<mediaOutletMarketName>Houston, TX</mediaOutletMarketName>\r\n\t</mediaOutlets>\r\n\t<audienceSegments>\r\n\t\t<mediaOutletIds>KHOU-TV</mediaOutletIds>\r\n\t\t<audienceSegment>\r\n\t\t\t<audienceSegmentIds>\r\n\t\t\t\t<id>P18-49</id>\r\n\t\t\t\t<version>0</version>\r\n\t\t\t\t<srcId>KHOU-TV</srcId>\r\n\t\t\t\t<srcName>KHOU-TV</srcName>\r\n\t\t\t</audienceSegmentIds>\r\n\t\t\t<audienceSegmentName>P18-49</audienceSegmentName>\r\n\t\t\t<audienceMethodology>Daypart Average</audienceMethodology>\r\n\t\t\t<isPrimary>true</isPrimary>\r\n\t\t\t<isGuarantee>true</isGuarantee>\r\n\t\t\t<ratingSource>Nielsen</ratingSource>\r\n\t\t\t<ratingStream>Program Live</ratingStream>\r\n\t\t</audienceSegment>\r\n\t\t<universes>\r\n\t\t\t<universeType>Market</universeType>\r\n\t\t\t<universeTypeValue>0</universeTypeValue>\r\n\t\t</universes>\r\n\t</audienceSegments>\r\n\t<salesElements>\r\n\t\t<salesElementHeader>\r\n\t\t\t<mediaOutletId>KHOU-TV</mediaOutletId>\r\n\t\t\t<salesElementName>Primetime</salesElementName>\r\n\t\t\t<salesElementId>SL-1234</salesElementId>\r\n\t\t\t<salesElementType>Time-specific</salesElementType>\r\n\t\t</salesElementHeader>\r\n\t\t<timePeriods>\r\n\t\t\t<DOW>\r\n\t\t\t\t<isMonday>true</isMonday>\r\n\t\t\t\t<isTuesday>true</isTuesday>\r\n\t\t\t\t<isWednesday>true</isWednesday>\r\n\t\t\t\t<isThursday>true</isThursday>\r\n\t\t\t\t<isFriday>true</isFriday>\r\n\t\t\t\t<isSaturday>true</isSaturday>\r\n\t\t\t\t<isSunday>true</isSunday>\r\n\t\t\t</DOW>\r\n\t\t\t<timeWindow>\r\n\t\t\t\t<startTime>07:00</startTime>\r\n\t\t\t\t<endTime>11:00</endTime>\r\n\t\t\t</timeWindow>\r\n\t\t</timePeriods>\r\n\t\t<devices>Smart TV</devices>\r\n\t\t<programs>Mid Morning News</programs>\r\n\t\t<salesElementTransactionInventorys>\r\n\t\t\t<lineNum>1</lineNum>\r\n\t\t\t<lineReference></lineReference>\r\n\t\t\t<lineReferences>\r\n\t\t\t\t<id>LN-1234</id>\r\n\t\t\t\t<version>0</version>\r\n\t\t\t\t<srcId>KHOU-TV</srcId>\r\n\t\t\t\t<srcName>KHOU-TV</srcName>\r\n\t\t\t</lineReferences>\r\n\t\t\t<inventoryType>Commercial</inventoryType>\r\n\t\t\t<inventoryPosition>First</inventoryPosition>\r\n\t\t\t<inventoryLength>30</inventoryLength>\r\n\t\t\t<salesElementTransactionDates>\r\n\t\t\t\t<dateType>Day</dateType>\r\n\t\t\t\t<calendarType>Broadcast</calendarType>\r\n\t\t\t\t<unitCount>10</unitCount>\r\n\t\t\t\t<dailyUnitDistribution>\r\n\t\t\t\t\t<pacingRule>\r\n\t\t\t\t\t\t<type>Frontload</type>\r\n\t\t\t\t\t\t<rateType>Absolute</rateType>\r\n\t\t\t\t\t</pacingRule>\r\n\t\t\t\t\t<monday>2</monday>\r\n\t\t\t\t\t<tuesday>2</tuesday>\r\n\t\t\t\t\t<wednesday>2</wednesday>\r\n\t\t\t\t\t<thursday>2</thursday>\r\n\t\t\t\t\t<friday>2</friday>\r\n\t\t\t\t\t<saturday>0</saturday>\r\n\t\t\t\t\t<sunday>0</sunday>\r\n\t\t\t\t</dailyUnitDistribution>\r\n\t\t\t\t<frequencyCappings>\r\n\t\t\t\t\t<period>Minute</period>\r\n\t\t\t\t\t<perPeriod>0</perPeriod>\r\n\t\t\t\t\t<value>0</value>\r\n\t\t\t\t</frequencyCappings>\r\n\t\t\t\t<pricingMetric>\r\n\t\t\t\t\t<PricingMetricOption>CPM</PricingMetricOption>\r\n\t\t\t\t\t<grossValue>0</grossValue>\r\n\t\t\t\t\t<netValue>0</netValue>\r\n\t\t\t\t</pricingMetric>\r\n\t\t\t\t<grossCost>150</grossCost>\r\n\t\t\t\t<netCost>127.5</netCost>\r\n\t\t\t\t<audienceTargets>\r\n\t\t\t\t\t<excludeOrInclude>Include</excludeOrInclude>\r\n\t\t\t\t\t<audienceTargetIds />\r\n\t\t\t\t\t<targetAttribute>HH Income</targetAttribute>\r\n\t\t\t\t\t<value>$50,000 - $75,000</value>\r\n\t\t\t\t\t<value>$75,000, -$100,000</value>\r\n\t\t\t\t</audienceTargets>\r\n\t\t\t\t<audiencesPricingMetrics>\r\n\t\t\t\t\t<audienceSegmentIds />\r\n\t\t\t\t\t<type>Selling</type>\r\n\t\t\t\t\t<audienceMetric>\r\n\t\t\t\t\t\t<audienceMetric>Impressions</audienceMetric>\r\n\t\t\t\t\t\t<audienceMetricValue>43256</audienceMetricValue>\r\n\t\t\t\t\t</audienceMetric>\r\n\t\t\t\t</audiencesPricingMetrics>\r\n\t\t\t\t<externalComment>string</externalComment>\r\n\t\t\t</salesElementTransactionDates>\r\n\t\t</salesElementTransactionInventorys>\r\n\t</salesElements>\r\n</SellerProposalsRequest>"
+              Cancel:
+                value: "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n<SellerProposalsRequest>\r\n\t<transactionHeader>\r\n\t\t<tipVersion>6.0.0</tipVersion>\r\n\t\t<transactionId>\r\n\t\t\t<transactionId>6C895361-97B0-43F0-976C-A4E77DDD78FD</transactionId>\r\n\t\t\t<transactionType>Cancel</transactionType>\r\n\t\t\t<sourceId>ABC-1234</sourceId>\r\n\t\t\t<sourceName>TIPApi</sourceName>\r\n\t\t</transactionId>\r\n\t\t<originalTransactionId>\r\n\t\t\t<transactionId>1C237FDD-940D-499E-AA20-DF3B9CE0908E</transactionId>\r\n\t\t\t<transactionType>Change</transactionType>\r\n\t\t\t<sourceId>ABC-1234</sourceId>\r\n\t\t\t<sourceName>TIPApi</sourceName>\r\n\t\t</originalTransactionId>\r\n\t\t<timeStamp>2021-07-21T17:32:28Z</timeStamp>\r\n\t</transactionHeader>\r\n\t<referenceIds>\r\n\t\t<referenceSourceName>TIPApi</referenceSourceName>\r\n\t\t<referenceSourceId>ABC-1234</referenceSourceId>\r\n\t\t<referenceType>RFP</referenceType>\r\n\t\t<referenceId>REF-1234</referenceId>\r\n\t\t<referenceVersionId>0</referenceVersionId>\r\n\t\t<referenceName>Hyundai 1Q22</referenceName>\r\n\t</referenceIds>\r\n\t<referenceIds>\r\n\t\t<referenceSourceName>KHOU-TV</referenceSourceName>\r\n\t\t<referenceSourceId>KHOU-TV</referenceSourceId>\r\n\t\t<referenceType>Proposal</referenceType>\r\n\t\t<referenceId>PRP-1234</referenceId>\r\n\t\t<referenceVersionId>1</referenceVersionId>\r\n\t\t<referenceName>Hyundai 1Q22</referenceName>\r\n\t</referenceIds>\r\n\t<comments>Please Cancel entire proposal. newly updated ones are to be provided</comments>\r\n</SellerProposalsRequest>"
+              Recall:
+                value: "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n<SellerProposalsRequest>\r\n\t<transactionHeader>\r\n\t\t<tipVersion>6.0.0</tipVersion>\r\n\t\t<transactionId>\r\n\t\t\t<transactionId>6C895361-97B0-43F0-976C-A4E77DDD78FD</transactionId>\r\n\t\t\t<transactionType>Recall</transactionType>\r\n\t\t\t<sourceId>ABC-1234</sourceId>\r\n\t\t\t<sourceName>TIPApi</sourceName>\r\n\t\t</transactionId>\r\n\t\t<originalTransactionId>\r\n\t\t\t<transactionId>241993AE-9BB6-42B0-854D-9E7889D42904</transactionId>\r\n\t\t\t<transactionType>Change</transactionType>\r\n\t\t\t<sourceId>ABC-1234</sourceId>\r\n\t\t\t<sourceName>TIPApi</sourceName>\r\n\t\t</originalTransactionId>\r\n\t\t<timeStamp>2021-07-21T17:32:28Z</timeStamp>\r\n\t</transactionHeader>\r\n\t<referenceIds>\r\n\t\t<referenceSourceName>TIPApi</referenceSourceName>\r\n\t\t<referenceSourceId>ABC-1234</referenceSourceId>\r\n\t\t<referenceType>RFP</referenceType>\r\n\t\t<referenceId>REF-1234</referenceId>\r\n\t\t<referenceVersionId>0</referenceVersionId>\r\n\t\t<referenceName>Hyundai 1Q22</referenceName>\r\n\t</referenceIds>\r\n\t<referenceIds>\r\n\t\t<referenceSourceName>KHOU-TV</referenceSourceName>\r\n\t\t<referenceSourceId>KHOU-TV</referenceSourceId>\r\n\t\t<referenceType>Proposal</referenceType>\r\n\t\t<referenceId>PRP-1234</referenceId>\r\n\t\t<referenceVersionId>1</referenceVersionId>\r\n\t\t<referenceName>Hyundai 1Q22</referenceName>\r\n\t</referenceIds>\r\n\t<comments>Please ignore previous Proposal changes indicated in version#1. newly updated ones are to follow.</comments>\r\n</SellerProposalsRequest>"
       responses:
+        '201':
+          $ref: '#/components/responses/Created'
         '202':
           $ref: '#/components/responses/Accepted'
         '400':
@@ -938,188 +1185,270 @@ paths:
               Change:
                 value:
                   transactionHeader:
-                    tipVersion: 5.1.0
+                    tipVersion: 6.0.0
                     transactionId:
-                      transactionId: 9E804522-5668-4D96-AB7C-94105D05EB93
+                      transactionId: 241993AE-9BB6-42B0-854D-9E7889D42904
                       transactionType: Change
-                      sourceId: '496'
-                      sourceName: Canvas Worldwide. LLC
+                      sourceId: Buy-6789
+                      sourceName: TIP Buyer
                     originalTransactionId:
-                      transactionId: 0FE75A8C-2812-456A-9C0C-B2F734D23354
-                      transactionType: New
-                      sourceId: '490'
-                      sourceName: KHOU-TV
-                    timeStamp: '2020-02-05T11:52:38'
+                      transactionId: 241993AE-9BB6-42B0-854D-9E7889D42904
+                      transactionType: Change
+                      sourceId: ABC-1234
+                      sourceName: TIPApi
+                    timeStamp: '2021-07-22T17:32:28Z'
                   referenceIds:
-                    - referenceSourceName: Canvas Worldwide. LLC
-                      referenceSourceId: '456'
+                    - referenceSourceName: TIPApi
+                      referenceSourceId: ABC-1234
                       referenceType: RFP
-                      referenceId: 0FE75A8C-2812-456A-9C0C-B2F734D23354
-                      referenceVersionId: '0'
-                      referenceName: Hyundia P25-54 1Q
+                      referenceId: REF-1234
+                      referenceVersionId: 0
+                      referenceName: Hyundai 1Q22
                     - referenceSourceName: KHOU-TV
-                      referenceSourceId: '490'
+                      referenceSourceId: KHOU-TV
                       referenceType: Proposal
-                      referenceId: 6FC13FB7-1910-4722-B924-0AF7BA62E2D9
-                      referenceVersionId: '1'
-                      referenceName: Hyundia P25-54 1Q
-                  expirationDate: '2020-02-10'
+                      referenceId: PRP-1234
+                      referenceVersionId: 1
+                      referenceName: Hyundai 1Q22
+                    - referenceSourceName: Buy-6789
+                      referenceSourceId: TIP Buyer
+                      referenceType: Proposal
+                      referenceId: PRP-56789
+                      referenceVersionId: 2
+                      referenceName: Hyundai 1Q22
+                  expirationDate: '2021-06-30'
                   buyer:
-                    buyerId: '456'
+                    buyerIds:
+                      - id: Buy-12345
+                        version: '0'
+                        srcId: KHOU-TV
+                        srcName: KHOU-TV
                     buyerName: Canvas Worldwide. LLC
-                    buyerReference: string
-                  commission: 15
+                  commission: 10
                   advertiser:
-                    advertiserId: '34'
+                    advertiserIds:
+                      - id: ADV-12345
+                        version: '0'
+                        srcId: KHOU-TV
+                        srcName: KHOU-TV
                     advertiserName: Hyundai
-                    advertiserReference: '53'
                   brand:
-                    brandId: '19'
+                    brandIds:
+                      - id: BRD-12345
+                        version: '0'
+                        srcId: KHOU-TV
+                        srcName: KHOU-TV
                     brandName: Kona
-                    brandReference: '25'
                   product:
-                    productId: '89'
+                    productIds:
+                      - id: PRD-12345
+                        version: '0'
+                        srcId: KHOU-TV
+                        srcName: KHOU-TV
                     productName: Automobile
-                    productReference: '99'
+                  budgets:
+                    - budgetAmount: 120000
+                      budgetAllocation:
+                        budgetType: DMA
+                        budgetName: Summer Compaign 2021
+                        budgetAmount: 12000
+                        budgetSharePercent: 10
+                  cpeCode:
+                    clientCode: CLN-1234
+                    productCode: PRD-12345
+                    estimateCode: P123C456
                   contacts:
                     - contactType: Account Executive
-                      referenceSourceName: KHOU-TV
-                      referenceSourceId: '490'
-                      contactFirstName: Mary
-                      contactLastName: McCoy
-                      addressLine1: 5718 Westheimer Road
-                      addressLine2: Suite 501
-                      city: Houston
-                      state: TX
-                      postalCode: '77057'
-                      country: USA
-                      phoneNumber: 713-555-5555
-                      email: mmcoy@email.com
-                      effectiveDate: '2007-02-17'
-                    - contactType: Buyer
-                      referenceSourceName: Canvas Worldwide. LLC
-                      referenceSourceId: '456'
-                      contactFirstName: Scott
-                      contactLastName: Evans
-                      addressLine1: 75 Varvick Street
-                      addressLine2: 2nd Floor
-                      city: New York
-                      state: NY
-                      postalCode: '10013'
-                      country: USA
-                      phoneNumber: 212-555-5555
-                      email: sevans@email.com
-                      effectiveDate: '2007-02-17'
+                      contactIds:
+                        - id: CNT-12345
+                          version: '0'
+                          srcId: KHOU-TV
+                          srcName: KHOU-TV
+                      salesOffices:
+                        - 'Dallas, TX'
+                        - 'NYC, NY'
+                      contactFirstName: John
+                      contactLastName: Doe
+                      email: user@example.com
+                      effectiveDate: '2021-05-21'
                   revenueType: Cash
-                  businessType: Standard
-                  localNational: National
-                  dealYear: 2020
+                  businessType: string
+                  localNational: Local
+                  dealYear: string
                   billingOption:
                     billingCalendar: Broadcast
                     billingCycle: Month
                     billingGranularity: Order
-                  equivalized: true
+                  isEquivalized: true
                   dateWindows:
-                    - startDate: '2020-02-17'
-                      endDate: '2020-03-01'
+                    - startDate: '2021-07-01'
+                      endDate: '2021-09-21'
                   cancellationTerms:
-                    cancellationType: Quarterly
-                    cancellation: 1Q
-                    cancellationPriorDays: 10
-                    cancellationPercentage: 15
+                    - cancellationType: Quarterly
+                      cancellationPriorDays: 14
+                      cancellationPercentage: 25
                   timeSeparations:
                     - unitLength: 30
-                      timeSeparation: 600
-                    - unitLength: 15
                       timeSeparation: 900
-                  termsOfSales: Contract Terms
-                  externalComment: ''
+                  termsOfSales: Terms Of Sales
+                  externalComment: This newer version addresses concernes presented during our negotiations.
                   rateCard:
-                    rateCardId: '123'
-                    rateCardName: Canvas WW standard ratecard
+                    rateCardId: 1
+                    rateCardName: 1Q'22 Rate Card
                   currency: USD
                   mediaOutlets:
-                    - mediaOutletId: '456'
-                      mediaOutletName: KHOU-TV
-                      mediaOutletType: Broadcast TV
+                    - mediaOutletIds:
+                        - id: KHOU-TV
+                          version: '0'
+                          srcId: KHOU-TV
+                          srcName: KHOU-TV
+                      mediaOutletName: MBLTV - My Best Local TV Station
+                      mediaOutletType: Local TV
                       mediaOutletChannel: KHOU-TV
-                      mediaOutletMarketName: Houston
+                      mediaOutletMarketName: 'Houston, TX'
                   audienceSegments:
-                    - mediaOutletId: '456'
+                    - mediaOutletIds:
+                        - KHOU-TV
                       audienceSegment:
-                        audienceSegmentId: P25-54
-                        audienceSegmentName: P25-54
-                        audienceSegmentReference: string
-                        audienceMethodology: string
-                        primaryIndicator: true
-                        guarantee: true
+                        audienceSegmentIds:
+                          - id: P18-49
+                            version: '0'
+                            srcId: KHOU-TV
+                            srcName: KHOU-TV
+                        audienceSegmentName: P18-49
+                        audienceMethodology: Daypart Average
+                        isPrimary: true
+                        isGuarantee: true
                         ratingSource: Nielsen
                         ratingStream: Program Live
                       universes:
                         - universeType: Market
-                          universeTypeValue: 39000
+                          universeTypeValue: 0
                   salesElements:
-                    - salesElement:
-                        mediaOutletId: '456'
-                        salesElementName: CBS This Morning
-                        salesElementId: '999'
-                        salesElementType: Program
+                    - salesElementHeader:
+                        mediaOutletId: KHOU-TV
+                        salesElementName: Primetime
+                        salesElementId: SL-1234
+                        salesElementType: Time-specific
                       timePeriods:
-                        - dateWindow:
-                            startDate: '2020-01-01'
-                            endDate: '2020-06-01'
-                          DOW:
-                            monday: true
-                            tuesday: true
-                            wednesday: true
-                            thursday: true
-                            friday: true
-                            saturday: false
-                            sunday: false
+                        - DOW:
+                            isMonday: true
+                            isTuesday: true
+                            isWednesday: true
+                            isThursday: true
+                            isFriday: true
+                            isSaturday: true
+                            isSunday: true
                           timeWindow:
-                            startTime: '07:00:00'
-                            endTime: '09:00:00'
+                            startTime: '07:00'
+                            endTime: '11:00'
+                      devices:
+                        - Smart TV
                       programs:
-                        - CBS This Morning
-                      salesElementTransactionInventory:
+                        - Mid Morning News
+                      salesElementTransactionInventorys:
                         - lineNum: '1'
+                          lineReference: ''
+                          lineReferences:
+                            - id: LN-1234
+                              version: '0'
+                              srcId: KHOU-TV
+                              srcName: KHOU-TV
                           inventoryType: Commercial
+                          inventoryPosition: First
                           inventoryLength: 30
                           salesElementTransactionDates:
-                            - dateType: Week
+                            - dateType: Day
                               calendarType: Broadcast
-                              dateWindow:
-                                startDate: '2020-02-17'
-                                endDate: '2020-02-23'
-                              unitCount: 2
-                              rate: 525
+                              unitCount: 10
+                              dailyUnitDistribution:
+                                pacingRule:
+                                  type: Frontload
+                                  rateType: Absolute
+                                monday: 2
+                                tuesday: 2
+                                wednesday: 2
+                                thursday: 2
+                                friday: 2
+                                saturday: 0
+                                sunday: 0
+                              frequencyCappings:
+                                - period: Minute
+                                  perPeriod: 0
+                                  value: 0
+                              pricingMetric:
+                                PricingMetricOption: CPM
+                                grossValue: 0
+                                netValue: 0
+                              grossCost: 150
+                              netCost: 127.5
+                              audienceTargets:
+                                - excludeOrInclude: Include
+                                  audienceTargetIds:
+                                    - null
+                                  targetAttribute: HH Income
+                                  value:
+                                    - '$50,000 - $75,000'
+                                    - '$75,000, -$100,000'
                               audiencesPricingMetrics:
-                                - audienceSegmentId: P25-54
+                                - audienceSegmentIds:
+                                    - null
+                                  type: Selling
                                   audienceMetric:
                                     audienceMetric: Impressions
-                                    audienceMetricValue: 310000
-                                  pricingMetric:
-                                    pricingMetric: CPM
-                                    pricingMetricValue: 1.69
-                            - dateType: Week
-                              calendarType: Broadcast
-                              dateWindow:
-                                startDate: '2020-02-24'
-                                endDate: '2020-03-01'
-                              unitCount: 3
-                              rate: 525
-                              audiencesPricingMetrics:
-                                - audienceSegmentId: P25-54
-                                  audienceMetric:
-                                    audienceMetric: Impressions
-                                    audienceMetricValue: 310000
-                                  pricingMetric:
-                                    pricingMetric: CPM
-                                    pricingMetricValue: 1.69
+                                    audienceMetricValue: 43256
+                              externalComment: string
               Recall:
                 value:
-                  $ref: '#/paths/~1buyer~1orders/post/requestBody/content/application~1json/examples/Recall/value'
+                  transactionHeader:
+                    tipVersion: 6.0.0
+                    transactionId:
+                      transactionId: 6C895361-97B0-43F0-976C-A4E77DDD78FD
+                      transactionType: Recall
+                      sourceId: Buy-6789
+                      sourceName: TIP Buyer
+                    originalTransactionId:
+                      transactionId: 241993AE-9BB6-42B0-854D-9E7889D42904
+                      transactionType: Change
+                      sourceId: Buy-6789
+                      sourceName: TIP Buyer
+                    timeStamp: '2021-07-21T17:32:28Z'
+                  referenceIds:
+                    - referenceSourceName: TIPApi
+                      referenceSourceId: ABC-1234
+                      referenceType: RFP
+                      referenceId: REF-1234
+                      referenceVersionId: 0
+                      referenceName: Hyundai 1Q22
+                    - referenceSourceName: KHOU-TV
+                      referenceSourceId: KHOU-TV
+                      referenceType: Proposal
+                      referenceId: PRP-1234
+                      referenceVersionId: 1
+                      referenceName: Hyundai 1Q22
+                    - referenceSourceName: Buy-6789
+                      referenceSourceId: TIP Buyer
+                      referenceType: Proposal
+                      referenceId: PRP-56789
+                      referenceVersionId: 2
+                      referenceName: Hyundai 1Q22
+                  comments: Please ignore previous Proposal changes indicated in version#2. newly updated ones are to follow.
+          application/xml:
+            schema:
+              description: '-> Request Body for the endpoint varies based on Transaction type. This request is similar to that generated at the seller side'
+              oneOf:
+                - $ref: '#/components/schemas/SellerProposals'
+                - $ref: '#/components/schemas/CancelConfirmRecallReject'
+              xml:
+                name: BuyerProposalsRequest
+            examples:
+              Change:
+                value: "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n<BuyerProposalsRequest>\r\n\t<transactionHeader>\r\n\t\t<tipVersion>6.0.0</tipVersion>\r\n\t\t<transactionId>\r\n\t\t\t<transactionId>241993AE-9BB6-42B0-854D-9E7889D42904</transactionId>\r\n\t\t\t<transactionType>Change</transactionType>\r\n\t\t\t<sourceId>Buy-6789</sourceId>\r\n\t\t\t<sourceName>TIP Buyer</sourceName>\r\n\t\t</transactionId>\r\n\t\t<originalTransactionId>\r\n\t\t\t<transactionId>241993AE-9BB6-42B0-854D-9E7889D42904</transactionId>\r\n\t\t\t<transactionType>Change</transactionType>\r\n\t\t\t<sourceId>ABC-1234</sourceId>\r\n\t\t\t<sourceName>TIPApi</sourceName>\r\n\t\t</originalTransactionId>\r\n\t\t<timeStamp>2021-07-22T17:32:28Z</timeStamp>\r\n\t</transactionHeader>\r\n\t<referenceIds>\r\n\t\t<referenceSourceName>TIPApi</referenceSourceName>\r\n\t\t<referenceSourceId>ABC-1234</referenceSourceId>\r\n\t\t<referenceType>RFP</referenceType>\r\n\t\t<referenceId>REF-1234</referenceId>\r\n\t\t<referenceVersionId>0</referenceVersionId>\r\n\t\t<referenceName>Hyundai 1Q22</referenceName>\r\n\t</referenceIds>\r\n\t<referenceIds>\r\n\t\t<referenceSourceName>KHOU-TV</referenceSourceName>\r\n\t\t<referenceSourceId>KHOU-TV</referenceSourceId>\r\n\t\t<referenceType>Proposal</referenceType>\r\n\t\t<referenceId>PRP-1234</referenceId>\r\n\t\t<referenceVersionId>1</referenceVersionId>\r\n\t\t<referenceName>Hyundai 1Q22</referenceName>\r\n\t</referenceIds>\r\n\t<referenceIds>\r\n\t\t<referenceSourceName>Buy-6789</referenceSourceName>\r\n\t\t<referenceSourceId>TIP Buyer</referenceSourceId>\r\n\t\t<referenceType>Proposal</referenceType>\r\n\t\t<referenceId>PRP-56789</referenceId>\r\n\t\t<referenceVersionId>2</referenceVersionId>\r\n\t\t<referenceName>Hyundai 1Q22</referenceName>\r\n\t</referenceIds>\r\n\t<expirationDate>2021-06-30</expirationDate>\r\n\t<buyer>\r\n\t\t<buyerIds>\r\n\t\t\t<id>Buy-12345</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>KHOU-TV</srcId>\r\n\t\t\t<srcName>KHOU-TV</srcName>\r\n\t\t</buyerIds>\r\n\t\t<buyerName>Canvas Worldwide. LLC</buyerName>\r\n\t</buyer>\r\n\t<commission>10</commission>\r\n\t<advertiser>\r\n\t\t<advertiserIds>\r\n\t\t\t<id>ADV-12345</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>KHOU-TV</srcId>\r\n\t\t\t<srcName>KHOU-TV</srcName>\r\n\t\t</advertiserIds>\r\n\t\t<advertiserName>Hyundai</advertiserName>\r\n\t</advertiser>\r\n\t<brand>\r\n\t\t<brandIds>\r\n\t\t\t<id>BRD-12345</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>KHOU-TV</srcId>\r\n\t\t\t<srcName>KHOU-TV</srcName>\r\n\t\t</brandIds>\r\n\t\t<brandName>Kona</brandName>\r\n\t</brand>\r\n\t<product>\r\n\t\t<productIds>\r\n\t\t\t<id>PRD-12345</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>KHOU-TV</srcId>\r\n\t\t\t<srcName>KHOU-TV</srcName>\r\n\t\t</productIds>\r\n\t\t<productName>Automobile</productName>\r\n\t</product>\r\n\t<budgets>\r\n\t\t<budgetAmount>120000</budgetAmount>\r\n\t\t<budgetAllocation>\r\n\t\t\t<budgetType>DMA</budgetType>\r\n\t\t\t<budgetName>Summer Compaign 2021</budgetName>\r\n\t\t\t<budgetAmount>12000</budgetAmount>\r\n\t\t\t<budgetSharePercent>10</budgetSharePercent>\r\n\t\t</budgetAllocation>\r\n\t</budgets>\r\n\t<cpeCode>\r\n\t\t<clientCode>CLN-1234</clientCode>\r\n\t\t<productCode>PRD-12345</productCode>\r\n\t\t<estimateCode>P123C456</estimateCode>\r\n\t</cpeCode>\r\n\t<contacts>\r\n\t\t<contactType>Account Executive</contactType>\r\n\t\t<contactIds>\r\n\t\t\t<id>CNT-12345</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>KHOU-TV</srcId>\r\n\t\t\t<srcName>KHOU-TV</srcName>\r\n\t\t</contactIds>\r\n\t\t<salesOffices>Dallas, TX</salesOffices>\r\n\t\t<salesOffices>NYC, NY</salesOffices>\r\n\t\t<contactFirstName>John</contactFirstName>\r\n\t\t<contactLastName>Doe</contactLastName>\r\n\t\t<email>user@example.com</email>\r\n\t\t<effectiveDate>2021-05-21</effectiveDate>\r\n\t</contacts>\r\n\t<revenueType>Cash</revenueType>\r\n\t<businessType>string</businessType>\r\n\t<localNational>Local</localNational>\r\n\t<dealYear>string</dealYear>\r\n\t<billingOption>\r\n\t\t<billingCalendar>Broadcast</billingCalendar>\r\n\t\t<billingCycle>Month</billingCycle>\r\n\t\t<billingGranularity>Order</billingGranularity>\r\n\t</billingOption>\r\n\t<isEquivalized>true</isEquivalized>\r\n\t<dateWindows>\r\n\t\t<startDate>2021-07-01</startDate>\r\n\t\t<endDate>2021-09-21</endDate>\r\n\t</dateWindows>\r\n\t<cancellationTerms>\r\n\t\t<cancellationType>Quarterly</cancellationType>\r\n\t\t<cancellationPriorDays>14</cancellationPriorDays>\r\n\t\t<cancellationPercentage>25</cancellationPercentage>\r\n\t</cancellationTerms>\r\n\t<timeSeparations>\r\n\t\t<unitLength>30</unitLength>\r\n\t\t<timeSeparation>900</timeSeparation>\r\n\t</timeSeparations>\r\n\t<termsOfSales>Terms Of Sales</termsOfSales>\r\n\t<externalComment>This newer version addresses concernes presented during our negotiations.</externalComment>\r\n\t<rateCard>\r\n\t\t<rateCardId>1</rateCardId>\r\n\t\t<rateCardName>1Q'22 Rate Card</rateCardName>\r\n\t</rateCard>\r\n\t<currency>USD</currency>\r\n\t<mediaOutlets>\r\n\t\t<mediaOutletIds>\r\n\t\t\t<id>KHOU-TV</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>KHOU-TV</srcId>\r\n\t\t\t<srcName>KHOU-TV</srcName>\r\n\t\t</mediaOutletIds>\r\n\t\t<mediaOutletName>MBLTV - My Best Local TV Station</mediaOutletName>\r\n\t\t<mediaOutletType>Local TV</mediaOutletType>\r\n\t\t<mediaOutletChannel>KHOU-TV</mediaOutletChannel>\r\n\t\t<mediaOutletMarketName>Houston, TX</mediaOutletMarketName>\r\n\t</mediaOutlets>\r\n\t<audienceSegments>\r\n\t\t<mediaOutletIds>KHOU-TV</mediaOutletIds>\r\n\t\t<audienceSegment>\r\n\t\t\t<audienceSegmentIds>\r\n\t\t\t\t<id>P18-49</id>\r\n\t\t\t\t<version>0</version>\r\n\t\t\t\t<srcId>KHOU-TV</srcId>\r\n\t\t\t\t<srcName>KHOU-TV</srcName>\r\n\t\t\t</audienceSegmentIds>\r\n\t\t\t<audienceSegmentName>P18-49</audienceSegmentName>\r\n\t\t\t<audienceMethodology>Daypart Average</audienceMethodology>\r\n\t\t\t<isPrimary>true</isPrimary>\r\n\t\t\t<isGuarantee>true</isGuarantee>\r\n\t\t\t<ratingSource>Nielsen</ratingSource>\r\n\t\t\t<ratingStream>Program Live</ratingStream>\r\n\t\t</audienceSegment>\r\n\t\t<universes>\r\n\t\t\t<universeType>Market</universeType>\r\n\t\t\t<universeTypeValue>0</universeTypeValue>\r\n\t\t</universes>\r\n\t</audienceSegments>\r\n\t<salesElements>\r\n\t\t<salesElementHeader>\r\n\t\t\t<mediaOutletId>KHOU-TV</mediaOutletId>\r\n\t\t\t<salesElementName>Primetime</salesElementName>\r\n\t\t\t<salesElementId>SL-1234</salesElementId>\r\n\t\t\t<salesElementType>Time-specific</salesElementType>\r\n\t\t</salesElementHeader>\r\n\t\t<timePeriods>\r\n\t\t\t<DOW>\r\n\t\t\t\t<isMonday>true</isMonday>\r\n\t\t\t\t<isTuesday>true</isTuesday>\r\n\t\t\t\t<isWednesday>true</isWednesday>\r\n\t\t\t\t<isThursday>true</isThursday>\r\n\t\t\t\t<isFriday>true</isFriday>\r\n\t\t\t\t<isSaturday>true</isSaturday>\r\n\t\t\t\t<isSunday>true</isSunday>\r\n\t\t\t</DOW>\r\n\t\t\t<timeWindow>\r\n\t\t\t\t<startTime>07:00</startTime>\r\n\t\t\t\t<endTime>11:00</endTime>\r\n\t\t\t</timeWindow>\r\n\t\t</timePeriods>\r\n\t\t<devices>Smart TV</devices>\r\n\t\t<programs>Mid Morning News</programs>\r\n\t\t<salesElementTransactionInventorys>\r\n\t\t\t<lineNum>1</lineNum>\r\n\t\t\t<lineReference></lineReference>\r\n\t\t\t<lineReferences>\r\n\t\t\t\t<id>LN-1234</id>\r\n\t\t\t\t<version>0</version>\r\n\t\t\t\t<srcId>KHOU-TV</srcId>\r\n\t\t\t\t<srcName>KHOU-TV</srcName>\r\n\t\t\t</lineReferences>\r\n\t\t\t<inventoryType>Commercial</inventoryType>\r\n\t\t\t<inventoryPosition>First</inventoryPosition>\r\n\t\t\t<inventoryLength>30</inventoryLength>\r\n\t\t\t<salesElementTransactionDates>\r\n\t\t\t\t<dateType>Day</dateType>\r\n\t\t\t\t<calendarType>Broadcast</calendarType>\r\n\t\t\t\t<unitCount>10</unitCount>\r\n\t\t\t\t<dailyUnitDistribution>\r\n\t\t\t\t\t<pacingRule>\r\n\t\t\t\t\t\t<type>Frontload</type>\r\n\t\t\t\t\t\t<rateType>Absolute</rateType>\r\n\t\t\t\t\t</pacingRule>\r\n\t\t\t\t\t<monday>2</monday>\r\n\t\t\t\t\t<tuesday>2</tuesday>\r\n\t\t\t\t\t<wednesday>2</wednesday>\r\n\t\t\t\t\t<thursday>2</thursday>\r\n\t\t\t\t\t<friday>2</friday>\r\n\t\t\t\t\t<saturday>0</saturday>\r\n\t\t\t\t\t<sunday>0</sunday>\r\n\t\t\t\t</dailyUnitDistribution>\r\n\t\t\t\t<frequencyCappings>\r\n\t\t\t\t\t<period>Minute</period>\r\n\t\t\t\t\t<perPeriod>0</perPeriod>\r\n\t\t\t\t\t<value>0</value>\r\n\t\t\t\t</frequencyCappings>\r\n\t\t\t\t<pricingMetric>\r\n\t\t\t\t\t<PricingMetricOption>CPM</PricingMetricOption>\r\n\t\t\t\t\t<grossValue>0</grossValue>\r\n\t\t\t\t\t<netValue>0</netValue>\r\n\t\t\t\t</pricingMetric>\r\n\t\t\t\t<grossCost>150</grossCost>\r\n\t\t\t\t<netCost>127.5</netCost>\r\n\t\t\t\t<audienceTargets>\r\n\t\t\t\t\t<excludeOrInclude>Include</excludeOrInclude>\r\n\t\t\t\t\t<audienceTargetIds />\r\n\t\t\t\t\t<targetAttribute>HH Income</targetAttribute>\r\n\t\t\t\t\t<value>$50,000 - $75,000</value>\r\n\t\t\t\t\t<value>$75,000, -$100,000</value>\r\n\t\t\t\t</audienceTargets>\r\n\t\t\t\t<audiencesPricingMetrics>\r\n\t\t\t\t\t<audienceSegmentIds />\r\n\t\t\t\t\t<type>Selling</type>\r\n\t\t\t\t\t<audienceMetric>\r\n\t\t\t\t\t\t<audienceMetric>Impressions</audienceMetric>\r\n\t\t\t\t\t\t<audienceMetricValue>43256</audienceMetricValue>\r\n\t\t\t\t\t</audienceMetric>\r\n\t\t\t\t</audiencesPricingMetrics>\r\n\t\t\t\t<externalComment>string</externalComment>\r\n\t\t\t</salesElementTransactionDates>\r\n\t\t</salesElementTransactionInventorys>\r\n\t</salesElements>\r\n</BuyerProposalsRequest>"
+              Recall:
+                value: "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n<BuyerProposalsRequest>\r\n\t<transactionHeader>\r\n\t\t<tipVersion>6.0.0</tipVersion>\r\n\t\t<transactionId>\r\n\t\t\t<transactionId>6C895361-97B0-43F0-976C-A4E77DDD78FD</transactionId>\r\n\t\t\t<transactionType>Recall</transactionType>\r\n\t\t\t<sourceId>Buy-6789</sourceId>\r\n\t\t\t<sourceName>TIP Buyer</sourceName>\r\n\t\t</transactionId>\r\n\t\t<originalTransactionId>\r\n\t\t\t<transactionId>241993AE-9BB6-42B0-854D-9E7889D42904</transactionId>\r\n\t\t\t<transactionType>Change</transactionType>\r\n\t\t\t<sourceId>Buy-6789</sourceId>\r\n\t\t\t<sourceName>TIP Buyer</sourceName>\r\n\t\t</originalTransactionId>\r\n\t\t<timeStamp>2021-07-21T17:32:28Z</timeStamp>\r\n\t</transactionHeader>\r\n\t<referenceIds>\r\n\t\t<referenceSourceName>TIPApi</referenceSourceName>\r\n\t\t<referenceSourceId>ABC-1234</referenceSourceId>\r\n\t\t<referenceType>RFP</referenceType>\r\n\t\t<referenceId>REF-1234</referenceId>\r\n\t\t<referenceVersionId>0</referenceVersionId>\r\n\t\t<referenceName>Hyundai 1Q22</referenceName>\r\n\t</referenceIds>\r\n\t<referenceIds>\r\n\t\t<referenceSourceName>KHOU-TV</referenceSourceName>\r\n\t\t<referenceSourceId>KHOU-TV</referenceSourceId>\r\n\t\t<referenceType>Proposal</referenceType>\r\n\t\t<referenceId>PRP-1234</referenceId>\r\n\t\t<referenceVersionId>1</referenceVersionId>\r\n\t\t<referenceName>Hyundai 1Q22</referenceName>\r\n\t</referenceIds>\r\n\t<referenceIds>\r\n\t\t<referenceSourceName>Buy-6789</referenceSourceName>\r\n\t\t<referenceSourceId>TIP Buyer</referenceSourceId>\r\n\t\t<referenceType>Proposal</referenceType>\r\n\t\t<referenceId>PRP-56789</referenceId>\r\n\t\t<referenceVersionId>2</referenceVersionId>\r\n\t\t<referenceName>Hyundai 1Q22</referenceName>\r\n\t</referenceIds>\r\n\t<comments>Please ignore previous Proposal changes indicated in version#2. newly updated ones are to follow.</comments>\r\n</BuyerProposalsRequest>"
       responses:
+        '201':
+          $ref: '#/components/responses/Created'
         '202':
           $ref: '#/components/responses/Accepted'
         '400':
@@ -1147,6 +1476,483 @@ paths:
         content:
           application/json:
             schema:
+              $ref: '#/paths/~1buyer~1orders/post/requestBody/content/application~1xml/schema'
+            examples:
+              New:
+                value:
+                  transactionHeader:
+                    tipVersion: 6.0.0
+                    transactionId:
+                      transactionId: 1C237FDD-940D-499E-AA20-DF3B9CE0908E
+                      transactionType: New
+                      sourceId: Buy-6789
+                      sourceName: TIP Buyer
+                    timeStamp: '2021-07-21T17:32:28Z'
+                  referenceIds:
+                    - referenceSourceName: TIPApi
+                      referenceSourceId: ABC-1234
+                      referenceType: RFP
+                      referenceId: REF-1234
+                      referenceVersionId: 0
+                      referenceName: Hyundai 1Q22
+                    - referenceSourceName: KHOU-TV
+                      referenceSourceId: KHOU-TV
+                      referenceType: Proposal
+                      referenceId: PRP-1234
+                      referenceVersionId: 1
+                      referenceName: Hyundai 1Q22
+                    - referenceSourceName: Buy-6789
+                      referenceSourceId: TIP Buyer
+                      referenceType: Order
+                      referenceId: ORD-56789
+                      referenceVersionId: 0
+                      referenceName: Hyundai 1Q22
+                  orderBookedDate: '2021-05-24'
+                  buyer:
+                    buyerIds:
+                      - id: Buy-12345
+                        version: '0'
+                        srcId: KHOU-TV
+                        srcName: KHOU-TV
+                    buyerName: Canvas Worldwide. LLC
+                  commission: 10
+                  advertiser:
+                    advertiserIds:
+                      - id: ADV-12345
+                        version: '0'
+                        srcId: KHOU-TV
+                        srcName: KHOU-TV
+                    advertiserName: Hyundai
+                  brand:
+                    brandIds:
+                      - id: BRD-12345
+                        version: '0'
+                        srcId: KHOU-TV
+                        srcName: KHOU-TV
+                    brandName: Kona
+                  product:
+                    productIds:
+                      - id: PRD-12345
+                        version: '0'
+                        srcId: KHOU-TV
+                        srcName: KHOU-TV
+                    productName: Automobile
+                  budgets:
+                    - budgetAmount: 120000
+                      budgetAllocation:
+                        budgetType: DMA
+                        budgetName: Summer Compaign 2021
+                        budgetAmount: 12000
+                        budgetSharePercent: 10
+                  cpeCode:
+                    clientCode: CLN-1234
+                    productCode: PRD-12345
+                    estimateCode: P123C456
+                  contacts:
+                    - contactType: Account Executive
+                      contactIds:
+                        - id: CNT-12345
+                          version: '0'
+                          srcId: KHOU-TV
+                          srcName: KHOU-TV
+                      salesOffices:
+                        - 'Dallas, TX'
+                        - 'NYC, NY'
+                      contactFirstName: John
+                      contactLastName: Doe
+                      email: user@example.com
+                      effectiveDate: '2021-05-21'
+                  revenueType: Cash
+                  businessType: string
+                  localNational: Local
+                  dealYear: string
+                  billingOption:
+                    billingCalendar: Broadcast
+                    billingCycle: Month
+                    billingGranularity: Order
+                  isEquivalized: true
+                  dateWindows:
+                    - startDate: '2021-07-01'
+                      endDate: '2021-09-21'
+                  cancellationTerms:
+                    - cancellationType: Quarterly
+                      cancellationPriorDays: 14
+                      cancellationPercentage: 25
+                  timeSeparations:
+                    - unitLength: 30
+                      timeSeparation: 900
+                  termsOfSales: Terms Of Sales
+                  externalComment: 'Purchase Order is reflective of submitted proposal version #1'
+                  rateCard:
+                    rateCardId: 1
+                    rateCardName: 1Q'22 Rate Card
+                  currency: USD
+                  mediaOutlets:
+                    - mediaOutletIds:
+                        - id: KHOU-TV
+                          version: '0'
+                          srcId: KHOU-TV
+                          srcName: KHOU-TV
+                      mediaOutletName: MBLTV - My Best Local TV Station
+                      mediaOutletType: Local TV
+                      mediaOutletChannel: KHOU-TV
+                      mediaOutletMarketName: 'Houston, TX'
+                  audienceSegments:
+                    - mediaOutletIds:
+                        - KHOU-TV
+                      audienceSegment:
+                        audienceSegmentIds:
+                          - id: P18-49
+                            version: '0'
+                            srcId: KHOU-TV
+                            srcName: KHOU-TV
+                        audienceSegmentName: P18-49
+                        audienceMethodology: Daypart Average
+                        isPrimary: true
+                        isGuarantee: true
+                        ratingSource: Nielsen
+                        ratingStream: Program Live
+                      universes:
+                        - universeType: Market
+                          universeTypeValue: 0
+                  salesElements:
+                    - salesElementHeader:
+                        mediaOutletId: KHOU-TV
+                        salesElementName: Primetime
+                        salesElementId: SL-1234
+                        salesElementType: Time-specific
+                      timePeriods:
+                        - DOW:
+                            isMonday: true
+                            isTuesday: true
+                            isWednesday: true
+                            isThursday: true
+                            isFriday: true
+                            isSaturday: true
+                            isSunday: true
+                          timeWindow:
+                            startTime: '07:00'
+                            endTime: '11:00'
+                      devices:
+                        - Smart TV
+                      programs:
+                        - Mid Morning News
+                      salesElementTransactionInventorys:
+                        - lineNum: '1'
+                          lineReference: ''
+                          lineReferences:
+                            - id: LN-1234
+                              version: '0'
+                              srcId: KHOU-TV
+                              srcName: KHOU-TV
+                          inventoryType: Commercial
+                          inventoryPosition: First
+                          inventoryLength: 30
+                          salesElementTransactionDates:
+                            - dateType: Day
+                              calendarType: Broadcast
+                              unitCount: 10
+                              dailyUnitDistribution:
+                                pacingRule:
+                                  type: Frontload
+                                  rateType: Absolute
+                                monday: 2
+                                tuesday: 2
+                                wednesday: 2
+                                thursday: 2
+                                friday: 2
+                                saturday: 0
+                                sunday: 0
+                              frequencyCappings:
+                                - period: Minute
+                                  perPeriod: 0
+                                  value: 0
+                              pricingMetric:
+                                PricingMetricOption: CPM
+                                grossValue: 0
+                                netValue: 0
+                              grossCost: 150
+                              netCost: 127.5
+                              audienceTargets:
+                                - excludeOrInclude: Include
+                                  audienceTargetIds:
+                                    - null
+                                  targetAttribute: HH Income
+                                  value:
+                                    - '$50,000 - $75,000'
+                                    - '$75,000, -$100,000'
+                              audiencesPricingMetrics:
+                                - audienceSegmentIds:
+                                    - null
+                                  type: Selling
+                                  audienceMetric:
+                                    audienceMetric: Impressions
+                                    audienceMetricValue: 43256
+                              externalComment: Changes or amission need to be approved by buyer before air time.
+              Change:
+                value:
+                  transactionHeader:
+                    tipVersion: 6.0.0
+                    transactionId:
+                      transactionId: 3F8A1041-95A8-4BC1-9473-F6B1B3277A71
+                      transactionType: Change
+                      sourceId: Buy-6789
+                      sourceName: TIP Buyer
+                    originalTransactionId:
+                      transactionId: 1C237FDD-940D-499E-AA20-DF3B9CE0908E
+                      transactionType: New
+                      sourceId: Buy-6789
+                      sourceName: TIP Buyer
+                    timeStamp: '2021-07-21T17:32:28Z'
+                  referenceIds:
+                    - referenceSourceName: TIPApi
+                      referenceSourceId: ABC-1234
+                      referenceType: RFP
+                      referenceId: REF-1234
+                      referenceVersionId: 0
+                      referenceName: Hyundai 1Q22
+                    - referenceSourceName: KHOU-TV
+                      referenceSourceId: KHOU-TV
+                      referenceType: Proposal
+                      referenceId: PRP-1234
+                      referenceVersionId: 1
+                      referenceName: Hyundai 1Q22
+                    - referenceSourceName: Buy-6789
+                      referenceSourceId: TIP Buyer
+                      referenceType: Order
+                      referenceId: ORD-56789
+                      referenceVersionId: 1
+                      referenceName: Hyundai 1Q22
+                  orderBookedDate: '2021-05-24'
+                  buyer:
+                    buyerIds:
+                      - id: Buy-12345
+                        version: '0'
+                        srcId: KHOU-TV
+                        srcName: KHOU-TV
+                    buyerName: Canvas Worldwide. LLC
+                  commission: 10
+                  advertiser:
+                    advertiserIds:
+                      - id: ADV-12345
+                        version: '0'
+                        srcId: KHOU-TV
+                        srcName: KHOU-TV
+                    advertiserName: Hyundai
+                  brand:
+                    brandIds:
+                      - id: BRD-12345
+                        version: '0'
+                        srcId: KHOU-TV
+                        srcName: KHOU-TV
+                    brandName: Kona
+                  product:
+                    productIds:
+                      - id: PRD-12345
+                        version: '0'
+                        srcId: KHOU-TV
+                        srcName: KHOU-TV
+                    productName: Automobile
+                  budgets:
+                    - budgetAmount: 120000
+                      budgetAllocation:
+                        budgetType: DMA
+                        budgetName: Summer Compaign 2021
+                        budgetAmount: 12000
+                        budgetSharePercent: 10
+                  cpeCode:
+                    clientCode: CLN-1234
+                    productCode: PRD-12345
+                    estimateCode: P123C456
+                  contacts:
+                    - contactType: Account Executive
+                      contactIds:
+                        - id: CNT-12345
+                          version: '0'
+                          srcId: KHOU-TV
+                          srcName: KHOU-TV
+                      salesOffices:
+                        - 'Dallas, TX'
+                        - 'NYC, NY'
+                      contactFirstName: John
+                      contactLastName: Doe
+                      email: user@example.com
+                      effectiveDate: '2021-05-21'
+                  revenueType: Cash
+                  businessType: string
+                  localNational: Local
+                  dealYear: string
+                  billingOption:
+                    billingCalendar: Broadcast
+                    billingCycle: Month
+                    billingGranularity: Order
+                  isEquivalized: true
+                  dateWindows:
+                    - startDate: '2021-07-01'
+                      endDate: '2021-09-21'
+                  cancellationTerms:
+                    - cancellationType: Quarterly
+                      cancellationPriorDays: 14
+                      cancellationPercentage: 25
+                  timeSeparations:
+                    - unitLength: 30
+                      timeSeparation: 900
+                  termsOfSales: Terms Of Sales
+                  externalComment: 'Purchase Order is reflective of submitted proposal version #1'
+                  rateCard:
+                    rateCardId: 1
+                    rateCardName: 1Q'22 Rate Card
+                  currency: USD
+                  mediaOutlets:
+                    - mediaOutletIds:
+                        - id: KHOU-TV
+                          version: '0'
+                          srcId: KHOU-TV
+                          srcName: KHOU-TV
+                      mediaOutletName: MBLTV - My Best Local TV Station
+                      mediaOutletType: Local TV
+                      mediaOutletChannel: KHOU-TV
+                      mediaOutletMarketName: 'Houston, TX'
+                  audienceSegments:
+                    - mediaOutletIds:
+                        - KHOU-TV
+                      audienceSegment:
+                        audienceSegmentIds:
+                          - id: P18-49
+                            version: '0'
+                            srcId: KHOU-TV
+                            srcName: KHOU-TV
+                        audienceSegmentName: P18-49
+                        audienceMethodology: Daypart Average
+                        isPrimary: true
+                        isGuarantee: true
+                        ratingSource: Nielsen
+                        ratingStream: Program Live
+                      universes:
+                        - universeType: Market
+                          universeTypeValue: 0
+                  salesElements:
+                    - salesElementHeader:
+                        mediaOutletId: KHOU-TV
+                        salesElementName: Primetime
+                        salesElementId: SL-1234
+                        salesElementType: Time-specific
+                      timePeriods:
+                        - DOW:
+                            isMonday: true
+                            isTuesday: true
+                            isWednesday: true
+                            isThursday: true
+                            isFriday: true
+                            isSaturday: true
+                            isSunday: true
+                          timeWindow:
+                            startTime: '07:00'
+                            endTime: '11:00'
+                      devices:
+                        - Smart TV
+                      programs:
+                        - Mid Morning News
+                      salesElementTransactionInventorys:
+                        - lineNum: '1'
+                          lineReference: ''
+                          lineReferences:
+                            - id: LN-1234
+                              version: '0'
+                              srcId: KHOU-TV
+                              srcName: KHOU-TV
+                          inventoryType: Commercial
+                          inventoryPosition: First
+                          inventoryLength: 30
+                          salesElementTransactionDates:
+                            - dateType: Day
+                              calendarType: Broadcast
+                              unitCount: 10
+                              dailyUnitDistribution:
+                                pacingRule:
+                                  type: Frontload
+                                  rateType: Absolute
+                                monday: 2
+                                tuesday: 2
+                                wednesday: 2
+                                thursday: 2
+                                friday: 2
+                                saturday: 0
+                                sunday: 0
+                              frequencyCappings:
+                                - period: Minute
+                                  perPeriod: 0
+                                  value: 0
+                              pricingMetric:
+                                PricingMetricOption: CPM
+                                grossValue: 0
+                                netValue: 0
+                              grossCost: 150
+                              netCost: 127.5
+                              audienceTargets:
+                                - excludeOrInclude: Include
+                                  audienceTargetIds:
+                                    - null
+                                  targetAttribute: HH Income
+                                  value:
+                                    - '$50,000 - $75,000'
+                                    - '$75,000, -$100,000'
+                              audiencesPricingMetrics:
+                                - audienceSegmentIds:
+                                    - null
+                                  type: Selling
+                                  audienceMetric:
+                                    audienceMetric: Impressions
+                                    audienceMetricValue: 43256
+                              externalComment: Changes or amission need to be approved by buyer before air time.
+              Cancel:
+                value:
+                  transactionHeader:
+                    tipVersion: 6.0.0
+                    transactionId:
+                      transactionId: 3F8A1041-95A8-4BC1-9473-F6B1B3277A71
+                      transactionType: Cancel
+                      sourceId: Buy-6789
+                      sourceName: TIP Buyer
+                    originalTransactionId:
+                      transactionId: 1C237FDD-940D-499E-AA20-DF3B9CE0908E
+                      transactionType: New
+                      sourceId: Buy-6789
+                      sourceName: TIP Buyer
+                    timeStamp: '2021-07-21T17:32:28Z'
+                  referenceIds:
+                    - referenceSourceName: Buy-6789
+                      referenceSourceId: TIP Buyer
+                      referenceType: Order
+                      referenceId: ORD-56789
+                      referenceVersionId: 1
+                      referenceName: Hyundai 1Q22
+                  comments: ''
+              Recall:
+                value:
+                  transactionHeader:
+                    tipVersion: 6.0.0
+                    transactionId:
+                      transactionId: 3F8A1041-95A8-4BC1-9473-F6B1B3277A71
+                      transactionType: Recall
+                      sourceId: Buy-6789
+                      sourceName: TIP Buyer
+                    originalTransactionId:
+                      transactionId: 1C237FDD-940D-499E-AA20-DF3B9CE0908E
+                      transactionType: Change
+                      sourceId: Buy-6789
+                      sourceName: TIP Buyer
+                    timeStamp: '2021-07-21T17:32:28Z'
+                  referenceIds:
+                    - referenceSourceName: Buy-6789
+                      referenceSourceId: TIP Buyer
+                      referenceType: Order
+                      referenceId: ORD-56789
+                      referenceVersionId: 1
+                      referenceName: Hyundai 1Q22
+                  comments: ''
+          application/xml:
+            schema:
               description: |
                 The Buyer can perform the following operations:
                 <li>New or Change - Use the Buyer orders object
@@ -1158,752 +1964,16 @@ paths:
                 name: BuyerOrdersRequest
             examples:
               New:
-                value:
-                  transactionHeader:
-                    tipVersion: 5.1.0
-                    transactionId:
-                      transactionId: 4162EF00-24D6-4B5F-BBAD-C8E1879FEC46
-                      transactionType: New
-                      sourceId: 757C28B5-B573-4969-826D-74C17225CBAD
-                      sourceName: My System ID
-                    timeStamp: '2020-02-05T19:17:28Z'
-                  referenceIds:
-                    - referenceSourceName: Canvas Worldwide. LLC
-                      referenceSourceId: '456'
-                      referenceSourceLookup: ''
-                      referenceType: RFP
-                      referenceId: C8A91DE6-B69F-46A7-B08D-9D2FB5713B4E
-                      referenceVersionId: '0'
-                      referenceName: Hyundia P25-54 1Q
-                    - referenceSourceName: KHOU-TV
-                      referenceSourceId: '490'
-                      referenceSourceLookup: ''
-                      referenceType: Proposal
-                      referenceId: 571668E8-6858-452C-A364-B56E465535CE
-                      referenceVersionId: '2'
-                      referenceName: Hyundia P25-54 1Q
-                    - referenceSourceName: Canvas Worldwide. LLC
-                      referenceSourceId: '456'
-                      referenceSourceLookup: ''
-                      referenceType: Order
-                      referenceId: 58556E97-D386-4139-AC04-CDBA0B11E8E8
-                      referenceVersionId: '1'
-                      referenceName: Hyundia P25-54 1Q
-                  orderBookedDate: '2020-02-10'
-                  buyer:
-                    buyerId: '456'
-                    buyerName: Canvas Worldwide. LLC
-                    buyerReference: ''
-                  commission: 0.15
-                  advertiser:
-                    advertiserId: '34'
-                    advertiserName: Hyundai
-                    advertiserReference: ''
-                  brand:
-                    brandId: '19'
-                    brandName: Kona
-                    brandReference: ''
-                  product:
-                    productId: '89'
-                    productName: Automobile
-                    productReference: ''
-                  budget:
-                    budgetAmount: 50000
-                  cpeCode:
-                    clientCode: HYUN
-                    productCode: AUTO
-                    estimateCode: '987'
-                  contacts:
-                    - contactType: Account Executive
-                      referenceSourceName: KHOU-TV
-                      referenceSourceId: '12'
-                      contactFirstName: Mary
-                      contactLastName: McCoy
-                      addressLine1: 5718 Westheimer Road
-                      addressLine2: Suite 501
-                      city: Houston
-                      state: TX
-                      postalCode: '77057'
-                      country: USA
-                      phoneNumber: 713-555-5555
-                      email: mmcoy@email.com
-                      effectiveDate: '2007-02-17'
-                    - contactType: Buyer
-                      referenceSourceName: Canvas
-                      referenceSourceId: '45'
-                      contactFirstName: Scott
-                      contactLastName: Evans
-                      addressLine1: 75 Varvick Street
-                      addressLine2: 2nd Floor
-                      city: New York
-                      state: NY
-                      postalCode: '10013'
-                      country: USA
-                      phoneNumber: 212-555-5555
-                      email: sevans@email.com
-                      effectiveDate: '2008-07-17'
-                  revenueType: Cash
-                  businessType: Standard
-                  localNational: National
-                  dealYear: 2020-2021
-                  calendarType: Broadcast
-                  billingOption:
-                    billingCalendar: Broadcast
-                    billingCycle: Month
-                    billingGranularity: Order
-                  equivalized: false
-                  dateWindows:
-                    - startDate: '2020-02-17'
-                      endDate: '2020-03-01'
-                  cancellationTerms:
-                    cancellationType: Quarterly
-                    cancellation: 1Q
-                    cancellationPriorDays: 10
-                    cancellationPercentage: 0.15
-                  timeSeparations:
-                    - unitLength: 30
-                      timeSeparation: 600
-                    - unitLength: 15
-                      timeSeparation: 900
-                  termsOfSales: Contract Terms
-                  externalComment: My comments are here
-                  rateCard:
-                    rateCardId: '123'
-                    rateCardName: Canvas WW standard ratecard
-                  currency: USD
-                  mediaOutlets:
-                    - mediaOutletId: '456'
-                      mediaOutletName: KHOU-TV
-                      mediaOutletType: Broadcast TV
-                      mediaOutletChannel: KHOU-TV
-                      mediaOutletMarketName: Houston
-                      mediaOutletReference: Any Reference
-                  audienceSegments:
-                    - mediaOutletId: '456'
-                      audienceSegment:
-                        audienceSegmentId: P25-54
-                        audienceSegmentName: P25-54
-                        audienceSegmentReference: ''
-                        audienceMethodology: ''
-                        primaryIndicator: true
-                        guarantee: true
-                        ratingSource: Nielsen
-                        ratingStream: Program Live
-                      universes:
-                        - universeType: DMA
-                          universeTypeValue: 39000
-                  salesElements:
-                    - salesElement:
-                        mediaOutletId: '456'
-                        salesElementName: CBS This Morning
-                        salesElementId: '999'
-                        salesElementType: Program
-                      timePeriods:
-                        - dateWindow:
-                            startDate: '2020-01-01'
-                            endDate: '2020-06-01'
-                          DOW:
-                            monday: true
-                            tuesday: true
-                            wednesday: true
-                            thursday: true
-                            friday: true
-                            saturday: false
-                            sunday: false
-                          timeWindow:
-                            startTime: '07:00:00'
-                            endTime: '09:00:00'
-                      programs:
-                        - CBS This Morning
-                      salesElementTransactionInventory:
-                        - lineNum: '1'
-                          lineReference: ''
-                          inventoryType: Commercial
-                          inventoryPosition: ''
-                          inventoryLength: 30
-                          adu: null
-                          bonus: null
-                          externalComment: Comments
-                          salesElementTransactionDates:
-                            - dateType: Week
-                              calendarType: Broadcast
-                              dateWindow:
-                                startDate: '2020-02-17'
-                                endDate: '2020-02-23'
-                              unitCount: 2
-                              dailyUnitDistribution:
-                                monday: 0
-                                tuesday: 0
-                                wednesday: 0
-                                thursday: 0
-                                friday: 0
-                                saturday: 0
-                                sunday: 0
-                              rate: 525
-                              externalComment: comments
-                              audiencesPricingMetrics:
-                                - audienceSegmentId: P25-54
-                                  audienceMetric:
-                                    audienceMetric: Impressions
-                                    audienceMetricValue: 310000
-                                  pricingMetric:
-                                    pricingMetric: CPM
-                                    pricingMetricValue: 1.69
-                            - dateType: Week
-                              calendarType: Broadcast
-                              dateWindow:
-                                startDate: '2020-02-24'
-                                endDate: '2020-03-01'
-                              unitCount: 3
-                              dailyUnitDistribution:
-                                monday: 0
-                                tuesday: 0
-                                wednesday: 0
-                                thursday: 0
-                                friday: 0
-                                saturday: 0
-                                sunday: 0
-                              rate: 525
-                              audiencesPricingMetrics:
-                                - audienceSegmentId: P25-54
-                                  audienceMetric:
-                                    audienceMetric: Impressions
-                                    audienceMetricValue: 310000
-                                  pricingMetric:
-                                    pricingMetric: CPM
-                                    pricingMetricValue: 1.69
-                        - lineNum: '2'
-                          lineReference: ''
-                          inventoryType: Commercial
-                          linkType:
-                            linkType: Sponsorship
-                            linkNum: 1
-                            linkSeq: 0
-                          inventoryPosition: First
-                          inventoryLength: 15
-                          adu: null
-                          bonus: null
-                          externalComment: Comments
-                          salesElementTransactionDates:
-                            - dateType: Week
-                              calendarType: Broadcast
-                              dateWindow:
-                                startDate: '2020-02-17'
-                                endDate: '2020-02-23'
-                              unitCount: 1
-                              dailyUnitDistribution:
-                                monday: 0
-                                tuesday: 0
-                                wednesday: 0
-                                thursday: 1
-                                friday: 0
-                                saturday: 0
-                                sunday: 0
-                              rate: 600
-                              externalComment: comments
-                              audiencesPricingMetrics:
-                                - audienceSegmentId: P25-54
-                                  audienceMetric:
-                                    audienceMetric: Impressions
-                                    audienceMetricValue: 310000
-                                  pricingMetric:
-                                    pricingMetric: CPM
-                                    pricingMetricValue: 1.94
-                            - dateType: Week
-                              calendarType: Broadcast
-                              dateWindow:
-                                startDate: '2020-02-24'
-                                endDate: '2020-03-01'
-                              unitCount: 0
-                              dailyUnitDistribution:
-                                monday: 0
-                                tuesday: 0
-                                wednesday: 0
-                                thursday: 1
-                                friday: 0
-                                saturday: 0
-                                sunday: 0
-                              rate: 600
-                              audiencesPricingMetrics:
-                                - audienceSegmentId: P25-54
-                                  audienceMetric:
-                                    audienceMetric: Impressions
-                                    audienceMetricValue: 310000
-                                  pricingMetric:
-                                    pricingMetric: CPM
-                                    pricingMetricValue: 1.94
-                    - salesElement:
-                        mediaOutletId: '456'
-                        salesElementName: Prime Weekday
-                        salesElementId: '55'
-                        salesElementType: Time-specific
-                      timePeriods:
-                        - dateWindow:
-                            startDate: '2020-01-01'
-                            endDate: '2020-06-01'
-                          DOW:
-                            monday: true
-                            tuesday: true
-                            wednesday: true
-                            thursday: true
-                            friday: true
-                            saturday: false
-                            sunday: false
-                          timeWindow:
-                            startTime: '19:00:00'
-                            endTime: '22:00:00'
-                      programs: []
-                      salesElementTransactionInventory:
-                        - lineNum: '3'
-                          lineReference: ''
-                          inventoryType: Commercial
-                          linkType:
-                            linkType: Billboard
-                            linkNum: 0
-                            linkSeq: 0
-                          inventoryPosition: ''
-                          inventoryLength: 30
-                          adu: null
-                          bonus: null
-                          externalComment: Comments
-                          salesElementTransactionDates:
-                            - dateType: Week
-                              calendarType: Broadcast
-                              dateWindow:
-                                startDate: '2020-02-17'
-                                endDate: '2020-02-23'
-                              unitCount: 0
-                              dailyUnitDistribution:
-                                monday: 2
-                                tuesday: 2
-                                wednesday: 2
-                                thursday: 2
-                                friday: 2
-                                saturday: 0
-                                sunday: 0
-                              rate: 300
-                              externalComment: comments
-                              audiencesPricingMetrics:
-                                - audienceSegmentId: P25-54
-                                  audienceMetric:
-                                    audienceMetric: Impressions
-                                    audienceMetricValue: 248000
-                                  pricingMetric:
-                                    pricingMetric: CPM
-                                    pricingMetricValue: 1.21
-                            - dateType: Week
-                              calendarType: Broadcast
-                              dateWindow:
-                                startDate: '2020-02-24'
-                                endDate: '2020-03-01'
-                              unitCount: 0
-                              dailyUnitDistribution:
-                                monday: 2
-                                tuesday: 2
-                                wednesday: 2
-                                thursday: 2
-                                friday: 2
-                                saturday: 0
-                                sunday: 0
-                              rate: 300
-                              audiencesPricingMetrics:
-                                - audienceSegmentId: P25-54
-                                  audienceMetric:
-                                    audienceMetric: Impressions
-                                    audienceMetricValue: 248000
-                                  pricingMetric:
-                                    pricingMetric: CPM
-                                    pricingMetricValue: 1.21
+                value: "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n<BuyerOrdersRequest>\r\n\t<transactionHeader>\r\n\t\t<tipVersion>6.0.0</tipVersion>\r\n\t\t<transactionId>\r\n\t\t\t<transactionId>1C237FDD-940D-499E-AA20-DF3B9CE0908E</transactionId>\r\n\t\t\t<transactionType>New</transactionType>\r\n\t\t\t<sourceId>Buy-6789</sourceId>\r\n\t\t\t<sourceName>TIP Buyer</sourceName>\r\n\t\t</transactionId>\r\n\t\t<timeStamp>2021-07-21T17:32:28Z</timeStamp>\r\n\t</transactionHeader>\r\n\t<referenceIds>\r\n\t\t<referenceSourceName>TIPApi</referenceSourceName>\r\n\t\t<referenceSourceId>ABC-1234</referenceSourceId>\r\n\t\t<referenceType>RFP</referenceType>\r\n\t\t<referenceId>REF-1234</referenceId>\r\n\t\t<referenceVersionId>0</referenceVersionId>\r\n\t\t<referenceName>Hyundai 1Q22</referenceName>\r\n\t</referenceIds>\r\n\t<referenceIds>\r\n\t\t<referenceSourceName>KHOU-TV</referenceSourceName>\r\n\t\t<referenceSourceId>KHOU-TV</referenceSourceId>\r\n\t\t<referenceType>Proposal</referenceType>\r\n\t\t<referenceId>PRP-1234</referenceId>\r\n\t\t<referenceVersionId>1</referenceVersionId>\r\n\t\t<referenceName>Hyundai 1Q22</referenceName>\r\n\t</referenceIds>\r\n\t<referenceIds>\r\n\t\t<referenceSourceName>Buy-6789</referenceSourceName>\r\n\t\t<referenceSourceId>TIP Buyer</referenceSourceId>\r\n\t\t<referenceType>Order</referenceType>\r\n\t\t<referenceId>ORD-56789</referenceId>\r\n\t\t<referenceVersionId>0</referenceVersionId>\r\n\t\t<referenceName>Hyundai 1Q22</referenceName>\r\n\t</referenceIds>\r\n\t<orderBookedDate>2021-05-24</orderBookedDate>\r\n\t<buyer>\r\n\t\t<buyerIds>\r\n\t\t\t<id>Buy-12345</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>KHOU-TV</srcId>\r\n\t\t\t<srcName>KHOU-TV</srcName>\r\n\t\t</buyerIds>\r\n\t\t<buyerName>Canvas Worldwide. LLC</buyerName>\r\n\t</buyer>\r\n\t<commission>10</commission>\r\n\t<advertiser>\r\n\t\t<advertiserIds>\r\n\t\t\t<id>ADV-12345</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>KHOU-TV</srcId>\r\n\t\t\t<srcName>KHOU-TV</srcName>\r\n\t\t</advertiserIds>\r\n\t\t<advertiserName>Hyundai</advertiserName>\r\n\t</advertiser>\r\n\t<brand>\r\n\t\t<brandIds>\r\n\t\t\t<id>BRD-12345</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>KHOU-TV</srcId>\r\n\t\t\t<srcName>KHOU-TV</srcName>\r\n\t\t</brandIds>\r\n\t\t<brandName>Kona</brandName>\r\n\t</brand>\r\n\t<product>\r\n\t\t<productIds>\r\n\t\t\t<id>PRD-12345</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>KHOU-TV</srcId>\r\n\t\t\t<srcName>KHOU-TV</srcName>\r\n\t\t</productIds>\r\n\t\t<productName>Automobile</productName>\r\n\t</product>\r\n\t<budgets>\r\n\t\t<budgetAmount>120000</budgetAmount>\r\n\t\t<budgetAllocation>\r\n\t\t\t<budgetType>DMA</budgetType>\r\n\t\t\t<budgetName>Summer Compaign 2021</budgetName>\r\n\t\t\t<budgetAmount>12000</budgetAmount>\r\n\t\t\t<budgetSharePercent>10</budgetSharePercent>\r\n\t\t</budgetAllocation>\r\n\t</budgets>\r\n\t<cpeCode>\r\n\t\t<clientCode>CLN-1234</clientCode>\r\n\t\t<productCode>PRD-12345</productCode>\r\n\t\t<estimateCode>P123C456</estimateCode>\r\n\t</cpeCode>\r\n\t<contacts>\r\n\t\t<contactType>Account Executive</contactType>\r\n\t\t<contactIds>\r\n\t\t\t<id>CNT-12345</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>KHOU-TV</srcId>\r\n\t\t\t<srcName>KHOU-TV</srcName>\r\n\t\t</contactIds>\r\n\t\t<salesOffices>Dallas, TX</salesOffices>\r\n\t\t<salesOffices>NYC, NY</salesOffices>\r\n\t\t<contactFirstName>John</contactFirstName>\r\n\t\t<contactLastName>Doe</contactLastName>\r\n\t\t<email>user@example.com</email>\r\n\t\t<effectiveDate>2021-05-21</effectiveDate>\r\n\t</contacts>\r\n\t<revenueType>Cash</revenueType>\r\n\t<businessType>string</businessType>\r\n\t<localNational>Local</localNational>\r\n\t<dealYear>string</dealYear>\r\n\t<billingOption>\r\n\t\t<billingCalendar>Broadcast</billingCalendar>\r\n\t\t<billingCycle>Month</billingCycle>\r\n\t\t<billingGranularity>Order</billingGranularity>\r\n\t</billingOption>\r\n\t<isEquivalized>true</isEquivalized>\r\n\t<dateWindows>\r\n\t\t<startDate>2021-07-01</startDate>\r\n\t\t<endDate>2021-09-21</endDate>\r\n\t</dateWindows>\r\n\t<cancellationTerms>\r\n\t\t<cancellationType>Quarterly</cancellationType>\r\n\t\t<cancellationPriorDays>14</cancellationPriorDays>\r\n\t\t<cancellationPercentage>25</cancellationPercentage>\r\n\t</cancellationTerms>\r\n\t<timeSeparations>\r\n\t\t<unitLength>30</unitLength>\r\n\t\t<timeSeparation>900</timeSeparation>\r\n\t</timeSeparations>\r\n\t<termsOfSales>Terms Of Sales</termsOfSales>\r\n\t<externalComment>Purchase Order is reflective of submitted proposal version #1</externalComment>\r\n\t<rateCard>\r\n\t\t<rateCardId>1</rateCardId>\r\n\t\t<rateCardName>1Q'22 Rate Card</rateCardName>\r\n\t</rateCard>\r\n\t<currency>USD</currency>\r\n\t<mediaOutlets>\r\n\t\t<mediaOutletIds>\r\n\t\t\t<id>KHOU-TV</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>KHOU-TV</srcId>\r\n\t\t\t<srcName>KHOU-TV</srcName>\r\n\t\t</mediaOutletIds>\r\n\t\t<mediaOutletName>MBLTV - My Best Local TV Station</mediaOutletName>\r\n\t\t<mediaOutletType>Local TV</mediaOutletType>\r\n\t\t<mediaOutletChannel>KHOU-TV</mediaOutletChannel>\r\n\t\t<mediaOutletMarketName>Houston, TX</mediaOutletMarketName>\r\n\t</mediaOutlets>\r\n\t<audienceSegments>\r\n\t\t<mediaOutletIds>KHOU-TV</mediaOutletIds>\r\n\t\t<audienceSegment>\r\n\t\t\t<audienceSegmentIds>\r\n\t\t\t\t<id>P18-49</id>\r\n\t\t\t\t<version>0</version>\r\n\t\t\t\t<srcId>KHOU-TV</srcId>\r\n\t\t\t\t<srcName>KHOU-TV</srcName>\r\n\t\t\t</audienceSegmentIds>\r\n\t\t\t<audienceSegmentName>P18-49</audienceSegmentName>\r\n\t\t\t<audienceMethodology>Daypart Average</audienceMethodology>\r\n\t\t\t<isPrimary>true</isPrimary>\r\n\t\t\t<isGuarantee>true</isGuarantee>\r\n\t\t\t<ratingSource>Nielsen</ratingSource>\r\n\t\t\t<ratingStream>Program Live</ratingStream>\r\n\t\t</audienceSegment>\r\n\t\t<universes>\r\n\t\t\t<universeType>Market</universeType>\r\n\t\t\t<universeTypeValue>0</universeTypeValue>\r\n\t\t</universes>\r\n\t</audienceSegments>\r\n\t<salesElements>\r\n\t\t<salesElementHeader>\r\n\t\t\t<mediaOutletId>KHOU-TV</mediaOutletId>\r\n\t\t\t<salesElementName>Primetime</salesElementName>\r\n\t\t\t<salesElementId>SL-1234</salesElementId>\r\n\t\t\t<salesElementType>Time-specific</salesElementType>\r\n\t\t</salesElementHeader>\r\n\t\t<timePeriods>\r\n\t\t\t<DOW>\r\n\t\t\t\t<isMonday>true</isMonday>\r\n\t\t\t\t<isTuesday>true</isTuesday>\r\n\t\t\t\t<isWednesday>true</isWednesday>\r\n\t\t\t\t<isThursday>true</isThursday>\r\n\t\t\t\t<isFriday>true</isFriday>\r\n\t\t\t\t<isSaturday>true</isSaturday>\r\n\t\t\t\t<isSunday>true</isSunday>\r\n\t\t\t</DOW>\r\n\t\t\t<timeWindow>\r\n\t\t\t\t<startTime>07:00</startTime>\r\n\t\t\t\t<endTime>11:00</endTime>\r\n\t\t\t</timeWindow>\r\n\t\t</timePeriods>\r\n\t\t<devices>Smart TV</devices>\r\n\t\t<programs>Mid Morning News</programs>\r\n\t\t<salesElementTransactionInventorys>\r\n\t\t\t<lineNum>1</lineNum>\r\n\t\t\t<lineReference></lineReference>\r\n\t\t\t<lineReferences>\r\n\t\t\t\t<id>LN-1234</id>\r\n\t\t\t\t<version>0</version>\r\n\t\t\t\t<srcId>KHOU-TV</srcId>\r\n\t\t\t\t<srcName>KHOU-TV</srcName>\r\n\t\t\t</lineReferences>\r\n\t\t\t<inventoryType>Commercial</inventoryType>\r\n\t\t\t<inventoryPosition>First</inventoryPosition>\r\n\t\t\t<inventoryLength>30</inventoryLength>\r\n\t\t\t<salesElementTransactionDates>\r\n\t\t\t\t<dateType>Day</dateType>\r\n\t\t\t\t<calendarType>Broadcast</calendarType>\r\n\t\t\t\t<unitCount>10</unitCount>\r\n\t\t\t\t<dailyUnitDistribution>\r\n\t\t\t\t\t<pacingRule>\r\n\t\t\t\t\t\t<type>Frontload</type>\r\n\t\t\t\t\t\t<rateType>Absolute</rateType>\r\n\t\t\t\t\t</pacingRule>\r\n\t\t\t\t\t<monday>2</monday>\r\n\t\t\t\t\t<tuesday>2</tuesday>\r\n\t\t\t\t\t<wednesday>2</wednesday>\r\n\t\t\t\t\t<thursday>2</thursday>\r\n\t\t\t\t\t<friday>2</friday>\r\n\t\t\t\t\t<saturday>0</saturday>\r\n\t\t\t\t\t<sunday>0</sunday>\r\n\t\t\t\t</dailyUnitDistribution>\r\n\t\t\t\t<frequencyCappings>\r\n\t\t\t\t\t<period>Minute</period>\r\n\t\t\t\t\t<perPeriod>0</perPeriod>\r\n\t\t\t\t\t<value>0</value>\r\n\t\t\t\t</frequencyCappings>\r\n\t\t\t\t<pricingMetric>\r\n\t\t\t\t\t<PricingMetricOption>CPM</PricingMetricOption>\r\n\t\t\t\t\t<grossValue>0</grossValue>\r\n\t\t\t\t\t<netValue>0</netValue>\r\n\t\t\t\t</pricingMetric>\r\n\t\t\t\t<grossCost>150</grossCost>\r\n\t\t\t\t<netCost>127.5</netCost>\r\n\t\t\t\t<audienceTargets>\r\n\t\t\t\t\t<excludeOrInclude>Include</excludeOrInclude>\r\n\t\t\t\t\t<audienceTargetIds />\r\n\t\t\t\t\t<targetAttribute>HH Income</targetAttribute>\r\n\t\t\t\t\t<value>$50,000 - $75,000</value>\r\n\t\t\t\t\t<value>$75,000, -$100,000</value>\r\n\t\t\t\t</audienceTargets>\r\n\t\t\t\t<audiencesPricingMetrics>\r\n\t\t\t\t\t<audienceSegmentIds />\r\n\t\t\t\t\t<type>Selling</type>\r\n\t\t\t\t\t<audienceMetric>\r\n\t\t\t\t\t\t<audienceMetric>Impressions</audienceMetric>\r\n\t\t\t\t\t\t<audienceMetricValue>43256</audienceMetricValue>\r\n\t\t\t\t\t</audienceMetric>\r\n\t\t\t\t</audiencesPricingMetrics>\r\n\t\t\t\t<externalComment>Changes or amission need to be approved by buyer before air time.</externalComment>\r\n\t\t\t</salesElementTransactionDates>\r\n\t\t</salesElementTransactionInventorys>\r\n\t</salesElements>\r\n</BuyerOrdersRequest>"
               Change:
-                value:
-                  transactionHeader:
-                    tipVersion: 5.1.0
-                    transactionId:
-                      transactionId: 4162EF00-24D6-4B5F-BBAD-C8E1879FEC46
-                      transactionType: Change
-                      sourceId: 757C28B5-B573-4969-826D-74C17225CBAD
-                      sourceName: My System ID
-                    originalTransactionId:
-                      transactionId: 0FE75A8C-2812-456A-9C0C-B2F734D23354
-                      transactionType: New
-                      sourceId: '490'
-                      sourceName: My System ID
-                    timeStamp: '2020-02-05T19:17:28Z'
-                  referenceIds:
-                    - referenceSourceName: Canvas Worldwide. LLC
-                      referenceSourceId: '456'
-                      referenceSourceLookup: ''
-                      referenceType: RFP
-                      referenceId: C8A91DE6-B69F-46A7-B08D-9D2FB5713B4E
-                      referenceVersionId: '0'
-                      referenceName: Hyundia P25-54 1Q
-                    - referenceSourceName: KHOU-TV
-                      referenceSourceId: '490'
-                      referenceSourceLookup: ''
-                      referenceType: Proposal
-                      referenceId: 571668E8-6858-452C-A364-B56E465535CE
-                      referenceVersionId: '2'
-                      referenceName: Hyundia P25-54 1Q
-                    - referenceSourceName: Canvas Worldwide. LLC
-                      referenceSourceId: '456'
-                      referenceSourceLookup: ''
-                      referenceType: Order
-                      referenceId: 58556E97-D386-4139-AC04-CDBA0B11E8E8
-                      referenceVersionId: '1'
-                      referenceName: Hyundia P25-54 1Q
-                  orderBookedDate: '2020-02-10'
-                  buyer:
-                    buyerId: '456'
-                    buyerName: Canvas Worldwide. LLC
-                    buyerReference: ''
-                  commission: 0.15
-                  advertiser:
-                    advertiserId: '34'
-                    advertiserName: Hyundai
-                    advertiserReference: ''
-                  brand:
-                    brandId: '19'
-                    brandName: Kona
-                    brandReference: ''
-                  product:
-                    productId: '89'
-                    productName: Automobile
-                    productReference: ''
-                  budget:
-                    budgetAmount: 50000
-                  cpeCode:
-                    clientCode: HYUN
-                    productCode: AUTO
-                    estimateCode: '987'
-                  contacts:
-                    - contactType: Account Executive
-                      referenceSourceName: KHOU-TV
-                      referenceSourceId: '12'
-                      contactFirstName: Mary
-                      contactLastName: McCoy
-                      addressLine1: 5718 Westheimer Road
-                      addressLine2: Suite 501
-                      city: Houston
-                      state: TX
-                      postalCode: '77057'
-                      country: USA
-                      phoneNumber: 713-555-5555
-                      email: mmcoy@email.com
-                      effectiveDate: '2007-02-17'
-                    - contactType: Buyer
-                      referenceSourceName: Canvas
-                      referenceSourceId: '45'
-                      contactFirstName: Scott
-                      contactLastName: Evans
-                      addressLine1: 75 Varvick Street
-                      addressLine2: 2nd Floor
-                      city: New York
-                      state: NY
-                      postalCode: '10013'
-                      country: USA
-                      phoneNumber: 212-555-5555
-                      email: sevans@email.com
-                      effectiveDate: '2008-07-17'
-                  revenueType: Cash
-                  businessType: Standard
-                  localNational: National
-                  dealYear: 2020-2021
-                  calendarType: Broadcast
-                  billingOption:
-                    billingCalendar: Broadcast
-                    billingCycle: Month
-                    billingGranularity: Order
-                  equivalized: false
-                  dateWindows:
-                    - startDate: '2020-02-17'
-                      endDate: '2020-03-01'
-                  cancellationTerms:
-                    cancellationType: Quarterly
-                    cancellation: 1Q
-                    cancellationPriorDays: 10
-                    cancellationPercentage: 0.15
-                  timeSeparations:
-                    - unitLength: 30
-                      timeSeparation: 600
-                    - unitLength: 15
-                      timeSeparation: 900
-                  termsOfSales: Contract Terms
-                  externalComment: My comments are here
-                  rateCard:
-                    rateCardId: '123'
-                    rateCardName: Canvas WW standard ratecard
-                  currency: USD
-                  mediaOutlets:
-                    - mediaOutletId: '456'
-                      mediaOutletName: KHOU-TV
-                      mediaOutletType: Broadcast TV
-                      mediaOutletChannel: KHOU-TV
-                      mediaOutletMarketName: Houston
-                      mediaOutletReference: Any Reference
-                  audienceSegments:
-                    - mediaOutletId: '456'
-                      audienceSegment:
-                        audienceSegmentId: P25-54
-                        audienceSegmentName: P25-54
-                        audienceSegmentReference: ''
-                        audienceMethodology: ''
-                        primaryIndicator: true
-                        guarantee: true
-                        ratingSource: Nielsen
-                        ratingStream: Program Live
-                      universes:
-                        - universeType: DMA
-                          universeTypeValue: 39000
-                  salesElements:
-                    - salesElement:
-                        mediaOutletId: '456'
-                        salesElementName: CBS This Morning
-                        salesElementId: '999'
-                        salesElementType: Program
-                      timePeriods:
-                        - dateWindow:
-                            startDate: '2020-01-01'
-                            endDate: '2020-06-01'
-                          DOW:
-                            monday: true
-                            tuesday: true
-                            wednesday: true
-                            thursday: true
-                            friday: true
-                            saturday: false
-                            sunday: false
-                          timeWindow:
-                            startTime: '07:00:00'
-                            endTime: '09:00:00'
-                      programs:
-                        - CBS This Morning
-                      salesElementTransactionInventory:
-                        - lineNum: '1'
-                          lineReference: ''
-                          inventoryType: Commercial
-                          inventoryPosition: ''
-                          inventoryLength: 30
-                          adu: null
-                          bonus: null
-                          externalComment: Comments
-                          salesElementTransactionDates:
-                            - dateType: Week
-                              calendarType: Broadcast
-                              dateWindow:
-                                startDate: '2020-02-17'
-                                endDate: '2020-02-23'
-                              unitCount: 2
-                              dailyUnitDistribution:
-                                monday: 0
-                                tuesday: 0
-                                wednesday: 0
-                                thursday: 0
-                                friday: 0
-                                saturday: 0
-                                sunday: 0
-                              rate: 525
-                              externalComment: comments
-                              audiencesPricingMetrics:
-                                - audienceSegmentId: P25-54
-                                  audienceMetric:
-                                    audienceMetric: Impressions
-                                    audienceMetricValue: 310000
-                                  pricingMetric:
-                                    pricingMetric: CPM
-                                    pricingMetricValue: 1.69
-                            - dateType: Week
-                              calendarType: Broadcast
-                              dateWindow:
-                                startDate: '2020-02-24'
-                                endDate: '2020-03-01'
-                              unitCount: 3
-                              dailyUnitDistribution:
-                                monday: 0
-                                tuesday: 0
-                                wednesday: 0
-                                thursday: 0
-                                friday: 0
-                                saturday: 0
-                                sunday: 0
-                              rate: 525
-                              audiencesPricingMetrics:
-                                - audienceSegmentId: P25-54
-                                  audienceMetric:
-                                    audienceMetric: Impressions
-                                    audienceMetricValue: 310000
-                                  pricingMetric:
-                                    pricingMetric: CPM
-                                    pricingMetricValue: 1.69
-                        - lineNum: '2'
-                          lineReference: ''
-                          inventoryType: Commercial
-                          linkType:
-                            linkType: Sponsorship
-                            linkNum: 1
-                            linkSeq: 0
-                          inventoryPosition: First
-                          inventoryLength: 15
-                          adu: null
-                          bonus: null
-                          externalComment: Comments
-                          salesElementTransactionDates:
-                            - dateType: Week
-                              calendarType: Broadcast
-                              dateWindow:
-                                startDate: '2020-02-17'
-                                endDate: '2020-02-23'
-                              unitCount: 1
-                              dailyUnitDistribution:
-                                monday: 0
-                                tuesday: 0
-                                wednesday: 0
-                                thursday: 1
-                                friday: 0
-                                saturday: 0
-                                sunday: 0
-                              rate: 600
-                              externalComment: comments
-                              audiencesPricingMetrics:
-                                - audienceSegmentId: P25-54
-                                  audienceMetric:
-                                    audienceMetric: Impressions
-                                    audienceMetricValue: 310000
-                                  pricingMetric:
-                                    pricingMetric: CPM
-                                    pricingMetricValue: 1.94
-                            - dateType: Week
-                              calendarType: Broadcast
-                              dateWindow:
-                                startDate: '2020-02-24'
-                                endDate: '2020-03-01'
-                              unitCount: 0
-                              dailyUnitDistribution:
-                                monday: 0
-                                tuesday: 0
-                                wednesday: 0
-                                thursday: 1
-                                friday: 0
-                                saturday: 0
-                                sunday: 0
-                              rate: 600
-                              audiencesPricingMetrics:
-                                - audienceSegmentId: P25-54
-                                  audienceMetric:
-                                    audienceMetric: Impressions
-                                    audienceMetricValue: 310000
-                                  pricingMetric:
-                                    pricingMetric: CPM
-                                    pricingMetricValue: 1.94
-                    - salesElement:
-                        mediaOutletId: '456'
-                        salesElementName: Prime Weekday
-                        salesElementId: '55'
-                        salesElementType: Time-specific
-                      timePeriods:
-                        - dateWindow:
-                            startDate: '2020-01-01'
-                            endDate: '2020-06-01'
-                          DOW:
-                            monday: true
-                            tuesday: true
-                            wednesday: true
-                            thursday: true
-                            friday: true
-                            saturday: false
-                            sunday: false
-                          timeWindow:
-                            startTime: '19:00:00'
-                            endTime: '22:00:00'
-                      programs: []
-                      salesElementTransactionInventory:
-                        - lineNum: '3'
-                          lineReference: ''
-                          inventoryType: Commercial
-                          linkType:
-                            linkType: Billboard
-                            linkNum: 0
-                            linkSeq: 0
-                          inventoryPosition: ''
-                          inventoryLength: 30
-                          adu: null
-                          bonus: null
-                          externalComment: Comments
-                          salesElementTransactionDates:
-                            - dateType: Week
-                              calendarType: Broadcast
-                              dateWindow:
-                                startDate: '2020-02-17'
-                                endDate: '2020-02-23'
-                              unitCount: 0
-                              dailyUnitDistribution:
-                                monday: 2
-                                tuesday: 2
-                                wednesday: 2
-                                thursday: 2
-                                friday: 2
-                                saturday: 0
-                                sunday: 0
-                              rate: 300
-                              externalComment: comments
-                              audiencesPricingMetrics:
-                                - audienceSegmentId: P25-54
-                                  audienceMetric:
-                                    audienceMetric: Impressions
-                                    audienceMetricValue: 248000
-                                  pricingMetric:
-                                    pricingMetric: CPM
-                                    pricingMetricValue: 1.21
-                            - dateType: Week
-                              calendarType: Broadcast
-                              dateWindow:
-                                startDate: '2020-02-24'
-                                endDate: '2020-03-01'
-                              unitCount: 0
-                              dailyUnitDistribution:
-                                monday: 2
-                                tuesday: 2
-                                wednesday: 2
-                                thursday: 2
-                                friday: 2
-                                saturday: 0
-                                sunday: 0
-                              rate: 300
-                              audiencesPricingMetrics:
-                                - audienceSegmentId: P25-54
-                                  audienceMetric:
-                                    audienceMetric: Impressions
-                                    audienceMetricValue: 248000
-                                  pricingMetric:
-                                    pricingMetric: CPM
-                                    pricingMetricValue: 1.21
+                value: "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n<BuyerOrdersRequest>\r\n\t<transactionHeader>\r\n\t\t<tipVersion>6.0.0</tipVersion>\r\n\t\t<transactionId>\r\n\t\t\t<transactionId>3F8A1041-95A8-4BC1-9473-F6B1B3277A71</transactionId>\r\n\t\t\t<transactionType>Change</transactionType>\r\n\t\t\t<sourceId>Buy-6789</sourceId>\r\n\t\t\t<sourceName>TIP Buyer</sourceName>\r\n\t\t</transactionId>\r\n\t\t<originalTransactionId>\r\n\t\t\t<transactionId>1C237FDD-940D-499E-AA20-DF3B9CE0908E</transactionId>\r\n\t\t\t<transactionType>New</transactionType>\r\n\t\t\t<sourceId>Buy-6789</sourceId>\r\n\t\t\t<sourceName>TIP Buyer</sourceName>\r\n\t\t</originalTransactionId>\r\n\t\t<timeStamp>2021-07-21T17:32:28Z</timeStamp>\r\n\t</transactionHeader>\r\n\t<referenceIds>\r\n\t\t<referenceSourceName>TIPApi</referenceSourceName>\r\n\t\t<referenceSourceId>ABC-1234</referenceSourceId>\r\n\t\t<referenceType>RFP</referenceType>\r\n\t\t<referenceId>REF-1234</referenceId>\r\n\t\t<referenceVersionId>0</referenceVersionId>\r\n\t\t<referenceName>Hyundai 1Q22</referenceName>\r\n\t</referenceIds>\r\n\t<referenceIds>\r\n\t\t<referenceSourceName>KHOU-TV</referenceSourceName>\r\n\t\t<referenceSourceId>KHOU-TV</referenceSourceId>\r\n\t\t<referenceType>Proposal</referenceType>\r\n\t\t<referenceId>PRP-1234</referenceId>\r\n\t\t<referenceVersionId>1</referenceVersionId>\r\n\t\t<referenceName>Hyundai 1Q22</referenceName>\r\n\t</referenceIds>\r\n\t<referenceIds>\r\n\t\t<referenceSourceName>Buy-6789</referenceSourceName>\r\n\t\t<referenceSourceId>TIP Buyer</referenceSourceId>\r\n\t\t<referenceType>Order</referenceType>\r\n\t\t<referenceId>ORD-56789</referenceId>\r\n\t\t<referenceVersionId>1</referenceVersionId>\r\n\t\t<referenceName>Hyundai 1Q22</referenceName>\r\n\t</referenceIds>\r\n\t<orderBookedDate>2021-05-24</orderBookedDate>\r\n\t<buyer>\r\n\t\t<buyerIds>\r\n\t\t\t<id>Buy-12345</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>KHOU-TV</srcId>\r\n\t\t\t<srcName>KHOU-TV</srcName>\r\n\t\t</buyerIds>\r\n\t\t<buyerName>Canvas Worldwide. LLC</buyerName>\r\n\t</buyer>\r\n\t<commission>10</commission>\r\n\t<advertiser>\r\n\t\t<advertiserIds>\r\n\t\t\t<id>ADV-12345</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>KHOU-TV</srcId>\r\n\t\t\t<srcName>KHOU-TV</srcName>\r\n\t\t</advertiserIds>\r\n\t\t<advertiserName>Hyundai</advertiserName>\r\n\t</advertiser>\r\n\t<brand>\r\n\t\t<brandIds>\r\n\t\t\t<id>BRD-12345</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>KHOU-TV</srcId>\r\n\t\t\t<srcName>KHOU-TV</srcName>\r\n\t\t</brandIds>\r\n\t\t<brandName>Kona</brandName>\r\n\t</brand>\r\n\t<product>\r\n\t\t<productIds>\r\n\t\t\t<id>PRD-12345</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>KHOU-TV</srcId>\r\n\t\t\t<srcName>KHOU-TV</srcName>\r\n\t\t</productIds>\r\n\t\t<productName>Automobile</productName>\r\n\t</product>\r\n\t<budgets>\r\n\t\t<budgetAmount>120000</budgetAmount>\r\n\t\t<budgetAllocation>\r\n\t\t\t<budgetType>DMA</budgetType>\r\n\t\t\t<budgetName>Summer Compaign 2021</budgetName>\r\n\t\t\t<budgetAmount>12000</budgetAmount>\r\n\t\t\t<budgetSharePercent>10</budgetSharePercent>\r\n\t\t</budgetAllocation>\r\n\t</budgets>\r\n\t<cpeCode>\r\n\t\t<clientCode>CLN-1234</clientCode>\r\n\t\t<productCode>PRD-12345</productCode>\r\n\t\t<estimateCode>P123C456</estimateCode>\r\n\t</cpeCode>\r\n\t<contacts>\r\n\t\t<contactType>Account Executive</contactType>\r\n\t\t<contactIds>\r\n\t\t\t<id>CNT-12345</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>KHOU-TV</srcId>\r\n\t\t\t<srcName>KHOU-TV</srcName>\r\n\t\t</contactIds>\r\n\t\t<salesOffices>Dallas, TX</salesOffices>\r\n\t\t<salesOffices>NYC, NY</salesOffices>\r\n\t\t<contactFirstName>John</contactFirstName>\r\n\t\t<contactLastName>Doe</contactLastName>\r\n\t\t<email>user@example.com</email>\r\n\t\t<effectiveDate>2021-05-21</effectiveDate>\r\n\t</contacts>\r\n\t<revenueType>Cash</revenueType>\r\n\t<businessType>string</businessType>\r\n\t<localNational>Local</localNational>\r\n\t<dealYear>string</dealYear>\r\n\t<billingOption>\r\n\t\t<billingCalendar>Broadcast</billingCalendar>\r\n\t\t<billingCycle>Month</billingCycle>\r\n\t\t<billingGranularity>Order</billingGranularity>\r\n\t</billingOption>\r\n\t<isEquivalized>true</isEquivalized>\r\n\t<dateWindows>\r\n\t\t<startDate>2021-07-01</startDate>\r\n\t\t<endDate>2021-09-21</endDate>\r\n\t</dateWindows>\r\n\t<cancellationTerms>\r\n\t\t<cancellationType>Quarterly</cancellationType>\r\n\t\t<cancellationPriorDays>14</cancellationPriorDays>\r\n\t\t<cancellationPercentage>25</cancellationPercentage>\r\n\t</cancellationTerms>\r\n\t<timeSeparations>\r\n\t\t<unitLength>30</unitLength>\r\n\t\t<timeSeparation>900</timeSeparation>\r\n\t</timeSeparations>\r\n\t<termsOfSales>Terms Of Sales</termsOfSales>\r\n\t<externalComment>Purchase Order is reflective of submitted proposal version #1</externalComment>\r\n\t<rateCard>\r\n\t\t<rateCardId>1</rateCardId>\r\n\t\t<rateCardName>1Q'22 Rate Card</rateCardName>\r\n\t</rateCard>\r\n\t<currency>USD</currency>\r\n\t<mediaOutlets>\r\n\t\t<mediaOutletIds>\r\n\t\t\t<id>KHOU-TV</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>KHOU-TV</srcId>\r\n\t\t\t<srcName>KHOU-TV</srcName>\r\n\t\t</mediaOutletIds>\r\n\t\t<mediaOutletName>MBLTV - My Best Local TV Station</mediaOutletName>\r\n\t\t<mediaOutletType>Local TV</mediaOutletType>\r\n\t\t<mediaOutletChannel>KHOU-TV</mediaOutletChannel>\r\n\t\t<mediaOutletMarketName>Houston, TX</mediaOutletMarketName>\r\n\t</mediaOutlets>\r\n\t<audienceSegments>\r\n\t\t<mediaOutletIds>KHOU-TV</mediaOutletIds>\r\n\t\t<audienceSegment>\r\n\t\t\t<audienceSegmentIds>\r\n\t\t\t\t<id>P18-49</id>\r\n\t\t\t\t<version>0</version>\r\n\t\t\t\t<srcId>KHOU-TV</srcId>\r\n\t\t\t\t<srcName>KHOU-TV</srcName>\r\n\t\t\t</audienceSegmentIds>\r\n\t\t\t<audienceSegmentName>P18-49</audienceSegmentName>\r\n\t\t\t<audienceMethodology>Daypart Average</audienceMethodology>\r\n\t\t\t<isPrimary>true</isPrimary>\r\n\t\t\t<isGuarantee>true</isGuarantee>\r\n\t\t\t<ratingSource>Nielsen</ratingSource>\r\n\t\t\t<ratingStream>Program Live</ratingStream>\r\n\t\t</audienceSegment>\r\n\t\t<universes>\r\n\t\t\t<universeType>Market</universeType>\r\n\t\t\t<universeTypeValue>0</universeTypeValue>\r\n\t\t</universes>\r\n\t</audienceSegments>\r\n\t<salesElements>\r\n\t\t<salesElementHeader>\r\n\t\t\t<mediaOutletId>KHOU-TV</mediaOutletId>\r\n\t\t\t<salesElementName>Primetime</salesElementName>\r\n\t\t\t<salesElementId>SL-1234</salesElementId>\r\n\t\t\t<salesElementType>Time-specific</salesElementType>\r\n\t\t</salesElementHeader>\r\n\t\t<timePeriods>\r\n\t\t\t<DOW>\r\n\t\t\t\t<isMonday>true</isMonday>\r\n\t\t\t\t<isTuesday>true</isTuesday>\r\n\t\t\t\t<isWednesday>true</isWednesday>\r\n\t\t\t\t<isThursday>true</isThursday>\r\n\t\t\t\t<isFriday>true</isFriday>\r\n\t\t\t\t<isSaturday>true</isSaturday>\r\n\t\t\t\t<isSunday>true</isSunday>\r\n\t\t\t</DOW>\r\n\t\t\t<timeWindow>\r\n\t\t\t\t<startTime>07:00</startTime>\r\n\t\t\t\t<endTime>11:00</endTime>\r\n\t\t\t</timeWindow>\r\n\t\t</timePeriods>\r\n\t\t<devices>Smart TV</devices>\r\n\t\t<programs>Mid Morning News</programs>\r\n\t\t<salesElementTransactionInventorys>\r\n\t\t\t<lineNum>1</lineNum>\r\n\t\t\t<lineReference></lineReference>\r\n\t\t\t<lineReferences>\r\n\t\t\t\t<id>LN-1234</id>\r\n\t\t\t\t<version>0</version>\r\n\t\t\t\t<srcId>KHOU-TV</srcId>\r\n\t\t\t\t<srcName>KHOU-TV</srcName>\r\n\t\t\t</lineReferences>\r\n\t\t\t<inventoryType>Commercial</inventoryType>\r\n\t\t\t<inventoryPosition>First</inventoryPosition>\r\n\t\t\t<inventoryLength>30</inventoryLength>\r\n\t\t\t<salesElementTransactionDates>\r\n\t\t\t\t<dateType>Day</dateType>\r\n\t\t\t\t<calendarType>Broadcast</calendarType>\r\n\t\t\t\t<unitCount>10</unitCount>\r\n\t\t\t\t<dailyUnitDistribution>\r\n\t\t\t\t\t<pacingRule>\r\n\t\t\t\t\t\t<type>Frontload</type>\r\n\t\t\t\t\t\t<rateType>Absolute</rateType>\r\n\t\t\t\t\t</pacingRule>\r\n\t\t\t\t\t<monday>2</monday>\r\n\t\t\t\t\t<tuesday>2</tuesday>\r\n\t\t\t\t\t<wednesday>2</wednesday>\r\n\t\t\t\t\t<thursday>2</thursday>\r\n\t\t\t\t\t<friday>2</friday>\r\n\t\t\t\t\t<saturday>0</saturday>\r\n\t\t\t\t\t<sunday>0</sunday>\r\n\t\t\t\t</dailyUnitDistribution>\r\n\t\t\t\t<frequencyCappings>\r\n\t\t\t\t\t<period>Minute</period>\r\n\t\t\t\t\t<perPeriod>0</perPeriod>\r\n\t\t\t\t\t<value>0</value>\r\n\t\t\t\t</frequencyCappings>\r\n\t\t\t\t<pricingMetric>\r\n\t\t\t\t\t<PricingMetricOption>CPM</PricingMetricOption>\r\n\t\t\t\t\t<grossValue>0</grossValue>\r\n\t\t\t\t\t<netValue>0</netValue>\r\n\t\t\t\t</pricingMetric>\r\n\t\t\t\t<grossCost>150</grossCost>\r\n\t\t\t\t<netCost>127.5</netCost>\r\n\t\t\t\t<audienceTargets>\r\n\t\t\t\t\t<excludeOrInclude>Include</excludeOrInclude>\r\n\t\t\t\t\t<audienceTargetIds />\r\n\t\t\t\t\t<targetAttribute>HH Income</targetAttribute>\r\n\t\t\t\t\t<value>$50,000 - $75,000</value>\r\n\t\t\t\t\t<value>$75,000, -$100,000</value>\r\n\t\t\t\t</audienceTargets>\r\n\t\t\t\t<audiencesPricingMetrics>\r\n\t\t\t\t\t<audienceSegmentIds />\r\n\t\t\t\t\t<type>Selling</type>\r\n\t\t\t\t\t<audienceMetric>\r\n\t\t\t\t\t\t<audienceMetric>Impressions</audienceMetric>\r\n\t\t\t\t\t\t<audienceMetricValue>43256</audienceMetricValue>\r\n\t\t\t\t\t</audienceMetric>\r\n\t\t\t\t</audiencesPricingMetrics>\r\n\t\t\t\t<externalComment>Changes or amission need to be approved by buyer before air time.</externalComment>\r\n\t\t\t</salesElementTransactionDates>\r\n\t\t</salesElementTransactionInventorys>\r\n\t</salesElements>\r\n</BuyerOrdersRequest>"
               Cancel:
-                value:
-                  $ref: '#/paths/~1buyer~1rfps/post/requestBody/content/application~1json/examples/Cancel/value'
+                value: "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n<BuyerOrdersRequest>\r\n\t<transactionHeader>\r\n\t\t<tipVersion>6.0.0</tipVersion>\r\n\t\t<transactionId>\r\n\t\t\t<transactionId>3F8A1041-95A8-4BC1-9473-F6B1B3277A71</transactionId>\r\n\t\t\t<transactionType>Cancel</transactionType>\r\n\t\t\t<sourceId>Buy-6789</sourceId>\r\n\t\t\t<sourceName>TIP Buyer</sourceName>\r\n\t\t</transactionId>\r\n\t\t<originalTransactionId>\r\n\t\t\t<transactionId>1C237FDD-940D-499E-AA20-DF3B9CE0908E</transactionId>\r\n\t\t\t<transactionType>New</transactionType>\r\n\t\t\t<sourceId>Buy-6789</sourceId>\r\n\t\t\t<sourceName>TIP Buyer</sourceName>\r\n\t\t</originalTransactionId>\r\n\t\t<timeStamp>2021-07-21T17:32:28Z</timeStamp>\r\n\t</transactionHeader>\r\n\t<referenceIds>\r\n\t\t<referenceSourceName>Buy-6789</referenceSourceName>\r\n\t\t<referenceSourceId>TIP Buyer</referenceSourceId>\r\n\t\t<referenceType>Order</referenceType>\r\n\t\t<referenceId>ORD-56789</referenceId>\r\n\t\t<referenceVersionId>1</referenceVersionId>\r\n\t\t<referenceName>Hyundai 1Q22</referenceName>\r\n\t</referenceIds>\r\n\t<comments></comments>\r\n</BuyerOrdersRequest>"
               Recall:
-                value:
-                  transactionHeader:
-                    tipVersion: 5.1.0
-                    transactionId:
-                      transactionId: 3fa85f64-5717-4562-b3fc-2c963f66afa6
-                      transactionType: Recall
-                      sourceId: '490'
-                      sourceName: KHOU-TV
-                    originalTransactionId:
-                      transactionId: B906A0A9-19FA-4F06-B94D-22E4F1D9120C
-                      transactionType: New
-                      sourceId: '490'
-                      sourceName: KHOU-TV
-                    timeStamp: '2020-07-17T20:04:55.220Z'
-                  referenceIds:
-                    - referenceSourceName: KHOU-TV
-                      referenceSourceId: '490'
-                      referenceSourceLookup: ''
-                      referenceType: Proposal
-                      referenceId: '123456'
-                      referenceVersionId: ''
-                      referenceName: Q2 Proposal for Premium Sport Equipments
-                  comments: Sorry for sending incomplete proposal; Per our discussion 10% discount will be applied
+                value: "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n<BuyerOrdersRequest>\r\n\t<transactionHeader>\r\n\t\t<tipVersion>6.0.0</tipVersion>\r\n\t\t<transactionId>\r\n\t\t\t<transactionId>3F8A1041-95A8-4BC1-9473-F6B1B3277A71</transactionId>\r\n\t\t\t<transactionType>Recall</transactionType>\r\n\t\t\t<sourceId>Buy-6789</sourceId>\r\n\t\t\t<sourceName>TIP Buyer</sourceName>\r\n\t\t</transactionId>\r\n\t\t<originalTransactionId>\r\n\t\t\t<transactionId>1C237FDD-940D-499E-AA20-DF3B9CE0908E</transactionId>\r\n\t\t\t<transactionType>Change</transactionType>\r\n\t\t\t<sourceId>Buy-6789</sourceId>\r\n\t\t\t<sourceName>TIP Buyer</sourceName>\r\n\t\t</originalTransactionId>\r\n\t\t<timeStamp>2021-07-21T17:32:28Z</timeStamp>\r\n\t</transactionHeader>\r\n\t<referenceIds>\r\n\t\t<referenceSourceName>Buy-6789</referenceSourceName>\r\n\t\t<referenceSourceId>TIP Buyer</referenceSourceId>\r\n\t\t<referenceType>Order</referenceType>\r\n\t\t<referenceId>ORD-56789</referenceId>\r\n\t\t<referenceVersionId>1</referenceVersionId>\r\n\t\t<referenceName>Hyundai 1Q22</referenceName>\r\n\t</referenceIds>\r\n\t<comments></comments>\r\n</BuyerOrdersRequest>"
       responses:
+        '201':
+          $ref: '#/components/responses/Created'
         '202':
           $ref: '#/components/responses/Accepted'
         '400':
@@ -1931,60 +2001,80 @@ paths:
         content:
           application/json:
             schema:
+              $ref: '#/paths/~1seller~1orders/post/requestBody/content/application~1xml/schema'
+            examples:
+              Confirm:
+                value:
+                  transactionHeader:
+                    tipVersion: 6.0.0
+                    transactionId:
+                      transactionId: 1C237FDD-940D-499E-AA20-DF3B9CE0908E
+                      transactionType: Confirm
+                      sourceId: ABC-1234
+                      sourceName: TIPApi
+                    originalTransactionId:
+                      transactionId: 3F8A1041-95A8-4BC1-9473-F6B1B3277A71
+                      transactionType: Change
+                      sourceId: Buy-6789
+                      sourceName: TIP Buyer
+                    timeStamp: '2021-07-21T17:32:28Z'
+                  referenceIds:
+                    - referenceSourceName: TIPApi
+                      referenceSourceId: ABC-1234
+                      referenceType: RFP
+                      referenceId: REF-1234
+                      referenceVersionId: 0
+                      referenceName: Hyundai 1Q22
+                    - referenceSourceName: KHOU-TV
+                      referenceSourceId: KHOU-TV
+                      referenceType: Proposal
+                      referenceId: PRP-1234
+                      referenceVersionId: 1
+                      referenceName: Hyundai 1Q22
+                    - referenceSourceName: Buy-6789
+                      referenceSourceId: TIP Buyer
+                      referenceType: Order
+                      referenceId: ORD-56789
+                      referenceVersionId: 1
+                      referenceName: Hyundai 1Q22
+                  comments: Appreciate your business
+              Reject:
+                value:
+                  transactionHeader:
+                    tipVersion: 6.0.0
+                    transactionId:
+                      transactionId: 1C237FDD-940D-499E-AA20-DF3B9CE0908E
+                      transactionType: Reject
+                      sourceId: ABC-1234
+                      sourceName: TIPApi
+                    originalTransactionId:
+                      transactionId: 3F8A1041-95A8-4BC1-9473-F6B1B3277A71
+                      transactionType: Change
+                      sourceId: Buy-6789
+                      sourceName: TIP Buyer
+                    timeStamp: '2021-07-21T17:32:28Z'
+                  referenceIds:
+                    - referenceSourceName: Buy-6789
+                      referenceSourceId: TIP Buyer
+                      referenceType: Order
+                      referenceId: ORD-56789
+                      referenceVersionId: 1
+                      referenceName: Hyundai 1Q22
+                  comments: Order included many deviations from original proposal. Additional discussion is needed.
+          application/xml:
+            schema:
               allOf:
                 - $ref: '#/components/schemas/CancelConfirmRecallReject'
               xml:
                 name: SellerOrdersRequest
             examples:
-              Reject:
-                value:
-                  transactionHeader:
-                    tipVersion: 5.1.0
-                    transactionId:
-                      transactionId: 3fa85f64-5717-4562-b3fc-2c963f66afa6
-                      transactionType: Reject
-                      sourceId: '456'
-                      sourceName: Canvas Worldwide. LLC
-                    originalTransactionId:
-                      transactionId: B906A0A9-19FA-4F06-B94D-22E4F1D9120C
-                      transactionType: New
-                      sourceId: '490'
-                      sourceName: KHOU-TV
-                    timeStamp: '2020-07-17T20:04:55.220Z'
-                  referenceIds:
-                    - referenceSourceName: KHOU-TV
-                      referenceSourceId: '490'
-                      referenceSourceLookup: ''
-                      referenceType: Proposal
-                      referenceId: '123456'
-                      referenceVersionId: ''
-                      referenceName: Nissan July Sale
-                  comments: Thanks for your efforts we decided to cancel our campaign due to current environmet.
               Confirm:
-                value:
-                  transactionHeader:
-                    tipVersion: 5.1.0
-                    transactionId:
-                      transactionId: 3fa85f64-5717-4562-b3fc-2c963f66afa6
-                      transactionType: Confirm
-                      sourceId: '456'
-                      sourceName: Canvas Worldwide. LLC
-                    originalTransactionId:
-                      transactionId: B906A0A9-19FA-4F06-B94D-22E4F1D9120C
-                      transactionType: New
-                      sourceId: '490'
-                      sourceName: KHOU-TV
-                    timeStamp: '2020-07-17T20:04:55.220Z'
-                  referenceIds:
-                    - referenceSourceName: Canvas Worldwide. LLC
-                      referenceSourceId: '456'
-                      referenceSourceLookup: ''
-                      referenceType: Proposal
-                      referenceId: '123456'
-                      referenceVersionId: ''
-                      referenceName: Canvas Worldwide. LLC Q1
-                  comments: 'Thank you Very much; good to do business with you :)'
+                value: "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n<SellerOrdersRequest>\r\n\t<transactionHeader>\r\n\t\t<tipVersion>6.0.0</tipVersion>\r\n\t\t<transactionId>\r\n\t\t\t<transactionId>1C237FDD-940D-499E-AA20-DF3B9CE0908E</transactionId>\r\n\t\t\t<transactionType>Confirm</transactionType>\r\n\t\t\t<sourceId>ABC-1234</sourceId>\r\n\t\t\t<sourceName>TIPApi</sourceName>\r\n\t\t</transactionId>\r\n\t\t<originalTransactionId>\r\n\t\t\t<transactionId>3F8A1041-95A8-4BC1-9473-F6B1B3277A71</transactionId>\r\n\t\t\t<transactionType>Change</transactionType>\r\n\t\t\t<sourceId>Buy-6789</sourceId>\r\n\t\t\t<sourceName>TIP Buyer</sourceName>\r\n\t\t</originalTransactionId>\r\n\t\t<timeStamp>2021-07-21T17:32:28Z</timeStamp>\r\n\t</transactionHeader>\r\n\t<referenceIds>\r\n\t\t<referenceSourceName>TIPApi</referenceSourceName>\r\n\t\t<referenceSourceId>ABC-1234</referenceSourceId>\r\n\t\t<referenceType>RFP</referenceType>\r\n\t\t<referenceId>REF-1234</referenceId>\r\n\t\t<referenceVersionId>0</referenceVersionId>\r\n\t\t<referenceName>Hyundai 1Q22</referenceName>\r\n\t</referenceIds>\r\n\t<referenceIds>\r\n\t\t<referenceSourceName>KHOU-TV</referenceSourceName>\r\n\t\t<referenceSourceId>KHOU-TV</referenceSourceId>\r\n\t\t<referenceType>Proposal</referenceType>\r\n\t\t<referenceId>PRP-1234</referenceId>\r\n\t\t<referenceVersionId>1</referenceVersionId>\r\n\t\t<referenceName>Hyundai 1Q22</referenceName>\r\n\t</referenceIds>\r\n\t<referenceIds>\r\n\t\t<referenceSourceName>Buy-6789</referenceSourceName>\r\n\t\t<referenceSourceId>TIP Buyer</referenceSourceId>\r\n\t\t<referenceType>Order</referenceType>\r\n\t\t<referenceId>ORD-56789</referenceId>\r\n\t\t<referenceVersionId>1</referenceVersionId>\r\n\t\t<referenceName>Hyundai 1Q22</referenceName>\r\n\t</referenceIds>\r\n\t<comments>Appreciate your business</comments>\r\n</SellerOrdersRequest>"
+              Reject:
+                value: "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n<SellerOrdersRequest>\r\n\t<transactionHeader>\r\n\t\t<tipVersion>6.0.0</tipVersion>\r\n\t\t<transactionId>\r\n\t\t\t<transactionId>1C237FDD-940D-499E-AA20-DF3B9CE0908E</transactionId>\r\n\t\t\t<transactionType>Reject</transactionType>\r\n\t\t\t<sourceId>ABC-1234</sourceId>\r\n\t\t\t<sourceName>TIPApi</sourceName>\r\n\t\t</transactionId>\r\n\t\t<originalTransactionId>\r\n\t\t\t<transactionId>3F8A1041-95A8-4BC1-9473-F6B1B3277A71</transactionId>\r\n\t\t\t<transactionType>Change</transactionType>\r\n\t\t\t<sourceId>Buy-6789</sourceId>\r\n\t\t\t<sourceName>TIP Buyer</sourceName>\r\n\t\t</originalTransactionId>\r\n\t\t<timeStamp>2021-07-21T17:32:28Z</timeStamp>\r\n\t</transactionHeader>\r\n\t<referenceIds>\r\n\t\t<referenceSourceName>Buy-6789</referenceSourceName>\r\n\t\t<referenceSourceId>TIP Buyer</referenceSourceId>\r\n\t\t<referenceType>Order</referenceType>\r\n\t\t<referenceId>ORD-56789</referenceId>\r\n\t\t<referenceVersionId>1</referenceVersionId>\r\n\t\t<referenceName>Hyundai 1Q22</referenceName>\r\n\t</referenceIds>\r\n\t<comments>Order included many deviations from original proposal. Additional discussion is needed.</comments>\r\n</SellerOrdersRequest>"
       responses:
+        '201':
+          $ref: '#/components/responses/Created'
         '202':
           $ref: '#/components/responses/Accepted'
         '400':
@@ -2456,11 +2546,7 @@ paths:
         content:
           application/json:
             schema:
-              oneOf:
-                - $ref: '#/components/schemas/BuyerLogTimesSubscription'
-                - $ref: '#/components/schemas/CancelConfirmRecallReject'
-              xml:
-                name: BuyerLogTimesSubscriptionRequest
+              $ref: '#components/schemas/BuyerLogTimesSubscriptionRequest'
             examples:
               New:
                 value:
@@ -2636,11 +2722,7 @@ paths:
                   comments: Sample comment from message originator
           application/xml:
             schema:
-              oneOf:
-                - $ref: '#/components/schemas/BuyerLogTimesSubscription'
-                - $ref: '#/components/schemas/CancelConfirmRecallReject'
-              xml:
-                name: BuyerLogTimesSubscriptionRequest
+              $ref: '#components/schemas/BuyerLogTimesSubscriptionRequest'
             examples:
               New:
                 value: "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n<BuyerLogTimesSubscriptionRequest>\r\n\t<transactionHeader>\r\n\t\t<tipVersion>6.0.0</tipVersion>\r\n\t\t<transactionId>\r\n\t\t\t<transactionId>3fa85f64-5717-4562-b3fc-2c963f66afa6</transactionId>\r\n\t\t\t<transactionType>New</transactionType>\r\n\t\t\t<sourceId>XVEN-1234</sourceId>\r\n\t\t\t<sourceName>XVEN Buyer</sourceName>\r\n\t\t</transactionId>\r\n\t\t<timeStamp>2021-05-06T18:55:15.003Z</timeStamp>\r\n\t</transactionHeader>\r\n\t<name>Post log and reconciled logs only When Available, Never Ends</name>\r\n\t<referenceIds>\r\n\t\t<referenceSourceName>XVEN-1234</referenceSourceName>\r\n\t\t<referenceSourceId>XVEN Buyer</referenceSourceId>\r\n\t\t<referenceSourceLookup>string</referenceSourceLookup>\r\n\t\t<referenceType>Order</referenceType>\r\n\t\t<referenceVersionId>0</referenceVersionId>\r\n\t\t<referenceName>Hyundai 1Q22</referenceName>\r\n\t</referenceIds>\r\n\t<mediaOutlets>\r\n\t\t<mediaOutletIds>\r\n\t\t\t<id>KHOU-TV</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>XVEN-1234</srcId>\r\n\t\t\t<srcName>XVEN Buyer</srcName>\r\n\t\t</mediaOutletIds>\r\n\t\t<mediaOutletName>KHOW-TV</mediaOutletName>\r\n\t\t<mediaOutletType>Local TV</mediaOutletType>\r\n\t\t<mediaOutletChannel>KHOU-TV</mediaOutletChannel>\r\n\t\t<mediaOutletMarketName>Houston, TX</mediaOutletMarketName>\r\n\t</mediaOutlets>\r\n\t<buyer>\r\n\t\t<buyerIds>\r\n\t\t\t<id>BUY-123</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>XVEN-1234</srcId>\r\n\t\t\t<srcName>XVEN Buyer</srcName>\r\n\t\t</buyerIds>\r\n\t\t<buyerName>Canvas Worldwide. LLC</buyerName>\r\n\t</buyer>\r\n\t<advertiser>\r\n\t\t<advertiserIds>\r\n\t\t\t<id>ADV-123</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>XVEN-1234</srcId>\r\n\t\t\t<srcName>XVEN Buyer</srcName>\r\n\t\t</advertiserIds>\r\n\t\t<advertiserName>Hyundai</advertiserName>\r\n\t</advertiser>\r\n\t<contacts>\r\n\t\t<contactType>Account Executive</contactType>\r\n\t\t<contactIds>\r\n\t\t\t<id>CNT-1234</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>XVEN-1234</srcId>\r\n\t\t\t<srcName>XVEN Buyer</srcName>\r\n\t\t</contactIds>\r\n\t\t<salesOffices>Dallas, TX</salesOffices>\r\n\t\t<salesOffices>NYC, NY</salesOffices>\r\n\t\t<contactFirstName>John</contactFirstName>\r\n\t\t<contactLastName>Doe</contactLastName>\r\n\t\t<addressLine1>1234 N. Main Street</addressLine1>\r\n\t\t<city>A City</city>\r\n\t\t<state>UT</state>\r\n\t\t<postalCode>00000-0000</postalCode>\r\n\t\t<country>USA</country>\r\n\t\t<phoneNumber>1(000)000-0000</phoneNumber>\r\n\t\t<email>john.doe@example.com</email>\r\n\t\t<effectiveDate>2021-05-06</effectiveDate>\r\n\t</contacts>\r\n\t<inventoryTypes>Commercial</inventoryTypes>\r\n\t<statuses>Aired</statuses>\r\n\t<statuses>Finalized</statuses>\r\n\t<frequency>\r\n\t\t<effectiveOn>2020-08-12T00:00:00.000Z</effectiveOn>\r\n\t\t<every>When Available</every>\r\n\t\t<isEndNever>true</isEndNever>\r\n\t</frequency>\r\n</BuyerLogTimesSubscriptionRequest>"
@@ -5366,8 +5448,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Identifier'
-          nullable: false
           minItems: 1
+          nullable: false
         salesOffices:
           description: ArrayList of offices associated to the contact
           type: array
@@ -5381,9 +5463,11 @@ components:
         contactFirstName:
           description: Contact First Name
           type: string
+          example: John
         contactLastName:
           description: Contact Last Name
           type: string
+          example: Doe
         addressLine1:
           description: Contact Address Line 1
           type: string
@@ -6344,6 +6428,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Contact'
+          minItems: 1
         currency:
           $ref: '#/components/schemas/Currency'
         budgets:
