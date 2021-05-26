@@ -36,19 +36,19 @@ paths:
           application/json:
             schema:
               $ref: './schemas/creativeAssetsSchemas.yaml#/components/schemas/BuyerCreativeAssets'
-            examples:
-              New:
-                value:
-                  $ref: 'examples/6.0.0/Buyer/BuyerCreativeAssetsNew.json'
-              Change:
-                value:
-                  $ref: 'examples/6.0.0/Buyer/BuyerCreativeAssetsNew.json'
-              Cancel:
-                value:
-                  $ref: 'examples/6.0.0/GenericResponses/GenericCancel.json'
-              Recall:
-                value:
-                  $ref: 'examples/6.0.0/GenericResponses/GenericRecall.json'
+            # examples:
+            #   New:
+            #     value:
+            #       $ref: 'examples/6.0.0/Buyer/BuyerCreativeAssetsNew.json'
+            #   Change:
+            #     value:
+            #       $ref: 'examples/6.0.0/Buyer/BuyerCreativeAssetsNew.json'
+            #   Cancel:
+            #     value:
+            #       $ref: 'examples/6.0.0/GenericResponses/GenericCancel.json'
+            #   Recall:
+            #     value:
+            #       $ref: 'examples/6.0.0/GenericResponses/GenericRecall.json'
       responses:
         '200': #OK
           $ref: 'schemas/commonResponses.yaml#/components/responses/Success'
