@@ -1,0 +1,375 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+     	TVB Business Message Specification
+     	Version: 3.2
+		Date: October 2007
+     	Copyright 2007 Television Bureau of Advertising. All rights reserved.
+
+		NOTE: All data including any names, companies, contacts, and stations 
+		is fictitious.  This data is provided as an example only.
+-->
+<!--List objects here unique to TIP-->
+<CreateOrderRequest serviceName="CreateOrder" originatingTradingPartner="2F9C0543-71CC-41bc-B7C6-59CD4047C624" messageExpiration="2007-04-16T09:27:47.0Z" timestamp="2007-04-15T09:27:47.0Z" messageVersion="3.2" sequenceNumber="1" destinationTradingPartner="A0D151AD-DE9A-484b-A8AB-68F05E82C337" serviceInstanceId="74D300DF-4671-4297-9BAF-273D14EF0D52" mediaType="SpotTV" messageId="96325C5C-96E7-4c87-9C53-B317DC4831E7" serviceVersion="1.00" targetEnvironment="TEST" isRetransmission="false" xmlns="http://www.tvb.org/schema/TVB_OrderCommon" xmlns:tvc="http://www.tvb.org/schema/TVB_Common" xmlns:tvm="http://www.tvb.org/schema/TVB_MediaCommon" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Order orderVersion="1" orderStatus="New" orderId="ORD-56789">
+    <!--referenceIds in TIP support an array of reference types and ids -->
+    <OrderIdReferences>
+      <tvc:SourceCode source="Buyer">Buy-6789</tvc:SourceCode>
+      <tvc:SourceCode source="Station">1524</tvc:SourceCode>
+    </OrderIdReferences>
+    <!--The ReferenceId object is similiar to the OrderIdReferences element where an array of order identifiers are supported for each system participating in the transaction. TIP expanded this to various reference type such as RFP, Proposal, and Order-->
+    <OrderType>Standard</OrderType>
+    <!--businessType in TIP-->
+    <OrderCashTrade>Cash</OrderCashTrade>
+    <!--revenueType in TIP-->
+    <tvm:Advertiser DUNSNumber="">
+      <!--DUNSNumber not supported in TIP due to not being used in TVB-->
+      <tvc:CompanyName>Hyundai<!--Advertiser Object in TIP supports an array of ids and system sources, a name and external reference --></tvc:CompanyName>
+      <tvc:Address addressRole="">
+        <tvc:Street1></tvc:Street1>
+        <tvc:City></tvc:City>
+        <tvc:RegionCode></tvc:RegionCode>
+        <tvc:PostalCode></tvc:PostalCode>
+        <tvc:CountryCode></tvc:CountryCode>
+      </tvc:Address>
+      <!--Address information is contained in the Contact object in TIP and are not tied within the advertiser object-->
+      <tvc:Contact contactId="CNT-12345" contactRole="Account Executive ">
+        <!--TIP contactIds support an array of identifier objects that include id, version and source information-->
+        <tvc:PersonPrefix></tvc:PersonPrefix>
+        <tvc:PersonFirstName>John</tvc:PersonFirstName>
+        <tvc:PersonLastName>Doe</tvc:PersonLastName>
+        <tvc:PersonTitle>Account Executive</tvc:PersonTitle>
+        <tvc:Email>user@example.com</tvc:Email>
+        <tvc:Phone phoneLocation="Office" phoneType="Voice">
+          <tvc:CountryAccessCode>1</tvc:CountryAccessCode>
+          <tvc:AreaCityCode>212</tvc:AreaCityCode>
+          <tvc:PhoneNumber>5551212</tvc:PhoneNumber>
+        </tvc:Phone>
+        <tvc:SourceCode source="KHOU-TV">CNT-12345</tvc:SourceCode>
+      </tvc:Contact>
+      <tvc:SourceCode source=""></tvc:SourceCode>
+    </tvm:Advertiser>
+    <tvm:Product>
+      <tvm:ProductName>Automobile </tvm:ProductName>
+      <tvc:SourceCode source="KHOU-TV">PRD-12345</tvc:SourceCode>
+    </tvm:Product>
+    <!--Product Object in TIP supports an array of identifiers similiar to the SourceCode-->
+    <tvm:Agency DUNSNumber="">
+      <!--DUNSNumber not support in TIP due it is not being utilized in TVB -->
+      <tvc:CompanyName>Canvas Worldwide, LLC</tvc:CompanyName>
+      <tvc:Address addressRole="Buying">
+        <tvc:Street1>405 Lexington Ave 18th Fl</tvc:Street1>
+        <tvc:City>New York</tvc:City>
+        <tvc:RegionCode>NY</tvc:RegionCode>
+        <tvc:PostalCode>10174-1801</tvc:PostalCode>
+        <tvc:CountryCode>USA</tvc:CountryCode>
+      </tvc:Address>
+      <tvc:Contact contactId="PS1" contactRole="Buyer">
+        <tvc:PersonPrefix></tvc:PersonPrefix>
+        <tvc:PersonFirstName>Scott</tvc:PersonFirstName>
+        <tvc:PersonLastName>Evans</tvc:PersonLastName>
+        <tvc:PersonTitle>Buyer</tvc:PersonTitle>
+        <tvc:Email>sevans@email@com</tvc:Email>
+        <tvc:Phone phoneLocation="Office" phoneType="Voice">
+          <tvc:CountryAccessCode>1</tvc:CountryAccessCode>
+          <tvc:AreaCityCode>212</tvc:AreaCityCode>
+          <tvc:PhoneNumber>5555555</tvc:PhoneNumber>
+          <tvc:PhoneExtension>333</tvc:PhoneExtension>
+        </tvc:Phone>
+        <tvc:SourceCode source="Agency">AGY_CON_002</tvc:SourceCode>
+      </tvc:Contact>
+      <tvc:SourceCode source="Agency">AGY_AGY_001</tvc:SourceCode>
+      <tvc:Office locationCode="101">
+        <tvc:OfficeName>New York Sales</tvc:OfficeName>
+        <tvc:Phone phoneLocation="Office" phoneType="Voice">
+          <tvc:CountryAccessCode>1</tvc:CountryAccessCode>
+          <tvc:AreaCityCode>212</tvc:AreaCityCode>
+          <tvc:PhoneNumber>5551000</tvc:PhoneNumber>
+        </tvc:Phone>
+        <tvc:Address addressRole="Business">
+          <tvc:Street1>405 Lexington Ave 18th Fl</tvc:Street1>
+          <tvc:City>New York</tvc:City>
+          <tvc:RegionCode>NY</tvc:RegionCode>
+          <tvc:PostalCode>10174-1801</tvc:PostalCode>
+          <tvc:CountryCode>USA</tvc:CountryCode>
+        </tvc:Address>
+        <tvc:SourceCode source="Agency">AGY_OFF_001</tvc:SourceCode>
+      </tvc:Office>
+    </tvm:Agency>
+    <!--Buyer Object in TIP supports an array of ids and system sources, a name and external reference -->
+    <tvm:Estimate>
+      <tvc:SourceCode source="Agency">CLE-1234-AUTO-AU-12345</tvc:SourceCode>
+    </tvm:Estimate>
+    <!--CpeCode Object in TIP support the structure for clientCode, productCode and estimateCode-->
+    <tvm:Seller>
+      <tvm:StationSeller DUNSNumber="" tradingPartnerId="">
+        <!--DUNSNumber and tradingPartnerId not support in TIP due to not being utilized in TIP -->
+        <tvc:CompanyName>KHOU-TV</tvc:CompanyName>
+        <tvc:Address addressRole="Business">
+          <tvc:Street1>75 Varvick Street</tvc:Street1>
+          <tvc:City>New York</tvc:City>
+          <tvc:RegionCode></tvc:RegionCode>
+          <tvc:PostalCode>10013</tvc:PostalCode>
+          <tvc:CountryCode>USA</tvc:CountryCode>
+        </tvc:Address>
+        <tvc:Contact contactId="PS2" contactRole="AccountExec">
+          <tvc:PersonPrefix></tvc:PersonPrefix>
+          <tvc:PersonFirstName>Mary</tvc:PersonFirstName>
+          <tvc:PersonLastName>McCoy</tvc:PersonLastName>
+          <tvc:PersonSuffix></tvc:PersonSuffix>
+          <tvc:PersonTitle>Account Executive </tvc:PersonTitle>
+          <tvc:Email>mmcoy@email.com</tvc:Email>
+          <tvc:Phone phoneLocation="Office" phoneType="Voice">
+            <tvc:CountryAccessCode>1</tvc:CountryAccessCode>
+            <tvc:AreaCityCode>713</tvc:AreaCityCode>
+            <tvc:PhoneNumber>5555555</tvc:PhoneNumber>
+          </tvc:Phone>
+          <tvc:SourceCode source="Agency">AGY_CON_003</tvc:SourceCode>
+        </tvc:Contact>
+        <tvc:SourceCode source="Agency System">AGY_STA_001</tvc:SourceCode>
+      </tvm:StationSeller>
+    </tvm:Seller>
+    <!--MediaOutlet object in TIP -->
+    <LocalNational>National</LocalNational>
+    <tvm:Station isParentPlus="" tradingPartnerId="">
+      <!--isParentPlus and tradingPartnerId are not in TIP due to not being used in TVB-->
+      <tvm:FCCCallLetters>KHOU</tvm:FCCCallLetters>
+      <tvc:SourceCode source="Buyer's System ">KHOU</tvc:SourceCode>
+    </tvm:Station>
+    <!--MediaOutlet object in TIP supports the details about the station including mediaoutletId. TIP does not support isParentPlus.   -->
+    <tvc:StartDate>2021-07-01</tvc:StartDate>
+    <tvc:EndDate>2021-09-21</tvc:EndDate>
+    <HiatusPeriods makegoodAllowed="">
+      <!--TIP supports a separate API for the BuyerMakegoodGuidelines-->
+      <HiatusPeriod>
+        <tvc:StartDate></tvc:StartDate>
+        <tvc:EndDate></tvc:EndDate>
+      </HiatusPeriod>
+      <!--TIP supports and array of 'airing' dateWindows vs. a HiatusPeriod-->
+    </HiatusPeriods>
+    <OrderGrossAmount>9726.00<!--OrderGrossAmount not supported in TIP on header--></OrderGrossAmount>
+    <BillingCalendar>Broadcast</BillingCalendar>
+    <!--TIP BillingOption object supports billingCalendar, billingCycle and billingGranularity all in the same object-->
+    <BillingCycle>Monthly</BillingCycle>
+    <!--TIP BillingOption object supports billingCalendar, billingCycle and billingGranularity- ->-->
+    <tvm:DemoCategory demoId="P25-54">
+      <!---->
+      <tvm:DemoGroup>People</tvm:DemoGroup>
+      <tvm:DemoLowerAge>19</tvm:DemoLowerAge>
+      <tvm:DemoUpperAge>49</tvm:DemoUpperAge>
+    </tvm:DemoCategory>
+    <!--TIP AudienceSegment object supports the detailed information about the demographic such as ratingSource, RatingStream as well as other pertinent information such as guarantee flag-->
+    <MarketShare>
+      <StationMarketShare>
+        <tvm:Station isParentPlus="false">
+          <tvm:FCCCallLetters>KHOU</tvm:FCCCallLetters>
+          <tvc:SourceCode source="Agency">KHOU</tvc:SourceCode>
+        </tvm:Station>
+        <MarketSharePercent>10</MarketSharePercent>
+      </StationMarketShare>
+      <StationMarketShare>
+        <tvm:Station isParentPlus="false">
+          <tvm:FCCCallLetters>KHOU</tvm:FCCCallLetters>
+          <tvc:SourceCode source="Agency">KHOU</tvc:SourceCode>
+        </tvm:Station>
+        <MarketSharePercent>22.00</MarketSharePercent>
+      </StationMarketShare>
+      <TotalMarketAmount>120000.00</TotalMarketAmount>
+    </MarketShare>
+    <!--TIP BudgetObject upports the budgetAmount object and budgetAllocation object with details -->
+    <tvc:Comment source="Agency">Order Comments</tvc:Comment>
+    <!--SalesElementTransaction Object in TIP are similiar to the Buylines-->
+    <Buylines>
+      <SpotBuyline buylineNumber="1" buylineVersion="1" buylineStatus="New">
+        <BuylineIdReferences>
+          <tvc:SourceCode source="Agency">1</tvc:SourceCode>
+        </BuylineIdReferences>
+        <BuylineCashTrade>Cash</BuylineCashTrade>
+        <!--revenueType is on the header in TIP -->
+        <BuylineDescription>CBS This Morning</BuylineDescription>
+        <!--TIP SalesElementHeader object stores the details of the sales element vs using a description-->
+        <tvc:StartDate>2020-02-17</tvc:StartDate>
+        <tvc:EndDate>2020-02-23</tvc:EndDate>
+        <!--TIP SalesElementInventoryDate object stores the DateWindow, which will allow a sales element to have different rates and audiences -->
+        <BuylineQuantity unitType="Unit">5<!--TIP unitCount stores the number of units either in linear television spots or audience impressions --></BuylineQuantity>
+        <BuylineUnitRate costModel="SPOT">235.00</BuylineUnitRate>
+        <!--TIP PricingMetric object is what defines the cost model or metric used in pricing - use the SPOT enum value to define a spot rate-->
+        <BuylineGrossAmount>470.00</BuylineGrossAmount>
+        <tvc:Comment source=""></tvc:Comment>
+        <SpotBuylineType>Commercial </SpotBuylineType>
+        <SpotLength>30</SpotLength>
+        <BuyerDaypart></BuyerDaypart>
+        <tvm:StartDayOfWeek></tvm:StartDayOfWeek>
+        <ContractInterval>
+          <tvm:MondayValid>true</tvm:MondayValid>
+          <tvm:TuesdayValid>false</tvm:TuesdayValid>
+          <tvm:WednesdayValid>false</tvm:WednesdayValid>
+          <tvm:ThursdayValid>false</tvm:ThursdayValid>
+          <tvm:FridayValid>false</tvm:FridayValid>
+          <tvm:SaturdayValid>false</tvm:SaturdayValid>
+          <tvm:SundayValid>false</tvm:SundayValid>
+          <tvc:StartTime>17:00</tvc:StartTime>
+          <tvc:EndTime>18:00</tvc:EndTime>
+        </ContractInterval>
+        <WeeklySpotDistribution>
+          <tvc:StartDate>2007-03-29</tvc:StartDate>
+          <tvc:EndDate>2007-04-04</tvc:EndDate>
+          <SpotPerWeekQuantity>2</SpotPerWeekQuantity>
+          <tvm:MondayValid>true</tvm:MondayValid>
+          <tvm:TuesdayValid>false</tvm:TuesdayValid>
+          <tvm:WednesdayValid>false</tvm:WednesdayValid>
+          <tvm:ThursdayValid>false</tvm:ThursdayValid>
+          <tvm:FridayValid>false</tvm:FridayValid>
+          <tvm:SaturdayValid>false</tvm:SaturdayValid>
+          <tvm:SundayValid>false</tvm:SundayValid>
+        </WeeklySpotDistribution>
+        <SpotOption>
+          <Bookend secondSpotLength="" firstSpotLength="">false</Bookend>
+        </SpotOption>
+        <TargetDemoValue demoId="P25-54">
+          <tvm:RatingPointValue>0.3</tvm:RatingPointValue>
+        </TargetDemoValue>
+      </SpotBuyline>
+      <!--lineReferences in TIP uses an Identifier object that allows an array of line identifiers that includes line ids and system source-->
+      <SpotBuyline buylineNumber="2" buylineVersion="1" buylineStatus="New">
+        <BuylineIdReferences>
+          <tvc:SourceCode source="Agency">1</tvc:SourceCode>
+        </BuylineIdReferences>
+        <BuylineCashTrade>Cash</BuylineCashTrade>
+        <BuylineDescription>Local News @ 4P  M-F</BuylineDescription>
+        <tvc:StartDate>2021-03-26</tvc:StartDate>
+        <tvc:EndDate>2021-04-04</tvc:EndDate>
+        <BuylineQuantity unitType="Spot">2</BuylineQuantity>
+        <BuylineUnitRate costModel="Unit">188.00</BuylineUnitRate>
+        <BuylineGrossAmount>376.00</BuylineGrossAmount>
+        <tvc:Comment source="Agency">Spots must air in first break.</tvc:Comment>
+        <SpotBuylineType>Normal</SpotBuylineType>
+        <SpotLength>15</SpotLength>
+        <BuyerDaypart>NEWS</BuyerDaypart>
+        <tvm:StartDayOfWeek>Mo</tvm:StartDayOfWeek>
+        <ContractInterval>
+          <tvm:MondayValid>true</tvm:MondayValid>
+          <tvm:TuesdayValid>false</tvm:TuesdayValid>
+          <tvm:WednesdayValid>false</tvm:WednesdayValid>
+          <tvm:ThursdayValid>false</tvm:ThursdayValid>
+          <tvm:FridayValid>false</tvm:FridayValid>
+          <tvm:SaturdayValid>false</tvm:SaturdayValid>
+          <tvm:SundayValid>false</tvm:SundayValid>
+          <tvc:StartTime>23:00</tvc:StartTime>
+          <tvc:EndTime>23:35</tvc:EndTime>
+        </ContractInterval>
+        <WeeklySpotDistribution>
+          <tvc:StartDate>2021-03-26</tvc:StartDate>
+          <tvc:EndDate>2021-04-04</tvc:EndDate>
+          <SpotPerWeekQuantity>2</SpotPerWeekQuantity>
+          <tvm:MondayValid>true</tvm:MondayValid>
+          <tvm:TuesdayValid>false</tvm:TuesdayValid>
+          <tvm:WednesdayValid>false</tvm:WednesdayValid>
+          <tvm:ThursdayValid>false</tvm:ThursdayValid>
+          <tvm:FridayValid>false</tvm:FridayValid>
+          <tvm:SaturdayValid>false</tvm:SaturdayValid>
+          <tvm:SundayValid>false</tvm:SundayValid>
+        </WeeklySpotDistribution>
+        <SpotOption>
+          <ProgramPodPosition>First</ProgramPodPosition>
+        </SpotOption>
+        <TargetDemoValue demoId="P25.54">
+          <tvm:RatingPointValue>0.5</tvm:RatingPointValue>
+        </TargetDemoValue>
+      </SpotBuyline>
+      <SpotBuyline buylineNumber="3" buylineVersion="1" buylineStatus="New">
+        <BuylineIdReferences>
+          <tvc:SourceCode source="Agency">1</tvc:SourceCode>
+        </BuylineIdReferences>
+        <BuylineCashTrade>Cash</BuylineCashTrade>
+        <BuylineDescription>Local News @ 6P M-F</BuylineDescription>
+        <tvc:StartDate>2021-03-26</tvc:StartDate>
+        <tvc:EndDate>2021-04-04</tvc:EndDate>
+        <BuylineQuantity unitType="Spot">2</BuylineQuantity>
+        <BuylineUnitRate costModel="Unit">375.00</BuylineUnitRate>
+        <BuylineGrossAmount>750.00</BuylineGrossAmount>
+        <tvc:Comment source="Agency"></tvc:Comment>
+        <SpotBuylineType>Normal</SpotBuylineType>
+        <SpotLength>15</SpotLength>
+        <BuyerDaypart>NEWS</BuyerDaypart>
+        <tvm:StartDayOfWeek>Mo</tvm:StartDayOfWeek>
+        <ContractInterval>
+          <tvm:MondayValid>true</tvm:MondayValid>
+          <tvm:TuesdayValid>false</tvm:TuesdayValid>
+          <tvm:WednesdayValid>false</tvm:WednesdayValid>
+          <tvm:ThursdayValid>false</tvm:ThursdayValid>
+          <tvm:FridayValid>false</tvm:FridayValid>
+          <tvm:SaturdayValid>false</tvm:SaturdayValid>
+          <tvm:SundayValid>false</tvm:SundayValid>
+          <tvc:StartTime>18:00</tvc:StartTime>
+          <tvc:EndTime>18:35</tvc:EndTime>
+        </ContractInterval>
+        <WeeklySpotDistribution>
+          <tvc:StartDate>2021-03-26</tvc:StartDate>
+          <tvc:EndDate>2021-04-04</tvc:EndDate>
+          <SpotPerWeekQuantity>2</SpotPerWeekQuantity>
+          <tvm:MondayValid>true</tvm:MondayValid>
+          <tvm:TuesdayValid>false</tvm:TuesdayValid>
+          <tvm:WednesdayValid>false</tvm:WednesdayValid>
+          <tvm:ThursdayValid>false</tvm:ThursdayValid>
+          <tvm:FridayValid>false</tvm:FridayValid>
+          <tvm:SaturdayValid>false</tvm:SaturdayValid>
+          <tvm:SundayValid>false</tvm:SundayValid>
+        </WeeklySpotDistribution>
+        <SpotOption>
+          <ProgramPodPosition></ProgramPodPosition>
+        </SpotOption>
+        <TargetDemoValue demoId="P25.54">
+          <tvm:RatingPointValue>1.0</tvm:RatingPointValue>
+        </TargetDemoValue>
+      </SpotBuyline>
+      <SpotBuyline buylineNumber="4" buylineVersion="1" buylineStatus="New">
+        <BuylineIdReferences>
+          <tvc:SourceCode source="Agency">1</tvc:SourceCode>
+        </BuylineIdReferences>
+        <BuylineCashTrade>Cash</BuylineCashTrade>
+        <BuylineDescription>Wheel Of Fortune </BuylineDescription>
+        <tvc:StartDate>2021-03-26</tvc:StartDate>
+        <tvc:EndDate>2021-04-04</tvc:EndDate>
+        <BuylineQuantity unitType="Spot">2</BuylineQuantity>
+        <BuylineUnitRate costModel="Unit">950.00</BuylineUnitRate>
+        <BuylineGrossAmount>1900.00</BuylineGrossAmount>
+        <tvc:Comment source="Agency" />
+        <SpotBuylineType>Normal</SpotBuylineType>
+        <SpotLength>15</SpotLength>
+        <BuyerDaypart>EARLY PRIME</BuyerDaypart>
+        <tvm:StartDayOfWeek>Mo</tvm:StartDayOfWeek>
+        <ContractInterval>
+          <tvm:MondayValid>true</tvm:MondayValid>
+          <tvm:TuesdayValid>false</tvm:TuesdayValid>
+          <tvm:WednesdayValid>false</tvm:WednesdayValid>
+          <tvm:ThursdayValid>false</tvm:ThursdayValid>
+          <tvm:FridayValid>false</tvm:FridayValid>
+          <tvm:SaturdayValid>false</tvm:SaturdayValid>
+          <tvm:SundayValid>false</tvm:SundayValid>
+          <tvc:StartTime>18:30</tvc:StartTime>
+          <tvc:EndTime>19:00</tvc:EndTime>
+        </ContractInterval>
+        <WeeklySpotDistribution>
+          <tvc:StartDate>2021-03-26</tvc:StartDate>
+          <tvc:EndDate>2021-04-04</tvc:EndDate>
+          <SpotPerWeekQuantity>2</SpotPerWeekQuantity>
+          <tvm:MondayValid>true</tvm:MondayValid>
+          <tvm:TuesdayValid>false</tvm:TuesdayValid>
+          <tvm:WednesdayValid>false</tvm:WednesdayValid>
+          <tvm:ThursdayValid>false</tvm:ThursdayValid>
+          <tvm:FridayValid>false</tvm:FridayValid>
+          <tvm:SaturdayValid>false</tvm:SaturdayValid>
+          <tvm:SundayValid>false</tvm:SundayValid>
+        </WeeklySpotDistribution>
+        <SpotOption>
+          <ProgramPodPosition />
+        </SpotOption>
+        <TargetDemoValue demoId="P25.54">
+          <tvm:RatingPointValue>1.4</tvm:RatingPointValue>
+        </TargetDemoValue>
+      </SpotBuyline>
+    </Buylines>
+    <!---->
+    <!---->
+  </Order>
+</CreateOrderRequest>
