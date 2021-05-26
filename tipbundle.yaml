@@ -22,7 +22,7 @@ paths:
         - Buyer
       summary: Allows the Buyer as part of campaign planning to initiate an Inventory Request to Seller
       description: 'This endpoint is hosted at the seller end. Allows the Buyer as part of campaign planning to initiate an Inventory Request to Seller.<br/> Supported Transaction Types:<br/> <lo>- New</lo>'
-      operationId: BuyerInventoryAvails
+      operationId: BuyerInventoryAvailsSubscription
       requestBody:
         description: Send the request for the inventory avails required
         required: true
@@ -1437,7 +1437,7 @@ paths:
             schema:
               description: '-> Request Body for the endpoint varies based on Transaction type. This request is similar to that generated at the seller side'
               oneOf:
-                - $ref: '#/components/schemas/SellerProposals'
+                - $ref: '#/components/schemas/BuyerProposals'
                 - $ref: '#/components/schemas/CancelConfirmRecallReject'
               xml:
                 name: BuyerProposalsRequest
@@ -2546,7 +2546,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#components/schemas/BuyerLogTimesSubscriptionRequest'
+              $ref: '#/paths/~1buyer~1logtimes~1subscription/post/requestBody/content/application~1xml/schema'
             examples:
               New:
                 value:
@@ -2722,7 +2722,11 @@ paths:
                   comments: Sample comment from message originator
           application/xml:
             schema:
-              $ref: '#components/schemas/BuyerLogTimesSubscriptionRequest'
+              oneOf:
+                - $ref: '#/components/schemas/BuyerLogTimesSubscription'
+                - $ref: '#/components/schemas/CancelConfirmRecallReject'
+              xml:
+                name: BuyerLogTimesSubscriptionRequest
             examples:
               New:
                 value: "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n<BuyerLogTimesSubscriptionRequest>\r\n\t<transactionHeader>\r\n\t\t<tipVersion>6.0.0</tipVersion>\r\n\t\t<transactionId>\r\n\t\t\t<transactionId>3fa85f64-5717-4562-b3fc-2c963f66afa6</transactionId>\r\n\t\t\t<transactionType>New</transactionType>\r\n\t\t\t<sourceId>XVEN-1234</sourceId>\r\n\t\t\t<sourceName>XVEN Buyer</sourceName>\r\n\t\t</transactionId>\r\n\t\t<timeStamp>2021-05-06T18:55:15.003Z</timeStamp>\r\n\t</transactionHeader>\r\n\t<name>Post log and reconciled logs only When Available, Never Ends</name>\r\n\t<referenceIds>\r\n\t\t<referenceSourceName>XVEN-1234</referenceSourceName>\r\n\t\t<referenceSourceId>XVEN Buyer</referenceSourceId>\r\n\t\t<referenceSourceLookup>string</referenceSourceLookup>\r\n\t\t<referenceType>Order</referenceType>\r\n\t\t<referenceVersionId>0</referenceVersionId>\r\n\t\t<referenceName>Hyundai 1Q22</referenceName>\r\n\t</referenceIds>\r\n\t<mediaOutlets>\r\n\t\t<mediaOutletIds>\r\n\t\t\t<id>KHOU-TV</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>XVEN-1234</srcId>\r\n\t\t\t<srcName>XVEN Buyer</srcName>\r\n\t\t</mediaOutletIds>\r\n\t\t<mediaOutletName>KHOW-TV</mediaOutletName>\r\n\t\t<mediaOutletType>Local TV</mediaOutletType>\r\n\t\t<mediaOutletChannel>KHOU-TV</mediaOutletChannel>\r\n\t\t<mediaOutletMarketName>Houston, TX</mediaOutletMarketName>\r\n\t</mediaOutlets>\r\n\t<buyer>\r\n\t\t<buyerIds>\r\n\t\t\t<id>BUY-123</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>XVEN-1234</srcId>\r\n\t\t\t<srcName>XVEN Buyer</srcName>\r\n\t\t</buyerIds>\r\n\t\t<buyerName>Canvas Worldwide. LLC</buyerName>\r\n\t</buyer>\r\n\t<advertiser>\r\n\t\t<advertiserIds>\r\n\t\t\t<id>ADV-123</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>XVEN-1234</srcId>\r\n\t\t\t<srcName>XVEN Buyer</srcName>\r\n\t\t</advertiserIds>\r\n\t\t<advertiserName>Hyundai</advertiserName>\r\n\t</advertiser>\r\n\t<contacts>\r\n\t\t<contactType>Account Executive</contactType>\r\n\t\t<contactIds>\r\n\t\t\t<id>CNT-1234</id>\r\n\t\t\t<version>0</version>\r\n\t\t\t<srcId>XVEN-1234</srcId>\r\n\t\t\t<srcName>XVEN Buyer</srcName>\r\n\t\t</contactIds>\r\n\t\t<salesOffices>Dallas, TX</salesOffices>\r\n\t\t<salesOffices>NYC, NY</salesOffices>\r\n\t\t<contactFirstName>John</contactFirstName>\r\n\t\t<contactLastName>Doe</contactLastName>\r\n\t\t<addressLine1>1234 N. Main Street</addressLine1>\r\n\t\t<city>A City</city>\r\n\t\t<state>UT</state>\r\n\t\t<postalCode>00000-0000</postalCode>\r\n\t\t<country>USA</country>\r\n\t\t<phoneNumber>1(000)000-0000</phoneNumber>\r\n\t\t<email>john.doe@example.com</email>\r\n\t\t<effectiveDate>2021-05-06</effectiveDate>\r\n\t</contacts>\r\n\t<inventoryTypes>Commercial</inventoryTypes>\r\n\t<statuses>Aired</statuses>\r\n\t<statuses>Finalized</statuses>\r\n\t<frequency>\r\n\t\t<effectiveOn>2020-08-12T00:00:00.000Z</effectiveOn>\r\n\t\t<every>When Available</every>\r\n\t\t<isEndNever>true</isEndNever>\r\n\t</frequency>\r\n</BuyerLogTimesSubscriptionRequest>"
@@ -3110,7 +3114,7 @@ paths:
       description: |
         Buyer responds back to seller with list of makegood guidelines
         Supported Transaction Types: New, Change, Cancel
-      operationId: BuyermakegoodGuidelines
+      operationId: BuyerMakegoodGuidelines
       requestBody:
         description: Makegoods
         required: true
@@ -4428,7 +4432,7 @@ paths:
         - Buyer
       summary: Allows the buyer to ask the seller for Audience information
       description: "Allows the buyer or agency to ask the seller for audience information on periodic basis Supported Transaction Types: New, Change, Cancel\t\t\t"
-      operationId: BuyerAudiences
+      operationId: BuyerAudiencesSubscription
       requestBody:
         description: The request represents a query request defining the parameters and content of the expected audience responses.
         required: true

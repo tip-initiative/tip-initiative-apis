@@ -33,7 +33,7 @@ paths:
         to initiate an Inventory Request to Seller.<br/>
         Supported Transaction Types:<br/>
         <lo>- New</lo>
-      operationId: BuyerInventoryAvails
+      operationId: BuyerInventoryAvailsSubscription
       requestBody:
         description: Send the request for the inventory avails required
         required: true

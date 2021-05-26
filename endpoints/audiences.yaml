@@ -27,7 +27,7 @@ paths:
       description: >- 
         Allows the buyer or agency to ask the seller for audience information on periodic basis
         Supported Transaction Types: New, Change, Cancel			
-      operationId: BuyerAudiences
+      operationId: BuyerAudiencesSubscription
       requestBody:
         description: The request represents a query request defining the parameters and content of the expected audience responses.
         required: true

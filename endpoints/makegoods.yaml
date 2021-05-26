@@ -67,7 +67,7 @@ paths:
       description: |
         Buyer responds back to seller with list of makegood guidelines
         Supported Transaction Types: New, Change, Cancel
-      operationId: BuyermakegoodGuidelines
+      operationId: BuyerMakegoodGuidelines
       requestBody:
         description: Makegoods
         required: true

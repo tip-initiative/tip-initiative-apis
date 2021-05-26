@@ -82,7 +82,7 @@ paths:
         content:
           application/json:
             schema:
-                $ref: '#components/schemas/BuyerLogTimesSubscriptionRequest'
+                $ref: '#/components/schemas/BuyerLogTimesSubscriptionRequest'
             examples:
               New:
                 value:
@@ -95,7 +95,7 @@ paths:
                   $ref: 'examples\6.0.0\Buyer\JSON\LogtimesSubscriptionCancel.json'
           application/xml:
             schema:
-                $ref: '#components/schemas/BuyerLogTimesSubscriptionRequest'
+                $ref: '#/components/schemas/BuyerLogTimesSubscriptionRequest'
             examples:
               New:
                 value:

@@ -163,7 +163,7 @@ components:
         Request Body for the endpoint varies based on Transaction type. 
         This request is similar to that generated at the seller side
       oneOf:
-        - $ref: './schemas/proposalSchemas.yaml#/components/schemas/SellerProposals'
+        - $ref: './schemas/proposalSchemas.yaml#/components/schemas/BuyerProposals'
         - $ref: './schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
       xml:
         name: BuyerProposalsRequest
