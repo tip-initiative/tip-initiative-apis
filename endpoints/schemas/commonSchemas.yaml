@@ -235,7 +235,7 @@ components:
           type: string
           example: Daypart Average
         isPrimary:
-          description: True/False
+          description: True/False. This property is unique to TIP
           type: boolean
         isGuarantee:
           description: True/False
@@ -520,12 +520,15 @@ components:
         clientCode:
           description: Client code provided from the buyer
           type: string
+          example: 3LM            
         productCode:
           description: Product code provided from the buyer
           type: string
+          example: AUTO             
         estimateCode:
           description: Estimate code provided from the buyer
           type: string
+          example: AU-12345                 
     BillingOption:
       description: Billing and invoice information
       properties:
@@ -815,6 +818,14 @@ components:
             - Creative
             - Delivery Service
         contactIds:
+          description: Contact id
+          type: array
+          items:
+            $ref: '#/components/schemas/Identifier'
+          minItems: 1
+          nullable: false
+        organizationIds:
+          description: Organization id associated to the  contact
           type: array
           items:
             $ref: '#/components/schemas/Identifier'
@@ -944,7 +955,7 @@ components:
           type: string
           nullable: True
       required:
-        - referenceSourceIds                                           
+        - referenceSourceIds
     SalesElementHeader:
       description: Sales element header information
       properties:
