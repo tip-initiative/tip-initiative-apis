@@ -1,8 +1,8 @@
 openapi: 3.0.0
 info:
-  version: 5.1.0
+  version: 6.0.0
   title: Common Schemas
-  description: Common Schemas
+  description: TIP Common objects schemas
   termsOfService: http://placeholderdomain.io/terms/
   contact:
     name: TIP Initiative
@@ -15,11 +15,12 @@ paths: {}
 components:
   schemas:
     TransactionHeader:
-      description: A common object defining the general transaction header information
+      description: General transaction header information
       properties:
         tipVersion:
           description: TIP version of the interface
           type: string
+          example: 6.0.0
         transactionId:
           $ref: '#/components/schemas/TransactionId'
         originalTransactionId:
@@ -28,19 +29,21 @@ components:
           description: Date and time the transaction was created - date-time represent UTC of the server
           type: string
           format: date-time
+          example: '2021-07-21T17:32:28Z'
       required:
         - tipVersion
         - transactionId
         - timeStamp
     TransactionId:
-      description: A common object defining transaction identifier details
+      description: Transaction identifier details
       properties:
         transactionId:
           description: Global unique identifier (GUID)
           type: string
           format: uuid
+          example: 1C237FDD-940D-499E-AA20-DF3B9CE0908E
         transactionType:
-          description: This indicates the type of data exchange being sent
+          description: Indicates the transaction type
           type: string
           enum:
             - New
@@ -50,169 +53,240 @@ components:
             - Recall
             - Confirm
         sourceId:
-          description: Indicates the source "trading partner" unique identification
+          description: Indicates the unique identifier of the source of information from an external system
           type: string
+          example: ABC-1234
         sourceName:
-          description: Indicates the source "trading partner" name
+          description: Indicates the name of the source of information from an external system
           type: string
+          example: TIPApi
       required:
         - transactionId
         - transactionType
         - sourceId
         - sourceName
     MediaOutlet:
-      description: A descriptor common object defining linear broadcast television or non-linear sell-side
-        service
+      description: Linear broadcast television or non-linear sell-side service
       properties:
-        mediaOutletId:
-          description: Unique persistent identifier for the station, network or entity
-          type: string
+        mediaOutletIds:
+          description: Array of identifier objects used to identify the mediaOutletId and its source system
+          type: array
+          items:
+            $ref: '#/components/schemas/Identifier'
+          minItems: 1
         mediaOutletName:
           description: Station, network name or entity associated to mediaOutletId
           type: string
+          example: MBLTV - My Best Local TV Station
         mediaOutletType:
-          description: Type of media outlet
+          description: >-
+            Indicates the type of media; for example Local TV, Diginet TV, National Cable TV,
+            Local Cable TV, Video Streaming Service, Satellite, Website, App, Audio Streaming
+            Service, Radio Station, Unwired, Parent
           type: string
-          enum:
-            - Broadcast TV
-            - OTT
-            - Connected TV
-            - Addressable TV
-            - Digital Video
-            - Mobile Video
-            - Terrestrial Radio
-            - Digital Audio
+          example: Local TV
         mediaOutletChannel:
           description: Station or network station identification (Channel)
           type: string
+          example: KHOU-TV
         mediaOutletMarketName:
-          description: Outlet associated to the market name when applicable
+          description: Media market name such as the DMA or region
           type: string
+          example: Houston, TX
         mediaOutletReference:
-          description: External mediaoutlet reference to support data mapping differences between systems
+          description: External mediaoutlet reference name
           type: string
       required:
-        - mediaOutletId
+        - mediaOutletIds
         - mediaOutletName
         - mediaOutletType
     Advertiser:
-      description: A descriptor common object defining the advertiser
+      description: Advertiser information
       properties:
-        advertiserId:
-          description: Unique persistent identifier for the advertiser/client
-          type: string
+        advertiserIds:
+          description: Array of identifier objects used to identify the advertiser id and its source system
+          type: array
+          items:
+            $ref: '#/components/schemas/Identifier'
+          minItems: 1
         advertiserName:
           description: Advertiser name
           type: string
+          example: Hyundai
         advertiserReference:
           description: External advertiser reference to support data mapping differences between systems
           type: string
       required:
-        - advertiserId
+        - advertiserIds
         - advertiserName
     Brand:
-      description: A descriptor common object defining the advertising-brand
+      description: Advertising brand information
       properties:
-        brandId:
-          description: Unique persistent identifier for the brand
-          type: string
+        brandIds:
+          description: Array of identifier objects used to identify the brand id and its source system
+          type: array
+          items:
+            $ref: '#/components/schemas/Identifier'
+          minItems: 1
         brandName:
           description: Brand Name
           type: string
+          example: Kona
         brandReference:
-          description: External brand reference to support data mapping differences between systems
+          description: External brand reference name
           type: string
       required:
-        - brandId
+        - brandIds
         - brandName
     Buyer:
-      description: >-
-        A descriptor common object defining the agency, buy-side organization, trafficking agency or
-        supplier of the media
+      description: Buy-side organization information
       properties:
-        buyerId:
-          description: >-
-            Unique persistent identifier for the Buying organization or trafficking agency or the supplier
-            of the media
-          type: string
+        buyerIds:
+          description: Array of identifier objects used to identify the buyer id and it source system
+          type: array
+          items:
+            $ref: '#/components/schemas/Identifier'
+          minItems: 1
         buyerName:
           description: Buying organization name
           type: string
+          example: Canvas Worldwide. LLC
         buyerReference:
-          description: External buyer reference to support data mapping differences between systems
+          description: External buyer reference Name
           type: string
       required:
-        - buyerId
+        - buyerIds
         - buyerName
     Product:
-      description: A descriptor common object defining the product category
+      description: Product category information
       properties:
-        productId:
-          description: Unique persistent identifier for the product
-          type: string
+        productIds:
+          description: Array of identifier objects used to identify the product id and its source system
+          type: array
+          items:
+            $ref: '#/components/schemas/Identifier'
+          minItems: 1
         productName:
           description: Product name
           type: string
+          example: Automobile
         productReference:
-          description: External product reference to support data mapping differences between systems
+          description: External product reference name
           type: string
       required:
-        - productId
+        - productIds
         - productName
-    AudienceSegment:
-      description: A descriptor common object defining the audience segment details
+    AudienceTarget:
+      description: Audience target information
       properties:
-        audienceSegmentId:
-          description: Unique persistent identifier for audience segment
+        excludeOrInclude:
+          description: Include or Exclude
           type: string
+          enum:
+            - Include
+            - Exclude
+        audienceTargetIds:
+          description: Array of identifier objects used to identify the audience target id and its source system
+          type: array
+          items:
+            $ref: '#/components/schemas/Identifier'
+        targetAttribute:
+          description: >-
+            Target attributes demographics could range from household income or education,
+            purchase propensity (e.g. past purchases or predicted future purchases), lifestyle
+            (a sophisticated combination of geography and demographics, e.g. affluent
+            suburbanites, media behaviors (e.g. sports fans), geography, or expressed interests
+            (e.g. music or cooking), etc.
+          type: string
+          example: HH Income
+        value:
+          description: ArrayList  containing the targetAttributes values
+          type: array
+          items:
+            type: string
+          example: [
+  "$50,000 - $75,000",
+  "$75,000, -$100,000"
+]
+      required:
+        - excludeOrInclude
+        - targetAttribute
+        - value
+    AudienceSegment:
+      description: Audience segment information
+      properties:
+        audienceSegmentIds:
+          description: Array of identifier objects to identify an audience segment id and its system source
+          type: array
+          items:
+            $ref: '#/components/schemas/Identifier'
+          minItems: 1
         audienceSegmentName:
-          description: Audience Segment Name
+          description: Audience segment name
           type: string
+          example: P18-49
         audienceSegmentReference:
           description: External audience segment reference
           type: string
         audienceMethodology:
-          description: Methodology used to aggregate the audiences that are being provided in the audienceMetricValue
+          description: >-
+            Methodology used to aggregate the audiences that are being provided in
+            the audienceMetricValue
           type: string
-        primaryIndicator:
-          description: True/False
+          example: Daypart Average
+        isPrimary:
+          description: True/False. This property is unique to TIP
           type: boolean
-        guarantee:
+        isGuarantee:
           description: True/False
           type: boolean
         ratingSource:
-          description: For example, Nielsen, ComScore, Internal, Client
+          description: Indicates the source for the audience data; extended enum values allowed
           type: string
+          enum:
+            - Nielsen
+            - ComScore
+            - First-Party
+            - Distributor
+            - Licensed
         ratingStream:
-          description: >-
-            For example, Program Live, Commercial Ratings Live, Commercial Rating Live+3, Commercial
-            Rating Live+7
+          description: Indicates the rating stream associated to the rating source; extended eum values allowed
           type: string
+          enum:
+            - Program Live
+            - Commercial Ratings Live
+            - Commercial Rating Live+3
+            - Commercial Rating Live+7
       required:
-        - audienceSegmentId
+        - audienceSegmentIds
         - audienceSegmentName
     AudienceSegmentDetail:
-      description: A common object combining a mediaoutlet id with audience segment and universe objects
+      description: Combines a mediaoutlet id with audience segment and universe objects
       properties:
-        mediaOutletId:
-          description: The mediaOutletId associated to the mediaoutlet
-          type: string
+        mediaOutletIds:
+          description: >-
+            Array of identifier objects used to identify the mediaoutletid and its system source
+            associated to the audienceSegment
+          type: array
+          items:
+            $ref: '#/components/schemas/Identifier'
+          minItems: 1
         audienceSegment:
           $ref: '#/components/schemas/AudienceSegment'
         universes:
-          description: A collection of all Universes covered by the media outlet
+          description: Array of universe objects  used to identify the universes available for the mediaoutlet
           type: array
           items:
             $ref: '#/components/schemas/Universe'
           minItems: 1
       required:
-        - mediaOutletId
+        - mediaOutletIds
         - audienceSegment
     AudienceMetric:
-      description: A common object defining the audience metric type and value
+      description: Audience metric type and value information
       properties:
         audienceMetric:
-          description: Audience metric type
+          description: Indicates the audience metric; extended enum values allowed
           type: string
           enum:
             - Impressions
@@ -220,49 +294,52 @@ components:
             - GRPs
             - VPVH
             - Composition
-            - Reach
-            - Frequency Threshold
-            - Scarcity
         audienceMetricValue:
-          description: Audience metric type value
+          description: audienceMetric type value
           type: integer
+          example: 43256
       required:
         - audienceMetric
         - audienceMetricValue
     PricingMetricOption:
-      description: >-
-        A common object defining the Pricing metric: CPM - Cost-per-thousand, CPP - Cost-per-point, CPE
-        - Cost-per-engagement, CPA - Cost-per-action
+      description: Pricing metric Cost-per-thousand, Cost-per-point, Cost-per-engagement, Cost-per-action
       type: string
       enum:
         - CPM
         - CPP
         - CPE
         - CPA
+        - SPOT
     PricingMetric:
-      description: A common object defining the audience-based pricing metric type and value
+      description: Audience-based pricing metric type and value
       properties:
-        pricingMetric:
+        PricingMetricOption:
           $ref: '#/components/schemas/PricingMetricOption'
-        pricingMetricValue:
-          description: The dollar value associated to the audience-based pricing metric
+        grossValue:
+          description: Gross value amount
+          type: number
+          format: float
+        netValue:
+          description: Gross value amount minus any fixed advertising agency commission or compensation
           type: number
           format: float
       required:
-        - pricingMetric
-        - pricingMetricValue
+        - PricingMetricOption
+        - grossValue
     AudiencePricingMetric:
-      description: A common object combining an audience segment id with audience metric and pricing
-        metric objects
+      description: Audience segment id with audience metric and pricing metric objects
       properties:
-        audienceSegmentId:
-          description: Unique persistent identifier for audience segment
-          type: string
+        audienceSegmentIds:
+          description: Array of identifier objects used to identify the audienceSegmentId and its system source
+          type: array
+          items:
+            $ref: '#/components/schemas/Identifier'
+          minItems: 1
         type:
-          description: |-
-            Selling -booked audience/pricing values from Order
-            Actual - delivered/actual audience/pricing associated with the rating source/rating stream
-            Projection - seller's internal audience projectionsassociated with the rating stream/rating type
+          description: >-
+            Indicates the type for the audience and pricing metrics.  Selling = booked audience
+            values from Order, Actual =the delivered/actual values from a data measurement
+            service, Projection = the projected audience values
           type: string
           enum:
             - Selling
@@ -273,15 +350,61 @@ components:
         pricingMetric:
           $ref: '#/components/schemas/PricingMetric'
       required:
-        - audienceSegmentId
+        - audienceSegmentIds
         - pricingMetric
+    FrequencyCapping:
+      description: Frequency capping information
+      properties:
+        period:
+          description: >-
+            Indicates the period of a time to be used for the frequency capping; extended enum
+            values accepted
+          type: string
+          enum:
+            - Minute
+            - Day
+            - Week
+            - Month
+            - Hour
+            - Site Session
+            - Order
+            - Asset
+        perPeriod:
+          description: Value defined for the period; the default is 1 per period type
+          type: integer
+        value:
+          description: FrequencyCapping value for the time period
+          type: integer
+      required:
+        - period
+        - value
+    PacingRule:
+      description: Pacing delivery options information
+      properties:
+        type:
+          description: Indicates the pacing delivery rule type; extended enum values allowed
+          type: string
+          enum:
+            - Frontload
+            - Even
+            - Daily Fast ASAP
+            - Daily Even
+            - Flight ASAP
+            - Flight Even
+            - Flight Ahead
+        rateType:
+          description: Indicates the rate type for the values
+          type: string
+          enum:
+            - Absolute
+            - Percent
+      required:
+        - type
     Universe:
-      description: >-
-        A descriptor common object defining the universe coverage and the estimated number of households
-        or people within the universe
+      description: Universe coverage and the estimated number of households or people within the universe
       properties:
         universeType:
-          description: Universe type name
+          description: Indicates the universe type used  for the estimated number of household or people
           type: string
           enum:
             - Market
@@ -289,14 +412,13 @@ components:
             - Coverage
             - Addressable
         universeTypeValue:
-          description: The total number of households or people in the universe that are potentially
-            reachable
+          description: UniverseType value
           type: integer
-    CancellationTerms:
-      description: A descriptor common object defining cancellation terms for a proposal
+    CancellationTerm:
+      description: Cancellation terms
       properties:
         cancellationType:
-          description: Type of cancellation; either a specific quarter or broadcast date
+          description: Indicates the type of CancellationTerm
           type: string
           enum:
             - Quarterly
@@ -308,42 +430,48 @@ components:
             - type: string
               format: date
         cancellationPriorDays:
-          description: Number of days notice needed prior to start quarter or broadcast date to request
+          description: >-
+            Number of days notice needed prior to start quarter or broadcast date to request
             cancellation
           type: integer
+          example: 14
         cancellationPercentage:
           description: Percentage of total amount that is cancellable
           type: number
           format: float
+          example: 25
     TimeSeparation:
-      description: A descriptor common object defining time separation terms
+      description: Time separation terms
       properties:
         unitLength:
           description: Unit length
           type: integer
+          example: 30
         timeSeparation:
           description: >-
-            Agreement whereby the seller agrees to separate advertiser’s commercials by a specific length
-            of time in addition to agreeing to not run another product that is directly competitive within
-            a specific time frame; agreement may defined by unit length or across all lengths. Time Separation
-            is defined in seconds
+            Agreement whereby the seller agrees to separate advertiser’s commercials by a specific
+            length of time in addition to agreeing to not run another product that is directly
+            competitive within a specific time frame; agreement may defined by unit length or
+            across all lengths. Time Separation is defined in seconds
           type: integer
+          example: 900
     ReferenceId:
-      description: A descriptor common object defining the reference details for RFP, Proposal, Order
-        and Invoice
+      description: Reference details for RFP, Proposal, Order and Invoice
       properties:
         referenceSourceName:
           description: Name associated with the organization that is supplying the ids and version information
           type: string
+          example: KHOU-TV
         referenceSourceId:
           description: ID associated with the organization sending the information
           type: string
         referenceSourceLookup:
-          description: Reference Source Look up; this could be URI to lookup information about the reference
+          description: >-
+            Reference source look up such as a URI to lookup information about the reference
             source name
           type: string
         referenceType:
-          description: Source reference type
+          description: Indicates the type of data that is being provided
           type: string
           enum:
             - RFP
@@ -351,68 +479,74 @@ components:
             - Deal
             - Order
             - Invoice
+            - Subscription             
         referenceId:
-          description: Number or ID associated with reference type
+          description: Indicates the number or string ID associated with the reference type
           oneOf:
             - type: integer
             - type: string
+          example: REF-1234
         referenceVersionId:
-          description: Version number associated with the reference id; used to track revisions
+          description: Version number associated with the reference id; this is used to track to track changes
           type: string
+          example: 01
         referenceName:
-          description: Free form name used to identify the type of entity such as Order Name, RFP Name
+          description: >-
+            Free form name used to further identify the type of entity such as the name associated
+            to the RFP, Order, Proposal, or other types of references
           type: string
+          example: Hyundai 1Q22
       required:
         - referenceSourceName
         - referenceSourceId
         - referenceType
         - referenceId
     Currency:
-      description: |-
-        Currency Code is based on ISO 4217.
-        This is the short list of most widely used codes for North America
+      description: >-
+        Currency Code is based on ISO 4217. This is the short list of most widely used codes
+        for North America
       type: string
       enum:
-        - USD   # US Dollar
-        - CAD   # Canadian Dollar
-        - EUR   # Euro
-        - GBP   # Great Britain Pound
-        - MXN   # Mexican Peso
-        - AUD   # Australian Dollar
+        - USD
+        - CAD
+        - EUR
+        - GBP
+        - MXN
+        - AUD
       default: USD
     CpeCode:
-      description: A common object combining buyer's client code, product and estimate
+      description: Packages the buyer's client code, product code and estimate codes
       properties:
         clientCode:
-          description: Client code provided from the buyer. Packages client, product and estimate codes
-            together.
+          description: Client code provided from the buyer
           type: string
+          example: 3LM            
         productCode:
-          description: Product code provided from the buyer. Packages client, product and estimate codes
-            together.
+          description: Product code provided from the buyer
           type: string
+          example: AUTO             
         estimateCode:
-          description: Estimate code provided from the buyer. Packages client, product and estimate codes
-            together.
+          description: Estimate code provided from the buyer
           type: string
+          example: AU-12345                 
     BillingOption:
-      description: A descriptor common object defining the billing/invoice information
+      description: Billing and invoice information
       properties:
         billingCalendar:
-          description: The invoicing calendar
+          description: Indicates the invoicing billing calendar
           type: string
           enum:
             - Broadcast
             - Calendar
             - Nielsen
         billingCycle:
-          description: The interval within the billingCalendar in which the invoices should be issued
+          description: Indicates the interval within the billing calendar
           type: string
           enum:
             - Month
             - Week
         billingGranularity:
-          description: The order's invoice split parameters
+          description: Indicates the order split parameters used in the invoice generation
           type: string
           enum:
             - Order
@@ -423,108 +557,111 @@ components:
         - billingCalendar
         - billingCycle
     RateCard:
-      description: A descriptor common object defining the Rate Card
+      description: Ratecard information
       properties:
         rateCardId:
-          description: Seller's Rate Card ID
+          description: Seller's ratecard identifier
           type: string
+          example: 01
         rateCardName:
-          description: Seller's Rate Card Name associated to the Rate Card ID
+          description: Ratecard name
           type: string
+          example: 1Q'22 Rate Card
+        currency:
+          $ref: '#/components/schemas/Currency'
+      required:
+        - rateCardName
     Budget:
       description: >-
-        A descriptor common object defining the budget or total allocation for a RFP or proposal with
-        optional allocations per market, media outlet or media type
+        Budget or total allocation with optional allocations per market, media outlet or
+        media type
       properties:
         budgetAmount:
-          description: Total budget amount being requested
+          description: Gross budget amount
           type: number
           format: float
           minimum: 0
-          exclusiveMinimum: true
+          exclusiveMinimum: True
         budgetAllocation:
           $ref: '#/components/schemas/BudgetAllocation'
       required:
         - budgetAmount
     BudgetAllocation:
-      description: A descriptor common object defining the budget number and/or percentage in terms of
-        budget type
+      description: Budget number and/or percentage in terms of budget type
       properties:
         budgetType:
+          description: Indicates the type of budget
           type: string
           enum:
             - DMA
             - MediaOutlet
             - MediaType
         budgetName:
-          description: |-
-            This will be a specified DMA from the selected list when budget type is equal to DMA or a string containing a channel or specific type of media, The value of budget name is a conditional on budgetType.
-            - If budgetType = DMA, use the canonical list of DMA names
-            - If budgetType = Mediaoutlet, use media outlet name (call sign)
-            - If budgetType= MediaType, use values from MediaOutletType Enum
+          description: >-
+            Specified DMA from the selected list when budget type is equal to DMA or a string
+            containing a channel or specific type of media. The value of budget name
+            is a conditional on budgetType.
+            - If budgetType is DMA, use the canonical list of DMA names
+            - If budgetType is Mediaoutlet, use media outlet name (call sign)
+            - If budgetType is MediaType, use values from MediaOutletType Enum
           type: string
         budgetAmount:
-          description: The overall budget amount allocated to the budget name
+          description: Gross budget amount for the budget allocation
           type: number
           format: float
           minimum: 0
-          exclusiveMinimum: true
+          exclusiveMinimum: True
         budgetSharePercent:
-          description: The percentage share of the market name being allocated to the seller
+          description: Percentage or share of budget for the budget allocation
           type: number
           format: float
           minimum: 0
-          exclusiveMinimum: true
+          exclusiveMinimum: True
       required:
         - budgetType
         - budgetName
     Guideline:
-      description: A descriptor common object defining the general guidelines (rules) when requesting
-        programming
+      description: General guidelines or rules
       properties:
         guidelineType:
-          description: >-
-            Used to provide guidance about the appropriate age group for the content or other types of
-            content descriptors that maybe relevent to content
+          description: Indicates the type of guideline; extended enum values are allowed
           type: string
           enum:
             - Content
             - Program
-            - MPAA Rating
+            - MPAA
+            - Rating
             - Site Category
             - Genre
-            - Video Group
-            - Video Site
+            - Media Outlet Type
         excludeOrInclude:
           type: string
           enum:
             - Include
             - Exclude
-        guidelineId:
-          description: Guideline ID
-          type: string
-        guidelineName:
-          description: Guideline name associated to the guideline type
-          type: string
+        guidelines:
+          description: List of Guideline values associated to the guideline type
+          type: array
+          items:
+            type: string
       required:
         - guidelineType
         - excludeOrInclude
     DateTime:
-      description: A descriptor common object combining broadcast date and broadcast time used in Logtimes
-        & Invoices
+      description: Broadcast date and broadcast time used in Logtimes & Invoices
       properties:
         broadcastDate:
-          description: The broadcast date on which the unit aired/scheduled; this is not a calendar date
+          description: Broadcast date on which the unit aired/scheduled; this is not a calendar date
           type: string
           format: date
         calendarDateTime:
           description: >-
-            The calendar date and time on which the unit aired/scheduled. Time is interpreted based on
-            the local timezone of the mediaoutlet using military date time YYYY-MM-DDTHH:MM:SS
+            Calendar date and time on which the unit aired/scheduled. Time is interpreted based
+            on the local timezone of the mediaoutlet using military date time YYYY-MM-DDTHH;MM;SS
           type: string
           format: date-time
     TimePeriod:
-      description: A common object combining date window, DOW and time window objects
+      description: Combines date window, DOW and time window objects
       properties:
         dateWindow:
           $ref: '#/components/schemas/DateWindow'
@@ -536,127 +673,105 @@ components:
         - dateWindow
         - DOW
     DateWindow:
-      description: A descriptor common object defining the start and end dates
+      description: Start and end dates
       properties:
         startDate:
-          description: Start Date
+          description: Start date
           type: string
           format: date
         endDate:
-          description: End Date
+          description: End date
           type: string
           format: date
       required:
         - startDate
-        - endDate
     TimeWindow:
-      description: A descriptor common object defining the start and end times
+      description: Start and end times
       properties:
         startTime:
           description: >-
-            Start time, indicates the starting time for the period. Time is considered local to the mediaoutlet.
-            Using military time HH:MM:SS
+            Start time, indicates the starting time for the period. Time is considered local
+            to the mediaoutlet. Using military time HH;MM;SS
           type: string
           pattern: ^(([0-1][0-9])|(2[0-3]))(:[0-5][0-9]){2}$
         endTime:
           description: >-
-            End time, indicates the ending time for the period. Time is interpreted based on the local
-            timezone of the mediaoutlet. Using military time HH:MM:SS
-          oneOf:
-            - type: string
-              pattern: ^(([0-1][0-9])|(2[0-3]))(:[0-5][0-9]){2}$
-            - type: string
-              enum:
-                - TBD
-                - Indefinite
+            End time, indicates the ending time for the period. Time is interpreted based on
+            the local timezone of the mediaoutlet. Using military time HH;MM;SS
+          type: string
+          pattern: ^(([0-1][0-9])|(2[0-3]))(:[0-5][0-9]){2}$
       required:
         - startTime
-        - endTime
     DayOfWeek:
-      description: A descriptor common object defining the valid days of week
+      description: Valid days of week
       properties:
-        monday:
+        isMonday:
           description: True/False
           type: boolean
-        tuesday:
+        isTuesday:
           description: True/False
           type: boolean
-        wednesday:
+        isWednesday:
           description: True/False
           type: boolean
-        thursday:
+        isThursday:
           description: True/False
           type: boolean
-        friday:
+        isFriday:
           description: True/False
           type: boolean
-        saturday:
+        isSaturday:
           description: True/False
           type: boolean
-        sunday:
+        isSunday:
           description: True/False
           type: boolean
       required:
-        - monday
-        - tuesday
-        - wednesday
-        - thursday
-        - friday
-        - saturday
-        - sunday
+        - isMonday
+        - isTuesday
+        - isWednesday
+        - isThursday
+        - isFriday
+        - isSaturday
+        - isSunday
     DailyUnitDistribution:
       description: >-
-        A descriptor common object defining the number of units per day of week. Zero (0) indicates no
-        unit will be expected to air on the corresponding day of the week.
+        Number of units per day of week. Zero (0) indicates no unit will be expected to air
+        on the corresponding day of the week
       properties:
+        pacingRule:
+          $ref: '#/components/schemas/PacingRule'
         monday:
-          description: Number of units or zero
+          description: Number of units either in impressions, linear spots or the value zero
           type: integer
           minimum: 0
         tuesday:
-          description: Number of units or zero
+          description: Number of units either in impressions, linear spots or the value zero
           type: integer
           minimum: 0
         wednesday:
-          description: Number of units or zero
+          description: Number of units either in impressions, linear spots or the value zero
           type: integer
           minimum: 0
         thursday:
-          description: Number of units or zero
+          description: Number of units either in impressions, linear spots or the value zero
           type: integer
           minimum: 0
         friday:
-          description: Number of units or zero
+          description: Number of units either in impressions, linear spots or the value zero
           type: integer
           minimum: 0
         saturday:
-          description: Number of units or zero
+          description: Number of units either in impressions, linear spots or the value zero
           type: integer
           minimum: 0
         sunday:
-          description: Number of units or zero
+          description: Number of units either in impressions, linear spots or the value zero
           type: integer
           minimum: 0
-      required:
-        - monday
-        - tuesday
-        - wednesday
-        - thursday
-        - friday
-        - saturday
-        - sunday
-    InventoryType:
-      description: >-
-        A descriptor common object defining the type of advertisement, announcement, spot or message
-        served on linear or digital service
-      type: string
-      enum:
-        - Commercial
-        - Interstitial
-        - Billboard
     InventoryPosition:
       description: >-
-        A descriptor common object defining a request or actual placement of a commercial unit within
+        Indicates a request for placement or an actual placement of a commercial unit within
         a break or program
       type: string
       enum:
@@ -667,10 +782,10 @@ components:
         - Mid-Roll
         - Post-Roll
     LinkType:
-      description: A descriptor common object defining the linking of matching or related commercials
+      description: Linking of matching or related commercials
       properties:
         linkType:
-          description: Used to communicate the type of link constraints between two or more units
+          description: Indicates the link constraint between two or more units (spots)
           type: string
           enum:
             - Billboard
@@ -681,21 +796,18 @@ components:
             - Sponsorship
             - Package
         linkNum:
-          description: >-
-            Unique number to communicate the association of two or more units that have been linked together;
-            only valid when the the instructions have a link type association
+          description: Unique number to communicate the association of two or more units within a link type
           type: integer
         linkSeq:
-          description: Used to communicate the airing sequential order of units that have been linked
-            together
+          description: Airing sequential order for the units linked together such as A or B, etc.
           type: integer
       required:
         - linkType
     Contact:
-      description: A descriptor common object defining a person's contact information
+      description: Contact information
       properties:
         contactType:
-          description: Type of Contact
+          description: Indicates the type of Contact
           type: string
           enum:
             - Account Executive
@@ -705,75 +817,90 @@ components:
             - Payee
             - Creative
             - Delivery Service
-        referenceSourceName:
-          description: Name associated with the organization that is supplying the contact information
-          type: string
-        referenceSourceId:
-          description: ID associated with the organization
-          type: string
+        contactIds:
+          description: Contact id
+          type: array
+          items:
+            $ref: '#/components/schemas/Identifier'
+          minItems: 1
+          nullable: false
+        organizationIds:
+          description: Organization id associated to the  contact
+          type: array
+          items:
+            $ref: '#/components/schemas/Identifier'
+          minItems: 1
+          nullable: false
         salesOffices:
-          description: Contact office. Could be multiple locations. (e.g. New York, Chicago, Detroit)
+          description: ArrayList of offices associated to the contact
           type: array
           items:
             type: string
-          uniqueItems: true
-          nullable: true
+          uniqueItems: True
+          nullable: True
+          example: [
+  "Dallas, TX",
+  "NYC, NY"
+]
         contactFirstName:
           description: Contact First Name
           type: string
+          example: John
         contactLastName:
           description: Contact Last Name
           type: string
+          example: Doe
         addressLine1:
           description: Contact Address Line 1
           type: string
         addressLine2:
           description: Contact Address Line 2
           type: string
-          nullable: true
+          nullable: True
         city:
           description: City
           type: string
-          nullable: true
+          nullable: True
         state:
           description: State
           type: string
-          nullable: true
+          nullable: True
         postalCode:
           description: Postal Code
           type: string
-          nullable: true
+          nullable: True
         country:
           description: Country
           type: string
-          nullable: true
+          nullable: True
         phoneNumber:
           description: Primary telephone number
           type: string
-          nullable: true
+          nullable: True
         email:
           description: Primary email
           type: string
           format: email
-          nullable: true
+          nullable: True
         effectiveDate:
           description: Effective date for contact
           type: string
           format: date
       required:
         - contactType
-        - referenceSourceName
-        - referenceSourceId
+        - contactIds
         - contactFirstName
         - contactLastName
         - effectiveDate
     RemittanceInfo:
-      description: A descriptor common object defining the invoice remittance Information and billing
-        instructions
+      description: Invoice remittance Information and billing instructions
       properties:
-        referenceSourceId:
+        referenceSourceIds:
           description: ID associated with the remittance
-          type: string
+          type: array
+          items:
+            $ref: '#/components/schemas/Identifier'
+          minItems: 1
         referenceName:
           description: Name associated with the remittance
           type: string
@@ -781,7 +908,7 @@ components:
           description: Contact First Name (not necessary)
           type: string
         contactLastName:
-          description: Contact Last Name (not necessary)
+          description: Contact Last Name ( not necessary)
           type: string
         addressLine1:
           description: Contact Address Line 1
@@ -789,65 +916,67 @@ components:
         addressLine2:
           description: Contact Address Line 2
           type: string
-          nullable: true
+          nullable: True
         city:
           description: City
           type: string
-          nullable: true
+          nullable: True
         state:
           description: State
           type: string
-          nullable: true
+          nullable: True
         postalCode:
           description: Postal Code
           type: string
-          nullable: true
+          nullable: True
         country:
           description: Country
           type: string
-          nullable: true
+          nullable: True
         phoneNumber:
           description: Primary telephone number
           type: string
-          nullable: true
+          nullable: True
         contactEmail:
           description: Primary email for payment remittance information
           type: string
           format: email
-          nullable: true
+          nullable: True
         portalInformation:
           description: Portal information including payment instructions
           type: string
-          nullable: true
+          nullable: True
         paymentLink:
           description: URL that directs buyer to invoice payment options
           type: string
-          nullable: true
+          nullable: True
         comments:
           description: Comments
           type: string
-          nullable: true
+          nullable: True
+      required:
+        - referenceSourceIds
     SalesElementHeader:
-      description: A descriptor common object defining the sales element header information
+      description: Sales element header information
       properties:
         mediaOutletId:
-          description: MediaOutlet ID
+          description: mediaOutletId associated with the SalesElement
           type: string
         salesElementName:
-          description: Seller's sales element name; this could be either a program or daypart name
+          description: SalesElement name; this may be a program, daypart name or another type of sales element
           type: string
+          example: Primetime
         salesElementId:
-          description: Seller's sales element ID
+          description: SaleElement identifier
           type: string
         salesElementType:
-          description: >-
-            The type of Sales Element either time, audience or program-based. Audience is used to denote
-            video/OTT which is identified by the MediaOutlet
+          description: Indicates the type of SalesElement
           type: string
           enum:
             - Time-specific
             - Program
             - Audience
+            - Package
       required:
         - mediaOutletId
         - salesElementName
@@ -855,41 +984,65 @@ components:
         - salesElementType
     SalesElement:
       description: >-
-        A common object combining the sales element header, time periods, programs and sales element
-        inventory objects
+        Combines the sales element header, time periods, programs and sales element inventory
+        objects
       properties:
-        salesElement:
+        salesElementHeader:
           $ref: '#/components/schemas/SalesElementHeader'
         timePeriods:
+          description: Array of TimePeriod objects indicating SalesElement availability
           type: array
           items:
             $ref: '#/components/schemas/TimePeriod'
-        programs:
-          description: This includes a list of program names that are included in the salesElement
+        devices:
+          description: Optional array of devices valid for the sales element; extended enum values are allowed
           type: array
           items:
             type: string
-        salesElementInventory:
+            enum:
+              - PlayStation
+              - Amazon Fire
+              - Roku
+              - Chromecast
+              - Smartphones
+              - Smart TV
+        programs:
+          description: ArrayList of program names valid for the salesElement
+          type: array
+          items:
+            type: string
+        salesElementInventorys:
+          description: Array of SalesElementInventory objects
           type: array
           items:
             $ref: '#/components/schemas/SalesElementInventory'
       required:
-        - salesElement
-        - salesElementInventory
+        - salesElementHeader
     SalesElementInventory:
-      description: A common object combining the sales element inventory and sales element inventory
-        dates objects
+      description: Combines the sales element inventory and sales element inventory dates objects
       properties:
         inventoryType:
-          $ref: '#/components/schemas/InventoryType'
+          description: Type of advertising such as a commercial, billboard or other type of advertisement
+          type: string
+          example: Commercial
         linkType:
           $ref: '#/components/schemas/LinkType'
+        companionTypeIds:
+          description: >-
+            ArrayList of companionTypeIds that will accompany the inventory type e.g. a stream
+            ad or bumper ad
+          type: array
+          items:
+            type: string
         inventoryPosition:
+          description: Indicates a specific break or position within a sales element
           $ref: '#/components/schemas/InventoryPosition'
         inventoryLength:
-          description: length of inventory type, in seconds
+          description: Length for the ad unit or inventoryType in seconds
           type: integer
+          example: 30
         salesElementInventoryDates:
+          description: Array of SalesElementInventoryDate objects
           type: array
           items:
             $ref: '#/components/schemas/SalesElementInventoryDate'
@@ -897,10 +1050,10 @@ components:
       required:
         - inventoryType
     SalesElementInventoryDate:
-      description: A common object combining sales element inventory dates with audience pricing metrics
-        objects
+      description: Combines sales element inventory dates with audience pricing metrics objects
       properties:
         dateType:
+          description: Indicates the granularity type for the date window
           type: string
           enum:
             - Day
@@ -908,7 +1061,7 @@ components:
             - Month
             - Quarter
         calendarType:
-          description: Differentiates between OTT using Calendar and Linear using Broadcast Calendar.
+          description: Indicates the calendar for the date type and date window
           type: string
           enum:
             - Broadcast
@@ -916,87 +1069,118 @@ components:
         dateWindow:
           $ref: '#/components/schemas/DateWindow'
         inventoryCapacity:
-          description: The total maximum number of units for the SalesElementInventory
-          type: string
+          description: Maximum capacity defined either in linear spots or the in the number of  impressions
+          type: number
+          format: float
         inventoryAvails:
-          description: The number of "units" remaining for the SalesElementInventory
-          type: string
+          description: Number of units remaining either in linear spots or impressions
+          type: number
+          format: float
         inventoryMax:
-          description: The maximum number from the remaining "units" allowed for the SalesElementInventory
-          type: string
-        rate:
-          description: The rate for individual unit
+          description: >-
+            Maximum number of units remaining from the inventoryAvails in either in linear spots
+            or impressions
           type: number
           format: float
         audiencesPricingMetrics:
-          description: Pricing metrics for individual unit
           type: array
           items:
             $ref: '#/components/schemas/AudiencePricingMetric'
       required:
-        - dateType
-        - calendarType
         - dateWindow
     SalesElementTransaction:
-      description: >-
-        A common object combining the sales element header, time periods, programs and transaction inventory
+      description: Combines the sales element header, time periods, programs and transaction inventory
       properties:
-        salesElement:
+        salesElementHeader:
           $ref: '#/components/schemas/SalesElementHeader'
         timePeriods:
+          description: Array of TimePeriod objects indicating SalesElement day and time period constraints
           type: array
           items:
             $ref: '#/components/schemas/TimePeriod'
-        programs:
-          description: This includes list of program names included in the salesElement
+        devices:
+          description: Optional array of devices valid for the sales element; extended enum values are allowed
           type: array
           items:
             type: string
-        salesElementTransactionInventory:
+            enum:
+              - PlayStation
+              - Amazon Fire
+              - Roku
+              - Chromecast
+              - Smartphones
+              - Smart TV
+        programs:
+          description: ArrayList of program names valid for the salesElement
+          type: array
+          items:
+            type: string
+        salesElementTransactionInventorys:
           type: array
           items:
             $ref: '#/components/schemas/SalesElementTransactionInventory'
       required:
-        - salesElement
+        - salesElementHeader
         - timePeriods
-        - salesElementTransactionInventory
+        - salesElementTransactionInventorys
     SalesElementTransactionInventory:
-      description: A common object that combines sales element transaction inventory with the transaction
-        dates
+      description: Combines sales element transaction inventory with the transaction dates
       properties:
         lineNum:
-          description: Source Line transaction number
+          description: Supplier's generated line number/id
           type: string
         lineReference:
-          description: User defined line reference to the source line transaction number
+          description: >-
+            Additional reference for the supplier's line number such as line num from an external
+            system source
           type: string
-          nullable: true
+          nullable: True
+        lineReferences:
+          description: >-
+            Array of identifier objects to identify a line id and system source; note- once the
+            identifier object has been adopted the goal is to remove existing lineNum
+            and lineReference
+          type: array
+          items:
+            $ref: '#/components/schemas/Identifier'
         inventoryType:
-          $ref: '#/components/schemas/InventoryType'
+          description: Type of advertising such as a commercial, billboard or other forms of advertisement
+          type: string
+        companionTypeIds:
+          description: >-
+            ArrayList of companionTypeIds that will accompany the inventory type e.g. a stream
+            ad or bumper ad
+          type: array
+          items:
+            type: string
         linkType:
           $ref: '#/components/schemas/LinkType'
         inventoryPosition:
           $ref: '#/components/schemas/InventoryPosition'
         inventoryLength:
-          description: length of inventory type, in seconds
+          description: Length of the advertisement/inventory type in seconds
           type: integer
-          nullable: true
-        adu:
-          description: True/False
+          nullable: True
+        isAdu:
+          description: >-
+            Audience Deficiency Unit are units of commercial advertising inventory made available
+            to advertisers as fulfillment for the inventory the advertisers purchased that ran
+            in programs that under-delivered on contracted audience demographic ratings
           type: boolean
-          nullable: true
-        bonus:
-          description: True/False
+          nullable: True
+        isBonus:
+          description: Free ($0) ad impressions that a publisher includes with paid media
           type: boolean
-          nullable: true
+          nullable: True
         externalComment:
           description: >-
-            A free form comments string that can be used in any of the many interfaces the Sales Element
-            objects appears. For example to support buyer or seller generic comments to guide or explain
-            changes that may have been applied to the line.
+            Free form comments string that can be used in any of the many interfaces the Sales
+            Element objects appears. For example to support buyer or seller generic comments
+            to guide or explain changes that may have been applied to the line.
           type: string
-          nullable: true
+          nullable: True
         salesElementTransactionDates:
+          description: Array of SalesElementTransactionDates
           type: array
           items:
             $ref: '#/components/schemas/SalesElementTransactionDate'
@@ -1006,16 +1190,18 @@ components:
         - inventoryType
         - salesElementTransactionDates
     SalesElementTransactionDate:
-      description: >-
-        A common object combining sales element transaction date information with the audience pricing
-        metrics
+      description: Combines sales element transaction date information with the audience pricing metrics
       properties:
         dateType:
+          description: Indicates the granularity type for the date window
           type: string
           enum:
+            - Day
             - Week
+            - Month
+            - Quarter
         calendarType:
-          description: Differentiates between OTT using Calendar and Linear using Broadcast Calendar.
+          description: Indicates the calendar for the date type and date window
           type: string
           enum:
             - Broadcast
@@ -1023,38 +1209,166 @@ components:
         dateWindow:
           $ref: '#/components/schemas/DateWindow'
         unitCount:
-          description: The number of "units" for the SalesElementTransaction
+          description: Number of units either in linear television spots or audience impressions
           type: integer
           minimum: 0
         dailyUnitDistribution:
           $ref: '#/components/schemas/DailyUnitDistribution'
-        rate:
-          description: The rate for individual unit or impressions
+        frequencyCappings:
+          description: Array of FrequencyCapping objects
+          type: array
+          items:
+            $ref: '#/components/schemas/FrequencyCapping'
+        pricingMetric:
+          $ref: '#/components/schemas/PricingMetric'
+        grossCost:
+          description: Gross value amount for the unit count across the date window
           type: number
           format: float
-          minimum: 0
-          nullable: true
-        externalComment:
-          description: >-
-            A free form comments string that can be used in any of the many interfaces the Sales Element
-            objects appears. For example it can be used to support buyer or seller generic comments to
-            guide the line-level negotiations in the proposal. It could include comments about the audience,
-            rate, date, and units.
-          type: string
-          nullable: true
+          example: 150
+        netCost:
+          description: Gross value amount minus any fixed advertising agency commission or compensation
+          type: number
+          format: float
+          example: 127.5
+        audienceTargets:
+          description: Array of AudienceTarget objects
+          type: array
+          items:
+            $ref: '#/components/schemas/AudienceTarget'
         audiencesPricingMetrics:
-          description: Pricing metrics for individual unit
+          description: Array of audiencePricingMetrics
           type: array
           items:
             $ref: '#/components/schemas/AudiencePricingMetric'
-          nullable: true
+          nullable: True
+        externalComment:
+          description: >-
+            Free form comments string that can be used in any of the many interfaces the Sales
+            Element objects appears. For example it can be used to support buyer or seller generic
+            comments to guide the line-level negotiations in the proposal. It could include
+            comments about the audience, rate, date, and units.
+          type: string
+          nullable: True
       required:
-        - dateType
-        - calendarType
         - dateWindow
-        - unitCount
+    Frequency:
+      description: Indicates the recurrence pattern at which an associated TIP request will be auto generated
+      properties:
+        effectiveOn:
+          description: >-
+            When true, indicates that the report subscription will stay active until
+            it is terminated by the requester Cancel Request. When false, indicates that the
+            report will terminate either on the date indicated by the endOn or the number of
+            after the number of occurences indicated in endOccurAfter
+          type: string
+          format: date
+          example: 2020-08-12
+        every:
+          description: >-
+            Indicates the unit of time in which to receive the information available
+            in the subscription
+          type: string
+          enum:
+            - When Available
+            - Hour
+            - Day
+            - Week
+            - Month
+        onDay:
+          description: >-
+            Valid when every is equal to week; unique list the days of the week on which the
+            data (report) is expected to be generated
+          type: array
+          items:
+            type: string
+            enum:
+              - Mon
+              - Tue
+              - Wed
+              - Thu
+              - Fri
+              - Sat
+              - Sun
+        onDate:
+          description: >-
+            Valid when every is equal to Month; unique day(s) of the month on which the data
+            ( report) is expected to be generated; the values in onDate must be restricted
+            to 1, 2, 3, 4, 5 to indicate 1st, 2nd, ... of the month.
+          type: array
+          items:
+            type: integer
+          example: [1,15]
+        isEndNever:
+          description: >-
+            Indicates if the report subscription will stay active until it is terminated by the
+            requester Cancel Request
+          type: boolean
+          default: true
+        endOn:
+          description: >-
+            Indicate if the subscription must end at a specific date. if specified it takes precedence
+            over isEndNever. if endOccurAfter is specified report would stop after either date
+            is reached or number of occurrences whichever comes first
+          type: string
+          format: date
+          nullable: True
+          default: 
+        endOccurAfter:
+          description: >-
+            Indicates if the report subscription must end after the specified number of times.
+            When specified it takes precedence over isEndNever. if endOn is specified report  would
+            stop after either date is reached or number of occurrences whichever comes first
+          type: integer
+          minimum: 0
+          nullable: True
+    DynamicDate:
+      description: >-
+        Indicates the values to be used when calculating a start date, or end date relative
+        to the report date.
+      properties:
+        offsetType:
+          description: Provides the unit for the offset value
+          type: string
+          enum:
+            - Hour
+            - Day
+            - Week
+            - Month
+            - Quarter
+            - Year
+        offset:
+          description: >-
+            negative offset mean number of offsetypes prior to reporting day, positive number
+            mean number of offsettypes following the reporting day.  0 indicates the reporting
+            day
+          type: integer
+          example: -7
+      required:
+        - offsetType
+        - offset
+    ItemDetail:
+      description: >-
+        Indicates the values to be used in invoice tax, discount or other type of user-defined
+        invoice item
+      properties:
+        itemType:
+          description: >-
+            Indicates the type of Tax type, Discount, or any other type presented in the associated
+            value
+          type: string
+          nullable: False
+          example: "Sales Tax"
+        value:
+          description: Indicates the value associated to the type of the item type.
+          type: number
+          format: float
+          example: 1245.55
+      required:
+        - itemType
+        - value
     CancelConfirmRecallReject:
-      description: A common object used for Recall, Cancel, Confirm or Reject for any transaction
+      description: Recall, Cancel, Confirm or Reject for any transaction
       properties:
         transactionHeader:
           $ref: '#/components/schemas/TransactionHeader'
@@ -1070,17 +1384,28 @@ components:
         - transactionHeader
         - referenceIds
     Error:
-      description: Common object to define error return from all APIs
+      description: Defines errors returned from all APIs
       properties:
         errorCode:
           type: integer
+          example: 400
         errorMessage:
           type: string
+          example: Bad Request
+        errorList:
+          type: object
+          additionalProperties:
+            type: string
+            example:   
+              "startDate": "Invalid DateFormat"
+              "netCost": "Value Can Not be Negative"
       required:
         - errorCode
         - errorMessage
+      xml:
+        name: Error
     AcceptedResponse:
-      description: Common object to define successful return from all APIs
+      description: Defines successful return from all APIs
       properties:
         transactionId:
           type: string
@@ -1091,47 +1416,96 @@ components:
       required:
         - transactionId
         - timeStamp
-    AdId:
-      description: >-
-        adId.org defines Ad-ID as 11-alphanumeric code with an optional 12th character as flag for H=High
-        Def, D=3D ads. API will test the Syntax of the code but not validity. Testing for validity and
-        if code is active requires a specific call to the Ad-ID.org server. The API can return the Complete
-        External Access (CEA) metadata about the creative.
-      type: string
-      pattern: ^([A-Z,a-z,0-9]){11}[H,h,D,d]?$
+      xml:
+        name: AcceptedResponse
     Creative:
       description: Object representing the creative
       properties:
-        id:
+        ids:
           description: UniqueID from the seller of the Creative [who assigns this in the process]
-          type: string
-        version:
-          description: Version of the creative
-          type: string
+          type: array
+          items:
+            $ref: '#/components/schemas/Identifier'
         name:
           description: Name of the creative
           type: string
-        adId:
-          $ref: '#/components/schemas/AdId'
-        altAdId:
-          description: >-
-            Alternate Advertising industry standard unique identifier for the commercial. It could be
-            a legacy ISCI or house identifier created by the creative house or agency.
+          nullable: True
+        status:
           type: string
+          enum:
+            - Not Final
+            - Final
+            - On-Hand
         length:
-          description: Length (in seconds) of the Creative
+          description: Length (in seconds) of the Creative excluding slate
           type: integer
       required:
+        - ids
+    Format:
+      description: Formatting for creative asset
+      properties:
+        container:
+          description: Container format that contains the video, audio, etc.
+          type: string
+        video:
+          description: Video codes
+          type: string
+        audio:
+          description: List of audio codes
+          type: array
+          items:
+            type: string
+          example: [
+  "ENG-US",
+  "ENG-UK"
+]
+        aspect:
+          description: Aspect ratio
+          type: string
+          example: 16:19
+        resolution:
+          description: Screen resolution
+          type: string
+        screen:
+          description: Screen format
+          type: string
+        bitRate:
+          description: Delivery bitrate in kbps
+          type: integer
+        duration:
+          description: duration in seconds
+          type: integer
+          example: 30
+      required:
+        - container
+        - video
+        - audio
+        - duration
+    Identifier:
+      description: Identifies ids and system source association
+      properties:
+        id:
+          description: Identifier from the buyer or seller that indicates the id assignment
+          type: string
+        version:
+          description: Identifier from the buyer or seller that indicates the id assignment  version
+          type: string
+        srcId:
+          description: Optional identifier indicating the id of the system source providing the the id
+          type: string
+        srcName:
+          description: Name of the system source that is providing the id
+          type: string
+      required:
         - id
-        - name
-        - length
+        - srcName
     SupplyPath:
-      description: Object representing the Supply Path
+      description: Impression supply path
       properties:
         id:
           description: >-
-            Identifier from Seller to indicate the means that the ad was delivered (SSP, PMP, direct
-            publisher integration)
+            Identifier from Seller to indicate the means that the ad was delivered (SSP, PMP,
+            direct publisher integration)
           type: string
         extId:
           description: External identifier from platform to indicate the supply source
@@ -1142,9 +1516,10 @@ components:
       required:
         - id
     Device:
-      description: Object representing the user's device
+      description: Viewer's device information
       properties:
         ip:
+          description: IP address (source IP V4, or V6)
           $ref: '#/components/schemas/IpAddress'
         ifa:
           description: Identifier of the device that is displaying the ad
@@ -1156,10 +1531,10 @@ components:
           description: User Agent of the device that is displaying the ad
           type: string
         catSRC:
-          description: The type of source of the inventory (SSP, PMP)
+          description: Type of source of the inventory (SSP, PMP)
           type: string
         catType:
-          description: The type of device, as defined by RTB 2.3.1 section 5.17
+          description: Type of device, as defined by RTB 2.3.1 section 5.17
           type: string
           enum:
             - Mobile/Tablet
@@ -1172,20 +1547,19 @@ components:
       required:
         - ip
     Geo:
-      description: Object representing the user's location
+      description: Viewer's location
       properties:
         src:
-          description: The type of source providing the geographic data (ex. IP2Location, Neustar (Quova),
-            MaxMind)
+          description: Type of source providing the geographic data (ex. IP2Location, Neustar (Quova), MaxMind)
           type: string
         country:
-          description: 'Location: Country where ad is served, Country code using ISO-3166-1-alpha-3.'
+          description: Country where ad is served, Country code using ISO-3166-1-alpha-3.
           type: string
         region:
           description: Region code using ISO-3166-2; 2-letter state code if USA
           type: string
         dma:
-          description: If US, DMA where ad is served
+          description: U.S. DMA where ad is served
           type: string
         postal:
           description: Postal code where ad is served
@@ -1211,7 +1585,7 @@ components:
       required:
         - country
     Event:
-      description: Object representing the various events occurring for a given Impression
+      description: Events captured for a given Impression
       properties:
         type:
           description: ImpressionID + eventType will be unique. (Please see VAST spec for all event Types)
@@ -1220,10 +1594,11 @@ components:
           description: Timestamp for the event
           type: string
           format: date-time
-        sigVerified:
+        isSigVerified:
           description: Indicates if the event has a verified signature from inventory source
           type: boolean
         ip:
+          description: IP address of the event
           $ref: '#/components/schemas/IpAddress'
         ua:
           description: User Agent of device where event occurred
@@ -1240,9 +1615,9 @@ components:
       required:
         - type
         - timestamp
-        - sigVerified
+        - isSigVerified
     Crypto:
-      description: Object representing the fields needed to cryptographically sign an impression
+      description: Cryptographically sign an impression
       properties:
         signatureId:
           description: Base64 encoded ID of the signature
@@ -1251,23 +1626,80 @@ components:
           example: SVBWNE9SSVBWNkFkZHJlc3M=
       required:
         - signatureId
-    Identifier:
-      description: Generic identifier that can be used in any object independent of context (e.g. Creative
-        ID)
-      properties:
-        id:
-          description: Generic identifier that can be used in any object independent of context (e.g.
-            Creative ID)
-          type: string
-          format: uuid
-        version:
-          description: Generic identifier version that can be used in any object independent of context
-            (e.g. Creative ID)
-          type: string
-      required:
-        - id
     IpAddress:
       description: Type Definition to accept IPv4 or IPV6
       type: string
       example: 192.168.001.001
-      pattern: ^([0-9]{1,3}[\.]){3}([0-9]{1,3})|([0-9a-fA-F]{4}[\:]){7}[0-9a-fA-F]{4}$
+      pattern: ^([0-9]{1,3}[.]){3}([0-9]{1,3})|([0-9a-fA-F]{4}[:]){7}[0-9a-fA-F]{4}$
+    AdId:
+      type: string
+      pattern: ^([A-Z,a-z,0-9]){11}[H,h,D,d]?$                                                                         
+    Impression:
+      description: One impression with all associated Ids
+      properties:
+        id:
+          description: Seller generated unique number for Impression Event
+          type: string
+          format: uuid
+        statSource:
+          description: >-
+            Identifies the originating impressions tracking source if impressions have multiple
+            tracking sources. The combination of StatSource and MediaOutlet identifies a unique
+            impression.
+          type: string
+        timestamp:
+          description: UTC source
+          type: string
+          format: date-time
+        referenceId:
+          description: >-
+            Campaign/Lineitem that the impression is associated with. Ideally it would just be
+            id+version to associate back to a broader metadata object
+          $ref: '#/components/schemas/Identifier'
+        creative:
+          description: >-
+            Creative that the impression is associated with. Ideally it would just be id+version
+            to associate back to a broader metadata object
+          $ref: '#/components/schemas/Creative'
+        salesElementId:
+          description: SalesElement Id from the list on line #14
+          $ref: '#/components/schemas/Identifier'
+        contentOwnerId:
+          description: >-
+            contentOwnerId is one of the mediaOutlet serving the content listed in the array
+            of mediaOutlets in the message
+          $ref: '#/components/schemas/Identifier'
+        supplyPath:
+          description: Documentation of the supply chain leading to the impression
+          $ref: '#/components/schemas/SupplyPath'
+        device:
+          description: User's device descriptor
+          $ref: '#/components/schemas/Device'
+        geo:
+          description: User's location
+          $ref: '#/components/schemas/Geo'
+        events:
+          description: Events (Start, Q1, Q2, ....)
+          type: array
+          items:
+            $ref: '#/components/schemas/Event'
+          minItems: 1
+        publisherBundle:
+          description: RTB compliant site name that indicates the individual app and publisher for the content
+          type: string
+        publisherSspId:
+          description: Identifier for the supply-side platform that enabled the inventory
+          type: string
+        adLedger:
+          description: Fields needed to cryptographically validate this impression
+          $ref: '#/components/schemas/Crypto'
+      required:
+        - id
+        - timestamp
+        - referenceId
+        - creative
+        - salesElementId
+        - contentOwnerId
+        - device
+        - geo
+        - events

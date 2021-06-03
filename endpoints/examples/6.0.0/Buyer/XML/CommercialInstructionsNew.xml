@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<BuyerCommercialInstructionsRequest>
+	<transactionHeader>
+		<tipVersion>6.0.0</tipVersion>
+		<transactionId>
+			<transactionId>3fa85f64-5717-4562-b3fc-2c963f66afa6</transactionId>
+			<transactionType>New</transactionType>
+			<sourceId>EXT-123</sourceId>
+			<sourceName>Creative Assets Company</sourceName>
+		</transactionId>
+		<timeStamp>2021-05-06T18:54:24.221Z</timeStamp>
+	</transactionHeader>
+	<referenceIds>
+		<referenceSourceName>KHOU-TV</referenceSourceName>
+		<referenceSourceId>KHOU-5678</referenceSourceId>
+		<referenceType>Order</referenceType>
+		<referenceVersionId>0</referenceVersionId>
+		<referenceName>Hyundai 1Q22</referenceName>
+	</referenceIds>
+	<buyer>
+		<buyerIds>
+			<id>BUYER-178</id>
+			<version>0</version>
+			<srcId>XBuy-1234</srcId>
+			<srcName>XVEN Buyer</srcName>
+		</buyerIds>
+		<buyerName>Canvas Worldwide. LLC</buyerName>
+	</buyer>
+	<contacts>
+		<contactType>Account Executive</contactType>
+		<referenceSourceName>XVEN Buyer</referenceSourceName>
+		<referenceSourceId>XBuy-1234</referenceSourceId>
+		<salesOffices>Dallas, TX</salesOffices>
+		<salesOffices>NYC, NY</salesOffices>
+		<contactFirstName>Jane</contactFirstName>
+		<contactLastName>Doe</contactLastName>
+		<addressLine1>546 Main Avenue</addressLine1>
+		<city>City Rapids</city>
+		<state>B State</state>
+		<postalCode>00000-0000</postalCode>
+		<country>USA</country>
+		<phoneNumber>+1(000)000-00000</phoneNumber>
+		<email>jane@example.com</email>
+		<effectiveDate>2021-05-06</effectiveDate>
+	</contacts>
+	<advertiser>
+		<advertiserIds>
+			<id>EXT-654</id>
+			<version>0</version>
+			<srcId>EXT-123</srcId>
+			<srcName>Creative Assets Company</srcName>
+		</advertiserIds>
+		<advertiserName>Hyundai</advertiserName>
+	</advertiser>
+	<product>
+		<productIds>
+			<id>EXT-0001</id>
+			<version>0</version>
+			<srcName>Creative Assets Company</srcName>
+		</productIds>
+		<productName>Automobile</productName>
+		<productReference>string</productReference>
+	</product>
+	<dateWindow>
+		<startDate>2021-05-06</startDate>
+		<endDate>2021-05-06</endDate>
+	</dateWindow>
+	<cpeCode>
+		<clientCode>EXT-0002</clientCode>
+		<productCode>EXT-0001</productCode>
+		<estimateCode>001002</estimateCode>
+	</cpeCode>
+	<instructionComment>Any Instructions</instructionComment>
+	<externalComment>More instruction or comments</externalComment>
+	<instructionType>Rotation Share</instructionType>
+	<instructionDetails>
+		<actionType>New</actionType>
+		<inventoryTypes>Bookend</inventoryTypes>
+		<mediaOutlet>
+			<mediaOutletIds>
+				<id>TV-124</id>
+				<version>0</version>
+				<srcId>XBuy-1234</srcId>
+				<srcName>XVEN Buyer</srcName>
+			</mediaOutletIds>
+			<mediaOutletName>KHOU-TV</mediaOutletName>
+			<mediaOutletType>Local TV</mediaOutletType>
+			<mediaOutletChannel>KHOU-TV</mediaOutletChannel>
+			<mediaOutletMarketName>Houston, TX</mediaOutletMarketName>
+		</mediaOutlet>
+		<creative>
+			<ids>
+				<id>TYRN8899H</id>
+				<version>0</version>
+				<srcName>AdID.org</srcName>
+			</ids>
+			<name>2020 Labor Day Sales Event - RAV4 :15</name>
+			<status>Not Final</status>
+			<length>15</length>
+		</creative>
+		<brand>
+			<brandIds>
+				<id>TOY-123</id>
+				<version>0</version>
+				<srcId>XBuy-1234</srcId>
+				<srcName>XVEN Buyer</srcName>
+			</brandIds>
+			<brandName>Compact SUV RAV4</brandName>
+		</brand>
+		<product>
+			<productIds>
+				<id>AUT-123</id>
+				<version>0</version>
+				<srcId>XBuy-1234</srcId>
+				<srcName>XVEN Buyer</srcName>
+			</productIds>
+			<productName>Automobile</productName>
+		</product>
+		<linkType>
+			<linkType>Bookend</linkType>
+			<linkNum>1</linkNum>
+			<linkSeq>1</linkSeq>
+		</linkType>
+		<deliveryDate>2021-05-06</deliveryDate>
+		<deliveryService>Adstream</deliveryService>
+		<timePeriods>
+			<dateWindow>
+				<startDate>2021-05-06</startDate>
+				<endDate>2021-05-06</endDate>
+			</dateWindow>
+			<DOW>
+				<isMonday>true</isMonday>
+				<isTuesday>true</isTuesday>
+				<isWednesday>true</isWednesday>
+				<isThursday>true</isThursday>
+				<isFriday>true</isFriday>
+				<isSaturday>true</isSaturday>
+				<isSunday>true</isSunday>
+			</DOW>
+			<timeWindow>
+				<startTime>9:00</startTime>
+				<endTime>17:00</endTime>
+			</timeWindow>
+		</timePeriods>
+		<rotationShare>100</rotationShare>
+		<patternInstruction>null</patternInstruction>
+		<unitSpecificInstructions>null</unitSpecificInstructions>
+		<specialInstructions>null</specialInstructions>
+	</instructionDetails>
+</BuyerCommercialInstructionsRequest>

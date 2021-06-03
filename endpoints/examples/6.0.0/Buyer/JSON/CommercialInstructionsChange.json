@@ -1,0 +1,184 @@
+{
+  "transactionHeader": {
+    "tipVersion": "6.0.0",
+    "transactionId": {
+      "transactionId": "40299727-4FF6-43E5-A627-4791C994BC58",
+      "transactionType": "Change",
+      "sourceId": "EXT-123",
+      "sourceName": "Creative Assets Company"
+    },
+    "originalTransactionId": {
+      "transactionId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "transactionType": "New",
+      "sourceId": "EXT-123",
+      "sourceName": "Creative Assets Company"
+    },
+    "timeStamp": "2021-05-06T18:54:24.221Z"
+  },
+  "referenceIds": [
+    {
+      "referenceSourceName": "KHOU-TV",
+      "referenceSourceId": "KHOU-5678",
+      "referenceType": "Order",
+      "referenceVersionId": 0,
+      "referenceName": "Hyundai 1Q22"
+    }
+  ],
+  "buyer": {
+    "buyerIds": [
+      {
+        "id": "BUYER-178",
+        "version": "0",
+        "srcId": "XBuy-1234",
+        "srcName": "XVEN Buyer"
+      }
+    ],
+    "buyerName": "Canvas Worldwide. LLC"
+  },
+  "contacts": [
+    {
+      "contactType": "Account Executive",
+      "referenceSourceName": "XVEN Buyer",
+      "referenceSourceId": "XBuy-1234",
+      "salesOffices": [
+        [
+          "Dallas, TX",
+          "NYC, NY"
+        ]
+      ],
+      "contactFirstName": "Jane",
+      "contactLastName": "Doe",
+      "addressLine1": "546 Main Avenue",
+      "city": "City Rapids",
+      "state": "B State",
+      "postalCode": "00000-0000",
+      "country": "USA",
+      "phoneNumber": "+1(000)000-00000",
+      "email": "jane@example.com",
+      "effectiveDate": "2021-05-06"
+    }
+  ],
+  "advertiser": {
+    "advertiserIds": [
+      {
+        "id": "EXT-654",
+        "version": "0",
+        "srcId": "EXT-123",
+        "srcName": "Creative Assets Company"
+      }
+    ],
+    "advertiserName": "Hyundai"
+  },
+  "product": {
+    "productIds": [
+      {
+        "id": "EXT-0001",
+        "version": "0",
+        "srcName": "Creative Assets Company"
+      }
+    ],
+    "productName": "Automobile",
+    "productReference": "string"
+  },
+  "dateWindow": {
+    "startDate": "2021-05-06",
+    "endDate": "2021-05-06"
+  },
+  "cpeCode": {
+    "clientCode": "EXT-0002",
+    "productCode": "EXT-0001",
+    "estimateCode": "001002"
+  },
+  "instructionComment": "Any Instructions",
+  "externalComment": "More instruction or comments",
+  "instructionType": "Rotation Share",
+  "instructionDetails": [
+    {
+      "actionType": "New",
+      "inventoryTypes": [
+        "Bookend"
+      ],
+      "mediaOutlet": {
+        "mediaOutletIds": [
+          {
+            "id": "TV-124",
+            "version": "0",
+            "srcId": "XBuy-1234",
+            "srcName": "XVEN Buyer"
+          }
+        ],
+        "mediaOutletName": "KHOU-TV",
+        "mediaOutletType": "Local TV",
+        "mediaOutletChannel": "KHOU-TV",
+        "mediaOutletMarketName": "Houston, TX"      },
+      "creative": {
+        "ids": [
+          {
+            "id": "TYRN8899H",
+            "version": "0",
+            "srcName": "AdID.org"
+          }
+        ],
+        "name": "2020 Labor Day Sales Event - RAV4 :15",
+        "status": "Not Final",
+        "length": 15
+      },
+      "brand": {
+        "brandIds": [
+          {
+            "id": "TOY-123",
+            "version": "0",
+            "srcId": "XBuy-1234",
+            "srcName": "XVEN Buyer"
+          }
+        ],
+        "brandName": "Compact SUV RAV4"
+		},
+      "product": {
+        "productIds": [
+          {
+            "id": "AUT-123",
+            "version": "0",
+            "srcId": "XBuy-1234",
+            "srcName": "XVEN Buyer"
+          }
+        ],
+        "productName": "Automobile"
+		},
+      "linkType": {
+        "linkType": "Bookend",
+        "linkNum": 1,
+        "linkSeq": 1
+      },
+      "deliveryDate": "2021-05-06",
+      "deliveryService": "Adstream",
+      "timePeriods": [
+        {
+          "dateWindow": {
+            "startDate": "2021-05-06",
+            "endDate": "2021-05-06"
+          },
+          "DOW": {
+            "isMonday": true,
+            "isTuesday": true,
+            "isWednesday": true,
+            "isThursday": true,
+            "isFriday": true,
+            "isSaturday": true,
+            "isSunday": true
+          },
+          "timeWindow": {
+            "startTime": "9:00",
+            "endTime": "17:00"
+          }
+        }
+      ],
+      "rotationShare": 100,
+      "patternInstruction": "null",
+      "unitSpecificInstructions": [
+        "null"
+      ],
+      "specialInstructions": "null"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+    "transactionHeader": {
+      "tipVersion": "6.0.0",
+      "transactionId": {
+        "transactionId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "transactionType": "Cancel",
+        "sourceId": "456",
+        "sourceName": "Canvas Worldwide. LLC"
+      },
+      "originalTransactionId": {
+        "transactionId": "B906A0A9-19FA-4F06-B94D-22E4F1D9120C",
+        "transactionType": "New",
+        "sourceId": "490",
+        "sourceName": "KHOU-TV"
+      },
+      "timeStamp": "2020-07-17T20:04:55.220Z"
+    },
+    "referenceIds": [
+    {
+      "referenceSourceName": "YSELL Seller",
+      "referenceSourceId": "YSELL-1234",
+      "referenceType": "Order",
+	  "referenceId": "ORD-5678",
+      "referenceVersionId": 1,
+      "referenceName": "Hyundai 1Q22"
+    },
+    {
+      "referenceSourceName": "YSELL Seller",
+      "referenceSourceId": "YSELL-1234",
+      "referenceType": "Invoice",
+	  "referenceId": "ORD-5678-1",
+      "referenceVersionId": 1,
+      "referenceName": "Hyundai 1Q22"
+    }
+    ],
+    "comments": "Thank you Very much; good to do business with you :)"
+  }

@@ -2,7 +2,7 @@ openapi: "3.0.0"
 security:
   - bearerAuth: []
 info:
-  version: 5.1.0
+  version: 6.0.0
   title: Commercial Instructions
   description: >-
     Allows the creative agency or service provider of commercial instructions to send new or
@@ -17,7 +17,7 @@ info:
     name: MIT
     url: https://opensource.org/licenses/MIT
 servers:
-  - url: http://placeholderdomain.io/v5.x.x
+  - url: http://placeholderdomain.io/v6.0.0
 paths:
   /buyer/commercialInstructions:
     post:
@@ -36,20 +36,36 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/BuyerCommercialInstructions'
+              $ref: '#/components/schemas/BuyerCommercialInstructionsRequest'
             examples:
               New:
-                value:
-                  $ref: 'examples/CommercialInstructionsNew.json'
+                value: 
+                  $ref: 'examples\6.0.0\Buyer\JSON\CommercialInstructionsNew.json'
               Change:
-                value:
-                  $ref: 'examples/CommercialInstructionsChange.json'
+                value: 
+                  $ref:  'examples/6.0.0/Buyer/JSON/CommercialInstructionsChange.json'
               Cancel:
-                value:
-                  $ref: 'examples/GenericCancel.json'
+                value: 
+                  $ref: 'examples/6.0.0/Buyer/JSON/CommercialInstructionsCancel.json'
               Recall:
-                value:
-                  $ref: 'examples/GenericRecall.json'
+                value: 
+                  $ref: 'examples/6.0.0/Buyer/JSON/CommercialInstructionsRecall.json'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/BuyerCommercialInstructionsRequest'
+            examples:
+              New:
+                value: 
+                  $ref: 'examples\6.0.0\Buyer\XML\CommercialInstructionsNew.xml'
+              Change:
+                value: 
+                  $ref:  'examples/6.0.0/Buyer/XML/CommercialInstructionsChange.xml'
+              Cancel:
+                value: 
+                  $ref: 'examples/6.0.0/Buyer/XML/CommercialInstructionsCancel.xml'
+              Recall:
+                value: 
+                  $ref:  'examples/6.0.0/Buyer/XML/CommercialInstructionsRecall.xml'
       responses:
         '200': #OK
           $ref: 'schemas/commonResponses.yaml#/components/responses/Success'
@@ -80,14 +96,24 @@ paths:
         content:
           application/json:
             schema:
-              $ref: './schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
+              $ref: '#/components/schemas/SellerCommercialInstructionsRequest'
             examples:
-              Reject:
-                value:
-                  $ref: 'examples/GenericReject.json'
               Confirm:
                 value:
-                  $ref: 'examples/GenericConfirm.json'
+                  $ref: 'examples\6.0.0\Seller\JSON\GenericConfirm.json'
+              Reject:
+                value:
+                  $ref: 'examples/6.0.0/Seller/JSON/GenericReject.json'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/SellerCommercialInstructionsRequest'
+            examples:
+              Confirm:
+                value:
+                  $ref: 'examples\6.0.0\Seller\XML\GenericConfirm.xml'
+              Reject:
+                value:
+                  $ref: 'examples/6.0.0/Seller/XML/GenericReject.xml'
       responses:
         '200': #OK
           $ref: 'schemas/commonResponses.yaml#/components/responses/Success'
@@ -110,11 +136,19 @@ components:
       scheme: bearer
       bearerFormat: JWT
   schemas:
-    BuyerCommercialInstructions:
-      description: |
+    BuyerCommercialInstructionsRequest:
+      description: >-
         Users of this contruct have the option to either
-        <li>Use the full Commercial Instructions object to deliver New, or change instructions
-        <li>Use the alternate object to recall, or cancel a previously sent instructions.
+          - Use the full Commercial Instructions object to deliver New, or change instructions
+          - Use the alternate object to recall, or cancel a previously sent instructions.
       oneOf:
         - $ref: './schemas/commercialInstructionSchemas.yaml#/components/schemas/BuyerCommercialInstructions'
         - $ref: './schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
+      xml:
+        name: BuyerCommercialInstructionsRequest
+    SellerCommercialInstructionsRequest:
+      allOf:
+        - $ref: './schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
+      xml:
+        name: SellerCommercialInstructionsRequest
+  

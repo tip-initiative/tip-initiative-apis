@@ -1,0 +1,62 @@
+{
+  "transactionHeader": {
+    "tipVersion": "5.1.0",
+    "transactionId": {
+      "transactionId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "transactionType": "New",
+      "sourceId": "string",
+      "sourceName": "string"
+    },
+    "timeStamp": "2020-07-24T15:56:29.442Z"
+  },
+  "mediaOutlet": {
+    "mediaOutletId": "string",
+    "mediaOutletName": "string",
+    "mediaOutletType": "Broadcast TV",
+    "mediaOutletChannel": "string",
+    "mediaOutletMarketName": "string",
+    "mediaOutletReference": "string"
+  },
+  "referenceIds": [
+    {
+      "referenceSourceName": "ABC",
+      "referenceSourceId": "123",
+      "referenceSourceLookup": "",
+      "referenceType": "Order",
+      "referenceId": "A1C44270-D790-4329-9F37-6F77EB7ECA85",
+      "referenceVersionId": "",
+      "referenceName": "any"
+    }
+  ],
+  "cpeCode": {
+    "clientCode": "string",
+    "productCode": "string",
+    "estimateCode": "string"
+  },
+  "buyer": {
+    "buyerId": "string",
+    "buyerName": "string",
+    "buyerReference": "string"
+  },
+  "advertiser": {
+    "advertiserId": "string",
+    "advertiserName": "string",
+    "advertiserReference": "string"
+  },
+  "makegoodGuidelines": [
+    {
+      "makegoodType": "Resolve Preemption",
+      "salesElementOriginal": {
+        "mediaOutletId": "string",
+        "salesElementName": "string",
+        "salesElementId": "string",
+        "salesElementType": "Time-specific"
+      },
+      "salesElementEquivalent": "Same Sales Element",
+      "makegoodTargetAudienceLimit": 0,
+      "makegoodRatio": 0,
+      "makegoodWindow": "Original Broadcast Week",
+      "externalComment": "string"
+    }
+  ]
+}

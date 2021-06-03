@@ -1,0 +1,37 @@
+{
+  "transactionHeader": {
+    "tipVersion": "6.0.0",
+    "transactionId": {
+      "transactionId": "6C895361-97B0-43F0-976C-A4E77DDD78FD",
+      "transactionType": "Recall",
+      "sourceId": "ABC-1234",
+      "sourceName": "TIPApi"
+    },
+    "originalTransactionId": {
+      "transactionId": "241993AE-9BB6-42B0-854D-9E7889D42904",
+      "transactionType": "Change",
+      "sourceId": "ABC-1234",
+      "sourceName": "TIPApi"
+    },
+    "timeStamp": "2021-07-21T17:32:28Z"
+  },
+  "referenceIds": [
+    {
+      "referenceSourceName": "TIPApi",
+      "referenceSourceId": "ABC-1234",
+      "referenceType": "RFP",
+      "referenceId": "REF-1234",
+      "referenceVersionId": 0,
+      "referenceName": "Hyundai 1Q22"
+    },
+    {
+      "referenceSourceName": "KHOU-TV",
+      "referenceSourceId": "KHOU-TV",
+      "referenceType": "Proposal",
+      "referenceId": "PRP-1234",
+      "referenceVersionId": 1,
+      "referenceName": "Hyundai 1Q22"
+    }
+  ],
+  "comments": "Please ignore previous Proposal changes indicated in version#1. newly updated ones are to follow."
+}

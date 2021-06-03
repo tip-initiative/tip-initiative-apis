@@ -1,6 +1,6 @@
 openapi: "3.0.0"
 info:
-  version: 5.1.0
+  version: 6.0.0
   title: Orders
   description: >-
     Allows the seller to respond back to the buyer with the detailed proposal for a given RFP
@@ -40,21 +40,39 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/BuyerOrders'
+              $ref: '#/components/schemas/BuyerOrdersRequest'
             examples:
               New:
                 value:
-                  $ref: 'examples/BuyerOrderNew.json'
+                  $ref: 'examples\6.0.0\Buyer\JSON\OrdersNew.json'
               Change:
                 value:
-                  $ref: 'examples/BuyerOrderChange.json'
+                  $ref: 'examples\6.0.0\Buyer\JSON\OrdersChange.json'
               Cancel:
                 value:
-                  $ref: 'examples/GenericCancel.json'
+                  $ref: 'examples\6.0.0\Buyer\JSON\OrdersCancel.json'
               Recall:
                 value:
-                  $ref: 'examples/GenericRecall.json'
+                  $ref: 'examples\6.0.0\Buyer\JSON\OrdersRecall.json'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/BuyerOrdersRequest'
+            examples:
+              New:
+                value:
+                  $ref: 'examples\6.0.0\Buyer\XML\OrdersNew.xml'
+              Change:
+                value:
+                  $ref: 'examples\6.0.0\Buyer\XML\OrdersChange.xml'
+              Cancel:
+                value:
+                  $ref: 'examples\6.0.0\Buyer\XML\OrdersCancel.xml'
+              Recall:
+                value:
+                  $ref: 'examples\6.0.0\Buyer\XML\OrdersRecall.xml'
       responses:
+        '201': #Created
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Created'
         '202': #Accepted
           $ref: 'schemas/commonResponses.yaml#/components/responses/Accepted'
         '400': #Bad Request
@@ -83,15 +101,27 @@ paths:
         content:
           application/json:
             schema:
-              $ref: './schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
+              $ref: '#/components/schemas/SellerOrdersRequest'
             examples:
-              Reject:
-                value:
-                  $ref: 'examples/GenericReject.json'
               Confirm:
                 value:
-                  $ref: 'examples/GenericConfirm.json'
+                  $ref: 'examples\6.0.0\Seller\JSON\OrdersConfirm.json' 
+              Reject:
+                value:
+                  $ref: 'examples\6.0.0\Seller\JSON\OrdersReject.json'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/SellerOrdersRequest'
+            examples:
+              Confirm:
+                value:
+                  $ref: 'examples\6.0.0\Seller\XML\OrdersConfirm.xml'
+              Reject:
+                value:
+                  $ref: 'examples\6.0.0\Seller\XML\OrdersReject.xml'
       responses:
+        '201': #Created
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Created'
         '202': #Accepted
           $ref: 'schemas/commonResponses.yaml#/components/responses/Accepted'
         '400': #Bad Request
@@ -113,7 +143,7 @@ components:
       scheme: bearer
       bearerFormat: JWT
   schemas:
-    BuyerOrders:
+    BuyerOrdersRequest:
       description: |
           The Buyer can perform the following operations:
           <li>New or Change - Use the Buyer orders object
@@ -121,3 +151,10 @@ components:
       oneOf:
         - $ref: './schemas/ordersSchemas.yaml#/components/schemas/BuyerOrders'
         - $ref: './schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
+      xml:
+        name: BuyerOrdersRequest
+    SellerOrdersRequest:
+      allOf:
+        - $ref: './schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
+      xml:
+        name: SellerOrdersRequest

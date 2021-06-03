@@ -1,7 +1,7 @@
 openapi: "3.0.0"
 info:
-  title: RFP Schema
-  version: 4.2.0
+  title: Shopping Cart
+  version: 6.0.0
   description: Allows the buyer to respond to an Inventory Post with shopping cart purchase details
   termsOfService: http://placeholderdomain.io/terms/
   contact: 
@@ -26,6 +26,7 @@ components:
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/ReferenceId'
+          minItems: 1
         dateSubmitted:
           description: Buyer submit date for the RFP
           type: string

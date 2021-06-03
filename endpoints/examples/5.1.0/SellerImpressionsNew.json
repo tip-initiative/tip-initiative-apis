@@ -1,0 +1,258 @@
+{
+  "transactionHeader": {
+    "tipVersion": "5.1.0",
+    "transactionId": {
+      "transactionId": "a1ca50d0-c066-4ec8-bc31-2aa05d8106a2",
+      "transactionType": "New",
+      "sourceId": "3d43ba3c-41b7-4cd7-98f9-e66d26e4b5e2",
+      "sourceName": "MadHive"
+    },
+    "timeStamp": "2020-07-10T19:39:37.547Z"
+  },
+  "mediaOutlets": [
+    {
+      "mediaOutletId": "accfee37-44f6-46b9-a3e3-5fb5cc58c0fd",
+      "mediaOutletName": "WISN-OTT",
+      "mediaOutletType": "OTT",
+      "mediaOutletChannel": "www.wisn.com",
+      "mediaOutletMarketName": "Milwaukee",
+      "mediaOutletReference": ""
+    },
+    {
+      "mediaOutletId": "560d90a5-cd0f-42d0-aabd-1d9bc6225a08",
+      "mediaOutletName": "A&E",
+      "mediaOutletType": "OTT",
+      "mediaOutletChannel": "www.AE.com",
+      "mediaOutletMarketName": "National",
+      "mediaOutletReference": ""
+    },
+    {
+      "mediaOutletId": "caaa01c1-5cc2-4b9b-9bd3-d99c9a8d001e",
+      "mediaOutletName": "DISC-OTT",
+      "mediaOutletType": "OTT",
+      "mediaOutletChannel": "www.discovery.com",
+      "mediaOutletMarketName": "National",
+      "mediaOutletReference": ""
+    }
+  ],
+  "salesElements": [
+    {
+      "mediaOutletId": "accfee37-44f6-46b9-a3e3-5fb5cc58c0fd",
+      "salesElementName": "OTT Sports",
+      "salesElementId": "8b23d5bd-d484-4337-bde5-5875ee274d8e",
+      "salesElementType": "Audience"
+    },
+    {
+      "mediaOutletId": "accfee37-44f6-46b9-a3e3-5fb5cc58c0fd",
+      "salesElementName": "OTT Premium",
+      "salesElementId": "40fb8c43-160a-4575-bf33-e9d85e8fe01c",
+      "salesElementType": "Audience"
+    }
+  ],
+  "referenceIds": [
+    {
+      "referenceSourceName": "WPP",
+      "referenceSourceId": "4a87f261-a8e3-42ca-beca-2cb95a9e2a2e",
+      "referenceSourceLookup": "",
+      "referenceType": "Order",
+      "referenceId": "4bac3214-8dbe-43e1-9957-cedb7ecf3c96",
+      "referenceVersionId": "1",
+      "referenceName": "WPP"
+    }
+  ],
+  "creatives": [
+    {
+      "id": "f1b9f69c-8238-4798-ab17-603c6f1f457d",
+      "version": "1",
+      "name": "Honda - Civic",
+      "adId": "HondC1234007H",
+      "length": 30
+    },
+    {
+      "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "version": "1",
+      "name": "Diet Coke",
+      "adId": "COKD0071002D",
+      "length": "15"
+    }
+  ],
+  "Impressions": [
+    {
+      "id": "e6d37005-756e-41a5-baf3-50a67cfd577a",
+      "timestamp": "2020-07-09T19:39:37.547Z",
+      "referenceId": {
+        "id": "4bac3214-8dbe-43e1-9957-cedb7ecf3c96",
+        "version": "1"
+      },
+      "creative": {
+        "id": "f1b9f69c-8238-4798-ab17-603c6f1f457d",
+        "version": "1"
+      },
+      "salesElementId": {
+        "id": "8b23d5bd-d484-4337-bde5-5875ee274d8e"
+      },
+      "contentOwnerId": {
+        "id": "accfee37-44f6-46b9-a3e3-5fb5cc58c0fd"
+      },
+      "supplyPath": {
+        "id": "string",
+        "extId": "string",
+        "batchEntry": "string"
+      },
+      "device": {
+        "ip": "192.168.1.1",
+        "ifa": "Identifier of the device that is displaying the ad",
+        "sspId": "Identifier of the sell-side platform that enabled the inventory",
+        "ua": "Roku",
+        "catSRC": "string",
+        "catType": "Mobile/Tablet"
+      },
+      "geo": {
+        "src": "IP2Location",
+        "country": "USA",
+        "region": "WI",
+        "dma": "Milwaukee",
+        "postal": "53022",
+        "lat": 43.2172,
+        "long": -88.1096,
+        "timeZone": "-6",
+        "accuracy": 0
+      },
+      "events": [
+        {
+          "type": "string",
+          "timestamp": "2020-07-10T19:39:37.548Z",
+          "sigVerified": true,
+          "ip": "192.168.10.100",
+          "ua": "string",
+          "refUrl": "string",
+          "errCode": "string",
+          "rawUrl": "string"
+        }
+      ],
+      "publisherBundle": "string",
+      "publisherSSPId": "string",
+      "adLedger": {
+        "signatureId": "QkFTRTY0ZW5jb2Rpbmc="
+      }
+    },
+    {
+      "id": "74a7fc35-4074-4f38-8b64-f56f2aaa0116",
+      "timestamp": "2020-07-10T19:39:37.547Z",
+      "referenceId": {
+        "id": "4bac3214-8dbe-43e1-9957-cedb7ecf3c96",
+        "version": "1"
+      },
+      "creative": {
+        "id": "f1b9f69c-8238-4798-ab17-603c6f1f457d",
+        "version": "1"
+      },
+      "salesElementId": {
+        "id": "8b23d5bd-d484-4337-bde5-5875ee274d8e"
+      },
+      "contentOwnerId": {
+        "id": "560d90a5-cd0f-42d0-aabd-1d9bc6225a08"
+      },
+      "supplyPath": {
+        "id": "string",
+        "extId": "string",
+        "batchEntry": "string"
+      },
+      "device": {
+        "ip": "192.168.10.1",
+        "ifa": "Identifier of the device that is displaying the ad",
+        "sspId": "Identifier of the sell-side platform that enabled the inventory",
+        "ua": "FireTV",
+        "catSRC": "string",
+        "catType": "Mobile/Tablet"
+      },
+      "geo": {
+        "src": "string",
+        "country": "string",
+        "region": "string",
+        "dma": "string",
+        "postal": "string",
+        "lat": 0,
+        "long": 0,
+        "timeZone": "-6",
+        "accuracy": 0
+      },
+      "events": [
+        {
+          "type": "string",
+          "timestamp": "2020-07-10T19:39:37.548Z",
+          "sigVerified": true,
+          "ip": "192.168.10.1",
+          "ua": "string",
+          "refUrl": "string",
+          "errCode": "string",
+          "rawUrl": "string"
+        }
+      ],
+      "publisherBundle": "string",
+      "publisherSSPId": "string",
+      "adLedger": {
+        "signatureId": "Rm9ybWF0dGVkU3RyaW5nQmFzZTY0VVRGOA=="
+      }
+    },
+    {
+      "id": "bbc40b55-4ab9-4c28-8e79-a4a80a6b0b1b",
+      "timestamp": "2020-07-10T19:39:37.547Z",
+      "referenceId": {
+        "id": "4bac3214-8dbe-43e1-9957-cedb7ecf3c96",
+        "version": "1"
+      },
+      "creative": {
+        "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "version": "1"
+      },
+      "salesElementId": {
+        "id": "40fb8c43-160a-4575-bf33-e9d85e8fe01c"
+      },
+      "contentOwnerId": {
+        "id": "caaa01c1-5cc2-4b9b-9bd3-d99c9a8d001e"
+      },
+      "supplyPath": {
+        "id": "string",
+        "extId": "string",
+        "batchEntry": "string"
+      },
+      "device": {
+        "ip": "10.10.10.100",
+        "ifa": "Identifier of the device that is displaying the ad",
+        "sspId": "Identifier of the sell-side platform that enabled the inventory",
+        "ua": "AppleTV",
+        "catSRC": "string",
+        "catType": "Mobile/Tablet"
+      },
+      "geo": {
+        "src": "IP2Location",
+        "country": "USA",
+        "region": "WI",
+        "dma": "Racine",
+        "postal": "53403",
+        "lat": 42.6964,
+        "long": -87.8058,
+        "timeZone": "-6",
+        "accuracy": 0
+      },
+      "events": [
+        {
+          "type": "string",
+          "timestamp": "2020-07-10T19:39:37.548Z",
+          "sigVerified": true,
+          "ip": "string",
+          "ua": "string",
+          "refUrl": "string",
+          "errCode": "string",
+          "rawUrl": "string"
+        }
+      ],
+      "publisherBundle": "string",
+      "publisherSSPId": "string",
+      "adLedger": {
+        "signatureId": "RGVzdGluYXRpb24tQ2hhcmFjdGVycy1TZXQ="
+      }
+    }
+  ]
+}

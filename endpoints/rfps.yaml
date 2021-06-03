@@ -1,7 +1,6 @@
 openapi: "3.0.0"
-
 info:
-  version: 5.1.0
+  version: 6.0.0
   title: Request For Proposals (RFPS)
   description: Allows the buyer to submit a Request for Proposal (RFP) to the seller with overall media budget, goal and makegood terms and optionally include specific detailed inventory requests
   termsOfService: http://placeholderdomain.io/terms/
@@ -36,14 +35,24 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/BuyerRFPS'
+              $ref: '#/components/schemas/BuyerRFPSRequest'
             examples:
               New:
                 value:
-                  $ref: 'examples/BuyerRfpsNew.json'
+                  $ref: 'examples\6.0.0\Buyer\JSON\RFPSNew.json'
               Cancel:
                 value:
-                  $ref: 'examples/GenericCancel.json'
+                  $ref: 'examples\6.0.0\Buyer\JSON\RFPSCancel.json'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/BuyerRFPSRequest'
+            examples:
+              New:
+                value:
+                  $ref: 'examples\6.0.0\Buyer\XML\RFPSNew.xml'
+              Cancel:
+                value:
+                  $ref: 'examples\6.0.0\Buyer\XML\RFPSCancel.xml'
       responses:
         '202': #OK
           $ref: 'schemas/commonResponses.yaml#/components/responses/Accepted'
@@ -66,8 +75,10 @@ components:
       scheme: bearer
       bearerFormat: JWT
   schemas:
-    BuyerRFPS:
+    BuyerRFPSRequest:
       description: Request Body for the endpoint varies based on Transaction type
       oneOf:
         - $ref: 'schemas/rfpsSchemas.yaml#/components/schemas/BuyerRFPS'
         - $ref: 'schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
+      xml:
+        name: BuyerRFPSRequest

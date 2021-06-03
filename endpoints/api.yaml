@@ -1,6 +1,6 @@
 openapi: "3.0.0"
 info:
-  version: 5.1.0
+  version: 6.0.0
   title: Trading Interface Automation Framework For Local TV Transactions.
   description: |
     # Television Interface Practices Initiative (TIP)
@@ -20,20 +20,86 @@ info:
 
     ## Version History
 
-    | Version | Date | Description | Author |
-    |---------|------|-------------|--------|
-    | Release 5.1.0 | August 13, 2020 | Release 5.1.0 | Frontrow Advisory |
-    | Release 5.0.0 | May 5, 2020 | Release 5.0.0 | Frontrow Advisory |
-    | Release 4.0 | May 16, 2019 | Release 4.0 (WORKING DRAFT) | Frontrow Advisory |
-    | Release 3.1 | February 1, 2019 | Release 3.1 | Frontrow Advisory |
-    | Release 3.0 | August 22, 2018 | Release 3.0 | Frontrow Advisory |
-    | Draft 2.1 | June 29, 2018 | Initial Draft Phase 2.1 | Frontrow Advisory |
-    | Release 2.0 | April 6, 2017 | Release |  Frontrow Advisory |
-    | Draft 1.1 | February 22, 2017 | Initial Draft Phase 2 | Frontrow Advisory |
-    | Release 1.0 | November 11, 2017 | Release | Frontrow Advisory |
-    | Draft | October 9, 2017 | Revised Draft | Frontrow Advisory |
-    | Draft | September 25, 2017 | Initial Draft | Frontrow Advisory |
+    | Version | Date | Author |
+    |---------|------|--------|
+    |0.1.0|	09/25/17|	Initial Draft	TIP Initiative / Frontrow Advisory|
+    |0.2.0|	10/09/17|	Initial Draft	TIP Initiative / Frontrow Advisory|
+    |1.0.0|	11/11/17|	Release 	TIP Initiative / Frontrow Advisory|
+    |1.1.0|	02/22/17|	Draft	TIP Initiative / Frontrow Advisory|
+    |2.0.0|	04/06/17|	Release 	TIP Initiative / Frontrow Advisory|
+    |2.1.0|	06/29/18|	Draft	TIP Initiative / Frontrow Advisory|
+    |3.0.0|	10/23/18|	Release	TIP Initiative / Frontrow Advisory|
+    |3.1.0|	02/01/19|	Release	TIP Initiative / Frontrow Advisory|
+    |4.0.0|	05/16/19|	Release	TIP Initiative / Frontrow Advisory|
+    |4.2.0|	01/24/20|	Release	TIP Initiative / Frontrow Advisory|
+    |4.3.0|	04/01/20|	Draft	TIP Initiative / Frontrow Advisory|
+    |5.0.0|	05/05/20|	Release	TIP Initiative / Frontrow Advisory|
+    |5.1.0|	08/13/20|	Release	TIP Initiative / Frontrow Advisory|
+    |6.0.0|	TBD|	This draft 	TIP Initiative / Frontrow Advisory|
 
+    ## Release 6.0.0 Notes
+
+    |Changes from Release 5.1.0. to Release 6.0.0.|	
+    |---------------------------------------------|	
+    |Added a new Identifier object to the common schemas 		|
+    |Added a new AudienceTarget object to the common schemas to support video and cross platform sales 		|
+    |Added a new FrequencyCapping object to the common schemas to support and cross platform sales 		|
+    |Added a new Frequency object to the common schemas to support subscription frequency of receiving report 		|
+    |Added a new DyanamicDate object to the common schemas to indicate the values to be used when calculating a start date, or end date relative to the report date 		|
+    |Modified the PricingMetric common object in the common schema to support gross and net values 		|
+    |Modified the MediaOutlet object in the common schema to support an array of mediaOutletId Identifiers		|
+    |Modified the MediaOutlet object in the common schema and changed the mediaOutletType format from enum constraints to string 		|
+    |Modified the Advertiser object in the common schema to support an array of advertiserId Identifiers		|
+    |Modified the Brand object in the common schema to support an array of brandId Identifiers		|
+    |Modified the Buyer object in the common schema to support an array of buyerId Identifiers		|
+    |Modified the Product object in the common schema to support an array of productId Identifiers		|
+    |Modified the AudienceSegment in the common schema to support an array of audienceSegementIds identifiers		|
+    |Modified the AudienceSegment in the common schema and changed Boolean properties names to start with 'is' e.g. isPrimary		|
+    |Modified the PriceMetric Object in the common schema to support a new SPOT value in the enum constraints 		|
+    |Modified the PricingMetric Object in the common schema to support a netValue in addition to the grossValue		|
+    |Modified the RateCard object in the common schema and added a currency property 		|
+    |Modified the Guideline object in the common schema and removed the guidelineId property and changed guidelineName to guidelines to support an array of values 		|
+    |Modified the DateWindow object in the common schema and changed the endDate from required to optional		|
+    |Modified the TimeWindow object in the common schema and changed the endTime from required to optional and removed the enum from the data type		|
+    |Modified the DayofWeek object in the common schema and changed Boolean property names to start with 'is' e.g.  isMonday, isTuesday, etc. 		|
+    |Modified the DailyUnitDistribution object in the common schema to support a new pacingRule and modified the days in the week from required to optional		|
+    |Modified the SalesElement object in the common schema and changed the salesElement property name to salesElementHeader		|
+    |Modified the SalesElement object in the common schema and added a new devices property  		|
+    |Modified the SalesElement object in the common schema and changed salesElementInventories property name to to ElementInventorys to be consistent with array naming standards		|
+    |Modified the SalesElementInventory object in the common schema and added a new property for an array of companionTypeIds 		|
+    |Modified the SalesElementInventoryDate and changed the dateType and calendarType from required to optional		|
+    |Modified the SalesElementTransaction object in the common schema to and changed salesElement to salesElementHeader, added new devices property, and and modified salesElementInventorys name to be consistent with array naming standards		|
+    |Modified the SalesElementTransactionInventory object in the common schema to support new properties for  lineReferences, companionTypeIds and changed the Boolean property names to start with 'is'		|
+    |Modified the SalesElementTransactionDate object in the common schema and added new properties to support frequencyCapping, pricingMetric, grossCost, netCost and audienceTargets		|
+    |Modified the distributionType in the RFP CampaignGoals to support a new Unit Length in the enum constraints 		|
+    |Modified the Error object in the common schema to support a new errorList dictionary 		|
+    |Modified the Event object in the common schema and changed boolean property names to start with 'is' 		|
+    |Modified the BuyerInventoryAvails data model and removed dateSubmitted property		|
+    |Modified the BuyerInventoryAvails data model and changed all Boolean property names to start with 'is' 		|
+    |Modified the SellerInventoryAvails data model and changed all Boolean property names to start with 'is' 		|
+    |Modified the SellerProposals data model and changed all Boolean property names to start with 'is' 		|
+    |Modified the BuyerProposals data model and changed all Boolean property names to start with 'is' 		|
+    |Modified the BuyerOrders data model and changed all Boolean property names to start with 'is' and removed calendarType property		|
+    |Modified the BuyerCommercialInstructions and changed dateWindow from an array to a singular date		|
+    |Modified the BuyerCommercialInstructions and replaced the adId property with the creative object		|
+    |Modified the BuyerCommercialInstructions data model and removed name and length properties from InstructionDetail since are properties in the creative common schema		|
+    |Modified the SellerLogtimes data model to support an array of mediaOutlets objects		|
+    |Modified the SellerLogtimes data model in the Unit detail to support an array of lineReference identifiers		|
+    |Modified the SellerLogtimes data model and changed all Boolean properties to start with 'is' 		|
+    |Modified the SellerLogtimes data model and changed the salesElement property name to salesElementHeader 		|
+    |Modified the SellerLogTimes data model and replaced the adId property with the creative object		|
+    |Modified the SellerInvoices data model and added new properties to support  salesTax and discount 		|
+    |Modified the SellerInvoices data model and added an array of mediaOutlets to the 'header' 		|
+    |Modified the SellerInvoices data model and added array of lineReference identifiers to the lineDetails		|
+    |Modified the SellerInvoices data model and changed the name from salesElement to salesElementHeader		|
+    |Modified the SellerInvoices data model and added new properties to support pricingMetric, grossCost, NetCost, and audienceTargets to the LineDetail		|
+    |Modified the SellerInvoice data model to renamed the units property to unitCount 		|
+    |Modified the SellerInvoice data model and changed all Boolean properties to begin with 'is' 		|
+    |Added a new SellerAudience data model to the framework 		|
+    |Added a new BuyerLogTimes/Subscribe data model to the framework to support a request and /or subscription to seller's logtimes		|
+    |Added a new BuyerAudience/Subscribe data model to the framework to support a request and /or subscription to seller's logtimes		|
+    |Added new BuyerImpressionsSubscribe data model to the framework 		    |
+    
     ## Release 5.1.0 Notes
 
     | Changes from Release 5.0.0 to Release 5.1.0 |
@@ -153,12 +219,12 @@ info:
     name: MIT
     url: https://opensource.org/licenses/MIT
 servers:
-  - url: http://placeholderdomain.io
+  - url: http://placeholderdomain.io/v6.0.0
 security:
   - bearerAuth: []
 paths:
-  /buyer/inventoryAvails:
-    $ref: 'inventoryAvails.yaml#/paths/~1buyer~1inventoryAvails'
+  /buyer/inventoryAvails/subscription:
+    $ref: 'inventoryAvails.yaml#/paths/~1buyer~1inventoryAvails~1subscription'
   /seller/inventoryAvails:
     $ref: 'inventoryAvails.yaml#/paths/~1seller~1inventoryAvails'
   /buyer/rfps:
@@ -171,10 +237,16 @@ paths:
     $ref: 'orders.yaml#/paths/~1buyer~1orders'
   /seller/orders:
     $ref: 'orders.yaml#/paths/~1seller~1orders'
+#  /buyer/creativeAssets:
+#    $ref: 'creativeAssets.yaml#/paths/~1buyer~1creativeAssets'
   /buyer/commercialInstructions:
     $ref: 'commercialInstructions.yaml#/paths/~1buyer~1commercialInstructions'
   /seller/commercialInstructions:
     $ref: 'commercialInstructions.yaml#/paths/~1seller~1commercialInstructions'
+  /buyer/logtimes/subscription:
+    $ref: 'logTimes.yaml#/paths/~1buyer~1logtimes~1subscription'
+  /seller/logtimes:
+    $ref: 'logTimes.yaml#/paths/~1seller~1logtimes'  
   /seller/makegood/guidelines:
     $ref: 'makegoods.yaml#/paths/~1seller~1makegood~1guidelines'
   /buyer/makegood/guidelines:
@@ -183,19 +255,24 @@ paths:
     $ref: 'makegoods.yaml#/paths/~1seller~1makegood~1offers'
   /buyer/makegood/offers:
     $ref: 'makegoods.yaml#/paths/~1buyer~1makegood~1offers'
-  /seller/impressions:
-    $ref: 'impressions.yaml#/paths/~1seller~1impressions'
-  /seller/logtimes:
-    $ref: 'logTimes.yaml#/paths/~1seller~1logtimes'
+  /buyer/impressions/subscription:
+    $ref: 'impressionssub.yaml#/paths/~1buyer~1impressions~1subscription'
+  /seller/impressions/notification:
+    $ref: 'impressionssub.yaml#/paths/~1seller~1impressions~1notification'
   /seller/invoices:
     $ref: 'invoice.yaml#/paths/~1seller~1invoices'
+  /buyer/audiences/subscription:
+    $ref: 'audiences.yaml#/paths/~1buyer~1audiences~1subscription'
+  /seller/audiences:
+    $ref: 'audiences.yaml#/paths/~1seller~1audiences'
 components:
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
       bearerFormat: JWT
-    schemas:
+  schemas:
       $ref: './schemas/_index.yaml'
-    responses:
+  responses:
       $ref: './schemas/_responses.yaml'
+

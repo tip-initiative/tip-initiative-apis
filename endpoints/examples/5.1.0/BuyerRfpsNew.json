@@ -1,0 +1,136 @@
+{
+  "transactionHeader": {
+    "tipVersion": "5.1.0",
+    "transactionId": {
+      "transactionId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "transactionType": "New",
+      "sourceId": "string",
+      "sourceName": "string"
+    },
+    "timeStamp": "2020-07-17T19:56:04.479Z"
+  },
+  "referenceIds": [
+    {
+      "referenceSourceName": "string",
+      "referenceSourceId": "string",
+      "referenceSourceLookup": "string",
+      "referenceType": "RFP",
+      "referenceId": "2910AA14-FC49-4552-A028-E521A00507DA",
+      "referenceVersionId": "string",
+      "referenceName": "string"
+    }
+  ],
+  "dateSubmitted": "2020-07-17",
+  "dueDate": "2020-07-17",
+  "buyer": {
+    "buyerId": "123",
+    "buyerName": "A New Buyer",
+    "buyerReference": "123"
+  },
+  "commission": 0,
+  "advertiser": {
+    "advertiserId": "456",
+    "advertiserName": "A big Advertiser",
+    "advertiserReference": "123"
+  },
+  "brand": {
+    "brandId": "789",
+    "brandName": "Excellent Brand",
+    "brandReference": "123"
+  },
+  "product": {
+    "productId": "0123",
+    "productName": "Good Product",
+    "productReference": "123"
+  },
+  "contacts": [
+    {
+      "contactType": "Account Executive",
+      "referenceSourceName": "WXYZ",
+      "referenceSourceId": "string",
+      "contactFirstName": "string",
+      "contactLastName": "string",
+      "addressLine1": "string",
+      "addressLine2": "string",
+      "city": "string",
+      "state": "string",
+      "postalCode": "string",
+      "country": "string",
+      "phoneNumber": "string",
+      "email": "user@example.com",
+      "effectiveDate": "2020-07-17"
+    }
+  ],
+  "currency": "USD",
+  "budget": [
+    {
+      "budgetAmount": 100000,
+      "budgetAllocation": {
+        "budgetType": "DMA",
+        "budgetName": "Whatever",
+        "budgetAmount": 100000,
+        "budgetSharePercent": 100
+      }
+    }
+  ],
+  "timePeriodPreferences": [
+    {
+      "dateWindow": {
+        "startDate": "2020-07-17",
+        "endDate": "2020-07-17"
+      },
+      "DOW": {
+        "monday": true,
+        "tuesday": true,
+        "wednesday": true,
+        "thursday": true,
+        "friday": true,
+        "saturday": true,
+        "sunday": true
+      },
+      "timeWindow": {
+        "startTime": "17:00",
+        "endTime": "20:00"
+      }
+    }
+  ],
+  "marketPreferences": [
+    "string"
+  ],
+  "audiencePreferences": [
+    {
+      "audienceSegmentId": "HH",
+      "audienceSegmentName": "Households",
+      "audienceSegmentReference": "123",
+      "audienceMethodology": "Third Party",
+      "primaryIndicator": true,
+      "guarantee": true,
+      "ratingSource": "Nielsen",
+      "ratingStream": "Program Live"
+    }
+  ],
+  "unitLengthPreferences": [
+    0
+  ],
+  "guidelines": [
+    {
+      "guidelineType": "Content",
+      "excludeOrInclude": "Include",
+      "guidelineId": "125",
+      "guidelineName": "Sport"
+    }
+  ],
+  "objective": "string",
+  "comments": "string",
+  "campaignGoals": [
+    {
+      "distributionType": "MediaType",
+      "distributionMethod": "Impressions",
+      "distributionName": "string",
+      "distribution": "Percentage",
+      "distributionValue": 0,
+      "distributionOrder": 0,
+      "distributionOrderParent": 0
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<BuyerLogTimesSubscriptionRequest>
+	<transactionHeader>
+		<tipVersion>6.0.0</tipVersion>
+		<transactionId>
+			<transactionId>40299727-4FF6-43E5-A627-4791C994BC58</transactionId>
+			<transactionType>Change</transactionType>
+			<sourceId>XVEN-1234</sourceId>
+			<sourceName>XVEN Buyer</sourceName>
+		</transactionId>
+		<originalTransactionId>
+			<transactionId>3fa85f64-5717-4562-b3fc-2c963f66afa6</transactionId>
+			<transactionType>New</transactionType>
+			<sourceId>XVEN-1234</sourceId>
+			<sourceName>XVEN Buyer</sourceName>
+		</originalTransactionId>
+		<timeStamp>2021-05-06T18:55:15.003Z</timeStamp>
+	</transactionHeader>
+	<name>Post log and reconciled logs only When Available, Ends after 10 occurences</name>
+	<referenceIds>
+		<referenceSourceName>XVEN-1234</referenceSourceName>
+		<referenceSourceId>XVEN Buyer</referenceSourceId>
+		<referenceSourceLookup>string</referenceSourceLookup>
+		<referenceType>Order</referenceType>
+		<referenceVersionId>0</referenceVersionId>
+		<referenceName>Hyundai 1Q22</referenceName>
+	</referenceIds>
+	<mediaOutlets>
+		<mediaOutletIds>
+			<id>KHOU-TV</id>
+			<version>0</version>
+			<srcId>XVEN-1234</srcId>
+			<srcName>XVEN Buyer</srcName>
+		</mediaOutletIds>
+		<mediaOutletName>KHOW-TV</mediaOutletName>
+		<mediaOutletType>Local TV</mediaOutletType>
+		<mediaOutletChannel>KHOU-TV</mediaOutletChannel>
+		<mediaOutletMarketName>Houston, TX</mediaOutletMarketName>
+	</mediaOutlets>
+	<buyer>
+		<buyerIds>
+			<id>BUY-123</id>
+			<version>0</version>
+			<srcId>XVEN-1234</srcId>
+			<srcName>XVEN Buyer</srcName>
+		</buyerIds>
+		<buyerName>Canvas Worldwide. LLC</buyerName>
+	</buyer>
+	<advertiser>
+		<advertiserIds>
+			<id>ADV-123</id>
+			<version>0</version>
+			<srcId>XVEN-1234</srcId>
+			<srcName>XVEN Buyer</srcName>
+		</advertiserIds>
+		<advertiserName>Hyundai</advertiserName>
+	</advertiser>
+	<contacts>
+		<contactType>Account Executive</contactType>
+		<contactIds>
+			<id>CNT-1234</id>
+			<version>0</version>
+			<srcId>XVEN-1234</srcId>
+			<srcName>XVEN Buyer</srcName>
+		</contactIds>
+		<salesOffices>Dallas, TX</salesOffices>
+		<salesOffices>NYC, NY</salesOffices>
+		<contactFirstName>John</contactFirstName>
+		<contactLastName>Doe</contactLastName>
+		<addressLine1>1234 N. Main Street</addressLine1>
+		<city>A City</city>
+		<state>UT</state>
+		<postalCode>00000-0000</postalCode>
+		<country>USA</country>
+		<phoneNumber>1(000)000-0000</phoneNumber>
+		<email>john.doe@example.com</email>
+		<effectiveDate>2021-05-06</effectiveDate>
+	</contacts>
+	<inventoryTypes>Commercial</inventoryTypes>
+	<statuses>Aired</statuses>
+	<statuses>Finalized</statuses>
+	<frequency>
+		<effectiveOn>2020-08-12T00:00:00.000Z</effectiveOn>
+		<every>When Available</every>
+		<isEndNever>false</isEndNever>
+		<endOccurAfter>10</endOccurAfter>
+	</frequency>
+</BuyerLogTimesSubscriptionRequest>

@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  version: 5.1.0
+  version: 6.0.0
   title: Commercial Instructions Schema
   description: Commercial Instructions Schema
   termsOfService: http://placeholderdomain.io/terms/
@@ -16,42 +16,45 @@ components:
   schemas:
     BuyerCommercialInstructions:
       description: >-
-        The Schema provides for the definition of detailed Commercial Instructions including patterns,
-        rotations, weight
+        Schema provides for the definition of detailed Commercial Instructions including
+        patterns, rotations, weight
       properties:
         transactionHeader:
           $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
         referenceIds:
+          description: >-
+            Array of ReferenceId objects containing the order id references; may also contain
+            originating RFP and Proposal id references
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/ReferenceId'
+          minItems: 1
         buyer:
           $ref: 'commonSchemas.yaml#/components/schemas/Buyer'
         contacts:
+          description: Array of contact objects
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/Contact'
+          minItems: 1           
         advertiser:
           $ref: 'commonSchemas.yaml#/components/schemas/Advertiser'
         product:
           $ref: 'commonSchemas.yaml#/components/schemas/Product'
-        dateWindows:
-          type: array
-          items:
-            $ref: 'commonSchemas.yaml#/components/schemas/DateWindow'
+        dateWindow:
+          $ref: 'commonSchemas.yaml#/components/schemas/DateWindow'
         cpeCode:
           $ref: 'commonSchemas.yaml#/components/schemas/CpeCode'
         instructionComment:
           description: Comments pertaining to overall instructions
           type: string
         externalComment:
-          description: Free form text to accommodate transaction comments and/or activities outside the
-            TIP flow
+          description: Free form text to accommodate transaction comments and/or activities outside the TIP flow
           type: string
         instructionType:
           description: >-
-            Instruction Type associated to the instructions that applies to how the AD ID should be applied
-            to units
+            Instruction Type associated to the instructions that applies to how the AD ID should
+            be applied to units
           type: string
           enum:
             - Rotation Share
@@ -66,45 +69,39 @@ components:
         - referenceIds
         - advertiser
         - product
-        - dateWindows
+        - dateWindow
         - instructionType
     InstructionDetail:
       description: Commercial Instruction details for instruction type
       properties:
         actionType:
-          description: Action for instruction detail
+          description: Action for the instruction detail
           type: string
           enum:
             - New
-            - Revised
-            - Cancelled
+            - Change
+            - Cancel
         inventoryTypes:
           type: array
           items:
-            $ref: 'commonSchemas.yaml#/components/schemas/InventoryType'
+            type: string
+          example: ["CM", "Bookend"]            
         mediaOutlet:
           $ref: 'commonSchemas.yaml#/components/schemas/MediaOutlet'
-        adId:
-          description: A unique identifier for commercial copy
-          type: string
-        name:
-          description: Creative title associated to AD-ID
-          type: string
+        creative:
+          $ref: 'commonSchemas.yaml#/components/schemas/Creative'
         brand:
           $ref: 'commonSchemas.yaml#/components/schemas/Brand'
         product:
           $ref: 'commonSchemas.yaml#/components/schemas/Product'
-        length:
-          description: Commercial length associated to AD-ID
-          type: integer
         linkType:
           $ref: 'commonSchemas.yaml#/components/schemas/LinkType'
         deliveryDate:
-          description: Material Commercial delivery date
+          description: Material copy delivery date
           type: string
           format: date
         deliveryService:
-          description: Delivery service that will supply the the Ad-ID
+          description: Delivery service that will supply the the creative material
           type: string
         timePeriods:
           type: array
@@ -112,19 +109,19 @@ components:
             $ref: 'commonSchemas.yaml#/components/schemas/TimePeriod'
         rotationShare:
           description: >-
-            If instruction type equals "Rotation" - this will be the percentage assignment to be applied
-            to each AD-ID; the total across all AD-ID's should equal to 100%
+            If instruction type equals 'Rotation', this will be the percentage assignment to
+            be applied to each creativeId
           type: integer
         patternInstruction:
           description: >-
-            If instruction type equal "Pattern" -this will be the pattern assignments to be applied to
-            each AD-ID; for example A,B,B,C represents how AD-ID A, B and C should be sequentially assigned
-            to units
+            If instruction type equal 'Pattern', this will be the pattern assignments to be applied
+            to each creative; for example A,B,B,C represents how the creative  A, B and C should
+            be sequentially assigned to units
           type: string
         unitSpecificInstructions:
           description: >-
-            If instruction type equal "Unit Specific" = this will the list of unit id's that are valid
-            for the AD-ID
+            If instruction type equal 'Unit Specific', this will the list of unitIds that are
+            valid for the creative
           type: array
           items:
             type: string
@@ -134,6 +131,8 @@ components:
       required:
         - actionType
         - mediaOutlet
-        - adId
-        - length
+        - creative
         - deliveryService
+    SellerCommercialInstructions:
+      description: Schema is an alias to perform actions CancelConfirmRecallReject
+      $ref: 'commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'

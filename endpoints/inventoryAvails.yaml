@@ -8,7 +8,7 @@ components:
 security:
   - bearerAuth: []
 info:
-  version: 5.1.0
+  version: 6.0.0
   title: Inventory Avails
   description: Inventory Endpoints
   termsOfService: http://placeholderdomain.io/terms/
@@ -20,10 +20,10 @@ info:
     name: MIT
     url: https://opensource.org/licenses/MIT
 servers:
-  - url: http://placeholderdomain.io/v5.x.x
+  - url: http://placeholderdomain.io/v6.0.0
 
 paths:
-  /buyer/inventoryAvails:
+  /buyer/inventoryAvails/subscription:
     post:
       tags:
         - Buyer
@@ -33,26 +33,50 @@ paths:
         to initiate an Inventory Request to Seller.<br/>
         Supported Transaction Types:<br/>
         <lo>- New</lo>
-      operationId: BuyerInventoryAvails
+      operationId: BuyerInventoryAvailsSubscription
       requestBody:
         description: Send the request for the inventory avails required
         required: true
         content:
           application/json:
             schema:
-              $ref: 'schemas/inventoryAvailsSchemas.yaml#/components/schemas/BuyerInventoryAvails'
-            example:
-              value:
-                $ref: 'examples/BuyerInventoryAvailsNew.json'
+              oneOf:
+                - $ref: 'schemas/inventoryAvailsSchemas.yaml#/components/schemas/BuyerInventoryAvailsSubscription'
+                - $ref: 'schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
+              xml:
+                name: BuyerInventoryAvailsRequest
+            examples:
+              New:
+                value:
+                  $ref: 'examples\6.0.0\Buyer\JSON\InventoryAvailsSubscriptionNew.json'
+              Change:
+                value:
+                  $ref: 'examples\6.0.0\Buyer\JSON\InventoryAvailsSubscriptionChange.json'
+              Cancel:
+                value:
+                  $ref: 'examples\6.0.0\Buyer\JSON\InventoryAvailsSubscriptionCancel.json'
+          application/xml:
+            schema:
+              oneOf:
+                - $ref: 'schemas/inventoryAvailsSchemas.yaml#/components/schemas/BuyerInventoryAvailsSubscription'
+                - $ref: 'schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
+              xml:
+                name: BuyerInventoryAvailsRequest
+            examples:
+              New:
+                value:
+                  $ref: 'examples\6.0.0\Buyer\XML\InventoryAvailsSubscriptionNew.xml'
+              Change:
+                value:
+                  $ref: 'examples\6.0.0\Buyer\XML\InventoryAvailsSubscriptionChange.xml'
+              Cancel:
+                value:
+                  $ref: 'examples\6.0.0\Buyer\XML\InventoryAvailsSubscriptionCancel.xml'
       responses:
         '200': #OK - in case request can be fullfiled in realtime
-          description: OK - in case request can be fullfiled in realtime
-          content:
-            application/json:
-              schema:
-                $ref: 'schemas/inventoryAvailsSchemas.yaml#/components/schemas/SellerInventoryAvails'
-        '202': #Accepted
-          $ref: 'schemas/commonResponses.yaml#/components/responses/Accepted'
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Success'
+        '201': #Created - Request as created
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Created'
         '400': #Bad Request
           $ref: 'schemas/commonResponses.yaml#/components/responses/BadRequest'
         '401': #Unauthorized
@@ -84,6 +108,17 @@ paths:
           application/json:
             schema:
               $ref: 'schemas/inventoryAvailsSchemas.yaml#/components/schemas/SellerInventoryAvails'
+            examples:
+              New:
+                value:
+                  $ref: 'examples\6.0.0\Seller\JSON\InventoryAvailsNew.json'
+          application/xml:
+            schema:
+              $ref: 'schemas/inventoryAvailsSchemas.yaml#/components/schemas/SellerInventoryAvails'
+            examples:
+              New:
+                value:
+                  $ref: 'examples\6.0.0\Seller\XML\InventoryAvailsNew.xml'
       responses:
         '200': #OK
           $ref: 'schemas/commonResponses.yaml#/components/responses/Success'

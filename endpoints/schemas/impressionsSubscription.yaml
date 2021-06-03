@@ -1,0 +1,140 @@
+openapi: 3.0.0
+info:
+  version: 6.0.0
+  title: Impression Subscription & Notification schemas
+  description: Impression Subscription & Notification schemas
+  termsOfService: http://placeholderdomain.io/terms/
+  contact:
+    name: TIP Initiative
+    email: tipinitiative@frontrowadvisory.com
+    url: http://placeholderdomain.io
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+paths: {}
+components:
+  schemas:
+    BuyerImpressionsSubscription:
+      description: >-
+        Schema supports a notification format that allows the buyer to define the parameters
+        for the impressions payload such as frequency, time span, orders, etc.
+      properties:
+        transactionHeader:
+          $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
+        name:
+          description: Free form text as a name for this subscription
+          type: string
+        mediaOutlets:
+          description: >-
+            Unique list of Media Outlets including the Seller entity and all Content
+            where impressions occurred
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/MediaOutlet'
+          minItems: 1
+          uniqueItems: true
+        salesElementHeaders:
+          description: Unique list of SalesElements related to the impression included in the message
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/SalesElementHeader'
+          minItems: 1
+        referenceIds:
+          description: >-
+            referenceId must contain a minimum of one item. A list of identifying information
+            regarding order, proposal, and RFP related to the impressions included in the message
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/ReferenceId'
+          minItems: 1
+        frequency:
+          $ref: 'commonSchemas.yaml#/components/schemas/Frequency'
+        startDate:
+          oneOf:
+            - $ref: 'commonSchemas.yaml#/components/schemas/DynamicDate'
+            - type: string
+              format: date
+        endDate:
+          oneOf:
+            - $ref: 'commonSchemas.yaml#/components/schemas/DynamicDate'
+            - type: string
+              format: date
+        statSource:
+          description: >-
+            Identifies the originating impressions tracking source if all impressions have the
+            same tracking source. The combination of StatSource and MediaOutlet identifies a
+            unique impression.
+          type: string
+        maxChunkSize:
+          description: Suggestion to limit size of chunks to maxChunkSize in MB
+          type: integer
+      required:
+        - name
+        - transactionHeader
+      xml:
+        name: BuyerImpressionsSubscriptionRequest
+    SellerImpressionsNotification:
+      description: >-
+        Schema supports an asynchronous response to a subscription informing the buyer that
+        a new delivery of Impressions is ready to download
+      properties:
+        transactionHeader:
+          $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
+        mediaOutlets:
+          description: >-
+            Unique list of Media Outlets including the Seller entity and all Content
+            where impressions occurred
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/MediaOutlet'
+          minItems: 1
+          uniqueItems: true
+        salesElementHeaders:
+          description: Unique list of SalesElements related to the impression included in the message
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/SalesElementHeader'
+          minItems: 1
+          uniqueItems: true
+        referenceIds:
+          description: >-
+            referenceId must contain a minimum of one item. A list of identifying information
+            regarding order, proposal, and RFP related to the impressions included in the message
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/ReferenceId'
+          minItems: 1
+        creatives:
+          description: >-
+            List of all creatives delivered against. This object may expand with further
+            metadata about the creative
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/Creative'
+          minItems: 1
+        reportDate:
+          $ref: 'commonSchemas.yaml#/components/schemas/DateWindow'
+        statSource:
+          description: >-
+            Identifies the originating impressions tracking source if all impressions have the
+            same tracking source. The combination of StatSource and MediaOutlet identifies a
+            unique impression.
+          type: string
+        filePrefix:
+          description: Prefix for file name collection in the notification
+          type: string
+        chunks:
+          description: Number of chunks associated with the notification
+          type: integer
+      required:
+        - transactionHeader
+        - mediaOutlets
+        - salesElementHeaders
+        - referenceIds
+        - creatives
+        - reportDate
+        - statSource
+        - filePrefix
+        - chunks
+      xml:
+        name: SellerImpressionsNotificationRequest

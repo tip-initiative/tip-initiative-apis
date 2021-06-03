@@ -1,0 +1,658 @@
+{
+  "transactionHeader": {
+    "tipVersion": "5.1.0",
+    "transactionId": {
+      "transactionId": "6A61B212-4DBD-431E-A953-8873561AF781",
+      "transactionType": "New",
+      "sourceId": "490",
+      "sourceName": "KHOU-TV"
+    },
+    "timeStamp": "2020-07-01T19:17:28Z"
+  },
+  "externalComment": "Seller's Comment",
+  "units": [
+    {
+      "unitId": "15555",
+      "referenceIds": [
+        {
+          "referenceSourceName": "KHOU-TV",
+          "referenceSourceId": "490",
+          "referenceType": "Order",
+          "referenceId": "A2CAF9C7-C64F-44CA-84E1-DCD51D790E3E",
+          "referenceName": "Hyundia P25-54 1Q"
+        }
+      ],
+      "cpeCode": {
+        "clientCode": "HYUN",
+        "productCode": "AUTO",
+        "estimateCode": "987"
+      },
+      "buyer": {
+        "buyerId": "456",
+        "buyerName": "Canvas Worldwide. LLC",
+        "buyerReference": "Optional: Reference text here"
+      },
+      "advertiser": {
+        "advertiserId": "34",
+        "advertiserName": "Hyundai",
+        "advertiserReference": "Optional: Reference text here"
+      },
+      "brand": {
+        "brandId": "19",
+        "brandName": "Kona",
+        "brandReference": "Optional: Reference text here"
+      },
+      "product": {
+        "productId": "89",
+        "productName": "Automobile"
+      },
+      "salesElement": {
+        "mediaOutletId": "490",
+        "salesElementName": "CBS This Morning",
+        "salesElementId": "56",
+        "salesElementType": "Program"
+      },
+      "program": "CBS This Morning",
+      "daypart": "Morning",
+      "inventoryType": "Commercial",
+      "length": 30,
+      "rate": 525.00,
+      "adId": "HYUN1234",
+      "status": "Aired",
+      "creditInd": false,
+      "timePeriod": {
+        "dateWindow": {
+          "startDate": "2020-02-17",
+          "endDate": "2020-03-01"
+        },
+        "DOW": {
+          "monday": true,
+          "tuesday": true,
+          "wednesday": true,
+          "thursday": true,
+          "friday": true,
+          "saturday": false,
+          "sunday": false
+        },
+        "timeWindow": {
+          "startTime": "07:00:00",
+          "endTime": "09:00:00"
+        }
+      },
+      "dateTime": {
+        "broadcastDate": "2020-02-17",
+        "calendarDateTime": "2020-02-17T07:23:00"
+      }
+    },
+    {
+      "unitId": "16555",
+      "referenceIds": [
+        {
+          "referenceSourceName": "KHOU-TV",
+          "referenceSourceId": "490",
+          "referenceType": "Order",
+          "referenceId": "19F1BA79-D415-493D-8541-CBA985A740B7",
+          "referenceName": "Wendy's 1Q"
+        }
+      ],
+      "cpeCode": {
+        "clientCode": "WENDY",
+        "productCode": "FAST FOOD",
+        "estimateCode": "999"
+      },
+      "buyer": {
+        "buyerId": "989",
+        "buyerName": "Wunderman",
+        "buyerReference": "Optional: Reference text here"
+      },
+      "advertiser": {
+        "advertiserId": "555",
+        "advertiserName": "Wendy's",
+        "advertiserReference": "Optional: Reference text here"
+      },
+      "product": {
+        "productId": "999",
+        "productName": "Fast Food"
+      },
+      "salesElement": {
+        "mediaOutletId": "490",
+        "salesElementName": "The Talk",
+        "salesElementId": "57",
+        "salesElementType": "Program"
+      },
+      "program": "The Talk",
+      "daypart": "Morning",
+      "inventoryType": "Commercial",
+      "linkType": {
+        "linkType": "Bookend",
+        "linkNum": 1
+      },
+      "length": 15,
+      "rate": 525.00,
+      "adId": "WEND1234",
+      "status": "Aired",
+      "creditInd": false,
+      "timePeriod": {
+        "dateWindow": {
+          "startDate": "2020-02-17",
+          "endDate": "2020-03-01"
+        },
+        "DOW": {
+          "monday": true,
+          "tuesday": true,
+          "wednesday": true,
+          "thursday": true,
+          "friday": true,
+          "saturday": false,
+          "sunday": false
+        },
+        "timeWindow": {
+          "startTime": "07:00:00",
+          "endTime": "09:00:00"
+        }
+      },
+      "dateTime": {
+        "broadcastDate": "2020-02-17",
+        "calendarDateTime": "2020-02-17T07:45:00"
+      }
+    },
+    {
+      "unitId": "16555",
+      "referenceIds": [
+        {
+          "referenceSourceName": "KHOU-TV",
+          "referenceSourceId": "490",
+          "referenceType": "Order",
+          "referenceId": "9A07F777-ADCA-428A-B61B-DB85402E9C57",
+          "referenceName": "Wendy's 1Q"
+        }
+      ],
+      "cpeCode": {
+        "clientCode": "WENDY",
+        "productCode": "FAST FOOD",
+        "estimateCode": "999"
+      },
+      "buyer": {
+        "buyerId": "989",
+        "buyerName": "Wunderman",
+        "buyerReference": "Optional: Reference text here"
+      },
+      "advertiser": {
+        "advertiserId": "555",
+        "advertiserName": "Wendy's",
+        "advertiserReference": "Optional: Reference text here"
+      },
+      "product": {
+        "productId": "999",
+        "productName": "Fast Food"
+      },
+      "salesElement": {
+        "mediaOutletId": "490",
+        "salesElementName": "The Talk",
+        "salesElementId": "57",
+        "salesElementType": "Program"
+      },
+      "program": "The Talk",
+      "daypart": "Morning",
+      "inventoryType": "Commercial",
+      "linkType": {
+        "linkType": "Bookend",
+        "linkNum": 1
+      },
+      "length": 15,
+      "rate": 525.00,
+      "adId": "WEND1235",
+      "status": "Aired",
+      "creditInd": false,
+      "timePeriod": {
+        "dateWindow": {
+          "startDate": "2020-02-17",
+          "endDate": "2020-03-01"
+        },
+        "DOW": {
+          "monday": true,
+          "tuesday": true,
+          "wednesday": true,
+          "thursday": true,
+          "friday": true,
+          "saturday": false,
+          "sunday": false
+        },
+        "timeWindow": {
+          "startTime": "07:00:00",
+          "endTime": "09:00:00"
+        }
+      },
+      "dateTime": {
+        "broadcastDate": "2020-02-17",
+        "calendarDateTime": "2020-02-17T07:46:00"
+      }
+    },
+    {
+      "unitId": "17555",
+      "referenceIds": [
+        {
+          "referenceSourceName": "KHOU-TV",
+          "referenceSourceId": "490",
+          "referenceType": "Order",
+          "referenceId": "1E494D6B-50CE-4814-9217-03D104D13A1C",
+          "referenceName": "KIA 1Q"
+        }
+      ],
+      "cpeCode": {
+        "clientCode": "KIA",
+        "productCode": "AUTO",
+        "estimateCode": "996"
+      },
+      "buyer": {
+        "buyerId": "456",
+        "buyerName": "Canvas Worldwide. LLC",
+        "buyerReference": "Optional: Reference text here"
+      },
+      "advertiser": {
+        "advertiserId": "558",
+        "advertiserName": "Kia",
+        "advertiserReference": "Optional: Reference text here"
+      },
+      "brand": {
+        "brandId": "29",
+        "brandName": "Forte",
+        "brandReference": "Optional: Reference text here"
+      },
+      "product": {
+        "productId": "89",
+        "productName": "Automobile"
+      },
+      "salesElement": {
+        "mediaOutletId": "490",
+        "salesElementName": "Prime",
+        "salesElementId": "58",
+        "salesElementType": "Time-Specific"
+      },
+      "program": "Prime Movie",
+      "daypart": "Prime",
+      "inventoryType": "Commercial",
+      "makegood": true,
+      "preemptUnitIds": [
+        "12345"
+      ],
+      "length": 30,
+      "rate": 525.00,
+      "adId": "KIAC1234",
+      "status": "Aired",
+      "creditInd": false,
+      "timePeriod": {
+        "dateWindow": {
+          "startDate": "2020-01-06",
+          "endDate": "2020-03-31"
+        },
+        "DOW": {
+          "monday": true,
+          "tuesday": true,
+          "wednesday": true,
+          "thursday": true,
+          "friday": true,
+          "saturday": false,
+          "sunday": false
+        },
+        "timeWindow": {
+          "startTime": "16:00:00",
+          "endTime": "17:00:00"
+        }
+      },
+      "dateTime": {
+        "broadcastDate": "2020-02-17",
+        "calendarDateTime": "2020-02-17T16:45:00"
+      }
+    },
+    {
+      "unitId": "18555",
+      "referenceIds": [
+        {
+          "referenceSourceName": "KHOU-TV",
+          "referenceSourceId": "490",
+          "referenceType": "Order",
+          "referenceId": "FD13BE42-152E-4ACD-B210-C732B787C576",
+          "referenceName": "White Castle P18-49"
+        }
+      ],
+      "cpeCode": {
+        "clientCode": "WHITE CAS",
+        "productCode": "FAST FOOD",
+        "estimateCode": "998"
+      },
+      "buyer": {
+        "buyerId": "1023",
+        "buyerName": "Cross Media",
+        "buyerReference": "Optional: Reference text here"
+      },
+      "advertiser": {
+        "advertiserId": "998",
+        "advertiserName": "White Castle",
+        "advertiserReference": "Optional: Reference text here"
+      },
+      "product": {
+        "productId": "999",
+        "productName": "Fast Food"
+      },
+      "salesElement": {
+        "mediaOutletId": "490",
+        "salesElementName": "CBS This Morning",
+        "salesElementId": "56",
+        "salesElementType": "Program"
+      },
+      "program": "CBS This Morning",
+      "daypart": "Morning",
+      "inventoryType": "Commercial",
+      "length": 30,
+      "rate": 525.00,
+      "adId": "WHITE1234",
+      "status": "Aired",
+      "creditInd": false,
+      "timePeriod": {
+        "dateWindow": {
+          "startDate": "2020-01-12",
+          "endDate": "2020-03-12"
+        },
+        "DOW": {
+          "monday": true,
+          "tuesday": true,
+          "wednesday": true,
+          "thursday": true,
+          "friday": true,
+          "saturday": false,
+          "sunday": false
+        },
+        "timeWindow": {
+          "startTime": "16:00:00",
+          "endTime": "17:00:00"
+        }
+      },
+      "dateTime": {
+        "broadcastDate": "2020-02-17",
+        "calendarDateTime": "2020-02-17T16:46:00"
+      }
+    },
+    {
+      "unitId": "19555",
+      "referenceIds": [
+        {
+          "referenceSourceName": "KHOU-TV",
+          "referenceSourceId": "490",
+          "referenceType": "Order",
+          "referenceId": "ACBAB728-70AD-4DAD-A94A-7511F8553F82",
+          "referenceName": "ADT SECURITY P18-49 1Q"
+        }
+      ],
+      "cpeCode": {
+        "clientCode": "ADT SECURITY",
+        "productCode": "SECURITY",
+        "estimateCode": "888"
+      },
+      "buyer": {
+        "buyerId": "1055",
+        "buyerName": "McCann",
+        "buyerReference": "Optional: Reference text here"
+      },
+      "advertiser": {
+        "advertiserId": "1234",
+        "advertiserName": "ADT Security",
+        "advertiserReference": "Optional: Reference text here"
+      },
+      "product": {
+        "productId": "767",
+        "productName": "Security"
+      },
+      "salesElement": {
+        "mediaOutletId": "490",
+        "salesElementName": "CBS This Morning",
+        "salesElementId": "56",
+        "salesElementType": "Program"
+      },
+      "program": "CBS This Morning",
+      "daypart": "Morning",
+      "inventoryType": "Commercial",
+      "bonus": true,
+      "length": 30,
+      "rate": 0.00,
+      "adId": "ADTS1234",
+      "status": "Aired",
+      "creditInd": false,
+      "timePeriod": {
+        "dateWindow": {
+          "startDate": "2020-01-20",
+          "endDate": "2020-04-23"
+        },
+        "DOW": {
+          "monday": true,
+          "tuesday": true,
+          "wednesday": true,
+          "thursday": true,
+          "friday": true,
+          "saturday": false,
+          "sunday": false
+        },
+        "timeWindow": {
+          "startTime": "17:00:00",
+          "endTime": "18:00:00"
+        }
+      },
+      "dateTime": {
+        "broadcastDate": "2020-02-17",
+        "calendarDateTime": "2020-02-17T17:11:00"
+      }
+    },
+    {
+      "unitId": "20555",
+      "referenceIds": [
+        {
+          "referenceSourceName": "KHOU-TV",
+          "referenceSourceId": "490",
+          "referenceType": "Order",
+          "referenceId": "8DEAA498-EEA8-435F-90CE-ED4B6FFEDBEF",
+          "referenceName": "White Castle P18-49"
+        }
+      ],
+      "cpeCode": {
+        "clientCode": "WHITE CAS",
+        "productCode": "FAST FOOD",
+        "estimateCode": "998"
+      },
+      "buyer": {
+        "buyerId": "1023",
+        "buyerName": "Cross Media",
+        "buyerReference": "Optional: Reference text here"
+      },
+      "advertiser": {
+        "advertiserId": "998",
+        "advertiserName": "White Castle",
+        "advertiserReference": "Optional: Reference text here"
+      },
+      "product": {
+        "productId": "999",
+        "productName": "Fast Food"
+      },
+      "salesElement": {
+        "mediaOutletId": "490",
+        "salesElementName": "CBS This Morning",
+        "salesElementId": "56",
+        "salesElementType": "Program"
+      },
+      "program": "CBS This Morning",
+      "daypart": "Morning",
+      "adu": true,
+      "length": 30,
+      "rate": 0.00,
+      "adId": "WHITE5555",
+      "status": "Aired",
+      "creditInd": false,
+      "timePeriod": {
+        "dateWindow": {
+          "startDate": "2020-01-12",
+          "endDate": "2020-03-12"
+        },
+        "DOW": {
+          "monday": true,
+          "tuesday": true,
+          "wednesday": true,
+          "thursday": true,
+          "friday": true,
+          "saturday": false,
+          "sunday": false
+        },
+        "timeWindow": {
+          "startTime": "17:00:00",
+          "endTime": "18:00:00"
+        }
+      },
+      "dateTime": {
+        "broadcastDate": "2020-02-17",
+        "calendarDateTime": "2020-02-17T17:13:00"
+      }
+    },
+    {
+      "unitId": "20551",
+      "referenceIds": [
+        {
+          "referenceSourceName": "KHOU-TV",
+          "referenceSourceId": "490",
+          "referenceType": "Order",
+          "referenceId": "248A9CEB-1A97-488F-8756-2BF1EF39988D",
+          "referenceName": "KIA P18-49"
+        }
+      ],
+      "cpeCode": {
+        "clientCode": "KIA",
+        "productCode": "AUTO",
+        "estimateCode": "996"
+      },
+      "buyer": {
+        "buyerId": "1023",
+        "buyerName": "Cross Media",
+        "buyerReference": "Optional: Reference text here"
+      },
+      "advertiser": {
+        "advertiserId": "558",
+        "advertiserName": "Kia",
+        "advertiserReference": "Optional: Reference text here"
+      },
+      "brand": {
+        "brandId": "29",
+        "brandName": "Forte",
+        "brandReference": "Optional: Reference text here"
+      },
+      "product": {
+        "productId": "89",
+        "productName": "Automobile"
+      },
+      "salesElement": {
+        "mediaOutletId": "490",
+        "salesElementName": "Weekend Non-Sports",
+        "salesElementId": "99",
+        "salesElementType": "Time-Specific"
+      },
+      "program": "Weekend Movie",
+      "daypart": "Weekend",
+      "inventoryType": "Commercial",
+      "length": 15,
+      "rate": 0.00,
+      "status": "No Run",
+      "creditInd": true,
+      "timePeriod": {
+        "dateWindow": {
+          "startDate": "2020-01-06",
+          "endDate": "2020-03-31"
+        },
+        "DOW": {
+          "monday": true,
+          "tuesday": true,
+          "wednesday": true,
+          "thursday": true,
+          "friday": true,
+          "saturday": false,
+          "sunday": false
+        },
+        "timeWindow": {
+          "startTime": "18:00:00",
+          "endTime": "19:00:00"
+        }
+      },
+      "dateTime": {
+        "broadcastDate": "2020-02-17",
+        "calendarDateTime": "2020-02-17T17:11:00"
+      }
+    },
+    {
+      "unitId": "16556",
+      "referenceIds": [
+        {
+          "referenceSourceName": "KHOU-TV",
+          "referenceSourceId": "490",
+          "referenceType": "Order",
+          "referenceId": "8F15A01D-5D26-42A4-847B-D7E7B73D99E8",
+          "referenceName": "Hyundia P25-54 1Q"
+        }
+      ],
+      "cpeCode": {
+        "clientCode": "HYUN",
+        "productCode": "AUTO",
+        "estimateCode": "997"
+      },
+      "buyer": {
+        "buyerId": "456",
+        "buyerName": "Cross Media",
+        "buyerReference": "Optional: Reference text here"
+      },
+      "advertiser": {
+        "advertiserId": "34",
+        "advertiserName": "Hyundai",
+        "advertiserReference": "Optional: Reference text here"
+      },
+      "brand": {
+        "brandId": "19",
+        "brandName": "Kona",
+        "brandReference": "Optional: Reference text here"
+      },
+      "product": {
+        "productId": "89",
+        "productName": "Automobile"
+      },
+      "salesElement": {
+        "mediaOutletId": "490",
+        "salesElementName": "Late Fringe",
+        "salesElementId": "102",
+        "salesElementType": "Time-Specific"
+      },
+      "program": "Overnight Movie",
+      "daypart": "Late Fringe",
+      "inventoryType": "Commercial",
+      "length": 15,
+      "rate": 525.00,
+      "status": "Aired",
+      "creditInd": false,
+      "timePeriod": {
+        "dateWindow": {
+          "startDate": "2020-02-17",
+          "endDate": "2020-03-01"
+        },
+        "DOW": {
+          "monday": true,
+          "tuesday": true,
+          "wednesday": true,
+          "thursday": true,
+          "friday": true,
+          "saturday": false,
+          "sunday": false
+        },
+        "timeWindow": {
+          "startTime": "18:00:00",
+          "endTime": "19:00:00"
+        }
+      },
+      "dateTime": {
+        "broadcastDate": "2020-02-17",
+        "calendarDateTime": "2020-02-17T17:14:00"
+      }
+    }
+  ]
+}

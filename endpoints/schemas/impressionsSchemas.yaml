@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  version: 5.1.0
+  version: 6.0.0
   title: Seller delivers impression-level log data to buyer system
   description: Supports a push model where the seller sends files to buyer system on an agreed schedule.  Supports
     a report limited to a single advertiser, brand, product and order.
@@ -48,7 +48,8 @@ components:
             about the creative
           type: array
           items:
-            $ref: 'commonSchemas.yaml#/components/schemas/Creative'
+#            $ref: 'commonSchemas.yaml#/components/schemas/Creative'            
+            $ref: 'commonSchemas.yaml#/components/schemas/Identifier'
           minItems: 1
         reportDate:
           $ref: 'commonSchemas.yaml#/components/schemas/DateWindow'
@@ -70,7 +71,7 @@ components:
         - salesElements
         - referenceIds
         - creatives
-        - impressions
+#        - impressions
     Impression:
       description: An object representing one impression with all associated Ids
       properties:

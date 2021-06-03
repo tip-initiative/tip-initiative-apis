@@ -1,0 +1,71 @@
+openapi: 3.0.0
+info:
+  version: 6.0.0
+  title: Creative Assets Schemas
+  description: Allow Creative Agency to provide media assets details to seller
+  termsOfService: http://placeholderdomain.io/terms/
+  contact:
+    name: TIP Initiative
+    email: tipinitiative@frontrowadvisory.com
+    url: http://placeholderdomain.io
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+paths: {}
+components:
+  schemas:
+    BuyerCreativeAssets:
+      description: Schema provides for the definition of creative assets including the format information
+      properties:
+        transactionHeader:
+          $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
+        creative:
+          description: Object that gives the details for the creative asset
+          $ref: 'commonSchemas.yaml#/components/schemas/Creative'
+        timePeriods:
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/TimePeriod'
+        formats:
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/Format'
+        mediaOutlets:
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/MediaOutlet'
+        deliveryDate:
+          description: Delivery date for receiving or making available the asset
+          type: string
+          format: date
+        deliveryService:
+          description: Type of delivery service that will supply the the asset
+          type: string
+        buyer:
+          $ref: 'commonSchemas.yaml#/components/schemas/Buyer'
+        contacts:
+          description: Array of contacts
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/Contact'
+        advertiser:
+          $ref: 'commonSchemas.yaml#/components/schemas/Advertiser'
+        brand:
+          $ref: 'commonSchemas.yaml#/components/schemas/Brand'
+        product:
+          $ref: 'commonSchemas.yaml#/components/schemas/Product'
+        guideLines:
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/Guideline'
+        comment:
+          description: Free form text to accommodate transaction comments and/or activities outside the TIP flow
+          type: string
+      required:
+        - transactionHeader
+        - creative
+        - timePeriods
+        - deliveryDate
+        - deliveryService
+        - buyer
+        - product

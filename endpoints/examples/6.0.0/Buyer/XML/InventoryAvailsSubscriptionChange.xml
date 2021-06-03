@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<BuyerInventoryAvailsRequest>
+	<transactionHeader>
+		<tipVersion>6.0.0</tipVersion>
+		<transactionId>
+			<transactionId>E6361115-E919-461D-AE72-6311E4B9F57E</transactionId>
+			<transactionType>Change</transactionType>
+			<sourceId>XVEN-1234</sourceId>
+			<sourceName>XVEN Buyer</sourceName>
+		</transactionId>
+		<originalTransactionId>
+			<transactionId>3fa85f64-5717-4562-b3fc-2c963f66afa6</transactionId>
+			<transactionType>New</transactionType>
+			<sourceId>XVEN-1234</sourceId>
+			<sourceName>XVEN Buyer</sourceName>
+		</originalTransactionId>
+		<timeStamp>2021-05-06T18:27:49.064Z</timeStamp>
+	</transactionHeader>
+	<name>Change to once Month, on first Monday, Inventory Avails for next 4 weeks from reporting date</name>
+	<mediaOutlets>
+		<mediaOutletIds>
+			<id>KHOU-TV</id>
+			<version>0</version>
+			<srcId>XVEN-1234</srcId>
+			<srcName>XVEN Buyer</srcName>
+		</mediaOutletIds>
+		<mediaOutletName>string</mediaOutletName>
+		<mediaOutletType>Local TV</mediaOutletType>
+		<mediaOutletChannel>KHOU-TV</mediaOutletChannel>
+		<mediaOutletMarketName>Houston, TX</mediaOutletMarketName>
+	</mediaOutlets>
+	<buyer>
+		<buyerIds>
+			<id>XVEN-1234</id>
+			<version>0</version>
+			<srcId>XVEN-1234</srcId>
+			<srcName>XVEN Buyer</srcName>
+		</buyerIds>
+		<buyerName>Canvas Worldwide. LLC</buyerName>
+	</buyer>
+	<advertiser>
+		<advertiserIds>
+			<id>ADV-4567</id>
+			<version>0</version>
+			<srcId>XVEN-1234</srcId>
+			<srcName>XVEN Buyer</srcName>
+		</advertiserIds>
+		<advertiserName>Hyundai</advertiserName>
+	</advertiser>
+	<contacts>
+		<contactType>Account Executive</contactType>
+		<contactIds>
+			<id>CNT-1234</id>
+			<version>0</version>
+			<srcId>XVEN-1234</srcId>
+			<srcName>XVEN Buyer</srcName>
+		</contactIds>
+		<salesOffices>Dallas, TX</salesOffices>
+		<salesOffices>NYC, NY</salesOffices>
+		<contactFirstName>John</contactFirstName>
+		<contactLastName>Doe</contactLastName>
+		<addressLine1>1234 N. Main Street</addressLine1>
+		<city>A City</city>
+		<state>UT</state>
+		<postalCode>00000-0000</postalCode>
+		<country>USA</country>
+		<phoneNumber>1(000)000-0000</phoneNumber>
+		<email>john.doe@example.com</email>
+		<effectiveDate>2021-05-06</effectiveDate>
+	</contacts>
+	<dayOfWeek>
+		<isMonday>true</isMonday>
+		<isTuesday>true</isTuesday>
+		<isWednesday>true</isWednesday>
+		<isThursday>true</isThursday>
+		<isFriday>true</isFriday>
+		<isSaturday>true</isSaturday>
+		<isSunday>true</isSunday>
+	</dayOfWeek>
+	<timeWindows>
+		<startTime>09:00</startTime>
+		<endTime>11:00</endTime>
+	</timeWindows>
+	<guidelines>
+		<guidelineType>Content</guidelineType>
+		<excludeOrInclude>Exclude</excludeOrInclude>
+		<guidelines>Violence</guidelines>
+	</guidelines>
+	<inventoryTypes>Commercials</inventoryTypes>
+	<inventoryTypes>Sponsorships</inventoryTypes>
+	<currency>USD</currency>
+	<externalComment>string</externalComment>
+	<audienceSegments>
+		<audienceSegmentIds>
+			<id>string</id>
+			<version>string</version>
+			<srcId>string</srcId>
+			<srcName>string</srcName>
+		</audienceSegmentIds>
+		<audienceSegmentName>P18-49</audienceSegmentName>
+		<audienceSegmentReference>string</audienceSegmentReference>
+		<audienceMethodology>Daypart Average</audienceMethodology>
+		<isPrimary>true</isPrimary>
+		<isGuarantee>true</isGuarantee>
+		<ratingSource>Nielsen</ratingSource>
+		<ratingStream>Program Live</ratingStream>
+	</audienceSegments>
+	<pricingMetricOptions>CPM</pricingMetricOptions>
+	<frequency>
+		<effectiveOn>2020-08-12T00:00:00.000Z</effectiveOn>
+		<every>Month</every>
+		<onDay>Mon</onDay>
+		<onDate>1</onDate>
+		<stratDate>
+			<offsetType>Week</offsetType>
+			<offset>0</offset>
+		</stratDate>
+		<endDate>
+			<offsetType>Week</offsetType>
+			<offset>4</offset>
+		</endDate>
+	</frequency>
+</BuyerInventoryAvailsRequest>

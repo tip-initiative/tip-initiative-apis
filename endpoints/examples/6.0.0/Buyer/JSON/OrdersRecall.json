@@ -1,0 +1,29 @@
+{
+  "transactionHeader": {
+    "tipVersion": "6.0.0",
+    "transactionId": {
+      "transactionId": "3F8A1041-95A8-4BC1-9473-F6B1B3277A71",
+      "transactionType": "Recall",
+      "sourceId": "Buy-6789",
+      "sourceName": "TIP Buyer"
+    },
+    "originalTransactionId": {
+      "transactionId": "1C237FDD-940D-499E-AA20-DF3B9CE0908E",
+      "transactionType": "Change",
+      "sourceId": "Buy-6789",
+      "sourceName": "TIP Buyer"
+    },
+    "timeStamp": "2021-07-21T17:32:28Z"
+  },
+  "referenceIds": [
+    {
+      "referenceSourceName": "Buy-6789",
+      "referenceSourceId": "TIP Buyer",
+      "referenceType": "Order",
+      "referenceId": "ORD-56789",
+      "referenceVersionId": 1,
+      "referenceName": "Hyundai 1Q22"
+    }
+  ],
+  "comments": ""
+}

@@ -1,0 +1,121 @@
+openapi: "3.0.0"
+components:
+ securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+security:
+  - bearerAuth: []
+info:
+  version: 6.0.0
+  title: Impression Subscription and Notification
+  description: Impression Subscription and Notification
+  termsOfService: http://placeholderdomain.io/terms/
+  contact:
+    name: TIP Initiative
+    email: tipinitiative@frontrowadvisory.com
+    url: http://placeholderdomain.io
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+servers:
+  - url: http://placeholderdomain.io/v6.0.0
+paths:
+  /buyer/impressions/subscription:
+    post:
+      tags:
+        - Buyer
+      summary: >-
+        Buyer subscribe to receive notifications everytime impression-level log data is ready to download from the seller
+      description: >-
+        Using this endpoint the buyer expresses its desire to receive notifications every time a new impression data are uploaded 				      
+      operationId: BuyerImpressionsSubscription
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - $ref: "./schemas/impressionsSubscription.yaml#/components/schemas/BuyerImpressionsSubscription"
+                - $ref: './schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
+              xml:
+                name: BuyerImpressionsSubscriptionRequest
+            examples:
+              New:
+                value:
+                  $ref: 'examples\6.0.0\Buyer\JSON\ImpressionsSubscriptionNew.json'
+              Change:
+                value:
+                  $ref: 'examples\6.0.0\Buyer\JSON\ImpressionsSubscriptionChange.json' 
+              Cancel:
+                value:
+                  $ref: 'examples\6.0.0\Buyer\JSON\ImpressionsSubscriptionCancel.json'
+          application/xml:
+            schema:
+              oneOf:
+                - $ref: "./schemas/impressionsSubscription.yaml#/components/schemas/BuyerImpressionsSubscription"
+                - $ref: './schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
+              xml:
+                name: BuyerImpressionsSubscriptionRequest
+            examples:
+              New:
+                value:
+                  $ref: 'examples\6.0.0\Buyer\XML\ImpressionsSubscriptionNew.xml'
+              Change:
+                value:
+                  $ref: 'examples\6.0.0\Buyer\XML\ImpressionsSubscriptionChange.xml'                
+              Cancel:
+                value:
+                  $ref: 'examples\6.0.0\Buyer\XML\ImpressionsSubscriptionCancel.xml'
+      responses:
+        '201': #Created
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Accepted'
+        '400': #Bad Request
+          $ref: 'schemas/commonResponses.yaml#/components/responses/BadRequest'
+        '401': #Unauthorized
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Unauthorized'
+        '403': #Forbidden
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Forbidden'
+        '404': #Not Found
+          $ref: 'schemas/commonResponses.yaml#/components/responses/NotFound'
+        '405': #Not Allowed
+          $ref: 'schemas/commonResponses.yaml#/components/responses/NotAllowed'
+        default: #unexpected
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Unexpected'
+  /seller/impressions/notification:
+    post:
+      tags:
+        - Seller
+      summary: >-
+        Seller delivers impression-level log data to buyer system	
+      description: >-
+        Supports a push model where the seller sends files to buyer system on an agreed schedule. 
+        Supports a report limited to a single advertiser, brand, product and order.
+        Supported Transaction Types: New				
+      operationId: SellerImpressionNotification
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "./schemas/impressionsSubscription.yaml#/components/schemas/SellerImpressionsNotification"
+          application/xml:
+            schema:
+              $ref: "./schemas/impressionsSubscription.yaml#/components/schemas/SellerImpressionsNotification"
+      responses:
+        '200': #Created
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Accepted'
+        '400': #Bad Request
+          $ref: 'schemas/commonResponses.yaml#/components/responses/BadRequest'
+        '401': #Unauthorized
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Unauthorized'
+        '403': #Forbidden
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Forbidden'
+        '404': #Not Found
+          $ref: 'schemas/commonResponses.yaml#/components/responses/NotFound'
+        '405': #Not Allowed
+          $ref: 'schemas/commonResponses.yaml#/components/responses/NotAllowed'
+        default: #unexpected
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Unexpected'
+

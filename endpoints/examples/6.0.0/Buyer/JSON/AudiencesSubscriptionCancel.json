@@ -1,0 +1,29 @@
+{
+  "transactionHeader": {
+    "tipVersion": "6.0.0",
+    "transactionId": {
+      "transactionId": "DA93C8D1-72AB-4615-859D-1281F4F25ECA",
+      "transactionType": "Cancel",
+      "sourceId": "XBuy-1234",
+      "sourceName": "XVEN Buyer"
+    },
+    "originalTransactionId": {
+      "transactionId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "transactionType": "New",
+      "sourceId": "XBuy-1234",
+      "sourceName": "XVEN Buyer"
+    },
+    "timeStamp": "2021-05-06T19:34:02.271Z"
+  },
+  "referenceIds": [
+    {
+      "referenceSourceName": "KHOU-TV",
+      "referenceSourceId": "string",
+      "referenceSourceLookup": "string",
+      "referenceType": "RFP",
+      "referenceVersionId": 1,
+      "referenceName": "Hyundai 1Q22"
+    }
+  ],
+  "comments": "My Suscription"
+}

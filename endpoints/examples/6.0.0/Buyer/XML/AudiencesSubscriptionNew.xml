@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<BuyerAudiencesSubscriptionRequest>
+	<transactionHeader>
+		<tipVersion>6.0.0</tipVersion>
+		<transactionId>
+			<transactionId>3fa85f64-5717-4562-b3fc-2c963f66afa6</transactionId>
+			<transactionType>New</transactionType>
+			<sourceId>XBuy-1234</sourceId>
+			<sourceName>XVEN Buyer</sourceName>
+		</transactionId>
+		<timeStamp>2021-05-06T19:09:12.795Z</timeStamp>
+	</transactionHeader>
+	<name>Bi Monthly Subscription</name>
+	<referenceIds>
+		<referenceSourceName>KHOU-TV</referenceSourceName>
+		<referenceSourceId>KHOUTV-123</referenceSourceId>
+		<referenceSourceLookup>string</referenceSourceLookup>
+		<referenceType>Order</referenceType>
+		<referenceId>OR-12356</referenceId>
+		<referenceVersionId>0</referenceVersionId>
+		<referenceName>Hyundai 1Q22</referenceName>
+	</referenceIds>
+	<mediaOutlets>
+		<mediaOutletIds>
+			<id>TV-124</id>
+			<version>0</version>
+			<srcId>XBuy-1234</srcId>
+			<srcName>XVEN Buyer</srcName>
+		</mediaOutletIds>
+		<mediaOutletName>KHOU-TV</mediaOutletName>
+		<mediaOutletType>Local TV</mediaOutletType>
+		<mediaOutletChannel>KHOU-TV</mediaOutletChannel>
+		<mediaOutletMarketName>Houston, TX</mediaOutletMarketName>
+	</mediaOutlets>
+	<buyer>
+		<buyerIds>
+			<id>BUYER-178</id>
+			<version>0</version>
+			<srcId>XBuy-1234</srcId>
+			<srcName>XVEN Buyer</srcName>
+		</buyerIds>
+		<buyerName>Canvas Worldwide. LLC</buyerName>
+	</buyer>
+	<advertiser>
+		<advertiserIds>
+			<id>ADV-143</id>
+			<version>0</version>
+			<srcId>XBuy-1234</srcId>
+			<srcName>XVEN Buyer</srcName>
+		</advertiserIds>
+		<advertiserName>Hyundai</advertiserName>
+	</advertiser>
+	<contacts>
+		<contactType>Account Executive</contactType>
+		<referenceSourceName>XVEN Buyer</referenceSourceName>
+		<referenceSourceId>XBuy-1234</referenceSourceId>
+		<salesOffices>Dallas, TX</salesOffices>
+		<salesOffices>NYC, NY</salesOffices>
+		<contactFirstName>John</contactFirstName>
+		<contactLastName>Doe</contactLastName>
+		<addressLine1>1234 Main Street</addressLine1>
+		<city>City Falls</city>
+		<state>A State</state>
+		<postalCode>00000-0000</postalCode>
+		<country>USA</country>
+		<phoneNumber>1(888)123-4568</phoneNumber>
+		<email>user@example.com</email>
+		<effectiveDate>2021-05-06</effectiveDate>
+	</contacts>
+	<audienceTargets>
+		<excludeOrInclude>Include</excludeOrInclude>
+		<audienceTargetIds>
+			<id>AUD-123</id>
+			<version>0</version>
+			<srcId>XBuy-1234</srcId>
+			<srcName>XVEN Buyer</srcName>
+		</audienceTargetIds>
+		<targetAttribute>HH Income</targetAttribute>
+		<value>$50,000 - $75,000</value>
+		<value>$75,000, -$100,000</value>
+	</audienceTargets>
+	<externalComment>string</externalComment>
+	<frequency>
+		<effectiveOn>2020-08-12T00:00:00.000Z</effectiveOn>
+		<every>Month</every>
+		<onDate>1</onDate>
+		<onDate>15</onDate>
+		<isEndNever>true</isEndNever>
+	</frequency>
+</BuyerAudiencesSubscriptionRequest>

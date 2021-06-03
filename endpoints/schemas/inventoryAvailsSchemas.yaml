@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  version: 5.1.0
+  version: 6.0.0
   title: Inventory Avails Schemas
   description: Inventory Avails Schemas
   termsOfService: http://placeholderdomain.io/terms/
@@ -14,22 +14,16 @@ info:
 paths: {}
 components:
   schemas:
-    BuyerInventoryAvails:
-      description: >-
-        The BuyerInventoryAvails Schema allows the buyer to formulate a query for Inventory meeting the
-        listed conditions
+    BuyerInventoryAvailsSubscription:
+      description: Schema allows the buyer to formulate a query for Inventory meeting the listed conditions
       properties:
         transactionHeader:
           $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
-        dateSubmitted:
-          description: Buyer submit date for the Inventory Request
+        name:
+          description: Buyer request reference name
           type: string
-          format: date
-        dueDate:
-          description: Due Date for seller to respond with Inventory Information
-          type: string
-          format: date
         mediaOutlets:
+          description: Array of mediaOutlet objects being requested
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/MediaOutlet'
@@ -39,62 +33,71 @@ components:
         advertiser:
           $ref: 'commonSchemas.yaml#/components/schemas/Advertiser'
         contacts:
+          description: Array of Contact objects
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/Contact'
-        timePeriods:
+        dayOfWeek:
+          $ref: 'commonSchemas.yaml#/components/schemas/DayOfWeek'
+        timeWindows:
           type: array
           items:
-            $ref: 'commonSchemas.yaml#/components/schemas/TimePeriod'
-          minItems: 1
+            $ref: 'commonSchemas.yaml#/components/schemas/TimeWindow'
         guidelines:
+          description: Array of Guideline objects being requested
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/Guideline'
-        political:
-          description: Indicates that pricing being requested is political
+        isPolitical:
+          description: Indicate that rates requested are for a political campaign
           type: boolean
         inventoryTypes:
+          description: ArrayList of InventoryTypes being requested
           type: array
           items:
-            $ref: 'commonSchemas.yaml#/components/schemas/InventoryType'
-        maxRate:
-          description: Max rate spend across all inventory types
-          type: number
-          format: float
-          minimum: 0
+            type: string
         currency:
           $ref: 'commonSchemas.yaml#/components/schemas/Currency'
         externalComment:
-          description: Free form text to accommodate transaction comments and/or activities outside the
-            TIP flow
+          description: Free form text to accommodate transaction comments and/or activities outside the TIP flow
           type: string
         audienceSegments:
+          description: Array of AudienceSegment objects being requested
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/AudienceSegment'
           minItems: 1
         pricingMetricOptions:
+          description: Array of PricingMetricsOption objects being requested
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/PricingMetricOption'
+        frequency:
+          $ref: 'commonSchemas.yaml#/components/schemas/Frequency'
+        startDate:
+          oneOf:
+            - $ref: 'commonSchemas.yaml#/components/schemas/DynamicDate'
+            - type: string
+              format: date
+        endDate:
+          oneOf:
+            - $ref: 'commonSchemas.yaml#/components/schemas/DynamicDate'
+            - type: string
+              format: date
       required:
         - transactionHeader
-        - dateSubmitted
         - mediaOutlets
-        - timePeriods
-        - political
-        - audienceSegments
+        - isPolitical
     SellerInventoryAvails:
-      description: |-
-        The SellerInventoryAvails Schemas defines:
-        - the Seller response to previously solicited InventoryAvails request from the buyer,
-        - or Unslocited provide the buyer with the catalog of selling products, and optionally provide pricing and audience information
+      description: >-
+        Schema defines the Seller response to previously solicited InventoryAvails request
+        from the buyer, or if unsolicited provides the buyer with the catalog of selling
+        products, and optionally provide pricing and audience information
       properties:
         transactionHeader:
           $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
         dateSubmitted:
-          description: Seller's submit date for the inventory avails response
+          description: Seller's submit date for the response
           type: string
           format: date
         buyer:
@@ -102,30 +105,32 @@ components:
         advertiser:
           $ref: 'commonSchemas.yaml#/components/schemas/Advertiser'
         contacts:
+          description: Array of Contacts
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/Contact'
           minItems: 1
         rateCard:
           $ref: 'commonSchemas.yaml#/components/schemas/RateCard'
-        currency:
-          $ref: 'commonSchemas.yaml#/components/schemas/Currency'
-        political:
+        isPolitical:
           description: Indicates that pricing being supplied is political
           type: boolean
         mediaOutlets:
+          description: Array of MediaOutlets contained in the InventoryAvails
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/MediaOutlet'
           minItems: 1
         audienceSegments:
+          description: Array of AudienceSegments contained in the InventoryAvails
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/AudienceSegmentDetail'
-          nullable: true
+          nullable: True
         availWindow:
           $ref: 'commonSchemas.yaml#/components/schemas/DateWindow'
         salesElements:
+          description: Array of SalesElements contained in the InventoryAvails
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/SalesElement'
@@ -133,7 +138,9 @@ components:
       required:
         - transactionHeader
         - dateSubmitted
-        - political
+        - isPolitical
         - mediaOutlets
         - availWindow
         - salesElements
+      xml:
+        name: SellerInventoryAvailsRequest

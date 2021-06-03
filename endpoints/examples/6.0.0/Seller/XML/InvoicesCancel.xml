@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<SellerInvoicesRequest>
+	<transactionHeader>
+		<tipVersion>6.0.0</tipVersion>
+		<transactionId>
+			<transactionId>3fa85f64-5717-4562-b3fc-2c963f66afa6</transactionId>
+			<transactionType>Cancel</transactionType>
+			<sourceId>456</sourceId>
+			<sourceName>Canvas Worldwide. LLC</sourceName>
+		</transactionId>
+		<originalTransactionId>
+			<transactionId>B906A0A9-19FA-4F06-B94D-22E4F1D9120C</transactionId>
+			<transactionType>New</transactionType>
+			<sourceId>490</sourceId>
+			<sourceName>KHOU-TV</sourceName>
+		</originalTransactionId>
+		<timeStamp>2020-07-17T20:04:55.220Z</timeStamp>
+	</transactionHeader>
+	<referenceIds>
+		<referenceSourceName>YSELL Seller</referenceSourceName>
+		<referenceSourceId>YSELL-1234</referenceSourceId>
+		<referenceType>Order</referenceType>
+		<referenceId>ORD-5678</referenceId>
+		<referenceVersionId>1</referenceVersionId>
+		<referenceName>Hyundai 1Q22</referenceName>
+	</referenceIds>
+	<referenceIds>
+		<referenceSourceName>YSELL Seller</referenceSourceName>
+		<referenceSourceId>YSELL-1234</referenceSourceId>
+		<referenceType>Invoice</referenceType>
+		<referenceId>ORD-5678-1</referenceId>
+		<referenceVersionId>1</referenceVersionId>
+		<referenceName>Hyundai 1Q22</referenceName>
+	</referenceIds>
+	<comments>Thank you Very much; good to do business with you :)</comments>
+</SellerInvoicesRequest>

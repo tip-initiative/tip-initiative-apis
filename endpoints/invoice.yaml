@@ -1,6 +1,6 @@
 openapi: "3.0.0"
 info:
-  version: 5.1.0
+  version: 6.0.0
   title: Invoices
   description: Allows the seller to send to the buyer both new and revised invoice information
   termsOfService: http://placeholderdomain.io/terms/
@@ -12,7 +12,7 @@ info:
     name: MIT
     url: https://opensource.org/licenses/MIT
 servers:
-  - url: http://placeholderdomain./v5.x.x
+  - url: http://placeholderdomain./v6.0.0
 security:
   - bearerAuth: []
 paths:
@@ -32,17 +32,30 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/SellerInvoices'
+              $ref: '#/components/schemas/SellerInvoicesRequest'
             examples:
               New:
                 value:
-                  $ref: 'examples/SellerInvoiceNew.json'
+                  $ref: 'examples\6.0.0\Seller\JSON\InvoicesNew.json'
               Change:
                 value:
-                  $ref: 'examples/SellerInvoiceNew.json'
+                  $ref: 'examples\6.0.0\Seller\JSON\InvoicesChange.json'
               Cancel:
                 value:
-                  $ref: 'examples/GenericCancel.json'
+                  $ref: 'examples\6.0.0\Seller\JSON\InvoicesCancel.json'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/SellerInvoicesRequest'
+            examples:
+              New:
+                value:
+                  $ref: 'examples\6.0.0\Seller\XML\InvoicesNew.xml'
+              Change:
+                value:
+                  $ref: 'examples\6.0.0\Seller\XML\InvoicesChange.xml'
+              Cancel:
+                value:
+                  $ref: 'examples\6.0.0\Seller\XML\InvoicesCancel.xml'
       responses:
         '200': #OK
           $ref: 'schemas/commonResponses.yaml#/components/responses/Success'
@@ -65,7 +78,9 @@ components:
       scheme: bearer
       bearerFormat: JWT
   schemas:
-    SellerInvoices:
+    SellerInvoicesRequest:
       oneOf:
         - $ref: './schemas/invoiceSchemas.yaml#/components/schemas/SellerInvoices'
         - $ref: './schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
+      xml:
+        name: SellerInvoicesRequest
