@@ -22,10 +22,6 @@ components:
         name:
           description: Buyer request reference name
           type: string
-        dueDate:
-          description: Due Date for seller to respond with Inventory Information
-          type: string
-          format: date
         mediaOutlets:
           description: Array of mediaOutlet objects being requested
           type: array
@@ -134,7 +130,7 @@ components:
         availWindow:
           $ref: 'commonSchemas.yaml#/components/schemas/DateWindow'
         salesElements:
-          description: Array of SalesElements  contained in the InventoryAvails
+          description: Array of SalesElements contained in the InventoryAvails
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/SalesElement'

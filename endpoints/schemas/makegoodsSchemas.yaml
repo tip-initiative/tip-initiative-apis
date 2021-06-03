@@ -204,7 +204,6 @@ components:
             negiotiations that may have been made outside of the framework
             Not Booked - indicates the unit has not been booked in the seller's system
             and waiting acceptance
-                          
             Booked -  indicates the unit has already been booked in the seller's system and
             is assumed confirmed booked
           type: string

@@ -4906,7 +4906,7 @@ components:
           type: string
           example: Daypart Average
         isPrimary:
-          description: True/False
+          description: True/False. This property is unique to TIP
           type: boolean
         isGuarantee:
           description: True/False
@@ -5172,12 +5172,15 @@ components:
         clientCode:
           description: Client code provided from the buyer
           type: string
+          example: 3LM
         productCode:
           description: Product code provided from the buyer
           type: string
+          example: AUTO
         estimateCode:
           description: Estimate code provided from the buyer
           type: string
+          example: AU-12345
     BillingOption:
       description: Billing and invoice information
       properties:
@@ -5449,6 +5452,14 @@ components:
             - Creative
             - Delivery Service
         contactIds:
+          description: Contact id
+          type: array
+          items:
+            $ref: '#/components/schemas/Identifier'
+          minItems: 1
+          nullable: false
+        organizationIds:
+          description: Organization id associated to the  contact
           type: array
           items:
             $ref: '#/components/schemas/Identifier'
@@ -6272,10 +6283,6 @@ components:
         name:
           description: Buyer request reference name
           type: string
-        dueDate:
-          description: Due Date for seller to respond with Inventory Information
-          type: string
-          format: date
         mediaOutlets:
           description: Array of mediaOutlet objects being requested
           type: array
@@ -6381,7 +6388,7 @@ components:
         availWindow:
           $ref: '#/components/schemas/DateWindow'
         salesElements:
-          description: Array of SalesElements  contained in the InventoryAvails
+          description: Array of SalesElements contained in the InventoryAvails
           type: array
           items:
             $ref: '#/components/schemas/SalesElement'
@@ -7725,10 +7732,7 @@ components:
           description: Free form text to accommodate transaction comments and/or activities outside the TIP flow
           type: string
         makegoodAssumedConfirm:
-          description: |-
-            Indicates the status of the makegood offers to communicate any buyer- buyer-seller negiotiations that may have been made outside of the framework Not Booked - indicates the unit has not been booked in the seller's system and waiting acceptance
-                          
-            Booked -  indicates the unit has already been booked in the seller's system and is assumed confirmed booked
+          description: Indicates the status of the makegood offers to communicate any buyer- buyer-seller negiotiations that may have been made outside of the framework Not Booked - indicates the unit has not been booked in the seller's system and waiting acceptance Booked -  indicates the unit has already been booked in the seller's system and is assumed confirmed booked
           type: string
           enum:
             - Booked
