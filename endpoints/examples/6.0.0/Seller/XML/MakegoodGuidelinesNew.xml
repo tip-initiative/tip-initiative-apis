@@ -1,23 +1,25 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<SellerMakegoodGuidelinesRequest>
+<?xml version="1.0" encoding="utf-8"?>
+<SellerMakegoodGuidelines xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://tip.schemas.org/v6.0.0">
 	<transactionHeader>
 		<tipVersion>6.0.0</tipVersion>
 		<transactionId>
-			<transactionId>1C237FDD-940D-499E-AA20-DF3B9CE0908E</transactionId>
+			<transactionId>1c237fdd-940d-499e-aa20-df3b9ce0908e</transactionId>
 			<transactionType>New</transactionType>
 			<sourceId>ABC-1234</sourceId>
 			<sourceName>TIPApi</sourceName>
 		</transactionId>
 		<timeStamp>2021-07-21T17:32:28Z</timeStamp>
 	</transactionHeader>
-	<dateSubmitted>2021-05-20</dateSubmitted>
-	<dueDate>2021-05-20</dueDate>
+	<dateSubmitted>2021-05-20T00:00:00</dateSubmitted>
+	<dueDate>2021-05-20T00:00:00</dueDate>
 	<mediaOutlet>
 		<mediaOutletIds>
-			<id>KHOU-TV</id>
-			<version>0</version>
-			<srcId>ABC-1234</srcId>
-			<srcName>TIPApi</srcName>
+			<identifier>
+				<id>KHOU-TV</id>
+				<version>0</version>
+				<srcId>ABC-1234</srcId>
+				<srcName>TIPApi</srcName>
+			</identifier>
 		</mediaOutletIds>
 		<mediaOutletName>MBLTV - My Best Local TV Station</mediaOutletName>
 		<mediaOutletType>Local TV</mediaOutletType>
@@ -25,12 +27,14 @@
 		<mediaOutletMarketName>Houston, TX</mediaOutletMarketName>
 	</mediaOutlet>
 	<referenceIds>
-		<referenceSourceName>KHOU-TV</referenceSourceName>
-		<referenceSourceId>ABC-1234</referenceSourceId>
-		<referenceType>Order</referenceType>
-		<referenceId>ORD-1234</referenceId>
-		<referenceVersionId>1</referenceVersionId>
-		<referenceName>Hyundai 1Q22</referenceName>
+		<referenceId>
+			<referenceSourceName>KHOU-TV</referenceSourceName>
+			<referenceSourceId>ABC-1234</referenceSourceId>
+			<referenceType>Order</referenceType>
+			<referenceId>ORD-1234</referenceId>
+			<referenceVersionId>1</referenceVersionId>
+			<referenceName>Hyundai 1Q22</referenceName>
+		</referenceId>
 	</referenceIds>
 	<cpeCode>
 		<clientCode>CLE-1234</clientCode>
@@ -39,21 +43,25 @@
 	</cpeCode>
 	<buyer>
 		<buyerIds>
-			<id>BUY-123</id>
-			<version>0</version>
-			<srcId>ABC-1234</srcId>
-			<srcName>TIPApi</srcName>
+			<identifier>
+				<id>BUY-123</id>
+				<version>0</version>
+				<srcId>ABC-1234</srcId>
+				<srcName>TIPApi</srcName>
+			</identifier>
 		</buyerIds>
 		<buyerName>Canvas Worldwide. LLC</buyerName>
 	</buyer>
 	<advertiser>
 		<advertiserIds>
-			<id>ADV-1234</id>
-			<version>0</version>
-			<srcId>ABC-1234</srcId>
-			<srcName>TIPApi</srcName>
+			<identifier>
+				<id>ADV-1234</id>
+				<version>0</version>
+				<srcId>ABC-1234</srcId>
+				<srcName>TIPApi</srcName>
+			</identifier>
 		</advertiserIds>
 		<advertiserName>Hyundai</advertiserName>
 	</advertiser>
-	<makegoodType>Resolve preemption</makegoodType>
-</SellerMakegoodGuidelinesRequest>
+	<makegoodType>ResolvePreemption</makegoodType>
+</SellerMakegoodGuidelines>

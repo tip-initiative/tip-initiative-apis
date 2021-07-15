@@ -34,6 +34,18 @@
     "buyerName": "Canvas Worldwide. LLC"
   },
   "commission": 15,
+  "advertiser": 
+    {
+      "advertiserIds": [
+        {
+          "id": "ADV-143",
+          "version": "0",
+          "srcId": "XBuy-1234",
+          "srcName": "XVEN Buyer"
+        }
+      ],
+      "advertiserName": "Hyundai"
+    },
   "contacts": [
     {
       "contactType": "Account Executive",
@@ -89,10 +101,10 @@
     }
   ],
   "marketPreferences": [
-    [
+    
       "Houston",
       "Austin"
-    ]
+    
   ],
   "audiencePreferences": [
     {
@@ -109,9 +121,9 @@
     }
   ],
   "targetingPreferences": [
-    [
+    
       "Auto Intenders"
-    ]
+    
   ],
   "frequencyPreferences": [
     {
@@ -121,10 +133,10 @@
     }
   ],
   "unitLengthPreferences": [
-    [
+    
       30,
       15
-    ]
+    
   ],
   "guidelines": [
     {

@@ -1,15 +1,15 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<SellerProposalsRequest>
+<?xml version="1.0" encoding="utf-8"?>
+<SellerProposals xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://tip.schemas.org/v6.0.0">
 	<transactionHeader>
 		<tipVersion>6.0.0</tipVersion>
 		<transactionId>
-			<transactionId>241993AE-9BB6-42B0-854D-9E7889D42904</transactionId>
+			<transactionId>241993ae-9bb6-42b0-854d-9e7889d42904</transactionId>
 			<transactionType>Change</transactionType>
 			<sourceId>ABC-1234</sourceId>
 			<sourceName>TIPApi</sourceName>
 		</transactionId>
 		<originalTransactionId>
-			<transactionId>1C237FDD-940D-499E-AA20-DF3B9CE0908E</transactionId>
+			<transactionId>1c237fdd-940d-499e-aa20-df3b9ce0908e</transactionId>
 			<transactionType>New</transactionType>
 			<sourceId>ABC-1234</sourceId>
 			<sourceName>TIPApi</sourceName>
@@ -17,67 +17,80 @@
 		<timeStamp>2021-07-22T17:32:28Z</timeStamp>
 	</transactionHeader>
 	<referenceIds>
-		<referenceSourceName>TIPApi</referenceSourceName>
-		<referenceSourceId>ABC-1234</referenceSourceId>
-		<referenceType>RFP</referenceType>
-		<referenceId>REF-1234</referenceId>
-		<referenceVersionId>0</referenceVersionId>
-		<referenceName>Hyundai 1Q22</referenceName>
+		<referenceId>
+			<referenceSourceName>TIPApi</referenceSourceName>
+			<referenceSourceId>ABC-1234</referenceSourceId>
+			<referenceType>RFP</referenceType>
+			<referenceId>REF-1234</referenceId>
+			<referenceVersionId>0</referenceVersionId>
+			<referenceName>Hyundai 1Q22</referenceName>
+		</referenceId>
+		<referenceId>
+			<referenceSourceName>KHOU-TV</referenceSourceName>
+			<referenceSourceId>KHOU-TV</referenceSourceId>
+			<referenceType>Proposal</referenceType>
+			<referenceId>PRP-1234</referenceId>
+			<referenceVersionId>1</referenceVersionId>
+			<referenceName>Hyundai 1Q22</referenceName>
+		</referenceId>
 	</referenceIds>
-	<referenceIds>
-		<referenceSourceName>KHOU-TV</referenceSourceName>
-		<referenceSourceId>KHOU-TV</referenceSourceId>
-		<referenceType>Proposal</referenceType>
-		<referenceId>PRP-1234</referenceId>
-		<referenceVersionId>1</referenceVersionId>
-		<referenceName>Hyundai 1Q22</referenceName>
-	</referenceIds>
-	<expirationDate>2021-06-30</expirationDate>
+	<expirationDate>2021-06-30T00:00:00</expirationDate>
 	<buyer>
 		<buyerIds>
-			<id>Buy-12345</id>
-			<version>0</version>
-			<srcId>KHOU-TV</srcId>
-			<srcName>KHOU-TV</srcName>
+			<identifier>
+				<id>Buy-12345</id>
+				<version>0</version>
+				<srcId>KHOU-TV</srcId>
+				<srcName>KHOU-TV</srcName>
+			</identifier>
 		</buyerIds>
 		<buyerName>Canvas Worldwide. LLC</buyerName>
 	</buyer>
 	<commission>10</commission>
 	<advertiser>
 		<advertiserIds>
-			<id>ADV-12345</id>
-			<version>0</version>
-			<srcId>KHOU-TV</srcId>
-			<srcName>KHOU-TV</srcName>
+			<identifier>
+				<id>ADV-12345</id>
+				<version>0</version>
+				<srcId>KHOU-TV</srcId>
+				<srcName>KHOU-TV</srcName>
+			</identifier>
 		</advertiserIds>
 		<advertiserName>Hyundai</advertiserName>
 	</advertiser>
 	<brand>
 		<brandIds>
-			<id>BRD-12345</id>
-			<version>0</version>
-			<srcId>KHOU-TV</srcId>
-			<srcName>KHOU-TV</srcName>
+			<identifier>
+				<id>BRD-12345</id>
+				<version>0</version>
+				<srcId>KHOU-TV</srcId>
+				<srcName>KHOU-TV</srcName>
+			</identifier>
 		</brandIds>
 		<brandName>Kona</brandName>
+		<brandReference i:nil="true" />
 	</brand>
 	<product>
 		<productIds>
-			<id>PRD-12345</id>
-			<version>0</version>
-			<srcId>KHOU-TV</srcId>
-			<srcName>KHOU-TV</srcName>
+			<identifier>
+				<id>PRD-12345</id>
+				<version>0</version>
+				<srcId>KHOU-TV</srcId>
+				<srcName>KHOU-TV</srcName>
+			</identifier>
 		</productIds>
 		<productName>Automobile</productName>
 	</product>
 	<budgets>
-		<budgetAmount>120000</budgetAmount>
-		<budgetAllocation>
-			<budgetType>DMA</budgetType>
-			<budgetName>Summer Compaign 2021</budgetName>
-			<budgetAmount>12000</budgetAmount>
-			<budgetSharePercent>10</budgetSharePercent>
-		</budgetAllocation>
+		<budget>
+			<budgetAmount>120000</budgetAmount>
+			<budgetAllocation>
+				<budgetType>DMA</budgetType>
+				<budgetName>Summer Compaign 2021</budgetName>
+				<budgetAmount>12000</budgetAmount>
+				<budgetSharePercent>10</budgetSharePercent>
+			</budgetAllocation>
+		</budget>
 	</budgets>
 	<cpeCode>
 		<clientCode>CLN-1234</clientCode>
@@ -85,19 +98,30 @@
 		<estimateCode>P123C456</estimateCode>
 	</cpeCode>
 	<contacts>
-		<contactType>Account Executive</contactType>
-		<contactIds>
-			<id>CNT-12345</id>
-			<version>0</version>
-			<srcId>KHOU-TV</srcId>
-			<srcName>KHOU-TV</srcName>
-		</contactIds>
-		<salesOffices>Dallas, TX</salesOffices>
-		<salesOffices>NYC, NY</salesOffices>
-		<contactFirstName>John</contactFirstName>
-		<contactLastName>Doe</contactLastName>
-		<email>user@example.com</email>
-		<effectiveDate>2021-05-21</effectiveDate>
+		<contact>
+			<contactType>AccountExecutive</contactType>
+			<contactIds>
+				<identifier>
+					<id>CNT-12345</id>
+					<version>0</version>
+					<srcId>KHOU-TV</srcId>
+					<srcName>KHOU-TV</srcName>
+				</identifier>
+			</contactIds>
+			<organizationIds i:nil="true" />
+			<salesOffices>
+				<item>Dallas, TX</item>
+				<item>NYC, NY</item>
+			</salesOffices>
+			<contactFirstName>John</contactFirstName>
+			<contactLastName>Doe</contactLastName>
+			<state i:nil="true" />
+			<postalCode i:nil="true" />
+			<country i:nil="true" />
+			<phoneNumber i:nil="true" />
+			<email>user@example.com</email>
+			<effectiveDate>2021-05-21T00:00:00</effectiveDate>
+		</contact>
 	</contacts>
 	<revenueType>Cash</revenueType>
 	<businessType>string</businessType>
@@ -110,140 +134,210 @@
 	</billingOption>
 	<isEquivalized>true</isEquivalized>
 	<dateWindows>
-		<startDate>2021-07-01</startDate>
-		<endDate>2021-09-21</endDate>
+		<dateWindow>
+			<startDate>2021-07-01T00:00:00</startDate>
+			<endDate>2021-09-21T00:00:00</endDate>
+		</dateWindow>
 	</dateWindows>
 	<cancellationTerms>
-		<cancellationType>Quarterly</cancellationType>
-		<cancellationPriorDays>14</cancellationPriorDays>
-		<cancellationPercentage>25</cancellationPercentage>
+		<cancellationTerm>
+			<cancellationType>Quarterly</cancellationType>
+			<cancellation i:nil="true" />
+			<cancellationPriorDays>14</cancellationPriorDays>
+			<cancellationPercentage>25</cancellationPercentage>
+		</cancellationTerm>
 	</cancellationTerms>
 	<timeSeparations>
-		<unitLength>30</unitLength>
-		<timeSeparation>900</timeSeparation>
+		<timeSeparation>
+			<timeSeparation>900</timeSeparation>
+			<unitLength>30</unitLength>
+		</timeSeparation>
 	</timeSeparations>
 	<termsOfSales>Terms Of Sales</termsOfSales>
 	<externalComment>This newer version addresses concernes presented during our negotiations.</externalComment>
 	<rateCard>
 		<rateCardId>1</rateCardId>
 		<rateCardName>1Q'22 Rate Card</rateCardName>
+		<currency>USD</currency>
 	</rateCard>
 	<currency>USD</currency>
 	<mediaOutlets>
-		<mediaOutletIds>
-			<id>KHOU-TV</id>
-			<version>0</version>
-			<srcId>KHOU-TV</srcId>
-			<srcName>KHOU-TV</srcName>
-		</mediaOutletIds>
-		<mediaOutletName>MBLTV - My Best Local TV Station</mediaOutletName>
-		<mediaOutletType>Local TV</mediaOutletType>
-		<mediaOutletChannel>KHOU-TV</mediaOutletChannel>
-		<mediaOutletMarketName>Houston, TX</mediaOutletMarketName>
+		<mediaOutlet>
+			<mediaOutletIds>
+				<identifier>
+					<id>KHOU-TV</id>
+					<version>0</version>
+					<srcId>KHOU-TV</srcId>
+					<srcName>KHOU-TV</srcName>
+				</identifier>
+			</mediaOutletIds>
+			<mediaOutletName>MBLTV - My Best Local TV Station</mediaOutletName>
+			<mediaOutletType>Local TV</mediaOutletType>
+			<mediaOutletChannel>KHOU-TV</mediaOutletChannel>
+			<mediaOutletMarketName>Houston, TX</mediaOutletMarketName>
+		</mediaOutlet>
 	</mediaOutlets>
 	<audienceSegments>
-		<mediaOutletIds>KHOU-TV</mediaOutletIds>
 		<audienceSegment>
-			<audienceSegmentIds>
-				<id>P18-49</id>
-				<version>0</version>
-				<srcId>KHOU-TV</srcId>
-				<srcName>KHOU-TV</srcName>
-			</audienceSegmentIds>
-			<audienceSegmentName>P18-49</audienceSegmentName>
-			<audienceMethodology>Daypart Average</audienceMethodology>
-			<isPrimary>true</isPrimary>
-			<isGuarantee>true</isGuarantee>
-			<ratingSource>Nielsen</ratingSource>
-			<ratingStream>Program Live</ratingStream>
+			<mediaOutletIds>
+				<identifier>
+					<id>KHOU-TV</id>
+					<version>0</version>
+					<srcId>KHOU-TV</srcId>
+					<srcName>KHOU-TV</srcName>
+				</identifier>
+			</mediaOutletIds>
+			<audienceSegment>
+				<audienceSegmentIds>
+					<identifier>
+						<id>P18-49</id>
+						<version>0</version>
+						<srcId>KHOU-TV</srcId>
+						<srcName>KHOU-TV</srcName>
+					</identifier>
+				</audienceSegmentIds>
+				<audienceSegmentName>P18-49</audienceSegmentName>
+				<audienceSegmentReference i:nil="true" />
+				<audienceMethodology>Daypart Average</audienceMethodology>
+				<isPrimary>true</isPrimary>
+				<isGuarantee>true</isGuarantee>
+				<ratingSource>Nielsen</ratingSource>
+				<ratingStream>ProgramLive</ratingStream>
+			</audienceSegment>
+			<universes>
+				<universe>
+					<universeType>Market</universeType>
+					<universeTypeValue>0</universeTypeValue>
+				</universe>
+			</universes>
 		</audienceSegment>
-		<universes>
-			<universeType>Market</universeType>
-			<universeTypeValue>0</universeTypeValue>
-		</universes>
 	</audienceSegments>
 	<salesElements>
-		<salesElementHeader>
-			<mediaOutletId>KHOU-TV</mediaOutletId>
-			<salesElementName>Primetime</salesElementName>
-			<salesElementId>SL-1234</salesElementId>
-			<salesElementType>Time-specific</salesElementType>
-		</salesElementHeader>
-		<timePeriods>
-			<DOW>
-				<isMonday>true</isMonday>
-				<isTuesday>true</isTuesday>
-				<isWednesday>true</isWednesday>
-				<isThursday>true</isThursday>
-				<isFriday>true</isFriday>
-				<isSaturday>true</isSaturday>
-				<isSunday>true</isSunday>
-			</DOW>
-			<timeWindow>
-				<startTime>07:00</startTime>
-				<endTime>11:00</endTime>
-			</timeWindow>
-		</timePeriods>
-		<devices>Smart TV</devices>
-		<programs>Mid Morning News</programs>
-		<salesElementTransactionInventorys>
-			<lineNum>1</lineNum>
-			<lineReference></lineReference>
-			<lineReferences>
-				<id>LN-1234</id>
-				<version>0</version>
-				<srcId>KHOU-TV</srcId>
-				<srcName>KHOU-TV</srcName>
-			</lineReferences>
-			<inventoryType>Commercial</inventoryType>
-			<inventoryPosition>First</inventoryPosition>
-			<inventoryLength>30</inventoryLength>
-			<salesElementTransactionDates>
-				<dateType>Day</dateType>
-				<calendarType>Broadcast</calendarType>
-				<unitCount>10</unitCount>
-				<dailyUnitDistribution>
-					<pacingRule>
-						<type>Frontload</type>
-						<rateType>Absolute</rateType>
-					</pacingRule>
-					<monday>2</monday>
-					<tuesday>2</tuesday>
-					<wednesday>2</wednesday>
-					<thursday>2</thursday>
-					<friday>2</friday>
-					<saturday>0</saturday>
-					<sunday>0</sunday>
-				</dailyUnitDistribution>
-				<frequencyCappings>
-					<period>Minute</period>
-					<perPeriod>0</perPeriod>
-					<value>0</value>
-				</frequencyCappings>
-				<pricingMetric>
-					<PricingMetricOption>CPM</PricingMetricOption>
-					<grossValue>0</grossValue>
-					<netValue>0</netValue>
-				</pricingMetric>
-				<grossCost>150</grossCost>
-				<netCost>127.5</netCost>
-				<audienceTargets>
-					<excludeOrInclude>Include</excludeOrInclude>
-					<audienceTargetIds />
-					<targetAttribute>HH Income</targetAttribute>
-					<value>$50,000 - $75,000</value>
-					<value>$75,000, -$100,000</value>
-				</audienceTargets>
-				<audiencesPricingMetrics>
-					<audienceSegmentIds />
-					<type>Selling</type>
-					<audienceMetric>
-						<audienceMetric>Impressions</audienceMetric>
-						<audienceMetricValue>43256</audienceMetricValue>
-					</audienceMetric>
-				</audiencesPricingMetrics>
-				<externalComment>string</externalComment>
-			</salesElementTransactionDates>
-		</salesElementTransactionInventorys>
+		<salesElement>
+			<devices>
+				<device>Smart TV</device>
+			</devices>
+			<programs>
+				<item>Mid Morning News</item>
+			</programs>
+			<salesElementHeader>
+				<mediaOutletId>KHOU-TV</mediaOutletId>
+				<salesElementId>SL-1234</salesElementId>
+				<salesElementName>Primetime</salesElementName>
+				<salesElementType>TimeSpecific</salesElementType>
+			</salesElementHeader>
+			<salesElementTransactionInventorys>
+				<salesElementTransactionInventory>
+					<companionTypeIds i:nil="true" />
+					<externalComment i:nil="true" />
+					<inventoryLength>30</inventoryLength>
+					<inventoryPosition>First</inventoryPosition>
+					<inventoryType>Commercial</inventoryType>
+					<isAdu i:nil="true" />
+					<isBonus i:nil="true" />
+					<lineNum>1</lineNum>
+					<lineReference></lineReference>
+					<lineReferences>
+						<identifier>
+							<id>LN-1234</id>
+							<version>0</version>
+							<srcId>KHOU-TV</srcId>
+							<srcName>KHOU-TV</srcName>
+						</identifier>
+					</lineReferences>
+					<linkType i:nil="true" />
+					<salesElementTransactionDates>
+						<salesElementTransactionDate>
+							<audienceTargets>
+								<audienceTarget>
+									<excludeOrInclude>Include</excludeOrInclude>
+									<audienceTargetIds>
+										<identifier i:nil="true" />
+									</audienceTargetIds>
+									<targetAttribute>HH Income</targetAttribute>
+									<value>
+										<item>$50,000 - $75,000</item>
+										<item>$75,000, -$100,000</item>
+									</value>
+								</audienceTarget>
+							</audienceTargets>
+							<audiencesPricingMetrics>
+								<audiencePricingMetric>
+									<audienceSegmentIds>
+										<identifier i:nil="true" />
+									</audienceSegmentIds>
+									<type>Selling</type>
+									<audienceMetric>
+										<audienceMetric>Impressions</audienceMetric>
+										<audienceMetricValue>43256</audienceMetricValue>
+									</audienceMetric>
+									<pricingMetric>
+										<PricingMetricOption>CPM</PricingMetricOption>
+										<grossValue>0</grossValue>
+										<netValue>0</netValue>
+									</pricingMetric>
+								</audiencePricingMetric>
+							</audiencesPricingMetrics>
+							<calendarType>Broadcast</calendarType>
+							<dailyUnitDistribution>
+								<pacingRule>
+									<type>Frontload</type>
+									<rateType>Absolute</rateType>
+								</pacingRule>
+								<monday>2</monday>
+								<tuesday>2</tuesday>
+								<wednesday>2</wednesday>
+								<thursday>2</thursday>
+								<friday>2</friday>
+								<saturday>0</saturday>
+								<sunday>0</sunday>
+							</dailyUnitDistribution>
+							<dateType>Day</dateType>
+							<dateWindow>
+								<startDate>2021-07-01T00:00:00</startDate>
+								<endDate>2021-09-21T00:00:00</endDate>
+							</dateWindow>
+							<externalComment>string</externalComment>
+							<frequencyCappings>
+								<frequencyCapping>
+									<period>Minute</period>
+									<perPeriod>0</perPeriod>
+									<value>0</value>
+								</frequencyCapping>
+							</frequencyCappings>
+							<grossCost>150</grossCost>
+							<netCost>127.5</netCost>
+							<pricingMetric>
+								<PricingMetricOption>CPM</PricingMetricOption>
+								<grossValue>0</grossValue>
+								<netValue>0</netValue>
+							</pricingMetric>
+							<unitCount>10</unitCount>
+						</salesElementTransactionDate>
+					</salesElementTransactionDates>
+				</salesElementTransactionInventory>
+			</salesElementTransactionInventorys>
+			<timePeriods>
+				<timePeriod>
+					<DOW>
+						<isMonday>true</isMonday>
+						<isTuesday>true</isTuesday>
+						<isWednesday>true</isWednesday>
+						<isThursday>true</isThursday>
+						<isFriday>true</isFriday>
+						<isSaturday>true</isSaturday>
+						<isSunday>true</isSunday>
+					</DOW>
+					<dateWindow>
+						<startDate>2021-07-01T00:00:00</startDate>
+						<endDate>2021-09-21T00:00:00</endDate>
+					</dateWindow>
+					<timeWindow>
+						<endTime>11:00</endTime>
+						<startTime>07:00</startTime>
+					</timeWindow>
+				</timePeriod>
+			</timePeriods>
+		</salesElement>
 	</salesElements>
-</SellerProposalsRequest>
+</SellerProposals>

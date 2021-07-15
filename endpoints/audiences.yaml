@@ -59,8 +59,10 @@ paths:
                 value:
                   $ref: './examples/6.0.0/Buyer/XML/AudiencesSubscriptionCancel.xml'
       responses:
-        '201': #Created
+        '200': #Success
           $ref: 'schemas/commonResponses.yaml#/components/responses/Success'
+        '201': #Created
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Created'
         '400': #Bad Request
           $ref: 'schemas/commonResponses.yaml#/components/responses/BadRequest'
         '401': #Unauthorized

@@ -2,7 +2,7 @@
   "transactionHeader": {
     "tipVersion": "6.0.0",
     "transactionId": {
-      "transactionId": "1FF605BA-86B0-420A-9166-DB7E12AEBA94",
+      "transactionId": "1C237FDD-940D-499E-AA20-DF3B9CE0908E",
       "transactionType": "Change",
       "sourceId": "ABC-1234",
       "sourceName": "TIPApi"
@@ -20,7 +20,7 @@
       "referenceSourceName": "KHOU-TV",
       "referenceSourceId": "ABC-1234",
       "referenceType": "Order",
-	  "referenceId": "REF-1234",
+      "referenceId": "REF-1234",
       "referenceVersionId": 1,
       "referenceName": "Hyundai 1Q22"
     }
@@ -53,8 +53,8 @@
               "isSunday": true
             },
             "timeWindow": {
-              "startTime": "string",
-              "endTime": "string"
+              "startTime": "09:00",
+              "endTime": "09:11"
             }
           }
         ],
@@ -94,6 +94,10 @@
               {
                 "dateType": "Day",
                 "calendarType": "Broadcast",
+            "dateWindow": {
+              "startDate": "2021-05-20",
+              "endDate": "2021-05-20"
+            },
                 "unitCount": 0,
                 "dailyUnitDistribution": {
                   "pacingRule": {
@@ -154,7 +158,12 @@
                     "audienceMetric": {
                       "audienceMetric": "Impressions",
                       "audienceMetricValue": 43256
-                    }
+                    },
+                "pricingMetric": {
+                  "PricingMetricOption": "CPM",
+                  "grossValue": 0,
+                  "netValue": 0
+                }                    
                   }
                 ],
                 "externalComment": "string"
@@ -172,6 +181,148 @@
   "makegoodDetails": [
     {
       "makegoodNum": 0,
+      "salesElement": {
+        "salesElementHeader": {
+          "mediaOutletId": "KHOU-TV",
+          "salesElementName": "Primetime",
+          "salesElementId": "SE-1234",
+          "salesElementType": "Time-specific"
+        },
+        "timePeriods": [
+          {
+            "dateWindow": {
+              "startDate": "2021-05-20",
+              "endDate": "2021-05-20"
+            },
+            "DOW": {
+              "isMonday": true,
+              "isTuesday": true,
+              "isWednesday": true,
+              "isThursday": true,
+              "isFriday": true,
+              "isSaturday": true,
+              "isSunday": true
+            },
+            "timeWindow": {
+              "startTime": "09:00",
+              "endTime": "09:11"
+            }
+          }
+        ],
+        "devices": [
+          "Smart TV"
+        ],
+        "programs": [
+          "Local News"
+        ],
+        "salesElementTransactionInventorys": [
+          {
+            "lineNum": "string",
+            "lineReference": "string",
+            "lineReferences": [
+              {
+                "id": "string",
+                "version": "string",
+                "srcId": "string",
+                "srcName": "string"
+              }
+            ],
+            "inventoryType": "string",
+            "companionTypeIds": [
+              "string"
+            ],
+            "linkType": {
+              "linkType": "Billboard",
+              "linkNum": 0,
+              "linkSeq": 0
+            },
+            "inventoryPosition": "First",
+            "inventoryLength": 0,
+            "isAdu": true,
+            "isBonus": true,
+            "externalComment": "string",
+            "salesElementTransactionDates": [
+              {
+                "dateType": "Day",
+                "calendarType": "Broadcast",
+            "dateWindow": {
+              "startDate": "2021-05-20",
+              "endDate": "2021-05-20"
+            },
+                "unitCount": 0,
+                "dailyUnitDistribution": {
+                  "pacingRule": {
+                    "type": "Frontload",
+                    "rateType": "Absolute"
+                  },
+                  "monday": 0,
+                  "tuesday": 0,
+                  "wednesday": 0,
+                  "thursday": 0,
+                  "friday": 0,
+                  "saturday": 0,
+                  "sunday": 0
+                },
+                "frequencyCappings": [
+                  {
+                    "period": "Minute",
+                    "perPeriod": 0,
+                    "value": 0
+                  }
+                ],
+                "pricingMetric": {
+                  "PricingMetricOption": "CPM",
+                  "grossValue": 0,
+                  "netValue": 0
+                },
+                "grossCost": 150,
+                "netCost": 127.5,
+                "audienceTargets": [
+                  {
+                    "excludeOrInclude": "Include",
+                    "audienceTargetIds": [
+                      {
+                        "id": "string",
+                        "version": "string",
+                        "srcId": "string",
+                        "srcName": "string"
+                      }
+                    ],
+                    "targetAttribute": "HH Income",
+                    "value": [
+                      "$50,000 - $75,000",
+                      "$75,000, -$100,000"
+                    ]
+                  }
+                ],
+                "audiencesPricingMetrics": [
+                  {
+                    "audienceSegmentIds": [
+                      {
+                        "id": "string",
+                        "version": "string",
+                        "srcId": "string",
+                        "srcName": "string"
+                      }
+                    ],
+                    "type": "Selling",
+                    "audienceMetric": {
+                      "audienceMetric": "Impressions",
+                      "audienceMetricValue": 43256
+                    },
+                "pricingMetric": {
+                  "PricingMetricOption": "CPM",
+                  "grossValue": 0,
+                  "netValue": 0
+                }                    
+                  }
+                ],
+                "externalComment": "string"
+              }
+            ]
+          }
+        ]
+      },
       "makegoodReason": "string",
       "makegoodAssumedConfirm": "Booked",
       "preemptNumLinks": [

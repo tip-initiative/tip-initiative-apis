@@ -102,6 +102,7 @@
       ]
     }
   ],
+  "isPolitical" : false,
   "inventoryTypes": [
     "Commercials", "Sponsorships"
   ],
@@ -134,10 +135,9 @@
     "every": "Month",
 	"onDay": [ "Mon" ],
     "onDate": [
-      [
         1
-      ]
-    ],
+    ]
+  },
 	  "stratDate": {
 		  "offsetType": "Week",
 		  "offset": 0
@@ -146,5 +146,5 @@
 		  "offsetType": "Week",
 		  "offset": 4
 	  }
-  }
+  
 }

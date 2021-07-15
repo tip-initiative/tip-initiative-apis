@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<SellerCommercialInstructionsRequest>
+<?xml version="1.0" encoding="utf-8"?>
+<CancelConfirmRecallReject xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://tip.schemas.org/v6.0.0">
 	<transactionHeader>
 		<tipVersion>6.0.0</tipVersion>
 		<transactionId>
@@ -9,21 +9,23 @@
 			<sourceName>Canvas Worldwide. LLC</sourceName>
 		</transactionId>
 		<originalTransactionId>
-			<transactionId>B906A0A9-19FA-4F06-B94D-22E4F1D9120C</transactionId>
+			<transactionId>b906a0a9-19fa-4f06-b94d-22e4f1d9120c</transactionId>
 			<transactionType>New</transactionType>
 			<sourceId>490</sourceId>
 			<sourceName>KHOU-TV</sourceName>
 		</originalTransactionId>
-		<timeStamp>2020-07-17T20:04:55.220Z</timeStamp>
+		<timeStamp>2020-07-17T20:04:55.22Z</timeStamp>
 	</transactionHeader>
 	<referenceIds>
-		<referenceSourceName>KHOU-TV</referenceSourceName>
-		<referenceSourceId>490</referenceSourceId>
-		<referenceSourceLookup></referenceSourceLookup>
-		<referenceType>Order</referenceType>
-		<referenceId>123456</referenceId>
-		<referenceVersionId></referenceVersionId>
-		<referenceName>Nissan July Sale</referenceName>
+		<referenceId>
+			<referenceSourceName>KHOU-TV</referenceSourceName>
+			<referenceSourceId>490</referenceSourceId>
+			<referenceSourceLookup></referenceSourceLookup>
+			<referenceType>Order</referenceType>
+			<referenceId>123456</referenceId>
+			<referenceVersionId></referenceVersionId>
+			<referenceName>Nissan July Sale</referenceName>
+		</referenceId>
 	</referenceIds>
 	<comments>Thanks for your efforts we decided to cancel</comments>
-</SellerCommercialInstructionsRequest>
+</CancelConfirmRecallReject>

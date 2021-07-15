@@ -1,15 +1,15 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<BuyerProposalsRequest>
+<?xml version="1.0" encoding="utf-8"?>
+<CancelConfirmRecallReject xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://tip.schemas.org/v6.0.0">
 	<transactionHeader>
 		<tipVersion>6.0.0</tipVersion>
 		<transactionId>
-			<transactionId>6C895361-97B0-43F0-976C-A4E77DDD78FD</transactionId>
+			<transactionId>6c895361-97b0-43f0-976c-a4e77ddd78fd</transactionId>
 			<transactionType>Recall</transactionType>
 			<sourceId>Buy-6789</sourceId>
 			<sourceName>TIP Buyer</sourceName>
 		</transactionId>
 		<originalTransactionId>
-			<transactionId>241993AE-9BB6-42B0-854D-9E7889D42904</transactionId>
+			<transactionId>241993ae-9bb6-42b0-854d-9e7889d42904</transactionId>
 			<transactionType>Change</transactionType>
 			<sourceId>Buy-6789</sourceId>
 			<sourceName>TIP Buyer</sourceName>
@@ -17,28 +17,30 @@
 		<timeStamp>2021-07-21T17:32:28Z</timeStamp>
 	</transactionHeader>
 	<referenceIds>
-		<referenceSourceName>TIPApi</referenceSourceName>
-		<referenceSourceId>ABC-1234</referenceSourceId>
-		<referenceType>RFP</referenceType>
-		<referenceId>REF-1234</referenceId>
-		<referenceVersionId>0</referenceVersionId>
-		<referenceName>Hyundai 1Q22</referenceName>
-	</referenceIds>
-	<referenceIds>
-		<referenceSourceName>KHOU-TV</referenceSourceName>
-		<referenceSourceId>KHOU-TV</referenceSourceId>
-		<referenceType>Proposal</referenceType>
-		<referenceId>PRP-1234</referenceId>
-		<referenceVersionId>1</referenceVersionId>
-		<referenceName>Hyundai 1Q22</referenceName>
-	</referenceIds>
-	<referenceIds>
-		<referenceSourceName>Buy-6789</referenceSourceName>
-		<referenceSourceId>TIP Buyer</referenceSourceId>
-		<referenceType>Proposal</referenceType>
-		<referenceId>PRP-56789</referenceId>
-		<referenceVersionId>2</referenceVersionId>
-		<referenceName>Hyundai 1Q22</referenceName>
+		<referenceId>
+			<referenceSourceName>TIPApi</referenceSourceName>
+			<referenceSourceId>ABC-1234</referenceSourceId>
+			<referenceType>RFP</referenceType>
+			<referenceId>REF-1234</referenceId>
+			<referenceVersionId>0</referenceVersionId>
+			<referenceName>Hyundai 1Q22</referenceName>
+		</referenceId>
+		<referenceId>
+			<referenceSourceName>KHOU-TV</referenceSourceName>
+			<referenceSourceId>KHOU-TV</referenceSourceId>
+			<referenceType>Proposal</referenceType>
+			<referenceId>PRP-1234</referenceId>
+			<referenceVersionId>1</referenceVersionId>
+			<referenceName>Hyundai 1Q22</referenceName>
+		</referenceId>
+		<referenceId>
+			<referenceSourceName>Buy-6789</referenceSourceName>
+			<referenceSourceId>TIP Buyer</referenceSourceId>
+			<referenceType>Proposal</referenceType>
+			<referenceId>PRP-56789</referenceId>
+			<referenceVersionId>2</referenceVersionId>
+			<referenceName>Hyundai 1Q22</referenceName>
+		</referenceId>
 	</referenceIds>
 	<comments>Please ignore previous Proposal changes indicated in version#2. newly updated ones are to follow.</comments>
-</BuyerProposalsRequest>
+</CancelConfirmRecallReject>

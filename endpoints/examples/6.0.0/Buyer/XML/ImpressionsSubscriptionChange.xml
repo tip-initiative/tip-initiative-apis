@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<BuyerImpressionsSubscriptionRequest>
+<?xml version="1.0" encoding="utf-8"?>
+<BuyerImpressionsSubscription xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://tip.schemas.org/v6.0.0">
 	<transactionHeader>
 		<tipVersion>6.0.0</tipVersion>
 		<transactionId>
-			<transactionId>BF7F7D82-1335-4C3B-ABD0-7545872A56DE</transactionId>
+			<transactionId>bf7f7d82-1335-4c3b-abd0-7545872a56de</transactionId>
 			<transactionType>Change</transactionType>
 			<sourceId>XBuy-1234</sourceId>
 			<sourceName>XVEN Buyer</sourceName>
@@ -14,34 +14,43 @@
 			<sourceId>XBuy-1234</sourceId>
 			<sourceName>XVEN Buyer</sourceName>
 		</originalTransactionId>
-		<timeStamp>2021-05-06T19:01:50.610Z</timeStamp>
+		<timeStamp>2021-05-06T19:01:50.61Z</timeStamp>
 	</transactionHeader>
 	<name>My Hourly Impression Subscription (All Orders) Include last  2 hours</name>
 	<mediaOutlets>
-		<mediaOutletIds>
-			<id>KAAB-TV</id>
-			<version>0</version>
-			<srcId>KAAB-TV</srcId>
-			<srcName>KAAB-TV</srcName>
-		</mediaOutletIds>
-		<mediaOutletName>KAAB-TV</mediaOutletName>
-		<mediaOutletType>Local TV</mediaOutletType>
-		<mediaOutletChannel>12.1</mediaOutletChannel>
-		<mediaOutletMarketName>Houston, TX</mediaOutletMarketName>
+		<mediaOutlet>
+			<mediaOutletIds>
+				<identifier>
+					<id>KAAB-TV</id>
+					<version>0</version>
+					<srcId>KAAB-TV</srcId>
+					<srcName>KAAB-TV</srcName>
+				</identifier>
+			</mediaOutletIds>
+			<mediaOutletName>KAAB-TV</mediaOutletName>
+			<mediaOutletType>Local TV</mediaOutletType>
+			<mediaOutletChannel>12.1</mediaOutletChannel>
+			<mediaOutletMarketName>Houston, TX</mediaOutletMarketName>
+		</mediaOutlet>
 	</mediaOutlets>
+	<salesElementHeaders i:nil="true" />
+	<referenceIds i:nil="true" />
 	<frequency>
-		<effectiveOn>2020-08-12T00:00:00.000Z</effectiveOn>
+		<effectiveOn>2020-08-12T00:00:00Z</effectiveOn>
 		<every>Hour</every>
+		<onDate i:nil="true" />
 		<isEndNever>true</isEndNever>
+		<endOn i:nil="true" />
+		<endOccurAfter i:nil="true" />
 	</frequency>
-	<startDate>
+	<startDate i:type="DynamicDate">
 		<offsetType>Hour</offsetType>
 		<offset>-2</offset>
 	</startDate>
-	<endDate>
+	<endDate i:type="DynamicDate">
 		<offsetType>Hour</offsetType>
 		<offset>0</offset>
 	</endDate>
 	<statSource>Google DFP</statSource>
 	<maxChunkSize>100</maxChunkSize>
-</BuyerImpressionsSubscriptionRequest>
+</BuyerImpressionsSubscription>

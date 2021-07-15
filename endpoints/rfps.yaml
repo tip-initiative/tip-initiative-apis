@@ -54,7 +54,9 @@ paths:
                 value:
                   $ref: 'examples\6.0.0\Buyer\XML\RFPSCancel.xml'
       responses:
-        '202': #OK
+        '200': #OK
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Success'
+        '202': #Accepted
           $ref: 'schemas/commonResponses.yaml#/components/responses/Accepted'
         '400': #Bad Request
           $ref: 'schemas/commonResponses.yaml#/components/responses/BadRequest'

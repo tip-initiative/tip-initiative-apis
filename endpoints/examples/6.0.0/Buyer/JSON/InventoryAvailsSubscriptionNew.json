@@ -51,15 +51,18 @@
   "contacts": [
     {
       "contactType": "Account Executive",
-	  "contactIds": [
-		{
-        "id": "CNT-1234",
-        "version": "0",
-        "srcId": "XVEN-1234",
-        "srcName": "XVEN Buyer"			
-		}
-    ],
-	  "salesOffices": ["Dallas, TX", "NYC, NY"],
+      "contactIds": [
+        {
+          "id": "CNT-1234",
+          "version": "0",
+          "srcId": "XVEN-1234",
+          "srcName": "XVEN Buyer"
+        }
+      ],
+      "salesOffices": [
+        "Dallas, TX",
+        "NYC, NY"
+      ],
       "contactFirstName": "John",
       "contactLastName": "Doe",
       "addressLine1": "1234 N. Main Street",
@@ -96,8 +99,10 @@
       ]
     }
   ],
+  "isPolitical": false,
   "inventoryTypes": [
-    "Commercials", "Sponsorships"
+    "Commercials",
+    "Sponsorships"
   ],
   "currency": "USD",
   "externalComment": "string",
@@ -127,16 +132,16 @@
     "effectiveOn": "2020-08-12T00:00:00.000Z",
     "every": "Month",
     "onDate": [
-        1,
-        15
-    ],
-	  "stratDate": {
-		  "offsetType": "Week",
-		  "offset": 0
-	  },
-	  "endDate": {
-		  "offsetType": "Week",
-		  "offset": 4
-	  }
-  }
+      1,
+      15
+    ]
+  },
+    "stratDate": {
+      "offsetType": "Week",
+      "offset": 0
+    },
+    "endDate": {
+      "offsetType": "Week",
+      "offset": 4
+    }
 }

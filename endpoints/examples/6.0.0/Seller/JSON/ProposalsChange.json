@@ -171,8 +171,13 @@
   "audienceSegments": [
     {
       "mediaOutletIds": [
-        "KHOU-TV"
-      ],
+        {
+          "id": "KHOU-TV",
+          "version": "0",
+          "srcId": "KHOU-TV",
+          "srcName": "KHOU-TV"
+        }
+        ],
       "audienceSegment": {
         "audienceSegmentIds": [
 			{
@@ -216,6 +221,10 @@
             "isSaturday": true,
             "isSunday": true
           },
+          "dateWindow":    {
+            "startDate": "2021-07-01",
+            "endDate": "2021-09-21"
+          },      
           "timeWindow": {
             "startTime": "07:00",
             "endTime": "11:00"
@@ -247,6 +256,10 @@
             {
               "dateType": "Day",
               "calendarType": "Broadcast",
+              "dateWindow":    {
+                "startDate": "2021-07-01",
+                "endDate": "2021-09-21"
+              },          
               "unitCount": 10,
               "dailyUnitDistribution": {
                 "pacingRule": {
@@ -297,7 +310,12 @@
                   "audienceMetric": {
                     "audienceMetric": "Impressions",
                     "audienceMetricValue": 43256
-                  }
+                  },
+                  "pricingMetric": {
+                    "PricingMetricOption": "CPM",
+                    "grossValue": 0,
+                    "netValue": 0
+                  }    
                 }
               ],
               "externalComment": "string"
