@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<SellerInvoicesRequest>
+<SellerInvoices>
 	<transactionHeader>
 		<tipVersion>6.0.0</tipVersion>
 		<transactionId>
@@ -33,4 +33,4 @@
 		<referenceName>Hyundai 1Q22</referenceName>
 	</referenceIds>
 	<comments>Thank you Very much; good to do business with you :)</comments>
-</SellerInvoicesRequest>
+</SellerInvoices>

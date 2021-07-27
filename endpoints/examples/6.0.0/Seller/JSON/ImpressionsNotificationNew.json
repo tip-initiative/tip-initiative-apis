@@ -1,0 +1,70 @@
+{
+    "transactionHeader": {
+      "tipVersion": "6.0.0",
+      "transactionId": {
+        "transactionId": "1c237fdd-940d-499e-aa20-df3b9ce0908e",
+        "transactionType": "New",
+        "sourceId": "ABC-1234",
+        "sourceName": "TIPApi"
+      },
+      "timeStamp": "2021-07-21T17:32:28Z"
+    },
+    "mediaOutlets": [
+      {
+        "mediaOutletIds": [
+          {
+            "id": "string",
+            "version": "string",
+            "srcId": "string",
+            "srcName": "string"
+          }
+        ],
+        "mediaOutletName": "MBLTV - My Best Local TV Station",
+        "mediaOutletType": "Local TV",
+        "mediaOutletChannel": "KHOU-TV",
+        "mediaOutletMarketName": "Houston, TX",
+        "mediaOutletReference": "string"
+      }
+    ],
+    "salesElementHeaders": [
+      {
+        "mediaOutletId": "string",
+        "salesElementName": "Primetime",
+        "salesElementId": "string",
+        "salesElementType": "Time-specific"
+      }
+    ],
+    "referenceIds": [
+      {
+        "referenceSourceName": "KHOU-TV",
+        "referenceSourceId": "string",
+        "referenceSourceLookup": "string",
+        "referenceType": "RFP",
+        "referenceId": "REF-1234",
+        "referenceVersionId": "1",
+        "referenceName": "Hyundai 1Q22"
+      }
+    ],
+    "creatives": [
+      {
+        "ids": [
+          {
+            "id": "string",
+            "version": "string",
+            "srcId": "string",
+            "srcName": "string"
+          }
+        ],
+        "name": "string",
+        "status": "Not Final",
+        "length": 0
+      }
+    ],
+    "reportDate": {
+      "startDate": "2021-07-14",
+      "endDate": "2021-07-14"
+    },
+    "statSource": "internal",
+    "filePrefix": "ORD-0009123",
+    "chunks": 10
+  }

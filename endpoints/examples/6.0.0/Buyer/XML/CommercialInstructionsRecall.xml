@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<BuyerCommercialInstructionsRequest>
+<?xml version="1.0" encoding="utf-8"?>
+<BuyerCommercialInstructions xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://tip.schemas.org/v6.0.0">
 	<transactionHeader>
 		<tipVersion>6.0.0</tipVersion>
 		<transactionId>
-			<transactionId>0E300E0A-17AA-420C-92C6-D7C795256CB0</transactionId>
+			<transactionId>0e300e0a-17aa-420c-92c6-d7c795256cb0</transactionId>
 			<transactionType>Recall</transactionType>
 			<sourceId>490</sourceId>
 			<sourceName>KHOU-TV</sourceName>
@@ -14,16 +14,18 @@
 			<sourceId>490</sourceId>
 			<sourceName>KHOU-TV</sourceName>
 		</originalTransactionId>
-		<timeStamp>2020-07-17T20:04:55.220Z</timeStamp>
+		<timeStamp>2020-07-17T20:04:55.22Z</timeStamp>
 	</transactionHeader>
 	<referenceIds>
-		<referenceSourceName>KUOU-TV</referenceSourceName>
-		<referenceSourceId>490</referenceSourceId>
-		<referenceSourceLookup></referenceSourceLookup>
-		<referenceType>Order</referenceType>
-		<referenceId>123456</referenceId>
-		<referenceVersionId></referenceVersionId>
-		<referenceName>string</referenceName>
+		<referenceId>
+			<referenceSourceName>KUOU-TV</referenceSourceName>
+			<referenceSourceId>490</referenceSourceId>
+			<referenceSourceLookup></referenceSourceLookup>
+			<referenceType>Order</referenceType>
+			<referenceId>123456</referenceId>
+			<referenceVersionId></referenceVersionId>
+			<referenceName>string</referenceName>
+		</referenceId>
 	</referenceIds>
 	<comments>Sample comment from message originator</comments>
-</BuyerCommercialInstructionsRequest>
+</BuyerCommercialInstructions>

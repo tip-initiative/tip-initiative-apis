@@ -1,15 +1,15 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<BuyerRFPSRequest>
+<?xml version="1.0" encoding="utf-8"?>
+<BuyerRFPS xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://tip.schemas.org/v6.0.0">
 	<transactionHeader>
 		<tipVersion>6.0.0</tipVersion>
 		<transactionId>
-			<transactionId>6C895361-97B0-43F0-976C-A4E77DDD78FD</transactionId>
+			<transactionId>6c895361-97b0-43f0-976c-a4e77ddd78fd</transactionId>
 			<transactionType>Cancel</transactionType>
 			<sourceId>ABC-1234</sourceId>
 			<sourceName>TIPApi</sourceName>
 		</transactionId>
 		<originalTransactionId>
-			<transactionId>1C237FDD-940D-499E-AA20-DF3B9CE0908E</transactionId>
+			<transactionId>1c237fdd-940d-499e-aa20-df3b9ce0908e</transactionId>
 			<transactionType>New</transactionType>
 			<sourceId>ABC-1234</sourceId>
 			<sourceName>TIPApi</sourceName>
@@ -17,12 +17,14 @@
 		<timeStamp>2021-07-21T17:32:28Z</timeStamp>
 	</transactionHeader>
 	<referenceIds>
-		<referenceSourceName>KHOU-TV</referenceSourceName>
-		<referenceSourceId>ABC-1234</referenceSourceId>
-		<referenceType>RFP</referenceType>
-		<referenceId>RFP-1234</referenceId>
-		<referenceVersionId>1</referenceVersionId>
-		<referenceName>Hyundai 1Q22</referenceName>
+		<referenceId>
+			<referenceSourceName>KHOU-TV</referenceSourceName>
+			<referenceSourceId>ABC-1234</referenceSourceId>
+			<referenceType>RFP</referenceType>
+			<referenceId>RFP-1234</referenceId>
+			<referenceVersionId>1</referenceVersionId>
+			<referenceName>Hyundai 1Q22</referenceName>
+		</referenceId>
 	</referenceIds>
 	<comments>We decide to pull this RFP. Thanks for your understanding.</comments>
-</BuyerRFPSRequest>
+</BuyerRFPS>

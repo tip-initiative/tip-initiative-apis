@@ -1,29 +1,31 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<BuyerImpressionsSubscriptionRequest>
+<?xml version="1.0" encoding="utf-8"?>
+<BuyerImpressionsSubscription xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://tip.schemas.org/v6.0.0">
 	<transactionHeader>
 		<tipVersion>6.0.0</tipVersion>
 		<transactionId>
-			<transactionId>BF7F7D82-1335-4C3B-ABD0-7545872A56DE</transactionId>
+			<transactionId>bf7f7d82-1335-4c3b-abd0-7545872a56de</transactionId>
 			<transactionType>Cancel</transactionType>
 			<sourceId>XBuy-1234</sourceId>
 			<sourceName>XVEN Buyer</sourceName>
 		</transactionId>
 		<originalTransactionId>
-			<transactionId>BF7F7D82-1335-4C3B-ABD0-7545872A56DE</transactionId>
+			<transactionId>bf7f7d82-1335-4c3b-abd0-7545872a56de</transactionId>
 			<transactionType>Change</transactionType>
 			<sourceId>XBuy-1234</sourceId>
 			<sourceName>XVEN Buyer</sourceName>
 		</originalTransactionId>
-		<timeStamp>2021-05-06T19:01:50.610Z</timeStamp>
+		<timeStamp>2021-05-06T19:01:50.61Z</timeStamp>
 	</transactionHeader>
 	<referenceIds>
-		<referenceSourceName>KUOU-TV</referenceSourceName>
-		<referenceSourceId>490</referenceSourceId>
-		<referenceSourceLookup></referenceSourceLookup>
-		<referenceType>Subscription</referenceType>
-		<referenceId>BF7F7D82-1335-4C3B-ABD0-7545872A56DE</referenceId>
-		<referenceVersionId></referenceVersionId>
-		<referenceName>string</referenceName>
+		<referenceId>
+			<referenceSourceName>KUOU-TV</referenceSourceName>
+			<referenceSourceId>490</referenceSourceId>
+			<referenceSourceLookup></referenceSourceLookup>
+			<referenceType>Subscription</referenceType>
+			<referenceId>BF7F7D82-1335-4C3B-ABD0-7545872A56DE</referenceId>
+			<referenceVersionId></referenceVersionId>
+			<referenceName>string</referenceName>
+		</referenceId>
 	</referenceIds>
 	<comments>Sample comment from message originator</comments>
-</BuyerImpressionsSubscriptionRequest>
+</BuyerImpressionsSubscription>

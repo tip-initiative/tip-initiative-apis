@@ -1,15 +1,15 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<SellerMakegoodOffersRequest>
+<?xml version="1.0" encoding="utf-8"?>
+<SellerMakegoodOffers xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://tip.schemas.org/v6.0.0">
 	<transactionHeader>
 		<tipVersion>6.0.0</tipVersion>
 		<transactionId>
-			<transactionId>1FF605BA-86B0-420A-9166-DB7E12AEBA94</transactionId>
+			<transactionId>1c237fdd-940d-499e-aa20-df3b9ce0908e</transactionId>
 			<transactionType>Change</transactionType>
 			<sourceId>ABC-1234</sourceId>
 			<sourceName>TIPApi</sourceName>
 		</transactionId>
 		<originalTransactionId>
-			<transactionId>1C237FDD-940D-499E-AA20-DF3B9CE0908E</transactionId>
+			<transactionId>1c237fdd-940d-499e-aa20-df3b9ce0908e</transactionId>
 			<transactionType>New</transactionType>
 			<sourceId>ABC-1234</sourceId>
 			<sourceName>TIPApi</sourceName>
@@ -17,131 +17,318 @@
 		<timeStamp>2021-07-21T17:32:28Z</timeStamp>
 	</transactionHeader>
 	<referenceIds>
-		<referenceSourceName>KHOU-TV</referenceSourceName>
-		<referenceSourceId>ABC-1234</referenceSourceId>
-		<referenceType>Order</referenceType>
-		<referenceId>REF-1234</referenceId>
-		<referenceVersionId>1</referenceVersionId>
-		<referenceName>Hyundai 1Q22</referenceName>
+		<referenceId>
+			<referenceSourceName>KHOU-TV</referenceSourceName>
+			<referenceSourceId>ABC-1234</referenceSourceId>
+			<referenceType>Order</referenceType>
+			<referenceId>REF-1234</referenceId>
+			<referenceVersionId>1</referenceVersionId>
+			<referenceName>Hyundai 1Q22</referenceName>
+		</referenceId>
 	</referenceIds>
-	<makegoodType>Resolve preemption</makegoodType>
+	<makegoodType>ResolvePreemption</makegoodType>
 	<externalComment>Due to technical difficulties we have to preempt your spot</externalComment>
 	<preemptDetails>
-		<preemptNum>string</preemptNum>
-		<salesElement>
-			<salesElementHeader>
-				<mediaOutletId>KHOU-TV</mediaOutletId>
-				<salesElementName>Primetime</salesElementName>
-				<salesElementId>SE-1234</salesElementId>
-				<salesElementType>Time-specific</salesElementType>
-			</salesElementHeader>
-			<timePeriods>
-				<dateWindow>
-					<startDate>2021-05-20</startDate>
-					<endDate>2021-05-20</endDate>
-				</dateWindow>
-				<DOW>
-					<isMonday>true</isMonday>
-					<isTuesday>true</isTuesday>
-					<isWednesday>true</isWednesday>
-					<isThursday>true</isThursday>
-					<isFriday>true</isFriday>
-					<isSaturday>true</isSaturday>
-					<isSunday>true</isSunday>
-				</DOW>
-				<timeWindow>
-					<startTime>string</startTime>
-					<endTime>string</endTime>
-				</timeWindow>
-			</timePeriods>
-			<devices>Smart TV</devices>
-			<programs>Local News</programs>
-			<salesElementTransactionInventorys>
-				<lineNum>string</lineNum>
-				<lineReference>string</lineReference>
-				<lineReferences>
-					<id>string</id>
-					<version>string</version>
-					<srcId>string</srcId>
-					<srcName>string</srcName>
-				</lineReferences>
-				<inventoryType>string</inventoryType>
-				<companionTypeIds>string</companionTypeIds>
-				<linkType>
-					<linkType>Billboard</linkType>
-					<linkNum>0</linkNum>
-					<linkSeq>0</linkSeq>
-				</linkType>
-				<inventoryPosition>First</inventoryPosition>
-				<inventoryLength>0</inventoryLength>
-				<isAdu>true</isAdu>
-				<isBonus>true</isBonus>
-				<externalComment>string</externalComment>
-				<salesElementTransactionDates>
-					<dateType>Day</dateType>
-					<calendarType>Broadcast</calendarType>
-					<unitCount>0</unitCount>
-					<dailyUnitDistribution>
-						<pacingRule>
-							<type>Frontload</type>
-							<rateType>Absolute</rateType>
-						</pacingRule>
-						<monday>0</monday>
-						<tuesday>0</tuesday>
-						<wednesday>0</wednesday>
-						<thursday>0</thursday>
-						<friday>0</friday>
-						<saturday>0</saturday>
-						<sunday>0</sunday>
-					</dailyUnitDistribution>
-					<frequencyCappings>
-						<period>Minute</period>
-						<perPeriod>0</perPeriod>
-						<value>0</value>
-					</frequencyCappings>
-					<pricingMetric>
-						<PricingMetricOption>CPM</PricingMetricOption>
-						<grossValue>0</grossValue>
-						<netValue>0</netValue>
-					</pricingMetric>
-					<grossCost>150</grossCost>
-					<netCost>127.5</netCost>
-					<audienceTargets>
-						<excludeOrInclude>Include</excludeOrInclude>
-						<audienceTargetIds>
-							<id>string</id>
-							<version>string</version>
-							<srcId>string</srcId>
-							<srcName>string</srcName>
-						</audienceTargetIds>
-						<targetAttribute>HH Income</targetAttribute>
-						<value>$50,000 - $75,000</value>
-						<value>$75,000, -$100,000</value>
-					</audienceTargets>
-					<audiencesPricingMetrics>
-						<audienceSegmentIds>
-							<id>string</id>
-							<version>string</version>
-							<srcId>string</srcId>
-							<srcName>string</srcName>
-						</audienceSegmentIds>
-						<type>Selling</type>
-						<audienceMetric>
-							<audienceMetric>Impressions</audienceMetric>
-							<audienceMetricValue>43256</audienceMetricValue>
-						</audienceMetric>
-					</audiencesPricingMetrics>
-					<externalComment>string</externalComment>
-				</salesElementTransactionDates>
-			</salesElementTransactionInventorys>
-		</salesElement>
-		<preemptReason>Cancellation due to technical Problems</preemptReason>
-		<makegoodNumLinks>0</makegoodNumLinks>
+		<PreemptDetail>
+			<preemptNum>string</preemptNum>
+			<salesElement>
+				<devices>
+					<device>Smart TV</device>
+				</devices>
+				<programs>
+					<item>Local News</item>
+				</programs>
+				<salesElementHeader>
+					<mediaOutletId>KHOU-TV</mediaOutletId>
+					<salesElementId>SE-1234</salesElementId>
+					<salesElementName>Primetime</salesElementName>
+					<salesElementType>TimeSpecific</salesElementType>
+				</salesElementHeader>
+				<salesElementTransactionInventorys>
+					<salesElementTransactionInventory>
+						<companionTypeIds>
+							<item>string</item>
+						</companionTypeIds>
+						<externalComment>string</externalComment>
+						<inventoryLength>0</inventoryLength>
+						<inventoryPosition>First</inventoryPosition>
+						<inventoryType>string</inventoryType>
+						<isAdu>true</isAdu>
+						<isBonus>true</isBonus>
+						<lineNum>string</lineNum>
+						<lineReference>string</lineReference>
+						<lineReferences>
+							<identifier>
+								<id>string</id>
+								<version>string</version>
+								<srcId>string</srcId>
+								<srcName>string</srcName>
+							</identifier>
+						</lineReferences>
+						<linkType>
+							<linkType>Billboard</linkType>
+							<linkNum>0</linkNum>
+							<linkSeq>0</linkSeq>
+						</linkType>
+						<salesElementTransactionDates>
+							<salesElementTransactionDate>
+								<audienceTargets>
+									<audienceTarget>
+										<excludeOrInclude>Include</excludeOrInclude>
+										<audienceTargetIds>
+											<identifier>
+												<id>string</id>
+												<version>string</version>
+												<srcId>string</srcId>
+												<srcName>string</srcName>
+											</identifier>
+										</audienceTargetIds>
+										<targetAttribute>HH Income</targetAttribute>
+										<value>
+											<item>$50,000 - $75,000</item>
+											<item>$75,000, -$100,000</item>
+										</value>
+									</audienceTarget>
+								</audienceTargets>
+								<audiencesPricingMetrics>
+									<audiencePricingMetric>
+										<audienceSegmentIds>
+											<identifier>
+												<id>string</id>
+												<version>string</version>
+												<srcId>string</srcId>
+												<srcName>string</srcName>
+											</identifier>
+										</audienceSegmentIds>
+										<type>Selling</type>
+										<audienceMetric>
+											<audienceMetric>Impressions</audienceMetric>
+											<audienceMetricValue>43256</audienceMetricValue>
+										</audienceMetric>
+										<pricingMetric>
+											<PricingMetricOption>CPM</PricingMetricOption>
+											<grossValue>0</grossValue>
+											<netValue>0</netValue>
+										</pricingMetric>
+									</audiencePricingMetric>
+								</audiencesPricingMetrics>
+								<calendarType>Broadcast</calendarType>
+								<dailyUnitDistribution>
+									<pacingRule>
+										<type>Frontload</type>
+										<rateType>Absolute</rateType>
+									</pacingRule>
+									<monday>0</monday>
+									<tuesday>0</tuesday>
+									<wednesday>0</wednesday>
+									<thursday>0</thursday>
+									<friday>0</friday>
+									<saturday>0</saturday>
+									<sunday>0</sunday>
+								</dailyUnitDistribution>
+								<dateType>Day</dateType>
+								<dateWindow>
+									<startDate>2021-05-20T00:00:00</startDate>
+									<endDate>2021-05-20T00:00:00</endDate>
+								</dateWindow>
+								<externalComment>string</externalComment>
+								<frequencyCappings>
+									<frequencyCapping>
+										<period>Minute</period>
+										<perPeriod>0</perPeriod>
+										<value>0</value>
+									</frequencyCapping>
+								</frequencyCappings>
+								<grossCost>150</grossCost>
+								<netCost>127.5</netCost>
+								<pricingMetric>
+									<PricingMetricOption>CPM</PricingMetricOption>
+									<grossValue>0</grossValue>
+									<netValue>0</netValue>
+								</pricingMetric>
+								<unitCount>0</unitCount>
+							</salesElementTransactionDate>
+						</salesElementTransactionDates>
+					</salesElementTransactionInventory>
+				</salesElementTransactionInventorys>
+				<timePeriods>
+					<timePeriod>
+						<DOW>
+							<isMonday>true</isMonday>
+							<isTuesday>true</isTuesday>
+							<isWednesday>true</isWednesday>
+							<isThursday>true</isThursday>
+							<isFriday>true</isFriday>
+							<isSaturday>true</isSaturday>
+							<isSunday>true</isSunday>
+						</DOW>
+						<dateWindow>
+							<startDate>2021-05-20T00:00:00</startDate>
+							<endDate>2021-05-20T00:00:00</endDate>
+						</dateWindow>
+						<timeWindow>
+							<endTime>09:11</endTime>
+							<startTime>09:00</startTime>
+						</timeWindow>
+					</timePeriod>
+				</timePeriods>
+			</salesElement>
+			<preemptReason>Cancellation due to technical Problems</preemptReason>
+			<makegoodNumLinks>
+				<item>0</item>
+			</makegoodNumLinks>
+		</PreemptDetail>
 	</preemptDetails>
 	<makegoodDetails>
-		<makegoodNum>0</makegoodNum>
-		<makegoodReason>string</makegoodReason>
-		<makegoodAssumedConfirm>Booked</makegoodAssumedConfirm>
-		<preemptNumLinks>0</preemptNumLinks>
+		<MakegoodOfferDetail>
+			<makegoodNum>0</makegoodNum>
+			<preemptNumLinks>
+				<item>0</item>
+			</preemptNumLinks>
+			<salesElement>
+				<devices>
+					<device>Smart TV</device>
+				</devices>
+				<programs>
+					<item>Local News</item>
+				</programs>
+				<salesElementHeader>
+					<mediaOutletId>KHOU-TV</mediaOutletId>
+					<salesElementId>SE-1234</salesElementId>
+					<salesElementName>Primetime</salesElementName>
+					<salesElementType>TimeSpecific</salesElementType>
+				</salesElementHeader>
+				<salesElementTransactionInventorys>
+					<salesElementTransactionInventory>
+						<companionTypeIds>
+							<item>string</item>
+						</companionTypeIds>
+						<externalComment>string</externalComment>
+						<inventoryLength>0</inventoryLength>
+						<inventoryPosition>First</inventoryPosition>
+						<inventoryType>string</inventoryType>
+						<isAdu>true</isAdu>
+						<isBonus>true</isBonus>
+						<lineNum>string</lineNum>
+						<lineReference>string</lineReference>
+						<lineReferences>
+							<identifier>
+								<id>string</id>
+								<version>string</version>
+								<srcId>string</srcId>
+								<srcName>string</srcName>
+							</identifier>
+						</lineReferences>
+						<linkType>
+							<linkType>Billboard</linkType>
+							<linkNum>0</linkNum>
+							<linkSeq>0</linkSeq>
+						</linkType>
+						<salesElementTransactionDates>
+							<salesElementTransactionDate>
+								<audienceTargets>
+									<audienceTarget>
+										<excludeOrInclude>Include</excludeOrInclude>
+										<audienceTargetIds>
+											<identifier>
+												<id>string</id>
+												<version>string</version>
+												<srcId>string</srcId>
+												<srcName>string</srcName>
+											</identifier>
+										</audienceTargetIds>
+										<targetAttribute>HH Income</targetAttribute>
+										<value>
+											<item>$50,000 - $75,000</item>
+											<item>$75,000, -$100,000</item>
+										</value>
+									</audienceTarget>
+								</audienceTargets>
+								<audiencesPricingMetrics>
+									<audiencePricingMetric>
+										<audienceSegmentIds>
+											<identifier>
+												<id>string</id>
+												<version>string</version>
+												<srcId>string</srcId>
+												<srcName>string</srcName>
+											</identifier>
+										</audienceSegmentIds>
+										<type>Selling</type>
+										<audienceMetric>
+											<audienceMetric>Impressions</audienceMetric>
+											<audienceMetricValue>43256</audienceMetricValue>
+										</audienceMetric>
+										<pricingMetric>
+											<PricingMetricOption>CPM</PricingMetricOption>
+											<grossValue>0</grossValue>
+											<netValue>0</netValue>
+										</pricingMetric>
+									</audiencePricingMetric>
+								</audiencesPricingMetrics>
+								<calendarType>Broadcast</calendarType>
+								<dailyUnitDistribution>
+									<pacingRule>
+										<type>Frontload</type>
+										<rateType>Absolute</rateType>
+									</pacingRule>
+									<monday>0</monday>
+									<tuesday>0</tuesday>
+									<wednesday>0</wednesday>
+									<thursday>0</thursday>
+									<friday>0</friday>
+									<saturday>0</saturday>
+									<sunday>0</sunday>
+								</dailyUnitDistribution>
+								<dateType>Day</dateType>
+								<dateWindow>
+									<startDate>2021-05-20T00:00:00</startDate>
+									<endDate>2021-05-20T00:00:00</endDate>
+								</dateWindow>
+								<externalComment>string</externalComment>
+								<frequencyCappings>
+									<frequencyCapping>
+										<period>Minute</period>
+										<perPeriod>0</perPeriod>
+										<value>0</value>
+									</frequencyCapping>
+								</frequencyCappings>
+								<grossCost>150</grossCost>
+								<netCost>127.5</netCost>
+								<pricingMetric>
+									<PricingMetricOption>CPM</PricingMetricOption>
+									<grossValue>0</grossValue>
+									<netValue>0</netValue>
+								</pricingMetric>
+								<unitCount>0</unitCount>
+							</salesElementTransactionDate>
+						</salesElementTransactionDates>
+					</salesElementTransactionInventory>
+				</salesElementTransactionInventorys>
+				<timePeriods>
+					<timePeriod>
+						<DOW>
+							<isMonday>true</isMonday>
+							<isTuesday>true</isTuesday>
+							<isWednesday>true</isWednesday>
+							<isThursday>true</isThursday>
+							<isFriday>true</isFriday>
+							<isSaturday>true</isSaturday>
+							<isSunday>true</isSunday>
+						</DOW>
+						<dateWindow>
+							<startDate>2021-05-20T00:00:00</startDate>
+							<endDate>2021-05-20T00:00:00</endDate>
+						</dateWindow>
+						<timeWindow>
+							<endTime>09:11</endTime>
+							<startTime>09:00</startTime>
+						</timeWindow>
+					</timePeriod>
+				</timePeriods>
+			</salesElement>
+			<makegoodReason>string</makegoodReason>
+			<makegoodAssumedConfirm>Booked</makegoodAssumedConfirm>
+		</MakegoodOfferDetail>
 	</makegoodDetails>
-</SellerMakegoodOffersRequest>
+</SellerMakegoodOffers>

@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<BuyerInventoryAvailsRequest>
+<?xml version="1.0" encoding="utf-8"?>
+<BuyerInventoryAvailsSubscription xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://tip.schemas.org/v6.0.0">
 	<transactionHeader>
 		<tipVersion>6.0.0</tipVersion>
 		<transactionId>
@@ -12,55 +12,70 @@
 	</transactionHeader>
 	<name>Twice a Month Inventory Avails for next 4 weeks from reporting date</name>
 	<mediaOutlets>
-		<mediaOutletIds>
-			<id>KHOU-TV</id>
-			<version>0</version>
-			<srcId>XVEN-1234</srcId>
-			<srcName>XVEN Buyer</srcName>
-		</mediaOutletIds>
-		<mediaOutletName>string</mediaOutletName>
-		<mediaOutletType>Local TV</mediaOutletType>
-		<mediaOutletChannel>KHOU-TV</mediaOutletChannel>
-		<mediaOutletMarketName>Houston, TX</mediaOutletMarketName>
+		<mediaOutlet>
+			<mediaOutletIds>
+				<identifier>
+					<id>KHOU-TV</id>
+					<version>0</version>
+					<srcId>XVEN-1234</srcId>
+					<srcName>XVEN Buyer</srcName>
+				</identifier>
+			</mediaOutletIds>
+			<mediaOutletName>string</mediaOutletName>
+			<mediaOutletType>Local TV</mediaOutletType>
+			<mediaOutletChannel>KHOU-TV</mediaOutletChannel>
+			<mediaOutletMarketName>Houston, TX</mediaOutletMarketName>
+		</mediaOutlet>
 	</mediaOutlets>
 	<buyer>
 		<buyerIds>
-			<id>XVEN-1234</id>
-			<version>0</version>
-			<srcId>XVEN-1234</srcId>
-			<srcName>XVEN Buyer</srcName>
+			<identifier>
+				<id>XVEN-1234</id>
+				<version>0</version>
+				<srcId>XVEN-1234</srcId>
+				<srcName>XVEN Buyer</srcName>
+			</identifier>
 		</buyerIds>
 		<buyerName>Canvas Worldwide. LLC</buyerName>
 	</buyer>
 	<advertiser>
 		<advertiserIds>
-			<id>ADV-4567</id>
-			<version>0</version>
-			<srcId>XVEN-1234</srcId>
-			<srcName>XVEN Buyer</srcName>
+			<identifier>
+				<id>ADV-4567</id>
+				<version>0</version>
+				<srcId>XVEN-1234</srcId>
+				<srcName>XVEN Buyer</srcName>
+			</identifier>
 		</advertiserIds>
 		<advertiserName>Hyundai</advertiserName>
 	</advertiser>
 	<contacts>
-		<contactType>Account Executive</contactType>
-		<contactIds>
-			<id>CNT-1234</id>
-			<version>0</version>
-			<srcId>XVEN-1234</srcId>
-			<srcName>XVEN Buyer</srcName>
-		</contactIds>
-		<salesOffices>Dallas, TX</salesOffices>
-		<salesOffices>NYC, NY</salesOffices>
-		<contactFirstName>John</contactFirstName>
-		<contactLastName>Doe</contactLastName>
-		<addressLine1>1234 N. Main Street</addressLine1>
-		<city>A City</city>
-		<state>UT</state>
-		<postalCode>00000-0000</postalCode>
-		<country>USA</country>
-		<phoneNumber>1(000)000-0000</phoneNumber>
-		<email>john.doe@example.com</email>
-		<effectiveDate>2021-05-06</effectiveDate>
+		<contact>
+			<contactType>AccountExecutive</contactType>
+			<contactIds>
+				<identifier>
+					<id>CNT-1234</id>
+					<version>0</version>
+					<srcId>XVEN-1234</srcId>
+					<srcName>XVEN Buyer</srcName>
+				</identifier>
+			</contactIds>
+			<organizationIds i:nil="true" />
+			<salesOffices>
+				<item>Dallas, TX</item>
+				<item>NYC, NY</item>
+			</salesOffices>
+			<contactFirstName>John</contactFirstName>
+			<contactLastName>Doe</contactLastName>
+			<addressLine1>1234 N. Main Street</addressLine1>
+			<city>A City</city>
+			<state>UT</state>
+			<postalCode>00000-0000</postalCode>
+			<country>USA</country>
+			<phoneNumber>1(000)000-0000</phoneNumber>
+			<email>john.doe@example.com</email>
+			<effectiveDate>2021-05-06T00:00:00</effectiveDate>
+		</contact>
 	</contacts>
 	<dayOfWeek>
 		<isMonday>true</isMonday>
@@ -72,46 +87,66 @@
 		<isSunday>true</isSunday>
 	</dayOfWeek>
 	<timeWindows>
-		<startTime>09:00</startTime>
-		<endTime>11:00</endTime>
+		<timeWindow>
+			<endTime>11:00</endTime>
+			<startTime>09:00</startTime>
+		</timeWindow>
 	</timeWindows>
 	<guidelines>
-		<guidelineType>Content</guidelineType>
-		<excludeOrInclude>Exclude</excludeOrInclude>
-		<guidelines>Violence</guidelines>
+		<guideline>
+			<guidelineType>Content</guidelineType>
+			<excludeOrInclude>Exclude</excludeOrInclude>
+			<guidelines>
+				<item>Violence</item>
+			</guidelines>
+		</guideline>
 	</guidelines>
-	<inventoryTypes>Commercials</inventoryTypes>
-	<inventoryTypes>Sponsorships</inventoryTypes>
+	<isPolitical>false</isPolitical>
+	<inventoryTypes>
+		<item>Commercials</item>
+		<item>Sponsorships</item>
+	</inventoryTypes>
 	<currency>USD</currency>
 	<externalComment>string</externalComment>
 	<audienceSegments>
-		<audienceSegmentIds>
-			<id>string</id>
-			<version>string</version>
-			<srcId>string</srcId>
-			<srcName>string</srcName>
-		</audienceSegmentIds>
-		<audienceSegmentName>P18-49</audienceSegmentName>
-		<audienceSegmentReference>string</audienceSegmentReference>
-		<audienceMethodology>Daypart Average</audienceMethodology>
-		<isPrimary>true</isPrimary>
-		<isGuarantee>true</isGuarantee>
-		<ratingSource>Nielsen</ratingSource>
-		<ratingStream>Program Live</ratingStream>
+		<audienceSegment>
+			<audienceSegmentIds>
+				<identifier>
+					<id>string</id>
+					<version>string</version>
+					<srcId>string</srcId>
+					<srcName>string</srcName>
+				</identifier>
+			</audienceSegmentIds>
+			<audienceSegmentName>P18-49</audienceSegmentName>
+			<audienceSegmentReference>string</audienceSegmentReference>
+			<audienceMethodology>Daypart Average</audienceMethodology>
+			<isPrimary>true</isPrimary>
+			<isGuarantee>true</isGuarantee>
+			<ratingSource>Nielsen</ratingSource>
+			<ratingStream>ProgramLive</ratingStream>
+		</audienceSegment>
 	</audienceSegments>
-	<pricingMetricOptions>CPM</pricingMetricOptions>
+	<pricingMetricOptions>
+		<pricingMetricOption>CPM</pricingMetricOption>
+	</pricingMetricOptions>
 	<frequency>
-		<effectiveOn>2020-08-12T00:00:00.000Z</effectiveOn>
+		<effectiveOn>2020-08-12T00:00:00Z</effectiveOn>
 		<every>Month</every>
-		<onDate>1</onDate>
-		<onDate>15</onDate>
-		<stratDate>
-			<offsetType>Week</offsetType>
-			<offset>0</offset>
-		</stratDate>
-		<endDate>
-			<offsetType>Week</offsetType>
-			<offset>4</offset>
-		</endDate>
+		<onDate>
+			<item>1</item>
+			<item>15</item>
+		</onDate>
+		<isEndNever i:nil="true" />
+		<endOn i:nil="true" />
+		<endOccurAfter i:nil="true" />
 	</frequency>
-</BuyerInventoryAvailsRequest>
+	<startDate i:type="DynamicDate">
+		<offsetType>Week</offsetType>
+		<offset>0</offset>
+	</startDate>
+	<endDate i:type="DynamicDate">
+		<offsetType>Week</offsetType>
+		<offset>4</offset>
+	</endDate>
+</BuyerInventoryAvailsSubscription>

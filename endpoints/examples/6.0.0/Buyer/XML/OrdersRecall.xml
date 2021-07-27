@@ -1,15 +1,15 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<BuyerOrdersRequest>
+<?xml version="1.0" encoding="utf-8"?>
+<BuyerOrders xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://tip.schemas.org/v6.0.0">
 	<transactionHeader>
 		<tipVersion>6.0.0</tipVersion>
 		<transactionId>
-			<transactionId>3F8A1041-95A8-4BC1-9473-F6B1B3277A71</transactionId>
+			<transactionId>3f8a1041-95a8-4bc1-9473-f6b1b3277a71</transactionId>
 			<transactionType>Recall</transactionType>
 			<sourceId>Buy-6789</sourceId>
 			<sourceName>TIP Buyer</sourceName>
 		</transactionId>
 		<originalTransactionId>
-			<transactionId>1C237FDD-940D-499E-AA20-DF3B9CE0908E</transactionId>
+			<transactionId>1c237fdd-940d-499e-aa20-df3b9ce0908e</transactionId>
 			<transactionType>Change</transactionType>
 			<sourceId>Buy-6789</sourceId>
 			<sourceName>TIP Buyer</sourceName>
@@ -17,12 +17,14 @@
 		<timeStamp>2021-07-21T17:32:28Z</timeStamp>
 	</transactionHeader>
 	<referenceIds>
-		<referenceSourceName>Buy-6789</referenceSourceName>
-		<referenceSourceId>TIP Buyer</referenceSourceId>
-		<referenceType>Order</referenceType>
-		<referenceId>ORD-56789</referenceId>
-		<referenceVersionId>1</referenceVersionId>
-		<referenceName>Hyundai 1Q22</referenceName>
+		<referenceId>
+			<referenceSourceName>Buy-6789</referenceSourceName>
+			<referenceSourceId>TIP Buyer</referenceSourceId>
+			<referenceType>Order</referenceType>
+			<referenceId>ORD-56789</referenceId>
+			<referenceVersionId>1</referenceVersionId>
+			<referenceName>Hyundai 1Q22</referenceName>
+		</referenceId>
 	</referenceIds>
-	<comments></comments>
-</BuyerOrdersRequest>
+	<comments>Please Ignore this order newer revision will follow</comments>
+</BuyerOrders>

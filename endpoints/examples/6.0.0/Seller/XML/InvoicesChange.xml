@@ -1,109 +1,291 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<SellerInvoicesRequest>
-	<transactionHeader>
-		<tipVersion>6.0.0</tipVersion>
-		<transactionId>
-			<transactionId>582C423D-7507-4A72-95EC-6534C465D326</transactionId>
-			<transactionType>Change</transactionType>
-			<sourceId>YSELL-1234</sourceId>
-			<sourceName>YSELL Seller</sourceName>
-		</transactionId>
-		<originalTransactionId>
-			<transactionId>3fa85f64-5717-4562-b3fc-2c963f66afa6</transactionId>
-			<transactionType>New</transactionType>
-			<sourceId>XVEN-1234</sourceId>
-			<sourceName>XVEN Buyer</sourceName>
-		</originalTransactionId>
-		<timeStamp>2021-05-06T19:53:04.885Z</timeStamp>
-	</transactionHeader>
-	<referenceIds>
-		<referenceSourceName>YSELL Seller</referenceSourceName>
-		<referenceSourceId>YSELL-1234</referenceSourceId>
-		<referenceType>Order</referenceType>
-		<referenceId>ORD-5678</referenceId>
-		<referenceVersionId>1</referenceVersionId>
-		<referenceName>Hyundai 1Q22</referenceName>
-	</referenceIds>
-	<referenceIds>
-		<referenceSourceName>YSELL Seller</referenceSourceName>
-		<referenceSourceId>YSELL-1234</referenceSourceId>
-		<referenceType>Invoice</referenceType>
-		<referenceId>ORD-5678-1</referenceId>
-		<referenceVersionId>1</referenceVersionId>
-		<referenceName>Hyundai 1Q22</referenceName>
-	</referenceIds>
-	<invoiceDate>2021-08-25</invoiceDate>
-	<invoiceRevisionDate>2021-08-25</invoiceRevisionDate>
+<?xml version="1.0" encoding="utf-8"?>
+<SellerInvoices xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://tip.schemas.org/v6.0.0">
+	<advertiser>
+		<advertiserIds>
+			<identifier>
+				<id>YSELL-0980</id>
+				<version>0</version>
+				<srcId>YSELL-1234</srcId>
+				<srcName>YSELL Seller</srcName>
+			</identifier>
+		</advertiserIds>
+		<advertiserName>Hyundai</advertiserName>
+	</advertiser>
 	<billingOption>
 		<billingCalendar>Broadcast</billingCalendar>
 		<billingCycle>Month</billingCycle>
 		<billingGranularity>Order</billingGranularity>
 	</billingOption>
-	<dueDate>2021-09-25</dueDate>
-	<dateWindow>
-		<startDate>2021-07-01</startDate>
-		<endDate>2021-07-31</endDate>
-	</dateWindow>
 	<businessType>Cash</businessType>
 	<buyer>
 		<buyerIds>
-			<id>YSELL-7890</id>
-			<version>0</version>
-			<srcId>YSELL-1234</srcId>
-			<srcName>YSELL Seller</srcName>
+			<identifier>
+				<id>YSELL-7890</id>
+				<version>0</version>
+				<srcId>YSELL-1234</srcId>
+				<srcName>YSELL Seller</srcName>
+			</identifier>
 		</buyerIds>
 		<buyerName>Canvas Worldwide. LLC</buyerName>
 	</buyer>
-	<localNational>Local</localNational>
-	<advertiser>
-		<advertiserIds>
-			<id>YSELL-0980</id>
-			<version>0</version>
-			<srcId>YSELL-1234</srcId>
-			<srcName>YSELL Seller</srcName>
-		</advertiserIds>
-		<advertiserName>Hyundai</advertiserName>
-	</advertiser>
-	<contacts>
-		<contactType>Account Executive</contactType>
-		<contactIds>
-			<id>CNT-1234</id>
-			<version>0</version>
-			<srcId>XVEN-1234</srcId>
-			<srcName>XVEN Buyer</srcName>
-		</contactIds>
-		<salesOffices>Dallas, TX</salesOffices>
-		<salesOffices>NYC, NY</salesOffices>
-		<contactFirstName>John</contactFirstName>
-		<contactLastName>Doe</contactLastName>
-		<addressLine1>1234 N. Main Street</addressLine1>
-		<city>A City</city>
-		<state>UT</state>
-		<postalCode>00000-0000</postalCode>
-		<country>USA</country>
-		<phoneNumber>1(000)000-0000</phoneNumber>
-		<email>john.doe@example.com</email>
-		<effectiveDate>2021-05-06</effectiveDate>
-	</contacts>
-	<revenueType>Cash</revenueType>
-	<grossAmount>10000</grossAmount>
 	<commission>8</commission>
-	<salesTaxes>
-		<itemType>Sales Tax</itemType>
-		<value>1245.55</value>
-	</salesTaxes>
-	<discounts>
-		<itemType>Promotional</itemType>
-		<value>400</value>
-	</discounts>
-	<netAmount>10845.55</netAmount>
+	<contacts>
+		<contact>
+			<contactType>AccountExecutive</contactType>
+			<contactIds>
+				<identifier>
+					<id>CNT-1234</id>
+					<version>0</version>
+					<srcId>XVEN-1234</srcId>
+					<srcName>XVEN Buyer</srcName>
+				</identifier>
+			</contactIds>
+			<organizationIds i:nil="true" />
+			<salesOffices>
+				<item>Dallas, TX</item>
+				<item>NYC, NY</item>
+			</salesOffices>
+			<contactFirstName>John</contactFirstName>
+			<contactLastName>Doe</contactLastName>
+			<addressLine1>1234 N. Main Street</addressLine1>
+			<city>A City</city>
+			<state>UT</state>
+			<postalCode>00000-0000</postalCode>
+			<country>USA</country>
+			<phoneNumber>1(000)000-0000</phoneNumber>
+			<email>john.doe@example.com</email>
+			<effectiveDate>2021-05-06T00:00:00</effectiveDate>
+		</contact>
+	</contacts>
 	<currency>USD</currency>
+	<dateWindow>
+		<startDate>2021-07-01T00:00:00</startDate>
+		<endDate>2021-07-31T00:00:00</endDate>
+	</dateWindow>
+	<discounts>
+		<itemDetail>
+			<itemType>Promotional</itemType>
+			<value>400</value>
+		</itemDetail>
+	</discounts>
+	<dueDate>2021-09-25T00:00:00</dueDate>
+	<externalComment>Thanks for your business</externalComment>
+	<grossAmount>10000</grossAmount>
+	<invoiceDate>2021-08-25T00:00:00</invoiceDate>
+	<invoiceRevisionDate>2021-08-25T00:00:00</invoiceRevisionDate>
+	<lineDetails>
+		<lineDetail>
+			<lineNum>1</lineNum>
+			<lineReference>1</lineReference>
+			<lineReferences>
+				<identifier>
+					<id>ORD-5678-1</id>
+					<version>0</version>
+					<srcId>YSELL-1234</srcId>
+					<srcName>YSELL Seller</srcName>
+				</identifier>
+			</lineReferences>
+			<type>Spot</type>
+			<brand>
+				<brandIds>
+					<identifier>
+						<id>BRD-1234</id>
+						<version>0</version>
+						<srcId>YSELL-1234</srcId>
+						<srcName>YSELL Seller</srcName>
+					</identifier>
+				</brandIds>
+				<brandName>Kona</brandName>
+				<brandReference i:nil="true" />
+			</brand>
+			<product>
+				<productIds>
+					<identifier>
+						<id>PRO-1234</id>
+						<version>0</version>
+						<srcId>YSELL-1234</srcId>
+						<srcName>YSELL Seller</srcName>
+					</identifier>
+				</productIds>
+				<productName>Automobile</productName>
+			</product>
+			<salesElementHeader>
+				<mediaOutletId>KHOU-TV</mediaOutletId>
+				<salesElementId>YSELL-9999</salesElementId>
+				<salesElementName>Primetime</salesElementName>
+				<salesElementType>TimeSpecific</salesElementType>
+			</salesElementHeader>
+			<inventoryType>Commercial</inventoryType>
+			<timePeriod>
+				<timePeriod>
+					<DOW>
+						<isMonday>true</isMonday>
+						<isTuesday>true</isTuesday>
+						<isWednesday>true</isWednesday>
+						<isThursday>true</isThursday>
+						<isFriday>true</isFriday>
+						<isSaturday>true</isSaturday>
+						<isSunday>true</isSunday>
+					</DOW>
+					<dateWindow>
+						<startDate>2021-05-06T00:00:00</startDate>
+						<endDate>2021-05-06T00:00:00</endDate>
+					</dateWindow>
+					<timeWindow>
+						<endTime>11:00</endTime>
+						<startTime>09:00</startTime>
+					</timeWindow>
+				</timePeriod>
+			</timePeriod>
+			<length>30</length>
+			<cpeCode>
+				<clientCode>string</clientCode>
+				<productCode>string</productCode>
+				<estimateCode>string</estimateCode>
+			</cpeCode>
+			<billableCosts>Booked</billableCosts>
+			<pricingMetric>
+				<PricingMetricOption>CPM</PricingMetricOption>
+				<grossValue>0</grossValue>
+				<netValue>0</netValue>
+			</pricingMetric>
+			<grossCost>150</grossCost>
+			<netCost>127.5</netCost>
+			<audienceTargets>
+				<audienceTarget>
+					<excludeOrInclude>Include</excludeOrInclude>
+					<audienceTargetIds>
+						<identifier>
+							<id>string</id>
+							<version>string</version>
+							<srcId>string</srcId>
+							<srcName>string</srcName>
+						</identifier>
+					</audienceTargetIds>
+					<targetAttribute>HH Income</targetAttribute>
+					<value>
+						<item>$50,000 - $75,000</item>
+						<item>$75,000, -$100,000</item>
+					</value>
+				</audienceTarget>
+			</audienceTargets>
+			<unitCount>0</unitCount>
+			<unitDetails>
+				<unitDetail>
+					<unitId>string</unitId>
+					<creative>
+						<ids>
+							<identifier>
+								<id>string</id>
+								<version>string</version>
+								<srcId>string</srcId>
+								<srcName>string</srcName>
+							</identifier>
+						</ids>
+						<name>string</name>
+						<status>Final</status>
+						<length>0</length>
+					</creative>
+					<dateTime>
+						<broadcastDate>2021-05-06T00:00:00</broadcastDate>
+						<calendarDateTime>2021-05-06T19:53:04.885Z</calendarDateTime>
+					</dateTime>
+					<podPosition>First</podPosition>
+					<linkType>
+						<linkType>Billboard</linkType>
+						<linkNum>0</linkNum>
+						<linkSeq>0</linkSeq>
+					</linkType>
+					<isPreempt>false</isPreempt>
+					<isMakegood>false</isMakegood>
+					<isAdu>false</isAdu>
+					<isBonus>false</isBonus>
+					<grossRate>100</grossRate>
+					<isCredit>false</isCredit>
+					<adjustmentReason></adjustmentReason>
+					<comment></comment>
+					<childUnitDetails>
+						<childUnitDetail>
+							<unitId>string</unitId>
+							<salesElementHeader>
+								<mediaOutletId>string</mediaOutletId>
+								<salesElementId>string</salesElementId>
+								<salesElementName>Primetime</salesElementName>
+								<salesElementType>TimeSpecific</salesElementType>
+							</salesElementHeader>
+							<grossRate>0</grossRate>
+							<creative>
+								<ids>
+									<identifier>
+										<id>string</id>
+										<version>string</version>
+										<srcId>string</srcId>
+										<srcName>string</srcName>
+									</identifier>
+								</ids>
+								<name>string</name>
+								<status>Final</status>
+								<length>0</length>
+							</creative>
+							<isPreempt>true</isPreempt>
+							<isMakegood>true</isMakegood>
+							<isAdu>true</isAdu>
+							<isCredit>true</isCredit>
+							<adjustmentReason>string</adjustmentReason>
+							<dateTime>
+								<broadcastDate>2021-05-06T00:00:00</broadcastDate>
+								<calendarDateTime>2021-05-06T19:53:04.885Z</calendarDateTime>
+							</dateTime>
+						</childUnitDetail>
+					</childUnitDetails>
+				</unitDetail>
+			</unitDetails>
+		</lineDetail>
+	</lineDetails>
+	<localNational>Local</localNational>
+	<mediaOutlets>
+		<mediaOutlet>
+			<mediaOutletIds>
+				<identifier>
+					<id>KHOU-TV</id>
+					<version>0</version>
+					<srcId>XVEN-1234</srcId>
+					<srcName>XVEN Buyer</srcName>
+				</identifier>
+			</mediaOutletIds>
+			<mediaOutletName>KHOU-TV</mediaOutletName>
+			<mediaOutletType>Local TV</mediaOutletType>
+			<mediaOutletChannel>KHOU-TV</mediaOutletChannel>
+			<mediaOutletMarketName>Houston, TX</mediaOutletMarketName>
+		</mediaOutlet>
+	</mediaOutlets>
+	<netAmount>10845.55</netAmount>
+	<referenceIds>
+		<referenceId>
+			<referenceSourceName>YSELL Seller</referenceSourceName>
+			<referenceSourceId>YSELL-1234</referenceSourceId>
+			<referenceType>Order</referenceType>
+			<referenceId>ORD-5678</referenceId>
+			<referenceVersionId>1</referenceVersionId>
+			<referenceName>Hyundai 1Q22</referenceName>
+		</referenceId>
+		<referenceId>
+			<referenceSourceName>YSELL Seller</referenceSourceName>
+			<referenceSourceId>YSELL-1234</referenceSourceId>
+			<referenceType>Invoice</referenceType>
+			<referenceId>ORD-5678-1</referenceId>
+			<referenceVersionId>1</referenceVersionId>
+			<referenceName>Hyundai 1Q22</referenceName>
+		</referenceId>
+	</referenceIds>
 	<remittanceInfo>
 		<referenceSourceIds>
-			<id>RMT-1234</id>
-			<version>0</version>
-			<srcId>XVEN-1234</srcId>
-			<srcName>XVEN Buyer</srcName>
+			<identifier>
+				<id>RMT-1234</id>
+				<version>0</version>
+				<srcId>XVEN-1234</srcId>
+				<srcName>XVEN Buyer</srcName>
+			</identifier>
 		</referenceSourceIds>
 		<contactFirstName>Jane</contactFirstName>
 		<contactLastName>Doe</contactLastName>
@@ -115,161 +297,21 @@
 		<phoneNumber>1(000)000-0000</phoneNumber>
 		<contactEmail>jane.doe@example.com</contactEmail>
 	</remittanceInfo>
-	<mediaOutlets>
-		<mediaOutletIds>
-			<id>KHOU-TV</id>
-			<version>0</version>
-			<srcId>XVEN-1234</srcId>
-			<srcName>XVEN Buyer</srcName>
-		</mediaOutletIds>
-		<mediaOutletName>KHOU-TV</mediaOutletName>
-		<mediaOutletType>Local TV</mediaOutletType>
-		<mediaOutletChannel>KHOU-TV</mediaOutletChannel>
-		<mediaOutletMarketName>Houston, TX</mediaOutletMarketName>
-	</mediaOutlets>
-	<externalComment>Thanks for your business</externalComment>
-	<lineDetails>
-		<lineNum>1</lineNum>
-		<lineReference>1</lineReference>
-		<lineReferences>
-			<id>ORD-5678-1</id>
-			<version>0</version>
-			<srcId>YSELL-1234</srcId>
-			<srcName>YSELL Seller</srcName>
-		</lineReferences>
-		<type>Spot</type>
-		<brand>
-			<brandIds>
-				<id>BRD-1234</id>
-				<version>0</version>
-				<srcId>YSELL-1234</srcId>
-				<srcName>YSELL Seller</srcName>
-			</brandIds>
-			<brandName>Kona</brandName>
-		</brand>
-		<product>
-			<productIds>
-				<id>PRO-1234</id>
-				<version>0</version>
-				<srcId>YSELL-1234</srcId>
-				<srcName>YSELL Seller</srcName>
-			</productIds>
-			<productName>Automobile</productName>
-		</product>
-		<salesElementHeader>
-			<mediaOutletId>KHOU-TV</mediaOutletId>
-			<salesElementName>Primetime</salesElementName>
-			<salesElementId>YSELL-9999</salesElementId>
-			<salesElementType>Time-specific</salesElementType>
-		</salesElementHeader>
-		<inventoryType>Commercial</inventoryType>
-		<timePeriod>
-			<dateWindow>
-				<startDate>2021-05-06</startDate>
-				<endDate>2021-05-06</endDate>
-			</dateWindow>
-			<DOW>
-				<isMonday>true</isMonday>
-				<isTuesday>true</isTuesday>
-				<isWednesday>true</isWednesday>
-				<isThursday>true</isThursday>
-				<isFriday>true</isFriday>
-				<isSaturday>true</isSaturday>
-				<isSunday>true</isSunday>
-			</DOW>
-			<timeWindow>
-				<startTime>09:00</startTime>
-				<endTime>11:00</endTime>
-			</timeWindow>
-		</timePeriod>
-		<length>30</length>
-		<cpeCode>
-			<clientCode>string</clientCode>
-			<productCode>string</productCode>
-			<estimateCode>string</estimateCode>
-		</cpeCode>
-		<billableCosts>Booked</billableCosts>
-		<pricingMetric>
-			<PricingMetricOption>CPM</PricingMetricOption>
-			<grossValue>0</grossValue>
-			<netValue>0</netValue>
-		</pricingMetric>
-		<grossCost>150</grossCost>
-		<netCost>127.5</netCost>
-		<audienceTargets>
-			<excludeOrInclude>Include</excludeOrInclude>
-			<audienceTargetIds>
-				<id>string</id>
-				<version>string</version>
-				<srcId>string</srcId>
-				<srcName>string</srcName>
-			</audienceTargetIds>
-			<targetAttribute>HH Income</targetAttribute>
-			<value>$50,000 - $75,000</value>
-			<value>$75,000, -$100,000</value>
-		</audienceTargets>
-		<unitCount>0</unitCount>
-		<unitDetails>
-			<unitId>string</unitId>
-			<creative>
-				<ids>
-					<id>string</id>
-					<version>string</version>
-					<srcId>string</srcId>
-					<srcName>string</srcName>
-				</ids>
-				<name>string</name>
-				<status>Final</status>
-				<length>0</length>
-			</creative>
-			<dateTime>
-				<broadcastDate>2021-05-06</broadcastDate>
-				<calendarDateTime>2021-05-06T19:53:04.885Z</calendarDateTime>
-			</dateTime>
-			<podPosition>First</podPosition>
-			<linkType>
-				<linkType>Billboard</linkType>
-				<linkNum>0</linkNum>
-				<linkSeq>0</linkSeq>
-			</linkType>
-			<isPreempt>false</isPreempt>
-			<isMakegood>false</isMakegood>
-			<isAdu>false</isAdu>
-			<isBonus>false</isBonus>
-			<grossRate>100</grossRate>
-			<isCredit>false</isCredit>
-			<adjustmentReason></adjustmentReason>
-			<comment></comment>
-			<childUnitDetails>
-				<unitId>string</unitId>
-				<salesElementHeader>
-					<mediaOutletId>string</mediaOutletId>
-					<salesElementName>Primetime</salesElementName>
-					<salesElementId>string</salesElementId>
-					<salesElementType>Time-specific</salesElementType>
-				</salesElementHeader>
-				<grossRate>0</grossRate>
-				<creative>
-					<ids>
-						<id>string</id>
-						<version>string</version>
-						<srcId>string</srcId>
-						<srcName>string</srcName>
-					</ids>
-					<name>string</name>
-					<status>Final</status>
-					<length>0</length>
-				</creative>
-				<isPreempt>true</isPreempt>
-				<isMakegood>true</isMakegood>
-				<isAdu>true</isAdu>
-				<isCredit>true</isCredit>
-				<adjustmentReason>string</adjustmentReason>
-				<dateTime>
-					<broadcastDate>2021-05-06</broadcastDate>
-					<calendarDateTime>2021-05-06T19:53:04.885Z</calendarDateTime>
-				</dateTime>
-			</childUnitDetails>
-		</unitDetails>
-	</lineDetails>
-</SellerInvoicesRequest>
+	<revenueType>Cash</revenueType>
+	<salesTaxes>
+		<itemDetail>
+			<itemType>Sales Tax</itemType>
+			<value>1245.55</value>
+		</itemDetail>
+	</salesTaxes>
+	<transactionHeader>
+		<tipVersion>6.0.0</tipVersion>
+		<transactionId>
+			<transactionId>3fa85f64-5717-4562-b3fc-2c963f66afa6</transactionId>
+			<transactionType>New</transactionType>
+			<sourceId>YSELL-1234</sourceId>
+			<sourceName>YSELL Seller</sourceName>
+		</transactionId>
+		<timeStamp>2021-05-06T19:53:04.885Z</timeStamp>
+	</transactionHeader>
+</SellerInvoices>

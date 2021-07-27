@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<BuyerAudiencesSubscriptionRequest>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BuyerAudiencesSubscription xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns:a="http://www.w3.org/2001/XMLSchema" xmlns="https://tip.schemas.org/v6.0.0">
 	<transactionHeader>
 		<tipVersion>6.0.0</tipVersion>
 		<transactionId>
-			<transactionId>DA93C8D1-72AB-4615-859D-1281F4F25ECA</transactionId>
+			<transactionId>da93c8d1-72ab-4615-859d-1281f4f25eca</transactionId>
 			<transactionType>Change</transactionType>
 			<sourceId>XBuy-1234</sourceId>
 			<sourceName>XVEN Buyer</sourceName>
@@ -18,80 +18,122 @@
 	</transactionHeader>
 	<name>Bi Monthly Subscription</name>
 	<referenceIds>
-		<referenceSourceName>KHOU-TV</referenceSourceName>
-		<referenceSourceId>KHOUTV-123</referenceSourceId>
-		<referenceSourceLookup>string</referenceSourceLookup>
-		<referenceType>Order</referenceType>
-		<referenceId>OR-12356</referenceId>
-		<referenceVersionId>0</referenceVersionId>
-		<referenceName>Hyundai 1Q22</referenceName>
+		<referenceId>
+			<referenceSourceName>KHOU-TV</referenceSourceName>
+			<referenceSourceId>KHOUTV-123</referenceSourceId>
+			<referenceSourceLookup>string</referenceSourceLookup>
+			<referenceType>Order</referenceType>
+			<referenceId>OR-12356</referenceId>
+			<referenceVersionId>0</referenceVersionId>
+			<referenceName>Hyundai 1Q22</referenceName>
+		</referenceId>
 	</referenceIds>
 	<mediaOutlets>
-		<mediaOutletIds>
-			<id>TV-124</id>
-			<version>0</version>
-			<srcId>XBuy-1234</srcId>
-			<srcName>XVEN Buyer</srcName>
-		</mediaOutletIds>
-		<mediaOutletName>KHOU-TV</mediaOutletName>
-		<mediaOutletType>Local TV</mediaOutletType>
-		<mediaOutletChannel>KHOU-TV</mediaOutletChannel>
-		<mediaOutletMarketName>Houston, TX</mediaOutletMarketName>
+		<mediaOutlet>
+			<mediaOutletIds>
+				<identifier>
+					<id>TV-124</id>
+					<version>0</version>
+					<srcId>XBuy-1234</srcId>
+					<srcName>XVEN Buyer</srcName>
+				</identifier>
+			</mediaOutletIds>
+			<mediaOutletName>KHOU-TV</mediaOutletName>
+			<mediaOutletType>Local TV</mediaOutletType>
+			<mediaOutletChannel>KHOU-TV</mediaOutletChannel>
+			<mediaOutletMarketName>Houston, TX</mediaOutletMarketName>
+		</mediaOutlet>
 	</mediaOutlets>
 	<buyer>
-		<buyerIds>
-			<id>BUYER-178</id>
-			<version>0</version>
-			<srcId>XBuy-1234</srcId>
-			<srcName>XVEN Buyer</srcName>
-		</buyerIds>
-		<buyerName>Canvas Worldwide. LLC</buyerName>
+		<buyer>
+			<buyerIds>
+				<identifier>
+					<id>BUYER-178</id>
+					<version>0</version>
+					<srcId>XBuy-1234</srcId>
+					<srcName>XVEN Buyer</srcName>
+				</identifier>
+			</buyerIds>
+			<buyerName>Canvas Worldwide. LLC</buyerName>
+		</buyer>
 	</buyer>
 	<advertiser>
-		<advertiserIds>
-			<id>ADV-143</id>
-			<version>0</version>
-			<srcId>XBuy-1234</srcId>
-			<srcName>XVEN Buyer</srcName>
-		</advertiserIds>
-		<advertiserName>Hyundai</advertiserName>
+		<advertiser>
+			<advertiserIds>
+				<identifier>
+					<id>ADV-143</id>
+					<version>0</version>
+					<srcId>XBuy-1234</srcId>
+					<srcName>XVEN Buyer</srcName>
+				</identifier>
+			</advertiserIds>
+			<advertiserName>Hyundai</advertiserName>
+		</advertiser>
 	</advertiser>
 	<contacts>
-		<contactType>Account Executive</contactType>
-		<referenceSourceName>XVEN Buyer</referenceSourceName>
-		<referenceSourceId>XBuy-1234</referenceSourceId>
-		<salesOffices>Dallas, TX</salesOffices>
-		<salesOffices>NYC, NY</salesOffices>
-		<contactFirstName>John</contactFirstName>
-		<contactLastName>Doe</contactLastName>
-		<addressLine1>1234 Main Street</addressLine1>
-		<city>City Falls</city>
-		<state>A State</state>
-		<postalCode>00000-0000</postalCode>
-		<country>USA</country>
-		<phoneNumber>1(888)123-4568</phoneNumber>
-		<email>user@example.com</email>
-		<effectiveDate>2021-05-06</effectiveDate>
+		<contact>
+			<city>City Falls</city>
+			<contactType>AccountExecutive</contactType>
+			<contactIds>
+				<identifier>
+					<id>CNT-1234</id>
+					<version>0</version>
+					<srcId>ABC-1234</srcId>
+					<srcName>TIPApi</srcName>
+				</identifier>
+			</contactIds>
+			<organizationIds i:nil="true" />
+			<salesOffices>
+				<item>Dallas, TX</item>
+				<item>NYC, NY</item>
+			</salesOffices>
+			<contactFirstName>John</contactFirstName>
+			<contactLastName>Doe</contactLastName>
+			<addressLine1>1234 Main Street</addressLine1>
+			<addressLine2 i:nil="true" />
+			<state>A State</state>
+			<postalCode>00000-0000</postalCode>
+			<country>USA</country>
+			<phoneNumber>1(888)123-4568</phoneNumber>
+			<email>joe@example.com</email>
+			<effectiveDate>2021-05-06T00:00:00</effectiveDate>
+		</contact>
 	</contacts>
 	<audienceTargets>
-		<excludeOrInclude>Include</excludeOrInclude>
-		<audienceTargetIds>
-			<id>AUD-123</id>
-			<version>0</version>
-			<srcId>XBuy-1234</srcId>
-			<srcName>XVEN Buyer</srcName>
-		</audienceTargetIds>
-		<targetAttribute>HH Income</targetAttribute>
-		<value>$50,000 - $75,000</value>
-		<value>$75,000, -$100,000</value>
+		<audienceTarget>
+			<excludeOrInclude>Include</excludeOrInclude>
+			<audienceTargetIds>
+				<identifier>
+					<id>AUD-123</id>
+					<version>0</version>
+					<srcId>XBuy-1234</srcId>
+					<srcName>XVEN Buyer</srcName>
+				</identifier>
+			</audienceTargetIds>
+			<targetAttribute>HH Income</targetAttribute>
+			<value>
+				<item>$50,000 - $75,000</item>
+				<item>$75,000, -$100,000</item>
+			</value>
+		</audienceTarget>
 	</audienceTargets>
+	<audienceSegments i:nil="true" />
 	<externalComment>string</externalComment>
 	<frequency>
-		<effectiveOn>2020-08-12T00:00:00.000Z</effectiveOn>
+		<effectiveOn>2020-08-12T00:00:00Z</effectiveOn>
 		<every>Month</every>
-		<onDate>1</onDate>
-		<onDate>15</onDate>
+		<onDay i:nil="true" />
+		<onDate>
+			<item>1</item>
+			<item>15</item>
+		</onDate>
 		<isEndNever>false</isEndNever>
-		<endOn>2021-05-06</endOn>
+		<endOn>2021-05-06T00:00:00</endOn>
+		<endOccurAfter i:nil="true" />
 	</frequency>
-</BuyerAudiencesSubscriptionRequest>
+	<startDate i:type="DynamicDate">
+		<offsetType>Day</offsetType>
+		<offset>-10</offset>
+	</startDate>
+	<endDate i:type="a:dateTime">2022-08-12T00:00:00</endDate>
+</BuyerAudiencesSubscription>

@@ -41,7 +41,7 @@ components:
           example:
             $ref: '../examples\6.0.0\GenericResponses\XML\201Created.xml'
     Accepted:
-      description: 'Accepted - request accepted, Actual response will follow at later time'
+      description: '202 - Accepted - request accepted, Actual response will follow at later time'
       content:
         application/json:
           schema:

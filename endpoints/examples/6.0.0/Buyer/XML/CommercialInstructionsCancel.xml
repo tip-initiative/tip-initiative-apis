@@ -1,29 +1,31 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<BuyerCommercialInstructionsRequest>
+<?xml version="1.0" encoding="utf-8"?>
+<BuyerCommercialInstructions xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://tip.schemas.org/v6.0.0">
 	<transactionHeader>
 		<tipVersion>6.0.0</tipVersion>
 		<transactionId>
-			<transactionId>0E300E0A-17AA-420C-92C6-D7C795256CB0</transactionId>
+			<transactionId>e6361115-e919-461d-ae72-6311e4b9f57e</transactionId>
 			<transactionType>Cancel</transactionType>
-			<sourceId>490</sourceId>
-			<sourceName>KHOU-TV</sourceName>
+			<sourceId>XBuy-1234</sourceId>
+			<sourceName>XVEN Buyer</sourceName>
 		</transactionId>
 		<originalTransactionId>
-			<transactionId>3fa85f64-5717-4562-b3fc-2c963f66afa6</transactionId>
-			<transactionType>New</transactionType>
-			<sourceId>490</sourceId>
-			<sourceName>KHOU-TV</sourceName>
+			<transactionId>bf7f7d82-1335-4c3b-abd0-7545872a56de</transactionId>
+			<transactionType>Change</transactionType>
+			<sourceId>XBuy-1234</sourceId>
+			<sourceName>XVEN Buyer</sourceName>
 		</originalTransactionId>
-		<timeStamp>2020-07-17T20:04:55.220Z</timeStamp>
+		<timeStamp>2021-05-06T19:01:50.61Z</timeStamp>
 	</transactionHeader>
 	<referenceIds>
-		<referenceSourceName>KUOU-TV</referenceSourceName>
-		<referenceSourceId>490</referenceSourceId>
-		<referenceSourceLookup></referenceSourceLookup>
-		<referenceType>Order</referenceType>
-		<referenceId>123456</referenceId>
-		<referenceVersionId></referenceVersionId>
-		<referenceName>string</referenceName>
+		<referenceId>
+			<referenceSourceName>KUOU-TV</referenceSourceName>
+			<referenceSourceId>490</referenceSourceId>
+			<referenceSourceLookup></referenceSourceLookup>
+			<referenceType>Subscription</referenceType>
+			<referenceId>BF7F7D82-1335-4C3B-ABD0-7545872A56DE</referenceId>
+			<referenceVersionId></referenceVersionId>
+			<referenceName>string</referenceName>
+		</referenceId>
 	</referenceIds>
 	<comments>Sample comment from message originator</comments>
-</BuyerCommercialInstructionsRequest>
+</BuyerCommercialInstructions>

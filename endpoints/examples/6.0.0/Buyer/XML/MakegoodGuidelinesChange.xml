@@ -1,15 +1,15 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<BuyerMakegoodGuidelinesRequest>
+<?xml version="1.0" encoding="utf-8"?>
+<BuyerMakegoodGuidelines xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://tip.schemas.org/v6.0.0">
 	<transactionHeader>
 		<tipVersion>6.0.0</tipVersion>
 		<transactionId>
-			<transactionId>6C895361-97B0-43F0-976C-A4E77DDD78FD</transactionId>
+			<transactionId>6c895361-97b0-43f0-976c-a4e77ddd78fd</transactionId>
 			<transactionType>Change</transactionType>
 			<sourceId>ABC-1234</sourceId>
 			<sourceName>TIPApi</sourceName>
 		</transactionId>
 		<originalTransactionId>
-			<transactionId>1C237FDD-940D-499E-AA20-DF3B9CE0908E</transactionId>
+			<transactionId>1c237fdd-940d-499e-aa20-df3b9ce0908e</transactionId>
 			<transactionType>New</transactionType>
 			<sourceId>ABC-1234</sourceId>
 			<sourceName>TIPApi</sourceName>
@@ -18,10 +18,12 @@
 	</transactionHeader>
 	<mediaOutlet>
 		<mediaOutletIds>
-			<id>KHOU-TV</id>
-			<version>0</version>
-			<srcId>ABC-1234</srcId>
-			<srcName>TIPApi</srcName>
+			<identifier>
+				<id>KHOU-TV</id>
+				<version>0</version>
+				<srcId>ABC-1234</srcId>
+				<srcName>TIPApi</srcName>
+			</identifier>
 		</mediaOutletIds>
 		<mediaOutletName>MBLTV - My Best Local TV Station</mediaOutletName>
 		<mediaOutletType>Local TV</mediaOutletType>
@@ -29,12 +31,14 @@
 		<mediaOutletMarketName>Houston, TX</mediaOutletMarketName>
 	</mediaOutlet>
 	<referenceIds>
-		<referenceSourceName>KHOU-TV</referenceSourceName>
-		<referenceSourceId>ABC-1234</referenceSourceId>
-		<referenceType>Order</referenceType>
-		<referenceId>ORD-1234</referenceId>
-		<referenceVersionId>1</referenceVersionId>
-		<referenceName>Hyundai 1Q22</referenceName>
+		<referenceId>
+			<referenceSourceName>KHOU-TV</referenceSourceName>
+			<referenceSourceId>ABC-1234</referenceSourceId>
+			<referenceType>Order</referenceType>
+			<referenceId>ORD-1234</referenceId>
+			<referenceVersionId>1</referenceVersionId>
+			<referenceName>Hyundai 1Q22</referenceName>
+		</referenceId>
 	</referenceIds>
 	<cpeCode>
 		<clientCode>CLE-1234</clientCode>
@@ -43,34 +47,40 @@
 	</cpeCode>
 	<buyer>
 		<buyerIds>
-			<id>BUY-123</id>
-			<version>0</version>
-			<srcId>ABC-1234</srcId>
-			<srcName>TIPApi</srcName>
+			<identifier>
+				<id>BUY-123</id>
+				<version>0</version>
+				<srcId>ABC-1234</srcId>
+				<srcName>TIPApi</srcName>
+			</identifier>
 		</buyerIds>
 		<buyerName>Canvas Worldwide. LLC</buyerName>
 	</buyer>
 	<advertiser>
 		<advertiserIds>
-			<id>ADV-1234</id>
-			<version>0</version>
-			<srcId>ABC-1234</srcId>
-			<srcName>TIPApi</srcName>
+			<identifier>
+				<id>ADV-1234</id>
+				<version>0</version>
+				<srcId>ABC-1234</srcId>
+				<srcName>TIPApi</srcName>
+			</identifier>
 		</advertiserIds>
 		<advertiserName>Hyundai</advertiserName>
 	</advertiser>
 	<makegoodGuidelines>
-		<makegoodType>Resolve preemption</makegoodType>
-		<salesElementOriginal>
-			<mediaOutletId>KHOU-TV</mediaOutletId>
-			<salesElementName>Primetime</salesElementName>
-			<salesElementId>SE-1234</salesElementId>
-			<salesElementType>Time-specific</salesElementType>
-		</salesElementOriginal>
-		<salesElementEquivalent>Same Sales Element</salesElementEquivalent>
-		<makegoodTargetAudienceLimit>100</makegoodTargetAudienceLimit>
-		<makegoodRatio>2</makegoodRatio>
-		<makegoodWindow>Original Broadcast Week</makegoodWindow>
-		<externalComment>Shifted to Next Run</externalComment>
+		<MakegoodGuideline>
+			<makegoodType>ResolvePreemption</makegoodType>
+			<salesElementOriginal>
+				<mediaOutletId>KHOU-TV</mediaOutletId>
+				<salesElementId>SE-1234</salesElementId>
+				<salesElementName>Primetime</salesElementName>
+				<salesElementType>TimeSpecific</salesElementType>
+			</salesElementOriginal>
+			<salesElementEquivalent>SameSalesElement</salesElementEquivalent>
+			<makegoodTargetAudienceLimit>100</makegoodTargetAudienceLimit>
+			<makegoodRatio>2</makegoodRatio>
+			<makegoodWindow>OriginalBroadcastWeek</makegoodWindow>
+			<externalComment>Shifted to Next Run</externalComment>
+		</MakegoodGuideline>
 	</makegoodGuidelines>
-</BuyerMakegoodGuidelinesRequest>
+</BuyerMakegoodGuidelines>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<AcceptedResponse>
+<AcceptedResponse xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://tip.schemas.org/v6.0.0">
 	<transactionId>586CF11F-E783-4AF6-ADCE-56818FD4F412</transactionId>
 	<timeStamp>2021-05-05T13:51:00Z</timeStamp>
 </AcceptedResponse>

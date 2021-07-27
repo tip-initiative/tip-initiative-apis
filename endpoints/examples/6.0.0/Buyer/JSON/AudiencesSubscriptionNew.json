@@ -65,14 +65,20 @@
   ],
   "contacts": [
     {
+	 "contactIds": [
+		  {
+			"id": "CNT-1234",
+			"version": "0",
+			"srcId": "ABC-1234",
+			"srcName": "TIPApi"
+		  }
+      ],
       "contactType": "Account Executive",
       "referenceSourceName": "XVEN Buyer",
       "referenceSourceId": "XBuy-1234",
       "salesOffices": [
-        [
           "Dallas, TX",
           "NYC, NY"
-        ]
       ],
       "contactFirstName": "John",
       "contactLastName": "Doe",
@@ -98,24 +104,19 @@
         }
       ],
       "targetAttribute": "HH Income",
-      "value": [
-        [
-          "$50,000 - $75,000",
-          "$75,000, -$100,000"
-        ]
-      ]
+      "value": ["$50,000 - $75,000", "$75,000, -$100,000"]
     }
   ],
   "externalComment": "string",
   "frequency": {
     "effectiveOn": "2020-08-12T00:00:00.000Z",
     "every": "Month",
-    "onDate": [
-      [
-        1,
-        15
-      ]
-    ],
+    "onDate": [1,15],
     "isEndNever": true
-  }
+  },
+    "startDate": {
+    		"offsetType": "Day",
+    		"offset": -10
+    	},
+    "endDate": "2022-08-12T00:00:00.000Z"
 }

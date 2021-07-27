@@ -1,28 +1,31 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<SellerMakegoodOffersRequest>
+<?xml version="1.0" encoding="utf-8"?>
+<SellerMakegoodOffers xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://tip.schemas.org/v6.0.0">
 	<transactionHeader>
 		<tipVersion>6.0.0</tipVersion>
 		<transactionId>
-			<transactionId>6C895361-97B0-43F0-976C-A4E77DDD78FD</transactionId>
+			<transactionId>3fa85f64-5717-4562-b3fc-2c963f66afa6</transactionId>
 			<transactionType>Cancel</transactionType>
-			<sourceId>ABC-1234</sourceId>
-			<sourceName>TIPApi</sourceName>
+			<sourceId>456</sourceId>
+			<sourceName>Canvas Worldwide. LLC</sourceName>
 		</transactionId>
 		<originalTransactionId>
-			<transactionId>1C237FDD-940D-499E-AA20-DF3B9CE0908E</transactionId>
+			<transactionId>b906a0a9-19fa-4f06-b94d-22e4f1d9120c</transactionId>
 			<transactionType>New</transactionType>
-			<sourceId>ABC-1234</sourceId>
-			<sourceName>TIPApi</sourceName>
+			<sourceId>490</sourceId>
+			<sourceName>KHOU-TV</sourceName>
 		</originalTransactionId>
-		<timeStamp>2021-07-21T17:32:28Z</timeStamp>
+		<timeStamp>2020-07-17T20:04:55.22Z</timeStamp>
 	</transactionHeader>
 	<referenceIds>
-		<referenceSourceName>KHOU-TV</referenceSourceName>
-		<referenceSourceId>ABC-1234</referenceSourceId>
-		<referenceType>Order</referenceType>
-		<referenceId>ORD-1234</referenceId>
-		<referenceVersionId>1</referenceVersionId>
-		<referenceName>Hyundai 1Q22</referenceName>
+		<referenceId>
+			<referenceSourceName>KHOU-TV</referenceSourceName>
+			<referenceSourceId>490</referenceSourceId>
+			<referenceSourceLookup></referenceSourceLookup>
+			<referenceType>Order</referenceType>
+			<referenceId>123456</referenceId>
+			<referenceVersionId></referenceVersionId>
+			<referenceName>Nissan July Sale</referenceName>
+		</referenceId>
 	</referenceIds>
-	<comments>Please ignore previous guidelines. newly updated ones are to be provided</comments>
-</SellerMakegoodOffersRequest>
+	<comments>Thanks for your efforts we decided to cancel</comments>
+</SellerMakegoodOffers>

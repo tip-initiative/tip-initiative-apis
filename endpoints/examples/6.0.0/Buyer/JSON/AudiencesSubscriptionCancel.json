@@ -20,7 +20,8 @@
       "referenceSourceName": "KHOU-TV",
       "referenceSourceId": "string",
       "referenceSourceLookup": "string",
-      "referenceType": "RFP",
+      "referenceType": "Order",
+      "referenceId": "ORD-123",
       "referenceVersionId": 1,
       "referenceName": "Hyundai 1Q22"
     }

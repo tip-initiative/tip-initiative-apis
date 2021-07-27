@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SellerImpressionsNotification xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://tip.schemas.org/v6.0.0">
+	<transactionHeader>
+		<tipVersion>6.0.0</tipVersion>
+		<transactionId>
+			<transactionId>1c237fdd-940d-499e-aa20-df3b9ce0908e</transactionId>
+			<transactionType>New</transactionType>
+			<sourceId>ABC-1234</sourceId>
+			<sourceName>TIPApi</sourceName>
+		</transactionId>
+		<timeStamp>2021-07-21T17:32:28Z</timeStamp>
+	</transactionHeader>
+	<mediaOutlets>
+		<mediaOutlet>
+			<mediaOutletIds>
+				<identifier>
+					<id>string</id>
+					<version>string</version>
+					<srcId>string</srcId>
+					<srcName>string</srcName>
+				</identifier>
+			</mediaOutletIds>
+			<mediaOutletName>MBLTV - My Best Local TV Station</mediaOutletName>
+			<mediaOutletType>Local TV</mediaOutletType>
+			<mediaOutletChannel>KHOU-TV</mediaOutletChannel>
+			<mediaOutletMarketName>Houston, TX</mediaOutletMarketName>
+			<mediaOutletReference>string</mediaOutletReference>
+		</mediaOutlet>
+	</mediaOutlets>
+	<salesElementHeaders>
+		<salesElementHeader>
+			<mediaOutletId>string</mediaOutletId>
+			<salesElementId>string</salesElementId>
+			<salesElementName>Primetime</salesElementName>
+			<salesElementType>TimeSpecific</salesElementType>
+		</salesElementHeader>
+	</salesElementHeaders>
+	<referenceIds>
+		<referenceId>
+			<referenceSourceName>KHOU-TV</referenceSourceName>
+			<referenceSourceId>string</referenceSourceId>
+			<referenceSourceLookup>string</referenceSourceLookup>
+			<referenceType>RFP</referenceType>
+			<referenceId>REF-1234</referenceId>
+			<referenceVersionId>1</referenceVersionId>
+			<referenceName>Hyundai 1Q22</referenceName>
+		</referenceId>
+	</referenceIds>
+	<creatives>
+		<creative>
+			<ids>
+				<identifier>
+					<id>string</id>
+					<version>string</version>
+					<srcId>string</srcId>
+					<srcName>string</srcName>
+				</identifier>
+			</ids>
+			<name>string</name>
+			<status>NotFinal</status>
+			<length>0</length>
+		</creative>
+	</creatives>
+	<reportDate>
+		<startDate>2021-07-14T00:00:00</startDate>
+		<endDate>2021-07-14T00:00:00</endDate>
+	</reportDate>
+	<statSource>internal</statSource>
+	<filePrefix>ORD-0009123</filePrefix>
+	<chunks>10</chunks>
+</SellerImpressionsNotification>

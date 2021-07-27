@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<SellerLogtimesRequest>
+<?xml version="1.0" encoding="utf-8"?>
+<SellerLogtimes xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://tip.schemas.org/v6.0.0">
 	<transactionHeader>
-		<tipVersion>5.1.0</tipVersion>
+		<tipVersion>6.0.0</tipVersion>
 		<transactionId>
-			<transactionId>6A61B212-4DBD-431E-A953-8873561AF781</transactionId>
+			<transactionId>6a61b212-4dbd-431e-a953-8873561af781</transactionId>
 			<transactionType>New</transactionType>
 			<sourceId>490</sourceId>
 			<sourceName>KHOU-TV</sourceName>
@@ -12,132 +12,161 @@
 	</transactionHeader>
 	<externalComment>Seller's Comment</externalComment>
 	<mediaOutlets>
-		<mediaOutletIds>
-			<id>490</id>
-			<version>0</version>
-			<srcId>490</srcId>
-			<srcName>KHOU-TV</srcName>
-		</mediaOutletIds>
-		<mediaOutletName>KHOU-TV</mediaOutletName>
-		<mediaOutletType>Local TV</mediaOutletType>
-		<mediaOutletChannel>KHOU-TV</mediaOutletChannel>
-		<mediaOutletMarketName>Houston, TX</mediaOutletMarketName>
+		<mediaOutlet>
+			<mediaOutletIds>
+				<identifier>
+					<id>490</id>
+					<version>0</version>
+					<srcId>490</srcId>
+					<srcName>KHOU-TV</srcName>
+				</identifier>
+			</mediaOutletIds>
+			<mediaOutletName>KHOU-TV</mediaOutletName>
+			<mediaOutletType>Local TV</mediaOutletType>
+			<mediaOutletChannel>KHOU-TV</mediaOutletChannel>
+			<mediaOutletMarketName>Houston, TX</mediaOutletMarketName>
+		</mediaOutlet>
 	</mediaOutlets>
 	<units>
-		<unitId>15555</unitId>
-		<referenceIds>
-			<referenceSourceName>KHOU-TV</referenceSourceName>
-			<referenceSourceId>490</referenceSourceId>
-			<referenceType>Order</referenceType>
-			<referenceId>A2CAF9C7-C64F-44CA-84E1-DCD51D790E3E</referenceId>
-			<referenceName>Hyundia P25-54 1Q</referenceName>
-		</referenceIds>
-		<lineReferences>
-			<id>Hyn-2554-1</id>
-			<version>0</version>
-			<srcId>XVEN-1234</srcId>
-			<srcName>XVEN Buyer</srcName>
-		</lineReferences>
-		<lineReferences>
-			<id>1</id>
-			<version>0</version>
-			<srcId>490</srcId>
-			<srcName>KHOU-TV</srcName>
-		</lineReferences>
-		<cpeCode>
-			<clientCode>HYUN</clientCode>
-			<productCode>AUTO</productCode>
-			<estimateCode>987</estimateCode>
-		</cpeCode>
-		<buyer>
-			<buyerIds>
-				<id>456</id>
-				<version>0</version>
-				<srcId>490</srcId>
-				<srcName>KHOU-TV</srcName>
-			</buyerIds>
-			<buyerName>Canvas Worldwide. LLC</buyerName>
-		</buyer>
-		<advertiser>
-			<advertiserIds>
-				<id>34</id>
-				<version>0</version>
-				<srcId>490</srcId>
-				<srcName>KHOU-TV</srcName>
-			</advertiserIds>
-			<advertiserName>Hyundai</advertiserName>
-		</advertiser>
-		<brand>
-			<brandIds>
-				<id>19</id>
-				<version>0</version>
-				<srcId>490</srcId>
-				<srcName>KHOU-TV</srcName>
-			</brandIds>
-			<brandName>Kona</brandName>
-		</brand>
-		<product>
-			<productIds>
-				<id>89</id>
-				<version>0</version>
-				<srcId>490</srcId>
-				<srcName>KHOU-TV</srcName>
-			</productIds>
-			<productName>Automobile</productName>
-		</product>
-		<salesElementHeader>
-			<mediaOutletId>490</mediaOutletId>
-			<salesElementName>CBS This Morning</salesElementName>
-			<salesElementId>56</salesElementId>
-			<salesElementType>Program</salesElementType>
-		</salesElementHeader>
-		<program>CBS This Morning</program>
-		<daypart>Morning</daypart>
-		<inventoryType>Commercial</inventoryType>
-		<airedLength>30</airedLength>
-		<bookedLength>30</bookedLength>
-		<rate>525</rate>
-		<creative>
-			<ids>
-				<id>HYUN1234</id>
-				<version>0</version>
-				<srcId>490</srcId>
-				<srcName>KHOU-TV</srcName>
-			</ids>
-			<ids>
-				<id>ABCD000123H</id>
-				<version>0</version>
-				<srcId>Ad-id.org</srcId>
-				<srcName>Ad ID code</srcName>
-			</ids>
-			<name>Name of Creative</name>
-			<status>Final</status>
-			<length>30</length>
-		</creative>
-		<status>Aired</status>
-		<isCredit>false</isCredit>
-		<timePeriods>
-			<dateWindow>
-				<startDate>2021-08-06</startDate>
-				<endDate>2021-08-06</endDate>
-			</dateWindow>
-			<DOW>
-				<isMonday>true</isMonday>
-				<isTuesday>true</isTuesday>
-				<isWednesday>true</isWednesday>
-				<isThursday>true</isThursday>
-				<isFriday>true</isFriday>
-				<isSaturday>true</isSaturday>
-				<isSunday>true</isSunday>
-			</DOW>
-			<timeWindow>
-				<startTime>07:00</startTime>
-				<endTime>09:00</endTime>
-			</timeWindow>
-		</timePeriods>
-		<dateTime>
-			<broadcastDate>2021-08-06</broadcastDate>
-			<calendarDateTime>2021-08-06T19:49:23.706Z</calendarDateTime>
-		</dateTime>
+		<unit>
+			<unitId>15555</unitId>
+			<referenceIds>
+				<referenceId>
+					<referenceSourceName>KHOU-TV</referenceSourceName>
+					<referenceSourceId>490</referenceSourceId>
+					<referenceType>Order</referenceType>
+					<referenceId>A2CAF9C7-C64F-44CA-84E1-DCD51D790E3E</referenceId>
+					<referenceName>Hyundia P25-54 1Q</referenceName>
+				</referenceId>
+			</referenceIds>
+			<lineReferences>
+				<identifier>
+					<id>Hyn-2554-1</id>
+					<version>0</version>
+					<srcId>XVEN-1234</srcId>
+					<srcName>XVEN Buyer</srcName>
+				</identifier>
+				<identifier>
+					<id>1</id>
+					<version>0</version>
+					<srcId>490</srcId>
+					<srcName>KHOU-TV</srcName>
+				</identifier>
+			</lineReferences>
+			<cpeCode>
+				<clientCode>HYUN</clientCode>
+				<productCode>AUTO</productCode>
+				<estimateCode>987</estimateCode>
+			</cpeCode>
+			<buyer>
+				<buyerIds>
+					<identifier>
+						<id>456</id>
+						<version>0</version>
+						<srcId>490</srcId>
+						<srcName>KHOU-TV</srcName>
+					</identifier>
+				</buyerIds>
+				<buyerName>Canvas Worldwide. LLC</buyerName>
+			</buyer>
+			<advertiser>
+				<advertiserIds>
+					<identifier>
+						<id>34</id>
+						<version>0</version>
+						<srcId>490</srcId>
+						<srcName>KHOU-TV</srcName>
+					</identifier>
+				</advertiserIds>
+				<advertiserName>Hyundai</advertiserName>
+			</advertiser>
+			<brand>
+				<brandIds>
+					<identifier>
+						<id>19</id>
+						<version>0</version>
+						<srcId>490</srcId>
+						<srcName>KHOU-TV</srcName>
+					</identifier>
+				</brandIds>
+				<brandName>Kona</brandName>
+				<brandReference i:nil="true" />
+			</brand>
+			<product>
+				<productIds>
+					<identifier>
+						<id>89</id>
+						<version>0</version>
+						<srcId>490</srcId>
+						<srcName>KHOU-TV</srcName>
+					</identifier>
+				</productIds>
+				<productName>Automobile</productName>
+			</product>
+			<salesElementHeader>
+				<mediaOutletId>490</mediaOutletId>
+				<salesElementId>56</salesElementId>
+				<salesElementName>CBS This Morning</salesElementName>
+				<salesElementType>Program</salesElementType>
+			</salesElementHeader>
+			<program>CBS This Morning</program>
+			<daypart>Morning</daypart>
+			<inventoryType>Commercial</inventoryType>
+			<linkType i:nil="true" />
+			<isMakegood i:nil="true" />
+			<isAdu i:nil="true" />
+			<preemptUnitIds i:nil="true" />
+			<isBonus i:nil="true" />
+			<airedLength>30</airedLength>
+			<bookedLength>30</bookedLength>
+			<rate>525</rate>
+			<creative>
+				<ids>
+					<identifier>
+						<id>HYUN1234</id>
+						<version>0</version>
+						<srcId>490</srcId>
+						<srcName>KHOU-TV</srcName>
+					</identifier>
+					<identifier>
+						<id>ABCD000123H</id>
+						<version>0</version>
+						<srcId>Ad-id.org</srcId>
+						<srcName>Ad ID code</srcName>
+					</identifier>
+				</ids>
+				<name>Name of Creative</name>
+				<status>Final</status>
+				<length>30</length>
+			</creative>
+			<status>Aired</status>
+			<isCredit>false</isCredit>
+			<timePeriods>
+				<timePeriod>
+					<DOW>
+						<isMonday>true</isMonday>
+						<isTuesday>true</isTuesday>
+						<isWednesday>true</isWednesday>
+						<isThursday>true</isThursday>
+						<isFriday>true</isFriday>
+						<isSaturday>true</isSaturday>
+						<isSunday>true</isSunday>
+					</DOW>
+					<dateWindow>
+						<startDate>2021-08-06T00:00:00</startDate>
+						<endDate>2021-08-06T00:00:00</endDate>
+					</dateWindow>
+					<timeWindow>
+						<endTime>09:00</endTime>
+						<startTime>07:00</startTime>
+					</timeWindow>
+				</timePeriod>
+			</timePeriods>
+			<dateTime>
+				<broadcastDate>2021-08-06T00:00:00</broadcastDate>
+				<calendarDateTime>2021-08-06T19:49:23.706Z</calendarDateTime>
+			</dateTime>
+			<childUnits i:nil="true" />
+		</unit>
 	</units>
-</SellerLogtimesRequest>
+</SellerLogtimes>

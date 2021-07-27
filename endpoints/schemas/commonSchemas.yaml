@@ -74,6 +74,8 @@ components:
           items:
             $ref: '#/components/schemas/Identifier'
           minItems: 1
+          xml: 
+            wrapped: true
         mediaOutletName:
           description: Station, network name or entity associated to mediaOutletId
           type: string
@@ -100,6 +102,8 @@ components:
         - mediaOutletIds
         - mediaOutletName
         - mediaOutletType
+      xml:
+        name: mediaOutlet
     Advertiser:
       description: Advertiser information
       properties:
@@ -119,6 +123,8 @@ components:
       required:
         - advertiserIds
         - advertiserName
+      xml:
+        name: advertiser
     Brand:
       description: Advertising brand information
       properties:
@@ -138,6 +144,8 @@ components:
       required:
         - brandIds
         - brandName
+      xml:
+        name: brand
     Buyer:
       description: Buy-side organization information
       properties:
@@ -146,6 +154,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Identifier'
+          xml:
+            wrapped: true
           minItems: 1
         buyerName:
           description: Buying organization name
@@ -157,6 +167,8 @@ components:
       required:
         - buyerIds
         - buyerName
+      xml:
+        name: buyer
     Product:
       description: Product category information
       properties:
@@ -176,6 +188,8 @@ components:
       required:
         - productIds
         - productName
+      xml:
+        name: product
     AudienceTarget:
       description: Audience target information
       properties:
@@ -190,6 +204,9 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Identifier'
+          minItems: 1
+          xml:
+            wrapped: true
         targetAttribute:
           description: >-
             Target attributes demographics could range from household income or education,
@@ -204,14 +221,17 @@ components:
           type: array
           items:
             type: string
-          example: [
-  "$50,000 - $75,000",
-  "$75,000, -$100,000"
-]
+            xml:
+              name: item
+          xml:
+            wrapped: true
+          example: ["$50,000 - $75,000", "$75,000, -$100,000"]
       required:
         - excludeOrInclude
         - targetAttribute
         - value
+      xml:
+        name: audienceTarget
     AudienceSegment:
       description: Audience segment information
       properties:
@@ -221,6 +241,8 @@ components:
           items:
             $ref: '#/components/schemas/Identifier'
           minItems: 1
+          xml:
+            wrapped: true
         audienceSegmentName:
           description: Audience segment name
           type: string
@@ -260,6 +282,8 @@ components:
       required:
         - audienceSegmentIds
         - audienceSegmentName
+      xml:
+        name: audienceSegment
     AudienceSegmentDetail:
       description: Combines a mediaoutlet id with audience segment and universe objects
       properties:
@@ -271,6 +295,8 @@ components:
           items:
             $ref: '#/components/schemas/Identifier'
           minItems: 1
+          xml:
+            wrapped: true
         audienceSegment:
           $ref: '#/components/schemas/AudienceSegment'
         universes:
@@ -279,9 +305,13 @@ components:
           items:
             $ref: '#/components/schemas/Universe'
           minItems: 1
+          xml:
+            wrapped: true
       required:
         - mediaOutletIds
         - audienceSegment
+      xml:
+        name: audienceSegmentDetail
     AudienceMetric:
       description: Audience metric type and value information
       properties:
@@ -301,6 +331,8 @@ components:
       required:
         - audienceMetric
         - audienceMetricValue
+      xml:
+        name: audienceMetric
     PricingMetricOption:
       description: Pricing metric Cost-per-thousand, Cost-per-point, Cost-per-engagement, Cost-per-action
       type: string
@@ -326,6 +358,8 @@ components:
       required:
         - PricingMetricOption
         - grossValue
+      xml:
+        name: pricingMetric
     AudiencePricingMetric:
       description: Audience segment id with audience metric and pricing metric objects
       properties:
@@ -335,6 +369,8 @@ components:
           items:
             $ref: '#/components/schemas/Identifier'
           minItems: 1
+          xml:
+            wrapped: true
         type:
           description: >-
             Indicates the type for the audience and pricing metrics.  Selling = booked audience
@@ -352,6 +388,8 @@ components:
       required:
         - audienceSegmentIds
         - pricingMetric
+      xml:
+        name: audiencePricingMetric
     FrequencyCapping:
       description: Frequency capping information
       properties:
@@ -378,6 +416,8 @@ components:
       required:
         - period
         - value
+      xml:
+        name: frequencyCapping
     PacingRule:
       description: Pacing delivery options information
       properties:
@@ -400,6 +440,8 @@ components:
             - Percent
       required:
         - type
+      xml:
+        name: pacingRule
     Universe:
       description: Universe coverage and the estimated number of households or people within the universe
       properties:
@@ -414,6 +456,8 @@ components:
         universeTypeValue:
           description: UniverseType value
           type: integer
+      xml:
+        name: universe
     CancellationTerm:
       description: Cancellation terms
       properties:
@@ -440,6 +484,8 @@ components:
           type: number
           format: float
           example: 25
+      xml:
+        name: cancellationTerm
     TimeSeparation:
       description: Time separation terms
       properties:
@@ -455,6 +501,8 @@ components:
             across all lengths. Time Separation is defined in seconds
           type: integer
           example: 900
+      xml:
+        name: timeSeparation
     ReferenceId:
       description: Reference details for RFP, Proposal, Order and Invoice
       properties:
@@ -501,6 +549,8 @@ components:
         - referenceSourceId
         - referenceType
         - referenceId
+      xml:
+        name: referenceId
     Currency:
       description: >-
         Currency Code is based on ISO 4217. This is the short list of most widely used codes
@@ -644,9 +694,13 @@ components:
           type: array
           items:
             type: string
+            xml: 
+              name: item
       required:
         - guidelineType
         - excludeOrInclude
+      xml:
+        name: guideline
     DateTime:
       description: Broadcast date and broadcast time used in Logtimes & Invoices
       properties:
@@ -672,6 +726,8 @@ components:
       required:
         - dateWindow
         - DOW
+      xml:
+        name: timePeriod
     DateWindow:
       description: Start and end dates
       properties:
@@ -685,6 +741,8 @@ components:
           format: date
       required:
         - startDate
+      xml:
+        name: dateWindow
     TimeWindow:
       description: Start and end times
       properties:
@@ -702,6 +760,8 @@ components:
           pattern: ^(([0-1][0-9])|(2[0-3]))(:[0-5][0-9]){2}$
       required:
         - startTime
+      xml:
+        name: timeWindow
     DayOfWeek:
       description: Valid days of week
       properties:
@@ -822,6 +882,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Identifier'
+          xml:
+            wrapped: true
           minItems: 1
           nullable: false
         organizationIds:
@@ -829,6 +891,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Identifier'
+          xml:
+            wrapped: true
           minItems: 1
           nullable: false
         salesOffices:
@@ -836,12 +900,13 @@ components:
           type: array
           items:
             type: string
+            xml:
+              name: item
+          xml:
+            wrapped: true
           uniqueItems: True
           nullable: True
-          example: [
-  "Dallas, TX",
-  "NYC, NY"
-]
+          example: ["Dallas, TX", "NYC, NY"]
         contactFirstName:
           description: Contact First Name
           type: string
@@ -892,6 +957,8 @@ components:
         - contactFirstName
         - contactLastName
         - effectiveDate
+      xml:
+        name: contact
     RemittanceInfo:
       description: Invoice remittance Information and billing instructions
       properties:
@@ -1006,11 +1073,15 @@ components:
               - Chromecast
               - Smartphones
               - Smart TV
+            xml:
+              name: item
         programs:
           description: ArrayList of program names valid for the salesElement
           type: array
           items:
             type: string
+            xml:
+              name: item
         salesElementInventorys:
           description: Array of SalesElementInventory objects
           type: array
@@ -1034,6 +1105,8 @@ components:
           type: array
           items:
             type: string
+            xml:
+              name: item
         inventoryPosition:
           description: Indicates a specific break or position within a sales element
           $ref: '#/components/schemas/InventoryPosition'
@@ -1049,6 +1122,8 @@ components:
           minItems: 1
       required:
         - inventoryType
+      xml:
+        name: salesElementInventory
     SalesElementInventoryDate:
       description: Combines sales element inventory dates with audience pricing metrics objects
       properties:
@@ -1110,11 +1185,15 @@ components:
               - Chromecast
               - Smartphones
               - Smart TV
+            xml:
+              name: item
         programs:
           description: ArrayList of program names valid for the salesElement
           type: array
           items:
             type: string
+            xml:
+              name: item
         salesElementTransactionInventorys:
           type: array
           items:
@@ -1290,6 +1369,10 @@ components:
               - Fri
               - Sat
               - Sun
+            xml:
+              name: item
+          xml:
+            wrapped: true
         onDate:
           description: >-
             Valid when every is equal to Month; unique day(s) of the month on which the data
@@ -1298,6 +1381,10 @@ components:
           type: array
           items:
             type: integer
+            xml:
+              name: item
+          xml:
+            wrapped: true
           example: [1,15]
         isEndNever:
           description: >-
@@ -1377,12 +1464,17 @@ components:
           items:
             $ref: '#/components/schemas/ReferenceId'
           minItems: 1
+          xml:
+            wrapped: true
         comments:
           description: Free form comments
           type: string
       required:
         - transactionHeader
         - referenceIds
+      xml: 
+        name: CancelConfirmRecallReject
+        namespace: https://tip.schemas.org/v6.0.0
     Error:
       description: Defines errors returned from all APIs
       properties:
@@ -1404,6 +1496,7 @@ components:
         - errorMessage
       xml:
         name: Error
+        namespace: https://tip.schemas.org/v6.0.0
     AcceptedResponse:
       description: Defines successful return from all APIs
       properties:
@@ -1418,6 +1511,7 @@ components:
         - timeStamp
       xml:
         name: AcceptedResponse
+        namespace: https://tip.schemas.org/v6.0.0
     Creative:
       description: Object representing the creative
       properties:
@@ -1499,6 +1593,8 @@ components:
       required:
         - id
         - srcName
+      xml:
+        name: identifier
     SupplyPath:
       description: Impression supply path
       properties:

@@ -27,14 +27,20 @@ components:
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/Contact'
+          xml:
+            wrapped: true
         mediaOutlets:
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/MediaOutlet'
+          xml:
+            wrapped: true
         audienceSegments:
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/AudienceSegmentDetail'
+          xml:
+            wrapped: true
         externalComment:
           description: String that indicates additional information the seller may send to the the buyer
           type: string
@@ -42,10 +48,15 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/AudienceDetail'
+          xml: 
+            wrapped: true
       required:
         - transactionHeader
         - mediaOutlets
         - audienceDetails
+      xml:
+        name: SellerAudiences
+        namespace: https://tipapi.schemas.org/v6.0.0
     AudienceDetail:
       description: Audience detail information
       properties:
@@ -79,6 +90,8 @@ components:
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/ReferenceId'
           minItems: 1
+          xml:
+            wrapped: true
         cpeCode:
           $ref: 'commonSchemas.yaml#/components/schemas/CpeCode'
         advertiser:
@@ -106,14 +119,20 @@ components:
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/AudienceTarget'
+          xml:
+            wrapped: true
         audiencePricingMetrics:
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/AudiencePricingMetric'
+          xml:
+            wrapped: true
         unitDetails:
           type: array
           items:
             $ref: '#/components/schemas/AudienceUnitDetail'
+          xml:
+            wrapped: true
       required:
         - detailType
         - dateType
@@ -123,6 +142,8 @@ components:
         - advertiser
         - product
         - salesElementHeader
+      xml:
+        name: audienceDetail
     AudienceUnitDetail:
       description: >-
         Audience detail information for the individual linear units; this is optional
@@ -143,6 +164,8 @@ components:
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/AudiencePricingMetric'
+          xml:
+            wrapped: true
         comment:
           description: Overall comments associated to the unit
           type: string
@@ -150,10 +173,14 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/AudienceChildUnitDetail'
+          xml:
+            wrapped: true
       required:
         - unitId
         - creative
         - audiencePricingMetrics
+      xml:
+        name: audienceUnitDetail
     AudienceChildUnitDetail:
       description: >-
         Child unit details for footprint unit to support Audience Network, Diginet or other
@@ -178,12 +205,16 @@ components:
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/AudiencePricingMetric'
+          xml:
+            wrapped: true
         comment:
           description: Overall comment for the unit
           type: string
       required:
         - creative
         - audiencePricingMetrics
+      xml:
+        name: childUnit
     BuyerAudiencesSubscription:
       description: >-
         Schema allows the buyer to formulate a query for audience post buy information
@@ -194,6 +225,7 @@ components:
         name:
           description: Buyer request reference name
           type: string
+          example: every two weeks,  two weeks past and two weeks forward report
         referenceIds:
           description: >-
             Array of ReferenceId objects containing the order id references; may also contain
@@ -202,40 +234,54 @@ components:
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/ReferenceId'
           minItems: 1
+          xml:
+            wrapped: true
         mediaOutlets:
           description: Array of mediaOutlet objects being requested
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/MediaOutlet'
           minItems: 1
-        buyer:
+          xml:
+            wrapped: true
+        buyers:
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/Buyer'
-          minItems: 1           
-        advertiser:
+          minItems: 1
+          xml:
+            wrapped: true          
+        advertisers:
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/Advertiser'
-          minItems: 1           
+          minItems: 1 
+          xml:
+            wrapped: true          
         contacts:
           description: Array of Contact objects
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/Contact'
-          minItems: 1           
+          minItems: 1 
+          xml:
+            wrapped: true          
         audienceTargets:
           description: Array of AudienceTarget objects
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/AudienceTarget'
-          minItems: 1           
+          minItems: 1 
+          xml:
+            wrapped: true          
         audienceSegments:
           description: Array of AudienceSegment objects being requested
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/AudienceSegment'
           minItems: 1
+          xml:
+            wrapped: true
         externalComment:
           description: Free form text to accommodate transaction comments and/or activities outside the TIP flow
           type: string
@@ -254,3 +300,6 @@ components:
       required:
         - transactionHeader
         - name
+      xml:
+        name: BuyerAudiencesSubscription
+        namespace: https://tipapi.schemas.org/v6.0.0

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SellerMakegoodOffers xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://tip.schemas.org/v6.0.0">
+<SellerCommercialInstructions xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://tip.schemas.org/v6.0.0">
 	<transactionHeader>
 		<tipVersion>6.0.0</tipVersion>
 		<transactionId>
 			<transactionId>3fa85f64-5717-4562-b3fc-2c963f66afa6</transactionId>
-			<transactionType>Recall</transactionType>
+			<transactionType>Reject</transactionType>
 			<sourceId>456</sourceId>
 			<sourceName>Canvas Worldwide. LLC</sourceName>
 		</transactionId>
@@ -28,4 +28,4 @@
 		</referenceId>
 	</referenceIds>
 	<comments>Thanks for your efforts we decided to cancel</comments>
-</SellerMakegoodOffers>
+</SellerCommercialInstructions>

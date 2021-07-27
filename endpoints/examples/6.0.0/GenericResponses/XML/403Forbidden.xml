@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<Error>
+<Error xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://tip.schemas.org/v6.0.0">
 	<errorCode>403</errorCode>
 	<errorMessage>Forbidden, additional previliges are needed</errorMessage>
 </Error>

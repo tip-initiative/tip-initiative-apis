@@ -34,7 +34,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/BuyerAudiencesSubscriptionRequest'
+              $ref: '#/components/schemas/BuyerAudiencesSubscriptionJSON'
             examples:
               New:
                 value: 
@@ -47,7 +47,7 @@ paths:
                   $ref: './examples/6.0.0/Buyer/JSON/AudiencesSubscriptionCancel.json'
           application/xml:
             schema:
-              $ref: '#/components/schemas/BuyerAudiencesSubscriptionRequest'
+              $ref: '#/components/schemas/BuyerAudiencesSubscriptionXML'
             examples:
               New:
                 value: 
@@ -59,42 +59,10 @@ paths:
                 value:
                   $ref: './examples/6.0.0/Buyer/XML/AudiencesSubscriptionCancel.xml'
       responses:
+        '200': #Success
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Success'
         '201': #Created
-          $ref: 'schemas/commonResponses.yaml#/components/responses/Success'
-        '400': #Bad Request
-          $ref: 'schemas/commonResponses.yaml#/components/responses/BadRequest'
-        '401': #Unauthorized
-          $ref: 'schemas/commonResponses.yaml#/components/responses/Unauthorized'
-        '403': #Forbidden
-          $ref: 'schemas/commonResponses.yaml#/components/responses/Forbidden'
-        '404': #Not Found
-          $ref: 'schemas/commonResponses.yaml#/components/responses/NotFound'
-        '405': #Not Allowed
-          $ref: 'schemas/commonResponses.yaml#/components/responses/NotAllowed'
-        default: #unexpected
-          $ref: 'schemas/commonResponses.yaml#/components/responses/Unexpected'
-  /seller/audiences:
-    post:
-      tags:
-        - Seller
-      summary: Allows the seller to provide the buyer or agency with responses for Audience information
-      description: >- 
-        Allows the seller to respond to the buyer or agency request for audience information on periodic basis
-        Supported Transaction Types: New			
-      operationId: SellerAudiences
-      requestBody:
-        description: The request represents a query request defining the parameters and content of the expected audience responses.
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: './schemas/audienceSchemas.yaml#/components/schemas/SellerAudiences'
-          application/xml:
-            schema:
-              $ref: './schemas/audienceSchemas.yaml#/components/schemas/SellerAudiences'
-      responses:
-        '200': #OK
-          $ref: 'schemas/commonResponses.yaml#/components/responses/Success'
+          $ref: 'schemas/commonResponses.yaml#/components/responses/Created'
         '400': #Bad Request
           $ref: 'schemas/commonResponses.yaml#/components/responses/BadRequest'
         '401': #Unauthorized
@@ -114,9 +82,20 @@ components:
       scheme: bearer
       bearerFormat: JWT
   schemas:
-    BuyerAudiencesSubscriptionRequest:
+    BuyerAudiencesSubscriptionJSON:
       oneOf:
         - $ref: './schemas/audienceSchemas.yaml#/components/schemas/BuyerAudiencesSubscription'
         - $ref: './schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
+      example:
+        $ref: './examples/6.0.0/Buyer/JSON/AudiencesSubscriptionNew.json'
+      # xml:
+      #   namespace: https://tip.schemas.org/v6.0.0
+    BuyerAudiencesSubscriptionXML:
+      oneOf:
+        - $ref: './schemas/audienceSchemas.yaml#/components/schemas/BuyerAudiencesSubscription'
+        - $ref: './schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
+      example:
+        $ref: './examples/6.0.0/Buyer/XML/AudiencesSubscriptionNew.xml'
       xml:
-        name: BuyerAudiencesSubscriptionRequest
+        name: BuyerAudiencesSubscription
+        namespace: https://tip.schemas.org/v6.0.0
