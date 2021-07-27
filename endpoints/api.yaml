@@ -262,9 +262,9 @@ paths:
   /seller/invoices:
     $ref: 'invoice.yaml#/paths/~1seller~1invoices'
   /buyer/audiences/subscription:
-    $ref: 'audiences.yaml#/paths/~1buyer~1audiences~1subscription'
+    $ref: 'buyerAudiences.yaml#/paths/~1buyer~1audiences~1subscription'
   /seller/audiences:
-    $ref: 'audiences.yaml#/paths/~1seller~1audiences'
+    $ref: 'sellerAudiences.yaml#/paths/~1seller~1audiences'
 components:
   securitySchemes:
     bearerAuth:

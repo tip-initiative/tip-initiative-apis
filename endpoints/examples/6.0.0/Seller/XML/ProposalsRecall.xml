@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<CancelConfirmRecallReject xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://tip.schemas.org/v6.0.0">
+<SellerProposals xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://tip.schemas.org/v6.0.0">
 	<transactionHeader>
 		<tipVersion>6.0.0</tipVersion>
 		<transactionId>
@@ -35,4 +35,4 @@
 		</referenceId>
 	</referenceIds>
 	<comments>Please ignore previous Proposal changes indicated in version#1. newly updated ones are to follow.</comments>
-</CancelConfirmRecallReject>
+</SellerProposals>

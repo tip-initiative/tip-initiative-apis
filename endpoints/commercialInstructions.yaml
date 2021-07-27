@@ -36,7 +36,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/BuyerCommercialInstructionsRequest'
+              $ref: '#/components/schemas/BuyerCommercialInstructions'
             examples:
               New:
                 value: 
@@ -52,7 +52,7 @@ paths:
                   $ref: 'examples/6.0.0/Buyer/JSON/CommercialInstructionsRecall.json'
           application/xml:
             schema:
-              $ref: '#/components/schemas/BuyerCommercialInstructionsRequest'
+              $ref: '#/components/schemas/BuyerCommercialInstructions'
             examples:
               New:
                 value: 
@@ -96,24 +96,24 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/SellerCommercialInstructionsRequest'
+              $ref: '#/components/schemas/SellerCommercialInstructions'
             examples:
               Confirm:
                 value:
-                  $ref: 'examples\6.0.0\Seller\JSON\GenericConfirm.json'
+                  $ref: 'examples\6.0.0\Seller\JSON\CommercialInstructionsConfirm.json'
               Reject:
                 value:
-                  $ref: 'examples/6.0.0/Seller/JSON/GenericReject.json'
+                  $ref: 'examples/6.0.0/Seller/JSON/CommercialInstructionsReject.json'
           application/xml:
             schema:
-              $ref: '#/components/schemas/SellerCommercialInstructionsRequest'
+              $ref: '#/components/schemas/SellerCommercialInstructions'
             examples:
               Confirm:
                 value:
-                  $ref: 'examples\6.0.0\Seller\XML\GenericConfirm.xml'
+                  $ref: 'examples\6.0.0\Seller\XML\CommercialInstructionsConfirm.xml'
               Reject:
                 value:
-                  $ref: 'examples/6.0.0/Seller/XML/GenericReject.xml'
+                  $ref: 'examples/6.0.0/Seller/XML/CommercialInstructionsReject.xml'
       responses:
         '200': #OK
           $ref: 'schemas/commonResponses.yaml#/components/responses/Success'
@@ -136,7 +136,7 @@ components:
       scheme: bearer
       bearerFormat: JWT
   schemas:
-    BuyerCommercialInstructionsRequest:
+    BuyerCommercialInstructions:
       description: >-
         Users of this contruct have the option to either
           - Use the full Commercial Instructions object to deliver New, or change instructions
@@ -145,10 +145,11 @@ components:
         - $ref: './schemas/commercialInstructionSchemas.yaml#/components/schemas/BuyerCommercialInstructions'
         - $ref: './schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
       xml:
-        name: BuyerCommercialInstructionsRequest
-    SellerCommercialInstructionsRequest:
+        name: BuyerCommercialInstructions
+        namespace: https://tip.schemas.org/v6.0.0
+    SellerCommercialInstructions:
       allOf:
         - $ref: './schemas/commonSchemas.yaml#/components/schemas/CancelConfirmRecallReject'
       xml:
-        name: SellerCommercialInstructionsRequest
+        name: SellerCommercialInstructions
   

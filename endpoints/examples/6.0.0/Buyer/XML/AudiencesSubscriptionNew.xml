@@ -1,15 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<BuyerAudiencesSubscription xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://tip.schemas.org/v6.0.0">
+<BuyerAudiencesSubscription xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns:a="http://www.w3.org/2001/XMLSchema" xmlns="https://tip.schemas.org/v6.0.0">
 	<transactionHeader>
-		<originalTransactionId i:nil="true" />
-		<timeStamp>2021-05-06T19:09:12.795Z</timeStamp>
 		<tipVersion>6.0.0</tipVersion>
 		<transactionId>
-			<sourceId>XBuy-1234</sourceId>
-			<sourceName>XVEN Buyer</sourceName>
 			<transactionId>3fa85f64-5717-4562-b3fc-2c963f66afa6</transactionId>
 			<transactionType>New</transactionType>
+			<sourceId>XBuy-1234</sourceId>
+			<sourceName>XVEN Buyer</sourceName>
 		</transactionId>
+		<timeStamp>2021-05-06T19:09:12.795Z</timeStamp>
 	</transactionHeader>
 	<name>Bi Monthly Subscription</name>
 	<referenceIds>
@@ -117,7 +116,7 @@
 	<frequency>
 		<effectiveOn>2020-08-12T00:00:00Z</effectiveOn>
 		<every>Month</every>
-		<onDay xmlns:d3p1="http://schemas.datacontract.org/2004/07/ConsoleApp3.Models" i:nil="true" />
+		<onDay i:nil="true" />
 		<onDate>
 			<item>1</item>
 			<item>15</item>
@@ -130,5 +129,5 @@
 		<offsetType>Day</offsetType>
 		<offset>-10</offset>
 	</startDate>
-	<endDate xmlns:d2p1="http://www.w3.org/2001/XMLSchema" i:type="d2p1:dateTime">2022-08-12T00:00:00</endDate>
+	<endDate i:type="a:dateTime">2022-08-12T00:00:00</endDate>
 </BuyerAudiencesSubscription>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<BuyerLogTimesSubscription xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://tip.schemas.org/v6.0.0">
+<BuyerLogTimesSubscription xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns:a="http://www.w3.org/2001/XMLSchema" xmlns="https://tip.schemas.org/v6.0.0">
 	<transactionHeader>
 		<tipVersion>6.0.0</tipVersion>
 		<transactionId>
@@ -107,6 +107,9 @@
 		<endOn i:nil="true" />
 		<endOccurAfter i:nil="true" />
 	</frequency>
-	<startDate i:nil="true" />
-	<endDate i:nil="true" />
+	<startDate i:type="DynamicDate">
+		<offsetType>Day</offsetType>
+		<offset>-10</offset>
+	</startDate>
+	<endDate i:type="a:dateTime">2022-08-12T00:00:00</endDate>
 </BuyerLogTimesSubscription>

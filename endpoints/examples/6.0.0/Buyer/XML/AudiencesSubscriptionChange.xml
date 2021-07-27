@@ -1,20 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<BuyerAudiencesSubscription xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://tip.schemas.org/v6.0.0">
+<BuyerAudiencesSubscription xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns:a="http://www.w3.org/2001/XMLSchema" xmlns="https://tip.schemas.org/v6.0.0">
 	<transactionHeader>
-		<originalTransactionId>
-			<sourceId>XBuy-1234</sourceId>
-			<sourceName>XVEN Buyer</sourceName>
-			<transactionId>3fa85f64-5717-4562-b3fc-2c963f66afa6</transactionId>
-			<transactionType>New</transactionType>
-		</originalTransactionId>
-		<timeStamp>2021-05-06T19:09:12.795Z</timeStamp>
 		<tipVersion>6.0.0</tipVersion>
 		<transactionId>
-			<sourceId>XBuy-1234</sourceId>
-			<sourceName>XVEN Buyer</sourceName>
 			<transactionId>da93c8d1-72ab-4615-859d-1281f4f25eca</transactionId>
 			<transactionType>Change</transactionType>
+			<sourceId>XBuy-1234</sourceId>
+			<sourceName>XVEN Buyer</sourceName>
 		</transactionId>
+		<originalTransactionId>
+			<transactionId>3fa85f64-5717-4562-b3fc-2c963f66afa6</transactionId>
+			<transactionType>New</transactionType>
+			<sourceId>XBuy-1234</sourceId>
+			<sourceName>XVEN Buyer</sourceName>
+		</originalTransactionId>
+		<timeStamp>2021-05-06T19:09:12.795Z</timeStamp>
 	</transactionHeader>
 	<name>Bi Monthly Subscription</name>
 	<referenceIds>
@@ -131,6 +131,9 @@
 		<endOn>2021-05-06T00:00:00</endOn>
 		<endOccurAfter i:nil="true" />
 	</frequency>
-	<startDate i:nil="true" />
-	<endDate i:nil="true" />
+	<startDate i:type="DynamicDate">
+		<offsetType>Day</offsetType>
+		<offset>-10</offset>
+	</startDate>
+	<endDate i:type="a:dateTime">2022-08-12T00:00:00</endDate>
 </BuyerAudiencesSubscription>

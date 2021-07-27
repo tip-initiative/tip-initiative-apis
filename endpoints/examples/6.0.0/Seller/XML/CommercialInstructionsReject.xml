@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<CancelConfirmRecallReject xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://tip.schemas.org/v6.0.0">
+<SellerCommercialInstructions xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://tip.schemas.org/v6.0.0">
 	<transactionHeader>
 		<tipVersion>6.0.0</tipVersion>
 		<transactionId>
 			<transactionId>3fa85f64-5717-4562-b3fc-2c963f66afa6</transactionId>
-			<transactionType>Confirm</transactionType>
+			<transactionType>Reject</transactionType>
 			<sourceId>456</sourceId>
 			<sourceName>Canvas Worldwide. LLC</sourceName>
 		</transactionId>
@@ -18,14 +18,14 @@
 	</transactionHeader>
 	<referenceIds>
 		<referenceId>
-			<referenceSourceName>Canvas Worldwide. LLC</referenceSourceName>
-			<referenceSourceId>456</referenceSourceId>
+			<referenceSourceName>KHOU-TV</referenceSourceName>
+			<referenceSourceId>490</referenceSourceId>
 			<referenceSourceLookup></referenceSourceLookup>
 			<referenceType>Order</referenceType>
 			<referenceId>123456</referenceId>
 			<referenceVersionId></referenceVersionId>
-			<referenceName>Canvas Worldwide. LLC Q1</referenceName>
+			<referenceName>Nissan July Sale</referenceName>
 		</referenceId>
 	</referenceIds>
-	<comments>Thank you Very much; good to do business with you :)</comments>
-</CancelConfirmRecallReject>
+	<comments>Thanks for your efforts we decided to cancel</comments>
+</SellerCommercialInstructions>
