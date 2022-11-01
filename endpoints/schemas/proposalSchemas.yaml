@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  version: 6.0.0
+  version: 6.1.0
   title: Proposals Schemas
   description: Create a proposal to send to the buyer system
   termsOfService: http://placeholderdomain.io/terms/
@@ -101,6 +101,11 @@ components:
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/TimeSeparation'
+        fluidity:
+          description: percent shift of impressions allowed across media media outlet types; assumes impressions are unequivalized
+          type: number
+          format: float
+          example: 0.1
         termsOfSales:
           description: Information specific to payment terms, preemption status, etc.
           type: string
@@ -225,6 +230,11 @@ components:
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/TimeSeparation'
+        fluidity:
+          description: percent shift of impressions allowed across media media outlet types; assumes impressions are unequivalized
+          type: number
+          format: float
+          example: 0.1
         termsOfSales:
           description: Information specific to payment terms, preemption status, etc.
           type: string

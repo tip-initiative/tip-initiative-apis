@@ -99,6 +99,11 @@ components:
             example: 
               - 30
               - 15
+        fluidityPreference:
+          description: percent shift of impressions allowed across media media outlet types; assumes impressions are unequivalized
+          type: number
+          format: float
+          example: 0.1
         guidelines:
           description: Array of Guideline objects containing the buyer's preferences
           type: array

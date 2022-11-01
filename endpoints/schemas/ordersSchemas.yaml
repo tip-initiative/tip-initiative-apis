@@ -98,6 +98,11 @@ components:
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/TimeSeparation'
+        fluidity:
+          description: percent shift of impressions allowed across media media outlet types; assumes impressions are unequivalized
+          type: number
+          format: float
+          example: 0.1
         termsOfSales:
           description: Information specific to payment terms, preemption status, etc.
           type: string
