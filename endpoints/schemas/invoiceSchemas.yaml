@@ -170,14 +170,14 @@ components:
           type: integer
         cpeCode:
           $ref: 'commonSchemas.yaml#/components/schemas/CpeCode'
-        billableCosts:
-          description: >-
-            Indicates if the gross and net costs are booked or earned revenues calculated from
-            the actual impression delivery; extended enum values are allowed
-          type: string
-          enum:
-            - Booked
-            - Actuals
+        # billableCosts:
+        #   description: >-
+        #     Indicates if the gross and net costs are booked or earned revenues calculated from
+        #     the actual impression delivery; extended enum values are allowed
+        #   type: string
+        #   enum:
+        #     - Booked
+        #     - Actuals
         pricingMetric:
           $ref: 'commonSchemas.yaml#/components/schemas/PricingMetric'
         grossCost:
@@ -194,6 +194,21 @@ components:
           type: array
           items:
             $ref: 'commonSchemas.yaml#/components/schemas/AudienceTarget'
+        invoiceUnits:
+          description: Number of invoice units either in linear television spots, audience impressions or other metric 
+          type: number
+          format: float
+        deliveredTargetUnits:
+          description: Number of primary audience units delivered in audience impressions or other metric 
+          type: number
+          format: float
+        deliveredThirdPartyUnits:
+          description: >-
+            Number of third-party audience units delivered in audience impressions 
+            or other metric to support independent outsourced companies that specialize in maintaining, 
+            serving tracking and analyzing the results of online ad campaigns. 
+          type: number
+          format: float
         unitCount:
           description: Number of units either in linear television spots or audience impressions
           type: integer

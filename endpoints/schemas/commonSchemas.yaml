@@ -169,6 +169,28 @@ components:
         - buyerName
       xml:
         name: buyer
+    Company:
+      description: Company Information - company can be advertiser, agencym repfirm, etc.
+      properties:
+        ids:
+          description: Array of identifier objects used to identify the advertiser id and its source system 
+          type: array
+          items:
+            $ref: '#/components/schemas/Identifier'
+        name:
+          description: Comapny Name
+          type: string
+        reference:
+          description: other optional descriptors 
+          type: string
+        offices:
+          description: an array listing the name of the various offices
+          type: array
+          items:
+            type: string
+      required:
+        - ids
+        - name
     Product:
       description: Product category information
       properties:
@@ -1549,10 +1571,7 @@ components:
           type: array
           items:
             type: string
-          example: [
-  "ENG-US",
-  "ENG-UK"
-]
+          example: ["ENG-US", "ENG-UK"]
         aspect:
           description: Aspect ratio
           type: string

@@ -1,0 +1,129 @@
+openapi: 3.0.0
+info:
+  version: 6.1.0
+  title: Political Competitive Schema
+  description: Political Competitive Schema
+  termsOfService: http://placeholderdomain.io/terms/
+  contact:
+    name: TIP Initiative
+    email: tipinitiative@frontrowadvisory.com
+    url: http://placeholderdomain.io
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+paths: {}
+components:
+  schemas:
+    SellerPoliticalCompetitives:
+      description: Political Competitive schema
+      properties:
+        transactionHeader:
+          $ref: 'commonSchemas.yaml#/components/schemas/TransactionHeader'
+        externalComment:
+          type: string
+        politicalCompetitive:
+          type: array
+          items:
+            $ref: '#/components/schemas/PoliticalCompetitive'
+      required:
+        - transactionHeader
+        - politicalCompetitive
+    PoliticalCompetitive:
+      description: Individual Buy Information
+      properties:
+        ids:
+          description: Buy Id
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/ReferenceId'
+            minItems: 1
+        lineNumber:
+          type: array
+          items:
+            $ref: 'commonSchemas.yaml#/components/schemas/Identifier'
+        flightStart:
+          description: Start Date of Buy Flight
+          type: string
+          format: date
+        flightEnd:
+          description: End Date of Buy Flight
+          type: string
+          format: date
+        advertiser:
+          $ref: 'commonSchemas.yaml#/components/schemas/Company'
+        agency:
+          $ref: 'commonSchemas.yaml#/components/schemas/Company'
+        airingMediaOutlet:
+          $ref: 'commonSchemas.yaml#/components/schemas/MediaOutlet'
+        adSeconds:
+          description: Spot length in seconds (per lineNumber)
+          type: integer
+        totalAdSeconds:
+          description: Total ad seconds across all spots within flight dates and lineNumber
+          type: integer
+        totalDollars:
+          description: Total dollars for the spot length and schedule week
+          type: number
+          format: float
+        state:
+          description: US state abbreviation
+          type: string
+        repFirm:
+          description: Distributor or station group
+          oneOf:
+            - $ref: 'commonSchemas.yaml#/components/schemas/MediaOutlet'
+            - $ref: 'commonSchemas.yaml#/components/schemas/Company'
+        partyTag:
+          description: Party of the advertiser, ie, Republican or Democrat. The values below list as a sample. the enum can be extended
+          type: string
+          enum:
+            - Independent
+            - Democrat
+            - Republican
+            - Other
+        candidateTag:
+          description: Name of candidate
+          type: string
+        issueTag:
+          description: Descriptor of issue
+          type: string
+          example: Climate
+        electionTag:
+          description: Extensible list of Type and level of election
+          type: string
+          enum:
+            - House 
+            - Senate 
+            - Governor
+            - Presidential
+        raceTag:
+          description: Extensible list of Election race targeted
+          type: string 
+          enum:
+            - National Primary
+            - Local Primary
+            - State Primary
+            - General Election
+            - State Runoff
+            - Midterm
+            - Recall       
+        targetAudienceTag:
+          description: Audience or demographic targeted
+          type: string
+          example: Hispanic
+        geoTargetTag:
+          description: Descriptor of political geo-target (e.g. district, county, city)
+          type: string
+          example: NV02
+      required:
+        - ids
+        - lineNumber
+        - flightStart
+        - flightEnd
+        - advertiser
+        - agency
+        - airingMediaOutlet
+        - adSeconds
+        - totalDollars
+        - state
+        - repFirm
