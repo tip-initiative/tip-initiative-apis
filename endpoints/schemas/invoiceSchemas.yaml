@@ -303,7 +303,7 @@ components:
           type: boolean
         adjustmentReason:
           description: >-
-            Only valid on invoice revisions – reason for change of unit, example data;
+            Only valid on invoice revisions - reason for change of unit, example data;
             rate adjustment, incorrect copy
           type: string
         dateTime:
